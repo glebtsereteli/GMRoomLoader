@@ -7,10 +7,11 @@ function room_load_instances(_room, _xstart, _ystart, _depth) {
 	/// @param {Real} depth
 	/// @returns {Array<Id.Instance>}
 	
-	var _data = room_get_info(_room, false, true, false, false, false).instances;
 	var _instances = [];
-	var _n = array_length(_data);
+	var _data = room_get_info(_room, false, true, false, false, false).instances;
+	if (_data == 0) return _instances;
 	
+	var _n = array_length(_data);
 	for (var _i = 0; _i < _n; _i++) {
 		var _inst_data = _data[_i];
 		var _x = _xstart + _inst_data.x;
