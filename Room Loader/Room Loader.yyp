@@ -10,7 +10,11 @@
     "name": "Default",
   },
   "defaultScriptType": 1,
-  "Folders": [],
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Demo/Rooms.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Parrot","folderPath":"folders/Demo/Parrot.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Demo","folderPath":"folders/Demo.yy",},
+  ],
   "IncludedFiles": [],
   "isEcma": false,
   "LibraryEmitters": [],
@@ -18,10 +22,16 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"spr_parrot","path":"sprites/spr_parrot/spr_parrot.yy",},},
+    {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
+    {"id":{"name":"RoomLoader","path":"scripts/RoomLoader/RoomLoader.yy",},},
+    {"id":{"name":"obj_parrot","path":"objects/obj_parrot/obj_parrot.yy",},},
+    {"id":{"name":"rm_load_test_01","path":"rooms/rm_load_test_01/rm_load_test_01.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
+    {"roomId":{"name":"rm_load_test_01","path":"rooms/rm_load_test_01/rm_load_test_01.yy",},},
   ],
   "templateType": "game",
   "TextureGroups": [
