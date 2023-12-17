@@ -1,11 +1,12 @@
 {
   "FolderOrderSettings": [
-    {"name":"Rooms","order":2,"path":"folders/Demo/Rooms.yy",},
-    {"name":"Parrot","order":3,"path":"folders/Demo/Parrot.yy",},
+    {"name":"Rooms","order":3,"path":"folders/Demo/Rooms.yy",},
+    {"name":"Parrot","order":4,"path":"folders/Demo/Parrot.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"scr_demo","order":1,"path":"scripts/scr_demo/scr_demo.yy",},
     {"name":"spr_parrot","order":1,"path":"sprites/spr_parrot/spr_parrot.yy",},
-    {"name":"obj_test","order":1,"path":"objects/obj_test/obj_test.yy",},
     {"name":"RoomLoader","order":2,"path":"scripts/RoomLoader/RoomLoader.yy",},
+    {"name":"rm_demo","order":2,"path":"rooms/rm_demo/rm_demo.yy",},
   ],
 }
