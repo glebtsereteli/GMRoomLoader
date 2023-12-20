@@ -10,6 +10,12 @@ if (keyboard_check_pressed(ord("3"))) {
 	show_debug_message(_data);
 }
 if (keyboard_check_pressed(ord("4"))) {
+	var _t = get_timer();
 	var _data = room_load_tilemaps(rm_load_test_02, _x, _y);
-	show_debug_message(_data);
+	show_debug_message((get_timer() - _t) / 1000);
+}
+if (keyboard_check_pressed(ord("5"))) {
+	var _t = get_timer();
+	room_load_instances(rm_load_test_01, _x, _y);
+	show_debug_message((get_timer() - _t) / 1000);
 }
