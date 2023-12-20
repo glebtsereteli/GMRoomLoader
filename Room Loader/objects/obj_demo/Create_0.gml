@@ -4,7 +4,7 @@ instances = {
 	pool: [],
 	
 	load: function() {
-		pool = room_load_instances(rm_load_test_01, mouse_x, mouse_y, 0);
+		pool = room_load_instances_quick(rm_load_test_01, mouse_x, mouse_y, 0);
 		return self;
 	},
 	clear: function() {
