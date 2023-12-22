@@ -19,3 +19,8 @@ if (keyboard_check_pressed(ord("5"))) {
 	room_load_instances(rm_load_test_01, _x, _y);
 	show_debug_message((get_timer() - _t) / 1000);
 }
+if (keyboard_check_pressed(ord("6"))) {
+	var _t = get_timer();
+	loader.load();
+	show_debug_message((get_timer() - _t) / 1000);
+}

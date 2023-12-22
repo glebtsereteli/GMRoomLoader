@@ -1,4 +1,82 @@
 
+#macro ROOM_LOADER_LAYER_PREFIX "____room_loader____"
+
+function RoomLoader() constructor {
+	__data = {
+		raw: undefined,
+		ready: undefined,
+	};
+	__instance_lookup = undefined;
+	
+	static init = function(_room) {
+		static _get_inst_data = function(_instances_data, _id) {
+			for (var _i = 0; _i < array_length(_instances_data); _i++) {
+				var _inst_data = _instances_data[_i];
+				if (_inst_data.id == _id) {
+					return _inst_data;
+				}
+			}
+			return undefined;
+		};
+		
+		__data.raw = room_get_info(_room, false, true, true, true, false);
+		__data.ready = {
+			instance: [],
+		};
+		__instance_lookup = {};
+		
+		var _layers_data = __data.raw.layers;
+		var _instances_data = __data.raw.instances;
+		
+		for (var _i = 0; _i < array_length(_instances_data); _i++) {
+			var _inst_data = _instances_data[_i];
+			__instance_lookup[$ _inst_data.id] = _inst_data;
+		}
+		
+		for (var _i = 0; _i < array_length(_layers_data); _i++) {
+			var _layer_data = _layers_data[_i];
+			var _elements_data = _layer_data.elements;
+			if (_elements_data == 0) continue;
+			
+			switch (_elements_data[0].type) {
+				case layerelementtype_instance: {
+					var _elements_data_n = array_length(_elements_data);
+					
+					var _layer = {
+						name: ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+						depth: _layer_data.depth,
+						instances: array_create(_elements_data_n),
+					};
+					
+					for (var _j = 0; _j < _elements_data_n; _j++) {
+						var _inst = __instance_lookup[$ _elements_data[_j].inst_id];
+						_inst.object_index = asset_get_index(_inst.object_index);
+						_layer.instances[_j] = _inst;
+					}
+					
+					array_push(__data.ready.instance, _layer);
+					
+					break;
+				}
+			}
+		}
+	};
+	static load = function(_xoffs = 0, _yoffs = 0) {
+		for (var _i = 0; _i < array_length(__data.ready.instance); _i++) {
+			var _layer = __data.ready.instance[_i];
+			var _depth = _layer.depth;
+			
+			for (var _j = 0; _j < array_length(_layer.instances); _j++) {
+				var _inst_data = _layer.instances[_j];
+				var _x = _inst_data.x + _xoffs;
+				var _y = _inst_data.y + _yoffs;
+				var _inst = instance_create_depth(_x, _y, _depth, _inst_data.object_index);
+				__room_init_inst(_inst, _inst_data);
+			}
+		}
+	};
+}
+
 function __room_load_instance(_data, _xstart, _ystart, _depth) {
 	var _x = _xstart + _data.x;
 	var _y = _ystart + _data.y;
