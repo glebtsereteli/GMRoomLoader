@@ -1,6 +1,4 @@
 
-#macro ROOM_LOADER_LAYER_PREFIX "____room_loader____"
-
 function RoomLoader() constructor {
 	__data = {
 		raw: undefined,
@@ -43,7 +41,7 @@ function RoomLoader() constructor {
 					var _elements_data_n = array_length(_elements_data);
 					
 					var _layer = {
-						name: ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+						name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
 						depth: _layer_data.depth,
 						instances: array_create(_elements_data_n),
 					};
@@ -51,6 +49,8 @@ function RoomLoader() constructor {
 					for (var _j = 0; _j < _elements_data_n; _j++) {
 						var _inst = __instance_lookup[$ _elements_data[_j].inst_id];
 						_inst.object_index = asset_get_index(_inst.object_index);
+						if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
+						if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
 						_layer.instances[_j] = _inst;
 					}
 					
@@ -62,11 +62,13 @@ function RoomLoader() constructor {
 		}
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {
-		for (var _i = 0; _i < array_length(__data.ready.instance); _i++) {
-			var _layer = __data.ready.instance[_i];
+		var _layers = __data.ready.instance;
+		var _i = 0; repeat (array_length(_layers)) {
+			var _layer = _layers[_i];
 			var _depth = _layer.depth;
+			var _instances = _layer.instances;
 			
-			for (var _j = 0; _j < array_length(_layer.instances); _j++) {
+			var _j = 0; repeat (array_length(_instances)) {
 				var _inst_data = _layer.instances[_j];
 				var _x = _inst_data.x + _xoffs;
 				var _y = _inst_data.y + _yoffs;
@@ -78,10 +80,12 @@ function RoomLoader() constructor {
 					image_blend = _inst_data.colour;
 					image_index = _inst_data.image_index;
 					image_speed = _inst_data.image_speed;
-					if (_inst_data.pre_creation_code != -1) script_execute(_inst_data.pre_creation_code);
-					if (_inst_data.creation_code != -1) script_execute(_inst_data.pre_creation_code);
+					script_execute(_inst_data.pre_creation_code);
+					script_execute(_inst_data.creation_code);
 				}
+				_j++;
 			}
+			_i++;
 		}
 	};
 }
@@ -144,3 +148,5 @@ function room_load_tilemaps(_room, _x = 0, _y = 0) {
 	}
 	return _return_data;
 }
+
+function __room_loader_noop() {}
