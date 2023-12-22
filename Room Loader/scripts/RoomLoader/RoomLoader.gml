@@ -24,14 +24,17 @@ function RoomLoader() constructor {
 			instance: [],
 			total_instances: 0,
 		};
-		__instance_lookup = {};
+		
 		
 		var _layers_data = __data.raw.layers;
 		var _instances_data = __data.raw.instances;
+		var _instances_data_n = array_length(_instances_data);
 		
-		for (var _i = 0; _i < array_length(_instances_data); _i++) {
+		__instance_lookup = array_create(_instances_data_n);
+		
+		for (var _i = 0; _i < _instances_data_n; _i++) {
 			var _inst_data = _instances_data[_i];
-			__instance_lookup[$ _inst_data.id] = _inst_data;
+			__instance_lookup[_inst_data.id - 100001] = _inst_data;
 		}
 		
 		for (var _i = 0; _i < array_length(_layers_data); _i++) {
@@ -51,7 +54,7 @@ function RoomLoader() constructor {
 					};
 					
 					for (var _j = 0; _j < _elements_data_n; _j++) {
-						var _inst = __instance_lookup[$ _elements_data[_j].inst_id];
+						var _inst = __instance_lookup[_elements_data[_j].inst_id - 100001];
 						_inst.object_index = asset_get_index(_inst.object_index);
 						if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
 						if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
