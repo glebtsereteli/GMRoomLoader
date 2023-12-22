@@ -5,8 +5,16 @@ var _y = round_to(mouse_y, _tile_size);
 
 if (keyboard_check_pressed(ord("1"))) {
 	var _t = get_timer();
-	loader.load(mouse_x, mouse_y);
-	show_debug_message((get_timer() - _t) / 1000);	
+	data = loader.load(mouse_x, mouse_y);
+	show_debug_message((get_timer() - _t) / 1000);
+	show_debug_message(data);
+}
+if (keyboard_check_pressed(ord("2"))) {
+	if (data != undefined) {
+		for (var _i = 0; _i < array_length(data.instances); _i++) {
+			instance_destroy(data.instances[_i]);
+		}
+	}
 }
 if (keyboard_check_pressed(ord("3"))) {
 	var _data = room_load_tilemap(rm_load_test_02, "tiles_mid", _x, _y);

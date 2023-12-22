@@ -1,5 +1,7 @@
 
 function RoomLoader() constructor {
+	__raw_data = undefined;
+	
 	__data = {
 		raw: undefined,
 		ready: undefined,
@@ -20,6 +22,7 @@ function RoomLoader() constructor {
 		__data.raw = room_get_info(_room, false, true, true, true, false);
 		__data.ready = {
 			instance: [],
+			total_instances: 0,
 		};
 		__instance_lookup = {};
 		
@@ -39,6 +42,7 @@ function RoomLoader() constructor {
 			switch (_elements_data[0].type) {
 				case layerelementtype_instance: {
 					var _elements_data_n = array_length(_elements_data);
+					__data.ready.total_instances += _elements_data_n;
 					
 					var _layer = {
 						name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
@@ -63,12 +67,19 @@ function RoomLoader() constructor {
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {
 		var _layers_data = __data.ready.instance;
-		var _i = 0; repeat (array_length(_layers_data)) {
+		var _layers_data_n = array_length(_layers_data);
+		
+		var _layers = array_create(_layers_data_n);
+		var _instances = array_create(__data.ready.total_instances);
+		var _inst_index = 0;
+		
+		var _i = 0; repeat (_layers_data_n) {
 			var _layer_data = _layers_data[_i];
 			var _instances_data = _layer_data.instances;
+			var _instances_data_n = array_length(_layer_data.instances);
 			var _layer = layer_create(_layer_data.depth, _layer_data.name);
 			
-			var _j = 0; repeat (array_length(_instances_data)) {
+			var _j = 0; repeat (_instances_data_n) {
 				var _inst_data = _instances_data[_j];
 				var _x = _inst_data.x + _xoffs;
 				var _y = _inst_data.y + _yoffs;
@@ -83,10 +94,16 @@ function RoomLoader() constructor {
 					script_execute(_inst_data.pre_creation_code);
 					script_execute(_inst_data.creation_code);
 				}
+				_instances[_inst_index++] = _inst;
 				_j++;
 			}
 			_i++;
 		}
+		
+		return {
+			layers: _layers,
+			instances: _instances,
+		};
 	};
 }
 

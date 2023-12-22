@@ -1,6 +1,7 @@
 EVENT_METHOD;
 
 loader = new RoomLoader();
+data = undefined;
 
 var _t = get_timer();
 loader.init(rm_load_test_01);
