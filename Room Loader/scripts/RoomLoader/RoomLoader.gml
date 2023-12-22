@@ -62,17 +62,17 @@ function RoomLoader() constructor {
 		}
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {
-		var _layers = __data.ready.instance;
-		var _i = 0; repeat (array_length(_layers)) {
-			var _layer = _layers[_i];
-			var _depth = _layer.depth;
-			var _instances = _layer.instances;
+		var _layers_data = __data.ready.instance;
+		var _i = 0; repeat (array_length(_layers_data)) {
+			var _layer_data = _layers_data[_i];
+			var _instances_data = _layer_data.instances;
+			var _layer = layer_create(_layer_data.depth, _layer_data.name);
 			
-			var _j = 0; repeat (array_length(_instances)) {
-				var _inst_data = _layer.instances[_j];
+			var _j = 0; repeat (array_length(_instances_data)) {
+				var _inst_data = _instances_data[_j];
 				var _x = _inst_data.x + _xoffs;
 				var _y = _inst_data.y + _yoffs;
-				var _inst = instance_create_depth(_x, _y, _depth, _inst_data.object_index);
+				var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index);
 				with (_inst) {
 					image_xscale = _inst_data.xscale;
 					image_yscale = _inst_data.yscale;
