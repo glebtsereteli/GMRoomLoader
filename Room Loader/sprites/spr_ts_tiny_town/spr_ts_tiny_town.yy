@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Room Loader",
-    "path": "Room Loader.yyp",
+    "name": "Tiny Town",
+    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -12,8 +12,8 @@
   "out_tilehborder": 2,
   "out_tilevborder": 2,
   "parent": {
-    "name": "Room Loader",
-    "path": "Room Loader.yyp",
+    "name": "Tiny Town",
+    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
   },
   "spriteId": {
     "name": "spr_ts_tiny_town",

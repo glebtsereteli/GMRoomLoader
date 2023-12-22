@@ -9,7 +9,7 @@ function RoomLoader() constructor {
 	__instance_lookup = undefined;
 	
 	static init = function(_room) {
-		__data.raw = room_get_info(_room, false, true, true, true, false);
+		__data.raw = room_get_info(_room, false, true, true, true, true);
 		__data.ready = {
 			instance: [],
 			total_instances: 0,

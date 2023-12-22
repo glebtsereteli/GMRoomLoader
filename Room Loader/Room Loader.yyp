@@ -15,6 +15,8 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Parrot","folderPath":"folders/Demo/Parrot.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Demo/Rooms.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"RoomLoader","folderPath":"folders/RoomLoader.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Demo/Tile Sets.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiny Town","folderPath":"folders/Demo/Tile Sets/Tiny Town.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
