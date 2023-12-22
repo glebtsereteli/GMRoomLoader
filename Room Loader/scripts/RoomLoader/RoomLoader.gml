@@ -9,35 +9,26 @@ function RoomLoader() constructor {
 	__instance_lookup = undefined;
 	
 	static init = function(_room) {
-		static _get_inst_data = function(_instances_data, _id) {
-			for (var _i = 0; _i < array_length(_instances_data); _i++) {
-				var _inst_data = _instances_data[_i];
-				if (_inst_data.id == _id) {
-					return _inst_data;
-				}
-			}
-			return undefined;
-		};
-		
 		__data.raw = room_get_info(_room, false, true, true, true, false);
 		__data.ready = {
 			instance: [],
 			total_instances: 0,
 		};
 		
-		
-		var _layers_data = __data.raw.layers;
 		var _instances_data = __data.raw.instances;
 		var _instances_data_n = array_length(_instances_data);
 		
+		// Generate data lookup:
 		__instance_lookup = array_create(_instances_data_n);
-		
-		for (var _i = 0; _i < _instances_data_n; _i++) {
+		var _i = 0; repeat (_instances_data_n) {
 			var _inst_data = _instances_data[_i];
 			__instance_lookup[_inst_data.id - 100001] = _inst_data;
+			_i++;
 		}
 		
-		for (var _i = 0; _i < array_length(_layers_data); _i++) {
+		// Collect data:
+		var _layers_data = __data.raw.layers;
+		var _i = 0; repeat (array_length(_layers_data)) {
 			var _layer_data = _layers_data[_i];
 			var _elements_data = _layer_data.elements;
 			if (_elements_data == 0) continue;
@@ -66,6 +57,7 @@ function RoomLoader() constructor {
 					break;
 				}
 			}
+			_i++;
 		}
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {

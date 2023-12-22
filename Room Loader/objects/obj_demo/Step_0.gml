@@ -3,7 +3,13 @@ var _tile_size = 16;
 var _x = round_to(mouse_x, _tile_size);
 var _y = round_to(mouse_y, _tile_size);
 
-if (keyboard_check_pressed(ord("1"))) {
+if (keyboard_check(ord("1"))) {
+	if (data != undefined) {
+		for (var _i = 0; _i < array_length(data.instances); _i++) {
+			instance_destroy(data.instances[_i]);
+		}
+	}
+	
 	var _t = get_timer();
 	data = loader.load(mouse_x, mouse_y);
 	show_debug_message((get_timer() - _t) / 1000);
