@@ -1,6 +1,88 @@
 
 function RoomLoader() constructor {
-	__raw_data = undefined;
+	static DataInstances = function(_layer_data) constructor {
+		static ReturnData = function(_layer, _instances) constructor {
+			__layer = _layer;
+			__instances = _instances;
+			
+			static cleanup = function() {
+				layer_destroy_instances(__layer);
+				layer_destroy(__layer);
+			};
+		};
+		
+		owner = other;
+		layer_data = _layer_data;
+		total_amount = 0;
+		
+		static init = function(_elements_data) {
+			var _elements_data_n = array_length(_elements_data);
+			layer_data.instances = array_create(_elements_data_n);
+			total_amount += _elements_data_n;
+			
+			for (var _j = 0; _j < _elements_data_n; _j++) {
+				var _inst = owner.__instance_lookup[_elements_data[_j].inst_id - 100001];
+				_inst.object_index = asset_get_index(_inst.object_index);
+				if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
+				if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
+				layer_data.instances[_j] = _inst;
+			}
+			
+			return self;
+		};
+		static load = function(_xoffs = 0, _yoffs = 0) {
+			var _instances_data = layer_data.instances;
+			var _instances_data_n = array_length(layer_data.instances);
+			var _layer = layer_create(layer_data.depth, layer_data.name);
+			var _instances = array_create(total_amount);
+			
+			var _i = 0; repeat (_instances_data_n) {
+				var _inst_data = _instances_data[_i];
+				var _x = _inst_data.x + _xoffs;
+				var _y = _inst_data.y + _yoffs;
+				var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index);
+				with (_inst) {
+					image_xscale = _inst_data.xscale;
+					image_yscale = _inst_data.yscale;
+					image_angle = _inst_data.angle;
+					image_blend = _inst_data.colour;
+					image_index = _inst_data.image_index;
+					image_speed = _inst_data.image_speed;
+					script_execute(_inst_data.pre_creation_code);
+					script_execute(_inst_data.creation_code);
+				}
+				_instances[_i++] = _inst;
+			}
+			
+			return new ReturnData(_layer, _instances);
+		};
+	};
+	static DataTilemaps = function() constructor {
+		owner = other;
+		layers = [];
+		
+		static init = function(_layer, _elements_data) {
+			return self;
+		};
+		static load = function() {
+			return self;
+		};
+		static cleanup = function() {
+			
+		};
+	};
+	static ReturnData = function() constructor {
+		__pool = [];
+		
+		static add = function(_data) {
+			array_push(__pool, _data);
+		};
+		static cleanup = function() {
+			var _i = 0; repeat (array_length(__pool)) {
+				__pool[_i++].cleanup();	
+			}
+		};
+	};
 	
 	__data = {
 		raw: undefined,
@@ -10,11 +92,8 @@ function RoomLoader() constructor {
 	
 	static init = function(_room) {
 		__data.raw = room_get_info(_room, false, true, true, true, true);
-		__data.ready = {
-			instance: [],
-			total_instances: 0,
-		};
-		
+		__data.ready = [];
+				
 		var _instances_data = __data.raw.instances;
 		var _instances_data_n = array_length(_instances_data);
 		
@@ -33,72 +112,31 @@ function RoomLoader() constructor {
 			var _elements_data = _layer_data.elements;
 			if (_elements_data == 0) continue;
 			
+			var _layer = {
+				name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+				depth: _layer_data.depth,
+			};
+			
+			var _constructor = undefined;
 			switch (_elements_data[0].type) {
-				case layerelementtype_instance: {
-					var _elements_data_n = array_length(_elements_data);
-					__data.ready.total_instances += _elements_data_n;
-					
-					var _layer = {
-						name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
-						depth: _layer_data.depth,
-						instances: array_create(_elements_data_n),
-					};
-					
-					for (var _j = 0; _j < _elements_data_n; _j++) {
-						var _inst = __instance_lookup[_elements_data[_j].inst_id - 100001];
-						_inst.object_index = asset_get_index(_inst.object_index);
-						if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
-						if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
-						_layer.instances[_j] = _inst;
-					}
-					
-					array_push(__data.ready.instance, _layer);
-					
-					break;
-				}
+				case layerelementtype_instance: _constructor = DataInstances; break;
+				case layerelementtype_tilemap: _constructor = DataTilemaps; break;
 			}
+			
+			var _data = new _constructor(_layer).init(_elements_data);
+			array_push(__data.ready, _data);
+			
 			_i++;
 		}
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {
-		var _layers_data = __data.ready.instance;
-		var _layers_data_n = array_length(_layers_data);
-		
-		var _layers = array_create(_layers_data_n);
-		var _instances = array_create(__data.ready.total_instances);
-		var _inst_index = 0;
-		
-		var _i = 0; repeat (_layers_data_n) {
-			var _layer_data = _layers_data[_i];
-			var _instances_data = _layer_data.instances;
-			var _instances_data_n = array_length(_layer_data.instances);
-			var _layer = layer_create(_layer_data.depth, _layer_data.name);
-			
-			var _j = 0; repeat (_instances_data_n) {
-				var _inst_data = _instances_data[_j];
-				var _x = _inst_data.x + _xoffs;
-				var _y = _inst_data.y + _yoffs;
-				var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index);
-				with (_inst) {
-					image_xscale = _inst_data.xscale;
-					image_yscale = _inst_data.yscale;
-					image_angle = _inst_data.angle;
-					image_blend = _inst_data.colour;
-					image_index = _inst_data.image_index;
-					image_speed = _inst_data.image_speed;
-					script_execute(_inst_data.pre_creation_code);
-					script_execute(_inst_data.creation_code);
-				}
-				_instances[_inst_index++] = _inst;
-				_j++;
-			}
+		var _return_data = new ReturnData();
+		var _i = 0; repeat (array_length(__data.ready)) {
+			var _data = __data.ready[_i].load(_xoffs, _yoffs);
+			_return_data.add(_data);
 			_i++;
 		}
-		
-		return {
-			layers: _layers,
-			instances: _instances,
-		};
+		return _return_data;
 	};
 }
 

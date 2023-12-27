@@ -1,5 +1,7 @@
 EVENT_METHOD;
 
+show_debug_overlay(true, true);
+
 loader = new RoomLoader();
 data = undefined;
 
