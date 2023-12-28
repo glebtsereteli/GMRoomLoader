@@ -1,42 +1,43 @@
 
 function RoomLoader() constructor {
-	static DataInstances = function(_layer_data) constructor {
-		static ReturnData = function(_layer, _instances) constructor {
+	static __DataInstances = function(_layer_data, _elements_data) constructor {
+		static __ReturnData = function(_layer, _instances) constructor {
 			__layer = _layer;
 			__instances = _instances;
 			
-			static cleanup = function() {
+			static __cleanup = function() {
+				if (!layer_exists(__layer)) return;
+				
 				layer_destroy_instances(__layer);
 				layer_destroy(__layer);
 			};
 		};
 		
-		owner = other;
-		layer_data = _layer_data;
-		total_amount = 0;
+		__owner = other;
+		__layer_data = _layer_data;
+		__total_amount = 0;
 		
-		static init = function(_elements_data) {
+		static __init = function(_elements_data) {
 			var _elements_data_n = array_length(_elements_data);
-			layer_data.instances = array_create(_elements_data_n);
-			total_amount += _elements_data_n;
+			__layer_data.instances = array_create(_elements_data_n);
+			__total_amount += _elements_data_n;
 			
 			for (var _j = 0; _j < _elements_data_n; _j++) {
-				var _inst = owner.__instance_lookup[_elements_data[_j].inst_id - 100001];
+				var _inst = __owner.__instance_lookup[_elements_data[_j].inst_id - 100001];
 				_inst.object_index = asset_get_index(_inst.object_index);
 				if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
 				if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
-				layer_data.instances[_j] = _inst;
+				__layer_data.instances[_j] = _inst;
 			}
 			
 			return self;
 		};
-		static load = function(_xoffs = 0, _yoffs = 0) {
-			var _instances_data = layer_data.instances;
-			var _instances_data_n = array_length(layer_data.instances);
-			var _layer = layer_create(layer_data.depth, layer_data.name);
-			var _instances = array_create(total_amount);
+		static __load = function(_xoffs = 0, _yoffs = 0) {
+			var _instances_data = __layer_data.instances;
+			var _layer = layer_create(__layer_data.depth, __layer_data.name);
+			var _instances = array_create(__total_amount);
 			
-			var _i = 0; repeat (_instances_data_n) {
+			var _i = 0; repeat (__total_amount) {
 				var _inst_data = _instances_data[_i];
 				var _x = _inst_data.x + _xoffs;
 				var _y = _inst_data.y + _yoffs;
@@ -54,32 +55,73 @@ function RoomLoader() constructor {
 				_instances[_i++] = _inst;
 			}
 			
-			return new ReturnData(_layer, _instances);
+			return new __ReturnData(_layer, _instances);
 		};
+	
+		__init(_elements_data);
 	};
-	static DataTilemaps = function() constructor {
-		owner = other;
-		layers = [];
-		
-		static init = function(_layer, _elements_data) {
-			return self;
-		};
-		static load = function() {
-			return self;
-		};
-		static cleanup = function() {
+	static __DataTilemap = function(_layer_data, _elements_data) constructor {
+		static __ReturnData = function(_layer, _tilemap) constructor {
+			__layer = _layer;
+			__tilemap = _tilemap;
 			
+			static __cleanup = function() {
+				if (!layer_exists(__layer)) return;
+				
+				layer_tilemap_destroy(__tilemap);
+				layer_destroy(__layer);
+			};
 		};
+		
+		__layer_data = _layer_data;
+		__tileset = undefined;
+		__width = undefined;
+		__height = undefined;
+		__tiles_data = [];
+		
+		static __init = function(_tilemap_data) {
+			__tileset = _tilemap_data.background_index;
+			__width = _tilemap_data.width;
+			__height = _tilemap_data.height;
+			
+			var _tiles_data = _tilemap_data.tiles;
+			var _i = 0; repeat (array_length(_tiles_data)) {
+				var _data = _tiles_data[_i];
+				if (_data > 0) {
+					array_push(__tiles_data, {
+						data: _data,
+						x: (_i mod __width),
+						y: (_i div __width),
+					});
+				}
+				_i++;
+			}
+		};
+		static __load = function(_xoffs = 0, _yoffs = 0) {
+			var _layer = layer_create(__layer_data.depth, __layer_data.name);
+			var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
+			
+			var _i = 0; repeat (array_length(__tiles_data)) {
+				var _tile_data = __tiles_data[_i];
+				tilemap_set(_tilemap, _tile_data.data, _tile_data.x, _tile_data.y);
+				_i++;
+			}
+			
+			return new __ReturnData(_layer, _tilemap);
+		};
+		
+		__init(array_first(_elements_data));
 	};
-	static ReturnData = function() constructor {
+	static __ReturnData = function() constructor {
 		__pool = [];
 		
-		static add = function(_data) {
+		static __add = function(_data) {
 			array_push(__pool, _data);
 		};
+		
 		static cleanup = function() {
 			var _i = 0; repeat (array_length(__pool)) {
-				__pool[_i++].cleanup();	
+				__pool[_i++].__cleanup();
 			}
 		};
 	};
@@ -91,6 +133,14 @@ function RoomLoader() constructor {
 	__instance_lookup = undefined;
 	
 	static init = function(_room) {
+		static _get_data_constructor = function(_type) {
+			switch (_type) {
+				case layerelementtype_instance: return __DataInstances;	
+				case layerelementtype_tilemap: return __DataTilemap;
+			}
+			return undefined;
+		};
+		
 		__data.raw = room_get_info(_room, false, true, true, true, true);
 		__data.ready = [];
 				
@@ -112,91 +162,28 @@ function RoomLoader() constructor {
 			var _elements_data = _layer_data.elements;
 			if (_elements_data == 0) continue;
 			
-			var _layer = {
-				name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
-				depth: _layer_data.depth,
-			};
-			
-			var _constructor = undefined;
-			switch (_elements_data[0].type) {
-				case layerelementtype_instance: _constructor = DataInstances; break;
-				case layerelementtype_tilemap: _constructor = DataTilemaps; break;
+			var _data_constructor = _get_data_constructor(_elements_data[0].type);
+			if (_data_constructor != undefined) {
+				var _layer = {
+					name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+					depth: _layer_data.depth,
+				};
+				
+				var _data = new _data_constructor(_layer, _elements_data);
+				array_push(__data.ready, _data);
 			}
-			
-			var _data = new _constructor(_layer).init(_elements_data);
-			array_push(__data.ready, _data);
-			
 			_i++;
 		}
 	};
 	static load = function(_xoffs = 0, _yoffs = 0) {
-		var _return_data = new ReturnData();
+		var _return_data = new __ReturnData();
 		var _i = 0; repeat (array_length(__data.ready)) {
-			var _data = __data.ready[_i].load(_xoffs, _yoffs);
-			_return_data.add(_data);
+			var _data = __data.ready[_i].__load(_xoffs, _yoffs);
+			_return_data.__add(_data);
 			_i++;
 		}
 		return _return_data;
 	};
-}
-
-function __room_load_tilemap(_layer_data, _tilemap_data, _x, _y, _depth, _tileset) {
-	var _layer = layer_create(_depth, _layer_data.name);
-	var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _tilemap_data.width, _tilemap_data.height);
-	
-	var _tiles_data = _tilemap_data.tiles;
-	for (var _i = 0; _i < array_length(_tiles_data); _i++) {
-		var _tile_data = _tiles_data[_i];
-		if (_tile_data == 0) continue;
-		
-		var _cell_x = (_i mod _tilemap_data.width);
-		var _cell_y = (_i div _tilemap_data.width);
-		tilemap_set(_tilemap, _tile_data, _cell_x, _cell_y);
-	}
-	
-	return {
-		layer: _layer,
-		tilemap: _tilemap,
-	};
-}
-
-function room_load_tilemap(_room, _layer_name, _x = 0, _y = 0, _depth = undefined, _tileset = undefined) {
-	static _get_layer_data = function(_data, _layer_name) {
-		var _layers = _data.layers;
-		for (var _i = 0; _i < array_length(_layers); _i++) {
-			var _layer = _layers[_i];
-			if (_layer.name != _layer_name) continue;
-			if (_layer.elements[0].type != layerelementtype_tilemap) continue;
-			
-			return _layer;
-		}
-		return undefined;
-	};
-	
-	var _room_data = room_get_info(_room, false, false, true, true, true);
-	var _layer_data = _get_layer_data(_room_data, _layer_name);
-	if (_layer_data == undefined) return undefined;
-	
-	var _tilemap_data = _layer_data.elements[0];
-	_depth ??= _layer_data.depth;
-	_tileset ??= _tilemap_data.background_index;
-	
-	return __room_load_tilemap(_layer_data, _tilemap_data, _x, _y, _depth, _tileset);
-}
-function room_load_tilemaps(_room, _x = 0, _y = 0) {
-	var _room_data = room_get_info(_room, false, false, true, true, true);
-	var _layers_data = _room_data.layers;
-	var _return_data = [];
-	
-	for (var _i = 0; _i < array_length(_layers_data); _i++) {
-		var _layer_data = _layers_data[_i];
-		var _tilemap_data = _layer_data.elements[0];
-		if (_tilemap_data.type != layerelementtype_tilemap) continue;
-		
-		var _data = __room_load_tilemap(_layer_data, _tilemap_data, _x, _y, _layer_data.depth, _tilemap_data.background_index);
-		array_push(_return_data, _data);
-	}
-	return _return_data;
 }
 
 function __room_loader_noop() {}
