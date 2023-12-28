@@ -1,0 +1,3 @@
+
+- Tilemaps: tileset_index is listed as background_index.
+- Sprites: yscale doesn't work.

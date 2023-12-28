@@ -1,6 +1,6 @@
 
 function RoomLoader() constructor {
-	static __DataInstances = function(_layer_data, _elements_data) constructor {
+	static __DataInstances = function(_layer_data, _instances_data) constructor {
 		static __ReturnData = function(_layer, _instances) constructor {
 			__layer = _layer;
 			__instances = _instances;
@@ -15,14 +15,12 @@ function RoomLoader() constructor {
 		
 		__owner = other;
 		__layer_data = _layer_data;
-		__total_amount = 0;
+		__total_amount = array_length(_instances_data);
 		
 		static __init = function(_elements_data) {
-			var _elements_data_n = array_length(_elements_data);
-			__layer_data.instances = array_create(_elements_data_n);
-			__total_amount += _elements_data_n;
+			__layer_data.instances = array_create(__total_amount);
 			
-			for (var _j = 0; _j < _elements_data_n; _j++) {
+			for (var _j = 0; _j < __total_amount; _j++) {
 				var _inst = __owner.__instance_lookup[_elements_data[_j].inst_id - 100001];
 				_inst.object_index = asset_get_index(_inst.object_index);
 				if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
@@ -32,7 +30,7 @@ function RoomLoader() constructor {
 			
 			return self;
 		};
-		static __load = function(_xoffs = 0, _yoffs = 0) {
+		static __load = function(_xoffs, _yoffs) {
 			var _instances_data = __layer_data.instances;
 			var _layer = layer_create(__layer_data.depth, __layer_data.name);
 			var _instances = array_create(__total_amount);
@@ -58,7 +56,50 @@ function RoomLoader() constructor {
 			return new __ReturnData(_layer, _instances);
 		};
 	
-		__init(_elements_data);
+		__init(_instances_data);
+	};
+	static __DataSprites = function(_layer_data, _sprites_data) constructor {
+		static __ReturnData = function(_layer, _sprites) constructor {
+			__layer = _layer;
+			__sprites = _sprites;
+			
+			static __cleanup = function() {
+				if (!layer_exists(__layer)) return;
+				
+				var _i = 0; repeat (array_length(__sprites)) {
+					layer_sprite_destroy(__sprites[_i++]);
+				}
+				layer_destroy(__layer);
+			};
+		};
+		
+		__owner = other;
+		__layer_data = _layer_data;
+		__total_amount = array_length(_sprites_data);
+		__sprites_data = _sprites_data;
+		
+		static __load = function(_xoffs, _yoffs) {
+			var _layer = layer_create(__layer_data.depth, __layer_data.name);
+			var _sprites = array_create(__total_amount);
+			
+			var _i = 0; repeat (__total_amount) {
+				var _sprite_data = __sprites_data[_i];
+				var _x = _sprite_data.x + _xoffs;
+				var _y = _sprite_data.y + _yoffs;
+				var _sprite = layer_sprite_create(_layer, _x, _y, _sprite_data.sprite_index);
+				layer_sprite_index(_sprite, _sprite_data.image_index);
+				layer_sprite_xscale(_sprite, _sprite_data.image_xscale);
+				layer_sprite_yscale(_sprite, _sprite_data.image_yscale);
+				layer_sprite_angle(_sprite, _sprite_data.image_angle);
+				layer_sprite_speed(_sprite, _sprite_data.image_speed);
+				layer_sprite_blend(_sprite, _sprite_data.image_blend);
+				layer_sprite_alpha(_sprite, _sprite_data.image_alpha);
+				_sprites[_i] = _sprite;
+				_i++;
+			}
+			
+			return new __ReturnData(_layer, _sprites);
+		};
 	};
 	static __DataTilemap = function(_layer_data, _elements_data) constructor {
 		static __ReturnData = function(_layer, _tilemap) constructor {
@@ -97,7 +138,7 @@ function RoomLoader() constructor {
 				_i++;
 			}
 		};
-		static __load = function(_xoffs = 0, _yoffs = 0) {
+		static __load = function(_xoffs, _yoffs) {
 			var _layer = layer_create(__layer_data.depth, __layer_data.name);
 			var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
 			
@@ -135,7 +176,8 @@ function RoomLoader() constructor {
 	static init = function(_room) {
 		static _get_data_constructor = function(_type) {
 			switch (_type) {
-				case layerelementtype_instance: return __DataInstances;	
+				case layerelementtype_instance: return __DataInstances;
+				case layerelementtype_sprite: return __DataSprites;
 				case layerelementtype_tilemap: return __DataTilemap;
 			}
 			return undefined;

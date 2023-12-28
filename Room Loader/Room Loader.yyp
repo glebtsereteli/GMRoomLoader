@@ -32,6 +32,8 @@
     {"id":{"name":"obj_demo","path":"objects/obj_demo/obj_demo.yy",},},
     {"id":{"name":"RoomLoaderConfig","path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},},
     {"id":{"name":"RoomLoader","path":"scripts/RoomLoader/RoomLoader.yy",},},
+    {"id":{"name":"room_get_info() bugs","path":"notes/room_get_info() bugs/room_get_info() bugs.yy",},},
+    {"id":{"name":"owl","path":"sprites/owl/owl.yy",},},
     {"id":{"name":"obj_parrot","path":"objects/obj_parrot/obj_parrot.yy",},},
     {"id":{"name":"spr_ts_tiny_town","path":"sprites/spr_ts_tiny_town/spr_ts_tiny_town.yy",},},
     {"id":{"name":"rm_load_test_01","path":"rooms/rm_load_test_01/rm_load_test_01.yy",},},
