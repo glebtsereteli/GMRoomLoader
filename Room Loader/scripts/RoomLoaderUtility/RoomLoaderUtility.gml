@@ -1,5 +1,6 @@
 
 enum ROOM_LOADER_FLAG {
+	NONE = 0,
 	INSTANCES = 1,
 	SPRITES = 2,
 	TILEMAPS = 4,
