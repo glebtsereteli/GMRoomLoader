@@ -14,8 +14,9 @@ function RoomLoader() constructor {
 					layer_destroy(__layer);
 				};
 			};
-		
+			
 			__owner = other;
+			__flag = ROOM_LOADER_FLAG.INSTANCES;
 			__layer_data = _layer_data;
 			__total_amount = array_length(_instances_data);
 			
@@ -57,7 +58,7 @@ function RoomLoader() constructor {
 			
 				return new __ReturnData(_layer, _instances);
 			};
-	
+			
 			__init(_instances_data);
 		};
 		static __DataSprites = function(_layer_data, _sprites_data) constructor {
@@ -74,12 +75,12 @@ function RoomLoader() constructor {
 					layer_destroy(__layer);
 				};
 			};
-		
-			__owner = other;
+			
+			__flag = ROOM_LOADER_FLAG.SPRITES;
 			__layer_data = _layer_data;
 			__total_amount = array_length(_sprites_data);
 			__sprites_data = _sprites_data;
-		
+			
 			static __load = function(_xoffs, _yoffs) {
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
 				var _sprites = array_create(__total_amount);
@@ -115,7 +116,8 @@ function RoomLoader() constructor {
 					layer_destroy(__layer);
 				};
 			};
-		
+			
+			__flag = ROOM_LOADER_FLAG.TILEMAPS;
 			__layer_data = _layer_data;
 			__tileset = undefined;
 			__width = undefined;
@@ -212,11 +214,15 @@ function RoomLoader() constructor {
 				array_push(__packed, _data);
 			}	
 		};
-		static __load = function(_xoffs, _yoffs) {
+		static __load = function(_xoffs, _yoffs, _flags) {
 			var _return_data = new __ReturnData();
 			var _i = 0; repeat (array_length(__packed)) {
-				var _data = __packed[_i].__load(_xoffs, _yoffs);
-				_return_data.__add(_data);
+				with (__packed[_i]) {
+					if ((_flags & __flag) == __flag) {
+						var _data = __load(_xoffs, _yoffs);
+						_return_data.__add(_data);
+					}
+				}
 				_i++;
 			}
 			return _return_data;
@@ -255,11 +261,11 @@ function RoomLoader() constructor {
 		array_foreach(_rooms, _init);
 		return self;
 	};
-	static load = function(_room, _xoffs = 0, _yoffs = 0) {
+	static load = function(_room, _xoffs = 0, _yoffs = 0, _flags = ROOM_LOADER_FLAG.ALL) {
 		var _data = __data[$ room_get_name(_room)];
 		if (_data == undefined) return undefined;
 		
-		return _data.__load(_xoffs, _yoffs);
+		return _data.__load(_xoffs, _yoffs, _flags);
 	};
 
 	static get_raw_data = function(_room) {

@@ -2,9 +2,9 @@
   "FolderOrderSettings": [
     {"name":"Parrot","order":4,"path":"folders/Demo/Parrot.yy",},
     {"name":"Rooms","order":3,"path":"folders/Demo/Rooms.yy",},
+    {"name":"Sprites","order":6,"path":"folders/Demo/Sprites.yy",},
     {"name":"Tile Sets","order":5,"path":"folders/Demo/Tile Sets.yy",},
     {"name":"Tiny Town","order":1,"path":"folders/Demo/Tile Sets/Tiny Town.yy",},
-    {"name":"Sprites","order":6,"path":"folders/Demo/Sprites.yy",},
     {"name":"RoomLoader","order":1,"path":"folders/RoomLoader.yy",},
   ],
   "ResourceOrderSettings": [
