@@ -1,4 +1,6 @@
 
+#macro __ROOM_LOADER_LAYER_PREFIX "____room_loader____"
+
 function __room_loader_noop() {}
 
 function RoomLoader() constructor {
@@ -231,6 +233,21 @@ function RoomLoader() constructor {
 	
 	static init = function(_room) {
 		__data[$ room_get_name(_room)] = new __RoomData(_room);
+		return self;
+	};
+	static init_prefix = function(_prefix) {
+		static _filter_data = { prefix: undefined };
+		static _filter = method(_filter_data, function(_room) {
+			var _name = room_get_name(_room);
+			return (string_pos(prefix, _name) > 0);
+		});
+		static _init = function(_room) {
+			init(_room);
+		};
+		
+		_filter_data.prefix = _prefix;
+		var _rooms = array_filter(asset_get_ids(asset_room), _filter);
+		array_foreach(_rooms, _init);
 		return self;
 	};
 	static load = function(_room, _xoffs = 0, _yoffs = 0) {
