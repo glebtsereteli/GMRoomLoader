@@ -231,8 +231,11 @@ function RoomLoader() constructor {
 	};
 	static __data = {};
 	
-	static init = function(_room) {
-		__data[$ room_get_name(_room)] = new __RoomData(_room);
+	static init = function() {
+		var _i = 0; repeat (argument_count) {
+			var _room = argument[_i++];
+			__data[$ room_get_name(_room)] = new __RoomData(_room);	
+		}
 		return self;
 	};
 	static init_prefix = function(_prefix) {
