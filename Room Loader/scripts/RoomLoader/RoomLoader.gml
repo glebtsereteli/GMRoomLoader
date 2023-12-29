@@ -1,7 +1,4 @@
-
-#macro __ROOM_LOADER_LAYER_PREFIX "____room_loader____"
-
-function __room_loader_noop() {}
+/// @feather ignore all
 
 function RoomLoader() constructor {
 	static __RoomData = function(_room) constructor {
@@ -21,18 +18,18 @@ function RoomLoader() constructor {
 			__owner = other;
 			__layer_data = _layer_data;
 			__total_amount = array_length(_instances_data);
-		
+			
 			static __init = function(_elements_data) {
 				__layer_data.instances = array_create(__total_amount);
-			
-				for (var _j = 0; _j < __total_amount; _j++) {
-					var _inst = __owner.__instance_lookup[_elements_data[_j].inst_id - 100001];
+				
+				var _i = 0; repeat (__total_amount) {
+					var _inst = __owner.__instance_lookup[_elements_data[_i].inst_id - 100001];
 					_inst.object_index = asset_get_index(_inst.object_index);
 					if (_inst.pre_creation_code == -1) _inst.pre_creation_code = __room_loader_noop;
 					if (_inst.creation_code == -1) _inst.creation_code = __room_loader_noop;
-					__layer_data.instances[_j] = _inst;
+					__layer_data.instances[_i++] = _inst;
 				}
-			
+				
 				return self;
 			};
 			static __load = function(_xoffs, _yoffs) {
@@ -200,21 +197,19 @@ function RoomLoader() constructor {
 			// Collect data:
 			var _layers_data = __raw.layers;
 			var _i = 0; repeat (array_length(_layers_data)) {
-				var _layer_data = _layers_data[_i];
+				var _layer_data = _layers_data[_i++];
 				var _elements_data = _layer_data.elements;
 				if (_elements_data == 0) continue;
 				
 				var _data_constructor = _get_data_constructor(_elements_data[0].type);
-				if (_data_constructor != undefined) {
-					var _layer = {
-						name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
-						depth: _layer_data.depth,
-					};
-					
-					var _data = new _data_constructor(_layer, _elements_data);
-					array_push(__ready, _data);
-				}
-				_i++;
+				if (_data_constructor == undefined) continue;
+				
+				var _layer = {
+					name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+					depth: _layer_data.depth,
+				};
+				var _data = new _data_constructor(_layer, _elements_data);
+				array_push(__ready, _data);
 			}	
 		};
 		static __load = function(_xoffs, _yoffs) {

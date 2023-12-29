@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Room Loader",
-    "path": "Room Loader.yyp",
+    "name": "RoomLoader",
+    "path": "folders/RoomLoader.yy",
   },
 }

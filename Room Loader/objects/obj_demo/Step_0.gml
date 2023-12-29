@@ -1,6 +1,10 @@
 
+if (keyboard_check(vk_backspace)) {
+	data.cleanup();
+}
+
 var _room = undefined;
-var _checker = (keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed);
+var _checker = (keyboard_check(vk_lalt) ? keyboard_check : keyboard_check_pressed);
 if (_checker(ord("1"))) _room = rm_load_test_01;
 if (_checker(ord("2"))) _room = rm_load_test_02;
 
@@ -11,8 +15,4 @@ if (_room != undefined) {
 	show_debug_message($"{room_get_name(_room)} loaded in {_t}ms.");
 	
 	data.add(_data);
-}
-
-if (keyboard_check_pressed(vk_backspace)) {
-	data.cleanup();
 }

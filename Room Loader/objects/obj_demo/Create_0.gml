@@ -14,6 +14,6 @@ data = {
 };
 
 show_debug_overlay(true, true);
-RoomLoader.init(rm_load_test_01, rm_load_test_02);
+//RoomLoader.init(rm_load_test_01, rm_load_test_02);
 //RoomLoader.init_array([rm_load_test_01, rm_load_test_02]);
-//RoomLoader.init_prefix("rm_load_test_");
+RoomLoader.init_prefix("rm_load_test_");

@@ -1,3 +1,3 @@
 
-- Tilemaps: tileset_index is listed as background_index.
-- Sprites: yscale doesn't work.
+- Tilemaps: tileset_index is listed as background_index. BR: 
+- Sprites: yscale doesn't work. BR: https://github.com/YoYoGames/GameMaker-Bugs/issues/2576
