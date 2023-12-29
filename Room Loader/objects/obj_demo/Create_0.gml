@@ -4,7 +4,7 @@ data = {
 	pool: [],
 	
 	add: function(_data) {
-		array_push(pool, _data);	
+		array_push(pool, _data);
 	},
 	cleanup: function() {
 		static _cleanup = function(_data) { _data.cleanup(); };

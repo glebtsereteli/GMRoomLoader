@@ -170,7 +170,7 @@ function RoomLoader() constructor {
 		};
 		
 		__raw = room_get_info(_room, false, true, true, true, true);
-		__ready = [];
+		__packed = [];
 		__instance_lookup = undefined;
 		
 		static __init = function() {
@@ -209,17 +209,17 @@ function RoomLoader() constructor {
 					depth: _layer_data.depth,
 				};
 				var _data = new _data_constructor(_layer, _elements_data);
-				array_push(__ready, _data);
+				array_push(__packed, _data);
 			}	
 		};
 		static __load = function(_xoffs, _yoffs) {
 			var _return_data = new __ReturnData();
-			var _i = 0; repeat (array_length(__ready)) {
-				var _data = __ready[_i].__load(_xoffs, _yoffs);
+			var _i = 0; repeat (array_length(__packed)) {
+				var _data = __packed[_i].__load(_xoffs, _yoffs);
 				_return_data.__add(_data);
 				_i++;
 			}
-			return _return_data;	
+			return _return_data;
 		};
 		
 		__init();
@@ -261,6 +261,12 @@ function RoomLoader() constructor {
 		
 		return _data.__load(_xoffs, _yoffs);
 	};
-}
 
+	static get_raw_data = function(_room) {
+		with (__data[$ room_get_name(_room)]) {
+			return __raw;	
+		}
+		return undefined;
+	};
+}
 RoomLoader();
