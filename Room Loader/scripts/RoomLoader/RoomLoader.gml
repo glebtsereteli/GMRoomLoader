@@ -227,8 +227,7 @@ function RoomLoader() constructor {
 		
 		__init();
 	};
-	
-	__data = {};
+	static __data = {};
 	
 	static init = function(_room) {
 		__data[$ room_get_name(_room)] = new __RoomData(_room);
@@ -241,3 +240,5 @@ function RoomLoader() constructor {
 		return _data.__load(_xoffs, _yoffs);
 	};
 }
+
+RoomLoader();

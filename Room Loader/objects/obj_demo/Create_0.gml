@@ -1,8 +1,5 @@
 EVENT_METHOD;
 
-show_debug_overlay(true, true);
-
-loader = new RoomLoader();
 data = {
 	pool: [],
 	
@@ -16,6 +13,5 @@ data = {
 	},
 };
 
-var _t = get_timer();
-loader.init(rm_load_test_01).init(rm_load_test_02);
-show_debug_message((get_timer() - _t) / 1000);
+show_debug_overlay(true, true);
+RoomLoader.init(rm_load_test_01).init(rm_load_test_02);

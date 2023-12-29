@@ -5,6 +5,7 @@
     {"name":"Tile Sets","order":5,"path":"folders/Demo/Tile Sets.yy",},
     {"name":"Tiny Town","order":1,"path":"folders/Demo/Tile Sets/Tiny Town.yy",},
     {"name":"RoomLoader","order":8,"path":"folders/RoomLoader.yy",},
+    {"name":"Sprites","order":6,"path":"folders/Demo/Sprites.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"rm_load_test_02","order":1,"path":"rooms/rm_load_test_02/rm_load_test_02.yy",},
@@ -12,7 +13,6 @@
     {"name":"spr_parrot","order":1,"path":"sprites/spr_parrot/spr_parrot.yy",},
     {"name":"RoomLoaderConfig","order":1,"path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},
     {"name":"room_get_info() bugs","order":10,"path":"notes/room_get_info() bugs/room_get_info() bugs.yy",},
-    {"name":"owl","order":9,"path":"sprites/owl/owl.yy",},
     {"name":"spr_ts_tiny_town","order":1,"path":"sprites/spr_ts_tiny_town/spr_ts_tiny_town.yy",},
     {"name":"rm_demo","order":2,"path":"rooms/rm_demo/rm_demo.yy",},
   ],
