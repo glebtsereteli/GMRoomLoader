@@ -238,6 +238,13 @@ function RoomLoader() constructor {
 		}
 		return self;
 	};
+	static init_array = function(_rooms) {
+		var _i = 0; repeat (array_length(_rooms)) {
+			var _room = _rooms[_i++];
+			__data[$ room_get_name(_room)] = new __RoomData(_room);	
+		}
+		return self;
+	};
 	static init_prefix = function(_prefix) {
 		static _filter_data = { prefix: undefined };
 		static _filter = method(_filter_data, function(_room) {
