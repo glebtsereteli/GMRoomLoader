@@ -263,7 +263,7 @@ function RoomLoader() constructor {
 		return _data.__load(_xoffs, _yoffs, _flags);
 	};
 
-	static get_data = function(_room) {
+	static get_raw_data = function(_room) {
 		with (__data[$ room_get_name(_room)]) {
 			return __raw;	
 		}
