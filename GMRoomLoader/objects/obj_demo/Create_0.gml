@@ -16,8 +16,8 @@ flags = {
 		if (_flags == 0) _message += "None";
 		else {
 			if (instances) _message += "Instances";
-			if (sprites) _message += $"{instances ? " |" : ""} Sprites";
-			if (tilemaps) _message += $"{(instances or sprites) ? " |" : ""} Tilemaps";
+			if (sprites) _message += $"{instances ? " | " : ""}Sprites";
+			if (tilemaps) _message += $"{(instances or sprites) ? " | " : ""}Tilemaps";
 		}
 		
 		draw_set_valign(fa_bottom);

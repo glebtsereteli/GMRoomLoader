@@ -240,10 +240,8 @@ function RoomLoader() constructor {
 		return self;
 	};
 	static init_array = function(_rooms) {
-		var _i = 0; repeat (array_length(_rooms)) {
-			var _room = _rooms[_i++];
-			__data[$ room_get_name(_room)] = new __RoomData(_room);	
-		}
+		static _init = function(_room) { init(_room); };
+		array_foreach(_rooms, _init);
 		return self;
 	};
 	static init_prefix = function(_prefix) {
@@ -252,13 +250,10 @@ function RoomLoader() constructor {
 			var _name = room_get_name(_room);
 			return (string_pos(prefix, _name) > 0);
 		});
-		static _init = function(_room) {
-			init(_room);
-		};
 		
 		_filter_data.prefix = _prefix;
 		var _rooms = array_filter(asset_get_ids(asset_room), _filter);
-		array_foreach(_rooms, _init);
+		init_array(_rooms);
 		return self;
 	};
 	static load = function(_room, _xoffs = 0, _yoffs = 0, _flags = ROOM_LOADER_FLAG.ALL) {
@@ -268,7 +263,7 @@ function RoomLoader() constructor {
 		return _data.__load(_xoffs, _yoffs, _flags);
 	};
 
-	static get_raw_data = function(_room) {
+	static get_data = function(_room) {
 		with (__data[$ room_get_name(_room)]) {
 			return __raw;	
 		}

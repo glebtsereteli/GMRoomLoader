@@ -1,4 +1,6 @@
 
+#macro __ROOM_LOADER_LAYER_PREFIX "____room_loader____"
+
 enum ROOM_LOADER_FLAG {
 	NONE = 0,
 	INSTANCES = 1,
@@ -7,5 +9,4 @@ enum ROOM_LOADER_FLAG {
 	ALL = (ROOM_LOADER_FLAG.INSTANCES | ROOM_LOADER_FLAG.SPRITES | ROOM_LOADER_FLAG.TILEMAPS),
 }
 
-#macro __ROOM_LOADER_LAYER_PREFIX "____room_loader____"
 function __room_loader_noop() {}

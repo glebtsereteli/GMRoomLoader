@@ -16,5 +16,3 @@ if (_room != undefined) {
 	
 	data.add(_data);
 }
-
-flags.update();
