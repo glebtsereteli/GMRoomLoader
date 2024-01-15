@@ -1,4 +1,5 @@
 
+flags.update();
 if (keyboard_check(vk_backspace)) {
 	data.cleanup();
 }
@@ -10,7 +11,7 @@ if (_checker(ord("2"))) _room = rm_load_test_02;
 
 if (_room != undefined) {
 	var _t = get_timer();
-	var _data = RoomLoader.load(_room, mouse_x, mouse_y, flags.get());
+	var _data = RoomLoader.load(_room, mouse_x, mouse_y, flags.get(), ROOM_LOADER_ORIGIN.MIDDLE_CENTER);
 	_t = ((get_timer() - _t) / 1000);
 	show_debug_message($"{room_get_name(_room)} loaded in {_t}ms.");
 	
