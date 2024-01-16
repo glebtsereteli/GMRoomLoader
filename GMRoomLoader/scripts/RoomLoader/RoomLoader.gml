@@ -69,10 +69,10 @@ function RoomLoader() constructor {
 			static __ReturnData = function(_layer, _sprites) constructor {
 				__layer = _layer;
 				__sprites = _sprites;
-			
+				
 				static __cleanup = function() {
 					if (!layer_exists(__layer)) return;
-				
+					
 					var _i = 0; repeat (array_length(__sprites)) {
 						layer_sprite_destroy(__sprites[_i]);
 						_i++;
@@ -113,10 +113,10 @@ function RoomLoader() constructor {
 			static __ReturnData = function(_layer, _tilemap) constructor {
 				__layer = _layer;
 				__tilemap = _tilemap;
-			
+				
 				static __cleanup = function() {
 					if (!layer_exists(__layer)) return;
-				
+					
 					layer_tilemap_destroy(__tilemap);
 					layer_destroy(__layer);
 				};
@@ -128,7 +128,7 @@ function RoomLoader() constructor {
 			__width = undefined;
 			__height = undefined;
 			__tiles_data = [];
-		
+			
 			static __init = function(_tilemap_data) {
 				__tileset = _tilemap_data.background_index;
 				__width = _tilemap_data.width;
@@ -159,16 +159,16 @@ function RoomLoader() constructor {
 			
 				return new __ReturnData(_layer, _tilemap);
 			};
-		
+			
 			__init(array_first(_elements_data));
 		};
 		static __ReturnData = function() constructor {
 			__pool = [];
-		
+			
 			static __add = function(_data) {
 				array_push(__pool, _data);
 			};
-		
+			
 			static cleanup = function() {
 				var _i = 0; repeat (array_length(__pool)) {
 					__pool[_i].__cleanup();
@@ -221,7 +221,7 @@ function RoomLoader() constructor {
 				_i++;
 			}	
 		};
-		static __load = function(_x, _y, _flags, _origin) {
+		static __load = function(_x, _y, _origin, _flags) {
 			static _origin_offsets = [
 				[+0.0, +0.0], [-0.5, +0.0], [-1.0, +0.0],
 				[+0.0, -0.5], [-0.5, -0.5], [-1.0, -0.5],
@@ -276,11 +276,12 @@ function RoomLoader() constructor {
 		init_array(_rooms);
 		return self;
 	};
-	static load = function(_room, _x, _y, _flags = ROOM_LOADER_FLAG.ALL, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT) {
+	
+	static load = function(_room, _x, _y, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT, _flags = ROOM_LOADER_FLAG.ALL) {
 		var _data = __data[$ room_get_name(_room)];
 		if (_data == undefined) return undefined;
 		
-		return _data.__load(_x, _y, _flags, _origin);
+		return _data.__load(_x, _y, _origin, _flags);
 	};
 	
 	static get_raw_data = function(_room) {

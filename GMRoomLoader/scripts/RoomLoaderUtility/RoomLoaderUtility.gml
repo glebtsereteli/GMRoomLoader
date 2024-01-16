@@ -1,6 +1,6 @@
 /// @feather ignore all
 
-#macro __ROOM_LOADER_LAYER_PREFIX "____room_loader____"
+#macro __ROOM_LOADER_LAYER_PREFIX "__room_loader__"
 
 enum ROOM_LOADER_FLAG {
 	NONE = 0,
