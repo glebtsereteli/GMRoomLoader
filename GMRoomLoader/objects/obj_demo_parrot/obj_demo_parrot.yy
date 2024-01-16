@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_parrot",
+  "name": "obj_demo_parrot",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_parrot",
-    "path": "sprites/spr_parrot/spr_parrot.yy",
+    "name": "spr_demo_parrot",
+    "path": "sprites/spr_demo_parrot/spr_demo_parrot.yy",
   },
   "spriteMaskId": null,
   "visible": true,

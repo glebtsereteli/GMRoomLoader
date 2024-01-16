@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "ts_tiny_town",
+  "name": "ts_demo_tiny_town",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 0,
@@ -16,8 +16,8 @@
     "path": "folders/Demo/Tile Sets/Tiny Town.yy",
   },
   "spriteId": {
-    "name": "spr_ts_tiny_town",
-    "path": "sprites/spr_ts_tiny_town/spr_ts_tiny_town.yy",
+    "name": "spr_ts_demo_tiny_town",
+    "path": "sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",
   },
   "spriteNoExport": true,
   "textureGroupId": {

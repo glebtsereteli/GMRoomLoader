@@ -1,10 +1,10 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "spr_ts_tiny_town",
-  "bbox_bottom": 175,
+  "name": "spr_demo_parrot",
+  "bbox_bottom": 63,
   "bbox_left": 0,
-  "bbox_right": 191,
+  "bbox_right": 63,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,26 +13,26 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b3458e27-b406-4be7-a4ab-95490049024f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"af0852ac-a66c-45c2-ba9e-4e174e356381",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 176,
+  "height": 64,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"dcb784d8-438d-4c91-90b6-e2e60bc8d977","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"9c50098a-9f0b-4dc9-8f1d-242b6806b810","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Tiny Town",
-    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
+    "name": "Parrot",
+    "path": "folders/Demo/Parrot.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "spr_ts_tiny_town",
+    "name": "spr_demo_parrot",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b3458e27-b406-4be7-a4ab-95490049024f","path":"sprites/spr_ts_tiny_town/spr_ts_tiny_town.yy",},},},"Disabled":false,"id":"0f85469b-052d-485d-a79c-2338575f603d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"af0852ac-a66c-45c2-ba9e-4e174e356381","path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",},},},"Disabled":false,"id":"3fba2691-5b95-4038-90ba-57d642aada2e","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 192,
+  "width": 64,
 }

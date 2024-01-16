@@ -286,7 +286,7 @@ function RoomLoader() constructor {
 	
 	static get_raw_data = function(_room) {
 		with (__data[$ room_get_name(_room)]) {
-			return __raw;	
+			return __raw;
 		}
 		return undefined;
 	};

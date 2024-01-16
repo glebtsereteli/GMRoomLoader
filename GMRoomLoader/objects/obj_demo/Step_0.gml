@@ -6,8 +6,8 @@ if (keyboard_check(vk_backspace)) {
 
 var _room = undefined;
 var _checker = (keyboard_check(vk_lalt) ? keyboard_check : keyboard_check_pressed);
-if (_checker(ord("1"))) _room = rm_load_test_01;
-if (_checker(ord("2"))) _room = rm_load_test_02;
+if (_checker(ord("1"))) _room = rm_demo_load_01;
+if (_checker(ord("2"))) _room = rm_demo_load_02;
 
 if (_room != undefined) {
 	var _t = get_timer();
