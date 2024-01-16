@@ -21,16 +21,11 @@ function RoomLoader() constructor {
 			__total_amount = array_length(_instances_data);
 			
 			static __init = function(_elements_data) {
-				static _noop = function() {};
-				
 				__layer_data.instances = array_create(__total_amount);
 				
 				var _i = 0; repeat (__total_amount) {
-					var _inst = __owner.__instance_lookup[_elements_data[_i].inst_id - 100001];
-					_inst.object_index = asset_get_index(_inst.object_index);
-					if (_inst.pre_creation_code == -1) _inst.pre_creation_code = _noop;
-					if (_inst.creation_code == -1) _inst.creation_code = _noop;
-					__layer_data.instances[_i] = _inst;
+					var _index = _elements_data[_i].inst_id - 100001;
+					__layer_data.instances[_i] = __owner.__instance_lookup[_index];
 					_i++;
 				}
 				
@@ -182,6 +177,7 @@ function RoomLoader() constructor {
 		__instance_lookup = undefined;
 		
 		static __init = function() {
+			static _noop = function() {};
 			static _get_data_constructor = function(_type) {
 				switch (_type) {
 					case layerelementtype_instance: return __DataInstances;
@@ -198,6 +194,9 @@ function RoomLoader() constructor {
 			__instance_lookup = array_create(_instances_data_n);
 			var _i = 0; repeat (_instances_data_n) {
 				var _inst_data = _instances_data[_i];
+				_inst_data.object_index = asset_get_index(_inst_data.object_index);
+				if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = _noop;
+				if (_inst_data.creation_code == -1) _inst_data.creation_code = _noop;
 				__instance_lookup[_inst_data.id - 100001] = _inst_data;
 				_i++;
 			}
@@ -265,6 +264,7 @@ function RoomLoader() constructor {
 		return self;
 	};
 	static init_prefix = function(_prefix) {
+		static _all_rooms = asset_get_ids(asset_room);
 		static _filter_data = { prefix: undefined };
 		static _filter = method(_filter_data, function(_room) {
 			var _name = room_get_name(_room);
@@ -272,7 +272,7 @@ function RoomLoader() constructor {
 		});
 		
 		_filter_data.prefix = _prefix;
-		var _rooms = array_filter(asset_get_ids(asset_room), _filter);
+		var _rooms = array_filter(_all_rooms, _filter);
 		init_array(_rooms);
 		return self;
 	};
