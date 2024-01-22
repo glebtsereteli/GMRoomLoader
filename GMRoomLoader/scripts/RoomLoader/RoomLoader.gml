@@ -248,7 +248,7 @@ function RoomLoader() constructor {
 		
 		__init();
 	};
-	static __data = {};
+	__data = {};
 	
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
@@ -291,4 +291,3 @@ function RoomLoader() constructor {
 		return undefined;
 	};
 }
-RoomLoader();

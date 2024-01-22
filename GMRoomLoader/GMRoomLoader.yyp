@@ -12,8 +12,8 @@
   "defaultScriptType": 1,
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Demo","folderPath":"folders/Demo.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Parrot","folderPath":"folders/Demo/Parrot.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Load Rooms","folderPath":"folders/Demo/Load Rooms.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Parrot","folderPath":"folders/Demo/Parrot.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Demo/Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Demo/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiny Town","folderPath":"folders/Demo/Tile Sets/Tiny Town.yy",},

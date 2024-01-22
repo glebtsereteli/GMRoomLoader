@@ -47,6 +47,6 @@ data = {
 };
 
 show_debug_overlay(true, true);
-//RoomLoader.init(rm_demo_load_01, rm_demo_load_02);
-//RoomLoader.init_array([rm_demo_load_01, rm_demo_load_02]);
-RoomLoader.init_prefix("rm_demo_load_");
+
+loader = new RoomLoader()
+.init_prefix("rm_demo_load_");
