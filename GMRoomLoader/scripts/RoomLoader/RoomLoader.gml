@@ -6,10 +6,10 @@ function RoomLoader() constructor {
 			static __ReturnData = function(_layer, _instances) constructor {
 				__layer = _layer;
 				__instances = _instances;
-			
+				
 				static __cleanup = function() {
 					if (!layer_exists(__layer)) return;
-				
+					
 					layer_destroy_instances(__layer);
 					layer_destroy(__layer);
 				};
@@ -48,8 +48,8 @@ function RoomLoader() constructor {
 						image_blend = _inst_data.colour;
 						image_index = _inst_data.image_index;
 						image_speed = _inst_data.image_speed;
-						script_execute(_inst_data.pre_creation_code);
-						script_execute(_inst_data.creation_code);
+						_inst_data.pre_creation_code();
+						_inst_data.creation_code();
 					}
 					_instances[_i] = _inst;
 					_i++;
@@ -177,7 +177,6 @@ function RoomLoader() constructor {
 		__instance_lookup = undefined;
 		
 		static __init = function() {
-			static _noop = function() {};
 			static _get_data_constructor = function(_type) {
 				switch (_type) {
 					case layerelementtype_instance: return __DataInstances;
@@ -195,8 +194,8 @@ function RoomLoader() constructor {
 			var _i = 0; repeat (_instances_data_n) {
 				var _inst_data = _instances_data[_i];
 				_inst_data.object_index = asset_get_index(_inst_data.object_index);
-				if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = _noop;
-				if (_inst_data.creation_code == -1) _inst_data.creation_code = _noop;
+				if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = __room_loader_noop;
+				if (_inst_data.creation_code == -1) _inst_data.creation_code = __room_loader_noop;
 				__instance_lookup[_inst_data.id - 100001] = _inst_data;
 				_i++;
 			}
@@ -212,7 +211,7 @@ function RoomLoader() constructor {
 				if (_data_constructor == undefined) continue;
 				
 				var _layer = {
-					name: __ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
+					name: ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
 					depth: _layer_data.depth,
 				};
 				var _data = new _data_constructor(_layer, _elements_data);
@@ -221,16 +220,8 @@ function RoomLoader() constructor {
 			}	
 		};
 		static __load = function(_x, _y, _origin, _flags) {
-			static _origin_offsets = [
-				[+0.0, +0.0], [-0.5, +0.0], [-1.0, +0.0],
-				[+0.0, -0.5], [-0.5, -0.5], [-1.0, -0.5],
-				[-0.0, -1.0], [-0.5, -1.0], [-1.0, -1.0],
-			];
-			
-			// Adjust position for origin:
-			var _origin_offset = _origin_offsets[_origin];
-			_x += (_origin_offset[0] * __raw.width);
-			_y += (_origin_offset[1] * __raw.height);
+			_x = __room_loader_get_offset_x(_x, __raw.width, _origin);
+			_y = __room_loader_get_offset_y(_y, __raw.height, _origin);
 			
 			// Load, collect and return data:
 			var _return_data = new __ReturnData();
@@ -249,6 +240,10 @@ function RoomLoader() constructor {
 		__init();
 	};
 	__data = {};
+	
+	static __get_data = function(_room) {
+		return __data[$ room_get_name(_room)];
+	};
 	
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
@@ -278,14 +273,46 @@ function RoomLoader() constructor {
 	};
 	
 	static load = function(_room, _x, _y, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT, _flags = ROOM_LOADER_FLAG.ALL) {
-		var _data = __data[$ room_get_name(_room)];
+		var _data = __get_data(_room);
 		if (_data == undefined) return undefined;
 		
 		return _data.__load(_x, _y, _origin, _flags);
 	};
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT) {
+		var _data = __get_data(_room);
+		if (_data == undefined) return undefined;
+		
+		_x = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
+		_y = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
+		
+		var _instances_data = _data.__instance_lookup;
+		var _n = array_length(_instances_data);
+		var _instances = array_create(_n);
+		
+		var _i = 0; repeat (_n) {
+			var _inst_data = _instances_data[_i];
+			var _inst_x = _x + _inst_data.x;
+			var _inst_y = _y + _inst_data.y;
+			var _inst = instance_create_depth(_inst_x, _inst_y, _depth, _inst_data.object_index);
+			with (_inst) {
+				image_xscale = _inst_data.xscale;
+				image_yscale = _inst_data.yscale;
+				image_angle = _inst_data.angle;
+				image_blend = _inst_data.colour;
+				image_index = _inst_data.image_index;
+				image_speed = _inst_data.image_speed;
+				_inst_data.pre_creation_code();
+				_inst_data.creation_code();
+			}
+			_instances[_i] = _inst;
+			_i++;
+		}
+		
+		return _instances;
+	};
 	
 	static get_raw_data = function(_room) {
-		with (__data[$ room_get_name(_room)]) {
+		with (__get_data(_room)) {
 			return __raw;
 		}
 		return undefined;
