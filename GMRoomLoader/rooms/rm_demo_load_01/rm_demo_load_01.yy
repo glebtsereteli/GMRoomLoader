@@ -246,8 +246,8 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
   ],
   "parent": {
-    "name": "Load Rooms",
-    "path": "folders/Demo/Load Rooms.yy",
+    "name": "Rooms",
+    "path": "folders/Demo/Rooms.yy",
   },
   "parentRoom": null,
   "physicsSettings": {

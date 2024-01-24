@@ -78,13 +78,24 @@ function RoomLoader() constructor {
 			
 			__flag = ROOM_LOADER_FLAG.SPRITES;
 			__layer_data = _layer_data;
-			__total_amount = array_length(_sprites_data);
+			__total_amount = undefined;
 			__sprites_data = _sprites_data;
 			
+			static __init = function() {
+				// [@TEMP] Ignore Sequences and Particle Systems:
+				var _i = 0; repeat (array_length(__sprites_data)) {
+					if (__sprites_data[_i].type = layerelementtype_sprite) {
+						_i++;
+						continue;
+					}
+					array_delete(__sprites_data, _i, 1);
+				}
+				__total_amount = array_length(__sprites_data);
+			};
 			static __load = function(_xoffs, _yoffs) {
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
 				var _sprites = array_create(__total_amount);
-			
+				
 				var _i = 0; repeat (__total_amount) {
 					var _sprite_data = __sprites_data[_i];
 					var _x = _sprite_data.x + _xoffs;
@@ -103,6 +114,8 @@ function RoomLoader() constructor {
 			
 				return new __ReturnData(_layer, _sprites);
 			};
+			
+			__init();
 		};
 		static __DataTilemap = function(_layer_data, _elements_data) constructor {
 			static __ReturnData = function(_layer, _tilemap) constructor {
@@ -180,7 +193,9 @@ function RoomLoader() constructor {
 			static _get_data_constructor = function(_type) {
 				switch (_type) {
 					case layerelementtype_instance: return __DataInstances;
-					case layerelementtype_sprite: return __DataSprites;
+					case layerelementtype_sprite:
+					case layerelementtype_sequence:
+					case layerelementtype_particlesystem: return __DataSprites;
 					case layerelementtype_tilemap: return __DataTilemap;
 				}
 				return undefined;

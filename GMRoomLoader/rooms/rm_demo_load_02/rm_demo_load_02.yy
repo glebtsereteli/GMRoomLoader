@@ -30,8 +30,8 @@
 -6,1,],"TileDataFormat":1,},"tilesetId":{"name":"ts_demo_tiny_town","path":"tilesets/ts_demo_tiny_town/ts_demo_tiny_town.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
   "parent": {
-    "name": "Load Rooms",
-    "path": "folders/Demo/Load Rooms.yy",
+    "name": "Rooms",
+    "path": "folders/Demo/Rooms.yy",
   },
   "parentRoom": null,
   "physicsSettings": {
