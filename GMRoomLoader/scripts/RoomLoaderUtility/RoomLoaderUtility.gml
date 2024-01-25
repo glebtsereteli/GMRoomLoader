@@ -6,7 +6,8 @@ enum ROOM_LOADER_FLAG {
 	SPRITES = 2,
 	TILEMAPS = 4,
 	PARTICLE_SYSTEMS = 8,
-	ALL = (ROOM_LOADER_FLAG.INSTANCES | ROOM_LOADER_FLAG.SPRITES | ROOM_LOADER_FLAG.TILEMAPS | ROOM_LOADER_FLAG.PARTICLE_SYSTEMS),
+	SEQUENCES = 16,
+	ALL = (ROOM_LOADER_FLAG.INSTANCES | ROOM_LOADER_FLAG.SPRITES | ROOM_LOADER_FLAG.TILEMAPS | ROOM_LOADER_FLAG.PARTICLE_SYSTEMS | ROOM_LOADER_FLAG.SEQUENCES),
 }
 enum ROOM_LOADER_ORIGIN {
 	TOP_LEFT, TOP_CENTER, TOP_RIGHT,
@@ -30,4 +31,7 @@ function __room_loader_get_offset_y(_y, _height, _origin) {
 		-1.0, -1.0, -1.0,
 	];
 	return (_y + (_height * _offsets[_origin]));
+}
+function __room_loader_check_flags(_flags) {
+	return ((_flags & __flag) == __flag);
 }

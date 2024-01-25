@@ -5,12 +5,14 @@ flags = {
 	sprites: true,
 	tilemaps: true,
 	particle_systems: true,
+	sequences: true,
 	
 	update: function() {
 		instances ^= keyboard_check_pressed(vk_numpad1);
 		sprites ^= keyboard_check_pressed(vk_numpad2);
 		tilemaps ^= keyboard_check_pressed(vk_numpad3);
 		particle_systems ^= keyboard_check_pressed(vk_numpad4);
+		sequences ^= keyboard_check_pressed(vk_numpad5);
 	},
 	draw: function() {
 		var _message = "Flags: ";
@@ -21,6 +23,7 @@ flags = {
 			if (sprites) _message += $"{instances ? " | " : ""}Sprites";
 			if (tilemaps) _message += $"{(instances or sprites) ? " | " : ""}Tilemaps";
 			if (particle_systems) _message += $"{(instances or sprites or tilemaps) ? " | " : ""}Particle Systems";
+			if (sequences) _message += $"{(instances or sprites or tilemaps or particle_systems) ? " | " : ""}Sequences";
 		}
 		
 		draw_set_valign(fa_bottom);
@@ -34,6 +37,7 @@ flags = {
 		_flags |= (ROOM_LOADER_FLAG.SPRITES * sprites);
 		_flags |= (ROOM_LOADER_FLAG.TILEMAPS * tilemaps);
 		_flags |= (ROOM_LOADER_FLAG.PARTICLE_SYSTEMS * particle_systems);
+		_flags |= (ROOM_LOADER_FLAG.SEQUENCES * sequences);
 		return _flags;
 	},
 };

@@ -33,7 +33,9 @@ function RoomLoader() constructor {
 				
 				return self;
 			};
-			static __load = function(_xoffs, _yoffs) {
+			static __load = function(_xoffs, _yoffs, _flags) {
+				if (not __room_loader_check_flags(_flags)) return undefined;
+				
 				var _instances_data = __layer_data.instances;
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
 				var _instances = array_create(__n);
@@ -71,9 +73,13 @@ function RoomLoader() constructor {
 						layer_sprite_destroy(__sprite);
 					};
 				};
-				__data = _data;
 				
-				static __load = function(_layer, _xoffs, _yoffs) {
+				__data = _data;
+				__flag = ROOM_LOADER_FLAG.SPRITES;
+				
+				static __load = function(_layer, _xoffs, _yoffs, _flags) {
+					if (not __room_loader_check_flags(_flags)) return undefined;
+					
 					var _x = __data.x + _xoffs;
 					var _y = __data.y + _yoffs;
 					var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
@@ -96,12 +102,15 @@ function RoomLoader() constructor {
 						//part_system_destroy(__particle_system);
 					};
 				};
-				__data = _data;
 				
-				static __load = function() {
+				__data = _data;
+				__flag = ROOM_LOADER_FLAG.PARTICLE_SYSTEMS;
+				
+				static __load = function(_layer, _xoffs, _yoffs, _flags) {
+					if (not __room_loader_check_flags(_flags)) return undefined;
 					// ...
 					return new __ReturnData();
-				};
+				}
 			};
 			static __DataSequence = function(_data) constructor {
 				static __ReturnData = function(_sequence) constructor {
@@ -111,12 +120,15 @@ function RoomLoader() constructor {
 						
 					};
 				};
-				__data = _data;
 				
-				static __load = function() {
+				__data = _data;
+				__flag = ROOM_LOADER_FLAG.SEQUENCES;
+				
+				static __load = function(_layer, _xoffs, _yoffs, _flags) {
+					if (not __room_loader_check_flags(_flags)) return undefined;
 					// ...
 					return new __ReturnData();
-				};
+				}
 			};
 			static __ReturnData = function(_layer, _elements) constructor {
 				__layer = _layer;
@@ -136,7 +148,6 @@ function RoomLoader() constructor {
 				};
 			};
 			
-			__flag = ROOM_LOADER_FLAG.SPRITES;
 			__layer_data = _layer_data;
 			__data = _data;
 			__n = undefined;
@@ -156,12 +167,15 @@ function RoomLoader() constructor {
 				}
 				__n = array_length(__data);
 			};
-			static __load = function(_xoffs, _yoffs) {
+			static __load = function(_xoffs, _yoffs, _flags) {
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
-				var _elements = array_create(__n);
+				var _elements = [];
 				
 				var _i = 0; repeat (__n) {
-					_elements[_i] = __data[_i].__load(_layer, _xoffs, _yoffs);
+					var _data = __data[_i].__load(_layer, _xoffs, _yoffs, _flags);
+					if (_data != undefined) {
+						array_push(_elements, _data);
+					}
 					_i++;
 				}
 				
@@ -210,7 +224,9 @@ function RoomLoader() constructor {
 					_i++;
 				}
 			};
-			static __load = function(_xoffs, _yoffs) {
+			static __load = function(_xoffs, _yoffs, _flags) {
+				if (not __room_loader_check_flags(_flags)) return undefined;
+				
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
 				var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
 			
@@ -296,11 +312,9 @@ function RoomLoader() constructor {
 			// Load, collect and return data:
 			var _return_data = new __ReturnData();
 			var _i = 0; repeat (array_length(__packed)) {
-				with (__packed[_i]) {
-					if ((_flags & __flag) == __flag) {
-						var _data = __load(_x, _y);
-						_return_data.__add(_data);
-					}
+				var _data = __packed[_i].__load(_x, _y, _flags);
+				if (_data != undefined) {
+					_return_data.__add(_data);
 				}
 				_i++;
 			}
