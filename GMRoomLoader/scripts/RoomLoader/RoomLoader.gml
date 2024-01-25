@@ -99,7 +99,7 @@ function RoomLoader() constructor {
 					__particle_system = _particle_system;
 					
 					static __cleanup = function() {
-						//part_system_destroy(__particle_system);
+						part_system_destroy(__particle_system);
 					};
 				};
 				
@@ -108,8 +108,15 @@ function RoomLoader() constructor {
 				
 				static __load = function(_layer, _xoffs, _yoffs, _flags) {
 					if (not __room_loader_check_flags(_flags)) return undefined;
-					// ...
-					return new __ReturnData();
+					
+					var _particle_system = part_system_create_layer(_layer, false, __data.ps);
+					var _x = __data.x + _xoffs;
+					var _y = __data.y + _yoffs;
+					part_system_position(_particle_system, _x, _y);
+					part_system_color(_particle_system, __data.blend, __data.alpha)
+					part_system_angle(_particle_system, __data.angle);
+					
+					return new __ReturnData(_particle_system);
 				}
 			};
 			static __DataSequence = function(_data) constructor {

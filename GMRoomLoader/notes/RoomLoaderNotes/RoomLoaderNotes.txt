@@ -2,10 +2,11 @@
 Info:
 - Repo: https://github.com/glebtsereteli/GMRoomLoader
 
-room_get_info() bugs:
+room_get_info() issues:
 - Sprites: yscale doesn't work. 
 	- Bug Report: https://github.com/YoYoGames/GameMaker-Bugs/issues/2576
 	- Fixed in 2024.2 Beta: https://github.com/YoYoGames/GameMaker-Bugs/milestone/7?closed=1
 - Tilemaps: tileset_index is listed as background_index. 
 	- Bug Report: 
-	
+- Particle Systems:
+	- Can't Scale?
