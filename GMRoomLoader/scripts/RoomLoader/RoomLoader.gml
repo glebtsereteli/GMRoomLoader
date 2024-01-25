@@ -2,14 +2,16 @@
 
 function RoomLoader() constructor {
 	static __RoomData = function(_room) constructor {
-		static __DataInstances = function(_layer_data, _instances_data) constructor {
+		static __DataInstance = function(_layer_data, _instances_data) constructor {
 			static __ReturnData = function(_layer, _instances) constructor {
 				__layer = _layer;
 				__instances = _instances;
+				__cleaned_up = false;
 				
 				static __cleanup = function() {
-					if (!layer_exists(__layer)) return;
+					if (__cleaned_up) return;
 					
+					__cleaned_up = true;
 					layer_destroy_instances(__layer);
 					layer_destroy(__layer);
 				};
@@ -18,12 +20,12 @@ function RoomLoader() constructor {
 			__owner = other;
 			__flag = ROOM_LOADER_FLAG.INSTANCES;
 			__layer_data = _layer_data;
-			__total_amount = array_length(_instances_data);
+			__n = array_length(_instances_data);
 			
 			static __init = function(_elements_data) {
-				__layer_data.instances = array_create(__total_amount);
+				__layer_data.instances = array_create(__n);
 				
-				var _i = 0; repeat (__total_amount) {
+				var _i = 0; repeat (__n) {
 					var _index = _elements_data[_i].inst_id - 100001;
 					__layer_data.instances[_i] = __owner.__instance_lookup[_index];
 					_i++;
@@ -34,9 +36,9 @@ function RoomLoader() constructor {
 			static __load = function(_xoffs, _yoffs) {
 				var _instances_data = __layer_data.instances;
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
-				var _instances = array_create(__total_amount);
+				var _instances = array_create(__n);
 				
-				var _i = 0; repeat (__total_amount) {
+				var _i = 0; repeat (__n) {
 					var _inst_data = _instances_data[_i];
 					var _x = _inst_data.x + _xoffs;
 					var _y = _inst_data.y + _yoffs;
@@ -60,16 +62,74 @@ function RoomLoader() constructor {
 			
 			__init(_instances_data);
 		};
-		static __DataSprites = function(_layer_data, _sprites_data) constructor {
-			static __ReturnData = function(_layer, _sprites) constructor {
+		static __DataAsset = function(_layer_data, _data) constructor {
+			static __DataSprite = function(_data) constructor {
+				static __ReturnData = function(_sprite) constructor {
+					__sprite = _sprite;
+					
+					static __cleanup = function() {
+						layer_sprite_destroy(__sprite);
+					};
+				};
+				__data = _data;
+				
+				static __load = function(_layer, _xoffs, _yoffs) {
+					var _x = __data.x + _xoffs;
+					var _y = __data.y + _yoffs;
+					var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
+					layer_sprite_index(_sprite, __data.image_index);
+					layer_sprite_xscale(_sprite, __data.image_xscale);
+					layer_sprite_yscale(_sprite, __data.image_yscale);
+					layer_sprite_angle(_sprite, __data.image_angle);
+					layer_sprite_speed(_sprite, __data.image_speed);
+					layer_sprite_blend(_sprite, __data.image_blend);
+					layer_sprite_alpha(_sprite, __data.image_alpha);
+					
+					return new __ReturnData(_sprite);
+				};
+			};
+			static __DataParticleSystem = function(_data) constructor {
+				static __ReturnData = function(_particle_system) constructor {
+					__particle_system = _particle_system;
+					
+					static __cleanup = function() {
+						//part_system_destroy(__particle_system);
+					};
+				};
+				__data = _data;
+				
+				static __load = function() {
+					// ...
+					return new __ReturnData();
+				};
+			};
+			static __DataSequence = function(_data) constructor {
+				static __ReturnData = function(_sequence) constructor {
+					__sequence = _sequence;
+					
+					static __cleanup = function() {
+						
+					};
+				};
+				__data = _data;
+				
+				static __load = function() {
+					// ...
+					return new __ReturnData();
+				};
+			};
+			static __ReturnData = function(_layer, _elements) constructor {
 				__layer = _layer;
-				__sprites = _sprites;
+				__elements = _elements;
+				__cleaned_up = false;
+				__n = array_length(_elements);
 				
 				static __cleanup = function() {
-					if (!layer_exists(__layer)) return;
+					if (__cleaned_up) return;
 					
-					var _i = 0; repeat (array_length(__sprites)) {
-						layer_sprite_destroy(__sprites[_i]);
+					__cleaned_up = true;
+					var _i = 0; repeat (__n) {
+						__elements[_i].__cleanup();
 						_i++;
 					}
 					layer_destroy(__layer);
@@ -78,41 +138,34 @@ function RoomLoader() constructor {
 			
 			__flag = ROOM_LOADER_FLAG.SPRITES;
 			__layer_data = _layer_data;
-			__total_amount = undefined;
-			__sprites_data = _sprites_data;
+			__data = _data;
+			__n = undefined;
 			
 			static __init = function() {
 				// [@TEMP] Ignore Sequences and Particle Systems:
-				var _i = 0; repeat (array_length(__sprites_data)) {
-					if (__sprites_data[_i].type = layerelementtype_sprite) {
-						_i++;
-						continue;
+				var _i = 0; repeat (array_length(__data)) {
+					var _data = __data[_i];
+					var _constructor = undefined;
+					switch (_data.type) {
+						case layerelementtype_sprite: _constructor = __DataSprite; break;
+						case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
+						case layerelementtype_sequence: _constructor = __DataSequence; break;
 					}
-					array_delete(__sprites_data, _i, 1);
+					__data[_i] = new _constructor(_data);
+					_i++;
 				}
-				__total_amount = array_length(__sprites_data);
+				__n = array_length(__data);
 			};
 			static __load = function(_xoffs, _yoffs) {
 				var _layer = layer_create(__layer_data.depth, __layer_data.name);
-				var _sprites = array_create(__total_amount);
+				var _elements = array_create(__n);
 				
-				var _i = 0; repeat (__total_amount) {
-					var _sprite_data = __sprites_data[_i];
-					var _x = _sprite_data.x + _xoffs;
-					var _y = _sprite_data.y + _yoffs;
-					var _sprite = layer_sprite_create(_layer, _x, _y, _sprite_data.sprite_index);
-					layer_sprite_index(_sprite, _sprite_data.image_index);
-					layer_sprite_xscale(_sprite, _sprite_data.image_xscale);
-					layer_sprite_yscale(_sprite, _sprite_data.image_yscale);
-					layer_sprite_angle(_sprite, _sprite_data.image_angle);
-					layer_sprite_speed(_sprite, _sprite_data.image_speed);
-					layer_sprite_blend(_sprite, _sprite_data.image_blend);
-					layer_sprite_alpha(_sprite, _sprite_data.image_alpha);
-					_sprites[_i] = _sprite;
+				var _i = 0; repeat (__n) {
+					_elements[_i] = __data[_i].__load(_layer, _xoffs, _yoffs);
 					_i++;
 				}
-			
-				return new __ReturnData(_layer, _sprites);
+				
+				return new __ReturnData(_layer, _elements);
 			};
 			
 			__init();
@@ -121,10 +174,12 @@ function RoomLoader() constructor {
 			static __ReturnData = function(_layer, _tilemap) constructor {
 				__layer = _layer;
 				__tilemap = _tilemap;
+				__cleaned_up = false;
 				
 				static __cleanup = function() {
-					if (!layer_exists(__layer)) return;
+					if (__cleaned_up) return;
 					
+					__cleaned_up = true;
 					layer_tilemap_destroy(__tilemap);
 					layer_destroy(__layer);
 				};
@@ -192,10 +247,10 @@ function RoomLoader() constructor {
 		static __init = function() {
 			static _get_data_constructor = function(_type) {
 				switch (_type) {
-					case layerelementtype_instance: return __DataInstances;
+					case layerelementtype_instance: return __DataInstance;
 					case layerelementtype_sprite:
 					case layerelementtype_sequence:
-					case layerelementtype_particlesystem: return __DataSprites;
+					case layerelementtype_particlesystem: return __DataAsset;
 					case layerelementtype_tilemap: return __DataTilemap;
 				}
 				return undefined;

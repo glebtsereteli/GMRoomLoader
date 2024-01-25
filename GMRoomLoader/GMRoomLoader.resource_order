@@ -15,6 +15,7 @@
     {"name":"RoomLoaderConfig","order":2,"path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},
     {"name":"RoomLoaderUtility","order":1,"path":"scripts/RoomLoaderUtility/RoomLoaderUtility.yy",},
     {"name":"spr_ts_demo_tiny_town","order":1,"path":"sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",},
+    {"name":"pts_demo","order":2,"path":"particles/pts_demo/pts_demo.yy",},
     {"name":"rm_demo","order":2,"path":"rooms/rm_demo/rm_demo.yy",},
   ],
 }
