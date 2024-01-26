@@ -1,6 +1,7 @@
 /// @feather ignore all
 
 function RoomLoader() constructor {
+	// Private:
 	static __RoomData = function(_room) constructor {
 		static __DataInstance = function(_layer_data, _instances_data) constructor {
 			static __ReturnData = function(_layer, _instances) constructor {
@@ -336,6 +337,7 @@ function RoomLoader() constructor {
 		return __data[$ room_get_name(_room)];
 	};
 	
+	// Public:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
 			var _room = argument[_i];

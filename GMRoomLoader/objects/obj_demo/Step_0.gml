@@ -15,5 +15,5 @@ if (_room != undefined) {
 	_t = ((get_timer() - _t) / 1000);
 	show_debug_message($"{room_get_name(_room)} loaded in {_t}ms.");
 	
-	data.add(_data);
+	data.set(_data);
 }

@@ -42,15 +42,16 @@ flags = {
 	},
 };
 data = {
-	pool: [],
+	ref: undefined,
 	
-	add: function(_data) {
-		array_push(pool, _data);
+	set: function(_ref) {
+		cleanup();
+		ref = _ref;
 	},
 	cleanup: function() {
-		static _cleanup = function(_data) { _data.cleanup(); };
-		array_foreach(pool, _cleanup);
-		pool = [];
+		with (ref) {
+			cleanup();	
+		}
 	},
 };
 
