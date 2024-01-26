@@ -24,6 +24,7 @@ function __RoomLoaderData(_room) constructor {
 				case layerelementtype_sequence:
 				case layerelementtype_particlesystem: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTilemap;
+				case layerelementtype_background: return __RoomLoaderDataLayerBackground;
 			}
 			return undefined;
 		};
@@ -52,11 +53,10 @@ function __RoomLoaderData(_room) constructor {
 			var _data_constructor = _get_data_constructor(_elements_data[0].type);
 			if (_data_constructor == undefined) continue;
 			
-			var _layer = {
-				name: ROOM_LOADER_LAYER_PREFIX + _layer_data.name,
-				depth: _layer_data.depth,
-			};
-			var _data = new _data_constructor(_layer, _elements_data);
+			_layer_data.name = ROOM_LOADER_LAYER_PREFIX + _layer_data.name;
+			struct_remove(_layer_data, "elements");
+			
+			var _data = new _data_constructor(_layer_data, _elements_data);
 			array_push(__packed, _data);
 			_i++;
 		}
@@ -97,14 +97,15 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 	__owner = other;
 	__flag = ROOM_LOADER_FLAG.INSTANCES;
 	__layer_data = _layer_data;
-	__n = array_length(_instances_data);
+	__instances_data = undefined;
 	
-	static __init = function(_elements_data) {
-		__layer_data.instances = array_create(__n);
+	static __init = function(_instances_data) {
+		var _n = array_length(_instances_data);
+		__instances_data = array_create(_n);
 		
-		var _i = 0; repeat (__n) {
-			var _index = _elements_data[_i].inst_id - 100001;
-			__layer_data.instances[_i] = __owner.__instance_pool[_index];
+		var _i = 0; repeat (_n) {
+			var _index = _instances_data[_i].inst_id - 100001;
+			__instances_data[_i] = __owner.__instance_pool[_index];
 			_i++;
 		}
 		
@@ -113,9 +114,8 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 	static __load = function(_xoffs, _yoffs, _flags) {
 		if (not __room_loader_check_flags(_flags)) return undefined;
 		
-		var _instances_data = __layer_data.instances;
-		var _layer = layer_create(__layer_data.depth, __layer_data.name);
-		var _instances = __room_loader_spawn_instances(_xoffs, _yoffs, __layer_data.instances, instance_create_layer, _layer);
+		var _layer = __room_loader_create_layer(__layer_data);
+		var _instances = __room_loader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
 		
 		return new __ReturnData(_layer, _instances);
 	};
@@ -232,7 +232,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__n = array_length(__data);
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		var _layer = layer_create(__layer_data.depth, __layer_data.name);
+		var _layer = __room_loader_create_layer(__layer_data);
 		var _elements = [];
 		
 		var _i = 0; repeat (__n) {
@@ -291,7 +291,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 	static __load = function(_xoffs, _yoffs, _flags) {
 		if (not __room_loader_check_flags(_flags)) return undefined;
 		
-		var _layer = layer_create(__layer_data.depth, __layer_data.name);
+		var _layer = __room_loader_create_layer(__layer_data);
 		var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
@@ -304,6 +304,46 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 	};
 	
 	__init(array_first(_elements_data));
+};
+function __RoomLoaderDataLayerBackground(_layer_data, _background_data) constructor {
+	static __ReturnData = function(_layer, _background) constructor {
+		__layer = _layer;
+		__background = _background;
+		__cleaned_up = false;
+		
+		static __cleanup = function() {
+			if (__cleaned_up) return;
+			
+			__cleaned_up = true;
+			layer_background_destroy(__background);
+			layer_destroy(__layer);
+		};
+	};
+	
+	__flag = ROOM_LOADER_FLAG.BACKGROUNDS;
+	__layer_data = _layer_data;
+	__background_data = _background_data[0];
+	
+	static __load = function(_xoffs, _yoffs, _flags) {
+		if (not __room_loader_check_flags(_flags)) return undefined;
+		
+		var _layer = __room_loader_create_layer(__layer_data);
+		var _background = layer_background_create(_layer, __background_data.sprite_index);
+		layer_background_visible(_background, __background_data.visible);
+		layer_background_htiled(_background, __background_data.htiled);
+		layer_background_vtiled(_background, __background_data.vtiled);
+		layer_background_stretch(_background, __background_data.stretch);
+		layer_background_xscale(_background, __background_data.xscale);
+		layer_background_yscale(_background, __background_data.yscale);
+		layer_background_index(_background, __background_data.image_index);
+		layer_background_speed(_background, __background_data.image_speed);
+		layer_background_blend(_background, __background_data.blendColour);
+		layer_background_alpha(_background, __background_data.blendAlpha);
+		
+		return new __ReturnData(_layer, _background);
+		
+		return undefined;
+	};
 };
 
 function __room_loader_noop() {}
@@ -326,7 +366,19 @@ function __room_loader_get_offset_y(_y, _height, _origin) {
 function __room_loader_check_flags(_flags) {
 	return ((_flags & __flag) == __flag);
 }
-function __room_loader_spawn_instances(_xoffs, _yoffs, _data, _create_func, _create_data) {
+function __room_loader_create_layer(_data) {
+	// { beginScript : -1, endScript : -1, effect : -1, effectEnabled : 1, effectToBeEnabled : 1, shaderID : -1, }
+	
+	var _layer = layer_create(_data.depth, _data.name);
+	layer_set_visible(_layer, _data.visible);
+	layer_x(_layer, _data.xoffset);
+	layer_y(_layer, _data.yoffset);
+	layer_hspeed(_layer, _data.hspeed);
+	layer_vspeed(_layer, _data.vspeed);
+	
+	return _layer;
+}
+function __room_loader_create_instances(_xoffs, _yoffs, _data, _create_func, _create_data) {
 	var _n = array_length(_data);
 	var _instances = array_create(_n);
 	
@@ -355,5 +407,5 @@ function __room_loader_load_instances(_room, _x, _y, _data, _origin, _create_fun
 	var _xoffs = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
 	var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
 	
-	return __room_loader_spawn_instances(_xoffs, _yoffs, _data.__instance_pool, _create_func, _create_data);
+	return __room_loader_create_instances(_xoffs, _yoffs, _data.__instance_pool, _create_func, _create_data);
 }
