@@ -1,3 +1,5 @@
 /// @feather ignore all
 
-#macro ROOM_LOADER_LAYER_PREFIX "__room_loader__"
+#macro ROOM_LOADER_LAYER_PREFIX		"__room_loader__"
+#macro ROOM_LOADER_DEFAULT_ORIGIN	ROOM_LOADER_ORIGIN.TOP_LEFT
+#macro ROOM_LOADER_DEFAULT_FLAGS	ROOM_LOADER_FLAG.CORE

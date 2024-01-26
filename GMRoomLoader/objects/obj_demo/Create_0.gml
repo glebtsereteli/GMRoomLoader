@@ -1,5 +1,7 @@
 EVENT_METHOD;
 
+show_debug_overlay(true, true);
+
 flags = {
 	instances: true,
 	sprites: true,
@@ -54,8 +56,6 @@ data = {
 		}
 	},
 };
-
-show_debug_overlay(true, true);
 
 loader = new RoomLoader()
 .init_prefix("rm_demo_load_");

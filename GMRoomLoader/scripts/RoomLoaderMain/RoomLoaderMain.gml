@@ -32,7 +32,7 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	static load = function(_room, _x, _y, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT, _flags = ROOM_LOADER_FLAG.ALL) {
+	static load = function(_room, _x, _y, _origin = ROOM_LOADER_DEFAULT_ORIGIN, _flags = ROOM_LOADER_DEFAULT_FLAGS) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
