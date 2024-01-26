@@ -7,6 +7,10 @@
   "inheritCreationOrder": false,
   "inheritLayers": false,
   "instanceCreationOrder": [
+    {"name":"inst_1E4AC839","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
+    {"name":"inst_2C9C1CB9","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
+    {"name":"inst_4AC5C2CB","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
+    {"name":"inst_71EAA70B","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
     {"name":"inst_6DD94919","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
     {"name":"inst_10E08CE6","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
     {"name":"inst_173FEEEA","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
@@ -107,10 +111,6 @@
     {"name":"inst_34749F0F","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
     {"name":"inst_4FC28C81","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
     {"name":"inst_377AFA68","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
-    {"name":"inst_1E4AC839","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
-    {"name":"inst_2C9C1CB9","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
-    {"name":"inst_4AC5C2CB","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
-    {"name":"inst_71EAA70B","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},
   ],
   "isDnd": false,
   "layers": [
