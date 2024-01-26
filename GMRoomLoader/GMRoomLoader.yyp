@@ -13,12 +13,12 @@
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Demo","folderPath":"folders/Demo.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Parrot","folderPath":"folders/Demo/Parrot.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Particle Systems","folderPath":"folders/Demo/Particle Systems.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Demo/Rooms.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Demo/Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Demo/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiny Town","folderPath":"folders/Demo/Tile Sets/Tiny Town.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"RoomLoader","folderPath":"folders/RoomLoader.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Particle Systems","folderPath":"folders/Demo/Particle Systems.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
