@@ -351,3 +351,9 @@ function __room_loader_spawn_instances(_xoffs, _yoffs, _data, _create_func, _cre
 	
 	return _instances;
 }
+function __room_loader_load_instances(_room, _x, _y, _data, _origin, _create_func, _create_data) {
+	var _xoffs = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
+	var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
+	
+	return __room_loader_spawn_instances(_xoffs, _yoffs, _data.__instance_pool, _create_func, _create_data);
+}

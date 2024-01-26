@@ -38,14 +38,17 @@ function RoomLoader() constructor {
 		
 		return _data.__load(_x, _y, _origin, _flags);
 	};
-	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOM_LOADER_ORIGIN.TOP_LEFT) {
+	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOM_LOADER_DEFAULT_ORIGIN) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
-		var _xoffs = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
-		var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
+		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+	};
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOM_LOADER_DEFAULT_ORIGIN) {
+		var _data = __data_handler.__get(_room);
+		if (_data == undefined) return undefined;
 		
-		return __room_loader_spawn_instances(_xoffs, _yoffs, _data.__instance_pool, instance_create_depth, _depth);
+		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
 	static get_info = function(_room) {
