@@ -31,7 +31,7 @@
     {"id":{"name":"scr_demo","path":"scripts/scr_demo/scr_demo.yy",},},
     {"id":{"name":"spr_demo_parrot","path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",},},
     {"id":{"name":"ts_demo_tiny_town","path":"tilesets/ts_demo_tiny_town/ts_demo_tiny_town.yy",},},
-    {"id":{"name":"RoomLoader Notes","path":"notes/RoomLoader Notes/RoomLoader Notes.yy",},},
+    {"id":{"name":"RoomLoader Info","path":"notes/RoomLoader Info/RoomLoader Info.yy",},},
     {"id":{"name":"obj_demo","path":"objects/obj_demo/obj_demo.yy",},},
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
     {"id":{"name":"RoomLoaderConfig","path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},},

@@ -1,6 +1,10 @@
 
-Info:
+Links:
 - Repo: https://github.com/glebtsereteli/GMRoomLoader
+- YAL's paid alternative - GMRoomPack: https://yellowafterlife.itch.io/gmroompack
+
+Credits:
+- 
 
 room_get_info() issues:
 - Sprites: yscale doesn't work. 
@@ -9,5 +13,4 @@ room_get_info() issues:
 - Tilemaps: tileset_index is listed as background_index. 
 	- Bug Report: https://github.com/YoYoGames/GameMaker-Bugs/issues/4486
 	- Fixed in 2024.2: https://github.com/YoYoGames/GameMaker-Bugs/milestone/7?closed=1
-- Particle Systems:
-	- Can't Scale?
+- Particle Systems: can't be scaled?
