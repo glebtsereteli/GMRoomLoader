@@ -14,7 +14,7 @@ function __RoomLoaderDataHandler() constructor {
 function __RoomLoaderData(_room) constructor {
 	__raw = room_get_info(_room, false, true, true, true, true);
 	__packed = [];
-	__instance_pool = undefined;
+	__instance_lookup = undefined;
 	
 	static __init = function() {
 		static _get_data_constructor = function(_type) {
@@ -33,13 +33,13 @@ function __RoomLoaderData(_room) constructor {
 		var _instances_data = __raw.instances;
 		var _instances_data_n = array_length(_instances_data);
 		
-		__instance_pool = array_create(_instances_data_n);
+		__instance_lookup = array_create(_instances_data_n);
 		var _i = 0; repeat (_instances_data_n) {
 			var _inst_data = _instances_data[_i];
 			_inst_data.object_index = asset_get_index(_inst_data.object_index);
 			if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = __room_loader_noop;
 			if (_inst_data.creation_code == -1) _inst_data.creation_code = __room_loader_noop;
-			__instance_pool[_inst_data.id - 100001] = _inst_data;
+			__instance_lookup[_inst_data.id - 100001] = _inst_data;
 			_i++;
 		}
 		
@@ -48,16 +48,16 @@ function __RoomLoaderData(_room) constructor {
 		var _i = 0; repeat (array_length(_layers_data)) {
 			var _layer_data = _layers_data[_i];
 			var _elements_data = _layer_data.elements;
-			if (_elements_data == 0) continue;
-			
-			var _data_constructor = _get_data_constructor(_elements_data[0].type);
-			if (_data_constructor == undefined) continue;
-			
-			_layer_data.name = ROOM_LOADER_LAYER_PREFIX + _layer_data.name;
-			struct_remove(_layer_data, "elements");
-			
-			var _data = new _data_constructor(_layer_data, _elements_data);
-			array_push(__packed, _data);
+			if (_elements_data != 0) {
+				var _data_constructor = _get_data_constructor(_elements_data[0].type);
+				if (_data_constructor != undefined) {
+					_layer_data.name = ROOM_LOADER_LAYER_PREFIX + _layer_data.name;
+					struct_remove(_layer_data, "elements");
+					
+					var _data = new _data_constructor(_layer_data, _elements_data);
+					array_push(__packed, _data);
+				}
+			}
 			_i++;
 		}
 	};
@@ -105,7 +105,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 		
 		var _i = 0; repeat (_n) {
 			var _index = _instances_data[_i].inst_id - 100001;
-			__instances_data[_i] = __owner.__instance_pool[_index];
+			__instances_data[_i] = __owner.__instance_lookup[_index];
 			_i++;
 		}
 		
@@ -367,8 +367,6 @@ function __room_loader_check_flags(_flags) {
 	return ((_flags & __flag) == __flag);
 }
 function __room_loader_create_layer(_data) {
-	// { beginScript : -1, endScript : -1, effect : -1, effectEnabled : 1, effectToBeEnabled : 1, shaderID : -1, }
-	
 	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
 	layer_x(_layer, _data.xoffset);
@@ -407,5 +405,5 @@ function __room_loader_load_instances(_room, _x, _y, _data, _origin, _create_fun
 	var _xoffs = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
 	var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
 	
-	return __room_loader_create_instances(_xoffs, _yoffs, _data.__instance_pool, _create_func, _create_data);
+	return __room_loader_create_instances(_xoffs, _yoffs, _data.__instance_lookup, _create_func, _create_data);
 }
