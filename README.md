@@ -1,5 +1,5 @@
 <h1 align="center">GMRoomLoader v1.0.0</h1>
-<p align="center">For GameMaker 2023.8+ by Gleb Tsereteli</p>
+<p align="center">For GameMaker 2023.11+ by Gleb Tsereteli</p>
 
 ## Overview
 GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with minimal setup. It provides a set of methods to cache the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), load it efficiently during gameplay and clean it up when needed.
