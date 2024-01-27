@@ -97,19 +97,11 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 	__owner = other;
 	__flag = ROOMLOADER_FLAG.INSTANCES;
 	__layer_data = _layer_data;
-	__instances_data = undefined;
+	__instances_data = array_map(_instances_data, __map_data);
 	
-	static __init = function(_instances_data) {
-		var _n = array_length(_instances_data);
-		__instances_data = array_create(_n);
-		
-		var _i = 0; repeat (_n) {
-			var _index = _instances_data[_i].inst_id - 100001;
-			__instances_data[_i] = __owner.__instance_lookup[_index];
-			_i++;
-		}
-		
-		return self;
+	static __map_data = function(_inst_data) {
+		var _index = _inst_data.inst_id - 100001;
+		return __owner.__instance_lookup[_index];
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
 		if (not __room_loader_check_flags(_flags)) return undefined;
@@ -119,8 +111,6 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 		
 		return new __ReturnData(_layer, _instances);
 	};
-	
-	__init(_instances_data);
 };
 function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 	static __DataSprite = function(_data) constructor {
