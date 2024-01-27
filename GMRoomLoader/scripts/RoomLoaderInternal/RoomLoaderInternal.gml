@@ -37,8 +37,8 @@ function __RoomLoaderData(_room) constructor {
 		var _i = 0; repeat (_instances_data_n) {
 			var _inst_data = _instances_data[_i];
 			_inst_data.object_index = asset_get_index(_inst_data.object_index);
-			if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = __room_loader_noop;
-			if (_inst_data.creation_code == -1) _inst_data.creation_code = __room_loader_noop;
+			if (_inst_data.pre_creation_code == -1) _inst_data.pre_creation_code = __roomloader_noop;
+			if (_inst_data.creation_code == -1) _inst_data.creation_code = __roomloader_noop;
 			__instance_lookup[_inst_data.id - 100001] = _inst_data;
 			_i++;
 		}
@@ -62,8 +62,8 @@ function __RoomLoaderData(_room) constructor {
 		}
 	};
 	static __load = function(_x, _y, _origin, _flags) {
-		_x = __room_loader_get_offset_x(_x, __raw.width, _origin);
-		_y = __room_loader_get_offset_y(_y, __raw.height, _origin);
+		_x = __roomloader_get_offset_x(_x, __raw.width, _origin);
+		_y = __roomloader_get_offset_y(_y, __raw.height, _origin);
 		
 		// Load, collect and return data:
 		var _return_data = new RoomLoaderReturnData();
@@ -104,10 +104,10 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 		return __owner.__instance_lookup[_index];
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __room_loader_check_flags(_flags)) return undefined;
+		if (not __roomloader_check_flags(_flags)) return undefined;
 		
-		var _layer = __room_loader_create_layer(__layer_data);
-		var _instances = __room_loader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
+		var _layer = __roomloader_create_layer(__layer_data);
+		var _instances = __roomloader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
 		
 		return new __ReturnData(_layer, _instances);
 	};
@@ -126,7 +126,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__flag = ROOMLOADER_FLAG.SPRITES;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
-			if (not __room_loader_check_flags(_flags)) return undefined;
+			if (not __roomloader_check_flags(_flags)) return undefined;
 			
 			var _x = __data.x + _xoffs;
 			var _y = __data.y + _yoffs;
@@ -155,7 +155,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__flag = ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
-			if (not __room_loader_check_flags(_flags)) return undefined;
+			if (not __roomloader_check_flags(_flags)) return undefined;
 			
 			var _particle_system = part_system_create_layer(_layer, false, __data.ps);
 			var _x = __data.x + _xoffs;
@@ -180,7 +180,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__flag = ROOMLOADER_FLAG.SEQUENCES;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
-			if (not __room_loader_check_flags(_flags)) return undefined;
+			if (not __roomloader_check_flags(_flags)) return undefined;
 			
 			var _x = __data.x + _xoffs;
 			var _y = __data.y + _yoffs;
@@ -232,7 +232,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__n = array_length(__data);
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		var _layer = __room_loader_create_layer(__layer_data);
+		var _layer = __roomloader_create_layer(__layer_data);
 		var _elements = [];
 		
 		var _i = 0; repeat (__n) {
@@ -289,9 +289,9 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 		}
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __room_loader_check_flags(_flags)) return undefined;
+		if (not __roomloader_check_flags(_flags)) return undefined;
 		
-		var _layer = __room_loader_create_layer(__layer_data);
+		var _layer = __roomloader_create_layer(__layer_data);
 		var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
@@ -325,9 +325,9 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 	__background_data = _background_data[0];
 	
 	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __room_loader_check_flags(_flags)) return undefined;
+		if (not __roomloader_check_flags(_flags)) return undefined;
 		
-		var _layer = __room_loader_create_layer(__layer_data);
+		var _layer = __roomloader_create_layer(__layer_data);
 		var _background = layer_background_create(_layer, __background_data.sprite_index);
 		layer_background_visible(_background, __background_data.visible);
 		layer_background_htiled(_background, __background_data.htiled);
@@ -344,8 +344,8 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 	};
 };
 
-function __room_loader_noop() {}
-function __room_loader_create_layer(_data) {
+function __roomloader_noop() {}
+function __roomloader_create_layer(_data) {
 	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
 	layer_x(_layer, _data.xoffset);
@@ -355,7 +355,7 @@ function __room_loader_create_layer(_data) {
 	
 	return _layer;
 }
-function __room_loader_create_instances(_xoffs, _yoffs, _data, _create_func, _create_data) {
+function __roomloader_create_instances(_xoffs, _yoffs, _data, _create_func, _create_data) {
 	var _n = array_length(_data);
 	var _instances = array_create(_n);
 	
@@ -380,13 +380,13 @@ function __room_loader_create_instances(_xoffs, _yoffs, _data, _create_func, _cr
 	
 	return _instances;
 }
-function __room_loader_load_instances(_room, _x, _y, _data, _origin, _create_func, _create_data) {
-	var _xoffs = __room_loader_get_offset_x(_x, _data.__raw.width, _origin);
-	var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
+function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func, _create_data) {
+	var _xoffs = __roomloader_get_offset_x(_x, _data.__raw.width, _origin);
+	var _yoffs = __roomloader_get_offset_y(_y, _data.__raw.height, _origin);
 	
-	return __room_loader_create_instances(_xoffs, _yoffs, _data.__instance_lookup, _create_func, _create_data);
+	return __roomloader_create_instances(_xoffs, _yoffs, _data.__instance_lookup, _create_func, _create_data);
 }
-function __room_loader_get_offset_x(_x, _width, _origin) {
+function __roomloader_get_offset_x(_x, _width, _origin) {
 	static _offsets = [
 		+0.0, -0.5, -1.0,
 		+0.0, -0.5, -1.0,
@@ -394,7 +394,7 @@ function __room_loader_get_offset_x(_x, _width, _origin) {
 	];
 	return (_x + (_width * _offsets[_origin]));
 }
-function __room_loader_get_offset_y(_y, _height, _origin) {
+function __roomloader_get_offset_y(_y, _height, _origin) {
 	static _offsets = [
 		+0.0, +0.0, +0.0,
 		-0.5, -0.5, -0.5,
@@ -402,6 +402,6 @@ function __room_loader_get_offset_y(_y, _height, _origin) {
 	];
 	return (_y + (_height * _offsets[_origin]));
 }
-function __room_loader_check_flags(_flags) {
+function __roomloader_check_flags(_flags) {
 	return ((_flags & __flag) == __flag);
 }

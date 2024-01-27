@@ -46,13 +46,13 @@ function RoomLoader() constructor {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
-		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
-		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
 	static get_data_raw = function(_room) {
