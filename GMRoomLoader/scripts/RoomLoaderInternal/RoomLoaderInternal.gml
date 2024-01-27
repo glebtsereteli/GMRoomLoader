@@ -51,7 +51,7 @@ function __RoomLoaderData(_room) constructor {
 			if (_elements_data != 0) {
 				var _data_constructor = _get_data_constructor(_elements_data[0].type);
 				if (_data_constructor != undefined) {
-					_layer_data.name = ROOM_LOADER_LAYER_PREFIX + _layer_data.name;
+					_layer_data.name = ROOMLOADER_LAYER_PREFIX + _layer_data.name;
 					struct_remove(_layer_data, "elements");
 					
 					var _data = new _data_constructor(_layer_data, _elements_data);
@@ -95,7 +95,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 	};
 	
 	__owner = other;
-	__flag = ROOM_LOADER_FLAG.INSTANCES;
+	__flag = ROOMLOADER_FLAG.INSTANCES;
 	__layer_data = _layer_data;
 	__instances_data = undefined;
 	
@@ -133,7 +133,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		};
 		
 		__data = _data;
-		__flag = ROOM_LOADER_FLAG.SPRITES;
+		__flag = ROOMLOADER_FLAG.SPRITES;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
 			if (not __room_loader_check_flags(_flags)) return undefined;
@@ -162,7 +162,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		};
 		
 		__data = _data;
-		__flag = ROOM_LOADER_FLAG.PARTICLE_SYSTEMS;
+		__flag = ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
 			if (not __room_loader_check_flags(_flags)) return undefined;
@@ -182,17 +182,27 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 			__sequence = _sequence;
 			
 			static __cleanup = function() {
-						
+				layer_sequence_destroy(__sequence);
 			};
 		};
 		
 		__data = _data;
-		__flag = ROOM_LOADER_FLAG.SEQUENCES;
+		__flag = ROOMLOADER_FLAG.SEQUENCES;
 		
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
 			if (not __room_loader_check_flags(_flags)) return undefined;
-			// ...
-			return new __ReturnData();
+			
+			var _x = __data.x + _xoffs;
+			var _y = __data.y + _yoffs;
+			var _sequence = layer_sequence_create(_layer, _x, _y, __data.seq_id);
+			layer_sequence_headpos(_sequence, __data.head_position);
+			layer_sequence_xscale(_sequence, __data.image_xscale);
+			layer_sequence_yscale(_sequence, __data.image_yscale);
+			layer_sequence_angle(_sequence, __data.image_angle);
+			layer_sequence_speedscale(_sequence, __data.image_speed);
+			if (ROOMLOADER_PAUSE_SEQUENCES) layer_sequence_pause(_sequence);
+			
+			return new __ReturnData(_sequence);
 		}
 	};
 	static __ReturnData = function(_layer, _elements) constructor {
@@ -263,7 +273,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 		};
 	};
 	
-	__flag = ROOM_LOADER_FLAG.TILEMAPS;
+	__flag = ROOMLOADER_FLAG.TILEMAPS;
 	__layer_data = _layer_data;
 	__tileset = undefined;
 	__width = undefined;
@@ -320,7 +330,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 		};
 	};
 	
-	__flag = ROOM_LOADER_FLAG.BACKGROUNDS;
+	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	__layer_data = _layer_data;
 	__background_data = _background_data[0];
 	
@@ -341,8 +351,6 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 		layer_background_alpha(_background, __background_data.blendAlpha);
 		
 		return new __ReturnData(_layer, _background);
-		
-		return undefined;
 	};
 };
 

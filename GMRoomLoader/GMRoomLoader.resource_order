@@ -7,6 +7,7 @@
     {"name":"Tile Sets","order":5,"path":"folders/Demo/Tile Sets.yy",},
     {"name":"Tiny Town","order":1,"path":"folders/Demo/Tile Sets/Tiny Town.yy",},
     {"name":"RoomLoader","order":1,"path":"folders/RoomLoader.yy",},
+    {"name":"Sequences","order":9,"path":"folders/Demo/Sequences.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"rm_demo_load_02","order":1,"path":"rooms/rm_demo_load_02/rm_demo_load_02.yy",},

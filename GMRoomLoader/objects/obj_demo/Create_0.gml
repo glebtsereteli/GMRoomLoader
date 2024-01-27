@@ -38,12 +38,12 @@ flags = {
 	},
 	get: function() {
 		var _flags = 0;
-		_flags |= (ROOM_LOADER_FLAG.INSTANCES * instances);
-		_flags |= (ROOM_LOADER_FLAG.SPRITES * sprites);
-		_flags |= (ROOM_LOADER_FLAG.TILEMAPS * tilemaps);
-		_flags |= (ROOM_LOADER_FLAG.PARTICLE_SYSTEMS * particle_systems);
-		_flags |= (ROOM_LOADER_FLAG.SEQUENCES * sequences);
-		_flags |= (ROOM_LOADER_FLAG.BACKGROUNDS * backgrounds);
+		_flags |= (ROOMLOADER_FLAG.INSTANCES * instances);
+		_flags |= (ROOMLOADER_FLAG.SPRITES * sprites);
+		_flags |= (ROOMLOADER_FLAG.TILEMAPS * tilemaps);
+		_flags |= (ROOMLOADER_FLAG.PARTICLE_SYSTEMS * particle_systems);
+		_flags |= (ROOMLOADER_FLAG.SEQUENCES * sequences);
+		_flags |= (ROOMLOADER_FLAG.BACKGROUNDS * backgrounds);
 		return _flags;
 	},
 };
