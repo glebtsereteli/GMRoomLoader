@@ -32,19 +32,19 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	static load = function(_room, _x, _y, _origin = ROOM_LOADER_DEFAULT_ORIGIN, _flags = ROOM_LOADER_DEFAULT_FLAGS) {
+	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
 		return _data.__load(_x, _y, _origin, _flags);
 	};
-	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOM_LOADER_DEFAULT_ORIGIN) {
+	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
 		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
-	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOM_LOADER_DEFAULT_ORIGIN) {
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data_handler.__get(_room);
 		if (_data == undefined) return undefined;
 		
