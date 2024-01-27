@@ -4,6 +4,10 @@ function RoomLoader() constructor {
 	// Private:
 	__data_handler = new __RoomLoaderDataHandler();
 	
+	static __get_data = function(_room) {
+		return __data_handler.__get(_room);
+	};
+	
 	// Public:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
@@ -51,10 +55,12 @@ function RoomLoader() constructor {
 		return __room_loader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
-	static get_info = function(_room) {
-		with (__data_handler.__get(_room)) {
-			return __raw;
-		}
+	static get_data_raw = function(_room) {
+		with (__get_data(_room)) return __raw;
+		return undefined;
+	};
+	static get_data_packed = function(_room) {
+		with (__get_data(_room)) return __packed;
 		return undefined;
 	};
 }

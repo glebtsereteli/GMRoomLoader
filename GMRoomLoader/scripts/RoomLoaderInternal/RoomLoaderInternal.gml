@@ -355,25 +355,6 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 };
 
 function __room_loader_noop() {}
-function __room_loader_get_offset_x(_x, _width, _origin) {
-	static _offsets = [
-		+0.0, -0.5, -1.0,
-		+0.0, -0.5, -1.0,
-		-0.0, -0.5, -1.0,
-	];
-	return (_x + (_width * _offsets[_origin]));
-}
-function __room_loader_get_offset_y(_y, _height, _origin) {
-	static _offsets = [
-		+0.0, +0.0, +0.0,
-		-0.5, -0.5, -0.5,
-		-1.0, -1.0, -1.0,
-	];
-	return (_y + (_height * _offsets[_origin]));
-}
-function __room_loader_check_flags(_flags) {
-	return ((_flags & __flag) == __flag);
-}
 function __room_loader_create_layer(_data) {
 	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
@@ -414,4 +395,23 @@ function __room_loader_load_instances(_room, _x, _y, _data, _origin, _create_fun
 	var _yoffs = __room_loader_get_offset_y(_y, _data.__raw.height, _origin);
 	
 	return __room_loader_create_instances(_xoffs, _yoffs, _data.__instance_lookup, _create_func, _create_data);
+}
+function __room_loader_get_offset_x(_x, _width, _origin) {
+	static _offsets = [
+		+0.0, -0.5, -1.0,
+		+0.0, -0.5, -1.0,
+		-0.0, -0.5, -1.0,
+	];
+	return (_x + (_width * _offsets[_origin]));
+}
+function __room_loader_get_offset_y(_y, _height, _origin) {
+	static _offsets = [
+		+0.0, +0.0, +0.0,
+		-0.5, -0.5, -0.5,
+		-1.0, -1.0, -1.0,
+	];
+	return (_y + (_height * _offsets[_origin]));
+}
+function __room_loader_check_flags(_flags) {
+	return ((_flags & __flag) == __flag);
 }
