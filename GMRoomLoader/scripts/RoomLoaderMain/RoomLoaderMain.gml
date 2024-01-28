@@ -5,11 +5,8 @@ function RoomLoader() constructor {
 	static __data = {
 		__pool: {},
 		
-		__add: function(_room, _data) {
-			__pool[$ room_get_name(_room)] = _data;
-		},
-		__remove: function(_room) {
-			struct_remove(__pool, room_get_name(_room));
+		__add: function(_room) {
+			__pool[$ room_get_name(_room)] = new __RoomLoaderData(_room);	
 		},
 		__get: function(_room) {
 			return __pool[$ room_get_name(_room)];
@@ -19,28 +16,24 @@ function RoomLoader() constructor {
 	// Public:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
-			var _room = argument[_i];
-			__data.__add(_room, new __RoomLoaderData(_room));
+			__data.__add(argument[_i]);
 			_i++;
 		}
 		return self;
 	};
 	static init_array = function(_rooms) {
-		static _init = function(_room) { init(_room); };
-		array_foreach(_rooms, _init);
+		array_foreach(_rooms, __data.__add);
 		return self;
 	};
 	static init_prefix = function(_prefix) {
 		static _all_rooms = asset_get_ids(asset_room);
-		static _filter_data = { prefix: undefined };
-		static _filter = method(_filter_data, function(_room) {
-			var _name = room_get_name(_room);
-			return (string_pos(prefix, _name) > 0);
-		});
-		
-		_filter_data.prefix = _prefix;
-		var _rooms = array_filter(_all_rooms, _filter);
-		init_array(_rooms);
+		var _i = 0; repeat (array_length(_all_rooms)) {
+			var _room = _all_rooms[_i];
+			if (string_pos(_prefix, room_get_name(_room)) > 0) {
+				__data.__add(_room);
+			}
+			_i++;
+		}
 		return self;
 	};
 	
