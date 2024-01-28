@@ -61,5 +61,4 @@ data = {
 	},
 };
 
-loader = new RoomLoader()
-.init_prefix("rm_demo_load_");
+RoomLoader.init_prefix("rm_demo_load_");

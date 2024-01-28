@@ -1,16 +1,5 @@
 /// @feather ignore all
 
-function __RoomLoaderDataHandler() constructor {
-	__pool = {};
-	
-	static __add = function(_room, _data) {
-		__pool[$ room_get_name(_room)] = _data;
-	};
-	static __get = function(_room) {
-		return __pool[$ room_get_name(_room)];
-	};
-}
-
 function __RoomLoaderData(_room) constructor {
 	__raw = room_get_info(_room, false, true, true, true, true);
 	__packed = [];
