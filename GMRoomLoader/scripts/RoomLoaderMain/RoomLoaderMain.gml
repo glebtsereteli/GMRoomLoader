@@ -65,13 +65,9 @@ function RoomLoader() constructor {
 		return undefined;
 	};
 }
-function RoomLoaderReturnData() constructor {
+function RoomLoaderReturnData(_pool) constructor {
 	// Private:
-	__pool = [];
-	
-	static __add = function(_data) {
-		array_push(__pool, _data);
-	};
+	__pool = _pool;
 	
 	// Public:
 	static get_element_id = function(_name) {

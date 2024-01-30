@@ -54,16 +54,16 @@ function __RoomLoaderData(_room) constructor {
 		_x = __roomloader_get_offset_x(_x, __raw.width, _origin);
 		_y = __roomloader_get_offset_y(_y, __raw.height, _origin);
 		
-		// Load, collect and return data:
-		var _return_data = new RoomLoaderReturnData();
+		var _pool = [];
 		var _i = 0; repeat (array_length(__packed)) {
 			var _data = __packed[_i].__load(_x, _y, _flags);
 			if (_data != undefined) {
-				_return_data.__add(_data);
+				array_push(_pool, _data);
 			}
 			_i++;
 		}
-		return _return_data;
+		
+		return new RoomLoaderReturnData(_pool);
 	};
 	
 	__init();
