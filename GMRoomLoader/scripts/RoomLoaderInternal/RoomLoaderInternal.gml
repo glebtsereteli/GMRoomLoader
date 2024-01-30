@@ -74,6 +74,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 		__instances = _instances;
 		__cleaned_up = false;
 		
+		static __get_element = __roomloader_noop;
 		static __cleanup = function() {
 			if (__cleaned_up) return;
 			
@@ -103,9 +104,13 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 };
 function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 	static __DataSprite = function(_data) constructor {
-		static __ReturnData = function(_sprite) constructor {
+		static __ReturnData = function(_sprite, _name) constructor {
 			__sprite = _sprite;
-					
+			__name = _name;
+			
+			static __get_element = function(_name) {
+				return ((_name == __name) ? __sprite : undefined);
+			};
 			static __cleanup = function() {
 				layer_sprite_destroy(__sprite);
 			};
@@ -128,13 +133,17 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 			layer_sprite_blend(_sprite, __data.image_blend);
 			layer_sprite_alpha(_sprite, __data.image_alpha);
 			
-			return new __ReturnData(_sprite);
+			return new __ReturnData(_sprite, __data.name);
 		};
 	};
 	static __DataParticleSystem = function(_data) constructor {
-		static __ReturnData = function(_particle_system) constructor {
+		static __ReturnData = function(_particle_system, _name) constructor {
 			__particle_system = _particle_system;
+			__name = _name;
 			
+			static __get_element = function(_name) {
+				return ((_name == __name) ? __particle_system : undefined);
+			};
 			static __cleanup = function() {
 				part_system_destroy(__particle_system);
 			};
@@ -153,13 +162,17 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
 			
-			return new __ReturnData(_particle_system);
+			return new __ReturnData(_particle_system, __data.name);
 		}
 	};
 	static __DataSequence = function(_data) constructor {
-		static __ReturnData = function(_sequence) constructor {
+		static __ReturnData = function(_sequence, _name) constructor {
 			__sequence = _sequence;
+			__name = _name;
 			
+			static __get_element = function(_name) {
+				return ((_name == __name) ? __sequence : undefined);
+			};
 			static __cleanup = function() {
 				layer_sequence_destroy(__sequence);
 			};
@@ -181,7 +194,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 			layer_sequence_speedscale(_sequence, __data.image_speed);
 			if (ROOMLOADER_PAUSE_SEQUENCES) layer_sequence_pause(_sequence);
 			
-			return new __ReturnData(_sequence);
+			return new __ReturnData(_sequence, __data.name);
 		}
 	};
 	static __ReturnData = function(_layer, _elements) constructor {
@@ -190,6 +203,16 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		__cleaned_up = false;
 		__n = array_length(_elements);
 		
+		static __get_element = function(_name) {
+			var _i = 0; repeat (array_length(__elements)) {
+				var _element = __elements[_i].__get_element(_name);
+				if (_element != undefined) {
+					return _element;
+				}
+				_i++;
+			}
+			return undefined;
+		};
 		static __cleanup = function() {
 			if (__cleaned_up) return;
 			
@@ -238,11 +261,15 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 	__init();
 };
 function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
-	static __ReturnData = function(_layer, _tilemap) constructor {
+	static __ReturnData = function(_layer, _tilemap, _name) constructor {
 		__layer = _layer;
 		__tilemap = _tilemap;
+		__name = _name;
 		__cleaned_up = false;
 		
+		static __get_element = function(_name) {
+			return ((_name == __name) ? __tilemap : undefined);
+		};
 		static __cleanup = function() {
 			if (__cleaned_up) return;
 			
@@ -254,17 +281,18 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 	
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
 	__layer_data = _layer_data;
+	__tilemap_data = array_first(_elements_data);
+	__tiles_data = [];
 	__tileset = undefined;
 	__width = undefined;
 	__height = undefined;
-	__tiles_data = [];
 	
-	static __init = function(_tilemap_data) {
-		__tileset = _tilemap_data.background_index;
-		__width = _tilemap_data.width;
-		__height = _tilemap_data.height;
+	static __init = function() {
+		__tileset = __tilemap_data.background_index;
+		__width = __tilemap_data.width;
+		__height = __tilemap_data.height;
 		
-		var _tiles_data = _tilemap_data.tiles;
+		var _tiles_data = __tilemap_data.tiles;
 		var _i = 0; repeat (array_length(_tiles_data)) {
 			var _data = _tiles_data[_i];
 			if (_data > 0) {
@@ -289,17 +317,21 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 			_i++;
 		}
 		
-		return new __ReturnData(_layer, _tilemap);
+		return new __ReturnData(_layer, _tilemap, __tilemap_data.name);
 	};
 	
-	__init(array_first(_elements_data));
+	__init();
 };
 function __RoomLoaderDataLayerBackground(_layer_data, _background_data) constructor {
-	static __ReturnData = function(_layer, _background) constructor {
+	static __ReturnData = function(_layer, _background, _name) constructor {
 		__layer = _layer;
 		__background = _background;
+		__name = _name;
 		__cleaned_up = false;
 		
+		static __get_element = function(_name) {
+			return ((_name == __name) ? __background : undefined);
+		};
 		static __cleanup = function() {
 			if (__cleaned_up) return;
 			
@@ -329,7 +361,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _background_data) construc
 		layer_background_blend(_background, __background_data.blendColour);
 		layer_background_alpha(_background, __background_data.blendAlpha);
 		
-		return new __ReturnData(_layer, _background);
+		return new __ReturnData(_layer, _background, __background_data.name);
 	};
 };
 

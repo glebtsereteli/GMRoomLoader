@@ -70,8 +70,15 @@ function RoomLoaderReturnData(_pool) constructor {
 	__pool = _pool;
 	
 	// Public:
-	static get_element_id = function(_name) {
-		// ...
+	static get_element = function(_name) {
+		var _i = 0; repeat (array_length(__pool)) {
+			var _element = __pool[_i].__get_element(_name);
+			if (_element != undefined) {
+				return _element;
+			}
+			_i++;
+		}
+		return undefined;
 	};
 	static cleanup = function() {
 		var _i = 0; repeat (array_length(__pool)) {

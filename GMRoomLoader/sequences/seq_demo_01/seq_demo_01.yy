@@ -45,20 +45,20 @@
               {"resourceType":"Keyframe<RealKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"RealKeyframe","resourceVersion":"1.0","AnimCurveId":null,"EmbeddedAnimCurve":{"resourceType":"GMAnimCurve","resourceVersion":"1.2","name":"Position","channels":[
                         {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x","colour":4290799884,"points":[
                             {"th0":-0.04999992,"th1":0.6249989,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-128.0169,},
-                            {"th0":-0.6249989,"th1":0.04999992,"tv0":0.0,"tv1":0.0,"x":0.99999833,"y":64.01691,},
+                            {"th0":-0.6249989,"th1":0.04999992,"tv0":0.0,"tv1":0.0,"x":1.0,"y":64.01691,},
                           ],"visible":true,},
                         {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y","colour":4281083598,"points":[
                             {"th0":0.0,"th1":0.19999968,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-32.0,},
-                            {"th0":-0.19999968,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.99999833,"y":-32.0,},
+                            {"th0":-0.19999968,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":-32.0,},
                           ],"visible":true,},
                       ],"function":2,},"RealValue":0.0,},"1":{"resourceType":"RealKeyframe","resourceVersion":"1.0","AnimCurveId":null,"EmbeddedAnimCurve":{"resourceType":"GMAnimCurve","resourceVersion":"1.2","name":"Position","channels":[
                         {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"x","colour":4290799884,"points":[
                             {"th0":-0.04999992,"th1":0.6249989,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-128.0169,},
-                            {"th0":-0.6249989,"th1":0.04999992,"tv0":0.0,"tv1":0.0,"x":0.99999833,"y":64.01691,},
+                            {"th0":-0.6249989,"th1":0.04999992,"tv0":0.0,"tv1":0.0,"x":1.0,"y":64.01691,},
                           ],"visible":true,},
                         {"resourceType":"GMAnimCurveChannel","resourceVersion":"1.0","name":"y","colour":4281083598,"points":[
                             {"th0":0.0,"th1":0.19999968,"tv0":0.0,"tv1":0.0,"x":0.0,"y":-32.0,},
-                            {"th0":-0.19999968,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.99999833,"y":-32.0,},
+                            {"th0":-0.19999968,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":1.0,"y":-32.0,},
                           ],"visible":true,},
                       ],"function":2,},"RealValue":0.0,},},"Disabled":false,"id":"4ad7118c-c3c4-4b3b-9754-09e8aa644da7","IsCreationKey":false,"Key":0.0,"Length":60.0,"Stretch":false,},
             ],},"modifiers":[],"trackColour":4294068304,"tracks":[],"traits":0,},
