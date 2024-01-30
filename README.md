@@ -6,11 +6,6 @@ GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with 
 * Download the package (.yymps) and demo project (.yyz) from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) tab.
 * Refer to the [Wiki](https://youtu.be/hvL1339luv0?si=V5h979LwTKAaKErY) for detailed documentation.
 
-## Known Issues
-- Thing.
-- Another thing.
-- One more thing.
-
 ## Alternatives
 - [YellowAfterLife](https://github.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
 
