@@ -36,7 +36,7 @@ function RoomLoader() constructor {
 		}
 		return self;
 	};
-	
+		
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;

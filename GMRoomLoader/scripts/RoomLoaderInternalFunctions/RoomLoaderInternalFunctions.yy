@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "RoomLoaderInternal",
+  "name": "RoomLoaderInternalFunctions",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "RoomLoader",
-    "path": "folders/RoomLoader.yy",
+    "name": "Internal",
+    "path": "folders/RoomLoader/Internal.yy",
   },
 }
