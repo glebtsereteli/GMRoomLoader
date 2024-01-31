@@ -12,7 +12,6 @@
   ],
   "ResourceOrderSettings": [
     {"name":"rm_demo_load_02","order":1,"path":"rooms/rm_demo_load_02/rm_demo_load_02.yy",},
-    {"name":"scr_demo","order":1,"path":"scripts/scr_demo/scr_demo.yy",},
     {"name":"spr_demo_parrot","order":1,"path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",},
     {"name":"spr_demo_bg","order":1,"path":"sprites/spr_demo_bg/spr_demo_bg.yy",},
     {"name":"RoomLoaderConfig","order":1,"path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},

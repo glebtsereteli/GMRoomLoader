@@ -30,7 +30,6 @@
   },
   "resources": [
     {"id":{"name":"rm_demo_load_02","path":"rooms/rm_demo_load_02/rm_demo_load_02.yy",},},
-    {"id":{"name":"scr_demo","path":"scripts/scr_demo/scr_demo.yy",},},
     {"id":{"name":"spr_demo_parrot","path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",},},
     {"id":{"name":"ts_demo_tiny_town","path":"tilesets/ts_demo_tiny_town/ts_demo_tiny_town.yy",},},
     {"id":{"name":"spr_demo_bg","path":"sprites/spr_demo_bg/spr_demo_bg.yy",},},

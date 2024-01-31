@@ -1,7 +1,8 @@
 /// @feather ignore all
 
 function RoomLoader() constructor {
-	// Private:
+	#region private
+	
 	static __data = {
 		__pool: {},
 		
@@ -13,7 +14,9 @@ function RoomLoader() constructor {
 		},
 	};
 	
-	// Public:
+	#endregion
+	
+	// Initialization:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__add(argument[_i]);
@@ -36,7 +39,8 @@ function RoomLoader() constructor {
 		}
 		return self;
 	};
-		
+	
+	// Loading:
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
@@ -56,6 +60,7 @@ function RoomLoader() constructor {
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
+	// Getters:
 	static get_data_raw = function(_room) {
 		with (__data.get(_room)) return __raw;
 		return undefined;
@@ -66,11 +71,13 @@ function RoomLoader() constructor {
 	};
 }
 function RoomLoaderReturnData(_pool) constructor {
-	// Private:
+	#region private
+	
 	__pool = _pool;
 	__cleaned_up = false;
 	
-	// Public:
+	#endregion
+	
 	static get_element = function(_name) {
 		var _i = 0; repeat (array_length(__pool)) {
 			var _element = __pool[_i].__get_element(_name);

@@ -39,8 +39,6 @@ function __RoomLoaderData(_room) constructor {
 				var _data_constructor = _get_data_constructor(_elements_data[0].type);
 				if (_data_constructor != undefined) {
 					_layer_data.name = ROOMLOADER_LAYER_PREFIX + _layer_data.name;
-					struct_remove(_layer_data, "elements");
-					
 					var _data = new _data_constructor(_layer_data, _elements_data);
 					array_push(__packed, _data);
 				}
@@ -66,7 +64,7 @@ function __RoomLoaderData(_room) constructor {
 	
 	__init();
 };
-	
+
 function __RoomLoaderDataLayer(_layer_data) constructor {
 	__owner = other;
 	__layer_data = _layer_data;
@@ -128,6 +126,10 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
 			
+			repeat (ROOMLOADER_PARTICLE_STEPS) {
+				part_system_update(_particle_system);
+			}
+			
 			return new __RoomLoaderDataReturn(_particle_system, __data.name, part_system_destroy);
 		}
 	};
@@ -146,7 +148,10 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			layer_sequence_yscale(_sequence, __data.image_yscale);
 			layer_sequence_angle(_sequence, __data.image_angle);
 			layer_sequence_speedscale(_sequence, __data.image_speed);
-			if (ROOMLOADER_PAUSE_SEQUENCES) layer_sequence_pause(_sequence);
+			
+			if (ROOMLOADER_PAUSE_SEQUENCES) {
+				layer_sequence_pause(_sequence);
+			}
 			
 			return new __RoomLoaderDataReturn(_sequence, __data.name, layer_sequence_destroy);
 		}
