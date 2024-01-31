@@ -68,10 +68,21 @@ function __RoomLoaderData(_room) constructor {
 	
 	__init();
 };
-function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor {
-	static __ReturnData = function(_layer, _instances) constructor {
+function __RoomLoaderDataLayerParent(_layer_data) constructor {
+	__owner = other;
+	__layer_data = _layer_data;
+	
+	static __load = function(_xoffs, _yoffs, _flags) {
+		if (not __roomloader_check_flags(_flags)) return undefined;
+		
+		var _layer = __roomloader_create_layer(__layer_data);
+		return __on_load(_layer, _xoffs, _yoffs, _flags);
+	};
+	static __on_load = __roomloader_noop;
+}
+function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+	static __ReturnData = function(_layer) constructor {
 		__layer = _layer;
-		__instances = _instances;
 		__cleaned_up = false;
 		
 		static __get_element = __roomloader_noop;
@@ -84,25 +95,19 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) constructor
 		};
 	};
 	
-	__owner = other;
 	__flag = ROOMLOADER_FLAG.INSTANCES;
-	__layer_data = _layer_data;
 	__instances_data = array_map(_instances_data, __map_data);
 	
 	static __map_data = function(_inst_data) {
 		var _index = _inst_data.inst_id - 100001;
 		return __owner.__instance_lookup[_index];
 	};
-	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __roomloader_check_flags(_flags)) return undefined;
-		
-		var _layer = __roomloader_create_layer(__layer_data);
+	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
 		var _instances = __roomloader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
-		
 		return new __ReturnData(_layer, _instances);
 	};
-};
-function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
+}
+function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __DataSprite = function(_data) constructor {
 		static __ReturnData = function(_sprite, _name) constructor {
 			__sprite = _sprite;
@@ -225,9 +230,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 		};
 	};
 	
-	__layer_data = _layer_data;
 	__data = _data;
-	__n = undefined;
 	
 	static __init = function() {
 		var _i = 0; repeat (array_length(__data)) {
@@ -241,13 +244,12 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 			__data[_i] = new _constructor(_data);
 			_i++;
 		}
-		__n = array_length(__data);
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
 		var _layer = __roomloader_create_layer(__layer_data);
 		var _elements = [];
 		
-		var _i = 0; repeat (__n) {
+		var _i = 0; repeat (array_length(__data)) {
 			var _data = __data[_i].__load(_layer, _xoffs, _yoffs, _flags);
 			if (_data != undefined) {
 				array_push(_elements, _data);
@@ -260,7 +262,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) constructor {
 	
 	__init();
 };
-function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
+function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __ReturnData = function(_layer, _tilemap, _name) constructor {
 		__layer = _layer;
 		__tilemap = _tilemap;
@@ -305,10 +307,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 			_i++;
 		}
 	};
-	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __roomloader_check_flags(_flags)) return undefined;
-		
-		var _layer = __roomloader_create_layer(__layer_data);
+	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
 		var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
@@ -322,46 +321,42 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) constructor {
 	
 	__init();
 };
-function __RoomLoaderDataLayerBackground(_layer_data, _background_data) constructor {
-	static __ReturnData = function(_layer, _background, _name) constructor {
+function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+	static __ReturnData = function(_layer, _bg, _name) constructor {
 		__layer = _layer;
-		__background = _background;
+		__bg = _bg;
 		__name = _name;
 		__cleaned_up = false;
 		
 		static __get_element = function(_name) {
-			return ((_name == __name) ? __background : undefined);
+			return ((_name == __name) ? __bg : undefined);
 		};
 		static __cleanup = function() {
 			if (__cleaned_up) return;
 			
 			__cleaned_up = true;
-			layer_background_destroy(__background);
+			layer_background_destroy(__bg);
 			layer_destroy(__layer);
 		};
 	};
 	
 	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
-	__layer_data = _layer_data;
-	__background_data = _background_data[0];
+	__bg_data = _bg_data[0];
 	
-	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not __roomloader_check_flags(_flags)) return undefined;
+	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
+		var _bg = layer_background_create(_layer, __bg_data.sprite_index);
+		layer_background_visible(_bg, __bg_data.visible);
+		layer_background_htiled(_bg, __bg_data.htiled);
+		layer_background_vtiled(_bg, __bg_data.vtiled);
+		layer_background_stretch(_bg, __bg_data.stretch);
+		layer_background_xscale(_bg, __bg_data.xscale);
+		layer_background_yscale(_bg, __bg_data.yscale);
+		layer_background_index(_bg, __bg_data.image_index);
+		layer_background_speed(_bg, __bg_data.image_speed);
+		layer_background_blend(_bg, __bg_data.blendColour);
+		layer_background_alpha(_bg, __bg_data.blendAlpha);
 		
-		var _layer = __roomloader_create_layer(__layer_data);
-		var _background = layer_background_create(_layer, __background_data.sprite_index);
-		layer_background_visible(_background, __background_data.visible);
-		layer_background_htiled(_background, __background_data.htiled);
-		layer_background_vtiled(_background, __background_data.vtiled);
-		layer_background_stretch(_background, __background_data.stretch);
-		layer_background_xscale(_background, __background_data.xscale);
-		layer_background_yscale(_background, __background_data.yscale);
-		layer_background_index(_background, __background_data.image_index);
-		layer_background_speed(_background, __background_data.image_speed);
-		layer_background_blend(_background, __background_data.blendColour);
-		layer_background_alpha(_background, __background_data.blendAlpha);
-		
-		return new __ReturnData(_layer, _background, __background_data.name);
+		return new __ReturnData(_layer, _bg, __bg_data.name);
 	};
 };
 
