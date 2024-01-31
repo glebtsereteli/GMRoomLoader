@@ -68,6 +68,7 @@ function RoomLoader() constructor {
 function RoomLoaderReturnData(_pool) constructor {
 	// Private:
 	__pool = _pool;
+	__cleaned_up = false;
 	
 	// Public:
 	static get_element = function(_name) {
@@ -81,6 +82,9 @@ function RoomLoaderReturnData(_pool) constructor {
 		return undefined;
 	};
 	static cleanup = function() {
+		if (__cleaned_up) return;
+		
+		__cleaned_up = true;
 		var _i = 0; repeat (array_length(__pool)) {
 			__pool[_i].__cleanup();
 			_i++;
