@@ -82,7 +82,7 @@ function __RoomLoaderDataLayer(_layer_data) constructor {
 	
 	static __load = function(_xoffs, _yoffs, _flags) {
 		if (not __roomloader_check_flags(_flags)) return undefined;
-		if (RoomLoader.__blacklist.__check(__layer_data.name)) return undefined;
+		if (not RoomLoader.__filter.__check(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		return __on_load(_layer, _xoffs, _yoffs, _flags);
@@ -204,7 +204,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 		}
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		if (RoomLoader.__blacklist.__check(__layer_data.name)) return undefined;
+		if (not RoomLoader.__filter.__check(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		var _elements = [];

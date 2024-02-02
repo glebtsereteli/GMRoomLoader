@@ -17,20 +17,22 @@ function RoomLoader() constructor {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
-	static __blacklist = {
+	static __filter = {
 		__layers: [],
 		
 		__check: __roomloader_noop,
-		__check_layer: function(_name) {
+		__check_blacklist: function(_name) {
+			return (not array_contains(__layers, _name));
+		},
+		__check_whitelist: function(_name) {
 			return array_contains(__layers, _name);
 		},
 		__add: function(_layer) {
 			array_push(__layers, _layer);
-			__check = __check_layer;
 		},
-		__reset: function() {
+		__reset: function(_checker = __roomloader_noop) {
 			__layers = [];
-			__check = __roomloader_noop;
+			__check = _checker;
 		},
 	};
 	
@@ -45,7 +47,7 @@ function RoomLoader() constructor {
 		return self;
 	};
 	static init_array = function(_rooms) {
-		array_foreach(_rooms, __data.__add);
+		script_execute_ext(init, _rooms);
 		return self;
 	};
 	static init_prefix = function(_prefix) {
@@ -80,20 +82,33 @@ function RoomLoader() constructor {
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
-	// Blacklist:
-	static layer_blacklist_set = function() {
+	// Whitelist/Blaclist Layer Filtering:
+	static filter_set_whitelist = function() {
+		__filter.__reset(__filter.__check_whitelist);
 		var _i = 0; repeat (argument_count) {
-			__blacklist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__filter.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static layer_blacklist_set_array = function(_layers) {
+	static filter_set_whitelist_array = function(_layers) {
+		script_execute_ext(layer_whitelist_set, _layers);
+		return self;
+	};
+	static filter_set_blacklist = function() {
+		__filter.__reset(__filter.__check_blacklist);
+		var _i = 0; repeat (argument_count) {
+			__filter.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			_i++;
+		}
+		return self;
+	};
+	static filter_set_blacklist_array = function(_layers) {
 		script_execute_ext(layer_blacklist_set, _layers);
 		return self;
 	};
-	static layer_blacklist_reset = function() {
-		__blacklist.__reset();
+	static filter_reset = function() {
+		__filter.__reset();
 		return self;
 	};
 	
@@ -103,9 +118,11 @@ function RoomLoader() constructor {
 			__data.__remove(argument[_i]);
 			_i++;
 		}
+		return self;
 	};
 	static remove_array = function(_rooms) {
-		array_foreach(_rooms, __data.__remove);
+		script_execute_ext(remove, _rooms);
+		return self;
 	};
 	static remove_prefix = function(_prefix) {
 		static _remove = method(__data, function(_name, _data) {
