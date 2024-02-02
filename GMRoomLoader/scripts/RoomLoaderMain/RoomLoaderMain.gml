@@ -17,23 +17,12 @@ function RoomLoader() constructor {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
-	static __filter = {
-		__layers: [],
-		
-		__check: __roomloader_noop,
-		__check_blacklist: function(_name) {
-			return (not array_contains(__layers, _name));
-		},
-		__check_whitelist: function(_name) {
-			return array_contains(__layers, _name);
-		},
-		__add: function(_layer) {
-			array_push(__layers, _layer);
-		},
-		__reset: function(_checker = __roomloader_noop) {
-			__layers = [];
-			__check = _checker;
-		},
+	static __whitelist = new __RoomLoaderFilter(true);
+	static __blacklist = new __RoomLoaderFilter(false);
+	
+	static __layer_failed_filters = function(_name) {
+		var _match = ((__whitelist.__check(_name)) and (not __blacklist.__check(_name)));
+		return (not _match);
 	};
 	
 	#endregion
@@ -82,33 +71,38 @@ function RoomLoader() constructor {
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
-	// Whitelist/Blaclist Layer Filtering:
-	static filter_set_whitelist = function() {
-		__filter.__reset(__filter.__check_whitelist);
+	// Whitelist/Blacklist Layer Filtering:
+	static whitelist_set = function() {
+		__whitelist.__reset();
 		var _i = 0; repeat (argument_count) {
-			__filter.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__whitelist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static filter_set_whitelist_array = function(_layers) {
-		script_execute_ext(layer_whitelist_set, _layers);
+	static whitelist_set_array = function(_layers) {
+		script_execute_ext(whitelist_set, _layers);
 		return self;
 	};
-	static filter_set_blacklist = function() {
-		__filter.__reset(__filter.__check_blacklist);
+	static whitelist_reset = function() {
+		__whitelist.__reset();
+		return self;
+	};
+	
+	static blacklist_set = function() {
+		__blacklist.__reset();
 		var _i = 0; repeat (argument_count) {
-			__filter.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__blacklist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static filter_set_blacklist_array = function(_layers) {
-		script_execute_ext(layer_blacklist_set, _layers);
+	static blacklist_set_array = function(_layers) {
+		script_execute_ext(blacklist_set, _layers);
 		return self;
 	};
-	static filter_reset = function() {
-		__filter.__reset();
+	static blacklist_reset = function() {
+		__blacklist.__reset();
 		return self;
 	};
 	

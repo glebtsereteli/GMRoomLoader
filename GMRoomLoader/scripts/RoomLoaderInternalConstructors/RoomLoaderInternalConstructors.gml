@@ -1,5 +1,26 @@
 /// @feather ignore all
 
+function __RoomLoaderFilter(_idle_return) constructor {
+	__idle_return = _idle_return;
+	__layers = [];
+	
+	static __check_idle = function() {
+		return __idle_return;
+	};
+	static __check_active = function(_name) {
+		return array_contains(__layers, _name);
+	};
+	static __check = __check_idle;
+	static __add = function(_layer) {
+		array_push(__layers, _layer);
+		__check = __check_active;
+	};
+	static __reset = function() {
+		__layers = [];
+		__check = __check_idle;
+	};
+}
+
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
 	__data = undefined;
@@ -75,14 +96,13 @@ function __RoomLoaderData(_room) constructor {
 	
 	__init();
 };
-
 function __RoomLoaderDataLayer(_layer_data) constructor {
 	__owner = other;
 	__layer_data = _layer_data;
 	
 	static __load = function(_xoffs, _yoffs, _flags) {
 		if (not __roomloader_check_flags(_flags)) return undefined;
-		if (not RoomLoader.__filter.__check(__layer_data.name)) return undefined;
+		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		return __on_load(_layer, _xoffs, _yoffs, _flags);
@@ -204,7 +224,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 		}
 	};
 	static __load = function(_xoffs, _yoffs, _flags) {
-		if (not RoomLoader.__filter.__check(__layer_data.name)) return undefined;
+		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		var _elements = [];
