@@ -1,5 +1,9 @@
 
 function __roomloader_noop() {}
+function __roomloader_room_has_prefix(_room, _prefix) {
+	var _name = room_get_name(_room);
+	return (string_pos(_prefix, _name) > 0);
+}
 function __roomloader_create_layer(_data) {
 	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
