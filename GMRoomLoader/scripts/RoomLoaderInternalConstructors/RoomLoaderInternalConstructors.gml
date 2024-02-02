@@ -1,9 +1,11 @@
 /// @feather ignore all
 
 function __RoomLoaderData(_room) constructor {
-	__raw = room_get_info(_room, false, true, true, true, true);
-	__packed = [];
+	__room = _room;
+	__data = undefined;
 	__instance_lookup = undefined;
+	__width = undefined;
+	__height = undefined;
 	
 	static __init = function() {
 		static _map_instance_data = function(_data) {
@@ -24,14 +26,19 @@ function __RoomLoaderData(_room) constructor {
 			return undefined;
 		};
 		
+		var _raw_data = room_get_info(__room, false, true, true, true, true);
+		__data = [];
+		__width = _raw_data.width;
+		__height = _raw_data.height;
+		
 		// Generate instance lookup:
-		var _instances_data = __raw.instances;
+		var _instances_data = _raw_data.instances;
 		if (_instances_data != 0) {
 			__instance_lookup = array_map(_instances_data, _map_instance_data);	
 		}
 		
 		// Collect data:
-		var _layers_data = __raw.layers;
+		var _layers_data = _raw_data.layers;
 		var _i = 0; repeat (array_length(_layers_data)) {
 			var _layer_data = _layers_data[_i];
 			var _elements_data = _layer_data.elements;
@@ -40,19 +47,19 @@ function __RoomLoaderData(_room) constructor {
 				if (_data_constructor != undefined) {
 					_layer_data.name = ROOMLOADER_LAYER_PREFIX + _layer_data.name;
 					var _data = new _data_constructor(_layer_data, _elements_data);
-					array_push(__packed, _data);
+					array_push(__data, _data);
 				}
 			}
 			_i++;
 		}
 	};
 	static __load = function(_x, _y, _origin, _flags) {
-		_x = __roomloader_get_offset_x(_x, __raw.width, _origin);
-		_y = __roomloader_get_offset_y(_y, __raw.height, _origin);
+		_x = __roomloader_get_offset_x(_x, __width, _origin);
+		_y = __roomloader_get_offset_y(_y, __height, _origin);
 		
 		var _pool = [];
-		var _i = 0; repeat (array_length(__packed)) {
-			var _data = __packed[_i].__load(_x, _y, _flags);
+		var _i = 0; repeat (array_length(__data)) {
+			var _data = __data[_i].__load(_x, _y, _flags);
 			if (_data != undefined) {
 				array_push(_pool, _data);
 			}

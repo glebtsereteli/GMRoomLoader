@@ -42,32 +42,27 @@ function RoomLoader() constructor {
 	
 	// Loading:
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = __data.__get(_room);
+		var _data = get_data(_room);
 		if (_data == undefined) return undefined;
 		
 		return _data.__load(_x, _y, _origin, _flags);
 	};
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
+		var _data = get_data(_room);
 		if (_data == undefined) return undefined;
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
+		var _data = get_data(_room);
 		if (_data == undefined) return undefined;
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
 	// Getters:
-	static get_data_raw = function(_room) {
-		with (__data.get(_room)) return __raw;
-		return undefined;
-	};
-	static get_data_packed = function(_room) {
-		with (__get.get(_room)) return __packed;
-		return undefined;
+	static get_data = function(_room) {
+		return __data.__get(_room);
 	};
 }
 function RoomLoaderReturnData(_pool) constructor {
