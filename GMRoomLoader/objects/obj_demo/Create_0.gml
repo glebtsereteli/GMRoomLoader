@@ -60,4 +60,6 @@ data = {
 	},
 };
 
-RoomLoader.init_prefix("rm_demo_load_");
+RoomLoader
+.init_prefix("rm_demo_load_")
+.layer_blacklist_set("tiles_back", "instances_back");
