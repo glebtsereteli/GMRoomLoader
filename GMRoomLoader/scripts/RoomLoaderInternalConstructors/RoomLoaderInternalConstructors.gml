@@ -6,13 +6,14 @@ function __RoomLoaderData(_room) constructor {
 	__instance_lookup = undefined;
 	__width = undefined;
 	__height = undefined;
+	__creation_code = undefined;
 	
 	static __init = function() {
 		static _map_instance_data = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
-			if (_data.pre_creation_code == -1) _data.pre_creation_code = __roomloader_noop;
-			if (_data.creation_code == -1) _data.creation_code = __roomloader_noop;
-			return _data;	
+			_data.pre_creation_code = __roomloader_script_nullish(_data.pre_creation_code);
+			_data.creation_code = __roomloader_script_nullish(_data.creation_code);
+			return _data;
 		};
 		static _get_data_constructor = function(_type) {
 			switch (_type) {
@@ -30,6 +31,7 @@ function __RoomLoaderData(_room) constructor {
 		__data = [];
 		__width = _raw_data.width;
 		__height = _raw_data.height;
+		__creation_code = __roomloader_script_nullish(_raw_data.creationCode);
 		
 		// Generate instance lookup:
 		var _instances_data = _raw_data.instances;
@@ -65,6 +67,8 @@ function __RoomLoaderData(_room) constructor {
 			}
 			_i++;
 		}
+		
+		if (ROOMLOADER_RUN_CREATION_CODE) __creation_code(self);
 		
 		return new RoomLoaderReturnData(_pool);
 	};
@@ -133,9 +137,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
 			
-			repeat (ROOMLOADER_PARTICLE_STEPS) {
-				part_system_update(_particle_system);
-			}
+			repeat (ROOMLOADER_PARTICLE_STEPS) part_system_update(_particle_system);
 			
 			return new __RoomLoaderDataReturn(_particle_system, __data.name, part_system_destroy);
 		}
@@ -156,9 +158,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			layer_sequence_angle(_sequence, __data.image_angle);
 			layer_sequence_speedscale(_sequence, __data.image_speed);
 			
-			if (ROOMLOADER_PAUSE_SEQUENCES) {
-				layer_sequence_pause(_sequence);
-			}
+			if (ROOMLOADER_PAUSE_SEQUENCES) layer_sequence_pause(_sequence);
 			
 			return new __RoomLoaderDataReturn(_sequence, __data.name, layer_sequence_destroy);
 		}
