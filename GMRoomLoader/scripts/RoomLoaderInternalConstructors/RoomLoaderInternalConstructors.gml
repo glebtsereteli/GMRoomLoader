@@ -56,7 +56,7 @@ function __RoomLoaderData(_room) constructor {
 		__height = _raw_data.height;
 		__creation_code = __roomloader_script_nullish(_raw_data.creationCode);
 		
-		// Generate instance lookup:
+		// Store instances data:
 		var _instances_data = _raw_data.instances;
 		if (_instances_data != 0) {
 			__instances_data = array_map(_instances_data, _map_instance_data);

@@ -145,9 +145,9 @@ function RoomLoaderReturnData(_pool) constructor {
 	
 	#endregion
 	
-	static get_element = function(_name) {
+	static get_element = function(_room_id) {
 		var _i = 0; repeat (array_length(__pool)) {
-			var _element = __pool[_i].__get_element(_name);
+			var _element = __pool[_i].__get_element(_room_id);
 			if (_element != undefined) {
 				return _element;
 			}
