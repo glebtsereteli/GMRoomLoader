@@ -24,10 +24,8 @@ function __RoomLoaderFilter(_idle_return) constructor {
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
 	__data = undefined;
-	__instances_data = {
-		__pool: [],
-		__lookup: {},
-	};
+	__instances_data = [];
+	__instances_temp_lookup = {};
 	__width = undefined;
 	__height = undefined;
 	__creation_code = undefined;
@@ -37,7 +35,7 @@ function __RoomLoaderData(_room) constructor {
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.pre_creation_code = __roomloader_script_nullish(_data.pre_creation_code);
 			_data.creation_code = __roomloader_script_nullish(_data.creation_code);
-			__instances_data.__lookup[$ _data.id] = _data;
+			__instances_temp_lookup[$ _data.id] = _data;
 			return _data;
 		};
 		static _get_data_constructor = function(_type) {
@@ -61,7 +59,7 @@ function __RoomLoaderData(_room) constructor {
 		// Generate instance lookup:
 		var _instances_data = _raw_data.instances;
 		if (_instances_data != 0) {
-			__instances_data.__pool = array_map(_instances_data, _map_instance_data);
+			__instances_data = array_map(_instances_data, _map_instance_data);
 		}
 		
 		// Collect data:
@@ -79,6 +77,8 @@ function __RoomLoaderData(_room) constructor {
 			}
 			_i++;
 		}
+		
+		__instances_temp_lookup = undefined;
 	};
 	static __load = function(_x, _y, _origin, _flags) {
 		_x = __roomloader_get_offset_x(_x, __width, _origin);
@@ -118,7 +118,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	__instances_data = array_map(_instances_data, __map_data);
 	
 	static __map_data = function(_inst_data) {
-		return __owner.__instances_data.__lookup[$ _inst_data.inst_id];
+		return __owner.__instances_temp_lookup[$ _inst_data.inst_id];
 	};
 	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
 		var _instances = __roomloader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
