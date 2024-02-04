@@ -161,8 +161,19 @@ function RoomLoaderReturnData() constructor {
 	__backgrounds = [];
 	__cleaned_up = false;
 	
-	static __getter_map_element = function(_element) {
-		return _element.id;
+	static __getter_map_elements = function(_array) {
+		static _map = function(_element) { return _element.id; }
+		return array_map(_array, _map);
+	};
+	static __getter_get_element = function(_array, _name) {
+		var _i = 0; repeat (array_length(_array)) {
+			var _element = _array[_i];
+			if (_element.name == _name) {
+				return _element.id;
+			}
+			_i++;
+		}
+		return undefined;
 	};
 	
 	#endregion
@@ -170,6 +181,13 @@ function RoomLoaderReturnData() constructor {
 	
 	static get_instances = function() {
 		return __instances;
+	};
+	
+	static get_tilemap = function(_name) {
+		return __getter_get_element(__tilemaps, _name);
+	};
+	static get_tilemaps = function() {
+		return __getter_map_elements(__tilemaps);
 	};
 	
 	#endregion
