@@ -84,12 +84,13 @@ function __RoomLoaderData(_room) constructor {
 		_x = __roomloader_get_offset_x(_x, __width, _origin);
 		_y = __roomloader_get_offset_y(_y, __height, _origin);
 		
-		var _pool = [];
+		RoomLoader.__return_data.__instances = array_create(array_length(__instances_data));
+		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_x, _y, _flags);
 			_i++;
 		}
-	
+		
 		return RoomLoader.__return_data;
 	};
 	
@@ -106,7 +107,7 @@ function __RoomLoaderDataLayer(_layer_data) constructor {
 		var _layer = __roomloader_create_layer(__layer_data);
 		array_push(RoomLoader.__return_data.__layers, _layer);
 		
-		return __on_load(_layer, _xoffs, _yoffs, _flags);
+		__on_load(_layer, _xoffs, _yoffs, _flags);
 	};
 	static __on_load = __roomloader_noop;
 }
@@ -118,7 +119,20 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		return __owner.__instances_temp_lookup[$ _inst_data.inst_id];
 	};
 	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
-		RoomLoader.__return_data.__instances = __roomloader_create_instances(_xoffs, _yoffs, __instances_data, instance_create_layer, _layer);
+		var _instances = RoomLoader.__return_data.__instances;
+		var _index = RoomLoader.__return_data.__instance_index;
+		
+		var _i = 0; repeat (array_length(__instances_data)) {
+			var _inst_data = __instances_data[_i];
+			var _x = _inst_data.x + _xoffs;
+			var _y = _inst_data.y + _yoffs;
+			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index);
+			__ROOMLOADER_SETUP_INSTANCE;
+			_instances[_index] = _inst;
+			_i++;
+			_index++;
+		}
+		RoomLoader.__return_data.__instance_index = _index;
 	};
 }
 function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(_layer_data) constructor {

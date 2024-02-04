@@ -153,6 +153,7 @@ function RoomLoaderReturnData() constructor {
 	
 	__layers = [];
 	__instances = undefined;
+	__instance_index = 0;
 	__tilemaps = [];
 	__sprites = [];
 	__particle_systems = []
@@ -160,10 +161,16 @@ function RoomLoaderReturnData() constructor {
 	__backgrounds = [];
 	__cleaned_up = false;
 	
+	static __getter_map_element = function(_element) {
+		return _element.id;
+	};
+	
 	#endregion
 	#region getters
 	
-	
+	static get_instances = function() {
+		return __instances;
+	};
 	
 	#endregion
 	
