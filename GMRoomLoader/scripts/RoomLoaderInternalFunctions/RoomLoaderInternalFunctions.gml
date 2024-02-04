@@ -1,7 +1,5 @@
 
 function __roomloader_noop() {}
-function __roomloader_return_true() { return true; }
-function __roomloader_return_false() { return false; }
 function __roomloader_room_has_prefix(_room, _prefix) {
 	var _name = room_get_name(_room);
 	return (string_pos(_prefix, _name) > 0);

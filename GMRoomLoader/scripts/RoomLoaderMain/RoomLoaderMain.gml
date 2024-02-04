@@ -19,6 +19,7 @@ function RoomLoader() constructor {
 	};
 	static __whitelist = new __RoomLoaderFilter(true);
 	static __blacklist = new __RoomLoaderFilter(false);
+	static __return_data = undefined;
 	
 	static __layer_failed_filters = function(_name) {
 		var _match = ((__whitelist.__check(_name)) and (not __blacklist.__check(_name)));
@@ -56,7 +57,9 @@ function RoomLoader() constructor {
 		var _data = get_data(_room);
 		if (_data == undefined) return undefined;
 		
-		return _data.__load(_x, _y, _origin, _flags);
+		__return_data = new RoomLoaderReturnData();
+		_data.__load(_x, _y, _origin, _flags);
+		return __return_data;
 	};
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = get_data(_room);
@@ -136,36 +139,39 @@ function RoomLoader() constructor {
 		return __data.__get(_room);
 	};
 }
-function RoomLoaderReturnData(_pool) constructor {
+function RoomLoaderReturnData() constructor {
 	#region private
 	
-	__pool = _pool;
+	__layers = [];
+	__instances = undefined;
+	__tilemaps = [];
+	__sprites = [];
+	__particle_systems = []
+	__sequences = [];
+	__backgrounds = [];
 	__cleaned_up = false;
 	
 	#endregion
 	
-	static get_element = function(_room_id) {
-		if (__cleaned_up) return undefined;
-		
-		var _i = 0; repeat (array_length(__pool)) {
-			var _element = __pool[_i].__get_element(_room_id);
-			if (_element != undefined) {
-				return _element;
-			}
-			_i++;
-		}
-		return undefined;
-	};
 	static cleanup = function() {
+		static _tilemaps = function(_tilemap) {	layer_tilemap_destroy(_tilemap.id); };
+		static _sprites = function(_sprite) { layer_sprite_destroy(_sprite.id); };
+		static _particle_systems = function(_particle_system) { part_system_destroy(_particle_system.id); };
+		static _sequences = function(_sequence) { layer_sequence_destroy(_sequence.id); };
+		static _backgrounds = function(_background) { layer_background_destroy(_background.id); };
+		static _layers = function (_layer) { layer_destroy(_layer) };
+		
 		if (__cleaned_up) return;
 		
 		__cleaned_up = true;
-		var _i = 0; repeat (array_length(__pool)) {
-			__pool[_i].__cleanup();
-			_i++;
-		}
 		
-		__pool = undefined;
+		array_foreach(__instances, instance_destroy);
+		array_foreach(__tilemaps, _tilemaps);
+		array_foreach(__sprites, _sprites);
+		array_foreach(__particle_systems, _particle_systems);
+		array_foreach(__sequences, _sequences);
+		array_foreach(__backgrounds, _backgrounds);
+		array_foreach(__layers, _layers);
 	};
 };
 
