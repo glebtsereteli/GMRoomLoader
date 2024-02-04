@@ -89,6 +89,8 @@ function __RoomLoaderData(_room) constructor {
 			__data[_i].__load(_x, _y, _flags);
 			_i++;
 		}
+	
+		return RoomLoader.__return_data;
 	};
 	
 	__init();

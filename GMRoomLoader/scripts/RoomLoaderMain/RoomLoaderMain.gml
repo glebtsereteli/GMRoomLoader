@@ -27,8 +27,8 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	#region initialization
 	
-	// Initialization:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__add(argument[_i]);
@@ -52,14 +52,15 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	// Loading:
+	#endregion
+	#region loading
+	
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = get_data(_room);
 		if (_data == undefined) return undefined;
 		
 		__return_data = new RoomLoaderReturnData();
-		_data.__load(_x, _y, _origin, _flags);
-		return __return_data;
+		return _data.__load(_x, _y, _origin, _flags);
 	};
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = get_data(_room);
@@ -74,7 +75,9 @@ function RoomLoader() constructor {
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
-	// Whitelist/Blacklist Layer Filtering:
+	#endregion
+	#region whitelist/blacklist
+	
 	static whitelist_set = function() {
 		__whitelist.__reset();
 		var _i = 0; repeat (argument_count) {
@@ -109,7 +112,9 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	// Removal:
+	#endregion
+	#region removal
+	
 	static remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__remove(argument[_i]);
@@ -134,10 +139,14 @@ function RoomLoader() constructor {
 		__data.__pool = {};
 	};
 	
-	// Getters:
+	#endregion
+	#region getters
+	
 	static get_data = function(_room) {
 		return __data.__get(_room);
 	};
+
+	#endregion
 }
 function RoomLoaderReturnData() constructor {
 	#region private
@@ -150,6 +159,11 @@ function RoomLoaderReturnData() constructor {
 	__sequences = [];
 	__backgrounds = [];
 	__cleaned_up = false;
+	
+	#endregion
+	#region getters
+	
+	
 	
 	#endregion
 	
