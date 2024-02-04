@@ -190,6 +190,13 @@ function RoomLoaderReturnData() constructor {
 		return __getter_map_elements(__tilemaps);
 	};
 	
+	static get_sprite = function(_name) {
+		return __getter_get_element(__sprites, _name);
+	};
+	static get_sprites = function() {
+		return __getter_map_elements(__sprites);
+	};
+	
 	#endregion
 	
 	static cleanup = function() {
