@@ -128,7 +128,6 @@ function RoomLoader() constructor {
 		struct_foreach(__data.__pool, _remove);
 	};
 	static clear = function() {
-		delete __data.__pool;
 		__data.__pool = {};
 	};
 	
@@ -163,6 +162,8 @@ function RoomLoaderReturnData(_pool) constructor {
 			__pool[_i].__cleanup();
 			_i++;
 		}
+		
+		__pool = undefined;
 	};
 };
 
