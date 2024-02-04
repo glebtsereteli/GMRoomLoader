@@ -27,7 +27,7 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region initialization
+	#region data initialization
 	
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
@@ -53,28 +53,39 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region loading
+	#region data removal
 	
-	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
-		
-		__return_data = new RoomLoaderReturnData();
-		return _data.__load(_x, _y, _origin, _flags);
+	static remove = function() {
+		var _i = 0; repeat (argument_count) {
+			__data.__remove(argument[_i]);
+			_i++;
+		}
+		return self;
 	};
-	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
-		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+	static remove_array = function(_rooms) {
+		script_execute_ext(remove, _rooms);
+		return self;
 	};
-	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
+	static remove_prefix = function(_prefix) {
+		static _remove = method(__data, function(_name, _data) {
+			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
+			struct_remove(__pool, _name);
+		});
 		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
+		__data.__prefix = _prefix;
+		struct_foreach(__data.__pool, _remove);
+	};
+	static clear = function() {
+		__data.__pool = {};
 	};
 	
+	#endregion
+	#region data getters
+	
+	static get_data = function(_room) {
+		return __data.__get(_room);
+	};
+
 	#endregion
 	#region whitelist/blacklist
 	
@@ -113,39 +124,28 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region removal
+	#region loading
 	
-	static remove = function() {
-		var _i = 0; repeat (argument_count) {
-			__data.__remove(argument[_i]);
-			_i++;
-		}
-		return self;
-	};
-	static remove_array = function(_rooms) {
-		script_execute_ext(remove, _rooms);
-		return self;
-	};
-	static remove_prefix = function(_prefix) {
-		static _remove = method(__data, function(_name, _data) {
-			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
-			struct_remove(__pool, _name);
-		});
+	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
 		
-		__data.__prefix = _prefix;
-		struct_foreach(__data.__pool, _remove);
+		__return_data = new RoomLoaderReturnData();
+		return _data.__load(_x, _y, _origin, _flags);
 	};
-	static clear = function() {
-		__data.__pool = {};
+	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+	};
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
-	#endregion
-	#region getters
-	
-	static get_data = function(_room) {
-		return __data.__get(_room);
-	};
-
 	#endregion
 }
 function RoomLoaderReturnData() constructor {
@@ -202,6 +202,15 @@ function RoomLoaderReturnData() constructor {
 	};
 	static get_sprites = function() {
 		return __getter_map_elements(__sprites);
+	};
+	static get_particle_systems = function() {
+		return __getter_map_elements(__particle_systems);
+	};
+	static get_sequences = function() {
+		return __getter_map_elements(__sequences);
+	};
+	static get_backgrounds = function() {
+		return __getter_map_elements(__backgrounds);
 	};
 	
 	#endregion
