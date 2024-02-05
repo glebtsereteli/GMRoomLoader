@@ -161,29 +161,7 @@ function RoomLoaderReturnData() constructor {
 	__backgrounds = [];
 	__cleaned_up = false;
 	
-	static __getter_map_elements = function(_array) {
-		static _map = function(_element) { return _element.id; }
-		return array_map(_array, _map);
-	};
-	
-	#endregion
-	#region getters
-	
-	static get_element = function(_flag, _name) {
-		static _get_array_name = function(_flag) {
-			switch (_flag) {
-				case ROOMLOADER_FLAG.TILEMAPS: return "__tilemaps";
-				case ROOMLOADER_FLAG.SPRITES: return "__sprites";
-				case ROOMLOADER_FLAG.PARTICLE_SYSTEMS: return "__particle_systems";
-				case ROOMLOADER_FLAG.SEQUENCES: return "__sequences";
-				case ROOMLOADER_FLAG.BACKGROUNDS: return "__backgrounds";
-			}
-			return undefined;
-		};
-		
-		var _array = self[$ _get_array_name(_flag)];
-		if (_array == undefined) return undefined;
-		
+	static __getter_get_element = function(_array, _name) {
 		var _i = 0; repeat (array_length(_array)) {
 			var _element = _array[_i];
 			if (_element.name == _name) {
@@ -193,21 +171,48 @@ function RoomLoaderReturnData() constructor {
 		}
 		return undefined;
 	};
+	static __getter_map_elements = function(_array) {
+		static _map = function(_element) { return _element.id; }
+		return array_map(_array, _map);
+	};
+	
+	#endregion
+	#region getters
 	
 	static get_instances = function() {
 		return __instances;
 	};
+	
+	static get_tilemap = function(_name) {
+		return __getter_get_element(__tilemaps, _name);
+	};
 	static get_tilemaps = function() {
 		return __getter_map_elements(__tilemaps);
+	};
+	
+	static get_sprite = function(_name) {
+		return __getter_get_element(__sprites, _name);
 	};
 	static get_sprites = function() {
 		return __getter_map_elements(__sprites);
 	};
+	
+	static get_particle_system = function(_name) {
+		return __getter_get_element(__particle_systems, _name);
+	};
 	static get_particle_systems = function() {
 		return __getter_map_elements(__particle_systems);
 	};
+	
+	static get_sequence = function(_name) {
+		return __getter_get_element(__sequences, _name);
+	};
 	static get_sequences = function() {
 		return __getter_map_elements(__sequences);
+	};
+	
+	static get_background = function(_name) {
+		return __getter_get_element(__backgrounds, _name);
 	};
 	static get_backgrounds = function() {
 		return __getter_map_elements(__backgrounds);
