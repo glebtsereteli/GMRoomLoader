@@ -15,6 +15,7 @@
   "ResourceOrderSettings": [
     {"name":"rm_demo_load_02","order":1,"path":"rooms/rm_demo_load_02/rm_demo_load_02.yy",},
     {"name":"spr_demo_parrot","order":1,"path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",},
+    {"name":"ts_demo_tiny_town","order":2,"path":"tilesets/ts_demo_tiny_town/ts_demo_tiny_town.yy",},
     {"name":"spr_ts_demo_tiny_dungeon_sample","order":1,"path":"sprites/spr_ts_demo_tiny_dungeon_sample/spr_ts_demo_tiny_dungeon_sample.yy",},
     {"name":"ts_demo_tiny_dungeon","order":2,"path":"tilesets/ts_demo_tiny_dungeon/ts_demo_tiny_dungeon.yy",},
     {"name":"spr_demo_bg","order":1,"path":"sprites/spr_demo_bg/spr_demo_bg.yy",},
@@ -23,7 +24,7 @@
     {"name":"RoomLoaderConfig","order":1,"path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},
     {"name":"RoomLoaderInternalFunctions","order":1,"path":"scripts/RoomLoaderInternalFunctions/RoomLoaderInternalFunctions.yy",},
     {"name":"RoomLoaderEnums","order":2,"path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},
-    {"name":"spr_ts_demo_tiny_town","order":1,"path":"sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",},
+    {"name":"spr_ts_demo_tiny_town_sample","order":1,"path":"sprites/spr_ts_demo_tiny_town_sample/spr_ts_demo_tiny_town_sample.yy",},
     {"name":"rm_demo","order":2,"path":"rooms/rm_demo/rm_demo.yy",},
   ],
 }

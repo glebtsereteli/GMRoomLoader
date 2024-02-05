@@ -52,6 +52,7 @@
     {"id":{"name":"spr_ts_demo_tiny_town","path":"sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",},},
     {"id":{"name":"pts_demo_smoke","path":"particles/pts_demo_smoke/pts_demo_smoke.yy",},},
     {"id":{"name":"rm_demo_load_01","path":"rooms/rm_demo_load_01/rm_demo_load_01.yy",},},
+    {"id":{"name":"spr_ts_demo_tiny_town_sample","path":"sprites/spr_ts_demo_tiny_town_sample/spr_ts_demo_tiny_town_sample.yy",},},
     {"id":{"name":"RoomLoaderInternalConstructors","path":"scripts/RoomLoaderInternalConstructors/RoomLoaderInternalConstructors.yy",},},
     {"id":{"name":"rm_demo","path":"rooms/rm_demo/rm_demo.yy",},},
   ],
