@@ -17,12 +17,12 @@ function RoomLoader() constructor {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
-	static __whitelist = new __RoomLoaderFilter(true);
-	static __blacklist = new __RoomLoaderFilter(false);
+	static __layer_whitelist = new __RoomLoaderFilter(true);
+	static __layer_blacklist = new __RoomLoaderFilter(false);
 	static __return_data = undefined;
 	
 	static __layer_failed_filters = function(_name) {
-		var _match = ((__whitelist.__check(_name)) and (not __blacklist.__check(_name)));
+		var _match = ((__layer_whitelist.__check(_name)) and (not __layer_blacklist.__check(_name)));
 		return (not _match);
 	};
 	
@@ -106,39 +106,64 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region whitelist/blacklist
+	#region layer whitelist
 	
-	static whitelist_set = function() {
-		__whitelist.__reset();
+	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Adds all given layer names to the Whitelist filter.
+	static layer_whitelist_add = function() {
 		var _i = 0; repeat (argument_count) {
-			__whitelist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_whitelist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static whitelist_set_array = function(_layers) {
-		script_execute_ext(whitelist_set, _layers);
-		return self;
+	
+	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Removes all given layer names from the Whitelist filter.
+	static layer_whitelist_remove = function() {
+		var _i = 0; repeat (argument_count) {
+			__layer_whitelist.__remove(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			_i++;
+		}
 	};
-	static whitelist_reset = function() {
-		__whitelist.__reset();
+	
+	/// @returns {Struct.RoomLoader}
+	/// @desc Resets the Whitelist filter.
+	static layer_whitelist_reset = function() {
+		__layer_whitelist.__reset();
 		return self;
 	};
 	
-	static blacklist_set = function() {
-		__blacklist.__reset();
+	#endregion
+	#region layer blacklist
+	
+	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Adds all given layer names to the Blacklist filter.
+	static layer_blacklist_add = function() {
 		var _i = 0; repeat (argument_count) {
-			__blacklist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_blacklist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static blacklist_set_array = function(_layers) {
-		script_execute_ext(blacklist_set, _layers);
-		return self;
+	
+	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Removes all given layer names from the Blacklist filter.
+	static layer_blacklist_remove = function() {
+		var _i = 0; repeat (argument_count) {
+			__layer_blacklist.__remove(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			_i++;
+		}
 	};
-	static blacklist_reset = function() {
-		__blacklist.__reset();
+	
+	/// @returns {Struct.RoomLoader}
+	/// @desc Resets the Blacklist filter.
+	static layer_blacklist_reset = function() {
+		__layer_blacklist.__reset();
 		return self;
 	};
 	

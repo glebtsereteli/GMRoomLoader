@@ -15,6 +15,12 @@ function __RoomLoaderFilter(_idle_return) constructor {
 		array_push(__layers, _layer);
 		__check = __check_active;
 	};
+	static __remove = function(_layer) {
+		var _index = array_get_index(__layers, _layer);
+		if (_index != undefined) {
+			array_delete(__layers, _index, 1);
+		}
+	};
 	static __reset = function() {
 		__layers = [];
 		__check = __check_idle;
@@ -84,7 +90,7 @@ function __RoomLoaderData(_room) constructor {
 		_x = __roomloader_get_offset_x(_x, __width, _origin);
 		_y = __roomloader_get_offset_y(_y, __height, _origin);
 		
-		RoomLoader.__return_data.__instances = array_create(array_length(__instances_data));
+		RoomLoader.__return_data.__instances = array_create(array_length(__instances_data), noone);
 		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_x, _y, _flags);
