@@ -30,18 +30,18 @@ function RoomLoader() constructor {
 	#region data
 	
 	// Initialization:
-	static init = function() {
+	static data_init = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__add(argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static init_array = function(_rooms) {
-		script_execute_ext(init, _rooms);
+	static data_init_array = function(_rooms) {
+		script_execute_ext(data_init, _rooms);
 		return self;
 	};
-	static init_prefix = function(_prefix) {
+	static data_init_prefix = function(_prefix) {
 		static _all_rooms = asset_get_ids(asset_room);
 		static _init = method(__data, function(_room) {
 			if (not __roomloader_room_has_prefix(_room, __prefix)) return;
@@ -54,18 +54,18 @@ function RoomLoader() constructor {
 	};
 	
 	// Removal:
-	static remove = function() {
+	static data_remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__remove(argument[_i]);
 			_i++;
 		}
 		return self;
 	};
-	static remove_array = function(_rooms) {
-		script_execute_ext(remove, _rooms);
+	static data_remove_array = function(_rooms) {
+		script_execute_ext(data_remove, _rooms);
 		return self;
 	};
-	static remove_prefix = function(_prefix) {
+	static data_remove_prefix = function(_prefix) {
 		static _remove = method(__data, function(_name, _data) {
 			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
 			struct_remove(__pool, _name);
@@ -74,12 +74,12 @@ function RoomLoader() constructor {
 		__data.__prefix = _prefix;
 		struct_foreach(__data.__pool, _remove);
 	};
-	static clear = function() {
+	static data_clear = function() {
 		__data.__pool = {};
 	};
 	
 	// Getters:
-	static get_data = function(_room) {
+	static data_get = function(_room) {
 		return __data.__get(_room);
 	};
 	
@@ -124,20 +124,20 @@ function RoomLoader() constructor {
 	#region loading
 	
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = get_data(_room);
+		var _data = data_get(_room);
 		if (_data == undefined) return undefined;
 		
 		__return_data = new RoomLoaderReturnData();
 		return _data.__load(_x, _y, _origin, _flags);
 	};
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
+		var _data = data_get(_room);
 		if (_data == undefined) return undefined;
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
+		var _data = data_get(_room);
 		if (_data == undefined) return undefined;
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);

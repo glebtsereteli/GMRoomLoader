@@ -60,4 +60,4 @@ data = {
 	},
 };
 
-RoomLoader.init_prefix("rm_demo_load_");
+RoomLoader.data_init_prefix("rm_demo_load_");
