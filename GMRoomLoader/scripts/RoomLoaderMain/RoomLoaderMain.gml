@@ -27,8 +27,9 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region data initialization
+	#region data
 	
+	// Initialization:
 	static init = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__add(argument[_i]);
@@ -52,9 +53,7 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	#endregion
-	#region data removal
-	
+	// Removal:
 	static remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__remove(argument[_i]);
@@ -79,13 +78,11 @@ function RoomLoader() constructor {
 		__data.__pool = {};
 	};
 	
-	#endregion
-	#region data getters
-	
+	// Getters:
 	static get_data = function(_room) {
 		return __data.__get(_room);
 	};
-
+	
 	#endregion
 	#region whitelist/blacklist
 	

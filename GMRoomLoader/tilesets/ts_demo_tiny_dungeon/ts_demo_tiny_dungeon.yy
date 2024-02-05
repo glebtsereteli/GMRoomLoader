@@ -1,7 +1,7 @@
 {
   "resourceType": "GMTileSet",
   "resourceVersion": "1.0",
-  "name": "ts_demo_tiny_town",
+  "name": "ts_demo_tiny_dungeon",
   "autoTileSets": [],
   "macroPageTiles": {
     "SerialiseHeight": 0,
@@ -12,14 +12,14 @@
   "out_tilehborder": 2,
   "out_tilevborder": 2,
   "parent": {
-    "name": "Tiny Town",
-    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
+    "name": "Tiny Dungeon",
+    "path": "folders/Demo/Tile Sets/Tiny Dungeon.yy",
   },
   "spriteId": {
-    "name": "spr_ts_demo_tiny_town",
-    "path": "sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",
+    "name": "spr_ts_demo_tiny_dungeon",
+    "path": "sprites/spr_ts_demo_tiny_dungeon/spr_ts_demo_tiny_dungeon.yy",
   },
-  "spriteNoExport": true,
+  "spriteNoExport": false,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
