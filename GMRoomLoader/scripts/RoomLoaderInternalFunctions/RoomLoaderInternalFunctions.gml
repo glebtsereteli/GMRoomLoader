@@ -68,6 +68,6 @@ function __roomloader_get_offset_y(_y, _height, _origin) {
 function __roomloader_check_flags(_flags) {
 	return ((_flags & __flag) == __flag);
 }
-function __roomloader_script_nullish(_script) {
+function __roomloader_process_script(_script) {
 	return ((_script == -1) ? __roomloader_noop : _script);
 }

@@ -39,8 +39,8 @@ function __RoomLoaderData(_room) constructor {
 	static __init = function() {
 		static _map_instance_data = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
-			_data.pre_creation_code = __roomloader_script_nullish(_data.pre_creation_code);
-			_data.creation_code = __roomloader_script_nullish(_data.creation_code);
+			_data.pre_creation_code = __roomloader_process_script(_data.pre_creation_code);
+			_data.creation_code = __roomloader_process_script(_data.creation_code);
 			__instances_temp_lookup[$ _data.id] = _data;
 			return _data;
 		};
@@ -60,7 +60,7 @@ function __RoomLoaderData(_room) constructor {
 		__data = [];
 		__width = _raw_data.width;
 		__height = _raw_data.height;
-		__creation_code = __roomloader_script_nullish(_raw_data.creationCode);
+		__creation_code = __roomloader_process_script(_raw_data.creationCode);
 		
 		// Store instances data:
 		var _instances_data = _raw_data.instances;
