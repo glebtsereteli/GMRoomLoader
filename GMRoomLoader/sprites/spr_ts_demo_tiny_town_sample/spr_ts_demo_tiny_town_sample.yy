@@ -1,10 +1,10 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "spr_ts_demo_tiny_town",
-  "bbox_bottom": 191,
+  "name": "spr_ts_demo_tiny_town_sample",
+  "bbox_bottom": 514,
   "bbox_left": 0,
-  "bbox_right": 191,
+  "bbox_right": 917,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b3458e27-b406-4be7-a4ab-95490049024f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5572b052-3c04-439b-a146-b5f5618b225b",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 192,
+  "height": 515,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"dcb784d8-438d-4c91-90b6-e2e60bc8d977","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"c1ca0800-dc1e-48dd-8c41-df783320ebb4","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -32,7 +32,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "spr_ts_demo_tiny_town",
+    "name": "spr_ts_demo_tiny_town_sample",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b3458e27-b406-4be7-a4ab-95490049024f","path":"sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",},},},"Disabled":false,"id":"0f85469b-052d-485d-a79c-2338575f603d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"5572b052-3c04-439b-a146-b5f5618b225b","path":"sprites/spr_ts_demo_tiny_town_sample/spr_ts_demo_tiny_town_sample.yy",},},},"Disabled":false,"id":"150a2218-616a-4ff9-9967-4f94e4a2bfe6","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 192,
+  "width": 918,
 }

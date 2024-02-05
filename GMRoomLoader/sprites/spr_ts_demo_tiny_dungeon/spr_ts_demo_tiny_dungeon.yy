@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "spr_ts_demo_tiny_town",
+  "name": "spr_ts_demo_tiny_dungeon",
   "bbox_bottom": 191,
   "bbox_left": 0,
   "bbox_right": 191,
@@ -13,26 +13,26 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b3458e27-b406-4be7-a4ab-95490049024f",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"422fd978-8982-43a6-8c28-4d76b30d93d3",},
   ],
   "gridX": 0,
   "gridY": 0,
   "height": 192,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"dcb784d8-438d-4c91-90b6-e2e60bc8d977","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"40e4f05e-b898-4060-996d-b57f06dfb1b8","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Tiny Town",
-    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
+    "name": "Tiny Dungeon",
+    "path": "folders/Demo/Tile Sets/Tiny Dungeon.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "spr_ts_demo_tiny_town",
+    "name": "spr_ts_demo_tiny_dungeon",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"b3458e27-b406-4be7-a4ab-95490049024f","path":"sprites/spr_ts_demo_tiny_town/spr_ts_demo_tiny_town.yy",},},},"Disabled":false,"id":"0f85469b-052d-485d-a79c-2338575f603d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"422fd978-8982-43a6-8c28-4d76b30d93d3","path":"sprites/spr_ts_demo_tiny_dungeon/spr_ts_demo_tiny_dungeon.yy",},},},"Disabled":false,"id":"c177064b-4387-4fd4-8f1b-6862a353295d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

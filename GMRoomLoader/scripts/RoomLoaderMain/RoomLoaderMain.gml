@@ -19,6 +19,7 @@ function RoomLoader() constructor {
 	};
 	static __whitelist = new __RoomLoaderFilter(true);
 	static __blacklist = new __RoomLoaderFilter(false);
+	static __return_data = undefined;
 	
 	static __layer_failed_filters = function(_name) {
 		var _match = ((__whitelist.__check(_name)) and (not __blacklist.__check(_name)));
@@ -26,6 +27,7 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	#region data
 	
 	// Initialization:
 	static init = function() {
@@ -51,27 +53,39 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	// Loading:
-	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
-		
-		return _data.__load(_x, _y, _origin, _flags);
+	// Removal:
+	static remove = function() {
+		var _i = 0; repeat (argument_count) {
+			__data.__remove(argument[_i]);
+			_i++;
+		}
+		return self;
 	};
-	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
-		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+	static remove_array = function(_rooms) {
+		script_execute_ext(remove, _rooms);
+		return self;
 	};
-	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = get_data(_room);
-		if (_data == undefined) return undefined;
+	static remove_prefix = function(_prefix) {
+		static _remove = method(__data, function(_name, _data) {
+			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
+			struct_remove(__pool, _name);
+		});
 		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
+		__data.__prefix = _prefix;
+		struct_foreach(__data.__pool, _remove);
+	};
+	static clear = function() {
+		__data.__pool = {};
 	};
 	
-	// Whitelist/Blacklist Layer Filtering:
+	// Getters:
+	static get_data = function(_room) {
+		return __data.__get(_room);
+	};
+	
+	#endregion
+	#region whitelist/blacklist
+	
 	static whitelist_set = function() {
 		__whitelist.__reset();
 		var _i = 0; repeat (argument_count) {
@@ -106,66 +120,122 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
-	// Removal:
-	static remove = function() {
-		var _i = 0; repeat (argument_count) {
-			__data.__remove(argument[_i]);
-			_i++;
-		}
-		return self;
-	};
-	static remove_array = function(_rooms) {
-		script_execute_ext(remove, _rooms);
-		return self;
-	};
-	static remove_prefix = function(_prefix) {
-		static _remove = method(__data, function(_name, _data) {
-			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
-			struct_remove(__pool, _name);
-		});
+	#endregion
+	#region loading
+	
+	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
 		
-		__data.__prefix = _prefix;
-		struct_foreach(__data.__pool, _remove);
+		__return_data = new RoomLoaderReturnData();
+		return _data.__load(_x, _y, _origin, _flags);
 	};
-	static clear = function() {
-		__data.__pool = {};
+	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
-	
-	// Getters:
-	static get_data = function(_room) {
-		return __data.__get(_room);
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = get_data(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
-}
-function RoomLoaderReturnData(_pool) constructor {
-	#region private
-	
-	__pool = _pool;
-	__cleaned_up = false;
 	
 	#endregion
+}
+function RoomLoaderReturnData() constructor {
+	#region private
 	
-	static get_element = function(_room_id) {
-		if (__cleaned_up) return undefined;
-		
-		var _i = 0; repeat (array_length(__pool)) {
-			var _element = __pool[_i].__get_element(_room_id);
-			if (_element != undefined) {
-				return _element;
+	__layers = [];
+	__instances = undefined;
+	__instance_index = 0;
+	__tilemaps = [];
+	__sprites = [];
+	__particle_systems = []
+	__sequences = [];
+	__backgrounds = [];
+	__cleaned_up = false;
+	
+	static __getter_get_element = function(_array, _name) {
+		var _i = 0; repeat (array_length(_array)) {
+			var _element = _array[_i];
+			if (_element.name == _name) {
+				return _element.id;
 			}
 			_i++;
 		}
 		return undefined;
 	};
+	static __getter_map_elements = function(_array) {
+		static _map = function(_element) { return _element.id; }
+		return array_map(_array, _map);
+	};
+	
+	#endregion
+	#region getters
+	
+	static get_instances = function() {
+		return __instances;
+	};
+	
+	static get_tilemap = function(_name) {
+		return __getter_get_element(__tilemaps, _name);
+	};
+	static get_tilemaps = function() {
+		return __getter_map_elements(__tilemaps);
+	};
+	
+	static get_sprite = function(_name) {
+		return __getter_get_element(__sprites, _name);
+	};
+	static get_sprites = function() {
+		return __getter_map_elements(__sprites);
+	};
+	
+	static get_particle_system = function(_name) {
+		return __getter_get_element(__particle_systems, _name);
+	};
+	static get_particle_systems = function() {
+		return __getter_map_elements(__particle_systems);
+	};
+	
+	static get_sequence = function(_name) {
+		return __getter_get_element(__sequences, _name);
+	};
+	static get_sequences = function() {
+		return __getter_map_elements(__sequences);
+	};
+	
+	static get_background = function(_name) {
+		return __getter_get_element(__backgrounds, _name);
+	};
+	static get_backgrounds = function() {
+		return __getter_map_elements(__backgrounds);
+	};
+	
+	#endregion
+	
 	static cleanup = function() {
+		static _tilemaps = function(_tilemap) {	layer_tilemap_destroy(_tilemap.id); };
+		static _sprites = function(_sprite) { layer_sprite_destroy(_sprite.id); };
+		static _particle_systems = function(_particle_system) { part_system_destroy(_particle_system.id); };
+		static _sequences = function(_sequence) { layer_sequence_destroy(_sequence.id); };
+		static _backgrounds = function(_background) { layer_background_destroy(_background.id); };
+		static _layers = function (_layer) { layer_destroy(_layer) };
+		
 		if (__cleaned_up) return;
 		
 		__cleaned_up = true;
-		var _i = 0; repeat (array_length(__pool)) {
-			__pool[_i].__cleanup();
-			_i++;
-		}
 		
-		__pool = undefined;
+		array_foreach(__instances, instance_destroy);
+		array_foreach(__tilemaps, _tilemaps);
+		array_foreach(__sprites, _sprites);
+		array_foreach(__particle_systems, _particle_systems);
+		array_foreach(__sequences, _sequences);
+		array_foreach(__backgrounds, _backgrounds);
+		array_foreach(__layers, _layers);
 	};
 };
 
