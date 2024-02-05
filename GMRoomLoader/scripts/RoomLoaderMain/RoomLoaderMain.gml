@@ -66,6 +66,9 @@ function RoomLoader() constructor {
 	#endregion
 	#region data removal
 	
+	/// @param {Asset.GMRoom} ...rooms The rooms to remove data for. Supports any amount of arguments.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Removes data for all (initialized) given rooms. 
 	static data_remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__remove(argument[_i]);
@@ -73,10 +76,18 @@ function RoomLoader() constructor {
 		}
 		return self;
 	};
+	
+	/// @param {Array<Asset.GMRoom>} rooms The array of rooms to remove data for.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Removes data for all (initialized) rooms in the given array.
 	static data_remove_array = function(_rooms) {
 		script_execute_ext(data_remove, _rooms);
 		return self;
 	};
+	
+	/// @param {String} prefix The prefix to filter rooms with.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Removes data for all (initialized) rooms starting with the given prefix.
 	static data_remove_prefix = function(_prefix) {
 		static _remove = method(__data, function(_name, _data) {
 			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
@@ -85,9 +96,13 @@ function RoomLoader() constructor {
 		
 		__data.__prefix = _prefix;
 		struct_foreach(__data.__pool, _remove);
+		return self;
 	};
+	
+	/// @desc Removes all initialized room data.
 	static data_clear = function() {
 		__data.__pool = {};
+		return self;
 	};
 	
 	#endregion
