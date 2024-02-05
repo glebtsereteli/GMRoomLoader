@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Tiny Town",
-    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
+    "name": "Tiny Town+",
+    "path": "folders/Demo/Tile Sets/Tiny Town+.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

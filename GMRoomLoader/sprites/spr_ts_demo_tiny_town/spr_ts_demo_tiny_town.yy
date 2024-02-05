@@ -2,7 +2,7 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "spr_ts_demo_tiny_town",
-  "bbox_bottom": 191,
+  "bbox_bottom": 271,
   "bbox_left": 0,
   "bbox_right": 191,
   "bbox_top": 0,
@@ -17,7 +17,7 @@
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 192,
+  "height": 384,
   "HTile": false,
   "layers": [
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"dcb784d8-438d-4c91-90b6-e2e60bc8d977","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Tiny Town",
-    "path": "folders/Demo/Tile Sets/Tiny Town.yy",
+    "name": "Tiny Town+",
+    "path": "folders/Demo/Tile Sets/Tiny Town+.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
