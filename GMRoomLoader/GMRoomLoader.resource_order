@@ -6,11 +6,11 @@
     {"name":"Sequences","order":9,"path":"folders/Demo/Sequences.yy",},
     {"name":"Sprites","order":6,"path":"folders/Demo/Sprites.yy",},
     {"name":"Tile Sets","order":5,"path":"folders/Demo/Tile Sets.yy",},
+    {"name":"Tiny Battle","order":2,"path":"folders/Demo/Tile Sets/Tiny Battle.yy",},
+    {"name":"Tiny Dungeon","order":3,"path":"folders/Demo/Tile Sets/Tiny Dungeon.yy",},
     {"name":"Tiny Town","order":1,"path":"folders/Demo/Tile Sets/Tiny Town.yy",},
     {"name":"RoomLoader","order":1,"path":"folders/RoomLoader.yy",},
     {"name":"Internal","order":6,"path":"folders/RoomLoader/Internal.yy",},
-    {"name":"Tiny Battle","order":2,"path":"folders/Demo/Tile Sets/Tiny Battle.yy",},
-    {"name":"Tiny Dungeon","order":3,"path":"folders/Demo/Tile Sets/Tiny Dungeon.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"rm_demo_load_02","order":1,"path":"rooms/rm_demo_load_02/rm_demo_load_02.yy",},

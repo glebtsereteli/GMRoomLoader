@@ -218,24 +218,23 @@ function RoomLoaderReturnData() constructor {
 	#endregion
 	
 	static cleanup = function() {
-		static _tilemaps = function(_tilemap) {	layer_tilemap_destroy(_tilemap.id); };
-		static _sprites = function(_sprite) { layer_sprite_destroy(_sprite.id); };
-		static _particle_systems = function(_particle_system) { part_system_destroy(_particle_system.id); };
-		static _sequences = function(_sequence) { layer_sequence_destroy(_sequence.id); };
-		static _backgrounds = function(_background) { layer_background_destroy(_background.id); };
-		static _layers = function (_layer) { layer_destroy(_layer) };
+		static _tilemap = function(_tilemap) {	layer_tilemap_destroy(_tilemap.id); };
+		static _sprite = function(_sprite) { layer_sprite_destroy(_sprite.id); };
+		static _particle_system = function(_particle_system) { part_system_destroy(_particle_system.id); };
+		static _sequence = function(_sequence) { layer_sequence_destroy(_sequence.id); };
+		static _background = function(_background) { layer_background_destroy(_background.id); };
+		static _layer = function (_layer) { layer_destroy(_layer) };
 		
 		if (__cleaned_up) return;
 		
 		__cleaned_up = true;
-		
 		array_foreach(__instances, instance_destroy);
-		array_foreach(__tilemaps, _tilemaps);
-		array_foreach(__sprites, _sprites);
-		array_foreach(__particle_systems, _particle_systems);
-		array_foreach(__sequences, _sequences);
-		array_foreach(__backgrounds, _backgrounds);
-		array_foreach(__layers, _layers);
+		array_foreach(__tilemaps, _tilemap);
+		array_foreach(__sprites, _sprite);
+		array_foreach(__particle_systems, _particle_system);
+		array_foreach(__sequences, _sequence);
+		array_foreach(__backgrounds, _background);
+		array_foreach(__layers, _layer);
 	};
 };
 
