@@ -55,7 +55,15 @@
 -2147483648,2,0,146,-5,10,3,117,281,118,-13,10,3,146,0,0,-3,-2147483648,2,0,146,-5,10,3,146,0,146,-13,10,
 3,146,0,0,-3,-2147483648,2,0,144,-5,119,3,145,0,144,-13,119,3,145,0,0,-3,-2147483648,-26,0,-3,-2147483648,-26,0,
 -30,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_compound","path":"tilesets/ts_compound/ts_compound.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
-    {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"bg","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":15000,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":{"name":"spr_demo_compound_bg","path":"sprites/spr_demo_compound_bg/spr_demo_compound_bg.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":true,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},
+    {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"bg","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":15000,"effectEnabled":true,"effectType":"_filter_fractal_noise","gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[
+        {"name":"g_FractalNoiseScale","type":0,"value":"128",},
+        {"name":"g_FractalNoisePersistence","type":0,"value":"0.375",},
+        {"name":"g_FractalNoiseOffset","type":0,"value":"0",},
+        {"name":"g_FractalNoiseOffset","type":0,"value":"0",},
+        {"name":"g_FractalNoiseSpeed","type":0,"value":"1",},
+        {"name":"g_FractalNoiseTintColour","type":1,"value":"#FF333333",},
+        {"name":"g_FractalNoiseTexture","type":2,"value":"_filter_fractal_noise_texture",},
+      ],"spriteId":{"name":"spr_demo_compound_bg","path":"sprites/spr_demo_compound_bg/spr_demo_compound_bg.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":true,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},
   ],
   "parent": {
     "name": "02 - Compound",
