@@ -1,7 +1,7 @@
 /// @feather ignore all
 
 function RoomLoader() constructor {
-	#region private
+	#region __private
 	
 	static __data = {
 		__pool: {},
@@ -27,6 +27,7 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	
 	#region data initialization
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to initialize data for. Supports any amount of arguments.
@@ -198,7 +199,7 @@ function RoomLoader() constructor {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
 		
-		return __roomloader_load_instances(_room, _xs, _y, _data, _origin, instance_create_layer, _layer);
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -219,7 +220,7 @@ function RoomLoader() constructor {
 	#endregion
 }
 function RoomLoaderReturnData() constructor {
-	#region private
+	#region __private
 	
 	__layers = [];
 	__instances = undefined;
@@ -247,43 +248,76 @@ function RoomLoaderReturnData() constructor {
 	};
 	
 	#endregion
+	
 	#region getters
 	
+	/// @returns {Array<Id.Instance>}
+	/// @desc Returns an array of created Instances.
 	static get_instances = function() {
 		return __instances;
 	};
 	
+	/// @param {String} name The Tilemap name to search for.
+	/// @returns {Id.Tilemap, undefined}
+	/// @desc Returns the Tilemap ID matching the given name if found, or undefined if not found.
 	static get_tilemap = function(_name) {
 		return __getter_get_element(__tilemaps, _name);
 	};
+	
+	/// @returns {Array<Id.Tilemap>}
+	/// @desc Returns an array of created Tilemaps.
 	static get_tilemaps = function() {
 		return __getter_map_elements(__tilemaps);
 	};
 	
+	/// @param {String} name The Sprite name to search for.
+	/// @returns {Id.Sprite, undefined}
+	/// @desc Returns the Sprite ID matching the given name if found, or undefined if not found.
 	static get_sprite = function(_name) {
 		return __getter_get_element(__sprites, _name);
 	};
+	
+	/// @returns {Array<Id.Sprite>}
+	/// @desc Returns an array of created Sprites.
 	static get_sprites = function() {
 		return __getter_map_elements(__sprites);
 	};
 	
+	/// @param {String} name The Particle System name to search for.
+	/// @returns {Id.ParticleSystem, undefined}
+	/// @desc Returns the Particle System ID matching the given name if found, or undefined if not found.
 	static get_particle_system = function(_name) {
 		return __getter_get_element(__particle_systems, _name);
 	};
+	
+	/// @returns {Array<Id.ParticleSystem>}
+	/// @desc Returns an array of created Particle Systems.
 	static get_particle_systems = function() {
 		return __getter_map_elements(__particle_systems);
 	};
 	
+	/// @param {String} name The Sequence name to search for.
+	/// @returns {Id.Sequence, undefined}
+	/// @desc Returns the Sequence ID matching the given name if found, or undefined if not found.
 	static get_sequence = function(_name) {
 		return __getter_get_element(__sequences, _name);
 	};
+	
+	/// @returns {Array<Id.Sequence>}
+	/// @desc Returns an array of created Sequences.
 	static get_sequences = function() {
 		return __getter_map_elements(__sequences);
 	};
 	
+	/// @param {String} name The Background name to search for.
+	/// @returns {Id.Background, undefined}
+	/// @desc Returns the Background ID matching the given name if found, or undefined if not found.
 	static get_background = function(_name) {
 		return __getter_get_element(__backgrounds, _name);
 	};
+	
+	/// @returns {Array<Id.Background>}
+	/// @desc Returns an array of created Backgrounds.
 	static get_backgrounds = function() {
 		return __getter_map_elements(__backgrounds);
 	};

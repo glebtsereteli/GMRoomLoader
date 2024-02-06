@@ -27,27 +27,26 @@ function __roomloader_create_layer(_data) {
 	
 	return _layer;
 }
-function __roomloader_create_instances(_xoffs, _yoffs, _data, _create_func, _create_data) {
+function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func, _create_data) {
+	var _xoffs = __roomloader_get_offset_x(_x, _data.__width, _origin);
+	var _yoffs = __roomloader_get_offset_y(_y, _data.__height, _origin);
+	
+	_data = _data.__instances_data;
 	var _n = array_length(_data);
 	var _instances = array_create(_n);
 	
 	var _i = 0; repeat (array_length(_data)) {
 		var _inst_data = _data[_i];
-		var _x = _inst_data.x + _xoffs;
-		var _y = _inst_data.y + _yoffs;
+		_x = _inst_data.x + _xoffs;
+		_y = _inst_data.y + _yoffs;
 		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index);
 		__ROOMLOADER_SETUP_INSTANCE;
 		_instances[_i] = _inst;
+		show_debug_message(_inst);
 		_i++;
 	}
 	
 	return _instances;
-}
-function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func, _create_data) {
-	var _xoffs = __roomloader_get_offset_x(_x, _data.__width, _origin);
-	var _yoffs = __roomloader_get_offset_y(_y, _data.__height, _origin);
-	
-	return __roomloader_create_instances(_xoffs, _yoffs, _data.__instances_data, _create_func, _create_data);
 }
 function __roomloader_get_offset_x(_x, _width, _origin) {
 	static _offsets = [

@@ -224,7 +224,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 				case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
 				case layerelementtype_sequence: _constructor = __DataSequence; break;
 			}
-			__data[_i] = new _constructor(_data);
+			if (_constructor != undefined) {
+				__data[_i] = new _constructor(_data);
+			}
 			_i++;
 		}
 	};
