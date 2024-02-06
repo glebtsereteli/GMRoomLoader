@@ -42,7 +42,6 @@ function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func
 		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index);
 		__ROOMLOADER_SETUP_INSTANCE;
 		_instances[_i] = _inst;
-		show_debug_message(_inst);
 		_i++;
 	}
 	
