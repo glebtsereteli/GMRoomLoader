@@ -1,4 +1,4 @@
 
 randomize();
 show_debug_overlay(true, true);
-room_goto(rm_demo_benchmark);
+room_goto(rm_demo_compound);
