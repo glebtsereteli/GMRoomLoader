@@ -31,7 +31,7 @@
   ],
   "parent": {
     "name": "Rooms",
-    "path": "folders/Demo/00 - Benchmark/Rooms.yy",
+    "path": "folders/Demo/01 - Benchmark/Rooms.yy",
   },
   "parentRoom": null,
   "physicsSettings": {

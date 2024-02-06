@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "01 - Compound",
-    "path": "folders/Demo/01 - Compound.yy",
+    "name": "02 - Compound",
+    "path": "folders/Demo/02 - Compound.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

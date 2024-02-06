@@ -23,7 +23,7 @@
   ],
   "parent": {
     "name": "03",
-    "path": "folders/Demo/01 - Compound/Rooms/General/Rooms/03.yy",
+    "path": "folders/Demo/02 - Compound/Rooms/General/Rooms/03.yy",
   },
   "parentRoom": null,
   "physicsSettings": {

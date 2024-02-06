@@ -26,7 +26,7 @@
   "origin": 0,
   "parent": {
     "name": "Tileset",
-    "path": "folders/Demo/01 - Compound/Tileset.yy",
+    "path": "folders/Demo/02 - Compound/Tileset.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

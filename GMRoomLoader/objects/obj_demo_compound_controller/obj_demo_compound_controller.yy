@@ -1,15 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_init",
+  "name": "obj_demo_compound_controller",
   "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Init",
-    "path": "folders/Demo/Init.yy",
+    "name": "02 - Compound",
+    "path": "folders/Demo/02 - Compound.yy",
   },
   "parentObjectId": null,
   "persistent": false,

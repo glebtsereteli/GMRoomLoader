@@ -13,7 +13,7 @@
   "out_tilevborder": 2,
   "parent": {
     "name": "Tileset",
-    "path": "folders/Demo/01 - Compound/Tileset.yy",
+    "path": "folders/Demo/02 - Compound/Tileset.yy",
   },
   "spriteId": {
     "name": "spr_ts_compound",

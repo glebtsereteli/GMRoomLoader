@@ -13,7 +13,7 @@
   "out_tilevborder": 2,
   "parent": {
     "name": "Tiny Town+",
-    "path": "folders/Demo/00 - Benchmark/Tile Sets/Tiny Town+.yy",
+    "path": "folders/Demo/01 - Benchmark/Tile Sets/Tiny Town+.yy",
   },
   "spriteId": {
     "name": "spr_ts_demo_benchmark_tiny_town",

@@ -26,7 +26,7 @@
   "origin": 0,
   "parent": {
     "name": "Sprites",
-    "path": "folders/Demo/01 - Compound/Rooms/Corner/Sprites.yy",
+    "path": "folders/Demo/02 - Compound/Rooms/Corner/Sprites.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

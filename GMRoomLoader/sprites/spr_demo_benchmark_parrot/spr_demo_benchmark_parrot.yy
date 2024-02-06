@@ -26,7 +26,7 @@
   "origin": 0,
   "parent": {
     "name": "Parrot",
-    "path": "folders/Demo/00 - Benchmark/Parrot.yy",
+    "path": "folders/Demo/01 - Benchmark/Parrot.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
