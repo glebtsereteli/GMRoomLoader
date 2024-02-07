@@ -3,12 +3,13 @@
 update = function() {
 	hovered = position_meeting(mouse_x, mouse_y, id);
 	image_blend = merge_color(c_white, c_orange, hovered);
+	fill_alpha.update(hovered);
 };
 draw = function() {
 	draw_self();
 	
 	if (hovered) {
-		draw_sprite_ext(fill_sprite, 0, x, y, image_xscale, image_yscale, 0, image_blend, 0.25);
+		draw_sprite_ext(fill_sprite, 0, x, y, image_xscale, image_yscale, 0, image_blend, fill_alpha.current);
 	}
 };
 load = function() {
@@ -23,7 +24,9 @@ load = function() {
 	show_debug_message($"Room \"{_room_name}\" loaded in {(get_timer() - _t) / 1000} milliseconds.");
 	
 	data.set(_data);
+	fill_alpha.click();
 };
 cleanup = function() {
 	data.cleanup();
+	fill_alpha.click();
 };
