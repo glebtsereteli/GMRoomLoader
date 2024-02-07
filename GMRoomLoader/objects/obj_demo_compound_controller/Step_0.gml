@@ -10,6 +10,12 @@ with (room_obj) {
 
 if (mouse_check_button_pressed(mb_left)) {
 	with (_hovered_room) {
-		click();
+		load();
+	}
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+	with (_hovered_room) {
+		cleanup();
 	}
 }

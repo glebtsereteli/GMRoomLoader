@@ -36,8 +36,11 @@
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_compound_room_parent","path":"objects/obj_demo_compound_room_parent/obj_demo_compound_room_parent.yy",},"propertyId":{"name":"vd_name","path":"objects/obj_demo_compound_room_parent/obj_demo_compound_room_parent.yy",},"value":"\"corner\"",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":348.0,"y":92.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
-    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles","depth":200,"effectEnabled":true,"effectType":"_filter_greyscale","gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[
-        {"name":"g_Intensity","type":0,"value":"0.3",},
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_ground","depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":29,"SerialiseWidth":29,"TileCompressedData":[
+-242,-2147483648,1,1,-28,-2147483648,1,1,-26,-2147483648,-5,1,-3,-2147483648,-3,1,-28,-2147483648,1,1,-28,-2147483648,1,1,-115,-2147483648,1,1,-28,
+-2147483648,1,1,-18,-2147483648,-5,1,-3,-2147483648,-5,1,-18,-2147483648,1,1,-28,-2147483648,1,1,-250,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_compound","path":"tilesets/ts_compound/ts_compound.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_rooms","depth":300,"effectEnabled":true,"effectType":"_filter_greyscale","gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[
+        {"name":"g_Intensity","type":0,"value":"0.6",},
       ],"tiles":{"SerialiseHeight":29,"SerialiseWidth":29,"TileCompressedData":[
 -60,-2147483648,-8,0,1,-2147483648,-18,0,-2,-2147483648,2,0,117,-5,119,3,118,0,117,-13,119,1,118,-3,0,-2,-2147483648,2,0,
 146,-5,10,3,146,0,146,-13,10,1,146,-3,0,-2,-2147483648,2,0,146,-5,10,3,144,281,145,-13,10,1,146,-3,

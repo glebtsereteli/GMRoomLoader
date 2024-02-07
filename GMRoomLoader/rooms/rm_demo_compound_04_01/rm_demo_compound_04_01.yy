@@ -10,7 +10,7 @@
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_top","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
--45,-2147483648,1,0,-59,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_compound","path":"tilesets/ts_compound/ts_compound.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-16,-2147483648,1,197,-28,-2147483648,1,0,-59,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_compound","path":"tilesets/ts_compound/ts_compound.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_walls","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
 5,117,119,145,0,144,-5,119,6,145,0,144,119,118,146,
 -6,0,-7,-2147483648,2,146,145,-6,0,-7,-2147483648,1,146,-7,0,
