@@ -47,6 +47,7 @@
     {"name":"ts_compound","order":2,"path":"tilesets/ts_compound/ts_compound.yy",},
     {"name":"rm_demo_compound_03_02","order":1,"path":"rooms/rm_demo_compound_03_02/rm_demo_compound_03_02.yy",},
     {"name":"rm_demo_compound_01_03","order":2,"path":"rooms/rm_demo_compound_01_03/rm_demo_compound_01_03.yy",},
+    {"name":"scr_demo_utility","order":3,"path":"scripts/scr_demo_utility/scr_demo_utility.yy",},
     {"name":"rm_demo_compound_02_03","order":2,"path":"rooms/rm_demo_compound_02_03/rm_demo_compound_02_03.yy",},
     {"name":"spr_demo_compound_bg","order":4,"path":"sprites/spr_demo_compound_bg/spr_demo_compound_bg.yy",},
     {"name":"spr_ts_demo_benchmark_tiny_town_sample","order":1,"path":"sprites/spr_ts_demo_benchmark_tiny_town_sample/spr_ts_demo_benchmark_tiny_town_sample.yy",},

@@ -60,4 +60,4 @@ data = {
 	},
 };
 
-RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
+RoomLoader.data_init_prefix("rm_demo_benchmark");

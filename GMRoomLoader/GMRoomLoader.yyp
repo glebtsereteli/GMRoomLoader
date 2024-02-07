@@ -78,6 +78,7 @@
     {"id":{"name":"ts_compound","path":"tilesets/ts_compound/ts_compound.yy",},},
     {"id":{"name":"rm_demo_compound_03_02","path":"rooms/rm_demo_compound_03_02/rm_demo_compound_03_02.yy",},},
     {"id":{"name":"rm_demo_compound_01_03","path":"rooms/rm_demo_compound_01_03/rm_demo_compound_01_03.yy",},},
+    {"id":{"name":"scr_demo_utility","path":"scripts/scr_demo_utility/scr_demo_utility.yy",},},
     {"id":{"name":"obj_demo_compound_room_corner","path":"objects/obj_demo_compound_room_corner/obj_demo_compound_room_corner.yy",},},
     {"id":{"name":"obj_demo_compound_room_parent","path":"objects/obj_demo_compound_room_parent/obj_demo_compound_room_parent.yy",},},
     {"id":{"name":"obj_demo_init","path":"objects/obj_demo_init/obj_demo_init.yy",},},

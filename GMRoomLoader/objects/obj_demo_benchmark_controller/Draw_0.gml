@@ -1,2 +1,2 @@
 
-flags.draw();
+draw();
