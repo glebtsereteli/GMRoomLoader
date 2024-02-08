@@ -1,5 +1,4 @@
-
-show_debug_overlay(true, true);
+EVENT_METHOD;
 
 flags = {
 	instances: true,

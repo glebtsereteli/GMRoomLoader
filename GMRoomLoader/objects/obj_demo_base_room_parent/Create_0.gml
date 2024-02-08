@@ -16,7 +16,6 @@ data = {
 		}
 	},
 };
-
 fill_alpha = {
 	current: 0,
 	target: 0,
