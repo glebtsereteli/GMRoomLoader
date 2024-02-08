@@ -3,6 +3,7 @@ EVENT_METHOD;
 fill_sprite = asset_get_index(string_replace(sprite_get_name(sprite_index), "outline", "fill"));
 hovered = false;
 prev_room = undefined;
+index = 1;
 data = {
 	ref: undefined,
 	
