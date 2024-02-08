@@ -10,23 +10,34 @@
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_top","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
--16,-2147483648,-3,0,2,-2147483648,1073741957,-3,-2147483648,1,133,-80,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-16,-2147483648,-3,0,2,-2147483648,1073741957,-3,-2147483648,1,133,-3,-2147483648,1,239,
+-4,-2147483648,1,1073742166,-7,-2147483648,1,1073742166,-4,-2147483648,3,186,-2147483648,1073742167,-7,
+-2147483648,1,1073742167,-6,-2147483648,1,1073742168,-7,-2147483648,1,1073742168,-4,-2147483648,1,234,
+-28,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_walls","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
-5,279,281,307,0,306,-5,281,6,307,0,306,281,280,308,
--5,0,3,805306472,451,805306472,-4,-2147483648,4,156,308,308,131,-4,0,
-3,805306445,0,805306445,-5,-2147483648,3,306,308,1879048701,-4,0,3,805306418,0,
-805306418,-6,-2147483648,1,308,-6,0,-7,-2147483648,2,279,308,-8,0,-5,
--2147483648,6,308,306,281,280,0,311,-5,518,5,311,0,279,281,
-307,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+5,279,281,307,0,306,-5,281,6,307,0,306,281,280,285,
+-4,0,5,359,805306472,451,805306472,359,-3,-2147483648,4,156,308,490,131,
+-4,0,3,805306445,0,805306445,-4,-2147483648,4,131,306,490,1879048701,-4,0,
+3,805306418,0,805306418,-6,-2147483648,1,490,-6,0,-7,-2147483648,3,279,311,
+368,-7,0,-5,-2147483648,6,308,306,281,280,0,311,-5,518,5,
+311,0,279,281,307,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+    {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"assets_02","assets":[
+        {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_3905BD3C","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_prop_plant_01","path":"sprites/spr_demo_base_prop_plant_01/spr_demo_base_prop_plant_01.yy",},"x":292.0,"y":189.0,},
+      ],"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRAssetLayer","resourceVersion":"1.0","name":"assets_01","assets":[
         {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_6E9F7901","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":-16.672678,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_chair_05","path":"sprites/spr_demo_base_chair_05/spr_demo_base_chair_05.yy",},"x":190.0,"y":196.0,},
         {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_704B064C","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_table_02","path":"sprites/spr_demo_base_table_02/spr_demo_base_table_02.yy",},"x":210.0,"y":189.0,},
         {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_1AFA10C7","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":49.33269,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_chair_06","path":"sprites/spr_demo_base_chair_06/spr_demo_base_chair_06.yy",},"x":64.0,"y":128.0,},
-      ],"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
-    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_floor_01","depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
+        {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_164D70FD","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":25.15997,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_chair_01","path":"sprites/spr_demo_base_chair_01/spr_demo_base_chair_01.yy",},"x":430.0,"y":176.0,},
+        {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_178FF418","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_table_02","path":"sprites/spr_demo_base_table_02/spr_demo_base_table_02.yy",},"x":391.0,"y":171.0,},
+        {"resourceType":"GMRSpriteGraphic","resourceVersion":"1.0","name":"graphic_1DFF583D","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"rotation":11.114377,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_demo_base_carpet_02","path":"sprites/spr_demo_base_carpet_02/spr_demo_base_carpet_02.yy",},"x":289.0,"y":194.0,},
+      ],"depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_floor_01","depth":400,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
 -81,-2147483648,3,345,346,347,-21,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
-    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_floor","depth":400,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
--105,95,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_floor","depth":500,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
+-18,95,1,97,-6,95,-2,99,-19,95,1,97,-7,95,5,
+99,97,95,95,97,-5,95,1,99,-5,95,1,99,-6,95,
+1,97,-27,95,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
   "parent": {
     "name": "02",
