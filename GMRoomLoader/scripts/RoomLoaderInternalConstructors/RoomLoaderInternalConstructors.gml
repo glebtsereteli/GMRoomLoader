@@ -154,7 +154,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
 			layer_sprite_index(_sprite, __data.image_index);
 			layer_sprite_xscale(_sprite, __data.image_xscale);
-			layer_sprite_yscale(_sprite, __data.image_yscale);
+			//layer_sprite_yscale(_sprite, __data.image_yscale);
 			layer_sprite_angle(_sprite, __data.image_angle);
 			layer_sprite_speed(_sprite, __data.image_speed);
 			layer_sprite_blend(_sprite, __data.image_blend);
