@@ -1,16 +1,10 @@
 /// @feather ignore all
 
-#macro __ROOMLOADER_SETUP_INSTANCE \
-	with (_inst) { \
-		image_xscale = _inst_data.xscale; \
-		image_yscale = _inst_data.yscale; \
-		image_angle = _inst_data.angle; \
-		image_blend = _inst_data.colour; \
-		image_index = _inst_data.image_index; \
-		image_speed = _inst_data.image_speed; \
-		_inst_data.pre_creation_code(); \
-		_inst_data.creation_code(); \
-	}
+#macro __ROOMLOADER_INSTANCE_RUN_SCRIPTS \
+with (_inst) { \
+	script_execute(_inst_data.pre_creation_code); \
+	script_execute(_inst_data.creation_code); \
+}
 
 function __roomloader_noop() {}
 function __roomloader_room_has_prefix(_room, _prefix) {
@@ -39,8 +33,8 @@ function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func
 		var _inst_data = _data[_i];
 		_x = _inst_data.x + _xoffs;
 		_y = _inst_data.y + _yoffs;
-		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index);
-		__ROOMLOADER_SETUP_INSTANCE;
+		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index, _inst_data.precreate_struct);
+		__ROOMLOADER_INSTANCE_RUN_SCRIPTS;
 		_instances[_i] = _inst;
 		_i++;
 	}
