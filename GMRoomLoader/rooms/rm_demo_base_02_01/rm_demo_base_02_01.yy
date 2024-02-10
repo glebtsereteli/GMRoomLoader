@@ -10,6 +10,8 @@
     {"name":"inst_7FA90FC","path":"rooms/rm_demo_base_02_01/rm_demo_base_02_01.yy",},
     {"name":"inst_9E3084F","path":"rooms/rm_demo_base_02_01/rm_demo_base_02_01.yy",},
     {"name":"inst_2AF79863","path":"rooms/rm_demo_base_02_01/rm_demo_base_02_01.yy",},
+    {"name":"inst_31AD0249","path":"rooms/rm_demo_base_02_01/rm_demo_base_02_01.yy",},
+    {"name":"inst_141AC4AA","path":"rooms/rm_demo_base_02_01/rm_demo_base_02_01.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -27,6 +29,14 @@
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"propertyId":{"name":"vd_path","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"value":"pth_demo_base_02_01_patrol_01",},
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"propertyId":{"name":"vd_room","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"value":"inst_2E3A6EBA",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":208.0,"y":47.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_31AD0249","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_from","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"-150",},
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_to","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"-40",},
+          ],"rotation":-35.509182,"scaleX":1.0,"scaleY":1.0,"x":239.0,"y":83.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_141AC4AA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"properties":[
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_from","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"-10",},
+            {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_to","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"-75",},
+          ],"rotation":-73.46987,"scaleX":1.0,"scaleY":1.0,"x":337.0,"y":84.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_top_02","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":15,"TileCompressedData":[
 -3,0,1,-2147483648,-7,0,5,-2147483648,0,0,-2147483648,0,-5,-2147483648,3,
