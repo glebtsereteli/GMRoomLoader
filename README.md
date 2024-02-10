@@ -1,12 +1,21 @@
 <h1 align="center">GMRoomLoader v1.0.0</h1>
 <p align="center">Runtime room loading for GameMaker 2023.11+</p>
 
+# [THE LIBRARY IS BEING SET UP, WIKI AND RELEASES ARE WIP]
+
 ## Overview
 GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with minimal setup required. It provides a set of methods to cache the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), load it efficiently during gameplay, and clean it up when needed.
-
-## Links
 * Download the .yymps package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) tab.
 * Refer to the [Wiki](https://youtu.be/hvL1339luv0?si=V5h979LwTKAaKErY) for detailed documentation.
+
+## Features
+- Pure GML library with no external tools required.
+- Multiple ways to initialize room data: single or multiple, array, prefix.
+- Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#roomloader_flag), like Middle Center or Bottom Right, GameMaker sprite style.
+- Options to load full rooms including all layers and elements, or only instances using existing layers or depth.
+- Element type filtering using [bitwise blags](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#roomloader_flag).
+- Layer filtering using Whitelisting/Blacklisting.
+- Keeping track of loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#cleanup) later.
 
 ## Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
