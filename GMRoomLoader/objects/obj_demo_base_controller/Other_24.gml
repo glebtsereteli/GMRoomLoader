@@ -20,8 +20,8 @@ update = function() {
 	// Randomly load all rooms:
 	if (keyboard_check_pressed(vk_space)) {
 		with (room_obj) {
-			index = irandom_range(1, 3);
-			load();
+			shuffle_index();
+			load(false);
 		}
 	}
 	

@@ -12,10 +12,11 @@ draw = function() {
 		draw_sprite_ext(fill_sprite, 0, x, y, image_xscale, image_yscale, 0, image_blend, fill_alpha.current);
 	}
 };
-load = function() {
+load = function(_udpate_index = true) {
 	var _room_name = $"rm_demo_base_{vd_name}_0{index}";
 	var _room = asset_get_index(_room_name);
-	if (index++ == 3) {
+	
+	if ((_udpate_index) and (index++ == 3)) {
 		index = 1;
 	}
 	
@@ -32,6 +33,12 @@ load = function() {
 		}
 	};
 	array_foreach(_data.get_instances(), _init_patrol_units);
+};
+shuffle_index = function() {
+	var _prev = index;
+	do {
+		index = irandom_range(1, 3);
+	} until (index != _prev);
 };
 cleanup = function() {
 	data.cleanup();
