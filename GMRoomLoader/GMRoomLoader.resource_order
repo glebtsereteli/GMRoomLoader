@@ -16,6 +16,7 @@
     {"name":"General","order":1,"path":"folders/Demo/02 - Base/Rooms/General.yy",},
     {"name":"Rooms","order":8,"path":"folders/Demo/02 - Base/Rooms/General/Rooms.yy",},
     {"name":"02","order":1,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/02.yy",},
+    {"name":"02-02","order":2,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/02/02-02.yy",},
     {"name":"03","order":2,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/03.yy",},
     {"name":"04","order":3,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/04.yy",},
     {"name":"Sprites","order":3,"path":"folders/Demo/02 - Base/Rooms/General/Sprites.yy",},
@@ -31,7 +32,6 @@
     {"name":"Sprites","order":3,"path":"folders/Demo/02 - Base/Units/Sprites.yy",},
     {"name":"RoomLoader","order":1,"path":"folders/RoomLoader.yy",},
     {"name":"Internal","order":6,"path":"folders/RoomLoader/Internal.yy",},
-    {"name":"02-02","order":2,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/02/02-02.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_demo_base_unit_06","order":5,"path":"sprites/spr_demo_base_unit_06/spr_demo_base_unit_06.yy",},
