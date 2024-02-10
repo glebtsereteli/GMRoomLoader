@@ -12,7 +12,7 @@ GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with 
 
 ## Features
 - Pure GML library with no external tools required.
-- Multiple ways to initialize room data: single or multiple, array, prefix.
+- Multiple ways to initialize room data: [single or multiple](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_initroom----structroomloader), [array](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_init_arrayrooms---structroomloader), [prefix](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_init_prefixprefix---structroomloader).
 - Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_origin), like Middle Center or Bottom Right, GameMaker sprite style.
 - Options to load full rooms including all layers and elements, or only instances using existing layers or depth.
 - Element type filtering using [bitwise blags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
