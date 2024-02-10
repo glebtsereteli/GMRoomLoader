@@ -6,7 +6,7 @@ init = function() {
 	path_start(path, 1, path_action_continue, true);
 };
 update = function() {
-	image_angle = lerp_angle(image_angle, direction, 0.3);
+	image_angle = lerp_angle(image_angle, direction, 0.25);
 };
 cleanup = function() {
 	path_delete(path);

@@ -112,8 +112,8 @@
 10,8,-3,10,],"TileDataFormat":1,},"tilesetId":{"name":"ts_base","path":"tilesets/ts_base/ts_base.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
   "parent": {
-    "name": "Room",
-    "path": "folders/Demo/02 - Base/Rooms/Corner/Room.yy",
+    "name": "Rooms",
+    "path": "folders/Demo/02 - Base/Rooms/Corner/Rooms.yy",
   },
   "parentRoom": null,
   "physicsSettings": {

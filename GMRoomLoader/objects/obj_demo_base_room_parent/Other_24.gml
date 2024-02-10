@@ -26,12 +26,12 @@ load = function() {
 	data.set(_data);
 	fill_alpha.click();
 	
-	static _init_follow_units = function(_inst) {
+	static _init_patrol_units = function(_inst) {
 		if (object_is_ancestor(_inst.object_index, obj_demo_base_unit_parent)) {
 			_inst.init();
 		}
 	};
-	array_foreach(_data.get_instances(), _init_follow_units);
+	array_foreach(_data.get_instances(), _init_patrol_units);
 };
 cleanup = function() {
 	data.cleanup();
