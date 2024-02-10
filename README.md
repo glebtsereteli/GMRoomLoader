@@ -13,11 +13,11 @@ GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with 
 ## Features
 - Pure GML library with no external tools required.
 - Multiple ways to initialize room data: single or multiple, array, prefix.
-- Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#roomloader_flag), like Middle Center or Bottom Right, GameMaker sprite style.
+- Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_origin), like Middle Center or Bottom Right, GameMaker sprite style.
 - Options to load full rooms including all layers and elements, or only instances using existing layers or depth.
-- Element type filtering using [bitwise blags](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#roomloader_flag).
+- Element type filtering using [bitwise blags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
 - Layer filtering using Whitelisting/Blacklisting.
-- Keeping track of loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader-Docs/tree/main?tab=readme-ov-file#cleanup) later.
+- Keeping track of loaded elements to [fetch their IDs]() and/or [clean them up]() later.
 
 ## Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
