@@ -107,6 +107,55 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	#region loading
+	
+	/// @param {Asset.GMRoom} room The room to load.
+	/// @param {Real} x The x coordinate to load the room at.
+	/// @param {Real} y The y coordinate to load the room at.
+	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load the room at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
+	/// @param {Enum.ROOMLOADER_FLAG} [flags] OPTIONAL! The flags to filter the loaded data by. Defaults to the ROOMLOADER_DEFAULT_FLAGS config macro.
+	/// @returns {struct.RoomLoaderReturnData, undefined}
+	/// @desc Loads the given room at the given coordinates and [origin], filtered by the given [flags]. 
+	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
+	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+		var _data = __data.__get(_room);
+		if (_data == undefined) return undefined;
+		
+		__return_data = new RoomLoaderReturnData();
+		return _data.__load(_x, _y, _origin, _flags);
+	};
+	
+	/// @param {Asset.GMRoom} room The room to load instances for.
+	/// @param {Real} x The x coordinate to load instances at.
+	/// @param {Real} y The y coordinate to load instances at.
+	/// @param {Id.Layer, String} [layer] The layer ID or name to assign instances to.
+	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
+	/// @returns {Array<Id.Instance>, undefined}
+	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
+	/// Returns an array of instance IDs on success or undefined on fail.
+	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = __data.__get(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+	};
+	
+	/// @param {Asset.GMRoom} room The room to load instances for.
+	/// @param {Real} x The x coordinate to load instances at.
+	/// @param {Real} y The y coordinate to load instances at.
+	/// @param {Real} depth The depth to create instances at.
+	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
+	/// @returns {Array<Id.Instance>, undefined}s
+	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
+	/// Returns an array of instance IDs on success or undefined on fail.
+	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		var _data = __data.__get(_room);
+		if (_data == undefined) return undefined;
+		
+		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
+	};
+	
+	#endregion
 	#region layer whitelist
 	
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
@@ -166,55 +215,6 @@ function RoomLoader() constructor {
 	static layer_blacklist_reset = function() {
 		__layer_blacklist.__reset();
 		return self;
-	};
-	
-	#endregion
-	#region loading
-	
-	/// @param {Asset.GMRoom} room The room to load.
-	/// @param {Real} x The x coordinate to load the room at.
-	/// @param {Real} y The y coordinate to load the room at.
-	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load the room at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
-	/// @param {Enum.ROOMLOADER_FLAG} [flags] OPTIONAL! The flags to filter the loaded data by. Defaults to the ROOMLOADER_DEFAULT_FLAGS config macro.
-	/// @returns {struct.RoomLoaderReturnData, undefined}
-	/// @desc Loads the given room at the given coordinates and [origin], filtered by the given [flags]. 
-	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
-	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
-		
-		__return_data = new RoomLoaderReturnData();
-		return _data.__load(_x, _y, _origin, _flags);
-	};
-	
-	/// @param {Asset.GMRoom} room The room to load instances for.
-	/// @param {Real} x The x coordinate to load instances at.
-	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Id.Layer, String} [layer] The layer ID or name to assign instances to.
-	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
-	/// @returns {Array<Id.Instance>, undefined}
-	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
-	/// Returns an array of instance IDs on success or undefined on fail.
-	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
-		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
-	};
-	
-	/// @param {Asset.GMRoom} room The room to load instances for.
-	/// @param {Real} x The x coordinate to load instances at.
-	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Real} depth The depth to create instances at.
-	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
-	/// @returns {Array<Id.Instance>, undefined}s
-	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
-	/// Returns an array of instance IDs on success or undefined on fail.
-	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
-		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
 	#endregion
