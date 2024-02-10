@@ -23,3 +23,5 @@ GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with 
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
 - Originally motivated by and made for [TabularElf](https://github.com/tabularelf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
 - Demo art by [Kenney](https://twitter.com/KenneyNL).
+- Demo room design by [k8te-iv](https://github.com/k8te-iv)https://github.com/k8te-iv ❣️
+- 
