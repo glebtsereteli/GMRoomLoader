@@ -22,6 +22,6 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 
 ## Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
+- Logos and demo rooms designed by Gleb's wifey - [Kate](https://www.instagram.com/k8te_iv) ❣️
 - Originally motivated by and made for [TabularElf](https://github.com/tabularelf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
 - Demo art by [Kenney](https://twitter.com/KenneyNL).
-- Demo room design by [k8te-iv](https://github.com/k8te-iv) ❣️
