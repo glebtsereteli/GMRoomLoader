@@ -100,7 +100,7 @@
     {"name":"spr_demo_base_prop_stain_02","order":28,"path":"sprites/spr_demo_base_prop_stain_02/spr_demo_base_prop_stain_02.yy",},
     {"name":"rm_demo_base_03_02","order":1,"path":"rooms/rm_demo_base_03_02/rm_demo_base_03_02.yy",},
     {"name":"spr_demo_base_prop_knife","order":12,"path":"sprites/spr_demo_base_prop_knife/spr_demo_base_prop_knife.yy",},
-    {"name":"pth_demo_base_corner_02_patrol_01","order":1,"path":"paths/pth_demo_base_corner_02_patrol_01/pth_demo_base_corner_02_patrol_01.yy",},
+    {"name":"pth_demo_base_corner_01_patrol_01","order":1,"path":"paths/pth_demo_base_corner_01_patrol_01/pth_demo_base_corner_01_patrol_01.yy",},
     {"name":"rm_demo_base_01_03","order":2,"path":"rooms/rm_demo_base_01_03/rm_demo_base_01_03.yy",},
     {"name":"spr_demo_base_tv_03","order":2,"path":"sprites/spr_demo_base_tv_03/spr_demo_base_tv_03.yy",},
     {"name":"spr_demo_base_table_07","order":6,"path":"sprites/spr_demo_base_table_07/spr_demo_base_table_07.yy",},

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMPath",
   "resourceVersion": "1.0",
-  "name": "pth_demo_base_corner_02_patrol_01",
+  "name": "pth_demo_base_corner_01_patrol_01",
   "closed": true,
   "kind": 1,
   "parent": {
@@ -10,7 +10,7 @@
   },
   "points": [
     {"speed":100.0,"x":85.334854,"y":86.974945,},
-    {"speed":100.0,"x":157.3605,"y":100.53903,},
+    {"speed":100.0,"x":157.3605,"y":98.53903,},
     {"speed":100.0,"x":201.87332,"y":127.5134,},
     {"speed":100.0,"x":284.77075,"y":128.43648,},
     {"speed":100.0,"x":336.9246,"y":78.18007,},
