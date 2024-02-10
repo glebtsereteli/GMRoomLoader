@@ -6,7 +6,7 @@
 <p align="center">Runtime room loading for GameMaker 2023.11+</p>
 
 ## Overview
-GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with minimal setup required. It provides a set of methods to cache the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), load it efficiently during gameplay, and clean it up when needed.
+GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with minimal setup. It provides a set of methods to cache the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), load it efficiently during gameplay, and clean it up when needed.
 * Download the .yymps package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) tab.
 * Refer to the [Wiki](https://github.com/glebtsereteli/GMRoomLoader/wiki) for detailed documentation.
 
@@ -15,7 +15,7 @@ GMRoomLoader streamlines the process of loading GameMaker rooms at runtime with 
 - Multiple ways to initialize room data: [single or multiple](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_initroom----structroomloader), [array](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_init_arrayrooms---structroomloader), [prefix](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader#-data_init_prefixprefix---structroomloader).
 - Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_origin), like Middle Center or Bottom Right, GameMaker sprite style.
 - Options to load full rooms including all layers and elements, or only instances using existing layers or depth.
-- Element type filtering using [bitwise blags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
+- Element type filtering using [bitwise flags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
 - Layer filtering using Whitelisting/Blacklisting.
 - Keeping track of loaded elements to [fetch their IDs]() and/or [clean them up]() later.
 
