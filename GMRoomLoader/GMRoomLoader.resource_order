@@ -36,6 +36,7 @@
     {"name":"RoomLoader","order":1,"path":"folders/RoomLoader.yy",},
     {"name":"Internal","order":6,"path":"folders/RoomLoader/Internal.yy",},
     {"name":"04-02","order":1,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/04/04-02.yy",},
+    {"name":"04-03","order":4,"path":"folders/Demo/02 - Base/Rooms/General/Rooms/04/04-03.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_demo_base_unit_06","order":5,"path":"sprites/spr_demo_base_unit_06/spr_demo_base_unit_06.yy",},
@@ -52,6 +53,7 @@
     {"name":"spr_demo_base_chair_05","order":4,"path":"sprites/spr_demo_base_chair_05/spr_demo_base_chair_05.yy",},
     {"name":"spr_demo_base_prop_rock_01","order":9,"path":"sprites/spr_demo_base_prop_rock_01/spr_demo_base_prop_rock_01.yy",},
     {"name":"spr_demo_base_carpet_04","order":3,"path":"sprites/spr_demo_base_carpet_04/spr_demo_base_carpet_04.yy",},
+    {"name":"pth_demo_base_04_03_patrol_01","order":1,"path":"paths/pth_demo_base_04_03_patrol_01/pth_demo_base_04_03_patrol_01.yy",},
     {"name":"spr_demo_base_prop_debris_01","order":13,"path":"sprites/spr_demo_base_prop_debris_01/spr_demo_base_prop_debris_01.yy",},
     {"name":"pth_demo_base_02_02_patrol_01","order":1,"path":"paths/pth_demo_base_02_02_patrol_01/pth_demo_base_02_02_patrol_01.yy",},
     {"name":"spr_demo_base_tv_04","order":3,"path":"sprites/spr_demo_base_tv_04/spr_demo_base_tv_04.yy",},
@@ -90,7 +92,6 @@
     {"name":"spr_demo_base_unit_03","order":2,"path":"sprites/spr_demo_base_unit_03/spr_demo_base_unit_03.yy",},
     {"name":"spr_ts_base_sample","order":1,"path":"sprites/spr_ts_base_sample/spr_ts_base_sample.yy",},
     {"name":"spr_demo_base_prop_rock_02","order":10,"path":"sprites/spr_demo_base_prop_rock_02/spr_demo_base_prop_rock_02.yy",},
-    {"name":"rm_demo_base_04_03","order":3,"path":"rooms/rm_demo_base_04_03/rm_demo_base_04_03.yy",},
     {"name":"spr_demo_base_unit_04","order":3,"path":"sprites/spr_demo_base_unit_04/spr_demo_base_unit_04.yy",},
     {"name":"spr_demo_base_room_corner_collmask","order":2,"path":"sprites/spr_demo_base_room_corner_collmask/spr_demo_base_room_corner_collmask.yy",},
     {"name":"spr_demo_base_prop_bush_01","order":7,"path":"sprites/spr_demo_base_prop_bush_01/spr_demo_base_prop_bush_01.yy",},
