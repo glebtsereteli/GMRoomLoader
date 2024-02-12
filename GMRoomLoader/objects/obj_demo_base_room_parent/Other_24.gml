@@ -2,7 +2,7 @@
 
 update = function() {
 	hovered = position_meeting(mouse_x, mouse_y, id);
-	image_blend = merge_color(c_white, c_orange, hovered);
+	image_blend = (hovered ? c_orange : c_white);
 	fill_alpha.update(hovered);
 };
 draw = function() {
