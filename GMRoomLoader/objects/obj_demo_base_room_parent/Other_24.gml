@@ -12,11 +12,11 @@ draw = function() {
 		draw_sprite_ext(fill_sprite, 0, x, y, image_xscale, image_yscale, 0, image_blend, fill_alpha.current);
 	}
 };
-load = function(_udpate_index = true) {
+load = function(_update_index = true) {
 	var _room_name = $"rm_demo_base_{vd_name}_0{index}";
 	var _room = asset_get_index(_room_name);
 	
-	if ((_udpate_index) and (index++ == 3)) {
+	if ((_update_index) and (index++ == 3)) {
 		index = 1;
 	}
 	
