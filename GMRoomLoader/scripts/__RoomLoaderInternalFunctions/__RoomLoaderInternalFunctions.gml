@@ -63,3 +63,6 @@ function __roomloader_check_flags(_flags) {
 function __roomloader_process_script(_script) {
 	return ((_script == -1) ? __roomloader_noop : _script);
 }
+function __roomloader_log(_message) {
+	show_debug_message($"[GMRoomLoader] {_message}.");
+}
