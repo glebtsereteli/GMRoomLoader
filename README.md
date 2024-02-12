@@ -18,7 +18,7 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Options to load [full rooms](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-loadroom-x-y-originroomloader_default_origin-flagsroomloader_default_flags---structroomloaderreturndata) including all layers and elements, or only instances using existing [layers](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-load_instances_layerroom-x-y-layer-originroomloader_default_origin---arrayidinstance) or [depth](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-load_instances_depthroom-x-y-depth-originroomloader_default_origin---arrayidinstance).
 - Element type filtering using [bitwise flags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
 - Layer filtering using [whitelisting/blacklisting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#%E2%84%B9%EF%B8%8F-whitelistblacklist-layer-filtering).
-- Keeping track of loaded elements to [fetch their IDs]() and/or [clean them up]() later.
+- Keeping track of loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-cleanup) later.
 
 ## Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
