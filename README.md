@@ -17,7 +17,7 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_origin), like Middle Center or Bottom Right, GameMaker sprite style.
 - Options to load full rooms including all layers and elements, or only instances using existing layers or depth.
 - Element type filtering using [bitwise flags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
-- Layer filtering using Whitelisting/Blacklisting.
+- Layer filtering using [Whitelisting/Blacklisting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#%E2%84%B9%EF%B8%8F-whitelistblacklist-layer-filtering).
 - Keeping track of loaded elements to [fetch their IDs]() and/or [clean them up]() later.
 
 ## Credits
