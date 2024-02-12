@@ -264,7 +264,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__height = undefined;
 	
 	static __init = function() {
-		__tileset = __tilemap_data.background_index;
+		__tileset = (__tilemap_data[$ "tileset_index"] ?? __tilemap_data[$ "background_index"]);
 		__width = __tilemap_data.width;
 		__height = __tilemap_data.height;
 		
