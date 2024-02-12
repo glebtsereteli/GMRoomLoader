@@ -190,7 +190,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
 			
-			repeat (ROOMLOADER_PARTICLE_STEPS) part_system_update(_particle_system);
+			repeat (ROOMLOADER_PARTICLE_SYSTEMS_STEPS) part_system_update(_particle_system);
 			
 			array_push(RoomLoader.__return_data.__particle_systems, {
 				id: _particle_system,
@@ -214,7 +214,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			layer_sequence_angle(_sequence, __data.image_angle);
 			layer_sequence_speedscale(_sequence, __data.image_speed);
 			
-			if (ROOMLOADER_PAUSE_SEQUENCES) layer_sequence_pause(_sequence);
+			if (ROOMLOADER_SEQUENCES_PAUSE) layer_sequence_pause(_sequence);
 			
 			array_push(RoomLoader.__return_data.__sequences, {
 				id: _sequence,
