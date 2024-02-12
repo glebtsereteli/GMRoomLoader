@@ -257,11 +257,11 @@ function RoomLoaderReturnData() constructor {
 		return __instances;
 	};
 	
-	/// @param {String} name The Tilemap name to search for.
+	/// @param {String} layer_name The Tilemap layer name to search for.
 	/// @returns {Id.Tilemap, undefined}
-	/// @desc Returns the Tilemap ID matching the given name if found, or undefined if not found.
-	static get_tilemap = function(_name) {
-		return __getter_get_element(__tilemaps, _name);
+	/// @desc Returns the Tilemap ID matching the given layer name if found, or undefined if not found.
+	static get_tilemap = function(_layer_name) {
+		return __getter_get_element(__tilemaps, _layer_name);
 	};
 	
 	/// @returns {Array<Id.Tilemap>}
@@ -309,11 +309,11 @@ function RoomLoaderReturnData() constructor {
 		return __getter_map_elements(__sequences);
 	};
 	
-	/// @param {String} name The Background name to search for.
+	/// @param {String} layer_name The Background layer name to search for.
 	/// @returns {Id.Background, undefined}
-	/// @desc Returns the Background ID matching the given name if found, or undefined if not found.
-	static get_background = function(_name) {
-		return __getter_get_element(__backgrounds, _name);
+	/// @desc Returns the Background ID matching the given layer name if found, or undefined if not found.
+	static get_background = function(_layer_name) {
+		return __getter_get_element(__backgrounds, _layer_name);
 	};
 	
 	/// @returns {Array<Id.Background>}
