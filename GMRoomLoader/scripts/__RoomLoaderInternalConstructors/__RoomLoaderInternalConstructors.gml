@@ -17,8 +17,11 @@ function __RoomLoaderFilter(_idle_return) constructor {
 	};
 	static __remove = function(_layer) {
 		var _index = array_get_index(__layers, _layer);
-		if (_index != undefined) {
-			array_delete(__layers, _index, 1);
+		if (_index == undefined) return;
+		
+		array_delete(__layers, _index, 1);
+		if (array_length(__layers) == 0) {
+			__check = __check_idle;
 		}
 	};
 	static __reset = function() {
