@@ -1,5 +1,3 @@
-# [THE LIBRARY IS BEING SET UP. README, WIKI & RELEASES ARE WIP]
-
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
 <h1 align="center">GMRoomLoader v1.0.0</h1>
