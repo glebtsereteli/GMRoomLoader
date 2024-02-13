@@ -22,7 +22,7 @@ load = function(_all) {
 	show_debug_message($"Room \"{_room_name}\" loaded in {(get_timer() - _t) / 1000} milliseconds.");
 	
 	data.set(_data);
-	fill.click(c_orange, (_all ? 0.3 : 0.4));
+	fill.click(c_orange, 0.3);
 	
 	static _init_units = function(_inst) {
 		if (object_is_ancestor(_inst.object_index, obj_demo_base_unit_parent)) {
