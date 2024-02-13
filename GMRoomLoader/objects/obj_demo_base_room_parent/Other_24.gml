@@ -2,30 +2,27 @@
 
 update = function() {
 	hovered = position_meeting(mouse_x, mouse_y, id);
-	image_blend = (hovered ? c_orange : c_white);
-	fill_alpha.update(hovered);
+	fill.update(hovered);
+	
+	blend_01 = lerp(blend_01, hovered, 0.3);
+	image_blend = merge_color(c_white, fill.color, blend_01);
 };
 draw = function() {
 	draw_self();
-	
-	if (hovered) {
-		draw_sprite_ext(fill_sprite, 0, x, y, image_xscale, image_yscale, 0, image_blend, fill_alpha.current);
-	}
+	fill.draw();
 };
-load = function(_update_index = true) {
-	var _room_name = $"rm_demo_base_{vd_name}_0{index}";
-	var _room = asset_get_index(_room_name);
+load = function(_all) {
+	(_all ? index.shuffle : index.progress)();
 	
-	if ((_update_index) and (index++ == 3)) {
-		index = 1;
-	}
+	var _room_name = $"rm_demo_base_{vd_name}_0{index.value}";
+	var _room = asset_get_index(_room_name);
 	
 	var _t = get_timer();
 	var _data = RoomLoader.load(_room, x + 4, y + 4);
 	show_debug_message($"Room \"{_room_name}\" loaded in {(get_timer() - _t) / 1000} milliseconds.");
 	
 	data.set(_data);
-	fill_alpha.click();
+	fill.click(c_orange, (_all ? 0.3 : 0.4));
 	
 	static _init_units = function(_inst) {
 		if (object_is_ancestor(_inst.object_index, obj_demo_base_unit_parent)) {
@@ -34,14 +31,8 @@ load = function(_update_index = true) {
 	};
 	array_foreach(_data.get_instances(), _init_units);
 };
-shuffle_index = function() {
-	var _prev = index;
-	do {
-		index = irandom_range(1, 3);
-	} until (index != _prev);
-};
-cleanup = function() {
+cleanup = function(_all) {
 	data.cleanup();
-	index = 1;
-	fill_alpha.click();
+	index.reset();
+	fill.click(c_white, (_all ? 0.1 : 0.25));
 };
