@@ -1,4 +1,5 @@
-                                                                                                                                                                                             
+/// @feather ignore all
+                                                                                                                                              
 /* 
 	GMRoomLoader v1.0.0
 	
