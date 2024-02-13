@@ -1,5 +1,9 @@
 /// @desc Methods
 
+init = function() {
+	RoomLoader.data_init_prefix("rm_demo_benchmark");
+	flags.init();
+};
 update = function() {
 	origin.update();
 	flags.update();

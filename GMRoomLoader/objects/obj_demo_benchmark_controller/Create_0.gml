@@ -1,3 +1,4 @@
+EVENT_CONSTRUCTOR;
 EVENT_METHOD;
 
 origin = {
@@ -24,32 +25,41 @@ origin = {
 	},
 };
 flags = {
-	instances: true,
-	sprites: true,
-	tilemaps: true,
-	particle_systems: true,
-	sequences: true,
-	backgrounds: true,
+	pool: [
+		new Flag("Instances", ROOMLOADER_FLAG.INSTANCES),
+		new Flag("Tilemaps", ROOMLOADER_FLAG.TILEMAPS),
+		new Flag("Sprites", ROOMLOADER_FLAG.SPRITES),
+		new Flag("Particle Systems", ROOMLOADER_FLAG.PARTICLE_SYSTEMS),
+		new Flag("Sequences", ROOMLOADER_FLAG.SEQUENCES),
+		new Flag("Backgrounds", ROOMLOADER_FLAG.BACKGROUNDS),
+	],
+	n: undefined,
 	
+	init: function() {
+		n = array_length(pool);
+		for (var _i = 0; _i < n; _i++) {
+			pool[_i].init(_i);
+		}
+	},
 	update: function() {
-		//instances ^= keyboard_check_pressed(vk_numpad1);
-		//sprites ^= keyboard_check_pressed(vk_numpad2);
-		//tilemaps ^= keyboard_check_pressed(vk_numpad3);
-		//particle_systems ^= keyboard_check_pressed(vk_numpad4);
-		//sequences ^= keyboard_check_pressed(vk_numpad5);
-		//backgrounds ^= keyboard_check_pressed(vk_numpad6);
+		for (var _i = 0; _i < n; _i++) {
+			pool[_i].update();
+		}
 	},
 	draw: function() {
-		var _message = "Flags: ";
-		var _flags = get();
-		if (_flags == 0) _message += "None";
-		else {
-			if (instances) _message += "Instances";
-			if (sprites) _message += $"{instances ? " | " : ""}Sprites";
-			if (tilemaps) _message += $"{(instances or sprites) ? " | " : ""}Tilemaps";
-			if (particle_systems) _message += $"{(instances or sprites or tilemaps) ? " | " : ""}Particle Systems";
-			if (sequences) _message += $"{(instances or sprites or tilemaps or particle_systems) ? " | " : ""}Sequences";
-			if (backgrounds) _message += $"{(instances or sprites or tilemaps or particle_systems or backgrounds) ? " | " : ""}Backgrounds";
+		var _value = 0;
+		var _message = "Flags:";
+		
+		for (var _i = 0; _i < n; _i++) {
+			var _flag = pool[_i];
+			if (_flag.enabled) {
+				_message += $"{(_value > 0) ? " |" : ""} {_flag.name}";
+				_value++;
+			}
+		}
+		
+		if (_value == 0) {
+			_message += " None";
 		}
 		
 		draw_set_valign(fa_bottom);
@@ -58,14 +68,14 @@ flags = {
 		draw_set_valign(fa_top);
 	},
 	get: function() {
-		var _flags = 0;
-		_flags |= (ROOMLOADER_FLAG.INSTANCES * instances);
-		_flags |= (ROOMLOADER_FLAG.SPRITES * sprites);
-		_flags |= (ROOMLOADER_FLAG.TILEMAPS * tilemaps);
-		_flags |= (ROOMLOADER_FLAG.PARTICLE_SYSTEMS * particle_systems);
-		_flags |= (ROOMLOADER_FLAG.SEQUENCES * sequences);
-		_flags |= (ROOMLOADER_FLAG.BACKGROUNDS * backgrounds);
-		return _flags;
+		var _value = ROOMLOADER_FLAG.NONE;
+		for (var _i = 0; _i < n; _i++) {
+			var _flag = pool[_i];
+			if (_flag.enabled) {
+				_value |= _flag.value;
+			}
+		}
+		return _value;
 	},
 };
 data = {
@@ -82,4 +92,4 @@ data = {
 	},
 };
 
-RoomLoader.data_init_prefix("rm_demo_benchmark");
+init();

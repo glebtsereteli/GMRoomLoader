@@ -1,4 +1,5 @@
 
+#macro EVENT_CONSTRUCTOR event_user(13)
 #macro EVENT_METHOD event_user(14)
 #macro FPS game_get_speed(gamespeed_fps)
 
