@@ -12,7 +12,7 @@ function __roomloader_room_has_prefix(_room, _prefix) {
 	return (string_pos(_prefix, _name) > 0);
 }
 function __roomloader_create_layer(_data) {
-	var _layer = layer_create(_data.depth, _data.name);
+	var _layer = layer_create(_data.depth, _data.prefixed_name);
 	layer_set_visible(_layer, _data.visible);
 	layer_x(_layer, _data.xoffset);
 	layer_y(_layer, _data.yoffset);

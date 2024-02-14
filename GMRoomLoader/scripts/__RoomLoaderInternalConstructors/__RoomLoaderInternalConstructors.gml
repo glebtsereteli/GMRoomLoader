@@ -2,31 +2,29 @@
 
 function __RoomLoaderFilter(_idle_return) constructor {
 	__idle_return = _idle_return;
-	__layers = [];
+	__layer_names = [];
+	__n = 0;
 	
-	static __check_idle = function() {
-		return __idle_return;
+	static __check = function(_layer_name) {
+		return ((__n > 0) ? array_contains(__layer_names, _layer_name) : __idle_return);
 	};
-	static __check_active = function(_name) {
-		return array_contains(__layers, _name);
+	static __add = function(_layer_name) {
+		array_push(__layer_names, _layer_name);
+		__n++;
 	};
-	static __check = __check_idle;
-	static __add = function(_layer) {
-		array_push(__layers, _layer);
-		__check = __check_active;
-	};
-	static __remove = function(_layer) {
-		var _index = array_get_index(__layers, _layer);
+	static __remove = function(_layer_name) {
+		var _index = array_get_index(__layer_names, _layer_name);
 		if (_index == undefined) return;
 		
-		array_delete(__layers, _index, 1);
-		if (array_length(__layers) == 0) {
-			__check = __check_idle;
-		}
+		array_delete(__layer_names, _index, 1);
+		__n--;
 	};
 	static __reset = function() {
-		__layers = [];
-		__check = __check_idle;
+		__layer_names = [];
+		__n = 0;
+	};
+	static __get = function() {
+		return __layer_names;
 	};
 }
 
@@ -87,7 +85,7 @@ function __RoomLoaderData(_room) constructor {
 			if (_elements_data != 0) {
 				var _data_constructor = _get_data_constructor(_elements_data[0].type);
 				if (_data_constructor != undefined) {
-					_layer_data.name = ROOMLOADER_LAYER_PREFIX + _layer_data.name;
+					_layer_data.prefixed_name = (ROOMLOADER_LAYER_PREFIX + _layer_data.name);
 					var _data = new _data_constructor(_layer_data, _elements_data);
 					array_push(__data, _data);
 				}

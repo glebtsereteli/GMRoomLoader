@@ -163,7 +163,7 @@ function RoomLoader() constructor {
 	/// @desc Adds all given layer names to the Whitelist filter.
 	static layer_whitelist_add = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_whitelist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_whitelist.__add(argument[_i]);
 			_i++;
 		}
 		return self;
@@ -174,7 +174,7 @@ function RoomLoader() constructor {
 	/// @desc Removes all given layer names from the Whitelist filter.
 	static layer_whitelist_remove = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_whitelist.__remove(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_whitelist.__remove(argument[_i]);
 			_i++;
 		}
 	};
@@ -186,6 +186,12 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
+	/// @returns {Array<String>}
+	/// @desc Returns an array of whitelisted layer names
+	static layer_whitelist_get = function() {
+		return __layer_whitelist.__get();
+	};
+	
 	#endregion
 	#region layer blacklist
 	
@@ -194,7 +200,7 @@ function RoomLoader() constructor {
 	/// @desc Adds all given layer names to the Blacklist filter.
 	static layer_blacklist_add = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_blacklist.__add(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_blacklist.__add(argument[_i]);
 			_i++;
 		}
 		return self;
@@ -205,7 +211,7 @@ function RoomLoader() constructor {
 	/// @desc Removes all given layer names from the Blacklist filter.
 	static layer_blacklist_remove = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_blacklist.__remove(ROOMLOADER_LAYER_PREFIX + argument[_i]);
+			__layer_blacklist.__remove(argument[_i]);
 			_i++;
 		}
 	};
@@ -215,6 +221,12 @@ function RoomLoader() constructor {
 	static layer_blacklist_reset = function() {
 		__layer_blacklist.__reset();
 		return self;
+	};
+	
+	/// @returns {Array<String>}
+	/// @desc Returns an array of blacklisted layer names
+	static layer_blacklist_get = function() {
+		return __layer_blacklist.__get();
 	};
 	
 	#endregion
