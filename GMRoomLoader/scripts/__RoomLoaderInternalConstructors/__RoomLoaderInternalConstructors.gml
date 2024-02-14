@@ -1,23 +1,27 @@
 /// @feather ignore all
 
-function __RoomLoaderFilter(_idle_return) constructor {
-	__idle_return = _idle_return;
+function __RoomLoaderFilter(_positive) constructor {
+	__positive = _positive;
 	__layer_names = [];
-	__n = 0;
 	
-	static __check = function(_layer_name) {
-		return ((__n > 0) ? array_contains(__layer_names, _layer_name) : __idle_return);
+	static __check_empty = function() {
+		return __positive;
+	};
+	static __check_active = function(_layer_name) {
+		return array_contains(__layer_names, _layer_name);	
 	};
 	static __add = function(_layer_name) {
 		array_push(__layer_names, _layer_name);
-		__n++;
+		__check = __check_active;
 	};
 	static __remove = function(_layer_name) {
 		var _index = array_get_index(__layer_names, _layer_name);
 		if (_index == undefined) return;
 		
 		array_delete(__layer_names, _index, 1);
-		__n--;
+		if (array_length(__layer_names) == 0) {
+			__check = __check_empty;
+		}
 	};
 	static __reset = function() {
 		__layer_names = [];
@@ -26,6 +30,8 @@ function __RoomLoaderFilter(_idle_return) constructor {
 	static __get = function() {
 		return __layer_names;
 	};
+	
+	__check = __check_empty;
 }
 
 function __RoomLoaderData(_room) constructor {

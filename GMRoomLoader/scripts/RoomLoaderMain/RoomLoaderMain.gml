@@ -132,7 +132,7 @@ function RoomLoader() constructor {
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
 	/// @returns {Array<Id.Instance>, undefined}
 	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
-	/// Returns an array of instance IDs on success or undefined on fail.
+	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
@@ -147,7 +147,7 @@ function RoomLoader() constructor {
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
 	/// @returns {Array<Id.Instance>, undefined}s
 	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
-	/// Returns an array of instance IDs on success or undefined on fail.
+	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
@@ -297,7 +297,7 @@ function RoomLoaderReturnData() constructor {
 	
 	/// @param {String} name The Particle System name to search for.
 	/// @returns {Id.ParticleSystem, undefined}
-	/// @desc Returns the Particle System ID matching the given name if found, or undefined if not found.
+	/// @desc Returns the created Particle System ID matching the given name if found, or undefined if not found.
 	static get_particle_system = function(_name) {
 		return __getter_get_element(__particle_systems, _name);
 	};
@@ -310,7 +310,7 @@ function RoomLoaderReturnData() constructor {
 	
 	/// @param {String} name The Sequence name to search for.
 	/// @returns {Id.Sequence, undefined}
-	/// @desc Returns the Sequence ID matching the given name if found, or undefined if not found.
+	/// @desc Returns the created Sequence ID matching the given name if found, or undefined if not found.
 	static get_sequence = function(_name) {
 		return __getter_get_element(__sequences, _name);
 	};
@@ -323,7 +323,7 @@ function RoomLoaderReturnData() constructor {
 	
 	/// @param {String} layer_name The Background layer name to search for.
 	/// @returns {Id.Background, undefined}
-	/// @desc Returns the Background ID matching the given layer name if found, or undefined if not found.
+	/// @desc Returns the created Background ID matching the given layer name if found, or undefined if not found.
 	static get_background = function(_layer_name) {
 		return __getter_get_element(__backgrounds, _layer_name);
 	};

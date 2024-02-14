@@ -24,5 +24,5 @@ update = function() {
 	}
 };
 draw = function() {
-	flags.draw();	
+	flags.draw();
 };
