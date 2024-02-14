@@ -25,7 +25,6 @@ function __RoomLoaderFilter(_positive) constructor {
 	};
 	static __reset = function() {
 		__layer_names = [];
-		__n = 0;
 	};
 	static __get = function() {
 		return __layer_names;
