@@ -288,7 +288,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.Instance>}
 	/// @desc Returns an array of created Instances.
 	static get_instances = function() {
-		return __instances;
+		return __instances.__ids;
 	};
 	
 	/// @param {String} layer_name The Tilemap layer name to search for.
