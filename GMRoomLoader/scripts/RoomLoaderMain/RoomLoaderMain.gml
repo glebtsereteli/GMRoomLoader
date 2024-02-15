@@ -247,21 +247,34 @@ function RoomLoaderReturnData() constructor {
 	static __getter_get_element = function(_array, _name) {
 		var _i = 0; repeat (array_length(_array)) {
 			var _element = _array[_i];
-			if (_element.name == _name) {
-				return _element.id;
+			if (_element.__name == _name) {
+				return _element.__id;
 			}
 			_i++;
 		}
 		return undefined;
 	};
 	static __getter_map_elements = function(_array) {
-		static _map = function(_element) { return _element.id; }
+		static _map = function(_element) { return _element.__id; }
 		return array_map(_array, _map);
 	};
 	
 	#endregion
 	
 	#region getters
+	
+	/// @param {String} layer_name Thes layer name to search for.
+	/// @returns {Id.Layer, undefined}
+	/// @desc Returns the layer ID matching the given name if found, or undefined if not found.
+	static get_layer = function(_name) {
+		return __getter_get_element(__layers, _name);
+	};
+	
+	/// @returns {Array<Id.Layer>}
+	/// @desc Returns an array of created layers.
+	static get_layers = function() {
+		return __getter_map_elements(__layers);
+	};
 	
 	/// @returns {Array<Id.Instance>}
 	/// @desc Returns an array of created Instances.
@@ -338,12 +351,12 @@ function RoomLoaderReturnData() constructor {
 	#region cleanup
 	
 	static cleanup = function() {
-		static _tilemap = function(_tilemap) {	layer_tilemap_destroy(_tilemap.id); };
-		static _sprite = function(_sprite) { layer_sprite_destroy(_sprite.id); };
-		static _particle_system = function(_particle_system) { part_system_destroy(_particle_system.id); };
-		static _sequence = function(_sequence) { layer_sequence_destroy(_sequence.id); };
-		static _background = function(_background) { layer_background_destroy(_background.id); };
-		static _layer = function (_layer) { layer_destroy(_layer) };
+		static _tilemap = function(_tilemap) {	layer_tilemap_destroy(_tilemap.__id); };
+		static _sprite = function(_sprite) { layer_sprite_destroy(_sprite.__id); };
+		static _particle_system = function(_particle_system) { part_system_destroy(_particle_system.__id); };
+		static _sequence = function(_sequence) { layer_sequence_destroy(_sequence.__id); };
+		static _background = function(_background) { layer_background_destroy(_background.__id); };
+		static _layer = function (_layer) { layer_destroy(_layer.__id) };
 		
 		if (__cleaned_up) return;
 		

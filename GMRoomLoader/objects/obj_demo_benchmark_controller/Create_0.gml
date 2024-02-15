@@ -87,7 +87,7 @@ data = {
 	},
 	cleanup: function() {
 		with (ref) {
-			cleanup();	
+			cleanup();
 		}
 	},
 };

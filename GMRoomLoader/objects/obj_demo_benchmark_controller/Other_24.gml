@@ -18,7 +18,7 @@ update = function() {
 		var _t = get_timer();
 		var _data = RoomLoader.load(_room, mouse_x, mouse_y, origin.get(), flags.get());
 		_t = ((get_timer() - _t) / 1000);
-		show_debug_message($"{room_get_name(_room)} loaded in {_t}ms.");
+		show_debug_message($"{room_get_name(_room)} loaded in {_t} milliseconds.");
 		
 		data.set(_data);
 	}
