@@ -104,7 +104,7 @@ function __RoomLoaderData(_room) constructor {
 		_x = __roomloader_get_offset_x(_x, __width, _origin);
 		_y = __roomloader_get_offset_y(_y, __height, _origin);
 		
-		RoomLoader.__return_data.__instances = array_create(array_length(__instances_data), noone);
+		RoomLoader.__return_data.__instances.__ids = array_create(array_length(__instances_data), noone);
 		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_x, _y, _flags);
@@ -127,10 +127,7 @@ function __RoomLoaderDataLayer(_layer_data) constructor {
 		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
-		array_push(RoomLoader.__return_data.__layers, {
-			__id: _layer,
-			__name: __layer_data.name,
-		});
+		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 		
 		__on_load(_layer, _xoffs, _yoffs, _flags);
 	};
@@ -144,8 +141,8 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		return __owner.__instances_init_lookup[$ _inst_data.inst_id];
 	};
 	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
-		var _instances = RoomLoader.__return_data.__instances;
-		var _index = RoomLoader.__return_data.__instance_index;
+		var _instances = RoomLoader.__return_data.__instances.__ids;
+		var _index = RoomLoader.__return_data.__instances.__index;
 		
 		var _i = 0; repeat (array_length(__instances_data)) {
 			var _inst_data = __instances_data[_i];
@@ -157,7 +154,8 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 			_i++;
 			_index++;
 		}
-		RoomLoader.__return_data.__instance_index = _index;
+		
+		RoomLoader.__return_data.__instances.__index = _index;
 	};
 }
 function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(_layer_data) constructor {
@@ -179,10 +177,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			layer_sprite_blend(_sprite, __data.image_blend);
 			layer_sprite_alpha(_sprite, __data.image_alpha);
 			
-			array_push(RoomLoader.__return_data.__sprites, {
-				__id: _sprite,
-				__name: __data.name,
-			});
+			RoomLoader.__return_data.__sprites.__add(_sprite, __data.name);
 		};
 	};
 	static __DataParticleSystem = function(_data) constructor {
@@ -201,10 +196,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			
 			repeat (ROOMLOADER_PARTICLE_SYSTEMS_STEPS) part_system_update(_particle_system);
 			
-			array_push(RoomLoader.__return_data.__particle_systems, {
-				__id: _particle_system,
-				__name: __data.name,
-			});
+			RoomLoader.__return_data.__particle_systems.__add(_particle_system, __data.name);
 		}
 	};
 	static __DataSequence = function(_data) constructor {
@@ -225,10 +217,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 			
 			if (ROOMLOADER_SEQUENCES_PAUSE) layer_sequence_pause(_sequence);
 			
-			array_push(RoomLoader.__return_data.__sequences, {
-				__id: _sequence,
-				__name: __data.name,
-			});
+			RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
 		}
 	};
 	
@@ -253,15 +242,12 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
-		array_push(RoomLoader.__return_data.__layers, {
-			__id: _layer,
-			__name: __layer_data.name,
-		});
-		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_layer, _xoffs, _yoffs, _flags);
 			_i++;
 		}
+		
+		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 	};
 	
 	__init();
@@ -302,10 +288,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 			_i++;
 		}
 		
-		array_push(RoomLoader.__return_data.__tilemaps, {
-			__id: _tilemap,
-			__name: __tilemap_data.name,
-		});
+		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
 	};
 	
 	__init();
@@ -327,9 +310,6 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		layer_background_blend(_bg, __bg_data.blendColour);
 		layer_background_alpha(_bg, __bg_data.blendAlpha);
 		
-		array_push(RoomLoader.__return_data.__backgrounds, {
-			__id: _bg,
-			__name: __bg_data.name,
-		});
+		RoomLoader.__return_data.__backgrounds.__add(_bg, __bg_data.name);
 	};
 };

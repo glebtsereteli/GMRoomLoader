@@ -234,30 +234,39 @@ function RoomLoader() constructor {
 function RoomLoaderReturnData() constructor {
 	#region __private
 	
-	__layers = [];
-	__instances = undefined;
-	__instance_index = 0;
-	__tilemaps = [];
-	__sprites = [];
-	__particle_systems = []
-	__sequences = [];
-	__backgrounds = [];
-	__cleaned_up = false;
+	static __Container = function(_on_destroy) constructor {
+		__ids = [];
+		__names = [];
+		
+		__on_destroy = _on_destroy;
+		static __add = function(_id, _name) {
+			array_push(__ids, _id);
+			array_push(__names, _name);
+		};
+		static __get = function(_name) {
+			var _index = array_get_index(__names, _name);
+			return ((_index == undefined) ? undefined : __ids[_index]);
+		};
+		static __destroy = function() {
+			static _callback = function(_element) { __on_destroy(_element); };
+			array_foreach(__ids, _callback);
+		};
+	};
 	
-	static __getter_get_element = function(_array, _name) {
-		var _i = 0; repeat (array_length(_array)) {
-			var _element = _array[_i];
-			if (_element.__name == _name) {
-				return _element.__id;
-			}
-			_i++;
-		}
-		return undefined;
+	__layers = new __Container(layer_destroy);
+	__instances = {
+		__ids: undefined,
+		__index: 0,
+		__destroy: function() {
+			array_foreach(__ids, instance_destroy);
+		},
 	};
-	static __getter_map_elements = function(_array) {
-		static _map = function(_element) { return _element.__id; }
-		return array_map(_array, _map);
-	};
+	__tilemaps = new __Container(layer_tilemap_destroy);
+	__sprites = new __Container(layer_sprite_destroy);
+	__particle_systems = new __Container(part_system_destroy);
+	__sequences = new __Container(layer_sequence_destroy);
+	__backgrounds = new __Container(layer_background_destroy);
+	__cleaned_up = false;
 	
 	#endregion
 	
@@ -267,13 +276,13 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Layer, undefined}
 	/// @desc Returns the layer ID matching the given name if found, or undefined if not found.
 	static get_layer = function(_name) {
-		return __getter_get_element(__layers, _name);
+		__layers.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Layer>}
 	/// @desc Returns an array of created layers.
 	static get_layers = function() {
-		return __getter_map_elements(__layers);
+		return __layers.__ids;
 	};
 	
 	/// @returns {Array<Id.Instance>}
@@ -292,7 +301,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.Tilemap>}
 	/// @desc Returns an array of created Tilemaps.
 	static get_tilemaps = function() {
-		return __getter_map_elements(__tilemaps);
+		return __tilemaps.__ids;
 	};
 	
 	/// @param {String} name The Sprite name to search for.
@@ -305,7 +314,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.Sprite>}
 	/// @desc Returns an array of created Sprites.
 	static get_sprites = function() {
-		return __getter_map_elements(__sprites);
+		return __sprites.__ids;
 	};
 	
 	/// @param {String} name The Particle System name to search for.
@@ -318,7 +327,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.ParticleSystem>}
 	/// @desc Returns an array of created Particle Systems.
 	static get_particle_systems = function() {
-		return __getter_map_elements(__particle_systems);
+		return __particle_systems.__ids;
 	};
 	
 	/// @param {String} name The Sequence name to search for.
@@ -331,7 +340,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.Sequence>}
 	/// @desc Returns an array of created Sequences.
 	static get_sequences = function() {
-		return __getter_map_elements(__sequences);
+		return __sequences.__ids;
 	};
 	
 	/// @param {String} layer_name The Background layer name to search for.
@@ -344,30 +353,23 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Array<Id.Background>}
 	/// @desc Returns an array of created Backgrounds.
 	static get_backgrounds = function() {
-		return __getter_map_elements(__backgrounds);
+		return __backgrounds.__ids;
 	};
 	
 	#endregion
 	#region cleanup
 	
 	static cleanup = function() {
-		static _tilemap = function(_tilemap) {	layer_tilemap_destroy(_tilemap.__id); };
-		static _sprite = function(_sprite) { layer_sprite_destroy(_sprite.__id); };
-		static _particle_system = function(_particle_system) { part_system_destroy(_particle_system.__id); };
-		static _sequence = function(_sequence) { layer_sequence_destroy(_sequence.__id); };
-		static _background = function(_background) { layer_background_destroy(_background.__id); };
-		static _layer = function (_layer) { layer_destroy(_layer.__id) };
-		
 		if (__cleaned_up) return;
 		
 		__cleaned_up = true;
-		array_foreach(__instances, instance_destroy);
-		array_foreach(__tilemaps, _tilemap);
-		array_foreach(__sprites, _sprite);
-		array_foreach(__particle_systems, _particle_system);
-		array_foreach(__sequences, _sequence);
-		array_foreach(__backgrounds, _background);
-		array_foreach(__layers, _layer);
+		__instances.__destroy();
+		__tilemaps.__destroy();
+		__sprites.__destroy();
+		__particle_systems.__destroy();
+		__sequences.__destroy();
+		__backgrounds.__destroy();
+		__layers.__destroy();
 	};
 
 	#endregion
