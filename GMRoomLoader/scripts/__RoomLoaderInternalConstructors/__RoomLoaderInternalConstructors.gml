@@ -118,7 +118,7 @@ function __RoomLoaderData(_room) constructor {
 	
 	__init();
 };
-function __RoomLoaderDataLayer(_layer_data) constructor {
+function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__owner = other;
 	__layer_data = _layer_data;
 	
@@ -133,7 +133,7 @@ function __RoomLoaderDataLayer(_layer_data) constructor {
 	};
 	static __on_load = __roomloader_noop;
 }
-function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayer(_layer_data) constructor {
+function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.INSTANCES;
 	__instances_data = array_map(_instances_data, __map_data);
 	
@@ -158,7 +158,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		RoomLoader.__return_data.__instances.__index = _index;
 	};
 }
-function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(_layer_data) constructor {
+function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __DataSprite = function(_data) constructor {
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SPRITES;
@@ -252,7 +252,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayer(
 	
 	__init();
 };
-function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayer(_layer_data) constructor {
+function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
 	__layer_data = _layer_data;
 	__tilemap_data = array_first(_elements_data);
@@ -293,7 +293,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	
 	__init();
 };
-function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayer(_layer_data) constructor {
+function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	__bg_data = _bg_data[0];
 	
