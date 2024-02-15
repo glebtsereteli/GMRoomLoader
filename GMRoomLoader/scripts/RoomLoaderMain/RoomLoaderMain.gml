@@ -245,7 +245,7 @@ function RoomLoaderReturnData() constructor {
 		};
 		static __get = function(_name) {
 			var _index = array_get_index(__names, _name);
-			return ((_index == undefined) ? undefined : __ids[_index]);
+			return ((_index == -1) ? undefined : __ids[_index]);
 		};
 		static __destroy = function() {
 			static _callback = function(_element) { __on_destroy(_element); };
@@ -295,7 +295,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Tilemap, undefined}
 	/// @desc Returns the Tilemap ID matching the given layer name if found, or undefined if not found.
 	static get_tilemap = function(_layer_name) {
-		return __getter_get_element(__tilemaps, _layer_name);
+		return __tilemaps.__get(_layer_name);
 	};
 	
 	/// @returns {Array<Id.Tilemap>}
@@ -308,7 +308,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Sprite, undefined}
 	/// @desc Returns the Sprite ID matching the given name if found, or undefined if not found.
 	static get_sprite = function(_name) {
-		return __getter_get_element(__sprites, _name);
+		return __sprites.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Sprite>}
@@ -321,7 +321,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.ParticleSystem, undefined}
 	/// @desc Returns the created Particle System ID matching the given name if found, or undefined if not found.
 	static get_particle_system = function(_name) {
-		return __getter_get_element(__particle_systems, _name);
+		return __particle_systems.__get(_name);
 	};
 	
 	/// @returns {Array<Id.ParticleSystem>}
@@ -334,7 +334,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Sequence, undefined}
 	/// @desc Returns the created Sequence ID matching the given name if found, or undefined if not found.
 	static get_sequence = function(_name) {
-		return __getter_get_element(__sequences, _name);
+		return __sequences.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Sequence>}
@@ -347,7 +347,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Background, undefined}
 	/// @desc Returns the created Background ID matching the given layer name if found, or undefined if not found.
 	static get_background = function(_layer_name) {
-		return __getter_get_element(__backgrounds, _layer_name);
+		return __backgrounds.__get(_layer_name);
 	};
 	
 	/// @returns {Array<Id.Background>}
