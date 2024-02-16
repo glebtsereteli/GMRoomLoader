@@ -1,11 +1,5 @@
 /// @feather ignore all
 
-#macro __ROOMLOADER_INSTANCE_RUN_SCRIPTS \
-with (_inst) { \
-	script_execute(_inst_data.pre_creation_code); \
-	script_execute(_inst_data.creation_code); \
-}
-
 function __roomloader_noop() {}
 function __roomloader_room_has_prefix(_room, _prefix) {
 	var _name = room_get_name(_room);
@@ -33,8 +27,10 @@ function __roomloader_load_instances(_room, _x, _y, _data, _origin, _create_func
 		var _inst_data = _data[_i];
 		_x = _inst_data.x + _xoffs;
 		_y = _inst_data.y + _yoffs;
-		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index, _inst_data.precreate_struct);
-		__ROOMLOADER_INSTANCE_RUN_SCRIPTS;
+		var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index, _inst_data.precreate);
+		with (_inst) {
+			script_execute(_inst_data.creation_code);
+		}
 		_instances[_i] = _inst;
 		_i++;
 	}
