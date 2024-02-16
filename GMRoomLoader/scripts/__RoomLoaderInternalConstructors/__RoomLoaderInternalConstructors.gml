@@ -45,15 +45,15 @@ function __RoomLoaderData(_room) constructor {
 	static __init = function() {
 		static _map_instance_data = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
-			_data.pre_creation_code = __roomloader_process_script(_data.pre_creation_code);
-			_data.creation_code = __roomloader_process_script(_data.creation_code);
-			_data.precreate_struct = {
-				image_xscale: _data.xscale,
-				image_yscale: _data.yscale,
-				image_angle: _data.angle,
-				image_blend: _data.colour,
-				image_index: _data.image_index,
-				image_speed: _data.image_speed,
+			if (_data.creation_code == -1) _data.creation_code = __roomloader_noop;
+			_data.precreate = {}; with (_data.precreate) {
+				image_xscale = _data.xscale;
+				image_yscale = _data.yscale;
+				image_angle = _data.angle;
+				image_blend = _data.colour;
+				image_index = _data.image_index;
+				image_speed = _data.image_speed;
+				if (_data.pre_creation_code != -1) script_execute(_data.pre_creation_code);
 			};
 			__instances_init_lookup[$ _data.id] = _data;
 			return _data;
@@ -148,8 +148,10 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 			var _inst_data = __instances_data[_i];
 			var _x = _inst_data.x + _xoffs;
 			var _y = _inst_data.y + _yoffs;
-			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate_struct);
-			__ROOMLOADER_INSTANCE_RUN_SCRIPTS;
+			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
+			with (_inst) {
+				script_execute(_inst_data.creation_code);
+			}
 			_instances[_index] = _inst;
 			_i++;
 			_index++;

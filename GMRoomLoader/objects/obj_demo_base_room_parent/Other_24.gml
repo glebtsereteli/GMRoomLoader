@@ -23,13 +23,6 @@ load = function(_all) {
 	
 	data.set(_data);
 	fill.click(c_orange, 0.3);
-	
-	static _init_units = function(_inst) {
-		if (object_is_ancestor(_inst.object_index, obj_demo_base_unit_parent)) {
-			_inst.init();
-		}
-	};
-	array_foreach(_data.get_instances(), _init_units);
 };
 cleanup = function(_all) {
 	data.cleanup();
