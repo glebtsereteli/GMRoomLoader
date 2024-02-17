@@ -1,5 +1,8 @@
 /// @desc Methods
 
+init = function() {
+	RoomLoader.data_init_prefix("rm_demo_base_");
+};
 update = function() {
 	var _hovered_room = noone;
 	
