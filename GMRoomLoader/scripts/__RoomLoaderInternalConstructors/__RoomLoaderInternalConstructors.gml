@@ -50,7 +50,17 @@ function __RoomLoaderData(_room) constructor {
 				image_xscale = _data.xscale;
 				image_yscale = _data.yscale;
 				image_angle = _data.angle;
-				image_blend = _data.colour;
+				var _color = _data.colour;
+				if (_color == -1) {
+					image_blend = c_white;
+					image_alpha = 1;
+				}
+				else {
+					image_blend = (_color & 0xffffff);
+					var _c = (_color >> 24);
+					_c += (256 * (_c < 0));
+					image_alpha = (_c / 255);
+				}
 				image_index = _data.image_index;
 				image_speed = _data.image_speed;
 				if (_data.pre_creation_code != -1) script_execute(_data.pre_creation_code);
