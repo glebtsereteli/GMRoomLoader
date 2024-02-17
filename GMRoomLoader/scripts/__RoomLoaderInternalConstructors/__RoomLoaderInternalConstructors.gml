@@ -45,7 +45,7 @@ function __RoomLoaderData(_room) constructor {
 	static __init = function() {
 		static _map_instance_data = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
-			if (_data.creation_code == -1) _data.creation_code = __roomloader_noop;
+			_data.creation_code = __roomloader_process_script(_data.creation_code);
 			_data.precreate = {}; with (_data.precreate) {
 				image_xscale = _data.xscale;
 				image_yscale = _data.yscale;
