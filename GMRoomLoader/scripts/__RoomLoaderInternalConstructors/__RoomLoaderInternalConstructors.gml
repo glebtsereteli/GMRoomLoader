@@ -132,8 +132,8 @@ function __RoomLoaderData(_room) constructor {
 		draw_clear(c_purple);
 		surface_reset_target();
 		
-		var _xorigin = __roomloader_get_offset_x(0, __width, _origin); 
-		var _yorigin = __roomloader_get_offset_y(0, __height, _origin);
+		var _xorigin = __roomloader_get_offset_x(0, -__width, _origin);
+		var _yorigin = __roomloader_get_offset_y(0, -__height, _origin);
 		var _sprite = sprite_create_from_surface(_surf, 0, 0, __width, __height, false, false, _xorigin, _yorigin);
 		
 		surface_free(_surf);
