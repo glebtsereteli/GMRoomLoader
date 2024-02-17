@@ -230,6 +230,16 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	#region misc
+	
+	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+		var _data = __data.__get(_room);
+		if (_data == undefined) return undefined;
+		
+		return _data.__take_screenshot(_origin, _flags);
+	};
+	
+	#endregion
 }
 function RoomLoaderReturnData() constructor {
 	#region __private
