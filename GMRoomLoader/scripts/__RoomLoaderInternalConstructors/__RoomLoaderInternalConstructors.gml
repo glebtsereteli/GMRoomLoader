@@ -368,7 +368,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		layer_destroy(_layer);
 	};
 	static __create_tilemap = function(_layer, _x, _y) {
-		var _tilemap = layer_tilemap_create(_layer, 0, 0, __tileset, __width, __height);
+		var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
 			var _tile_data = __tiles_data[_i];
