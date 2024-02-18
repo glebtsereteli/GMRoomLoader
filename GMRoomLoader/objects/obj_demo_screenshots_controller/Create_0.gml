@@ -1,4 +1,5 @@
+EVENT_METHOD;
 
-RoomLoader.data_init_prefix("rm_demo_base_");
+screenshot = undefined;
 
-screenshot = RoomLoader.take_screenshot(rm_demo_base_02_01);
+init();
