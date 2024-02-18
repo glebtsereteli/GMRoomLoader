@@ -232,7 +232,7 @@ function RoomLoader() constructor {
 	#endregion
 	#region misc
 	
-	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
 		

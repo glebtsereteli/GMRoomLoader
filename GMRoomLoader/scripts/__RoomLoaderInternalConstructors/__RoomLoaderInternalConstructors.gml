@@ -310,7 +310,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
 	__layer_data = _layer_data;
-	__tilemap_data = array_first(_elements_data);
+	__tilemap_data = _elements_data[0];
 	__tiles_data = [];
 	__tileset = undefined;
 	__width = undefined;
@@ -362,8 +362,9 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__init();
 };
 function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
-	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	__bg_data = _bg_data[0];
+	__owner = other;
+	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	
 	static __on_load = function(_layer, _xoffs, _yoffs, _flags, _return_data) {
 		var _bg = layer_background_create(_layer, __bg_data.sprite_index);
@@ -379,5 +380,44 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		layer_background_alpha(_bg, __bg_data.blendAlpha);
 		
 		RoomLoader.__return_data.__backgrounds.__add(_bg, __bg_data.name);
+	};
+	static __draw = function() {
+		static _vtiled = function(_sprite, _x1, _y1, _width, _height, _n) {
+			for (var _i = 0; _i < _n; _i++) {
+				var _y = _y1 + (_i * _height);
+				draw_sprite_stretched_ext(_sprite, image_index, _x1, _y, _width, _height, blendColour, blendAlpha);
+			}
+		};
+		
+		var _room_width = __owner.__width;
+		var _room_height = __owner.__height;
+		var _xoffs = __layer_data.xoffset;
+		var _yoffs = __layer_data.yoffset;
+		
+		with (__bg_data) {
+			var _sprite = sprite_index;
+			var _width = (stretch ? _room_width : sprite_get_width(_sprite));
+			var _height = (stretch ? _room_height : sprite_get_height(_sprite));
+			var _y1 = (vtiled ? (-_height + ((abs(_yoffs) mod _height) * sign(_yoffs))) : _yoffs);
+			var _ny = (_room_height div _height) + 2;
+			
+			if (htiled) {
+				var _x1 = -_width + ((abs(_xoffs) mod _width) * sign(_xoffs));
+				var _nx = (_room_width div _width) + 2;
+				for (var _i = 0; _i < _nx; _i++) {
+					var _x = _x1 + (_i * _width);
+					draw_sprite_stretched_ext(_sprite, image_index, _x, _y1, _width, _height, blendColour, blendAlpha);
+					if (vtiled) {
+						_vtiled(_sprite, _x, _y1 + _height, _width, _height, _ny - 1);
+					}
+				}
+			}
+			else if (vtiled) {
+				_vtiled(_sprite, _xoffs, _y1, _width, _height, _ny);
+			}
+			else {
+				draw_sprite_stretched_ext(_sprite, image_index, _xoffs, _yoffs, _width, _height, blendColour, blendAlpha);	
+			}
+		}
 	};
 };

@@ -9,5 +9,5 @@ draw = function() {
 	
 	var _x = (room_width * 0.5);
 	var _y = (room_height * 0.5);
-	draw_sprite(screenshot, 0, _x, _y);	
+	draw_sprite(screenshot, 0, _x, _y);
 };
