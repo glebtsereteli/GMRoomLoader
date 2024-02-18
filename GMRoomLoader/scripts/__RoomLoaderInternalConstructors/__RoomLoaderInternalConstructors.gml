@@ -397,6 +397,15 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		RoomLoader.__return_data.__backgrounds.__add(_bg, __bg_data.name);
 	};
 	static __draw = function() {
+		static _fill = function(_width, _height) {
+			var _prev_color = draw_get_color();
+			var _prev_alpha = draw_get_alpha();
+			draw_set_color(blendColour);
+			draw_set_alpha(blendAlpha);
+			draw_rectangle(0, 0, _width, _height, false);
+			draw_set_color(_prev_color);
+			draw_set_alpha(_prev_alpha);
+		};
 		static _vtiled = function(_sprite, _x1, _y1, _width, _height, _n) {
 			for (var _i = 0; _i < _n; _i++) {
 				var _y = _y1 + (_i * _height);
@@ -411,10 +420,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		
 		with (__bg_data) {
 			var _sprite = sprite_index;
-			if (_sprite == -1) {
-				draw_clear_alpha(blendColour, blendAlpha);
-				return;
-			}
+			if (_sprite == -1) return _fill(_room_width, _room_height);
 			
 			var _width = (stretch ? _room_width : sprite_get_width(_sprite));
 			var _height = (stretch ? _room_height : sprite_get_height(_sprite));
