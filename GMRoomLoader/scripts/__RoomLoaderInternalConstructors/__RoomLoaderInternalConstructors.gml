@@ -345,6 +345,19 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		
 		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
 	};
+	static __draw = function() {
+		var _info = tileset_get_info(__tileset);
+		var _tile_width = _info.tile_width;
+		var _tile_height = _info.tile_height;
+		
+		var _i = 0; repeat (array_length(__tiles_data)) {
+			var _data = __tiles_data[_i];
+			var _x = (_data.x * _tile_width);
+			var _y = (_data.y * _tile_height);
+			draw_tile(__tileset, _data.data, 0, _x, _y);
+			_i++;
+		}
+	};
 	
 	__init();
 };
