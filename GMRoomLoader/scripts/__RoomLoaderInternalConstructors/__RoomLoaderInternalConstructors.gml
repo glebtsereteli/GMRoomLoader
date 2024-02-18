@@ -132,18 +132,13 @@ function __RoomLoaderData(_room) constructor {
 		surface_set_target(_surf); {
 			var _i = array_length(__data);
 			while (_i--) { 
-				//var _t = get_timer();
-				
 				with (__data[_i]) {
 					//if (not __roomloader_check_flags(_flags)) break;
 					if (not __layer_data.visible) break;
 					__draw();
 				}
-			
-				//_t = (get_timer() - _t) / 1000;
-				//show_debug_message($"{__data[_i].__layer_data.name}: {_t}");
 			}
-		
+			
 			surface_reset_target();
 		}
 		
