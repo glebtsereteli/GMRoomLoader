@@ -369,6 +369,9 @@ function RoomLoaderReturnData() constructor {
 	#endregion
 	#region cleanup
 	
+	/// @returns {Undefined}
+	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically 
+	/// useless and should be dereferenced to be picked up by the Garbage Collector.
 	static cleanup = function() {
 		if (__cleaned_up) return;
 		
