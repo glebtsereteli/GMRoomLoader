@@ -317,15 +317,15 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		
 		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 	};
-	//static __draw = function(_flags) {
-	//	var _i = 0; repeat (array_length(__data)) {
-	//		with (__data[_i]) {
-	//			//if (not __roomloader_check_flags(_flags)) break;
-	//			__draw();
-	//		}
-	//		_i++;
-	//	}
-	//};
+	static __draw = function(_flags) {
+		var _i = 0; repeat (array_length(__data)) {
+			with (__data[_i]) {
+				//if (not __roomloader_check_flags(_flags)) break;
+				__draw();
+			}
+			_i++;
+		}
+	};
 	
 	__init();
 };
@@ -416,6 +416,11 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		
 		with (__bg_data) {
 			var _sprite = sprite_index;
+			if (_sprite == -1) {
+				draw_clear_alpha(blendColour, blendAlpha);
+				return;
+			}
+			
 			var _width = (stretch ? _room_width : sprite_get_width(_sprite));
 			var _height = (stretch ? _room_height : sprite_get_height(_sprite));
 			var _y1 = (vtiled ? (-_height + ((abs(_yoffs) mod _height) * sign(_yoffs))) : _yoffs);
