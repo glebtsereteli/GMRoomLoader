@@ -232,6 +232,11 @@ function RoomLoader() constructor {
 	#endregion
 	#region misc
 	
+	/// @param {Asset.GMRoom} room The room to take a screenshot of.
+	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin set to the generated sprite. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
+	/// @param {Enum.ROOMLOADER_FLAG} [flags] OPTIONAL! The flags to filter the room elements by. Defaults to the ROOMLOADER_FLAG.ALL.
+	/// @returns {Asset.GMSprite, Undefined}
+	/// @desc Takes a screenshot of the given room. Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		var _data = __data.__get(_room);
 		if (_data == undefined) return undefined;
