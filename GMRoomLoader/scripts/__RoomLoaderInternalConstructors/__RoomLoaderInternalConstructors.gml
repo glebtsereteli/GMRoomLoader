@@ -45,6 +45,7 @@ function __RoomLoaderData(_room) constructor {
 	static __init = function() {
 		static _map_instance_data = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
+			_data.sprite = object_get_sprite(_data.object_index);
 			_data.creation_code = __roomloader_process_script(_data.creation_code);
 			_data.precreate = {}; with (_data.precreate) {
 				image_xscale = _data.xscale;
@@ -128,31 +129,28 @@ function __RoomLoaderData(_room) constructor {
 	static __take_screenshot = function(_origin, _flags) {
 		var _surf = surface_create(__width, __height);
 		
-		// Draw:
-		surface_set_target(_surf);
-		
-		var _i = array_length(__data);
-		while (_i--) {
-			//var _t = get_timer();
+		surface_set_target(_surf); {
+			var _i = array_length(__data);
+			while (_i--) { 
+				//var _t = get_timer();
+				
+				with (__data[_i]) {
+					//if (not __roomloader_check_flags(_flags)) break;
+					if (not __layer_data.visible) break;
+					__draw();
+				}
 			
-			with (__data[_i]) {
-				//if (not __roomloader_check_flags(_flags)) break;
-				if (not __layer_data.visible) break;
-				__draw();
+				//_t = (get_timer() - _t) / 1000;
+				//show_debug_message($"{__data[_i].__layer_data.name}: {_t}");
 			}
-			
-			//_t = (get_timer() - _t) / 1000;
-			//show_debug_message($"{__data[_i].__layer_data.name}: {_t}");
+		
+			surface_reset_target();
 		}
 		
-		surface_reset_target();
-		
-		// Create sprite:
 		var _xorigin = __roomloader_get_offset_x(0, -__width, _origin);
 		var _yorigin = __roomloader_get_offset_y(0, -__height, _origin);
 		var _sprite = sprite_create_from_surface(_surf, 0, 0, __width, __height, false, false, _xorigin, _yorigin);
 		
-		// Clean up & return:
 		surface_free(_surf);
 		return _sprite;
 	};
@@ -204,8 +202,9 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	static __draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
 			with (__instances_data[_i]) {
+				if (sprite == -1) break;
 				draw_sprite_ext(
-					object_get_sprite(object_index), precreate.image_index,
+					sprite, precreate.image_index,
 					x, y,
 					precreate.image_xscale, precreate.image_yscale, precreate.image_angle,
 					precreate.image_blend, precreate.image_alpha
@@ -318,15 +317,15 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		
 		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 	};
-	static __draw = function(_flags) {
-		var _i = 0; repeat (array_length(__data)) {
-			with (__data[_i]) {
-				//if (not __roomloader_check_flags(_flags)) break;
-				__draw();
-			}
-			_i++;
-		}
-	};
+	//static __draw = function(_flags) {
+	//	var _i = 0; repeat (array_length(__data)) {
+	//		with (__data[_i]) {
+	//			//if (not __roomloader_check_flags(_flags)) break;
+	//			__draw();
+	//		}
+	//		_i++;
+	//	}
+	//};
 	
 	__init();
 };
@@ -357,19 +356,18 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 			_i++;
 		}
 	};
-	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
-		var _tilemap = layer_tilemap_create(_layer, _xoffs, _yoffs, __tileset, __width, __height);
-		
-		var _i = 0; repeat (array_length(__tiles_data)) {
-			var _tile_data = __tiles_data[_i];
-			tilemap_set(_tilemap, _tile_data.data, _tile_data.x, _tile_data.y);
-			_i++;
-		}
-		
+	static __on_load = function(_layer, _xoffs, _yoffs) {
+		var _tilemap = __create_tilemap(_layer, _xoffs, _yoffs);
 		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
 	};
 	static __draw = function() {
 		var _layer = layer_create(0);
+		var _tilemap = __create_tilemap(_layer, 0, 0);
+		draw_tilemap(_tilemap, 0, 0);
+		layer_tilemap_destroy(_tilemap);
+		layer_destroy(_layer);
+	};
+	static __create_tilemap = function(_layer, _x, _y) {
 		var _tilemap = layer_tilemap_create(_layer, 0, 0, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
@@ -378,9 +376,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 			_i++;
 		}
 		
-		draw_tilemap(_tilemap, 0, 0);
-		layer_tilemap_destroy(_tilemap);
-		layer_destroy(_layer);
+		return _tilemap;
 	};
 	
 	__init();

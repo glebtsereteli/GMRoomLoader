@@ -25,7 +25,7 @@
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_from","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"20",},
             {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_to","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"value":"-30",},
           ],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":32.0,"y":144.0,},
-      ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":false,},
+      ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"tiles_top","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":7,"SerialiseWidth":7,"TileCompressedData":[
 -8,-2147483648,3,0,-2147483648,187,-10,
 -2147483648,1,0,-3,-2147483648,1,0,
