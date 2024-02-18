@@ -131,15 +131,18 @@ function __RoomLoaderData(_room) constructor {
 		// Draw:
 		surface_set_target(_surf);
 		
-		draw_sprite_tiled(spr_demo_base_bg, 0, 0, 0);
-		
 		var _i = array_length(__data);
 		while (_i--) {
+			//var _t = get_timer();
+			
 			with (__data[_i]) {
-				if (__roomloader_check_flags(_flags)) {
-					__draw();	
-				}
+				//if (not __roomloader_check_flags(_flags)) break;
+				if (not __layer_data.visible) break;
+				__draw();
 			}
+			
+			//_t = (get_timer() - _t) / 1000;
+			//show_debug_message($"{__data[_i].__layer_data.name}: {_t}");
 		}
 		
 		surface_reset_target();
@@ -200,15 +203,14 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	};
 	static __draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
-			var _data = __instances_data[_i];
-			var _data_pc = _data.precreate;
-			var _sprite = object_get_sprite(_data.object_index);
-			draw_sprite_ext(
-				_sprite, _data_pc.image_index,
-				_data.x, _data.y,
-				_data_pc.image_xscale, _data_pc.image_yscale, _data_pc.image_angle,
-				_data_pc.image_blend, _data_pc.image_alpha,
-			);
+			with (__instances_data[_i]) {
+				draw_sprite_ext(
+					object_get_sprite(object_index), precreate.image_index,
+					x, y,
+					precreate.image_xscale, precreate.image_yscale, precreate.image_angle,
+					precreate.image_blend, precreate.image_alpha
+				);
+			}
 			_i++;
 		}
 	};
@@ -234,6 +236,16 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			
 			RoomLoader.__return_data.__sprites.__add(_sprite, __data.name);
 		};
+		static __draw = function() {
+			with (__data) {
+				draw_sprite_ext(
+					sprite_index, image_index,
+					x, y,
+					image_xscale, 1, image_angle,
+					image_blend, image_alpha
+				);
+			}
+		};
 	};
 	static __DataParticleSystem = function(_data) constructor {
 		__data = _data;
@@ -253,6 +265,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			
 			RoomLoader.__return_data.__particle_systems.__add(_particle_system, __data.name);
 		}
+		static __draw = __roomloader_noop;
 	};
 	static __DataSequence = function(_data) constructor {
 		__data = _data;
@@ -274,6 +287,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			
 			RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
 		}
+		static __draw = __roomloader_noop;
 	};
 	
 	__data = _data;
@@ -303,6 +317,15 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		}
 		
 		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+	};
+	static __draw = function(_flags) {
+		var _i = 0; repeat (array_length(__data)) {
+			with (__data[_i]) {
+				//if (not __roomloader_check_flags(_flags)) break;
+				__draw();
+			}
+			_i++;
+		}
 	};
 	
 	__init();
@@ -346,17 +369,18 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
 	};
 	static __draw = function() {
-		var _info = tileset_get_info(__tileset);
-		var _tile_width = _info.tile_width;
-		var _tile_height = _info.tile_height;
+		var _layer = layer_create(0);
+		var _tilemap = layer_tilemap_create(_layer, 0, 0, __tileset, __width, __height);
 		
 		var _i = 0; repeat (array_length(__tiles_data)) {
-			var _data = __tiles_data[_i];
-			var _x = (_data.x * _tile_width);
-			var _y = (_data.y * _tile_height);
-			draw_tile(__tileset, _data.data, 0, _x, _y);
+			var _tile_data = __tiles_data[_i];
+			tilemap_set(_tilemap, _tile_data.data, _tile_data.x, _tile_data.y);
 			_i++;
 		}
+		
+		draw_tilemap(_tilemap, 0, 0);
+		layer_tilemap_destroy(_tilemap);
+		layer_destroy(_layer);
 	};
 	
 	__init();

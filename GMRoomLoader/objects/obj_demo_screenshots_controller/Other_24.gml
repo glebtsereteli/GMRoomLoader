@@ -1,13 +1,25 @@
 /// @desc Methods
 
 init = function() {
-	RoomLoader.data_init_prefix("rm_demo_base_");
-	screenshot = RoomLoader.take_screenshot(rm_demo_base_02_01, ROOMLOADER_ORIGIN.MIDDLE_CENTER);
+	screenshot.init();
+	RoomLoader.data_init_array(screenshot.rooms);
+};
+update = function() {
+	if (keyboard_check_pressed(vk_backspace)) {
+		screenshot.cleanup();	
+	}
+	
+	var _checker = (keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed);
+	if (_checker(vk_space)) {
+		var _t = get_timer();
+		var _room = screenshot.take();
+		var _t = ((get_timer() - _t) / 1000);
+		show_debug_message($"Screenshot for {room_get_name(_room)} generated in {_t} milliseconds.");
+	}
 };
 draw = function() {
-	if (screenshot == undefined) return;
-	
-	var _x = (room_width * 0.5);
-	var _y = (room_height * 0.5);
-	draw_sprite(screenshot, 0, _x, _y);
+	screenshot.draw();
+};
+cleanup = function() {
+	screenshot.cleanup();	
 };
