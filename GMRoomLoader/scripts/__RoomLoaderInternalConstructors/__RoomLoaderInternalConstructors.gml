@@ -1,38 +1,5 @@
 /// @feather ignore all
 
-function __RoomLoaderFilter(_positive) constructor {
-	__positive = _positive;
-	__layer_names = [];
-	
-	static __check_empty = function() {
-		return __positive;
-	};
-	static __check_active = function(_layer_name) {
-		return array_contains(__layer_names, _layer_name);	
-	};
-	static __add = function(_layer_name) {
-		array_push(__layer_names, _layer_name);
-		__check = __check_active;
-	};
-	static __remove = function(_layer_name) {
-		var _index = array_get_index(__layer_names, _layer_name);
-		if (_index == undefined) return;
-		
-		array_delete(__layer_names, _index, 1);
-		if (array_length(__layer_names) == 0) {
-			__check = __check_empty;
-		}
-	};
-	static __reset = function() {
-		__layer_names = [];
-	};
-	static __get = function() {
-		return __layer_names;
-	};
-	
-	__check = __check_empty;
-}
-
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
 	__data = undefined;
@@ -130,15 +97,21 @@ function __RoomLoaderData(_room) constructor {
 		var _surf = surface_create(__width, __height);
 		
 		surface_set_target(_surf); {
+			draw_clear_alpha(c_black, 0);
+			
+			var _bm = gpu_get_blendmode_ext_sepalpha();
+			gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
+			
 			var _i = array_length(__data);
 			while (_i--) { 
 				with (__data[_i]) {
-					//if (not __roomloader_check_flags(_flags)) break;
 					if (not __layer_data.visible) break;
+					//if (not __roomloader_check_flags(_flags)) break;
 					__draw();
 				}
 			}
 			
+			script_execute_ext(gpu_set_blendmode_ext_sepalpha, _bm);
 			surface_reset_target();
 		}
 		
@@ -447,3 +420,36 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		}
 	};
 };
+
+function __RoomLoaderFilter(_positive) constructor {
+	__positive = _positive;
+	__layer_names = [];
+	
+	static __check_empty = function() {
+		return __positive;
+	};
+	static __check_active = function(_layer_name) {
+		return array_contains(__layer_names, _layer_name);	
+	};
+	static __add = function(_layer_name) {
+		array_push(__layer_names, _layer_name);
+		__check = __check_active;
+	};
+	static __remove = function(_layer_name) {
+		var _index = array_get_index(__layer_names, _layer_name);
+		if (_index == undefined) return;
+		
+		array_delete(__layer_names, _index, 1);
+		if (array_length(__layer_names) == 0) {
+			__check = __check_empty;
+		}
+	};
+	static __reset = function() {
+		__layer_names = [];
+	};
+	static __get = function() {
+		return __layer_names;
+	};
+	
+	__check = __check_empty;
+}
