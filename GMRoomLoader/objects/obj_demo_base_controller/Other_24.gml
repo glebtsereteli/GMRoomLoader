@@ -16,21 +16,22 @@ update = function() {
 	
 	// Load/cleanup hovered room:
 	with (_hovered_room) {
-		if (mouse_check_button_pressed(mb_left)) load(false);
+		if ((keyboard_check(vk_lcontrol) ? mouse_check_button : mouse_check_button_pressed)(mb_left)) load(false);
 		if (mouse_check_button_pressed(mb_right)) cleanup(false);
 	}
 	
-	// Randomly load all rooms:
-	if (keyboard_check_pressed(vk_space)) {
+	var _checker = (keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed);
+	
+	if ((keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed)(vk_space)) {
 		with (room_obj) {
 			load(true);
 		}
 	}
 	
-	// Clean up all rooms:
+	// Cleanup all rooms:
 	if (keyboard_check_pressed(vk_backspace)) {
 		with (room_obj) {
-			cleanup(true);	
+			cleanup(true);
 		}
 	}
 };

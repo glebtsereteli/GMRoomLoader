@@ -105,9 +105,7 @@ function __RoomLoaderData(_room) constructor {
 			var _i = array_length(__data);
 			while (_i--) { 
 				with (__data[_i]) {
-					if (not __layer_data.visible) break;
-					//if (not __roomloader_check_flags(_flags)) break;
-					__draw();
+					__draw(_flags);
 				}
 			}
 			
@@ -138,8 +136,13 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 		
 		__on_load(_layer, _xoffs, _yoffs, _flags);
 	};
-	static __draw = __roomloader_noop;
+	static __draw = function(_flags) {
+		if (not __layer_data.visible) return;
+		if (not __roomloader_check_flags(_flags)) return;
+		__on_draw();
+	};
 	static __on_load = __roomloader_noop;
+	static __on_draw = __roomloader_noop;
 }
 function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.INSTANCES;
@@ -167,7 +170,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		
 		RoomLoader.__return_data.__instances.__index = _index;
 	};
-	static __draw = function() {
+	static __on_draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
 			with (__instances_data[_i]) {
 				if (sprite == -1) break;
@@ -203,7 +206,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			
 			RoomLoader.__return_data.__sprites.__add(_sprite, __data.name);
 		};
-		static __draw = function() {
+		static __draw = function(_flags) {
+			if (not __roomloader_check_flags(_flags)) return;
+			
 			with (__data) {
 				draw_sprite_ext(
 					sprite_index, image_index,
@@ -286,10 +291,11 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 	};
 	static __draw = function(_flags) {
+		if (not __layer_data.visible) return;
+		
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
-				//if (not __roomloader_check_flags(_flags)) break;
-				__draw();
+				__draw(_flags);
 			}
 			_i++;
 		}
@@ -324,17 +330,6 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 			_i++;
 		}
 	};
-	static __on_load = function(_layer, _xoffs, _yoffs) {
-		var _tilemap = __create_tilemap(_layer, _xoffs, _yoffs);
-		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
-	};
-	static __draw = function() {
-		var _layer = layer_create(0);
-		var _tilemap = __create_tilemap(_layer, 0, 0);
-		draw_tilemap(_tilemap, 0, 0);
-		layer_tilemap_destroy(_tilemap);
-		layer_destroy(_layer);
-	};
 	static __create_tilemap = function(_layer, _x, _y) {
 		var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
 		
@@ -345,6 +340,17 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		}
 		
 		return _tilemap;
+	};
+	static __on_load = function(_layer, _xoffs, _yoffs) {
+		var _tilemap = __create_tilemap(_layer, _xoffs, _yoffs);
+		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
+	};
+	static __on_draw = function() {
+		var _layer = layer_create(0);
+		var _tilemap = __create_tilemap(_layer, 0, 0);
+		draw_tilemap(_tilemap, 0, 0);
+		layer_tilemap_destroy(_tilemap);
+		layer_destroy(_layer);
 	};
 	
 	__init();
@@ -369,7 +375,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		
 		RoomLoader.__return_data.__backgrounds.__add(_bg, __bg_data.name);
 	};
-	static __draw = function() {
+	static __on_draw = function() {
 		static _fill = function(_width, _height) {
 			var _prev_color = draw_get_color();
 			var _prev_alpha = draw_get_alpha();

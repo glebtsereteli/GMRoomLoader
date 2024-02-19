@@ -1,6 +1,6 @@
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v1.2.2</h1>
+<h1 align="center">GMRoomLoader v1.3.0</h1>
 <p align="center">Runtime room loading for GameMaker 2023.11+</p>
 
 ## Overview
@@ -16,7 +16,8 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Options to load [full rooms](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-loadroom-x-y-originroomloader_default_origin-flagsroomloader_default_flags---structroomloaderreturndata-or-undefined) including all layers and elements, or only instances using existing [layers](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-load_instances_layerroom-x-y-layer-originroomloader_default_origin---arrayidinstance-or-undefined) or [depth](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-load_instances_depthroom-x-y-depth-originroomloader_default_origin---arrayidinstance-or-undefined).
 - Element type filtering using [bitwise flags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
 - Layer filtering using [whitelisting/blacklisting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#%E2%84%B9%EF%B8%8F-whitelistblacklist-layer-filtering).
-- Keeping track of loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-cleanup) later.
+- Tracking loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-cleanup) later.
+- Take room [screenshots](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-coming-in-130-take_screenshotroom-origin-flags---idsprite-or-undefined).
 
 ## Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).

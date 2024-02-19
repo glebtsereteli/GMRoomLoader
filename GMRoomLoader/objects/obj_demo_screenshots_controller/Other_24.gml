@@ -6,7 +6,7 @@ init = function() {
 };
 update = function() {
 	if (keyboard_check_pressed(vk_backspace)) {
-		screenshot.cleanup();	
+		screenshot.cleanup();
 	}
 	
 	var _checker = (keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed);
