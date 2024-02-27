@@ -156,6 +156,7 @@
     {"id":{"name":"spr_demo_base_prop_stain_02","path":"sprites/spr_demo_base_prop_stain_02/spr_demo_base_prop_stain_02.yy",},},
     {"id":{"name":"rm_demo_base_03_02","path":"rooms/rm_demo_base_03_02/rm_demo_base_03_02.yy",},},
     {"id":{"name":"spr_demo_base_prop_knife","path":"sprites/spr_demo_base_prop_knife/spr_demo_base_prop_knife.yy",},},
+    {"id":{"name":"__RoomLoaderInternalMacros","path":"scripts/__RoomLoaderInternalMacros/__RoomLoaderInternalMacros.yy",},},
     {"id":{"name":"pth_demo_base_corner_01_patrol_01","path":"paths/pth_demo_base_corner_01_patrol_01/pth_demo_base_corner_01_patrol_01.yy",},},
     {"id":{"name":"rm_demo_base_01_03","path":"rooms/rm_demo_base_01_03/rm_demo_base_01_03.yy",},},
     {"id":{"name":"pth_demo_base_corner_03_patrol_02","path":"paths/pth_demo_base_corner_03_patrol_02/pth_demo_base_corner_03_patrol_02.yy",},},

@@ -156,25 +156,21 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	static __map_data = function(_inst_data) {
 		return __owner.__instances_init_lookup[$ _inst_data.inst_id];
 	};
-	static __on_load = function(_layer, _xoffs, _yoffs, _flags) {
-		var _instances = RoomLoader.__return_data.__instances.__ids;
-		var _index = RoomLoader.__return_data.__instances.__index;
-		
-		var _i = 0; repeat (array_length(__instances_data)) {
-			var _inst_data = __instances_data[_i];
-			var _x = _inst_data.x + _xoffs;
-			var _y = _inst_data.y + _yoffs;
+	
+	static __on_load_cc = function(_layer, _xoffs, _yoffs, _flags) {
+		__ROOMLOADER_INSTANCE_ONLOAD_START
 			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
 			with (_inst) {
 				script_execute(_inst_data.creation_code);
 			}
-			_instances[_index] = _inst;
-			_i++;
-			_index++;
-		}
-		
-		RoomLoader.__return_data.__instances.__index = _index;
+		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
+	static __on_load_nocc = function(_layer, _xoffs, _yoffs, _flags) {
+		__ROOMLOADER_INSTANCE_ONLOAD_START
+			_instances[_index] = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
+		__ROOMLOADER_INSTANCE_ONLOAD_END
+	};
+	static __on_load = (ROOMLOADER_INSTANCE_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
 	static __on_draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
 			with (__instances_data[_i]) {

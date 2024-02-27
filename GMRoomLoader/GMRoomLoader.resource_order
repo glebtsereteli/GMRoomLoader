@@ -109,6 +109,7 @@
     {"name":"pth_demo_base_02_03_patrol_02","order":2,"path":"paths/pth_demo_base_02_03_patrol_02/pth_demo_base_02_03_patrol_02.yy",},
     {"name":"spr_demo_base_prop_stain_02","order":28,"path":"sprites/spr_demo_base_prop_stain_02/spr_demo_base_prop_stain_02.yy",},
     {"name":"spr_demo_base_prop_knife","order":12,"path":"sprites/spr_demo_base_prop_knife/spr_demo_base_prop_knife.yy",},
+    {"name":"__RoomLoaderInternalMacros","order":2,"path":"scripts/__RoomLoaderInternalMacros/__RoomLoaderInternalMacros.yy",},
     {"name":"pth_demo_base_corner_01_patrol_01","order":1,"path":"paths/pth_demo_base_corner_01_patrol_01/pth_demo_base_corner_01_patrol_01.yy",},
     {"name":"rm_demo_base_01_03","order":2,"path":"rooms/rm_demo_base_01_03/rm_demo_base_01_03.yy",},
     {"name":"pth_demo_base_corner_03_patrol_02","order":2,"path":"paths/pth_demo_base_corner_03_patrol_02/pth_demo_base_corner_03_patrol_02.yy",},
