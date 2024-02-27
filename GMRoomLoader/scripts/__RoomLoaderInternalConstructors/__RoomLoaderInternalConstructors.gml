@@ -11,7 +11,7 @@ function __RoomLoaderData(_room) constructor {
 	
 	static __init = function() {
 		static _map_instance_data = function(_data) {
-			static _room_params_use = function(_data) {
+			static _room_params = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
 				image_xscale = _data.xscale;
 				image_yscale = _data.yscale;
 				image_angle = _data.angle;
@@ -28,15 +28,16 @@ function __RoomLoaderData(_room) constructor {
 				}
 				image_index = _data.image_index;
 				image_speed = _data.image_speed;
-			};
-			static _room_params = (ROOMLOADER_INSTANCE_USE_ROOM_PARAMS ? _room_params_use : __roomloader_noop);
+			} : __roomloader_noop);
 			
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
 			_data.creation_code = __roomloader_process_script(_data.creation_code);
 			_data.precreate = {}; with (_data.precreate) {
 				_room_params(_data);
-				if (_data.pre_creation_code != -1) script_execute(_data.pre_creation_code);
+				if (_data.pre_creation_code != -1) {
+					script_execute(_data.pre_creation_code);
+				}
 			};
 			__instances_init_lookup[$ _data.id] = _data;
 			return _data;
@@ -170,7 +171,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 			_instances[_index] = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
 		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
-	static __on_load = (ROOMLOADER_INSTANCE_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
+	static __on_load = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
 	static __on_draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
 			with (__instances_data[_i]) {
