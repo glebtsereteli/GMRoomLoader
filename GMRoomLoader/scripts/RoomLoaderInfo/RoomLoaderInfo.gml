@@ -1,7 +1,7 @@
 /// @feather ignore all
                                                                                                                                               
 /* 
-	GMRoomLoader v1.2.2
+	GMRoomLoader v1.4.0
 	
 	Author:			Gleb Tsereteli
 	GitHub repo:	https://github.com/glebtsereteli/GMRoomLoader
@@ -9,7 +9,7 @@
 	itch.io page:	https://glebtsereteli.itch.io/gmroomloader
 */
 
-#macro __ROOMLOADER_VERSION "v1.2.2" // major.minor.patch
-#macro __ROOMLOADER_DATE "17.02.2024" // day.month.year
+#macro __ROOMLOADER_VERSION "v1.4.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "18.02.2024" // day.month.year
 
 __roomloader_log($"You're using GMRoomLoader {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) by Gleb Tsereteli");
