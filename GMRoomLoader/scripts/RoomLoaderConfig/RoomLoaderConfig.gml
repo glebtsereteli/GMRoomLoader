@@ -7,4 +7,4 @@
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE	true						// Whether to run Creation Code for loaded instances (true) or not (false). NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_SEQUENCES_PAUSE				false						// Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS		0							// Steps to progress loaded particle systems by. NOTE: increasing this value negatively affects loading performance.
-#macro ROOMLOADER_ROOM_RUN_CREATION_CODE		true						// Whether to run the loaded room's Creation Code (true) or not (false).
+#macro ROOMLOADER_ROOMS_RUN_CREATION_CODE		true						// Whether to run the Creation Code for loaded rooms (true) or not (false).

@@ -95,7 +95,7 @@ function __RoomLoaderData(_room) constructor {
 			_i++;
 		}
 		
-		if (ROOMLOADER_ROOM_RUN_CREATION_CODE) __creation_code();
+		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) __creation_code();
 		
 		return RoomLoader.__return_data;
 	};
