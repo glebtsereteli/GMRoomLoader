@@ -293,7 +293,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Id.Layer, undefined}
 	/// @desc Returns the layer ID matching the given name if found, or undefined if not found.
 	static get_layer = function(_name) {
-		__layers.__get(_name);
+		return __layers.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Layer>}
