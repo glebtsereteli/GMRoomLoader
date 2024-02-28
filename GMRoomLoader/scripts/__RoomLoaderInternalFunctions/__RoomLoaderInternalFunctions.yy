@@ -6,6 +6,6 @@
   "isDnD": false,
   "parent": {
     "name": "__Internal",
-    "path": "folders/GMRoomLoader/__Internal.yy",
+    "path": "folders/GMRoomLoader/Scripts/__Internal.yy",
   },
 }

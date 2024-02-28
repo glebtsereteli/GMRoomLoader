@@ -1,5 +1,8 @@
 /// @feather ignore all
 
+#macro __ROOMLOADER_VERSION "v1.4.2" // major.minor.patch
+#macro __ROOMLOADER_DATE "28.02.2024" // day.month.year
+
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START \
 	var _return_data = RoomLoader.__return_data.__instances; \
 	var _instances = _return_data.__ids; \
@@ -14,3 +17,5 @@
 		_index++; \
 	} \
 	_return_data.__index = _index;
+
+__roomloader_log($"You're using GMRoomLoader {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) by Gleb Tsereteli");

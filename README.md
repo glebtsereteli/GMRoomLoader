@@ -1,6 +1,6 @@
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v1.4.1</h1>
+<h1 align="center">GMRoomLoader v1.4.2</h1>
 <p align="center">Runtime room loading for GameMaker 2023.11+</p>
 
 ## Overview

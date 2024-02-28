@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "GMRoomLoader",
-    "path": "folders/GMRoomLoader.yy",
+    "name": "Scripts",
+    "path": "folders/GMRoomLoader/Scripts.yy",
   },
 }

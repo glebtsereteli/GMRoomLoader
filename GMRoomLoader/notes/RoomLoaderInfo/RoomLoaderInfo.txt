@@ -1,0 +1,7 @@
+                                                                                                                                              
+GMRoomLoader v1.4.2 - runtime room loading.
+	
+Author:			Gleb Tsereteli
+GitHub repo:	https://github.com/glebtsereteli/GMRoomLoader
+Documentation:	https://github.com/glebtsereteli/GMRoomLoader/wiki
+itch.io page:	https://glebtsereteli.itch.io/gmroomloader
