@@ -207,7 +207,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @returns {Array<String>}
-	/// @desc Returns an array of whitelisted layer names
+	/// @desc Returns an array of whitelisted layer names.
 	static layer_whitelist_get = function() {
 		return __layer_whitelist.__get();
 	};
@@ -244,7 +244,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @returns {Array<String>}
-	/// @desc Returns an array of blacklisted layer names
+	/// @desc Returns an array of blacklisted layer names.
 	static layer_blacklist_get = function() {
 		return __layer_blacklist.__get();
 	};
