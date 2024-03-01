@@ -454,6 +454,7 @@ function __RoomLoaderFilter(_positive) constructor {
 	};
 	static __reset = function() {
 		__layer_names = [];
+		__check = __check_empty;
 	};
 	static __get = function() {
 		return __layer_names;

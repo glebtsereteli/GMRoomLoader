@@ -1,6 +1,6 @@
 /// @feather ignore all
 
-#macro __ROOMLOADER_VERSION "v1.5.0" // major.minor.patch
+#macro __ROOMLOADER_VERSION "v1.5.1" // major.minor.patch
 #macro __ROOMLOADER_DATE "01.03.2024" // day.month.year
 
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START \
