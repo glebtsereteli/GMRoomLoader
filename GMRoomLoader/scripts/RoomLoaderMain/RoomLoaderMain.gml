@@ -1,5 +1,7 @@
 /// @feather ignore all
 
+/// @desc Main interface. Handles data initialization and removal, room loading, 
+/// layer filtering and taking room screenshots.
 function RoomLoader() constructor {
 	#region __private
 	
@@ -270,6 +272,9 @@ function RoomLoader() constructor {
 	
 	#endregion
 }
+
+/// @desc Returned by RoomLoader's .load() method. Stores all layers and elements created on load, 
+/// and handles element fetching and cleanup.
 function RoomLoaderReturnData() constructor {
 	#region __private
 	
