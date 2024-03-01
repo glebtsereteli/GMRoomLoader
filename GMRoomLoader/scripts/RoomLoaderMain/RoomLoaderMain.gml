@@ -111,6 +111,16 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
+	#region data misc
+	
+	/// @param {Asset.GMRoom} room The room to check.
+	/// @returns {Bool}
+	/// @desc Checks whether the data for the given room is initialized (returns true) or not (return false).
+	static data_is_initialized = function(_room) {
+		return (__data.__get(_room) != undefined);
+	};
+	
+	#endregion
 	#region loading
 	
 	/// @param {Asset.GMRoom} room The room to load.
