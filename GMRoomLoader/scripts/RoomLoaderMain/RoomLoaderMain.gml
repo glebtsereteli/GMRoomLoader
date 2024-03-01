@@ -25,6 +25,10 @@ function RoomLoader() constructor {
 		var _match = ((__layer_whitelist.__check(_name)) and (not __layer_blacklist.__check(_name)));
 		return (not _match);
 	};
+	static __show_error_noroomdata = function(_room, _func_name, _ending) {
+		var _room_name = $"\"{room_get_name(_room)}\"";
+		__roomloader_error($"RoomLoader.{_func_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for {_room_name} before trying to {_ending}");
+	};
 	
 	#endregion
 	
@@ -119,7 +123,9 @@ function RoomLoader() constructor {
 	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
+		if (_data == undefined) {
+			__show_error_noroomdata(_room, "load", "load it");
+		}
 		
 		__return_data = new RoomLoaderReturnData();
 		return _data.__load(_x, _y, _origin, _flags);
@@ -135,7 +141,9 @@ function RoomLoader() constructor {
 	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
+		if (_data == undefined) {
+			__show_error_noroomdata(_room, "load_instances_layer", "load its instances");
+		}
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
 	};
@@ -150,7 +158,9 @@ function RoomLoader() constructor {
 	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
+		if (_data == undefined) {
+			__show_error_noroomdata(_room, "load_instances_depth", "load its instances");
+		}
 		
 		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
 	};
@@ -241,7 +251,9 @@ function RoomLoader() constructor {
 	/// Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		var _data = __data.__get(_room);
-		if (_data == undefined) return undefined;
+		if (_data == undefined) {
+			__show_error_noroomdata(_room, "take_screenshot", "take a screenshot of it");	
+		}
 		
 		return _data.__take_screenshot(_origin, _flags);
 	};

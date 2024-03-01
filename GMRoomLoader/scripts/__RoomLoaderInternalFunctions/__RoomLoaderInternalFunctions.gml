@@ -62,3 +62,8 @@ function __roomloader_process_script(_script) {
 function __roomloader_log(_message) {
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
+function __roomloader_error(_message) {
+	_message = $"Error.\n{_message}.\n\n";
+	__roomloader_log(_message);
+	show_error($"[GMRoomLoader] {_message}", true);
+}

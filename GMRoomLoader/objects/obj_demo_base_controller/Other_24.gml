@@ -20,8 +20,7 @@ update = function() {
 		if (mouse_check_button_pressed(mb_right)) cleanup(false);
 	}
 	
-	var _checker = (keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed);
-	
+	// Load all rooms:
 	if ((keyboard_check(vk_lcontrol) ? keyboard_check : keyboard_check_pressed)(vk_space)) {
 		with (room_obj) {
 			load(true);
