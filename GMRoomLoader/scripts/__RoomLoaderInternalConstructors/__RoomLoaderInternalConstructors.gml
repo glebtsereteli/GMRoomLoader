@@ -440,11 +440,13 @@ function __RoomLoaderFilter(_positive) constructor {
 		return array_contains(__layer_names, _layer_name);	
 	};
 	static __add = function(_layer_name) {
+		if (__get_index(_layer_name) != -1) return;
+		
 		array_push(__layer_names, _layer_name);
 		__check = __check_active;
 	};
 	static __remove = function(_layer_name) {
-		var _index = array_get_index(__layer_names, _layer_name);
+		var _index = __get_index(_layer_name);
 		if (_index == undefined) return;
 		
 		array_delete(__layer_names, _index, 1);
@@ -458,6 +460,9 @@ function __RoomLoaderFilter(_positive) constructor {
 	};
 	static __get = function() {
 		return __layer_names;
+	};
+	static __get_index = function(_layer_name) {
+		 return array_get_index(__layer_names, _layer_name);
 	};
 	
 	__check = __check_empty;
