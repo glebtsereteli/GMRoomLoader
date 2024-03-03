@@ -164,6 +164,7 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 			with (_inst) {
 				script_execute(_inst_data.creation_code);
 			}
+			_instances[_index] = _inst;
 		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
 	static __on_load_nocc = function(_layer, _xoffs, _yoffs, _flags) {
