@@ -9,10 +9,12 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// Whether to initialize room parameters for loaded instances (true) or not (false). NOTE: setting this to false improves loading performance at scale.
+// Whether to initialize room parameters for loaded instances (true) or not (false). 
+// NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
 
-// Whether to run Creation Code for loaded instances (true) or not (false). NOTE: setting this to false improves loading performance at scale.
+// Whether to run Creation Code for loaded instances (true) or not (false). 
+// NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
  // Whether to pause loaded sequences (true) or not (false).
