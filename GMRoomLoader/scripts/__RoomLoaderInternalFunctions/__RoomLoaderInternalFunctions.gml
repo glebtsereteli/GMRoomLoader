@@ -25,7 +25,6 @@ function __roomloader_load_instances(_x, _y, _data, _origin, _create_func, _crea
 			_instances[_i] = _inst;
 			_i++;
 		}
-		
 		return _instances;
 	};
 	static _nocc = function(_data, _create_func, _create_data, _xoffs, _yoffs) {
