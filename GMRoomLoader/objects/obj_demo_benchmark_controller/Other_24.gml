@@ -22,13 +22,6 @@ update = function() {
 		
 		data.set(_data);
 	}
-	
-	if (keyboard_check(vk_enter)) {
-		instance_destroy(obj_demo_benchmark_parrot);
-		var _t = get_timer();
-		RoomLoader.load_instances_depth(rm_demo_benchmark_load_01, mouse_x, mouse_y, depth);
-		show_debug_message((get_timer() - _t) / 1000);
-	}
 };
 draw = function() {
 	flags.draw();
