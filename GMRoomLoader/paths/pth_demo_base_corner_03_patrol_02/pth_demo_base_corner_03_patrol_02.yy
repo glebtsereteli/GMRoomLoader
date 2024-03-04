@@ -1,14 +1,14 @@
 {
-  "resourceType": "GMPath",
-  "resourceVersion": "1.0",
-  "name": "pth_demo_base_corner_03_patrol_02",
-  "closed": true,
-  "kind": 1,
-  "parent": {
-    "name": "03",
-    "path": "folders/Demo/02 - Base/Rooms/Corner/Rooms/03.yy",
+  "$GMPath":"",
+  "%Name":"pth_demo_base_corner_03_patrol_02",
+  "closed":true,
+  "kind":1,
+  "name":"pth_demo_base_corner_03_patrol_02",
+  "parent":{
+    "name":"03",
+    "path":"folders/Demo/02 - Base/Rooms/Corner/Rooms/03.yy",
   },
-  "points": [
+  "points":[
     {"speed":100.0,"x":114.666534,"y":189.21352,},
     {"speed":100.0,"x":71.30447,"y":169.86871,},
     {"speed":100.0,"x":54.045876,"y":149.26523,},
@@ -24,5 +24,7 @@
     {"speed":100.0,"x":201.58032,"y":112.59285,},
     {"speed":100.0,"x":161.92514,"y":133.83421,},
   ],
-  "precision": 4,
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
 }

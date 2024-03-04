@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "RoomLoaderConfig",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Scripts",
-    "path": "folders/GMRoomLoader/Scripts.yy",
+  "$GMScript":"",
+  "%Name":"RoomLoaderConfig",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RoomLoaderConfig",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/GMRoomLoader/Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

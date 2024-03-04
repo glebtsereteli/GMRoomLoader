@@ -201,7 +201,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
 			layer_sprite_index(_sprite, __data.image_index);
 			layer_sprite_xscale(_sprite, __data.image_xscale);
-			//layer_sprite_yscale(_sprite, __data.image_yscale);
+			layer_sprite_yscale(_sprite, __data.image_yscale);
 			layer_sprite_angle(_sprite, __data.image_angle);
 			layer_sprite_speed(_sprite, __data.image_speed);
 			layer_sprite_blend(_sprite, __data.image_blend);
@@ -316,7 +316,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__height = undefined;
 	
 	static __init = function() {
-		__tileset = (__tilemap_data[$ "tileset_index"] ?? __tilemap_data[$ "background_index"]);
+		__tileset = __tilemap_data[$ "tileset_index"];
 		__width = __tilemap_data.width;
 		__height = __tilemap_data.height;
 		

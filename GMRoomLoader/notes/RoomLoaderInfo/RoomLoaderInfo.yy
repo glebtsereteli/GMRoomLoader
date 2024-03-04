@@ -1,9 +1,11 @@
 {
-  "resourceType": "GMNotes",
-  "resourceVersion": "1.1",
-  "name": "RoomLoaderInfo",
-  "parent": {
-    "name": "Notes",
-    "path": "folders/GMRoomLoader/Notes.yy",
+  "$GMNotes":"",
+  "%Name":"RoomLoaderInfo",
+  "name":"RoomLoaderInfo",
+  "parent":{
+    "name":"Notes",
+    "path":"folders/GMRoomLoader/Notes.yy",
   },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
 }

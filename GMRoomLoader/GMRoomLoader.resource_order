@@ -1,5 +1,5 @@
 {
-  "FolderOrderSettings": [
+  "FolderOrderSettings":[
     {"name":"01 - Benchmark","order":1,"path":"folders/Demo/01 - Benchmark.yy",},
     {"name":"Parrot","order":3,"path":"folders/Demo/01 - Benchmark/Parrot.yy",},
     {"name":"Particle Systems","order":6,"path":"folders/Demo/01 - Benchmark/Particle Systems.yy",},
@@ -40,7 +40,7 @@
     {"name":"Notes","order":1,"path":"folders/GMRoomLoader/Notes.yy",},
     {"name":"__Internal","order":3,"path":"folders/GMRoomLoader/Scripts/__Internal.yy",},
   ],
-  "ResourceOrderSettings": [
+  "ResourceOrderSettings":[
     {"name":"spr_demo_base_unit_06","order":5,"path":"sprites/spr_demo_base_unit_06/spr_demo_base_unit_06.yy",},
     {"name":"spr_demo_base_carpet_07","order":6,"path":"sprites/spr_demo_base_carpet_07/spr_demo_base_carpet_07.yy",},
     {"name":"spr_demo_base_carpet_03","order":2,"path":"sprites/spr_demo_base_carpet_03/spr_demo_base_carpet_03.yy",},
