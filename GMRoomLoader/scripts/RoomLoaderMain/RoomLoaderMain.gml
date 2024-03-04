@@ -157,7 +157,7 @@ function RoomLoader() constructor {
 			__show_error_noroomdata(_room, "load_instances_layer", "load its instances");
 		}
 		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_layer, _layer);
+		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -174,7 +174,7 @@ function RoomLoader() constructor {
 			__show_error_noroomdata(_room, "load_instances_depth", "load its instances");
 		}
 		
-		return __roomloader_load_instances(_room, _x, _y, _data, _origin, instance_create_depth, _depth);
+		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
 	#endregion

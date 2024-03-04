@@ -159,18 +159,18 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	};
 	
 	static __on_load_cc = function(_layer, _xoffs, _yoffs, _flags) {
-		__ROOMLOADER_INSTANCE_ONLOAD_START
+		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
 			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
 			with (_inst) {
 				script_execute(_inst_data.creation_code);
 			}
 			_instances[_index] = _inst;
-		__ROOMLOADER_INSTANCE_ONLOAD_END
+		__ROOMLOADER_INSTANCE_ONLOAD_END_FULL
 	};
 	static __on_load_nocc = function(_layer, _xoffs, _yoffs, _flags) {
-		__ROOMLOADER_INSTANCE_ONLOAD_START
+		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
 			_instances[_index] = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
-		__ROOMLOADER_INSTANCE_ONLOAD_END
+		__ROOMLOADER_INSTANCE_ONLOAD_END_FULL
 	};
 	static __on_load = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
 	static __on_draw = function() {

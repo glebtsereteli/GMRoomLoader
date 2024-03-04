@@ -13,7 +13,7 @@
 // NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
 
-// Whether to run Creation Code for loaded instances (true) or not (false). 
+// Whether to run Creation Code for loaded instances (true) or not (false).
 // NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
