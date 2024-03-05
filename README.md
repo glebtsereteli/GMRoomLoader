@@ -1,7 +1,7 @@
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
 <h1 align="center">GMRoomLoader v1.5.2</h1>
-<p align="center">Runtime room loading for GameMaker 2023.11+</p>
+<p align="center">Runtime room loading for GameMaker 2024.2+</p>
 
 ## Overview
 GMRoomLoader is an open source GameMaker library designed to streamline room loading at runtime. It provides methods to process the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), use it to load rooms efficiently during gameplay, and clean up created elements when needed.
