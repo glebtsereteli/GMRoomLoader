@@ -10,7 +10,6 @@ function RoomLoader() constructor {
 	
 	static __data = {
 		__pool: {},
-		__prefix: undefined,
 		
 		__add: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
@@ -86,19 +85,23 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all rooms starting with the given prefix.
 	/// @context RoomLoader
 	static data_init_prefix = function(_prefix) {
-		static _init = method(__data, function(_room) {
-			static _method_name = "data_init_prefix";
-			if (__roomloader_room_has_prefix(_room, __prefix)) {
-				__add(_room);
-			}
+		static _closure = { prefix: undefined };
+		static _filter = method(_closure, function(_room) {
+			return __roomloader_room_has_prefix(_room, prefix);
 		});
 		
 		__roomloader_catch_argument(_prefix, is_string, "data_init_prefix", "String");
-				
+		
 		__all_rooms ??= asset_get_ids(asset_room);
-		__data.__prefix = _prefix;
-		array_foreach(__all_rooms, _init);
-		return self;
+		_closure.prefix = _prefix;
+		
+		var _rooms = array_filter(__all_rooms, _filter);
+		var _i = 0; repeat (array_length(_rooms)) {
+			__data.__add(_rooms[_i]);
+			_i++;
+		}
+		
+		return _rooms;
 	};
 	
 	#endregion
