@@ -3,7 +3,7 @@
 #macro __ROOMLOADER_VERSION "v1.6.0" // major.minor.patch
 #macro __ROOMLOADER_DATE "06.03.2024" // day.month.year
 
-#region instance onload
+#region loading
 
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START_FULL \
 	var _return_data = RoomLoader.__return_data.__instances; \
@@ -27,6 +27,11 @@
 		var _inst_data = _data[_i]; \
 		var _x = _inst_data.x + _xoffs; \
 		var _y = _inst_data.y + _yoffs;
+
+#endregion
+#region misc
+
+#macro __ROOMLOADER_METHOD_NAME string_copy(_GMFUNCTION_, 12, string_pos("@", _GMFUNCTION_) - 12)
 
 #endregion
 

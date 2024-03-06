@@ -12,13 +12,9 @@ function RoomLoader() constructor {
 		__pool: {},
 		__prefix: undefined,
 		
-		__add: function(_room, _func_name) {
-			var _type = typeof(_room);
-			if ((_type != "ref") or (not room_exists(_room))) {
-				__roomloader_error($"RoomLoader.{_func_name}(): Could not initialize data for \"{_room}\". Expected \{Asset.GMRoom\}, got \{{_type}\}");
-			}
-			
-			__pool[$ room_get_name(_room)] = new __RoomLoaderData(_room);	
+		__add: function(_room, _method_name) {
+			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
+			__pool[$ room_get_name(_room)] = new __RoomLoaderData(_room);
 		},
 		__remove: function(_room) {
 			struct_remove(__pool, room_get_name(_room));
@@ -36,9 +32,14 @@ function RoomLoader() constructor {
 		var _match = ((__layer_whitelist.__check(_name)) and (not __layer_blacklist.__check(_name)));
 		return (not _match);
 	};
-	static __show_error_noroomdata = function(_room, _func_name, _ending) {
+	static __get_load_data = function(_room, _method_name, _nonroom_message, _nodata_message) {
+		__roomloader_catch_nonroom(_room, _method_name, _nonroom_message);
+		
+		var _data = __data.__get(_room);
+		if (_data != undefined) return _data;
+		
 		var _room_name = $"\"{room_get_name(_room)}\"";
-		__roomloader_error($"RoomLoader.{_func_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to load them.");
+		__roomloader_error($"RoomLoader.{_method_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}");
 	};
 	
 	#endregion
@@ -49,9 +50,9 @@ function RoomLoader() constructor {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all given rooms. 
 	static data_init = function() {
-		static _func_name = "data_init";
+		static _method_name = "data_init";
 		var _i = 0; repeat (argument_count) {
-			__data.__add(argument[_i], _func_name);
+			__data.__add(argument[_i], _method_name);
 			_i++;
 		}
 		return self;
@@ -61,9 +62,9 @@ function RoomLoader() constructor {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms in the given array.
 	static data_init_array = function(_rooms) {
-		static _func_name = "data_init_array";
+		static _method_name = "data_init_array";
 		var _i = 0; repeat (array_length(_rooms)) {
-			__data.__add(_rooms[_i], _func_name);
+			__data.__add(_rooms[_i], _method_name);
 			_i++;
 		}
 		return self;
@@ -74,9 +75,9 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all rooms starting with the given prefix.
 	static data_init_prefix = function(_prefix) {
 		static _init = method(__data, function(_room) {
-			static _func_name = "data_init_prefix";
+			static _method_name = "data_init_prefix";
 			if (__roomloader_room_has_prefix(_room, __prefix)) {
-				__add(_room, _func_name);
+				__add(_room);
 			}
 		});
 		
@@ -150,11 +151,7 @@ function RoomLoader() constructor {
 	/// @desc Loads the given room at the given coordinates and [origin], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) {
-			__show_error_noroomdata(_room, "load", "load it");
-		}
-		
+		var _data = __get_load_data(_room, "load", "load", "load them");
 		__return_data = new RoomLoaderReturnData();
 		return _data.__load(_x, _y, _origin, _flags);
 	};
@@ -168,11 +165,7 @@ function RoomLoader() constructor {
 	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
 	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) {
-			__show_error_noroomdata(_room, "load_instances_layer", "load its instances");
-		}
-		
+		var _data = __get_load_data(_room, "load_instances_layer", "load instances for", "load their instances");
 		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
 	};
 	
@@ -185,11 +178,7 @@ function RoomLoader() constructor {
 	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
 	/// Returns an array of created Instances on success or undefined on fail.
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) {
-			__show_error_noroomdata(_room, "load_instances_depth", "load its instances");
-		}
-		
+		var _data = __get_load_data(_room, "load_instances_depth", "load instances for", "load their instances");
 		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
 	};
 	
@@ -278,11 +267,7 @@ function RoomLoader() constructor {
 	/// Assigns the given origin to the created sprite and filters the drawn elements by the given flags.
 	/// Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
-		var _data = __data.__get(_room);
-		if (_data == undefined) {
-			__show_error_noroomdata(_room, "take_screenshot", "take a screenshot of it");	
-		}
-		
+		var _data = __get_load_data(_room, "take_screenshot", "take a screenshot of", "take screenshots");
 		return _data.__take_screenshot(_origin, _flags);
 	};
 	

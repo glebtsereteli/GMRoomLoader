@@ -66,6 +66,12 @@ function __roomloader_process_script(_script) {
 function __roomloader_log(_message) {
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
+function __roomloader_catch_nonroom(_room, _func_name, _message) {
+	var _type = typeof(_room);
+	if ((_type == "ref") and (room_exists(_room))) return;
+	__roomloader_error($"RoomLoader.{_func_name}(): Could not {_message} \"{_room}\".\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
+}
+
 function __roomloader_error(_message) {
-	show_error($"[GMRoomLoader] Error.\n{_message}.\n\n", true);
+	show_error($"[GMRoomLoader {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
 }
