@@ -55,7 +55,8 @@ function RoomLoader() constructor {
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to initialize data for. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Initializes data for all given rooms. 
+	/// @desc Initializes data for all given rooms.
+	/// @context RoomLoader
 	static data_init = function() {
 		static _method_name = "data_init";
 		var _i = 0; repeat (argument_count) {
@@ -68,6 +69,7 @@ function RoomLoader() constructor {
 	/// @param {Array<Asset.GMRoom>} rooms The array of rooms to initialize data for.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms in the given array.
+	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
 		static _method_name = "data_init_array";
 		var _i = 0; repeat (array_length(_rooms)) {
@@ -80,6 +82,7 @@ function RoomLoader() constructor {
 	/// @param {String} prefix The prefix to filter rooms with.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms starting with the given prefix.
+	/// @context RoomLoader
 	static data_init_prefix = function(_prefix) {
 		static _init = method(__data, function(_room) {
 			static _method_name = "data_init_prefix";
@@ -99,7 +102,8 @@ function RoomLoader() constructor {
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to remove data for. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Removes data for all (initialized) given rooms. 
+	/// @desc Removes data for all (initialized) given rooms.
+	/// @context RoomLoader
 	static data_remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__data.__remove(argument[_i]);
@@ -111,6 +115,7 @@ function RoomLoader() constructor {
 	/// @param {Array<Asset.GMRoom>} rooms The array of rooms to remove data for.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) rooms in the given array.
+	/// @context RoomLoader
 	static data_remove_array = function(_rooms) {
 		script_execute_ext(data_remove, _rooms);
 		return self;
@@ -119,6 +124,7 @@ function RoomLoader() constructor {
 	/// @param {String} prefix The prefix to filter rooms with.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) rooms starting with the given prefix.
+	/// @context RoomLoader
 	static data_remove_prefix = function(_prefix) {
 		static _remove = method(__data, function(_name, _data) {
 			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
@@ -131,6 +137,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @desc Removes all initialized room data.
+	/// @context RoomLoader
 	static data_clear = function() {
 		__data.__pool = {};
 		return self;
@@ -142,6 +149,7 @@ function RoomLoader() constructor {
 	/// @param {Asset.GMRoom} room The room to check.
 	/// @returns {Bool}
 	/// @desc Checks whether the data for the given room is initialized (returns true) or not (return false).
+	/// @context RoomLoader
 	static data_is_initialized = function(_room) {
 		return (__data.__get(_room) != undefined);
 	};
@@ -157,6 +165,7 @@ function RoomLoader() constructor {
 	/// @returns {struct.RoomLoaderReturnData, undefined}
 	/// @desc Loads the given room at the given coordinates and [origin], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
+	/// @context RoomLoader
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		var _data = __get_load_data(_room, "load", "load", "load them");
 		__return_data = new RoomLoaderReturnData();
@@ -171,6 +180,7 @@ function RoomLoader() constructor {
 	/// @returns {Array<Id.Instance>, undefined}
 	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
 	/// Returns an array of created Instances on success or undefined on fail.
+	/// @context RoomLoader
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __get_load_data(_room, "load_instances_layer", "load instances for", "load their instances");
 		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
@@ -184,6 +194,7 @@ function RoomLoader() constructor {
 	/// @returns {Array<Id.Instance>, undefined}s
 	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
 	/// Returns an array of created Instances on success or undefined on fail.
+	/// @context RoomLoader
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		var _data = __get_load_data(_room, "load_instances_depth", "load instances for", "load their instances");
 		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
@@ -195,6 +206,7 @@ function RoomLoader() constructor {
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Adds all given layer names to the Whitelist filter.
+	/// @context RoomLoader
 	static layer_whitelist_add = function() {
 		var _i = 0; repeat (argument_count) {
 			__layer_whitelist.__add(argument[_i]);
@@ -206,6 +218,7 @@ function RoomLoader() constructor {
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes all given layer names from the Whitelist filter.
+	/// @context RoomLoader
 	static layer_whitelist_remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__layer_whitelist.__remove(argument[_i]);
@@ -215,6 +228,7 @@ function RoomLoader() constructor {
 	
 	/// @returns {Struct.RoomLoader}
 	/// @desc Resets the Whitelist filter.
+	/// @context RoomLoader
 	static layer_whitelist_reset = function() {
 		__layer_whitelist.__reset();
 		return self;
@@ -222,6 +236,7 @@ function RoomLoader() constructor {
 	
 	/// @returns {Array<String>}
 	/// @desc Returns an array of whitelisted layer names.
+	/// @context RoomLoader
 	static layer_whitelist_get = function() {
 		return __layer_whitelist.__get();
 	};
@@ -232,6 +247,7 @@ function RoomLoader() constructor {
 	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Adds all given layer names to the Blacklist filter.
+	/// @context RoomLoader
 	static layer_blacklist_add = function() {
 		var _i = 0; repeat (argument_count) {
 			__layer_blacklist.__add(argument[_i]);
@@ -243,6 +259,7 @@ function RoomLoader() constructor {
 	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes all given layer names from the Blacklist filter.
+	/// @context RoomLoader
 	static layer_blacklist_remove = function() {
 		var _i = 0; repeat (argument_count) {
 			__layer_blacklist.__remove(argument[_i]);
@@ -252,6 +269,7 @@ function RoomLoader() constructor {
 	
 	/// @returns {Struct.RoomLoader}
 	/// @desc Resets the Blacklist filter.
+	/// @context RoomLoader
 	static layer_blacklist_reset = function() {
 		__layer_blacklist.__reset();
 		return self;
@@ -259,6 +277,7 @@ function RoomLoader() constructor {
 	
 	/// @returns {Array<String>}
 	/// @desc Returns an array of blacklisted layer names.
+	/// @context RoomLoader
 	static layer_blacklist_get = function() {
 		return __layer_blacklist.__get();
 	};
@@ -273,6 +292,7 @@ function RoomLoader() constructor {
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given origin to the created sprite and filters the drawn elements by the given flags.
 	/// Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
+	/// @context RoomLoader
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		var _data = __get_load_data(_room, "take_screenshot", "take a screenshot of", "take screenshots");
 		return _data.__take_screenshot(_origin, _flags);
@@ -329,18 +349,21 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} layer_name Thes layer name to search for.
 	/// @returns {Id.Layer, undefined}
 	/// @desc Returns the layer ID matching the given name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_layer = function(_name) {
 		return __layers.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Layer>}
 	/// @desc Returns an array of created layers.
+	/// @context RoomLoaderReturnData
 	static get_layers = function() {
 		return __layers.__ids;
 	};
 	
 	/// @returns {Array<Id.Instance>}
 	/// @desc Returns an array of created Instances.
+	/// @context RoomLoaderReturnData
 	static get_instances = function() {
 		return __instances.__ids;
 	};
@@ -348,12 +371,14 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} layer_name The Tilemap layer name to search for.
 	/// @returns {Id.Tilemap, undefined}
 	/// @desc Returns the Tilemap ID matching the given layer name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_tilemap = function(_layer_name) {
 		return __tilemaps.__get(_layer_name);
 	};
 	
 	/// @returns {Array<Id.Tilemap>}
 	/// @desc Returns an array of created Tilemaps.
+	/// @context RoomLoaderReturnData
 	static get_tilemaps = function() {
 		return __tilemaps.__ids;
 	};
@@ -361,12 +386,14 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} name The Sprite name to search for.
 	/// @returns {Id.Sprite, undefined}
 	/// @desc Returns the Sprite ID matching the given name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_sprite = function(_name) {
 		return __sprites.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Sprite>}
 	/// @desc Returns an array of created Sprites.
+	/// @context RoomLoaderReturnData
 	static get_sprites = function() {
 		return __sprites.__ids;
 	};
@@ -374,12 +401,14 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} name The Particle System name to search for.
 	/// @returns {Id.ParticleSystem, undefined}
 	/// @desc Returns the created Particle System ID matching the given name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_particle_system = function(_name) {
 		return __particle_systems.__get(_name);
 	};
 	
 	/// @returns {Array<Id.ParticleSystem>}
 	/// @desc Returns an array of created Particle Systems.
+	/// @context RoomLoaderReturnData
 	static get_particle_systems = function() {
 		return __particle_systems.__ids;
 	};
@@ -387,12 +416,14 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} name The Sequence name to search for.
 	/// @returns {Id.Sequence, undefined}
 	/// @desc Returns the created Sequence ID matching the given name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_sequence = function(_name) {
 		return __sequences.__get(_name);
 	};
 	
 	/// @returns {Array<Id.Sequence>}
 	/// @desc Returns an array of created Sequences.
+	/// @context RoomLoaderReturnData
 	static get_sequences = function() {
 		return __sequences.__ids;
 	};
@@ -400,12 +431,14 @@ function RoomLoaderReturnData() constructor {
 	/// @param {String} layer_name The Background layer name to search for.
 	/// @returns {Id.Background, undefined}
 	/// @desc Returns the created Background ID matching the given layer name if found, or undefined if not found.
+	/// @context RoomLoaderReturnData
 	static get_background = function(_layer_name) {
 		return __backgrounds.__get(_layer_name);
 	};
 	
 	/// @returns {Array<Id.Background>}
 	/// @desc Returns an array of created Backgrounds.
+	/// @context RoomLoaderReturnData
 	static get_backgrounds = function() {
 		return __backgrounds.__ids;
 	};
@@ -416,6 +449,7 @@ function RoomLoaderReturnData() constructor {
 	/// @returns {Undefined}
 	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically 
 	/// useless and should be dereferenced to be picked up by the Garbage Collector.
+	/// @context RoomLoaderReturnData
 	static cleanup = function() {
 		if (__cleaned_up) return;
 		
