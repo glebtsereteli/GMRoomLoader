@@ -11,7 +11,7 @@ function RoomLoader() constructor {
 	static __data = {
 		__pool: {},
 		
-		__add: function(_room, _method_name) {
+		__add: function(_room, _method_name = undefined) {
 			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
 			
 			var _room_name = room_get_name(_room);
@@ -81,22 +81,29 @@ function RoomLoader() constructor {
 	};
 	
 	/// @param {String} prefix The prefix to filter rooms with.
-	/// @returns {Struct.RoomLoader}
-	/// @desc Initializes data for all rooms starting with the given prefix.
+	/// @returns {Array<Asset.GMRoom>}
+	/// @desc Initializes data for all rooms starting with the given prefix,
+	/// returns an array of filtered rooms.
 	/// @context RoomLoader
 	static data_init_prefix = function(_prefix) {
+		static _method_name = "data_init_prefix";
 		static _closure = { prefix: undefined };
 		static _filter = method(_closure, function(_room) {
 			return __roomloader_room_has_prefix(_room, prefix);
 		});
 		
-		__roomloader_catch_argument(_prefix, is_string, "data_init_prefix", "String");
+		__roomloader_catch_argument(_prefix, is_string, _method_name, "String");
 		
 		__all_rooms ??= asset_get_ids(asset_room);
 		_closure.prefix = _prefix;
-		
 		var _rooms = array_filter(__all_rooms, _filter);
-		var _i = 0; repeat (array_length(_rooms)) {
+		
+		var _n = array_length(_rooms);
+		if (_n == 0) {
+			__roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");		
+		}
+		
+		var _i = 0; repeat (_n) {
 			__data.__add(_rooms[_i]);
 			_i++;
 		}
