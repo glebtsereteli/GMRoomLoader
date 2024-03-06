@@ -14,7 +14,14 @@ function RoomLoader() constructor {
 		
 		__add: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
-			__pool[$ room_get_name(_room)] = new __RoomLoaderData(_room);
+			
+			var _room_name = room_get_name(_room);
+			if (struct_exists(__pool, _room_name)) {
+				__roomloader_log($"RoomLoader.{_method_name}(): data for \"{_room_name}\" is already initialized, skipping");
+				return;
+			}
+			
+			__pool[$ _room_name] = new __RoomLoaderData(_room);
 		},
 		__remove: function(_room) {
 			struct_remove(__pool, room_get_name(_room));
