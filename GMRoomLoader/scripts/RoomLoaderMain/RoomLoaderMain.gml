@@ -71,9 +71,7 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all rooms in the given array.
 	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
-		if (not is_array(_rooms)) {
-			__roomloader_error_method(_method_name, $"expected \{Array\}, got {typeof(_rooms)}");
-		}
+		__roomloader_catch_argument(_rooms, is_array, _method_name, "Array");
 		
 		static _method_name = "data_init_array";
 		var _i = 0; repeat (array_length(_rooms)) {
@@ -95,6 +93,8 @@ function RoomLoader() constructor {
 			}
 		});
 		
+		__roomloader_catch_argument(_prefix, is_string, "data_init_prefix", "String");
+				
 		__all_rooms ??= asset_get_ids(asset_room);
 		__data.__prefix = _prefix;
 		array_foreach(__all_rooms, _init);

@@ -1,8 +1,7 @@
 /// @desc Methods
 
 init = function() {
-	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
-	RoomLoader.data_init_array([rm_demo_base_01_01, rm_demo_base_01_02]);
+	RoomLoader.data_init_prefix(123);
 	flags.init();
 };
 update = function() {
