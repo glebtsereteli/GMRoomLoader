@@ -2,6 +2,9 @@
 
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
+/// 
+/// NOTE: This is a statically-initialized constructor, it should NOT be explicitly instantiated.
+/// All methods are to be called as follows: RoomLoader.action(<arguments>).
 function RoomLoader() constructor {
 	#region __private
 	
@@ -9,7 +12,12 @@ function RoomLoader() constructor {
 		__pool: {},
 		__prefix: undefined,
 		
-		__add: function(_room) {
+		__add: function(_room, _func_name) {
+			var _type = typeof(_room);
+			if ((_type != "ref") or (not room_exists(_room))) {
+				__roomloader_error($"RoomLoader.{_func_name}(): Could not initialize data for \"{_room}\". Expected \{Asset.GMRoom\}, got \{{_type}\}");
+			}
+			
 			__pool[$ room_get_name(_room)] = new __RoomLoaderData(_room);	
 		},
 		__remove: function(_room) {
@@ -19,6 +27,7 @@ function RoomLoader() constructor {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
+	static __all_rooms = undefined;
 	static __layer_whitelist = new __RoomLoaderFilter(true);
 	static __layer_blacklist = new __RoomLoaderFilter(false);
 	static __return_data = undefined;
@@ -29,7 +38,7 @@ function RoomLoader() constructor {
 	};
 	static __show_error_noroomdata = function(_room, _func_name, _ending) {
 		var _room_name = $"\"{room_get_name(_room)}\"";
-		__roomloader_error($"RoomLoader.{_func_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for {_room_name} before trying to {_ending}");
+		__roomloader_error($"RoomLoader.{_func_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to load them.");
 	};
 	
 	#endregion
@@ -40,8 +49,9 @@ function RoomLoader() constructor {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all given rooms. 
 	static data_init = function() {
+		static _func_name = "data_init";
 		var _i = 0; repeat (argument_count) {
-			__data.__add(argument[_i]);
+			__data.__add(argument[_i], _func_name);
 			_i++;
 		}
 		return self;
@@ -51,7 +61,11 @@ function RoomLoader() constructor {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms in the given array.
 	static data_init_array = function(_rooms) {
-		script_execute_ext(data_init, _rooms);
+		static _func_name = "data_init_array";
+		var _i = 0; repeat (array_length(_rooms)) {
+			__data.__add(_rooms[_i], _func_name);
+			_i++;
+		}
 		return self;
 	};
 	
@@ -59,14 +73,16 @@ function RoomLoader() constructor {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms starting with the given prefix.
 	static data_init_prefix = function(_prefix) {
-		static _all_rooms = asset_get_ids(asset_room);
 		static _init = method(__data, function(_room) {
-			if (not __roomloader_room_has_prefix(_room, __prefix)) return;
-			__add(_room);
+			static _func_name = "data_init_prefix";
+			if (__roomloader_room_has_prefix(_room, __prefix)) {
+				__add(_room, _func_name);
+			}
 		});
 		
+		__all_rooms ??= asset_get_ids(asset_room);
 		__data.__prefix = _prefix;
-		array_foreach(_all_rooms, _init);
+		array_foreach(__all_rooms, _init);
 		return self;
 	};
 	
@@ -275,6 +291,8 @@ function RoomLoader() constructor {
 
 /// @desc Returned by RoomLoader's .load() method. Stores all layers and elements created on load, 
 /// and handles element fetching and cleanup.
+/// 
+/// NOTE: This constructor is only used by RoomLoader's .load() method, it should NOT be explicitly instantiated.
 function RoomLoaderReturnData() constructor {
 	#region __private
 	
