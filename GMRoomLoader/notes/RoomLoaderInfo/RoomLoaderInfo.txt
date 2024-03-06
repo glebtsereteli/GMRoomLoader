@@ -1,5 +1,5 @@
                                                                                                                                               
-GMRoomLoader v1.5.2 - runtime room loading.
+GMRoomLoader v1.6.0 - runtime room loading.
 	
 Author:			Gleb Tsereteli
 GitHub repo:	https://github.com/glebtsereteli/GMRoomLoader

@@ -1,5 +1,4 @@
+EVENT_METHOD;
 
-randomize();
-show_debug_overlay(true, true);
-texture_prefetch("Default");
+init();
 room_goto(rm_demo_base);
