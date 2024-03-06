@@ -71,6 +71,10 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all rooms in the given array.
 	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
+		if (not is_array(_rooms)) {
+			__roomloader_error_method(_method_name, $"expected \{Array\}, got {typeof(_rooms)}");
+		}
+		
 		static _method_name = "data_init_array";
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__add(_rooms[_i], _method_name);

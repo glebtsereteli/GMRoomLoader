@@ -63,15 +63,22 @@ function __roomloader_check_flags(_flags) {
 function __roomloader_process_script(_script) {
 	return ((_script == -1) ? __roomloader_noop : _script);
 }
+
 function __roomloader_log(_message) {
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
-function __roomloader_catch_nonroom(_room, _func_name, _message) {
-	var _type = typeof(_room);
-	if ((_type == "ref") and (room_exists(_room))) return;
-	__roomloader_error($"RoomLoader.{_func_name}(): Could not {_message} \"{_room}\".\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
+function __roomloader_log_method(_method_name, _message) {
+	__roomloader_log($"RoomLoader.{_method_name}(): {_message}");
 }
 
 function __roomloader_error(_message) {
 	show_error($"[GMRoomLoader {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
+}
+function __roomloader_error_method(_method_name, _message) {
+	__roomloader_error($"RoomLoader.{_method_name}(): {_message}");
+}
+function __roomloader_catch_nonroom(_room, _method_name, _message) {
+	var _type = typeof(_room);
+	if ((_type == "ref") and (room_exists(_room))) return;
+	__roomloader_error_method(_method_name, $"Could not {_message} \"{_room}\".\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
 }
