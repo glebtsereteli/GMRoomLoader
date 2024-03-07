@@ -83,8 +83,8 @@ function __roomloader_catch_nonroom(_room, _method_name, _message) {
 	if ((_type == "ref") and (room_exists(_room))) return;
 	__roomloader_error_method(_method_name, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
 }
-function __roomloader_catch_argument(_value, _checker, _method_name, _type_name) {
+function __roomloader_catch_argument(_value, _checker, _method_name, _type_name, _message_pre = "use", _message_post = "") {
 	if (not _checker(_value)) {
-		__roomloader_error_method(_method_name, $"Could not use <{_value}>.\nExpected \{{_type_name}\}, got \{{typeof(_value)}\}");
+		__roomloader_error_method(_method_name, $"Could not {_message_pre} <{_value}>{_message_post}.\nExpected \{{_type_name}\}, got \{{typeof(_value)}\}");
 	}
 }

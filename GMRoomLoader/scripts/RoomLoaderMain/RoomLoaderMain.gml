@@ -30,8 +30,8 @@ function RoomLoader() constructor {
 		},
 	};
 	static __all_rooms = undefined;
-	static __layer_whitelist = new __RoomLoaderFilter(true);
-	static __layer_blacklist = new __RoomLoaderFilter(false);
+	static __layer_whitelist = new __RoomLoaderFilter("whitelist", true);
+	static __layer_blacklist = new __RoomLoaderFilter("blacklist", false);
 	static __return_data = undefined;
 	
 	static __layer_failed_filters = function(_name) {

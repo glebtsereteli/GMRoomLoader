@@ -24,7 +24,7 @@ update = function() {
 	}
 	
 	if (keyboard_check_pressed(vk_enter)) {
-		show_message(RoomLoader.data_is_initialized("ligma"));
+		//RoomLoader.layer_blacklist_remove({hey:"lel"});
 	}
 };
 draw = function() {

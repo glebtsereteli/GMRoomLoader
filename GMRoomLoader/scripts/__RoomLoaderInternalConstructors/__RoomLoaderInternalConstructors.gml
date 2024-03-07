@@ -430,7 +430,8 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 	};
 };
 
-function __RoomLoaderFilter(_positive) constructor {
+function __RoomLoaderFilter(_name, _positive) constructor {
+	__name = _name;
 	__positive = _positive;
 	__layer_names = [];
 	
@@ -441,12 +442,14 @@ function __RoomLoaderFilter(_positive) constructor {
 		return array_contains(__layer_names, _layer_name);	
 	};
 	static __add = function(_layer_name) {
+		__roomloader_catch_argument(_layer_name, is_string, $"layer_{__name}_add", "String", "add", $" to {__name}");
 		if (__get_index(_layer_name) != -1) return;
 		
 		array_push(__layer_names, _layer_name);
 		__check = __check_active;
 	};
 	static __remove = function(_layer_name) {
+		__roomloader_catch_argument(_layer_name, is_string, $"layer_{__name}_remove", "String", "remove", $" from {__name}");
 		var _index = __get_index(_layer_name);
 		if (_index == undefined) return;
 		
