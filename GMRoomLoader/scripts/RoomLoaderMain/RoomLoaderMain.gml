@@ -165,6 +165,7 @@ function RoomLoader() constructor {
 	/// @desc Checks whether the data for the given room is initialized (returns true) or not (return false).
 	/// @context RoomLoader
 	static data_is_initialized = function(_room) {
+		__roomloader_catch_nonroom(_room, "data_is_initialized", $"check whether data is initialized for");
 		return (__data.__get(_room) != undefined);
 	};
 	

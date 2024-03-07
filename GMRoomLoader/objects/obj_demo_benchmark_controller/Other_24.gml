@@ -2,8 +2,6 @@
 
 init = function() {
 	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
-	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
-	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
 	flags.init();
 };
 update = function() {
@@ -23,6 +21,10 @@ update = function() {
 		show_debug_message($"{room_get_name(_room)} loaded in {_t} milliseconds.");
 		
 		data.set(_data);
+	}
+	
+	if (keyboard_check_pressed(vk_enter)) {
+		show_message(RoomLoader.data_is_initialized("ligma"));
 	}
 };
 draw = function() {
