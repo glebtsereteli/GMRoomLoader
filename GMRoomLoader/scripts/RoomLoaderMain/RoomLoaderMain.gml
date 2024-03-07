@@ -21,6 +21,7 @@ function RoomLoader() constructor {
 			}
 			
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
+			__roomloader_log($"RoomLoader: initialized data for {_room_name}");
 		},
 		__remove: function(_room) {
 			struct_remove(__pool, room_get_name(_room));
