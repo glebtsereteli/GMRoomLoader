@@ -1,6 +1,6 @@
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v1.5.2</h1>
+<h1 align="center">GMRoomLoader v1.6.0</h1>
 <p align="center">Runtime room loading for GameMaker 2024.2+</p>
 
 ## Overview
@@ -23,5 +23,5 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
 - Logos and demo rooms designed by Gleb's wifey - [Kate](https://www.instagram.com/k8te_iv) ❣️
 - Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
-- Inspired by [YellowAfterLife](https://twitter.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
+- Inspired by [YellowAfterlife](https://twitter.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
 - Demo art by [Kenney](https://twitter.com/KenneyNL).

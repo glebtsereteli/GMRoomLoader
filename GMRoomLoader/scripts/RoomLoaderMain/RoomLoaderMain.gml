@@ -104,7 +104,7 @@ function RoomLoader() constructor {
 		}
 		
 		var _i = 0; repeat (_n) {
-			__data.__add(_rooms[_i]);
+			__data.__add(_rooms[_i], _method_name);
 			_i++;
 		}
 		
