@@ -11,7 +11,7 @@ function RoomLoader() constructor {
 	static __data = {
 		__pool: {},
 		
-		__add: function(_room, _method_name = undefined) {
+		__add: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
 			
 			var _room_name = room_get_name(_room);
@@ -21,9 +21,11 @@ function RoomLoader() constructor {
 			}
 			
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__roomloader_log($"RoomLoader: initialized data for {_room_name}");
+			__roomloader_log_method(_method_name, $"Initialized data for <{_room_name}>");
 		},
-		__remove: function(_room) {
+		__remove: function(_room, _method_name) {
+			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
+			
 			struct_remove(__pool, room_get_name(_room));
 		},
 		__get: function(_room) {
@@ -120,8 +122,9 @@ function RoomLoader() constructor {
 	/// @desc Removes data for all (initialized) given rooms.
 	/// @context RoomLoader
 	static data_remove = function() {
+		static _method_name = "data_remove";
 		var _i = 0; repeat (argument_count) {
-			__data.__remove(argument[_i]);
+			__data.__remove(argument[_i], _method_name);
 			_i++;
 		}
 		return self;
@@ -132,7 +135,11 @@ function RoomLoader() constructor {
 	/// @desc Removes data for all (initialized) rooms in the given array.
 	/// @context RoomLoader
 	static data_remove_array = function(_rooms) {
-		script_execute_ext(data_remove, _rooms);
+		static _method_name = "data_remove_array";
+		var _i = 0; repeat (array_length(_rooms)) {
+			__data.__remove(_rooms[_i], _method_name);
+			_i++;
+		}
 		return self;
 	};
 	

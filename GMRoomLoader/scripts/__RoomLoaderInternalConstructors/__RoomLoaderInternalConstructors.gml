@@ -109,7 +109,7 @@ function __RoomLoaderData(_room) constructor {
 			gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
 			
 			var _i = array_length(__data);
-			while (_i--) { 
+			while (_i--) {
 				with (__data[_i]) {
 					__draw(_flags);
 				}
