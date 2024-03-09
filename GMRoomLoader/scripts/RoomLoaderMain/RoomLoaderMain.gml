@@ -99,7 +99,8 @@ function RoomLoader() constructor {
 		static _method_name = "data_init_prefix";
 		static _closure = { prefix: undefined };
 		static _filter = method(_closure, function(_room) {
-			return __roomloader_room_has_prefix(_room, prefix);
+			var _name = room_get_name(_room);
+			return (string_pos(prefix, _name) > 0);
 		});
 		
 		__roomloader_catch_argument(_prefix, is_string, _method_name, "String");
@@ -110,7 +111,8 @@ function RoomLoader() constructor {
 		
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");		
+			__roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			return _rooms;
 		}
 		
 		var _i = 0; repeat (_n) {
@@ -157,13 +159,27 @@ function RoomLoader() constructor {
 	/// @desc Removes data for all (initialized) rooms starting with the given prefix.
 	/// @context RoomLoader
 	static data_remove_prefix = function(_prefix) {
-		static _remove = method(__data, function(_name, _data) {
-			if (not __roomloader_room_has_prefix(_data.__room, __prefix)) return;
-			struct_remove(__pool, _name);
+		static _method_name = "data_remove_prefix";
+		static _closure = { prefix: undefined };
+		static _filter = method(_closure, function(_room_name) {
+			return (string_pos(prefix, _room_name) > 0);
 		});
 		
-		__data.__prefix = _prefix;
-		struct_foreach(__data.__pool, _remove);
+		_closure.prefix = _prefix;
+		var _names = array_filter(struct_get_names(__data.__pool), _filter);
+		
+		var _n = array_length(_names);
+		if (_n == 0) {
+			return __roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");	
+		}
+		
+		var _i = 0; repeat (array_length(_names)) {
+			var _name = _names[_i];
+			struct_remove(__data.__pool, _names[_i]);
+			__roomloader_log_method(_method_name, $"Removed data for <{_name}>");
+			_i++;
+		}
+		
 		return self;
 	};
 	
