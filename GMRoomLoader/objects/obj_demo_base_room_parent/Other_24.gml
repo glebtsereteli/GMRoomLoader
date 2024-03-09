@@ -19,7 +19,7 @@ load = function(_all) {
 	
 	var _t = get_timer();
 	var _data = RoomLoader.load(_room, x + 4, y + 4);
-	show_debug_message($"Room \"{_room_name}\" loaded in {(get_timer() - _t) / 1000} milliseconds.");
+	show_debug_message($"Room <{_room_name}> loaded in {(get_timer() - _t) / 1000} milliseconds.");
 	
 	data.set(_data);
 	fill.click(c_orange, 0.3);

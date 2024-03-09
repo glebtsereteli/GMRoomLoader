@@ -16,7 +16,7 @@ function RoomLoader() constructor {
 			
 			var _room_name = room_get_name(_room);
 			if (struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(_method_name, $"Data for \"{_room_name}\" is already initialized, skipping");
+				__roomloader_log_method(_method_name, $"Data for <{_room_name}> is already initialized, skipping");
 				return;
 			}
 			
@@ -28,7 +28,7 @@ function RoomLoader() constructor {
 			
 			var _room_name = room_get_name(_room);
 			if (not struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(_method_name, $"Data for \"{_room_name}\" doesn't exist");
+				__roomloader_log_method(_method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
 				return;
 			}
 			
@@ -54,7 +54,7 @@ function RoomLoader() constructor {
 		var _data = __data.__get(_room);
 		if (_data != undefined) return _data;
 		
-		var _room_name = $"\"{room_get_name(_room)}\"";
+		var _room_name = $"<{room_get_name(_room)}>";
 		__roomloader_error($"RoomLoader.{_method_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}");
 	};
 	
@@ -80,9 +80,9 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all rooms in the given array.
 	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
+		static _method_name = "data_init_array";
 		__roomloader_catch_argument(_rooms, is_array, _method_name, "Array");
 		
-		static _method_name = "data_init_array";
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__add(_rooms[_i], _method_name);
 			_i++;
@@ -143,6 +143,8 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static data_remove_array = function(_rooms) {
 		static _method_name = "data_remove_array";
+		__roomloader_catch_argument(_rooms, is_array, _method_name, "Array");
+		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__remove(_rooms[_i], _method_name);
 			_i++;
