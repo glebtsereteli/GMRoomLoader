@@ -16,7 +16,7 @@ function RoomLoader() constructor {
 			
 			var _room_name = room_get_name(_room);
 			if (struct_exists(__pool, _room_name)) {
-				__roomloader_log($"RoomLoader.{_method_name}(): data for \"{_room_name}\" is already initialized, skipping");
+				__roomloader_log_method(_method_name, $"Data for \"{_room_name}\" is already initialized, skipping");
 				return;
 			}
 			
@@ -27,6 +27,11 @@ function RoomLoader() constructor {
 			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
 			
 			var _room_name = room_get_name(_room);
+			if (not struct_exists(__pool, _room_name)) {
+				__roomloader_log_method(_method_name, $"Data for \"{_room_name}\" doesn't exist");
+				return;
+			}
+			
 			struct_remove(__pool, _room_name);
 			__roomloader_log_method(_method_name, $"Removed data for <{_room_name}>");
 		},

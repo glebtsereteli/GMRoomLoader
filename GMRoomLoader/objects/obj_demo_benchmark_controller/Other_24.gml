@@ -2,7 +2,6 @@
 
 init = function() {
 	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
-	RoomLoader.data_remove(rm_demo_benchmark_load_01);
 	flags.init();
 };
 update = function() {
@@ -25,7 +24,7 @@ update = function() {
 	}
 	
 	if (keyboard_check_pressed(vk_enter)) {
-		//RoomLoader.layer_blacklist_remove({hey:"lel"});
+		RoomLoader.data_remove(rm_demo_benchmark_load_01);
 	}
 };
 draw = function() {
