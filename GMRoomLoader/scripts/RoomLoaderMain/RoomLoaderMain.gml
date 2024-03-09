@@ -26,7 +26,9 @@ function RoomLoader() constructor {
 		__remove: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
 			
-			struct_remove(__pool, room_get_name(_room));
+			var _room_name = room_get_name(_room);
+			struct_remove(__pool, _room_name);
+			__roomloader_log_method(_method_name, $"Removed data for <{_room_name}>");
 		},
 		__get: function(_room) {
 			return __pool[$ room_get_name(_room)];

@@ -2,6 +2,7 @@
 
 init = function() {
 	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
+	RoomLoader.data_remove(rm_demo_benchmark_load_01);
 	flags.init();
 };
 update = function() {
