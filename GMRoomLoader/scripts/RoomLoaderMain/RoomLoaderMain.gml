@@ -183,10 +183,18 @@ function RoomLoader() constructor {
 		return self;
 	};
 	
+	/// @returns {Struct.RoomLoader}
 	/// @desc Removes all initialized room data.
 	/// @context RoomLoader
 	static data_clear = function() {
+		static _method_name = "data_clear";
+		if (struct_names_count(__data.__pool) == 0) {
+			__roomloader_log_method(_method_name, "There's no data to clear");
+			return self;
+		}
+		
 		__data.__pool = {};
+		__roomloader_log_method(_method_name, "Data cleared");
 		return self;
 	};
 	

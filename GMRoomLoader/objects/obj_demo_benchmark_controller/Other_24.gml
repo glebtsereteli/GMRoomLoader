@@ -23,8 +23,11 @@ update = function() {
 		data.set(_data);
 	}
 	
-	if (keyboard_check_pressed(vk_enter)) {
+	if (keyboard_check_pressed(vk_numpad1)) {
 		RoomLoader.data_remove_prefix("rm_demo_benchmark_load_");
+	}
+	if (keyboard_check_pressed(vk_numpad2)) {
+		RoomLoader.data_clear();
 	}
 };
 draw = function() {
