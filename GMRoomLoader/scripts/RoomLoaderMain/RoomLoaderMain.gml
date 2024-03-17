@@ -22,7 +22,7 @@ function RoomLoader() constructor {
 			
 			RoomLoader.__benchmark.__start();
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__roomloader_log_method_timed(_method_name, $"Initialized data for <{_room_name}>");
+			__roomloader_log_method_timed(_method_name, "Initialized data for", _room);
 		},
 		__remove: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
@@ -234,9 +234,15 @@ function RoomLoader() constructor {
 	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
 	/// @context RoomLoader
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		var _data = __get_load_data(_room, "load", "load", "load them");
+		static _method_name = "load";
+		var _data = __get_load_data(_room, _method_name, "load", "load them");
+		
+		RoomLoader.__benchmark.__start();
 		__return_data = new RoomLoaderReturnData();
-		return _data.__load(_x, _y, _origin, _flags);
+		_data = _data.__load(_x, _y, _origin, _flags);
+		__roomloader_log_method_timed(_method_name, "loaded", _room);
+		
+		return _data;
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -249,8 +255,13 @@ function RoomLoader() constructor {
 	/// Returns an array of created Instances on success or undefined on fail.
 	/// @context RoomLoader
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
-		var _data = __get_load_data(_room, "load_instances_layer", "load instances for", "load their instances");
-		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
+		static _method_name = "load_instances_layer";
+		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
+		
+		RoomLoader.__benchmark.__start();
+		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
+		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
+		return _instances;
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -263,8 +274,13 @@ function RoomLoader() constructor {
 	/// Returns an array of created Instances on success or undefined on fail.
 	/// @context RoomLoader
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
+		static _method_name = "load_instances_depth";
 		var _data = __get_load_data(_room, "load_instances_depth", "load instances for", "load their instances");
-		return __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
+		
+		RoomLoader.__benchmark.__start();
+		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
+		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
+		return _instances;
 	};
 	
 	#endregion
@@ -361,8 +377,13 @@ function RoomLoader() constructor {
 	/// Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
 	/// @context RoomLoader
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
-		var _data = __get_load_data(_room, "take_screenshot", "take a screenshot of", "take screenshots");
-		return _data.__take_screenshot(_origin, _flags);
+		static _method_name = "take_screenshot";
+		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
+		
+		RoomLoader.__benchmark.__start();
+		var _screenshot = _data.__take_screenshot(_origin, _flags);
+		__roomloader_log_method_timed(_method_name, "screenshotted", _room);
+		return _screenshot;
 	};
 	
 	#endregion

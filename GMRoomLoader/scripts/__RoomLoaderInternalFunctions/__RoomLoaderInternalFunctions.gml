@@ -65,10 +65,12 @@ function __roomloader_log(_message) {
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
 function __roomloader_log_method(_method_name, _message) {
+	if (not ROOMLOADER_ENABLE_DEBUG) return;
 	__roomloader_log($"RoomLoader.{_method_name}(): {_message}");
 }
-function __roomloader_log_method_timed(_method_name, _message) {
-	__roomloader_log($"RoomLoader.{_method_name}(): {_message} in {RoomLoader.__benchmark.__get()} milliseconds");
+function __roomloader_log_method_timed(_method_name, _message, _room) {
+	if (not ROOMLOADER_ENABLE_DEBUG) return;
+	__roomloader_log($"RoomLoader.{_method_name}(): {_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
 }
 function __roomloader_error(_message) {
 	show_error($"[GMRoomLoader {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
