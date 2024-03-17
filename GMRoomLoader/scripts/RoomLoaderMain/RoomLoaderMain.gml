@@ -20,8 +20,9 @@ function RoomLoader() constructor {
 				return;
 			}
 			
+			RoomLoader.__benchmark.__start();
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__roomloader_log_method(_method_name, $"Initialized data for <{_room_name}>");
+			__roomloader_log_method_timed(_method_name, $"Initialized data for <{_room_name}>");
 		},
 		__remove: function(_room, _method_name) {
 			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
@@ -38,6 +39,16 @@ function RoomLoader() constructor {
 		__get: function(_room) {
 			return __pool[$ room_get_name(_room)];
 		},
+	};
+	static __benchmark = {
+		__t: undefined,
+		
+		__start: function() {
+			__t = get_timer();	
+		},
+		__get: function() {
+			return ((get_timer() - __t) / 1000);
+		}
 	};
 	static __all_rooms = undefined;
 	static __layer_whitelist = new __RoomLoaderFilter("whitelist", true);
