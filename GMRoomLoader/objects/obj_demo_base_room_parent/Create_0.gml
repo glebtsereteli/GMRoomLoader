@@ -1,7 +1,6 @@
 EVENT_METHOD;
 
 hovered = false;
-prev_room = undefined;
 index = {
 	value: 0,
 	

@@ -14,13 +14,8 @@ draw = function() {
 load = function(_all) {
 	(_all ? index.shuffle : index.progress)();
 	
-	var _room_name = $"rm_demo_base_{vd_name}_0{index.value}";
-	var _room = asset_get_index(_room_name);
-	
-	var _t = get_timer();
+	var _room = asset_get_index($"rm_demo_base_{vd_name}_0{index.value}");
 	var _data = RoomLoader.load(_room, x + 4, y + 4);
-	show_debug_message($"Room <{_room_name}> loaded in {(get_timer() - _t) / 1000} milliseconds.");
-	
 	data.set(_data);
 	fill.click(c_orange, 0.3);
 };

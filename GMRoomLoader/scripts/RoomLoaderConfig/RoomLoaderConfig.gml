@@ -1,6 +1,6 @@
 /// @feather ignore all
 
-// Whether to show debug warning messages in Output (true) or not (false).
+// Whether to show debug messages in Output (true) or not (false).
 #macro ROOMLOADER_ENABLE_DEBUG true
 
 // String prefix added to RoomLoader-created layers.
