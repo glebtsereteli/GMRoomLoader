@@ -1,5 +1,6 @@
 /// @feather ignore all
 
+/// @func RoomLoader()
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
@@ -241,7 +242,7 @@ function RoomLoader() constructor {
 		var _data = __get_load_data(_room, _method_name, "load", "load them");
 		
 		__benchmark.__start();
-		__return_data = new RoomLoaderReturnData();
+		__return_data = new RoomLoaderReturnData(_room);
 		_data = _data.__load(_x, _y, _origin, _flags);
 		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded", _room);
 		
@@ -392,11 +393,13 @@ function RoomLoader() constructor {
 	#endregion
 }
 
+/// @func RoomLoaderReturnData()
+/// @param {Asset.GMRoom} room
 /// @desc Returned by RoomLoader's .load() method. Stores all layers and elements created on load, 
 /// and handles element fetching and cleanup.
 /// 
 /// NOTE: This constructor is only used by RoomLoader's .load() method, it should NOT be explicitly instantiated.
-function RoomLoaderReturnData() constructor {
+function RoomLoaderReturnData(_room) constructor {
 	#region __private
 	
 	static __Container = function(_on_destroy) constructor {
@@ -418,6 +421,7 @@ function RoomLoaderReturnData() constructor {
 		};
 	};
 	
+	__room = _room;
 	__layers = new __Container(layer_destroy);
 	__instances = {
 		__ids: undefined,
@@ -551,7 +555,7 @@ function RoomLoaderReturnData() constructor {
 			return;
 		}
 		
-		__cleaned_up = true;
+		RoomLoader.__benchmark.__start();
 		__instances.__destroy();
 		__tilemaps.__destroy();
 		__sprites.__destroy();
@@ -559,8 +563,9 @@ function RoomLoaderReturnData() constructor {
 		__sequences.__destroy();
 		__backgrounds.__destroy();
 		__layers.__destroy();
+		__cleaned_up = true;
 		
-		__roomloader_log_method(__message_prefix, _method_name, "data is cleaned up");
+		__roomloader_log_method_timed(__message_prefix, _method_name, "cleaned up data for", __room);
 	};
 
 	#endregion
