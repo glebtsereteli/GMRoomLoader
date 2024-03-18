@@ -51,8 +51,8 @@ function RoomLoader() constructor {
 		}
 	};
 	static __all_rooms = undefined;
-	static __layer_whitelist = new __RoomLoaderFilter("whitelist", true);
-	static __layer_blacklist = new __RoomLoaderFilter("blacklist", false);
+	static __layer_whitelist = new __RoomLoaderFilter("Whitelist", true);
+	static __layer_blacklist = new __RoomLoaderFilter("Blacklist", false);
 	static __return_data = undefined;
 	
 	static __layer_failed_filters = function(_name) {
@@ -229,15 +229,15 @@ function RoomLoader() constructor {
 	/// @param {Real} y The y coordinate to load the room at.
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load the room at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
 	/// @param {Enum.ROOMLOADER_FLAG} [flags] OPTIONAL! The flags to filter the loaded data by. Defaults to the ROOMLOADER_DEFAULT_FLAGS config macro.
-	/// @returns {struct.RoomLoaderReturnData, undefined}
+	/// @returns {struct.RoomLoaderReturnData}
 	/// @desc Loads the given room at the given coordinates and [origin], filtered by the given [flags]. 
-	/// Returns an instance of RoomLoaderReturnData on success or undefined on fail.
+	/// Returns an instance of RoomLoaderReturnData.
 	/// @context RoomLoader
 	static load = function(_room, _x, _y, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _method_name = "load";
 		var _data = __get_load_data(_room, _method_name, "load", "load them");
 		
-		RoomLoader.__benchmark.__start();
+		__benchmark.__start();
 		__return_data = new RoomLoaderReturnData();
 		_data = _data.__load(_x, _y, _origin, _flags);
 		__roomloader_log_method_timed(_method_name, "loaded", _room);
@@ -250,15 +250,15 @@ function RoomLoader() constructor {
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String} [layer] The layer ID or name to assign instances to.
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
-	/// @returns {Array<Id.Instance>, undefined}
+	/// @returns {Array<Id.Instance>}
 	/// @desc Loads the given room's instances at the given coordinates, layer and [origin].
-	/// Returns an array of created Instances on success or undefined on fail.
+	/// Returns an array of created Instances.
 	/// @context RoomLoader
 	static load_instances_layer = function(_room, _x, _y, _layer, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		static _method_name = "load_instances_layer";
 		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
 		
-		RoomLoader.__benchmark.__start();
+		__benchmark.__start();
 		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
 		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
 		return _instances;
@@ -269,15 +269,15 @@ function RoomLoader() constructor {
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Real} depth The depth to create instances at.
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin to load instances at. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
-	/// @returns {Array<Id.Instance>, undefined}s
+	/// @returns {Array<Id.Instance>}
 	/// @desc Loads the given room's instances at the given coordinates, depth and [origin].
-	/// Returns an array of created Instances on success or undefined on fail.
+	/// Returns an array of created Instances.
 	/// @context RoomLoader
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		static _method_name = "load_instances_depth";
 		var _data = __get_load_data(_room, "load_instances_depth", "load instances for", "load their instances");
 		
-		RoomLoader.__benchmark.__start();
+		__benchmark.__start();
 		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
 		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
 		return _instances;
@@ -371,16 +371,16 @@ function RoomLoader() constructor {
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Enum.ROOMLOADER_ORIGIN} [origin] OPTIONAL! The origin set to the generated sprite. Defaults to the ROOMLOADER_DEFAULT_ORIGIN config macro.
 	/// @param {Enum.ROOMLOADER_FLAG} [flags] OPTIONAL! The flags to filter the room elements by. Defaults to the ROOMLOADER_FLAG.ALL.
-	/// @returns {Asset.GMSprite, Undefined}
+	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given origin to the created sprite and filters the drawn elements by the given flags.
-	/// Returns a Sprite ID if the data for the given room has previously been initialized, or undefined if it hasn't.
+	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static take_screenshot = function(_room, _origin = ROOMLOADER_DEFAULT_ORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		static _method_name = "take_screenshot";
 		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
 		
-		RoomLoader.__benchmark.__start();
+		__benchmark.__start();
 		var _screenshot = _data.__take_screenshot(_origin, _flags);
 		__roomloader_log_method_timed(_method_name, "screenshotted", _room);
 		return _screenshot;

@@ -434,7 +434,18 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 	__name = _name;
 	__positive = _positive;
 	__layer_names = [];
+	__method_names = undefined;
 	
+	static __init = function() {
+		__check = __check_empty;
+		
+		var _prefix = $"layer_{string_lower(__name)}";
+		__method_names = {
+			__add: $"{_prefix}_add",
+			__remove: $"{_prefix}_remove",
+			__reset: $"{_prefix}_reset",
+		};
+	};
 	static __check_empty = function() {
 		return __positive;
 	};
@@ -442,25 +453,34 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 		return array_contains(__layer_names, _layer_name);	
 	};
 	static __add = function(_layer_name) {
-		__roomloader_catch_argument(_layer_name, is_string, $"layer_{__name}_add", "String", "add", $" to {__name}");
-		if (__get_index(_layer_name) != -1) return;
+		var _method_name = __method_names.__add;
+		__roomloader_catch_argument(_layer_name, is_string, _method_name, "String", "add", $" to {__name}");
+		if (__get_index(_layer_name) != -1) {
+			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" is already {__name}ed. Skipping");
+		}
 		
 		array_push(__layer_names, _layer_name);
 		__check = __check_active;
+		__roomloader_log_method(_method_name, $"{__name}ed layer \"{_layer_name}\"");
 	};
 	static __remove = function(_layer_name) {
-		__roomloader_catch_argument(_layer_name, is_string, $"layer_{__name}_remove", "String", "remove", $" from {__name}");
+		var _method_name = __method_names.__remove;
+		__roomloader_catch_argument(_layer_name, is_string, _method_name, "String", "remove", $" from {__name}");
 		var _index = __get_index(_layer_name);
-		if (_index == undefined) return;
+		if (_index == -1) {
+			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" isn't {__name}ed. Skipping");
+		}
 		
 		array_delete(__layer_names, _index, 1);
 		if (array_length(__layer_names) == 0) {
 			__check = __check_empty;
 		}
+		__roomloader_log_method(_method_name, $"Removed layer \"{_layer_name}\" from {__name}");
 	};
 	static __reset = function() {
 		__layer_names = [];
 		__check = __check_empty;
+		__roomloader_log_method(__method_names.__reset, $"{__name} is reset");
 	};
 	static __get = function() {
 		return __layer_names;
@@ -469,5 +489,5 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 		 return array_get_index(__layer_names, _layer_name);
 	};
 	
-	__check = __check_empty;
+	__init();
 }
