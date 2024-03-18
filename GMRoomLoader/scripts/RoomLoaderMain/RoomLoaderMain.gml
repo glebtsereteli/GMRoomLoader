@@ -551,7 +551,7 @@ function RoomLoaderReturnData(_room) constructor {
 		static _method_name = "cleanup";
 		
 		if (__cleaned_up) {
-			__roomloader_log_method_timed(__message_prefix, _method_name, "data is already cleaned up. Skipping");
+			__roomloader_log_method(__message_prefix, _method_name, $"data for \<{room_get_name(__room)}\> is already cleaned up. Skipping");
 			return;
 		}
 		
