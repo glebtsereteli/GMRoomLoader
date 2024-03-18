@@ -64,27 +64,27 @@ function __roomloader_log(_message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
-function __roomloader_log_method(_method_name, _message, _prefix = "RoomLoader") {
+function __roomloader_log_method(_prefix, _method_name, _message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
 	__roomloader_log($"{_prefix}.{_method_name}(): {_message}");
 }
-function __roomloader_log_method_timed(_method_name, _message, _room) {
+function __roomloader_log_method_timed(_prefix, _method_name, _message, _room) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
-	__roomloader_log($"RoomLoader.{_method_name}(): {_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
+	__roomloader_log_method(_prefix, _method_name, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
 }
 function __roomloader_error(_message) {
 	show_error($"[GMRoomLoader {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
 }
-function __roomloader_error_method(_method_name, _message) {
-	__roomloader_error($"RoomLoader.{_method_name}(): {_message}");
+function __roomloader_error_method(_prefix, _method_name, _message) {
+	__roomloader_error($"{_prefix}.{_method_name}(): {_message}");
 }
-function __roomloader_catch_nonroom(_room, _method_name, _message) {
+function __roomloader_catch_nonroom(_prefix, _method_name, _room, _message) {
 	var _type = typeof(_room);
 	if ((_type == "ref") and (room_exists(_room))) return;
 	__roomloader_error_method(_method_name, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
 }
-function __roomloader_catch_argument(_value, _checker, _method_name, _type_name, _message_pre = "use", _message_post = "") {
+function __roomloader_catch_argument(_prefix, _value, _checker, _method_name, _type_name, _message_pre = "use", _message_post = "") {
 	if (not _checker(_value)) {
-		__roomloader_error_method(_method_name, $"Could not {_message_pre} <{_value}>{_message_post}.\nExpected \{{_type_name}\}, got \{{typeof(_value)}\}");
+		__roomloader_error_method(_prefix, _method_name, $"Could not {_message_pre} <{_value}>{_message_post}.\nExpected \{{_type_name}\}, got \{{typeof(_value)}\}");
 	}
 }

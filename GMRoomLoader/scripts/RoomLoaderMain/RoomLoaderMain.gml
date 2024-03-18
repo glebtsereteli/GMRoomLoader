@@ -8,33 +8,35 @@
 function RoomLoader() constructor {
 	#region __private
 	
+	static __message_prefix = "RoomLoader";
 	static __data = {
+		__message_prefix: __message_prefix,
 		__pool: {},
 		
 		__add: function(_room, _method_name) {
-			__roomloader_catch_nonroom(_room, _method_name, "initialize data for");
+			__roomloader_catch_nonroom(__message_prefix, _method_name, _room, "initialize data for");
 			
 			var _room_name = room_get_name(_room);
 			if (struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(_method_name, $"Data for <{_room_name}> is already initialized, skipping");
+				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> is already initialized, skipping");
 				return;
 			}
 			
 			RoomLoader.__benchmark.__start();
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__roomloader_log_method_timed(_method_name, "Initialized data for", _room);
+			__roomloader_log_method_timed(__message_prefix, _method_name, "Initialized data for", _room);
 		},
 		__remove: function(_room, _method_name) {
-			__roomloader_catch_nonroom(_room, _method_name, "remove data for");
+			__roomloader_catch_nonroom(__message_prefix, _method_name, _room, "remove data for");
 			
 			var _room_name = room_get_name(_room);
 			if (not struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(_method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
+				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
 				return;
 			}
 			
 			struct_remove(__pool, _room_name);
-			__roomloader_log_method(_method_name, $"Removed data for <{_room_name}>");
+			__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_room_name}>");
 		},
 		__get: function(_room) {
 			return __pool[$ room_get_name(_room)];
@@ -60,13 +62,14 @@ function RoomLoader() constructor {
 		return (not _match);
 	};
 	static __get_load_data = function(_room, _method_name, _nonroom_message, _nodata_message) {
-		__roomloader_catch_nonroom(_room, _method_name, _nonroom_message);
+		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, _nonroom_message);
 		
 		var _data = __data.__get(_room);
 		if (_data != undefined) return _data;
 		
 		var _room_name = $"<{room_get_name(_room)}>";
-		__roomloader_error($"RoomLoader.{_method_name}(): Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}");
+		var _message = $"Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
+		__roomloader_error_method(__message_prefix, _method_name, _message);
 	};
 	
 	#endregion
@@ -92,7 +95,7 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
 		static _method_name = "data_init_array";
-		__roomloader_catch_argument(_rooms, is_array, _method_name, "Array");
+		__roomloader_catch_argument(__message_prefix, _rooms, is_array, _method_name, "Array");
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__add(_rooms[_i], _method_name);
@@ -114,7 +117,7 @@ function RoomLoader() constructor {
 			return (string_pos(prefix, _name) > 0);
 		});
 		
-		__roomloader_catch_argument(_prefix, is_string, _method_name, "String");
+		__roomloader_catch_argument(__message_prefix, _prefix, is_string, _method_name, "String");
 		
 		__all_rooms ??= asset_get_ids(asset_room);
 		_closure.prefix = _prefix;
@@ -122,7 +125,7 @@ function RoomLoader() constructor {
 		
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
 			return _rooms;
 		}
 		
@@ -156,7 +159,7 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static data_remove_array = function(_rooms) {
 		static _method_name = "data_remove_array";
-		__roomloader_catch_argument(_rooms, is_array, _method_name, "Array");
+		__roomloader_catch_argument(__message_prefix, _rooms, is_array, _method_name, "Array");
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__remove(_rooms[_i], _method_name);
@@ -181,13 +184,13 @@ function RoomLoader() constructor {
 		
 		var _n = array_length(_names);
 		if (_n == 0) {
-			return __roomloader_log_method(_method_name, $"Could not find any rooms starting with \"{_prefix}\"");	
+			return __roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");	
 		}
 		
 		var _i = 0; repeat (array_length(_names)) {
 			var _name = _names[_i];
 			struct_remove(__data.__pool, _names[_i]);
-			__roomloader_log_method(_method_name, $"Removed data for <{_name}>");
+			__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_name}>");
 			_i++;
 		}
 		
@@ -200,12 +203,12 @@ function RoomLoader() constructor {
 	static data_clear = function() {
 		static _method_name = "data_clear";
 		if (struct_names_count(__data.__pool) == 0) {
-			__roomloader_log_method(_method_name, "There's no data to clear");
+			__roomloader_log_method(__message_prefix, _method_name, "There's no data to clear");
 			return self;
 		}
 		
 		__data.__pool = {};
-		__roomloader_log_method(_method_name, "Data cleared");
+		__roomloader_log_method(__message_prefix, _method_name, "Data cleared");
 		return self;
 	};
 	
@@ -217,7 +220,7 @@ function RoomLoader() constructor {
 	/// @desc Checks whether the data for the given room is initialized (returns true) or not (return false).
 	/// @context RoomLoader
 	static data_is_initialized = function(_room) {
-		__roomloader_catch_nonroom(_room, "data_is_initialized", $"check whether data is initialized for");
+		__roomloader_catch_nonroom(__message_prefix, "data_is_initialized", _room, $"check whether data is initialized for");
 		return (__data.__get(_room) != undefined);
 	};
 	
@@ -240,7 +243,7 @@ function RoomLoader() constructor {
 		__benchmark.__start();
 		__return_data = new RoomLoaderReturnData();
 		_data = _data.__load(_x, _y, _origin, _flags);
-		__roomloader_log_method_timed(_method_name, "loaded", _room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded", _room);
 		
 		return _data;
 	};
@@ -260,7 +263,7 @@ function RoomLoader() constructor {
 		
 		__benchmark.__start();
 		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_layer, _layer);
-		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded instances for", _room);
 		return _instances;
 	};
 	
@@ -279,7 +282,7 @@ function RoomLoader() constructor {
 		
 		__benchmark.__start();
 		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
-		__roomloader_log_method_timed(_method_name, "loaded instances for", _room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded instances for", _room);
 		return _instances;
 	};
 	
@@ -382,7 +385,7 @@ function RoomLoader() constructor {
 		
 		__benchmark.__start();
 		var _screenshot = _data.__take_screenshot(_origin, _flags);
-		__roomloader_log_method_timed(_method_name, "screenshotted", _room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, "screenshotted", _room);
 		return _screenshot;
 	};
 	
@@ -430,9 +433,7 @@ function RoomLoaderReturnData() constructor {
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleaned_up = false;
 	
-	__log = function(_method_name, _message) {
-		__roomloader_log_method(_method_name, _message, "RoomLoaderReturnData");
-	};
+	static __message_prefix = "RoomLoaderReturnData";
 	
 	#endregion
 	
@@ -546,7 +547,7 @@ function RoomLoaderReturnData() constructor {
 		static _method_name = "cleanup";
 		
 		if (__cleaned_up) {
-			__log(_method_name, "data is already cleaned up. Skipping");
+			__roomloader_log_method_timed(__message_prefix, _method_name, "data is already cleaned up. Skipping");
 			return;
 		}
 		
@@ -559,7 +560,7 @@ function RoomLoaderReturnData() constructor {
 		__backgrounds.__destroy();
 		__layers.__destroy();
 		
-		__log("cleanup", "data is cleaned up");
+		__roomloader_log_method(__message_prefix, _method_name, "data is cleaned up");
 	};
 
 	#endregion
