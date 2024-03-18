@@ -64,9 +64,9 @@ function __roomloader_log(_message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
 	show_debug_message($"[GMRoomLoader] {_message}.");
 }
-function __roomloader_log_method(_method_name, _message) {
+function __roomloader_log_method(_method_name, _message, _prefix = "RoomLoader") {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
-	__roomloader_log($"RoomLoader.{_method_name}(): {_message}");
+	__roomloader_log($"{_prefix}.{_method_name}(): {_message}");
 }
 function __roomloader_log_method_timed(_method_name, _message, _room) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;

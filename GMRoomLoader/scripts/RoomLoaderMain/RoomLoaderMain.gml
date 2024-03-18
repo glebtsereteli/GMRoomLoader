@@ -430,6 +430,10 @@ function RoomLoaderReturnData() constructor {
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleaned_up = false;
 	
+	__log = function(_method_name, _message) {
+		__roomloader_log_method(_method_name, _message, "RoomLoaderReturnData");
+	};
+	
 	#endregion
 	
 	#region getters
@@ -539,7 +543,12 @@ function RoomLoaderReturnData() constructor {
 	/// useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// @context RoomLoaderReturnData
 	static cleanup = function() {
-		if (__cleaned_up) return;
+		static _method_name = "cleanup";
+		
+		if (__cleaned_up) {
+			__log(_method_name, "data is already cleaned up. Skipping");
+			return;
+		}
 		
 		__cleaned_up = true;
 		__instances.__destroy();
@@ -549,6 +558,8 @@ function RoomLoaderReturnData() constructor {
 		__sequences.__destroy();
 		__backgrounds.__destroy();
 		__layers.__destroy();
+		
+		__log("cleanup", "data is cleaned up");
 	};
 
 	#endregion
