@@ -21,7 +21,7 @@ origin = {
 		value = (_get() ?? value);
 	},
 	get: function() {
-		return value;	
+		return value;
 	},
 };
 flags = {
