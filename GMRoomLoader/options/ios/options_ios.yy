@@ -1,10 +1,9 @@
 {
-  "$GMiOSOptions":"",
+  "$GMiOSOptions":"v1",
   "%Name":"iOS",
   "name":"iOS",
   "option_ios_build_number":0,
   "option_ios_bundle_name":"com.company.game",
-  "option_ios_cocoapods_checkbox":true,
   "option_ios_defer_home_indicator":false,
   "option_ios_devices":2,
   "option_ios_display_name":"Created with GameMaker",

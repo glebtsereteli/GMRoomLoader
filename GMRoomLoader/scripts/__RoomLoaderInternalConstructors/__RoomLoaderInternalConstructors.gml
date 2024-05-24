@@ -229,6 +229,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		static __load = function(_layer, _xoffs, _yoffs, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
+			_layer = layer_get_name(_layer); // [@TEMP] Bugfix, remove in 2024.6.
 			var _particle_system = part_system_create_layer(_layer, false, __data.ps);
 			var _x = __data.x + _xoffs;
 			var _y = __data.y + _yoffs;
@@ -236,7 +237,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
 			
-			repeat (ROOMLOADER_PARTICLE_SYSTEMS_STEPS) part_system_update(_particle_system);
+			repeat (ROOMLOADER_PARTICLE_SYSTEMS_STEPS) {
+				part_system_update(_particle_system);	
+			}
 			
 			RoomLoader.__return_data.__particle_systems.__add(_particle_system, __data.name);
 		}

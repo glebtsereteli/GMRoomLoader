@@ -82,9 +82,8 @@ function RoomLoader() constructor {
 	/// @desc Initializes data for all given rooms.
 	/// @context RoomLoader
 	static data_init = function() {
-		static _method_name = "data_init";
 		var _i = 0; repeat (argument_count) {
-			__data.__add(argument[_i], _method_name);
+			__data.__add(argument[_i], "data_init");
 			_i++;
 		}
 		return self;
