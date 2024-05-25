@@ -62,7 +62,7 @@ function __roomloader_process_script(_script) {
 
 function __roomloader_log(_message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
-	show_debug_message($"[GMRoomLoader] {_message}.");
+	show_debug_message($"{__ROOMLOADER_LOG_PREFIX} {_message}.");
 }
 function __roomloader_log_method(_prefix, _method_name, _message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;

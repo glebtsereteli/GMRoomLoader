@@ -119,6 +119,7 @@
     {"id":{"name":"RoomLoaderConfig","path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},},
     {"id":{"name":"RoomLoaderEnums","path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},},
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
+    {"id":{"name":"RoomLoaderReturnData","path":"scripts/RoomLoaderReturnData/RoomLoaderReturnData.yy",},},
     {"id":{"name":"scr_demo_utility","path":"scripts/scr_demo_utility/scr_demo_utility.yy",},},
     {"id":{"name":"seq_demo_benchmark_01","path":"sequences/seq_demo_benchmark_01/seq_demo_benchmark_01.yy",},},
     {"id":{"name":"spr_demo_base_bg","path":"sprites/spr_demo_base_bg/spr_demo_base_bg.yy",},},

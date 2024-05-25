@@ -471,7 +471,7 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 		__roomloader_catch_argument(_layer_name, is_string, _method_name, "String", "remove", $" from {__name}");
 		var _index = __get_index(_layer_name);
 		if (_index == -1) {
-			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" isn't {__name}ed. Skipping");
+			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" isn't {__name}ed.");
 		}
 		
 		array_delete(__layer_names, _index, 1);

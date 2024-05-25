@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"RoomLoaderReturnData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RoomLoaderReturnData",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/GMRoomLoader/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
