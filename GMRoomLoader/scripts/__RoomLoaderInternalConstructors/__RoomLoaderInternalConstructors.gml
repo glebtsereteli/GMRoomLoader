@@ -35,8 +35,9 @@ function __RoomLoaderData(_room) constructor {
 			_data.creation_code = __roomloader_process_script(_data.creation_code);
 			_data.precreate = {}; with (_data.precreate) {
 				_room_params(_data);
-				if (_data.pre_creation_code != -1) {
-					script_execute(_data.pre_creation_code);
+				var _precreate = _data.pre_creation_code;
+				if (_precreate != -1) {
+					_precreate();
 				}
 			};
 			__instances_init_lookup[$ _data.id] = _data;
@@ -95,7 +96,9 @@ function __RoomLoaderData(_room) constructor {
 			_i++;
 		}
 		
-		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) __creation_code();
+		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) {
+			__creation_code();	
+		}
 		
 		return RoomLoader.__return_data;
 	};
@@ -438,6 +441,7 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 	__positive = _positive;
 	__layer_names = [];
 	__method_names = undefined;
+	__message_prefix = RoomLoader.__message_prefix;
 	
 	static __init = function() {
 		__check = __check_empty;
@@ -457,39 +461,49 @@ function __RoomLoaderFilter(_name, _positive) constructor {
 	};
 	static __add = function(_layer_name) {
 		var _method_name = __method_names.__add;
-		__roomloader_catch_argument(_layer_name, is_string, _method_name, "String", "add", $" to {__name}");
+		__roomloader_catch_string(__message_prefix, _method_name, _layer_name);
+		
 		if (__get_index(_layer_name) != -1) {
-			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" is already {__name}ed. Skipping");
+			return __roomloader_log_method(__message_prefix, _method_name, $"Layer \"{_layer_name}\" is already {__name}ed");
 		}
 		
 		array_push(__layer_names, _layer_name);
 		__check = __check_active;
-		__roomloader_log_method(_method_name, $"{__name}ed layer \"{_layer_name}\"");
+		__roomloader_log_method(__message_prefix, _method_name, $"{__name}ed layer \"{_layer_name}\"");
 	};
 	static __remove = function(_layer_name) {
 		var _method_name = __method_names.__remove;
-		__roomloader_catch_argument(_layer_name, is_string, _method_name, "String", "remove", $" from {__name}");
+		__roomloader_catch_string(__message_prefix, _method_name, _layer_name);
+		
 		var _index = __get_index(_layer_name);
 		if (_index == -1) {
-			return __roomloader_log_method(_method_name, $"Layer \"{_layer_name}\" isn't {__name}ed.");
+			return __roomloader_log_method(__message_prefix, _method_name, $"Layer \"{_layer_name}\" is not {__name}ed");
 		}
 		
 		array_delete(__layer_names, _index, 1);
-		if (array_length(__layer_names) == 0) {
+		if (__is_empty()) {
 			__check = __check_empty;
 		}
-		__roomloader_log_method(_method_name, $"Removed layer \"{_layer_name}\" from {__name}");
+		return __roomloader_log_method(__message_prefix, _method_name, $"Removed layer \"{_layer_name}\" from {__name}");
 	};
 	static __reset = function() {
+		var _method_name = __method_names.__reset;
+		if (__is_empty()) {
+			return __roomloader_log_method(__message_prefix, _method_name, $"{__name} is already empty");
+		}
+		
 		__layer_names = [];
 		__check = __check_empty;
-		__roomloader_log_method(__method_names.__reset, $"{__name} is reset");
+		__roomloader_log_method(__message_prefix, _method_name, $"{__name} is reset");
 	};
 	static __get = function() {
 		return __layer_names;
 	};
 	static __get_index = function(_layer_name) {
 		 return array_get_index(__layer_names, _layer_name);
+	};
+	static __is_empty = function() {
+		return (array_length(__layer_names) == 0);
 	};
 	
 	__init();

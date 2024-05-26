@@ -19,7 +19,7 @@ function RoomLoader() constructor {
 			
 			var _room_name = room_get_name(_room);
 			if (struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> is already initialized, skipping");
+				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> is already initialized");
 				return;
 			}
 			
@@ -174,24 +174,24 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static data_remove_prefix = function(_prefix) {
 		static _method_name = "data_remove_prefix";
-		static _closure = { prefix: undefined };
-		static _filter = method(_closure, function(_room_name) {
-			return (string_pos(prefix, _room_name) > 0);
-		});
 		
-		_closure.prefix = _prefix;
-		var _names = array_filter(struct_get_names(__data.__pool), _filter);
+		__roomloader_catch_string(__message_prefix, _method_name, _prefix);
 		
-		var _n = array_length(_names);
-		if (_n == 0) {
-			return __roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");	
-		}
-		
+		var _removed = false;
+		var _pool = __data.__pool;
+		var _names = struct_get_names(_pool);
 		var _i = 0; repeat (array_length(_names)) {
 			var _name = _names[_i];
-			struct_remove(__data.__pool, _names[_i]);
-			__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_name}>");
+			if (string_pos(_prefix, _name) > 0) {
+				struct_remove(_pool, _names[_i]);
+				__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_name}>");
+				_removed = true;
+			}
 			_i++;
+		}
+		
+		if (not _removed) {
+			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
 		}
 		
 		return self;
@@ -213,7 +213,7 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region data misc
+	#region data miscellaneous
 	
 	/// @param {Asset.GMRoom} room The room to check.
 	/// @returns {Bool}

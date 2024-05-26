@@ -17,13 +17,6 @@ update = function() {
 		var _data = RoomLoader.load(rm_demo_benchmark_load_01, mouse_x, mouse_y, origin.get(), flags.get());
 		data.set(_data);
 	}
-	
-	if (keyboard_check_pressed(vk_numpad1)) {
-		RoomLoader.take_screenshot(rm_demo_benchmark_load_01);
-	}
-	if (keyboard_check_pressed(vk_numpad2)) {
-		RoomLoader.data_clear();
-	}
 };
 draw = function() {
 	flags.draw();
