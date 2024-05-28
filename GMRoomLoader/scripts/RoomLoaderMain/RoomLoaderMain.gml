@@ -213,7 +213,7 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region data miscellaneous
+	#region data status/getters
 	
 	/// @param {Asset.GMRoom} room The room to check.
 	/// @returns {Bool}
@@ -222,6 +222,28 @@ function RoomLoader() constructor {
 	static data_is_initialized = function(_room) {
 		__roomloader_catch_nonroom(__message_prefix, "data_is_initialized", _room, $"check whether data is initialized for");
 		return (__data.__get(_room) != undefined);
+	};
+	
+	/// @param {Asset.GMRoom} room The room to get the width for.
+	/// @returns {Bool}
+	/// @desc Returns the width of the given room.
+	/// @context RoomLoader
+	static data_get_width = function(_room) {
+		static _method_name = "data_get_width";
+		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, $"get room width for");
+		var _data = __get_load_data(_room, _method_name, "load", "get their widths");
+		return _data.__width;
+	};
+	
+	/// @param {Asset.GMRoom} room The room to get the height for.
+	/// @returns {Bool}
+	/// @desc Returns the height of the given room.
+	/// @context RoomLoader
+	static data_get_height = function(_room) {
+		static _method_name = "data_get_height";
+		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, $"get room height for");
+		var _data = __get_load_data(_room, _method_name, "load", "get their heights");
+		return _data.__height;
 	};
 	
 	#endregion
