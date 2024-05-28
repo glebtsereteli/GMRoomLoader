@@ -225,7 +225,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get the width for.
-	/// @returns {Bool}
+	/// @returns {Real}
 	/// @desc Returns the width of the given room.
 	/// @context RoomLoader
 	static data_get_width = function(_room) {
@@ -236,7 +236,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get the height for.
-	/// @returns {Bool}
+	/// @returns {Real}
 	/// @desc Returns the height of the given room.
 	/// @context RoomLoader
 	static data_get_height = function(_room) {
@@ -300,7 +300,7 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static load_instances_depth = function(_room, _x, _y, _depth, _origin = ROOMLOADER_DEFAULT_ORIGIN) {
 		static _method_name = "load_instances_depth";
-		var _data = __get_load_data(_room, "load_instances_depth", "load instances for", "load their instances");
+		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
 		
 		__benchmark.__start();
 		var _instances = __roomloader_load_instances(_x, _y, _data, _origin, instance_create_depth, _depth);
@@ -332,6 +332,7 @@ function RoomLoader() constructor {
 			__layer_whitelist.__remove(argument[_i]);
 			_i++;
 		}
+		return self;
 	};
 	
 	/// @returns {Struct.RoomLoader}

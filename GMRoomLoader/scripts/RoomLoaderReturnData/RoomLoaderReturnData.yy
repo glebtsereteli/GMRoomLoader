@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"RoomLoaderReturnData",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/GMRoomLoader/Scripts.yy",
+    "name":"Core",
+    "path":"folders/GMRoomLoader/Scripts/Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

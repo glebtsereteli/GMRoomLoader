@@ -27,7 +27,8 @@ function RoomLoaderReturnData(_room) constructor {
 			array_foreach(__ids, _callback);
 		};
 	};
-	
+	static __message_prefix = "RoomLoaderReturnData";
+
 	__room = _room;
 	__layers = new __Container(layer_destroy);
 	__instances = {
@@ -43,8 +44,6 @@ function RoomLoaderReturnData(_room) constructor {
 	__sequences = new __Container(layer_sequence_destroy);
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleaned_up = false;
-	
-	static __message_prefix = "RoomLoaderReturnData";
 	
 	#endregion
 	

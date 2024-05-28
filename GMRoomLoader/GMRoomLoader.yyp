@@ -56,6 +56,7 @@
     {"$GMFolder":"","%Name":"Notes","folderPath":"folders/GMRoomLoader/Notes.yy","name":"Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/GMRoomLoader/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"__Internal","folderPath":"folders/GMRoomLoader/Scripts/__Internal.yy","name":"__Internal","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Core","folderPath":"folders/GMRoomLoader/Scripts/Core.yy","name":"Core","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[],
   "isEcma":false,
