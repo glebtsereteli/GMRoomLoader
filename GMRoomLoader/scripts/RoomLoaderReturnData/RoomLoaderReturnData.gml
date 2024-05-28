@@ -50,8 +50,8 @@ function RoomLoaderReturnData(_room) constructor {
 	#region getters
 	
 	/// @param {String} layer_name Thes layer name to search for.
-	/// @returns {Id.Layer}
-	/// @desc Returns the layer ID matching the given name.
+	/// @returns {Id.Layer,undefined}
+	/// @desc Returns the layer ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_layer = function(_name) {
 		__roomloader_catch_string(__message_prefix, "get_layer", _name, "get a Layer ID from the", "name");
@@ -73,8 +73,8 @@ function RoomLoaderReturnData(_room) constructor {
 	};
 	
 	/// @param {String} layer_name The Tilemap layer name to search for.
-	/// @returns {Id.Tilemap}
-	/// @desc Returns the Tilemap ID matching the given layer name.
+	/// @returns {Id.Tilemap,undefined}
+	/// @desc Returns the Tilemap ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_tilemap = function(_layer_name) {
 		__roomloader_catch_string(__message_prefix, "get_tilemap", _layer_name, "get a Tilemap ID from the", "layer name");
@@ -89,8 +89,8 @@ function RoomLoaderReturnData(_room) constructor {
 	};
 	
 	/// @param {String} name The Sprite name to search for.
-	/// @returns {Id.Sprite}
-	/// @desc Returns the Sprite ID matching the given name.
+	/// @returns {Id.Sprite,undefined}
+	/// @desc Returns the Sprite ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_sprite = function(_name) {
 		__roomloader_catch_string(__message_prefix, "_name", _name, "get a Sprite ID from the", "name");
@@ -105,8 +105,8 @@ function RoomLoaderReturnData(_room) constructor {
 	};
 	
 	/// @param {String} name The Particle System name to search for.
-	/// @returns {Id.ParticleSystem}
-	/// @desc Returns the created Particle System ID matching the given name.
+	/// @returns {Id.ParticleSystem,undefined}
+	/// @desc Returns the created Particle System ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_particle_system = function(_name) {
 		__roomloader_catch_string(__message_prefix, "get_particle_system", _name, "get a Particle System ID from the", "name");
@@ -121,8 +121,8 @@ function RoomLoaderReturnData(_room) constructor {
 	};
 	
 	/// @param {String} name The Sequence name to search for.
-	/// @returns {Id.Sequence}
-	/// @desc Returns the created Sequence ID matching the given name.
+	/// @returns {Id.Sequence,undefined}
+	/// @desc Returns the created Sequence ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_sequence = function(_name) {
 		__roomloader_catch_string(__message_prefix, "get_sequence", _name, "get a Sequence ID from the", "name");
@@ -138,7 +138,7 @@ function RoomLoaderReturnData(_room) constructor {
 	
 	/// @param {String} layer_name The Background layer name to search for.
 	/// @returns {Id.Background}
-	/// @desc Returns the created Background ID matching the given layer name.
+	/// @desc Returns the created Background ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_background = function(_layer_name) {
 		__roomloader_catch_string(__message_prefix, "get_background", _layer_name, "get a Background ID from the", "layer name");

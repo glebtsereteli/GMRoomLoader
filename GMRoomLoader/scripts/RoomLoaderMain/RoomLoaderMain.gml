@@ -106,8 +106,7 @@ function RoomLoader() constructor {
 	
 	/// @param {String} prefix The prefix to filter rooms with.
 	/// @returns {Array<Asset.GMRoom>}
-	/// @desc Initializes data for all rooms starting with the given prefix,
-	/// returns an array of filtered rooms.
+	/// @desc Initializes data for all rooms starting with the given prefix, returns an array of found rooms.
 	/// @context RoomLoader
 	static data_init_prefix = function(_prefix) {
 		static _method_name = "data_init_prefix";

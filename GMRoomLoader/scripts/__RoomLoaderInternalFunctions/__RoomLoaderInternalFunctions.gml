@@ -34,8 +34,7 @@ function __roomloader_load_instances(_x, _y, _data, _origin, _create_func, _crea
 	
 	var _xoffs = __roomloader_get_offset_x(_x, _data.__width, _origin);
 	var _yoffs = __roomloader_get_offset_y(_y, _data.__height, _origin);
-	_data = _data.__instances_data;
-	return _func(_data, _create_func, _create_data, _xoffs, _yoffs);
+	return _func(_data.__instances_data, _create_func, _create_data, _xoffs, _yoffs);
 }
 function __roomloader_get_offset_x(_x, _width, _origin) {
 	static _offsets = [
