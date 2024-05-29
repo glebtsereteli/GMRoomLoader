@@ -85,9 +85,9 @@ function __RoomLoaderData(_room) constructor {
 		
 		__instances_init_lookup = undefined;
 	};
-	static __load = function(_x, _y, _origin, _flags) {
-		_x = __roomloader_get_offset_x(_x, __width, _origin);
-		_y = __roomloader_get_offset_y(_y, __height, _origin);
+	static __load = function(_x, _y, _xorigin, _yorigin, _flags) {
+		_x -= (__width * _xorigin);
+		_y -= (__height * _yorigin);
 		
 		RoomLoader.__return_data.__instances.__ids = array_create(array_length(__instances_data), noone);
 		
@@ -102,7 +102,7 @@ function __RoomLoaderData(_room) constructor {
 		
 		return RoomLoader.__return_data;
 	};
-	static __take_screenshot = function(_origin, _flags) {
+	static __take_screenshot = function(_xorigin, _yorigin, _flags) {
 		var _surf = surface_create(__width, __height);
 		
 		surface_set_target(_surf); {
@@ -122,10 +122,10 @@ function __RoomLoaderData(_room) constructor {
 			surface_reset_target();
 		}
 		
-		var _xorigin = __roomloader_get_offset_x(0, -__width, _origin);
-		var _yorigin = __roomloader_get_offset_y(0, -__height, _origin);
+		_xorigin *= __width;
+		_yorigin *= __height;
 		var _sprite = sprite_create_from_surface(_surf, 0, 0, __width, __height, false, false, _xorigin, _yorigin);
-		
+		 
 		surface_free(_surf);
 		return _sprite;
 	};
@@ -139,14 +139,14 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __failed_filters = function() {
 		return RoomLoader.__layer_failed_filters(__layer_data.name);
 	};
-	static __load = function(_xoffs, _yoffs, _flags) {
+	static __load = function(_xoffset, _yoffset, _flags) {
 		if (not __roomloader_check_flags(_flags)) return undefined;
 		if (__failed_filters()) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
 		
-		__on_load(_layer, _xoffs, _yoffs, _flags);
+		__on_load(_layer, _xoffset, _yoffset, _flags);
 	};
 	static __draw = function(_flags) {
 		if (not __layer_data.visible) return;
@@ -165,19 +165,19 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		return __owner.__instances_init_lookup[$ _inst_data.inst_id];
 	};
 	
-	static __on_load_cc = function(_layer, _xoffs, _yoffs, _flags) {
+	static __on_load_cc = function(_layer, _xoffset, _yoffset, _flags) {
 		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
 			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
 			with (_inst) {
 				script_execute(_inst_data.creation_code);
 			}
 			_instances[_index] = _inst;
-		__ROOMLOADER_INSTANCE_ONLOAD_END_FULL
+		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
-	static __on_load_nocc = function(_layer, _xoffs, _yoffs, _flags) {
+	static __on_load_nocc = function(_layer, _xoffset, _yoffset, _flags) {
 		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
 			_instances[_index] = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
-		__ROOMLOADER_INSTANCE_ONLOAD_END_FULL
+		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
 	static __on_load = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
 	static __on_draw = function() {
@@ -200,11 +200,11 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SPRITES;
 		
-		static __load = function(_layer, _xoffs, _yoffs, _flags) {
+		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
-			var _x = __data.x + _xoffs;
-			var _y = __data.y + _yoffs;
+			var _x = __data.x + _xoffset;
+			var _y = __data.y + _yoffset;
 			var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
 			layer_sprite_index(_sprite, __data.image_index);
 			layer_sprite_xscale(_sprite, __data.image_xscale);
@@ -233,13 +233,13 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		
-		static __load = function(_layer, _xoffs, _yoffs, _flags) {
+		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
 			_layer = layer_get_name(_layer); // [@TEMP] Bugfix, remove in 2024.6.
 			var _particle_system = part_system_create_layer(_layer, false, __data.ps);
-			var _x = __data.x + _xoffs;
-			var _y = __data.y + _yoffs;
+			var _x = __data.x + _xoffset;
+			var _y = __data.y + _yoffset;
 			part_system_position(_particle_system, _x, _y);
 			part_system_color(_particle_system, __data.blend, __data.alpha)
 			part_system_angle(_particle_system, __data.angle);
@@ -256,11 +256,11 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SEQUENCES;
 		
-		static __load = function(_layer, _xoffs, _yoffs, _flags) {
+		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
-			var _x = __data.x + _xoffs;
-			var _y = __data.y + _yoffs;
+			var _x = __data.x + _xoffset;
+			var _y = __data.y + _yoffset;
 			var _sequence = layer_sequence_create(_layer, _x, _y, __data.seq_id);
 			layer_sequence_headpos(_sequence, __data.head_position);
 			layer_sequence_xscale(_sequence, __data.image_xscale);
@@ -292,12 +292,12 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			_i++;
 		}
 	};
-	static __load = function(_xoffs, _yoffs, _flags) {
+	static __load = function(_xoffset, _yoffset, _flags) {
 		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
 		var _layer = __roomloader_create_layer(__layer_data);
 		var _i = 0; repeat (array_length(__data)) {
-			__data[_i].__load(_layer, _xoffs, _yoffs, _flags);
+			__data[_i].__load(_layer, _xoffset, _yoffset, _flags);
 			_i++;
 		}
 		
@@ -355,8 +355,8 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		
 		return _tilemap;
 	};
-	static __on_load = function(_layer, _xoffs, _yoffs) {
-		var _tilemap = __create_tilemap(_layer, _xoffs, _yoffs);
+	static __on_load = function(_layer, _xoffset, _yoffset) {
+		var _tilemap = __create_tilemap(_layer, _xoffset, _yoffset);
 		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
 	};
 	static __on_draw = function() {
@@ -374,7 +374,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 	__owner = other;
 	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	
-	static __on_load = function(_layer, _xoffs, _yoffs, _flags, _return_data) {
+	static __on_load = function(_layer, _xoffset, _yoffset, _flags, _return_data) {
 		var _bg = layer_background_create(_layer, __bg_data.sprite_index);
 		layer_background_visible(_bg, __bg_data.visible);
 		layer_background_htiled(_bg, __bg_data.htiled);
@@ -408,8 +408,8 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		
 		var _room_width = __owner.__width;
 		var _room_height = __owner.__height;
-		var _xoffs = __layer_data.xoffset;
-		var _yoffs = __layer_data.yoffset;
+		var _xoffset = __layer_data.xoffset;
+		var _yoffset = __layer_data.yoffset;
 		
 		with (__bg_data) {
 			var _sprite = sprite_index;
@@ -417,11 +417,11 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 			
 			var _width = (stretch ? _room_width : sprite_get_width(_sprite));
 			var _height = (stretch ? _room_height : sprite_get_height(_sprite));
-			var _y1 = (vtiled ? (-_height + ((abs(_yoffs) mod _height) * sign(_yoffs))) : _yoffs);
+			var _y1 = (vtiled ? (-_height + ((abs(_yoffset) mod _height) * sign(_yoffset))) : _yoffset);
 			var _ny = (_room_height div _height) + 2;
 			
 			if (htiled) {
-				var _x1 = -_width + ((abs(_xoffs) mod _width) * sign(_xoffs));
+				var _x1 = -_width + ((abs(_xoffset) mod _width) * sign(_xoffset));
 				var _nx = (_room_width div _width) + 2;
 				for (var _i = 0; _i < _nx; _i++) {
 					var _x = _x1 + (_i * _width);
@@ -432,10 +432,10 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 				}
 			}
 			else if (vtiled) {
-				_vtiled(_sprite, _xoffs, _y1, _width, _height, _ny);
+				_vtiled(_sprite, _xoffset, _y1, _width, _height, _ny);
 			}
 			else {
-				draw_sprite_stretched_ext(_sprite, image_index, _xoffs, _yoffs, _width, _height, blendColour, blendAlpha);	
+				draw_sprite_stretched_ext(_sprite, image_index, _xoffset, _yoffset, _width, _height, blendColour, blendAlpha);	
 			}
 		}
 	};

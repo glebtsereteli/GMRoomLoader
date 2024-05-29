@@ -2,26 +2,20 @@ EVENT_CONSTRUCTOR;
 EVENT_METHOD;
 
 origin = {
-	value: ROOMLOADER_ORIGIN.TOP_LEFT,
+	x: 0,
+	y: 0,
 	
 	update: function() {
-		static _get = function() {
-			switch (keyboard_key) {
-				case vk_numpad7: return ROOMLOADER_ORIGIN.TOP_LEFT;
-				case vk_numpad8: return ROOMLOADER_ORIGIN.TOP_CENTER;
-				case vk_numpad9: return ROOMLOADER_ORIGIN.TOP_RIGHT;
-				case vk_numpad4: return ROOMLOADER_ORIGIN.MIDDLE_LEFT;
-				case vk_numpad5: return ROOMLOADER_ORIGIN.MIDDLE_CENTER;
-				case vk_numpad6: return ROOMLOADER_ORIGIN.MIDDLE_RIGHT;
-				case vk_numpad1: return ROOMLOADER_ORIGIN.BOTTOM_LEFT;
-				case vk_numpad2: return ROOMLOADER_ORIGIN.BOTTOM_CENTER;
-				case vk_numpad3: return ROOMLOADER_ORIGIN.BOTTOM_RIGHT;
-			}
-		};
-		value = (_get() ?? value);
+		var _step = 0.1;
+		
+		var _xinput = (keyboard_check_pressed(vk_right) - keyboard_check_pressed(vk_left));
+		x = clamp(x + (_xinput * _step), 0, 1);
+		
+		var _yinput = (keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up));
+		y = clamp(y - (_yinput * _step), 0, 1);
 	},
-	get: function() {
-		return value;
+	get_message: function() {
+		return $"Origin: {string_format(x, 1, 2)}x{string_format(y, 1, 2)}";
 	},
 };
 flags = {
@@ -46,7 +40,7 @@ flags = {
 			pool[_i].update();
 		}
 	},
-	draw: function() {
+	get_message: function() {
 		var _value = 0;
 		var _message = "Flags:";
 		
@@ -62,10 +56,7 @@ flags = {
 			_message += " None";
 		}
 		
-		draw_set_valign(fa_bottom);
-		var _pad = 16;
-		draw_text(_pad, room_height - _pad, _message);
-		draw_set_valign(fa_top);
+		return _message;
 	},
 	get: function() {
 		var _value = ROOMLOADER_FLAG.NONE;

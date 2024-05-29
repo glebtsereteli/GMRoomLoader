@@ -33,7 +33,7 @@ screenshot = {
 			room_ref = script_execute_ext(choose, rooms);
 		} until (room_ref != _prev);
 		
-		sprite = RoomLoader.take_screenshot(room_ref, ROOMLOADER_ORIGIN.MIDDLE_CENTER);
+		sprite = RoomLoader.take_screenshot(room_ref, 0.5, 0.5);
 		return room_ref;
 	},
 };

@@ -6,8 +6,12 @@
 // String prefix added to RoomLoader-created layers.
 #macro ROOMLOADER_LAYER_PREFIX "__roomloader__"
 
-// Default origin used by RoomLoader's load methods.
-#macro ROOMLOADER_DEFAULT_ORIGIN ROOMLOADER_ORIGIN.TOP_LEFT
+// Default origins used by RoomLoader's loading and screenshotting.
+// Origins range from 0 to 1 (full size).
+// For x: 0 is left, 0.5 is center, 1 is right.
+// For y: 0 is top, 0.5 is center, 1 is bottom.
+#macro ROOMLOADER_DEFAULT_XORIGIN 0
+#macro ROOMLOADER_DEFAULT_YORIGIN 0
 
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
