@@ -1,7 +1,7 @@
 /// @feather ignore all
 
-#macro __ROOMLOADER_VERSION "v1.6.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "07.03.2024" // day.month.year
+#macro __ROOMLOADER_VERSION "v1.7.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "30.05.2024" // day.month.year
 #macro __ROOMLOADER_LOG_PREFIX "[GMRoomLoader]"
 
 #region loading
