@@ -196,7 +196,7 @@ function RoomLoader() constructor {
 	/// @context RoomLoader
 	static data_remove_prefix = function(_prefix) {
 		static _method_name = "data_remove_prefix";
-		
+		 
 		__roomloader_catch_string(__message_prefix, _method_name, _prefix);
 		
 		var _removed = false;
@@ -217,6 +217,27 @@ function RoomLoader() constructor {
 		}
 		
 		return self;
+	};
+	
+	/// @param {String} tag The tag to extract rooms from.
+	/// @returns {Array<Asset.GMRoom>}
+	/// @desc Removes data for all rooms with the given tag assigned.
+	/// @context RoomLoader
+	static data_remove_tag = function(_tag) {
+		static _method_name = "data_remove_tag";
+		__roomloader_catch_string(__message_prefix, _method_name, _tag);
+		
+		var _rooms = tag_get_asset_ids(_tag, asset_room);
+		var _n = array_length(_rooms);
+		if (_n == 0) {
+			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			return _rooms;
+		}
+		
+		var _i = 0; repeat (_n) {
+			__data.__remove(_rooms[_i], _method_name);
+			_i++;
+		}
 	};
 	
 	/// @returns {Struct.RoomLoader}
