@@ -30,7 +30,7 @@ update = function() {
 		}
 	}
 	
-	// Cleanup all rooms:
+	// Clean up all rooms:
 	if (keyboard_check_pressed(vk_backspace)) {
 		with (room_obj) {
 			cleanup(true);

@@ -4,7 +4,7 @@
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a statically-initialized constructor, it should NOT be explicitly instantiated.
+/// NOTE: This is a statically initialized constructor, it should NOT be explicitly instantiated.
 /// All methods are to be called as follows: RoomLoader.action(<arguments>).
 function RoomLoader() constructor {
 	#region __private
@@ -220,7 +220,7 @@ function RoomLoader() constructor {
 	};
 	
 	/// @param {String} tag The tag to extract rooms from.
-	/// @returns {Array<Asset.GMRoom>}
+	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all rooms with the given tag assigned.
 	/// @context RoomLoader
 	static data_remove_tag = function(_tag) {
@@ -230,18 +230,19 @@ function RoomLoader() constructor {
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
-			return _rooms;
+			return __roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 		}
 		
 		var _i = 0; repeat (_n) {
 			__data.__remove(_rooms[_i], _method_name);
 			_i++;
 		}
+	
+		return self;
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Removes all initialized room data.
+	/// @desc Clears all initialized room data.
 	/// @context RoomLoader
 	static data_clear = function() {
 		static _method_name = "data_clear";

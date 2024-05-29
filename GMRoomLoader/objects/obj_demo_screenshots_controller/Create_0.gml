@@ -6,10 +6,7 @@ screenshot = {
 	sprite: undefined,
 	
 	init: function() {
-		rooms = array_filter(asset_get_ids(asset_room), function(_room) {
-			var _name = room_get_name(_room);
-			return (string_pos("rm_demo_base_", _name) > 0);
-		});
+		rooms = tag_get_asset_ids("base_rooms", asset_room);
 	},
 	draw: function() {
 		if (sprite == undefined) return;
