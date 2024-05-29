@@ -450,7 +450,7 @@ function RoomLoader() constructor {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the drawn elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
 		static _method_name = "take_screenshot";
 		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
 		
