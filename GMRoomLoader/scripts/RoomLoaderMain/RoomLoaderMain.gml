@@ -106,7 +106,7 @@ function RoomLoader() constructor {
 	
 	/// @param {String} prefix The prefix to filter rooms with.
 	/// @returns {Array<Asset.GMRoom>}
-	/// @desc Initializes data for all rooms starting with the given prefix, returns an array of found rooms.
+	/// @desc Initializes data for all rooms starting with the given prefix. Returns an array of found rooms.
 	/// @context RoomLoader
 	static data_init_prefix = function(_prefix) {
 		static _method_name = "data_init_prefix";
@@ -125,6 +125,29 @@ function RoomLoader() constructor {
 		var _n = array_length(_rooms);
 		if (_n == 0) {
 			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			return _rooms;
+		}
+		
+		var _i = 0; repeat (_n) {
+			__data.__add(_rooms[_i], _method_name);
+			_i++;
+		}
+		
+		return _rooms;
+	};
+	
+	/// @param {String} tag The tag to extract rooms from.
+	/// @returns {Array<Asset.GMRoom>}
+	/// @desc Initializes data for all rooms with the given tag assigned. Returns an array of found rooms.
+	/// @context RoomLoader
+	static data_init_tag = function(_tag) {
+		static _method_name = "data_init_tag";
+		__roomloader_catch_string(__message_prefix, _method_name, _tag);
+		
+		var _rooms = tag_get_asset_ids(_tag, asset_room);
+		var _n = array_length(_rooms);
+		if (_n == 0) {
+			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 			return _rooms;
 		}
 		
