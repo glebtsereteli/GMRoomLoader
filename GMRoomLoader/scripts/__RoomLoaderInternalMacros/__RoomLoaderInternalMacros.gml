@@ -1,9 +1,12 @@
 /// @feather ignore all
 
+#region info
+
 #macro __ROOMLOADER_VERSION "v1.7.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "30.05.2024" // day.month.year
+#macro __ROOMLOADER_DATE "31.05.2024" // day.month.year
 #macro __ROOMLOADER_LOG_PREFIX "[GMRoomLoader]"
 
+#endregion
 #region loading
 
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START_FULL \
@@ -28,11 +31,6 @@
 		_index++; \
 	} \
 	_return_data.__index = _index;
-
-#endregion
-#region misc
-
-#macro __ROOMLOADER_METHOD_NAME string_copy(_GMFUNCTION_, 12, string_pos("@", _GMFUNCTION_) - 12)
 
 #endregion
 
