@@ -102,7 +102,7 @@ function __RoomLoaderData(_room) constructor {
 		
 		return RoomLoader.__return_data;
 	};
-	static __take_screenshot = function(_xorigin, _yorigin, _scale, _flags) {
+	static __take_screenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xorigin, _yorigin, _scale, _flags) {
         var _scaled = (_scale != 1);
 		var _width = (__width * _scale);
 		var _height = (__height * _scale);
@@ -138,9 +138,14 @@ function __RoomLoaderData(_room) constructor {
         }
         
         // Generate sprite:
-		_xorigin *= _width;
-		_yorigin *= _height;
-        var _sprite = sprite_create_from_surface(_final_surf, 0, 0, _width, _height, false, false, _xorigin, _yorigin);
+		_width = (_pwidth01 * _width);
+		_height = (_pheight01 * _height);
+        var _sprite = sprite_create_from_surface(_final_surf, 
+			(_pleft01 * _width), (_ptop01 * _height), 
+			_width, _height, 
+			false, false, 
+			(_xorigin * _width), (_yorigin * _height)
+		);
         
         // Cleanup & return:
         surface_free(_raw_surf);
