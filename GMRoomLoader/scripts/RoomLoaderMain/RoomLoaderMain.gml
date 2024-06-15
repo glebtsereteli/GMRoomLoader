@@ -439,23 +439,24 @@ function RoomLoader() constructor {
 	};
 	
 	#endregion
-	#region misc
+	#region screenshotting
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room's instances at.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room's instances at.
+	/// @param {Real} scale=[1] The scale to create the sprite at.
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the drawn elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_FLAG.ALL) {
+	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
 		static _method_name = "take_screenshot";
 		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
 		
 		__benchmark.__start();
-		var _screenshot = _data.__take_screenshot(_xorigin, _yorigin, _flags);
+		var _screenshot = _data.__take_screenshot(_xorigin, _yorigin, _scale, _flags);
 		__roomloader_log_method_timed(__message_prefix, _method_name, "screenshotted", _room);
 		return _screenshot;
 	};

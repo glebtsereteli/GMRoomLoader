@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"RoomLoaderEnums",
   "isCompatibility":false,
   "isDnD":false,

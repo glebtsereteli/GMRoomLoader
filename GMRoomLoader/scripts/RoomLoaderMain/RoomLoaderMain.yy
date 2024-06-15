@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"RoomLoaderMain",
   "isCompatibility":false,
   "isDnD":false,

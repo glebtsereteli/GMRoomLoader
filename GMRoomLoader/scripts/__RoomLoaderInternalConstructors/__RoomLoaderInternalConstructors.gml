@@ -102,33 +102,53 @@ function __RoomLoaderData(_room) constructor {
 		
 		return RoomLoader.__return_data;
 	};
-	static __take_screenshot = function(_xorigin, _yorigin, _flags) {
-		var _surf = surface_create(__width, __height);
-		
-		surface_set_target(_surf); {
-			draw_clear_alpha(c_black, 0);
+	static __take_screenshot = function(_xorigin, _yorigin, _scale, _flags) {
+        var _scaled = (_scale != 1);
+		var _width = (__width * _scale);
+		var _height = (__height * _scale);
+        
+        // Raw surface, room contents:
+        var _raw_surf = surface_create(__width, __height);
+        surface_set_target(_raw_surf); {
+            draw_clear_alpha(c_black, 0);
 			
-			var _bm = gpu_get_blendmode_ext_sepalpha();
-			gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
+	        var _bm = gpu_get_blendmode_ext_sepalpha();
+	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
 			
-			var _i = array_length(__data);
-			while (_i--) {
-				with (__data[_i]) {
-					__draw(_flags);
-				}
-			}
+            var _i = array_length(__data);
+            while (_i--) { 
+                with (__data[_i]) {
+                    __draw(_flags);
+                }
+            }
 			
 			script_execute_ext(gpu_set_blendmode_ext_sepalpha, _bm);
-			surface_reset_target();
+            surface_reset_target();
+        }
+        
+        // Final (scaled) surface:
+        var _final_surf = _raw_surf;
+        if (_scaled) {
+            _final_surf = surface_create(_width, _height);
+            surface_set_target(_final_surf); {
+                draw_clear_alpha(c_black, 0);
+                draw_surface_stretched(_raw_surf, 0, 0, _width, _height);
+                surface_reset_target();
+            }
+        }
+        
+        // Generate sprite:
+		_xorigin *= _width;
+		_yorigin *= _height;
+        var _sprite = sprite_create_from_surface(_final_surf, 0, 0, _width, _height, false, false, _xorigin, _yorigin);
+        
+        // Cleanup & return:
+        surface_free(_raw_surf);
+        if (_scaled) {
+			surface_free(_final_surf);	
 		}
-		
-		_xorigin *= __width;
-		_yorigin *= __height;
-		var _sprite = sprite_create_from_surface(_surf, 0, 0, __width, __height, false, false, _xorigin, _yorigin);
-		 
-		surface_free(_surf);
-		return _sprite;
-	};
+        return _sprite;
+    };
 	
 	__init();
 };
