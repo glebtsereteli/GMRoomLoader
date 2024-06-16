@@ -41,6 +41,7 @@
     {"name":"__Internal","order":5,"path":"folders/GMRoomLoader/Scripts/__Internal.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"fnt_demo_text","order":2,"path":"fonts/fnt_demo_text/fnt_demo_text.yy",},
     {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
     {"name":"obj_demo_base_unit_look","order":1,"path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},
     {"name":"obj_demo_base_unit_patrol","order":2,"path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},

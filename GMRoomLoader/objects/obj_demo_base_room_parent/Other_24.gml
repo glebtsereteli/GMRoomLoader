@@ -15,7 +15,7 @@ load = function(_all) {
 	(_all ? index.shuffle : index.progress)();
 	
 	var _room = asset_get_index($"rm_demo_base_{vd_name}_0{index.value}");
-	var _data = RoomLoader.load(_room, x + 4, y + 4);
+	var _data = RoomLoader.load(_room, x + 4, y + 4, 0, 0, ROOMLOADER_FLAG.CORE | ROOMLOADER_FLAG.TEXTS);
 	data.set(_data);
 	fill.click(c_orange, 0.3);
 };

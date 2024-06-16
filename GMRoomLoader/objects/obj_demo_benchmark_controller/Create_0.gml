@@ -25,6 +25,7 @@ flags = {
 		new Flag("Sprites", ROOMLOADER_FLAG.SPRITES),
 		new Flag("Particle Systems", ROOMLOADER_FLAG.PARTICLE_SYSTEMS),
 		new Flag("Sequences", ROOMLOADER_FLAG.SEQUENCES),
+		new Flag("Texts", ROOMLOADER_FLAG.TEXTS),
 		new Flag("Backgrounds", ROOMLOADER_FLAG.BACKGROUNDS),
 	],
 	n: undefined,

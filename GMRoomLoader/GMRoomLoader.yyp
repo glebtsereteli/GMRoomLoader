@@ -66,6 +66,7 @@
   },
   "name":"GMRoomLoader",
   "resources":[
+    {"id":{"name":"fnt_demo_text","path":"fonts/fnt_demo_text/fnt_demo_text.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"RoomLoaderLicence","path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},},
     {"id":{"name":"obj_demo_base_controller","path":"objects/obj_demo_base_controller/obj_demo_base_controller.yy",},},

@@ -42,6 +42,7 @@ function RoomLoaderReturnData(_room) constructor {
 	__sprites = new __Container(layer_sprite_destroy);
 	__particle_systems = new __Container(part_system_destroy);
 	__sequences = new __Container(layer_sequence_destroy);
+	__texts = new __Container(layer_text_destroy);
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleaned_up = false;
 	
@@ -173,6 +174,7 @@ function RoomLoaderReturnData(_room) constructor {
 		__sprites.__destroy();
 		__particle_systems.__destroy();
 		__sequences.__destroy();
+		__texts.__destroy();
 		__backgrounds.__destroy();
 		__layers.__destroy();
 		__cleaned_up = true;

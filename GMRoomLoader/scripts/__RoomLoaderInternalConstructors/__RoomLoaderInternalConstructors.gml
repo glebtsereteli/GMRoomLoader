@@ -48,7 +48,8 @@ function __RoomLoaderData(_room) constructor {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
 				case layerelementtype_sequence:
-				case layerelementtype_particlesystem: return __RoomLoaderDataLayerAsset;
+				case layerelementtype_particlesystem:
+				case layerelementtype_text: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTilemap;
 				case layerelementtype_background: return __RoomLoaderDataLayerBackground;
 			}
@@ -299,6 +300,35 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		}
 		static __draw = __roomloader_noop;
 	};
+	static __DataText = function(_data) constructor {
+		__data = _data;
+		__flag = ROOMLOADER_FLAG.TEXTS;
+		
+		static __load = function(_layer, _xoffset, _yoffset, _flags) {
+			if (not __roomloader_check_flags(_flags)) return undefined;
+			
+			var _x = __data.x + _xoffset;
+			var _y = __data.y + _yoffset;
+			var _text = layer_text_create(_layer, _x, _y, __data.font_index, __data.text);
+			layer_text_xscale(_text, __data.xscale);
+			layer_text_yscale(_text, __data.xscale);
+			layer_text_angle(_text, __data.angle);
+			layer_text_halign(_text, __data.h_align);
+			layer_text_valign(_text, __data.v_align);
+			layer_text_charspacing(_text, __data.char_spacing);
+			layer_text_linespacing(_text, __data.line_spacing);
+			layer_text_framew(_text, __data.frame_width);
+			layer_text_frameh(_text, __data.frame_height);
+			layer_text_wrap(_text, __data.wrap);
+			layer_text_xorigin(_text, __data.xorigin);
+			layer_text_yorigin(_text, __data.yorigin);
+			layer_text_blend(_text, __data.blend);
+			layer_text_alpha(_text, __data.alpha);
+			
+			RoomLoader.__return_data.__texts.__add(_text, __data.name);
+		}
+		static __draw = __roomloader_noop;
+	};
 	
 	__data = _data;
 	
@@ -310,6 +340,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				case layerelementtype_sprite: _constructor = __DataSprite; break;
 				case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
 				case layerelementtype_sequence: _constructor = __DataSequence; break;
+				case layerelementtype_text: _constructor = __DataText; break;
 			}
 			if (_constructor != undefined) {
 				__data[_i] = new _constructor(_data);
