@@ -4,7 +4,8 @@
 
 #macro __ROOMLOADER_VERSION "v1.7.0" // major.minor.patch
 #macro __ROOMLOADER_DATE "31.05.2024" // day.month.year
-#macro __ROOMLOADER_LOG_PREFIX "[GMRoomLoader]"
+#macro __ROOMLOADER_NAME "GMRoomLoader"
+#macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
 
 #endregion
 #region loading
@@ -34,4 +35,4 @@
 
 #endregion
 
-show_debug_message($"{__ROOMLOADER_LOG_PREFIX} You're using GMRoomLoader {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) by Gleb Tsereteli.");
+show_debug_message($"{__ROOMLOADER_LOG_PREFIX} You're using {__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) by Gleb Tsereteli.");

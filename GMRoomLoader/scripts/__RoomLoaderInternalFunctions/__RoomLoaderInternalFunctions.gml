@@ -57,7 +57,7 @@ function __roomloader_log_method_timed(_prefix, _method_name, _message, _room) {
 }
 
 function __roomloader_error(_message) {
-	show_error($"[GMRoomLoader {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
+	show_error($"[{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
 }
 function __roomloader_error_method(_prefix, _method_name, _message) {
 	__roomloader_error($"{_prefix}.{_method_name}(): {_message}");
