@@ -234,8 +234,8 @@
   "maintainGms1Font":false,
   "name":"fnt_demo_text",
   "parent":{
-    "name":"GMRoomLoader",
-    "path":"GMRoomLoader.yyp",
+    "name":"Demo",
+    "path":"folders/Demo.yy",
   },
   "pointRounding":0,
   "ranges":[

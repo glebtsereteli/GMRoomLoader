@@ -5,4 +5,6 @@ init = function() {
 	randomize();
 	show_debug_overlay(true, true);
 	texture_prefetch("Default");
+	
+	instance_create_depth(0, 0, -15000, obj_demo_control);
 };
