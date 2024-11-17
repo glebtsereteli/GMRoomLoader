@@ -264,7 +264,6 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
-			_layer = layer_get_name(_layer); // [@TEMP] Bugfix, remove in 2024.6.
 			var _particle_system = part_system_create_layer(_layer, false, __data.ps);
 			var _x = __data.x + _xoffset;
 			var _y = __data.y + _yoffset;
@@ -458,19 +457,24 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	
 	static __on_load = function(_layer, _xoffset, _yoffset, _flags, _return_data) {
-		var _bg = layer_background_create(_layer, __bg_data.sprite_index);
-		layer_background_visible(_bg, __bg_data.visible);
-		layer_background_htiled(_bg, __bg_data.htiled);
-		layer_background_vtiled(_bg, __bg_data.vtiled);
-		layer_background_stretch(_bg, __bg_data.stretch);
-		layer_background_xscale(_bg, __bg_data.xscale);
-		layer_background_yscale(_bg, __bg_data.yscale);
-		layer_background_index(_bg, __bg_data.image_index);
-		layer_background_speed(_bg, __bg_data.image_speed);
-		layer_background_blend(_bg, __bg_data.blendColour);
-		layer_background_alpha(_bg, __bg_data.blendAlpha);
-		
-		RoomLoader.__return_data.__backgrounds.__add(_bg, __bg_data.name);
+		with (__bg_data) {
+			layer_x(_layer, layer_get_x(_layer) + _xoffset);
+			layer_y(_layer, layer_get_y(_layer) + _yoffset);
+			
+			var _bg = layer_background_create(_layer, sprite_index);
+			layer_background_visible(_bg, visible);
+			layer_background_htiled(_bg, htiled);
+			layer_background_vtiled(_bg, vtiled);
+			layer_background_stretch(_bg, stretch);
+			layer_background_xscale(_bg, xscale);
+			layer_background_yscale(_bg, yscale);
+			layer_background_index(_bg, image_index);
+			layer_background_speed(_bg, image_speed);
+			layer_background_blend(_bg, blendColour);
+			layer_background_alpha(_bg, blendAlpha);
+			
+			RoomLoader.__return_data.__backgrounds.__add(_bg, name);
+		}
 	};
 	static __on_draw = function() {
 		static _fill = function(_width, _height) {
