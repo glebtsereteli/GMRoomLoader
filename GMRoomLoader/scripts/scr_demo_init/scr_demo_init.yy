@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_demo_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_demo_init",
+  "parent":{
+    "name":"Init",
+    "path":"folders/Demo/Init.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

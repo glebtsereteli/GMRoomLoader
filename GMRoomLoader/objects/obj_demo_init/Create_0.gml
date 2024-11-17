@@ -1,3 +1,0 @@
-EVENT_METHOD;
-
-init();

@@ -62,7 +62,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.8.0.169",
+    "IDEVersion":"2024.8.1.171",
   },
   "name":"GMRoomLoader",
   "resources":[
@@ -79,7 +79,6 @@
     {"id":{"name":"obj_demo_benchmark_control","path":"objects/obj_demo_benchmark_control/obj_demo_benchmark_control.yy",},},
     {"id":{"name":"obj_demo_benchmark_parrot","path":"objects/obj_demo_benchmark_parrot/obj_demo_benchmark_parrot.yy",},},
     {"id":{"name":"obj_demo_control","path":"objects/obj_demo_control/obj_demo_control.yy",},},
-    {"id":{"name":"obj_demo_init","path":"objects/obj_demo_init/obj_demo_init.yy",},},
     {"id":{"name":"obj_demo_screenshots_control","path":"objects/obj_demo_screenshots_control/obj_demo_screenshots_control.yy",},},
     {"id":{"name":"pts_demo_benchmark_smoke","path":"particles/pts_demo_benchmark_smoke/pts_demo_benchmark_smoke.yy",},},
     {"id":{"name":"pth_demo_base_02_01_patrol_01","path":"paths/pth_demo_base_02_01_patrol_01/pth_demo_base_02_01_patrol_01.yy",},},
@@ -116,6 +115,7 @@
     {"id":{"name":"rm_demo_benchmark","path":"rooms/rm_demo_benchmark/rm_demo_benchmark.yy",},},
     {"id":{"name":"rm_demo_init","path":"rooms/rm_demo_init/rm_demo_init.yy",},},
     {"id":{"name":"rm_demo_screenshots","path":"rooms/rm_demo_screenshots/rm_demo_screenshots.yy",},},
+    {"id":{"name":"__RoomLoaderInit","path":"scripts/__RoomLoaderInit/__RoomLoaderInit.yy",},},
     {"id":{"name":"__RoomLoaderInternalConstructors","path":"scripts/__RoomLoaderInternalConstructors/__RoomLoaderInternalConstructors.yy",},},
     {"id":{"name":"__RoomLoaderInternalFunctions","path":"scripts/__RoomLoaderInternalFunctions/__RoomLoaderInternalFunctions.yy",},},
     {"id":{"name":"__RoomLoaderInternalMacros","path":"scripts/__RoomLoaderInternalMacros/__RoomLoaderInternalMacros.yy",},},
@@ -123,6 +123,7 @@
     {"id":{"name":"RoomLoaderEnums","path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},},
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
     {"id":{"name":"RoomLoaderReturnData","path":"scripts/RoomLoaderReturnData/RoomLoaderReturnData.yy",},},
+    {"id":{"name":"scr_demo_init","path":"scripts/scr_demo_init/scr_demo_init.yy",},},
     {"id":{"name":"scr_demo_utility","path":"scripts/scr_demo_utility/scr_demo_utility.yy",},},
     {"id":{"name":"seq_demo_benchmark_01","path":"sequences/seq_demo_benchmark_01/seq_demo_benchmark_01.yy",},},
     {"id":{"name":"spr_demo_base_bg","path":"sprites/spr_demo_base_bg/spr_demo_base_bg.yy",},},

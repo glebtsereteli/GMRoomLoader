@@ -1,2 +1,2 @@
 
-room_goto(rm_demo_benchmark);
+room_goto(rm_demo_screenshots);

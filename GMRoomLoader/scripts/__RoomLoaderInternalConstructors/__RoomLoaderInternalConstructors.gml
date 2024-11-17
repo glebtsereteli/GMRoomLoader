@@ -229,18 +229,20 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
-			var _x = __data.x + _xoffset;
-			var _y = __data.y + _yoffset;
-			var _sprite = layer_sprite_create(_layer, _x, _y, __data.sprite_index);
-			layer_sprite_index(_sprite, __data.image_index);
-			layer_sprite_xscale(_sprite, __data.image_xscale);
-			layer_sprite_yscale(_sprite, __data.image_yscale);
-			layer_sprite_angle(_sprite, __data.image_angle);
-			layer_sprite_speed(_sprite, __data.image_speed);
-			layer_sprite_blend(_sprite, __data.image_blend);
-			layer_sprite_alpha(_sprite, __data.image_alpha);
-			
-			RoomLoader.__return_data.__sprites.__add(_sprite, __data.name);
+			with (__data) {
+				var _x = x + _xoffset;
+				var _y = y + _yoffset;
+				var _sprite = layer_sprite_create(_layer, _x, _y, sprite_index);
+				layer_sprite_index(_sprite, image_index);
+				layer_sprite_xscale(_sprite, image_xscale);
+				layer_sprite_yscale(_sprite, image_yscale);
+				layer_sprite_angle(_sprite, image_angle);
+				layer_sprite_speed(_sprite, image_speed);
+				layer_sprite_blend(_sprite, image_blend);
+				layer_sprite_alpha(_sprite, image_alpha);
+				
+				RoomLoader.__return_data.__sprites.__add(_sprite, name);
+			}
 		};
 		static __draw = function(_flags) {
 			if (not __roomloader_check_flags(_flags)) return;
@@ -307,27 +309,52 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		static __load = function(_layer, _xoffset, _yoffset, _flags) {
 			if (not __roomloader_check_flags(_flags)) return undefined;
 			
-			var _x = __data.x + _xoffset;
-			var _y = __data.y + _yoffset;
-			var _text = layer_text_create(_layer, _x, _y, __data.font_index, __data.text);
-			layer_text_xscale(_text, __data.xscale);
-			layer_text_yscale(_text, __data.xscale);
-			layer_text_angle(_text, __data.angle);
-			layer_text_halign(_text, __data.h_align);
-			layer_text_valign(_text, __data.v_align);
-			layer_text_charspacing(_text, __data.char_spacing);
-			layer_text_linespacing(_text, __data.line_spacing);
-			layer_text_framew(_text, __data.frame_width);
-			layer_text_frameh(_text, __data.frame_height);
-			layer_text_wrap(_text, __data.wrap);
-			layer_text_xorigin(_text, __data.xorigin);
-			layer_text_yorigin(_text, __data.yorigin);
-			layer_text_blend(_text, __data.blend);
-			layer_text_alpha(_text, __data.alpha);
-			
-			RoomLoader.__return_data.__texts.__add(_text, __data.name);
+			with (__data) {
+				var _x = x + _xoffset;
+				var _y = y + _yoffset;
+				var _text = layer_text_create(_layer, _x, _y, font_index, text);
+				layer_text_xscale(_text, xscale);
+				layer_text_yscale(_text, yscale);
+				layer_text_angle(_text, angle);
+				layer_text_halign(_text, h_align);
+				layer_text_valign(_text, v_align);
+				layer_text_charspacing(_text, char_spacing);
+				layer_text_linespacing(_text, line_spacing);
+				layer_text_framew(_text, frame_width);
+				layer_text_frameh(_text, frame_height);
+				layer_text_wrap(_text, wrap);
+				layer_text_xorigin(_text, xorigin);
+				layer_text_yorigin(_text, yorigin);
+				layer_text_blend(_text, blend);
+				layer_text_alpha(_text, alpha);
+				
+				RoomLoader.__return_data.__texts.__add(_text, name);
+			}
 		}
-		static __draw = __roomloader_noop;
+		static __draw = function() {
+			show_message(__data);
+			with (__data) {
+				var _font = draw_get_font();
+				var _halign = draw_get_halign();
+				var _valign = draw_get_valign();
+				var _color = draw_get_color();
+				var _alpha = draw_get_alpha();
+				
+				draw_set_font(font_index);
+				draw_set_halign(h_align);
+				draw_set_valign(v_align);
+				draw_set_color(blend);
+				draw_set_alpha(alpha);
+				
+				draw_text_transformed(x, y, text, xscale, yscale, angle);
+				
+				draw_set_font(_font);
+				draw_set_color(_color);
+				draw_set_alpha(_alpha);
+				draw_set_halign(_halign);
+				draw_set_halign(_valign);
+			}
+		};
 	};
 	
 	__data = _data;
