@@ -6,7 +6,7 @@
 /// 
 /// NOTE: This is a statically initialized constructor, it should NOT be explicitly instantiated.
 /// All methods are to be called as follows: RoomLoader.action(<arguments>).
-function RoomLoader() constructor {
+function RoomLoader() {
 	#region __private
 	
 	static __message_prefix = "RoomLoader";
