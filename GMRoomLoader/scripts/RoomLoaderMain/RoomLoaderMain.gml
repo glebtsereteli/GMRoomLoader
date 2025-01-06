@@ -463,4 +463,4 @@ function RoomLoader() constructor {
 	#endregion
 }
 
-RoomLoader();
+new RoomLoader();
