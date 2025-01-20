@@ -364,12 +364,15 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			var _constructor = undefined;
 			switch (_data.type) {
 				case layerelementtype_sprite: _constructor = __DataSprite; break;
-				case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
+				//case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
 				case layerelementtype_sequence: _constructor = __DataSequence; break;
 				case layerelementtype_text: _constructor = __DataText; break;
 			}
 			if (_constructor != undefined) {
 				__data[_i] = new _constructor(_data);
+			}
+			else {
+				array_delete(__data, _i--, 1);
 			}
 			_i++;
 		}
