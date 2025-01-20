@@ -4,7 +4,7 @@
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a statically initialized constructor, it should NOT be explicitly instantiated.
+/// NOTE: This is a statically initialized "namespace", it should NOT be explicitly instantiated.
 /// All methods are to be called as follows: RoomLoader.action(<arguments>).
 function RoomLoader() {
 	#region __private
@@ -82,7 +82,6 @@ function RoomLoader() {
 	};
 	
 	#endregion
-	
 	#region data initialization
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to initialize data for. Supports any amount of arguments.
@@ -483,5 +482,4 @@ function RoomLoader() {
 	
 	#endregion
 }
-
 RoomLoader();

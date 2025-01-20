@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__RoomLoaderInit",
+  "%Name":"__RoomLoaderFilter",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__RoomLoaderInit",
+  "name":"__RoomLoaderFilter",
   "parent":{
     "name":"__Private",
     "path":"folders/GMRoomLoader/Scripts/__Private.yy",
