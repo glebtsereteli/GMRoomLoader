@@ -4,7 +4,7 @@
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a "static namespace", initialized in this script. No further initialization is needed.
+/// NOTE: This is a "static namespace", initialized in this script. No further initialization is required.
 /// All methods are to be called as follows: RoomLoader.action(<arguments>).
 function RoomLoader() {
 	#region __private
@@ -452,7 +452,7 @@ function RoomLoader() {
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
 	/// @param {Real} scale=[1] The scale to create the sprite at.
-	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
+	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured data by.
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
@@ -470,7 +470,7 @@ function RoomLoader() {
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
 	/// @param {Real} scale=[1] The scale to create the sprite at.
-	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
+	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured data by.
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
