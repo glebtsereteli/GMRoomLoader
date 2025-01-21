@@ -1,15 +1,20 @@
 ![Untitled design (2)](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v1.7.0</h1>
-<p align="center">Runtime room loading for GameMaker 2024.2+ on Windows and Mac</p>
+<h1 align="center">GMRoomLoader v1.8.0</h1>
+<p align="center">Runtime room loading for GameMaker 2024.11+ on Windows and Mac</p>
 
-## Overview
+# Overview
 GMRoomLoader is an open source GameMaker library designed to streamline room loading at runtime. It provides methods to process the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), use it to load rooms efficiently during gameplay, and clean up created elements when needed.
 
 * Download the .yymps package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
 * Refer to the [Wiki](https://github.com/glebtsereteli/GMRoomLoader/wiki) for detailed documentation.
 
-## Features
+# Use Cases
+* **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, chunking, NPCs, enemy encounters, or randomized props).
+* **UI**. If you’re tired of hard-coding menus while waiting for GameMaker's [GUI Layers](https://github.com/orgs/YoYoGames/projects/13/views/1?pane=issue&itemId=31152377), design your interfaces directly in the Room Editor and load them on the fly in-game.
+* **Room Thumbnails**. Take screenshots of your rooms and use them in your level selection menu.
+
+# Features
 - Pure GML library with no external tools required.
 - Multiple ways to initialize room data: [single or multiple](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-data_initroom----structroomloader), [array](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-data_init_arrayrooms---structroomloader), [prefix](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-data_init_prefixprefix---arrayassetgmroom), [tag](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-data_init_tagtag---arrayassetgmroom).
 - Loading rooms at custom coordinates and [origins](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-origin).
@@ -19,9 +24,15 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Tracking loaded elements to [fetch their IDs](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-getters) and/or [clean them up](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoaderReturnData()-constructor-%E2%80%90-returned-data-handler#%E2%84%B9%EF%B8%8F-cleanup) later.
 - Room [screenshotting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-take_screenshotroom-xorigin-yorigin-flags---idsprite).
 
-## Credits
+# Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
 - Logos and demo rooms designed by Gleb's wifey - [Kate](https://www.instagram.com/k8te_iv) ❣️
 - Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
 - Inspired by [YellowAfterlife](https://twitter.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
 - Demo art by [Kenney](https://twitter.com/KenneyNL).
+
+# Alternatives
+* [GMRoomPack](https://yellowafterlife.itch.io/gmroompack) by [YellowAfterlife](https://twitter.com/YellowAfterlife).
+
+# GameMaker Awards 2024
+GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
