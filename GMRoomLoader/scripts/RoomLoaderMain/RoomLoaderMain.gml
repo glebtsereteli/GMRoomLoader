@@ -4,7 +4,7 @@
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a statically initialized "namespace", it should NOT be explicitly instantiated.
+/// NOTE: This is a "static namespace", initialized in this script. No further initialization is needed.
 /// All methods are to be called as follows: RoomLoader.action(<arguments>).
 function RoomLoader() {
 	#region __private
