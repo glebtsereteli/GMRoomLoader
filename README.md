@@ -31,9 +31,6 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 - Inspired by [YellowAfterlife](https://twitter.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
 - Demo art by [Kenney](https://twitter.com/KenneyNL).
 
-# Alternatives
-* [GMRoomPack](https://yellowafterlife.itch.io/gmroompack) by [YellowAfterlife](https://twitter.com/YellowAfterlife).
-
 # GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
 ![RoomLoader-Tool](https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d)
