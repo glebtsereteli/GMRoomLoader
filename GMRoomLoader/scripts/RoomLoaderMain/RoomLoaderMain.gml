@@ -455,7 +455,7 @@ function RoomLoader() {
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
-	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the drawn elements by the given flags.
+	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
@@ -463,17 +463,17 @@ function RoomLoader() {
 	};
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Real} left The x position on the sprite of the top left corner of the area to draw, as a 0-1 percentage.
-	/// @param {Real} top The y position on the sprite of the top left corner of the area to draw, as a 0-1 percentage.
-	/// @param {Real} width The width of the area to draw, as a 0-1 percentage.
-	/// @param {Real} height The height of the area to draw, as a 0-1 percentage.
+	/// @param {Real} left The x position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
+	/// @param {Real} top The y position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
+	/// @param {Real} width The width of the area to capture, as a 0-1 percentage.
+	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
 	/// @param {Real} scale=[1] The scale to create the sprite at.
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room.
-	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the drawn elements by the given flags.
+	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static take_screenshot_part = function(_room, _left, _top, _width, _height, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {

@@ -331,7 +331,6 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			}
 		}
 		static __draw = function() {
-			show_message(__data);
 			with (__data) {
 				var _font = draw_get_font();
 				var _halign = draw_get_halign();
