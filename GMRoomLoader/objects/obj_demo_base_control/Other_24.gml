@@ -1,7 +1,7 @@
 /// @desc Methods
 
 init = function() {
-	RoomLoader.data_init_tag("base_rooms");
+	RoomLoader.data_init_tag(tag);
 };
 update = function() {
 	var _hovered_room = noone;
@@ -36,4 +36,7 @@ update = function() {
 			cleanup(true);
 		}
 	}
+};
+cleanup = function() {
+	RoomLoader.data_remove_tag(tag);
 };

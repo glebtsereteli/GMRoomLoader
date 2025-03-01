@@ -1,7 +1,7 @@
 /// @desc Methods
 
 init = function() {
-	RoomLoader.data_init_prefix("rm_demo_benchmark_load_");
+	RoomLoader.data_init_prefix(prefix);
 	flags.init();
 };
 update = function() {
@@ -24,4 +24,7 @@ draw = function() {
 	var _message = origin.get_message() + "\n" + flags.get_message();
 	draw_text(_pad, room_height - _pad, _message);
 	draw_set_valign(fa_top);
+};
+cleanup = function() {
+	RoomLoader.data_remove_prefix(prefix);
 };

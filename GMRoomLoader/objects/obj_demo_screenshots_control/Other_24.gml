@@ -18,5 +18,6 @@ draw = function() {
 	screenshot.draw();
 };
 cleanup = function() {
-	screenshot.cleanup();	
+	screenshot.cleanup();
+	RoomLoader.data_remove_array(screenshot.rooms);
 };

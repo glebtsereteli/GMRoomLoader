@@ -1,6 +1,7 @@
 EVENT_CONSTRUCTOR;
 EVENT_METHOD;
 
+prefix = "rm_demo_benchmark_load_";
 origin = {
 	x: 0,
 	y: 0,
