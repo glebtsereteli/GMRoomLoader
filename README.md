@@ -12,7 +12,7 @@ GMRoomLoader is an open source GameMaker library designed to streamline room loa
 # Use Cases
 * **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, NPCs, enemy encounters, or randomized props).
 * **Chunking**. Divide large rooms into smaller sections, loading or unloading them dynamically as the player approaches or moves away.
-* **UI**. If you’re tired of hard-coding menus while waiting for GameMaker's [GUI Layers](https://github.com/orgs/YoYoGames/projects/13/views/1?pane=issue&itemId=31152377), design your interfaces directly in the Room Editor and load them on the fly in-game.
+* **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game.
 * **Room Thumbnails**. Take screenshots of your rooms and use them in your level selection menu.
 
 # Features
