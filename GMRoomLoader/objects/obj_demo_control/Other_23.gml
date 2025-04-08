@@ -23,7 +23,7 @@ Interface = function() constructor {
 	};
 	update = function() {
 		if (room != CONTROL.rm) {
-			goto(room);
+			goto(CONTROL.rm);
 		}
 	};
 	change = function(_dir) {
