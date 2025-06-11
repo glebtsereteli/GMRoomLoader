@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"roomloader_export_screenshots",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"roomloader_export_screenshots",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Misc.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

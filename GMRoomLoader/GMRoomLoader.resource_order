@@ -36,6 +36,7 @@
     {"name":"Units","order":5,"path":"folders/Demo/02 - Base/Units.yy",},
     {"name":"Sprites","order":3,"path":"folders/Demo/02 - Base/Units/Sprites.yy",},
     {"name":"03 - Screenshots","order":4,"path":"folders/Demo/03 - Screenshots.yy",},
+    {"name":"Misc","order":2,"path":"folders/Misc.yy",},
     {"name":"GMRoomLoader","order":1,"path":"folders/GMRoomLoader.yy",},
     {"name":"Notes","order":1,"path":"folders/GMRoomLoader/Notes.yy",},
     {"name":"__Private","order":6,"path":"folders/GMRoomLoader/Scripts/__Private.yy",},
