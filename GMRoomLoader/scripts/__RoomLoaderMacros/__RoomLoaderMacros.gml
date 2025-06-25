@@ -11,26 +11,30 @@
 #region loading
 
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START_FULL \
-	var _return_data = RoomLoader.__return_data.__instances; \
-	var _instances = _return_data.__ids; \
-	var _index = _return_data.__index; \
-	var _i = 0; repeat (array_length(__instances_data)) { \
-		var _inst_data = __instances_data[_i]; \
-		var _x = _inst_data.x + _xoffset; \
-		var _y = _inst_data.y + _yoffset;
+var _return_data = RoomLoader.__return_data.__instances; \
+var _ids = _return_data.__ids; \
+var _room_ids = _return_data.__room_ids; \
+var _index = _return_data.__index; \
+var _i = 0; repeat (array_length(__instances_data)) { \
+	var _inst_data = __instances_data[_i]; \
+	var _x = _inst_data.x + _xoffset; \
+	var _y = _inst_data.y + _yoffset; \
+	var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate); \
+	_ids[_index] = _inst; \
+	_room_ids[_index] = _inst_data.id;
 	
 #macro __ROOMLOADER_INSTANCE_ONLOAD_START_STANDALONE \
-	var _n = array_length(_data); \
-	var _instances = array_create(_n); \
-	var _i = 0; repeat (_n) { \
-		var _inst_data = _data[_i]; \
-		var _x = _inst_data.x + _xoffset; \
-		var _y = _inst_data.y + _yoffset;
+var _n = array_length(_data); \
+var _instances = array_create(_n, noone); \
+var _i = 0; repeat (_n) { \
+	var _inst_data = _data[_i]; \
+	var _x = _inst_data.x + _xoffset; \
+	var _y = _inst_data.y + _yoffset;
 
 #macro __ROOMLOADER_INSTANCE_ONLOAD_END \
-		_i++; \
-		_index++; \
-	} \
-	_return_data.__index = _index;
+	_i++; \
+	_index++; \
+} \
+_return_data.__index = _index;
 
 #endregion

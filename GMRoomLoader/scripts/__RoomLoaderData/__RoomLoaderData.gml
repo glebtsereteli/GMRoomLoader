@@ -84,13 +84,13 @@ function __RoomLoaderData(_room) constructor {
 			_i++;
 		}
 		
-		__instances_init_lookup = undefined;
+		delete __instances_init_lookup;
 	};
 	static __load = function(_x, _y, _xorigin, _yorigin, _flags) {
 		_x -= (__width * _xorigin);
 		_y -= (__height * _yorigin);
 		
-		RoomLoader.__return_data.__instances.__ids = array_create(array_length(__instances_data), noone);
+		RoomLoader.__return_data.__instances.__init(array_length(__instances_data));
 		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_x, _y, _flags);
@@ -184,7 +184,7 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __on_draw = __roomloader_noop;
 }
 function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
-	__flag = ROOMLOADER_FLAG.INSTANCES;
+	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	__instances_data = array_map(_instances_data, __map_data);
 	
 	static __map_data = function(_inst_data) {
@@ -193,16 +193,13 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 	
 	static __on_load_cc = function(_layer, _xoffset, _yoffset, _flags) {
 		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
-			var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
-			with (_inst) {
-				script_execute(_inst_data.creation_code);
-			}
-			_instances[_index] = _inst;
+		with (_inst) {
+			script_execute(_inst_data.creation_code);
+		}
 		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
 	static __on_load_nocc = function(_layer, _xoffset, _yoffset, _flags) {
 		__ROOMLOADER_INSTANCE_ONLOAD_START_FULL
-			_instances[_index] = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
 		__ROOMLOADER_INSTANCE_ONLOAD_END
 	};
 	static __on_load = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
@@ -454,9 +451,8 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__init();
 };
 function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	__bg_data = _bg_data[0];
-	__owner = other;
-	__flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	
 	static __on_load = function(_layer, _xoffset, _yoffset, _flags, _return_data) {
 		with (__bg_data) {

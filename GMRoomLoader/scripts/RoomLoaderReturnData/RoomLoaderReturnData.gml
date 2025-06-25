@@ -23,21 +23,36 @@ function RoomLoaderReturnData(_room) constructor {
 			return ((_index == -1) ? undefined : __ids[_index]);
 		};
 		static __destroy = function() {
-			static _callback = function(_element) { __on_destroy(_element); };
-			array_foreach(__ids, _callback);
+			array_foreach(__ids, function(_element) {
+				__on_destroy(_element);
+			});
 		};
 	};
+	static __Instances = function() constructor {
+		__ids = undefined;
+		__room_ids = undefined;
+		__index = 0;
+		
+		static __init = function(_n) {
+			__ids = array_create(_n, noone)
+			__room_ids = array_create(_n, noone);
+		};
+		static __get = function(_room_id) {
+			var _index = array_get_index(__room_ids, _room_id);
+			return ((_index == -1) ? noone : __ids[_index]);
+		};
+		static __destroy = function() {
+			array_foreach(__ids, function(_inst) {
+				instance_destroy(_inst);
+			});
+		};
+	};
+	
 	static __message_prefix = "RoomLoaderReturnData";
-
+	
 	__room = _room;
 	__layers = new __Container(layer_destroy);
-	__instances = {
-		__ids: undefined,
-		__index: 0,
-		__destroy: function() {
-			array_foreach(__ids, instance_destroy);
-		},
-	};
+	__instances = new __Instances();
 	__tilemaps = new __Container(layer_tilemap_destroy);
 	__sprites = new __Container(layer_sprite_destroy);
 	__particle_systems = new __Container(part_system_destroy);
@@ -63,6 +78,13 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @context RoomLoaderReturnData
 	static get_layers = function() {
 		return __layers.__ids;
+	};
+	
+	/// @param {Id.Instance} room_id The room ID of the instance to search for.
+	/// @returns {Array<Id.Instance>}
+	/// @context RoomLoaderReturnData
+	static get_instance = function(_room_id) {
+		return __instances.__get(_room_id);
 	};
 	
 	/// @returns {Array<Id.Instance>}
@@ -163,7 +185,7 @@ function RoomLoaderReturnData(_room) constructor {
 		static _method_name = "cleanup";
 		
 		if (__cleaned_up) {
-			__roomloader_log_method(__message_prefix, _method_name, $"data for \<{room_get_name(__room)}\> is already cleaned up");
+			__roomloader_log_method(__message_prefix, "cleanup", $"data for \<{room_get_name(__room)}\> is already cleaned up");
 			return;
 		}
 		
