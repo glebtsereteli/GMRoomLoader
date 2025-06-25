@@ -76,7 +76,6 @@ function __RoomLoaderData(_room) constructor {
 			if (_elements_data != 0) {
 				var _data_constructor = _get_data_constructor(_elements_data[0].type);
 				if (_data_constructor != undefined) {
-					_layer_data.prefixed_name = (ROOMLOADER_LAYER_PREFIX + _layer_data.name);
 					var _data = new _data_constructor(_layer_data, _elements_data);
 					array_push(__data, _data);
 				}
@@ -292,7 +291,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			layer_sequence_angle(_sequence, __data.image_angle);
 			layer_sequence_speedscale(_sequence, __data.image_speed);
 			
-			if (ROOMLOADER_SEQUENCES_PAUSE) layer_sequence_pause(_sequence);
+			if (ROOMLOADER_SEQUENCES_PAUSE) {
+				layer_sequence_pause(_sequence);
+			}
 			
 			RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
 		}

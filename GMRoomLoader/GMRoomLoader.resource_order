@@ -43,7 +43,6 @@
   ],
   "ResourceOrderSettings":[
     {"name":"fnt_demo_text","order":6,"path":"fonts/fnt_demo_text/fnt_demo_text.yy",},
-    {"name":"Note3","order":3,"path":"notes/Note3/Note3.yy",},
     {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
     {"name":"obj_demo_base_unit_look","order":1,"path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},
     {"name":"obj_demo_base_unit_patrol","order":2,"path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},

@@ -3,9 +3,6 @@
 // Whether to show debug messages in Output (true) or not (false).
 #macro ROOMLOADER_ENABLE_DEBUG true
 
-// String prefix added to RoomLoader-created layers.
-#macro ROOMLOADER_LAYER_PREFIX "__roomloader__"
-
 // Default origins used by RoomLoader's loading and screenshotting.
 // Origins range from 0 to 1 (full size).
 // For x: 0 is left, 0.5 is center, 1 is right.
@@ -29,7 +26,7 @@
 
 // Steps to progress loaded particle systems by. 
 // NOTE: increasing this value negatively affects loading performance.
-#macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
+#macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS FPS
 
 // Whether to run the Creation Code for loaded rooms (true) or not (false).
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true

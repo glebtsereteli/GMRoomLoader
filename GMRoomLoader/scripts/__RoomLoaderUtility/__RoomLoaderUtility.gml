@@ -2,7 +2,7 @@
 
 function __roomloader_noop() {}
 function __roomloader_create_layer(_data) {
-	var _layer = layer_create(_data.depth, _data.prefixed_name);
+	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
 	layer_x(_layer, _data.xoffset);
 	layer_y(_layer, _data.yoffset);
