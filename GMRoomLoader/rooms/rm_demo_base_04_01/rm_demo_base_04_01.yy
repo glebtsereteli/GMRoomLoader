@@ -28,7 +28,7 @@
     {"$GMRInstanceLayer":"","%Name":"units","depth":400,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"$GMRInstance":"v2","%Name":"inst_4040B66","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4040B66","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"propertyId":{"name":"vd_path","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"resource":{"name":"pth_demo_base_04_01_patrol_01","path":"paths/pth_demo_base_04_01_patrol_01/pth_demo_base_04_01_patrol_01.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"pth_demo_base_04_01_patrol_01",},
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"propertyId":{"name":"vd_room","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"inst_47BF2AEE",},
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_demo_base_unit_patrol","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"propertyId":{"name":"vd_room","path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},"resource":{"name":"inst_47BF2AEE","path":"rooms/rm_demo_base/rm_demo_base.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"inst_47BF2AEE",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":84.0,"y":44.0,},
         {"$GMRInstance":"v2","%Name":"inst_31137120","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_31137120","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_demo_base_unit_look","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"propertyId":{"name":"vd_angle_from","path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"115",},
@@ -72,7 +72,7 @@
   "name":"rm_demo_base_04_01",
   "parent":{
     "name":"04-01",
-    "path":"folders/Demo/02 - Base/Rooms/General/Rooms/04/04-01.yy",
+    "path":"folders/Demo/Demos/02. Base/Rooms/General/Rooms/04/04-01.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

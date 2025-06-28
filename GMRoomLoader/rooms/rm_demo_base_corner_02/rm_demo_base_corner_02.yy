@@ -143,7 +143,7 @@
   "name":"rm_demo_base_corner_02",
   "parent":{
     "name":"Rooms",
-    "path":"folders/Demo/02 - Base/Rooms/Corner/Rooms.yy",
+    "path":"folders/Demo/Demos/02. Base/Rooms/Corner/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

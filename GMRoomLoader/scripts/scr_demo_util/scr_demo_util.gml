@@ -4,6 +4,7 @@
 #macro FPS game_get_speed(gamespeed_fps)
 #macro CONTROL obj_demo_control
 
+function noop() {}
 function sine_between(_time, _duration, _from, _to) {
 	static _2pi = (pi * 2);
     var _midpoint = mean(_from, _to);

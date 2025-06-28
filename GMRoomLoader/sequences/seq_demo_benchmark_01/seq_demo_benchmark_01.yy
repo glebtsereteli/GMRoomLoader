@@ -27,7 +27,7 @@
   "name":"seq_demo_benchmark_01",
   "parent":{
     "name":"Sequences",
-    "path":"folders/Demo/01 - Benchmark/Sequences.yy",
+    "path":"folders/Demo/Demos/01. General/Sequences.yy",
   },
   "playback":2,
   "playbackSpeed":60.0,

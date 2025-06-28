@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Parrot",
-    "path":"folders/Demo/01 - Benchmark/Parrot.yy",
+    "path":"folders/Demo/Demos/01. General/Parrot.yy",
   },
   "parentObjectId":null,
   "persistent":false,

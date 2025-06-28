@@ -79,7 +79,7 @@
   "name":"rm_demo_base_04_03",
   "parent":{
     "name":"04-03",
-    "path":"folders/Demo/02 - Base/Rooms/General/Rooms/04/04-03.yy",
+    "path":"folders/Demo/Demos/02. Base/Rooms/General/Rooms/04/04-03.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

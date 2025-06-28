@@ -32,7 +32,7 @@
   "name":"rm_demo_base_01_02",
   "parent":{
     "name":"01",
-    "path":"folders/Demo/02 - Base/Rooms/General/Rooms/01.yy",
+    "path":"folders/Demo/Demos/02. Base/Rooms/General/Rooms/01.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

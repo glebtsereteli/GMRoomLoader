@@ -14,7 +14,7 @@
   "name":"pts_demo_benchmark_smoke",
   "parent":{
     "name":"Particle Systems",
-    "path":"folders/Demo/01 - Benchmark/Particle Systems.yy",
+    "path":"folders/Demo/Demos/01. General/Particle Systems.yy",
   },
   "resourceType":"GMParticleSystem",
   "resourceVersion":"2.0",

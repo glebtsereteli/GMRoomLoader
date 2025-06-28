@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Units",
-    "path":"folders/Demo/02 - Base/Units.yy",
+    "path":"folders/Demo/Demos/02. Base/Units.yy",
   },
   "parentObjectId":{
     "name":"obj_demo_base_unit_parent",
@@ -30,8 +30,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"vd_angle_from","filters":[],"listItems":[],"multiselect":false,"name":"vd_angle_from","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":null,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"vd_angle_to","filters":[],"listItems":[],"multiselect":false,"name":"vd_angle_to","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":null,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"vd_angle_from","filters":[],"listItems":[],"multiselect":false,"name":"vd_angle_from","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"vd_angle_to","filters":[],"listItems":[],"multiselect":false,"name":"vd_angle_to","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

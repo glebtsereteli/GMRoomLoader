@@ -6,7 +6,7 @@
   "name":"pth_demo_base_02_01_patrol_01",
   "parent":{
     "name":"02-01",
-    "path":"folders/Demo/02 - Base/Rooms/General/Rooms/02/02-01.yy",
+    "path":"folders/Demo/Demos/02. Base/Rooms/General/Rooms/02/02-01.yy",
   },
   "points":[
     {"speed":100.0,"x":193.0,"y":39.0,},

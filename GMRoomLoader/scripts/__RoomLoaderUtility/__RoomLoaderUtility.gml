@@ -11,31 +11,6 @@ function __roomloader_create_layer(_data) {
 	
 	return _layer;
 }
-function __roomloader_load_instances(_x, _y, _data, _xorigin, _yorigin, _create_func, _create_data) {
-	static _cc = function(_data, _create_func, _create_data, _xoffset, _yoffset) {
-		__ROOMLOADER_INSTANCE_ONLOAD_START_STANDALONE
-			var _inst = _create_func(_x, _y, _create_data, _inst_data.object_index, _inst_data.precreate);
-			with (_inst) {
-				script_execute(_inst_data.creation_code);
-			}
-			_instances[_i] = _inst;
-			_i++;
-		}
-		return _instances;
-	};
-	static _nocc = function(_data, _create_func, _create_data, _xoffset, _yoffset) {
-		__ROOMLOADER_INSTANCE_ONLOAD_START_STANDALONE
-			_instances[_i] = _create_func(_x, _y, _create_data, _inst_data.object_index, _inst_data.precreate); 
-			_i++;
-		}
-		return _instances;
-	};
-	static _func = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? _cc : _nocc);
-	
-	var _xoffset = _x - (_data.__width * _xorigin);
-	var _yoffset = _y - (_data.__height * _yorigin);
-	return _func(_data.__instances_data, _create_func, _create_data, _xoffset, _yoffset);
-}
 function __roomloader_check_flags(_flags) {
 	return ((_flags & __flag) == __flag);
 }

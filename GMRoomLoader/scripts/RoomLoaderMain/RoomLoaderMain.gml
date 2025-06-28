@@ -325,40 +325,42 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to load instances for.
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Id.Layer, String} layer The layer ID or name to assign instances to.
+	/// @param {Id.Layer, String, Real} layer_or_depth The layer ID, layer name or depth to create instances on.
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
 	/// @returns {Array<Id.Instance>}
 	/// @desc Loads the given room's instances at the given coordinates, layer and [origins].
 	/// Returns an array of created Instances.
 	/// @context RoomLoader
-	static load_instances_layer = function(_room, _x, _y, _layer, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
-		static _method_name = "load_instances_layer";
-		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
+	static load_instances = function(_room, _x, _y, _lod, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
+		static _cc = function(_data, _creator, _lod, _xoffset, _yoffset) {
+			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_START
+				with (_inst) {
+					script_execute(_inst_data.creation_code);
+				}
+			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_END
+		};
+		static _nocc = function(_data, _create_func, _lod, _xoffset, _yoffset) {
+			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_START
+			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_END
+		};
+		static _func = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? _cc : _nocc);
+		static _method_name = "load_instances";
 		
 		__benchmark.__start();
-		var _instances = __roomloader_load_instances(_x, _y, _data, _xorigin, _yorigin, instance_create_layer, _layer);
-		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded instances for", _room);
-		return _instances;
-	};
-	
-	/// @param {Asset.GMRoom} room The room to load instances for.
-	/// @param {Real} x The x coordinate to load instances at.
-	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Real} depth The depth to create instances at.
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room's instances at.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room's instances at.
-	/// @returns {Array<Id.Instance>}
-	/// @desc Loads the given room's instances at the given coordinates, depth and [origins].
-	/// Returns an array of created Instances.
-	/// @context RoomLoader
-	static load_instances_depth = function(_room, _x, _y, _depth, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
-		static _method_name = "load_instances_depth";
 		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
-		
-		__benchmark.__start();
-		var _instances = __roomloader_load_instances(_x, _y, _data, _xorigin, _yorigin, instance_create_depth, _depth);
+		var _creator = undefined;
+		if (is_real(_lod)) {
+			_creator = instance_create_depth;
+		}
+		else if (is_string(_lod) or is_handle(_lod)) {
+			_creator = instance_create_layer;
+		}
+		var _xoffset = _x - (_data.__width * _xorigin);
+		var _yoffset = _y - (_data.__height * _yorigin);
+		var _instances = _func(_data.__instances_data, _creator, _lod, _xoffset, _yoffset);
 		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded instances for", _room);
+		
 		return _instances;
 	};
 	

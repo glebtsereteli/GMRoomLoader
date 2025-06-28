@@ -24,9 +24,9 @@
  // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false
 
-// Steps to progress loaded particle systems by. 
+// Steps to praogress loaded particle systems by. 
 // NOTE: increasing this value negatively affects loading performance.
-#macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS FPS
+#macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
 
 // Whether to run the Creation Code for loaded rooms (true) or not (false).
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true

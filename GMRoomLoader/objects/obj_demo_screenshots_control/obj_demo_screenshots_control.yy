@@ -12,8 +12,8 @@
   "name":"obj_demo_screenshots_control",
   "overriddenProperties":[],
   "parent":{
-    "name":"03 - Screenshots",
-    "path":"folders/Demo/03 - Screenshots.yy",
+    "name":"03. Screenshots",
+    "path":"folders/Demo/Demos/03. Screenshots.yy",
   },
   "parentObjectId":null,
   "persistent":false,

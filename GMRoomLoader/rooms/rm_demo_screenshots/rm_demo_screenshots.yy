@@ -17,8 +17,8 @@
   ],
   "name":"rm_demo_screenshots",
   "parent":{
-    "name":"03 - Screenshots",
-    "path":"folders/Demo/03 - Screenshots.yy",
+    "name":"03. Screenshots",
+    "path":"folders/Demo/Demos/03. Screenshots.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

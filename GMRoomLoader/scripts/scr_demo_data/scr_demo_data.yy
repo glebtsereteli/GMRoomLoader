@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_demo_init",
+  "%Name":"scr_demo_data",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_demo_init",
+  "name":"scr_demo_data",
   "parent":{
-    "name":"Init",
-    "path":"folders/Demo/Init.yy",
+    "name":"Core",
+    "path":"folders/Demo/Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -13,7 +13,7 @@
   "out_tilevborder":2,
   "parent":{
     "name":"Tiny Town+",
-    "path":"folders/Demo/01 - Benchmark/Tile Sets/Tiny Town+.yy",
+    "path":"folders/Demo/Demos/01. General/Tile Sets/Tiny Town+.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

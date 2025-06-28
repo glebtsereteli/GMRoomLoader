@@ -13,8 +13,8 @@
   "name":"obj_demo_benchmark_control",
   "overriddenProperties":[],
   "parent":{
-    "name":"01 - Benchmark",
-    "path":"folders/Demo/01 - Benchmark.yy",
+    "name":"01. General",
+    "path":"folders/Demo/Demos/01. General.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -1,2 +1,2 @@
 
-update();
+DEMOS.update();

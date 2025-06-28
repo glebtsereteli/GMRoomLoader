@@ -1,17 +1,24 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rm_demo_init",
-  "creationCodeFile":"rooms/rm_demo_init/RoomCreationCode.gml",
+  "%Name":"rm_demo",
+  "creationCodeFile":"rooms/rm_demo/RoomCreationCode.gml",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
-  "instanceCreationOrder":[],
+  "instanceCreationOrder":[
+    {"name":"inst_5C68D8CB","path":"rooms/rm_demo/rm_demo.yy",},
+  ],
   "isDnd":false,
-  "layers":[],
-  "name":"rm_demo_init",
+  "layers":[
+    {"$GMRInstanceLayer":"","%Name":"instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"$GMRInstance":"v2","%Name":"inst_5C68D8CB","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5C68D8CB","objectId":{"name":"obj_demo_control","path":"objects/obj_demo_control/obj_demo_control.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":-32.0,},
+      ],"layers":[],"name":"instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
+    {"$GMRBackgroundLayer":"","%Name":"bg","animationFPS":15.0,"animationSpeedType":0,"colour":4279834905,"depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"bg","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
+  ],
+  "name":"rm_demo",
   "parent":{
-    "name":"Init",
-    "path":"folders/Demo/Init.yy",
+    "name":"Demo",
+    "path":"folders/Demo.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

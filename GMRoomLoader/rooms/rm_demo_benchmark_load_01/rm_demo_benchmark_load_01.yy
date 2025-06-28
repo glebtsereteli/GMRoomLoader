@@ -264,7 +264,7 @@
   "name":"rm_demo_benchmark_load_01",
   "parent":{
     "name":"Rooms",
-    "path":"folders/Demo/01 - Benchmark/Rooms.yy",
+    "path":"folders/Demo/Demos/01. General/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Parrot",
-    "path":"folders/Demo/01 - Benchmark/Parrot.yy",
+    "path":"folders/Demo/Demos/01. General/Parrot.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
