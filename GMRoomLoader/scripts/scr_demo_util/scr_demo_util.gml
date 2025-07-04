@@ -4,6 +4,9 @@
 #macro FPS game_get_speed(gamespeed_fps)
 #macro CONTROL obj_demo_control
 
+#macro DEMO_ROOM_DATA global.__demo_room_data
+DEMO_ROOM_DATA = undefined;
+
 function noop() {}
 function sine_between(_time, _duration, _from, _to) {
 	static _2pi = (pi * 2);

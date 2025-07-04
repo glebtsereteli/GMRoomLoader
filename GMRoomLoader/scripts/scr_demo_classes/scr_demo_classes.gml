@@ -6,14 +6,33 @@ function Demos(_pool) constructor {
 	n = array_length(pool);
 	index = 0;
 	index2 = 0;
-	section = undefined;
+	controls = undefined;
+	info = undefined;
+	x1 = undefined;
+	y1 = undefined;
+	x2 = undefined;
+	y2 = undefined;
+	xcenter = undefined;
+	ycenter = undefined;
+	w = undefined;
+	h = undefined;
 	
 	static init = function() {
 		var _pad = 8;
 		var _x = _pad;
 		var _y = _pad + 19;
-		var _w = 400;
+		var _w = 500;
 		var _h = window_get_height() - _y - _pad;
+		
+		x1 = _x + _w + _pad;
+		y1 = _y;
+		x2 = window_get_width() - _pad;
+		y2 = window_get_height() - _pad;
+		xcenter = mean(x1, x2);
+		ycenter = mean(y1, y2);
+		w = x2 - x1;
+		h = y2 - y1;
+		
 		dbg_view($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} Demo", true, _x, _y, _w, _h);
 		
 		dbg_section("Selection");
@@ -37,6 +56,7 @@ function Demos(_pool) constructor {
 		if (index != index2) {
 			change(index);
 		}
+		get_current().update();
 	};
 	
 	static change = function(_index) {
@@ -44,12 +64,13 @@ function Demos(_pool) constructor {
 		get_current().cleanup();
 		index = _index;
 		index2 = index;
-		if (section != undefined) {
-			dbg_section_delete(section);
-		}
-		section = dbg_section($"Demo: {get_current().name}");
+		if (controls != undefined) dbg_section_delete(controls);
+		if (info != undefined) dbg_section_delete(info);
 		get_current().init();
-		
+		window_set_caption($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) Demo: {get_current().name}");
+	};
+	static draw = function() {
+		get_current().draw();
 	};
 	
 	static get_current = function() {
@@ -62,38 +83,6 @@ function Demo(_name) constructor {
 	
 	static init = noop;
 	static update = noop;
+	static draw = noop;
 	static cleanup = noop;
-}
-function DemoGeneral() : Demo("General") constructor {
-	xorigin = 0;
-	yorigin = 0;
-	instances = true;
-	tilemaps = true;
-	sprites = true;
-	particle_systems = true;
-	sequences = true;
-	texts = true;
-	backgrounds = true;
-	
-	static init = function() {
-		dbg_text_separator("Origin");
-		dbg_slider(ref_create(self, "xorigin"), 0, 1, "X", 0.05);
-		dbg_slider(ref_create(self, "yorigin"), 0, 1, "Y", 0.05);
-		
-		dbg_text_separator("Flags");
-		dbg_checkbox(ref_create(self, "instances"), "Instances");
-		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
-		dbg_checkbox(ref_create(self, "sprites"), "Sprites");
-		dbg_checkbox(ref_create(self, "particle_systems"), "Particle Systems");
-		dbg_checkbox(ref_create(self, "texts"), "Texts");
-		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
-		
-		dbg_text_separator("");
-	};
-}
-function DemoBase() : Demo("Base") constructor {
-	
-}
-function DemoScreenshots() : Demo("Screenshots") constructor {
-	
 }

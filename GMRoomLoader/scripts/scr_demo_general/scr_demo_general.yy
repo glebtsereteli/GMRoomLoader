@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_demo_general",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_demo_general",
+  "parent":{
+    "name":"GMRoomLoader",
+    "path":"GMRoomLoader.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
