@@ -1,7 +1,11 @@
 /// @feather ignore all
 
 function __roomloader_noop() {}
-function __roomloader_create_layer(_data) {
+function __roomloader_get_layer(_data) {
+	if (ROOMLOADER_MERGE_LAYERS and layer_exists(_data.name)) {
+		return layer_get_id(_data.name);
+	}
+	
 	var _layer = layer_create(_data.depth, _data.name);
 	layer_set_visible(_layer, _data.visible);
 	layer_x(_layer, _data.xoffset);

@@ -13,6 +13,13 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
+// Whether to merge loaded layers with existing ones (true) not (false).
+// When loading a room layer, if a layer with the same name exists,
+// the contents of the loaded layer will be merged into the existing layer.
+// If no such layer exists, a new one will be created.
+// WARNING: Enabling this may cause shared layers to be destroyed during ReturnData cleanup.
+#macro ROOMLOADER_MERGE_LAYERS false
+
 // Whether to initialize room parameters for loaded instances (true) or not (false).
 // NOTE: setting this to false improves loading performance at scale.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
