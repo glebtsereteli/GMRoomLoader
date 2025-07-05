@@ -13,26 +13,39 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// Whether to merge loaded layers with existing ones (true) not (false).
-// When loading a room layer, if a layer with the same name exists,
-// the contents of the loaded layer will be merged into the existing layer.
-// If no such layer exists, a new one will be created.
-// WARNING: Enabling this may cause shared layers to be destroyed during ReturnData cleanup.
+// If true, RoomLoader.load() returns a RoomLoaderReturnData instance containing the IDs of all loaded elements.
+// If false, no IDs are collected or returned, improving loading performance.
+// 
+// NOTE: Set this to false if you don't need to manually clean up loaded contents.
+// e.g. When room switching automatically destroys all instances, layers and assets.
+#macro ROOMLOADER_USE_RETURN_DATA true
+
+// Whether to merge loaded layers with existing ones (true) or keep them separate (false).
+//
+// If true: when loading a layer, its contents will be merged into an existing layer with the same name.
+// If no matching layer exists, a new one will be created.
+// 
+// If false: a new layer is always created, even if a layer with the same name already exists.
+// 
+// WARNING: Enabling this may result in shared layers being unintentionally destroyed during RoomLoaderReturnData cleanup.
 #macro ROOMLOADER_MERGE_LAYERS false
 
 // Whether to initialize room parameters for loaded instances (true) or not (false).
-// NOTE: setting this to false improves loading performance at scale.
+// 
+// NOTE: setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
 
 // Whether to run Creation Code for loaded instances (true) or not (false).
-// NOTE: setting this to false improves loading performance at scale.
+// 
+// NOTE: setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
- // Whether to pause loaded sequences (true) or not (false).
+// Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false
 
-// Steps to praogress loaded particle systems by. 
-// NOTE: increasing this value negatively affects loading performance.
+// Steps to progress loaded particle systems by.
+// 
+// NOTE: increasing this value reduces loading performance.
 #macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
 
 // Whether to run the Creation Code for loaded rooms (true) or not (false).

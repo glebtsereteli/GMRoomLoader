@@ -89,7 +89,9 @@ function __RoomLoaderData(_room) constructor {
 		_x -= (__width * _xorigin);
 		_y -= (__height * _yorigin);
 		
-		RoomLoader.__return_data.__instances.__init(array_length(__instances_data));
+		if (ROOMLOADER_USE_RETURN_DATA) {
+			RoomLoader.__return_data.__instances.__init(array_length(__instances_data));
+		}
 		
 		var _i = 0; repeat (array_length(__data)) {
 			__data[_i].__load(_x, _y, _flags);
@@ -97,10 +99,8 @@ function __RoomLoaderData(_room) constructor {
 		}
 		
 		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) {
-			__creation_code();	
+			__creation_code();
 		}
-		
-		return RoomLoader.__return_data;
 	};
 	static __take_screenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xorigin, _yorigin, _scale, _flags) {
         var _scaled = (_scale != 1);
@@ -169,7 +169,10 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 		if (__failed_filters()) return undefined;
 		
 		var _layer = __roomloader_get_layer(__layer_data);
-		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+		
+		if (ROOMLOADER_USE_RETURN_DATA) {
+			RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+		}
 		
 		__on_load(_layer, _xoffset, _yoffset, _flags);
 	};
@@ -190,16 +193,30 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		return __owner.__instances_init_lookup[$ _inst_data.inst_id];
 	};
 	
-	static __on_load_cc = function(_layer, _xoffset, _yoffset, _flags) {
-		__ROOMLOADER_INSTANCE_FULL_START
-		__ROOMLOADER_INSTANCE_CC
-		__ROOMLOADER_INSTANCE_FULL_END
+	static __on_load = function(_layer, _xoffset, _yoffset, _flags) {
+		if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
+			if (ROOMLOADER_USE_RETURN_DATA) {
+				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA
+				__ROOMLOADER_INSTANCE_CC
+				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA
+			}
+			else {
+				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA
+				__ROOMLOADER_INSTANCE_CC
+				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA
+			}
+		}
+		else {
+			if (ROOMLOADER_USE_RETURN_DATA) {
+				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA
+			}
+			else {
+				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA
+			}
+		}
 	};
-	static __on_load_nocc = function(_layer, _xoffset, _yoffset, _flags) {
-		__ROOMLOADER_INSTANCE_FULL_START
-		__ROOMLOADER_INSTANCE_FULL_END
-	};
-	static __on_load = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? __on_load_cc : __on_load_nocc);
 	static __on_draw = function() {
 		var _i = 0; repeat (array_length(__instances_data)) {
 			with (__instances_data[_i]) {
@@ -235,7 +252,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_sprite_blend(_sprite, image_blend);
 				layer_sprite_alpha(_sprite, image_alpha);
 				
-				RoomLoader.__return_data.__sprites.__add(_sprite, name);
+				if (ROOMLOADER_USE_RETURN_DATA) {
+					RoomLoader.__return_data.__sprites.__add(_sprite, name);
+				}
 			}
 		};
 		static __draw = function(_flags) {
@@ -269,7 +288,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				part_system_update(_particle_system);	
 			}
 			
-			RoomLoader.__return_data.__particle_systems.__add(_particle_system, __data.name);
+			if (ROOMLOADER_USE_RETURN_DATA) {
+				RoomLoader.__return_data.__particle_systems.__add(_particle_system, __data.name);
+			}
 		}
 		static __draw = __roomloader_noop;
 	};
@@ -293,7 +314,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_sequence_pause(_sequence);
 			}
 			
-			RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
+			if (ROOMLOADER_USE_RETURN_DATA) {
+				RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
+			}
 		}
 		static __draw = __roomloader_noop;
 	};
@@ -323,7 +346,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_text_blend(_text, blend);
 				layer_text_alpha(_text, alpha);
 				
-				RoomLoader.__return_data.__texts.__add(_text, name);
+				if (ROOMLOADER_USE_RETURN_DATA) {
+					RoomLoader.__return_data.__texts.__add(_text, name);
+				}
 			}
 		}
 		static __draw = function() {
@@ -381,7 +406,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			_i++;
 		}
 		
-		RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+		if (ROOMLOADER_USE_RETURN_DATA) {
+			RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+		}
 	};
 	static __draw = function(_flags) {
 		if (not __layer_data.visible) return;
@@ -437,7 +464,9 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	};
 	static __on_load = function(_layer, _xoffset, _yoffset) {
 		var _tilemap = __create_tilemap(_layer, _xoffset, _yoffset);
-		RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
+		if (ROOMLOADER_USE_RETURN_DATA) {
+			RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
+		}
 	};
 	static __on_draw = function() {
 		var _layer = layer_create(0);
@@ -470,7 +499,9 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 			layer_background_blend(_bg, blendColour);
 			layer_background_alpha(_bg, blendAlpha);
 			
-			RoomLoader.__return_data.__backgrounds.__add(_bg, name);
+			if (ROOMLOADER_USE_RETURN_DATA) {
+				RoomLoader.__return_data.__backgrounds.__add(_bg, name);
+			}
 		}
 	};
 	static __on_draw = function() {

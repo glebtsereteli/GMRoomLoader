@@ -7,6 +7,9 @@
 #macro DEMO_ROOM_DATA global.__demo_room_data
 DEMO_ROOM_DATA = undefined;
 
+#macro BENCH_START global.__benchmark_t = get_timer();
+#macro BENCH_END ((get_timer() - global.__benchmark_t) / 1000)
+
 function noop() {}
 function sine_between(_time, _duration, _from, _to) {
 	static _2pi = (pi * 2);

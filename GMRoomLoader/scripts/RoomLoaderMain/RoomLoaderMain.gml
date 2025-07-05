@@ -315,11 +315,13 @@ function RoomLoader() {
 		var _data = __get_load_data(_room, _method_name, "load", "load them");
 		
 		__benchmark.__start();
-		__return_data = new RoomLoaderReturnData(_room);
-		_data = _data.__load(_x, _y, _xorigin, _yorigin, _flags);
+		if (ROOMLOADER_USE_RETURN_DATA) {
+			__return_data = new RoomLoaderReturnData(_room);
+		}
+		_data.__load(_x, _y, _xorigin, _yorigin, _flags);
 		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded", _room);
 		
-		return _data;
+		return (ROOMLOADER_USE_RETURN_DATA ? __return_data : undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.

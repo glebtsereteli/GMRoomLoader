@@ -17,8 +17,8 @@ with (_inst) { \
 
 #endregion
 #region instances full
-	
-#macro __ROOMLOADER_INSTANCE_FULL_START \
+
+#macro __ROOMLOADER_INSTANCE_FULL_START_RETURNDATA \
 var _return_data = RoomLoader.__return_data.__instances; \
 var _ids = _return_data.__ids; \
 var _room_ids = _return_data.__room_ids; \
@@ -31,11 +31,22 @@ var _i = 0; repeat (array_length(__instances_data)) { \
 	_ids[_index] = _inst; \
 	_room_ids[_index] = _inst_data.id;
 
-#macro __ROOMLOADER_INSTANCE_FULL_END \
+#macro __ROOMLOADER_INSTANCE_FULL_END_RETURNDATA \
 	_i++; \
 	_index++; \
 } \
 _return_data.__index = _index;
+
+#macro __ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA \
+var _i = 0; repeat (array_length(__instances_data)) { \
+	var _inst_data = __instances_data[_i]; \
+	var _x = _inst_data.x + _xoffset; \
+	var _y = _inst_data.y + _yoffset; \
+	var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
+
+#macro __ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA \
+	_i++; \
+}
 
 #endregion
 #region instances standalone
