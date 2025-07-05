@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_demo_base",
   "parent":{
-    "name":"GMRoomLoader",
-    "path":"GMRoomLoader.yyp",
+    "name":"02. Base",
+    "path":"folders/01. Demo/02. Base.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

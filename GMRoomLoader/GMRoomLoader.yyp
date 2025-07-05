@@ -113,7 +113,6 @@
     {"id":{"name":"rm_demo_base_slot_corner_03","path":"rooms/rm_demo_base_slot_corner_03/rm_demo_base_slot_corner_03.yy",},},
     {"id":{"name":"rm_demo_general_01","path":"rooms/rm_demo_general_01/rm_demo_general_01.yy",},},
     {"id":{"name":"rm_demo_general_02","path":"rooms/rm_demo_general_02/rm_demo_general_02.yy",},},
-    {"id":{"name":"rm_demo_screenshots","path":"rooms/rm_demo_screenshots/rm_demo_screenshots.yy",},},
     {"id":{"name":"rm_demo","path":"rooms/rm_demo/rm_demo.yy",},},
     {"id":{"name":"__RoomLoaderData","path":"scripts/__RoomLoaderData/__RoomLoaderData.yy",},},
     {"id":{"name":"__RoomLoaderFilter","path":"scripts/__RoomLoaderFilter/__RoomLoaderFilter.yy",},},
@@ -239,7 +238,6 @@
     {"roomId":{"name":"rm_demo_base_slot_corner_01","path":"rooms/rm_demo_base_slot_corner_01/rm_demo_base_slot_corner_01.yy",},},
     {"roomId":{"name":"rm_demo_base_slot_corner_02","path":"rooms/rm_demo_base_slot_corner_02/rm_demo_base_slot_corner_02.yy",},},
     {"roomId":{"name":"rm_demo_base_slot_corner_03","path":"rooms/rm_demo_base_slot_corner_03/rm_demo_base_slot_corner_03.yy",},},
-    {"roomId":{"name":"rm_demo_screenshots","path":"rooms/rm_demo_screenshots/rm_demo_screenshots.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
