@@ -24,6 +24,8 @@ function DemoBase() : DemoPar("Base") constructor {
 		dbg_button("Cleanup All", function() {
 			slots.cleanup_all();
 		});
+		
+		flags.init_dbg();
 	};
 	static update = function() {
 		slots.update();
@@ -48,6 +50,7 @@ function DemoBase() : DemoPar("Base") constructor {
 		},
 	};
 	slots = {
+		owner: other,
 		tag: "base_rooms",
 		obj: obj_demo_base_slot_parent,
 		
@@ -69,8 +72,12 @@ function DemoBase() : DemoPar("Base") constructor {
 			// Load/cleanup hovered slot:
 			with (_hovered_slot) {
 				var _checker = (_fast ? mouse_check_button : mouse_check_button_pressed);
-				if (_checker(mb_left)) load(false);
-				if (mouse_check_button_pressed(mb_right)) cleanup(false);
+				if (_checker(mb_left)) {
+					load(false, other.owner.flags.get());
+				}
+				if (mouse_check_button_pressed(mb_right)) {
+					cleanup(false);
+				}
 			}
 			
 			// Load all rooms:
@@ -90,8 +97,9 @@ function DemoBase() : DemoPar("Base") constructor {
 		},
 		
 		load_all: function() {
+			var _flags = owner.flags.get();
 			with (obj) {
-				load(true);
+				load(true, _flags);
 			}
 		},
 		cleanup_all: function() {
@@ -100,4 +108,5 @@ function DemoBase() : DemoPar("Base") constructor {
 			}
 		},
 	};
+	flags = new DemoModuleFlags();
 }

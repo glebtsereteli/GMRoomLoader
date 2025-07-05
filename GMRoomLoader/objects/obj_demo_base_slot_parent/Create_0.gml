@@ -76,10 +76,10 @@ update = function() {
 	blend01 = lerp(blend01, hovered, 0.3);
 	image_blend = merge_color(c_white, fill.color, blend01);
 };
-load = function(_all) {
+load = function(_all, _flags) {
 	(_all ? index.shuffle : index.progress)();
 	var _room = asset_get_index($"rm_demo_base_slot_{vd_name}_0{index.value}");
-	var _data = RoomLoader.load(_room, x + 4, y + 4, 0, 0, ROOMLOADER_FLAG.CORE | ROOMLOADER_FLAG.TEXTS);
+	var _data = RoomLoader.load(_room, x + 4, y + 4, 0, 0, _flags);
 	data.set(_data);
 	fill.click(c_orange, 0.3);
 };
