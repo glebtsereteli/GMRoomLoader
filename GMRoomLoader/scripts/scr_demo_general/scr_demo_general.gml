@@ -44,6 +44,7 @@ function DemoGeneral() : Demo("General") constructor {
 		flags |= sprites * ROOMLOADER_FLAG.SPRITES;
 		flags |= particle_systems * ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		flags |= sequences * ROOMLOADER_FLAG.SEQUENCES;
+		flags |= texts * ROOMLOADER_FLAG.TEXTS;
 		flags |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
 		
 		if (keyboard_check_pressed(ord("1"))) load();
