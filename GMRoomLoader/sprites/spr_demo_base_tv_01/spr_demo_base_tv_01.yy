@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"TVs",
-    "path":"folders/Demo/Demos/02. Base/Sprites/TVs.yy",
+    "path":"folders/01. Demo/02. Base/Sprites/TVs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

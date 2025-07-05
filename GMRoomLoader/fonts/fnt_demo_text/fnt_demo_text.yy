@@ -234,8 +234,8 @@
   "maintainGms1Font":false,
   "name":"fnt_demo_text",
   "parent":{
-    "name":"Misc",
-    "path":"folders/Demo/Misc.yy",
+    "name":"99. Misc",
+    "path":"folders/01. Demo/99. Misc.yy",
   },
   "pointRounding":0,
   "ranges":[
@@ -249,10 +249,7 @@
   "sdfSpread":8,
   "size":32.0,
   "styleName":"Bold",
-  "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
-  },
+  "textureGroupId":null,
   "TTFName":"",
   "usesSDF":true,
 }

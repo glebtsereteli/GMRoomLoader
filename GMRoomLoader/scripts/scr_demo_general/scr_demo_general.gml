@@ -8,25 +8,28 @@ function DemoGeneral() : Demo("General") constructor {
 		
 		DEMOS.info = dbg_section("Info");
 		dbg_text("This demo showcases the main \"RoomLoader.load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin and flags.");
-		dbg_text("");
-		dbg_text_separator("Shortcuts");
-		dbg_text("> Press 1 to load the room.");
-		dbg_text("> Press 2 to unload the room.");
+		dbg_text_separator("Shortcuts", 1);
+		dbg_text("- [PRESS 1] to load the room.");
+		dbg_text("- [PRESS 2] to unload the room.");
 		
 		DEMOS.controls = dbg_section("Controls");
-		dbg_button("Load", function() { load(); });
+		dbg_button("Load", function() {
+			load();
+		});
 		dbg_same_line();
-		dbg_button("Unload", function() { unload(); });
+		dbg_button("Unload", function() {
+			unload();
+		});
 		
-		dbg_text_separator("Position");
+		dbg_text_separator("Position", 1);
 		dbg_slider_int(ref_create(self, "x"), 0, room_width, "X", 10);
 		dbg_slider_int(ref_create(self, "y"), 0, room_height, "Y", 10);
 		
-		dbg_text_separator("Origin");
+		dbg_text_separator("Origin", 1);
 		dbg_slider(ref_create(self, "xorigin"), 0, 1, "X", 0.1);
 		dbg_slider(ref_create(self, "yorigin"), 0, 1, "Y", 0.1);
 		
-		dbg_text_separator("Flags");
+		dbg_text_separator("Flags", 1);
 		dbg_checkbox(ref_create(self, "instances"), "Instances");
 		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
 		dbg_checkbox(ref_create(self, "sprites"), "Sprites");
@@ -56,10 +59,11 @@ function DemoGeneral() : Demo("General") constructor {
 	};
 	static cleanup = function() {
 		RoomLoader.data_remove(rm);
+		unload();
 	};
 	
 	// Custom:
-	rm = rm_demo_benchmark_load_01;
+	rm = rm_demo_general_01;
 	x = undefined;
 	y = undefined;
 	xorigin = 0.5;

@@ -1,11 +1,11 @@
-/// @feather ignore all
+// @feather ignore all
 
 /// @func RoomLoader()
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a "static namespace", initialized in this script. No further initialization is required.
-/// All methods are to be called as follows: RoomLoader.action(<arguments>).
+/// NOTE: This is a "static namespace" (made up term), initialized in this script. No further initialization is required.
+/// All methods are to be called as follows: RoomLoader.action(arguments...).
 function RoomLoader() {
 	#region __private
 	
@@ -333,32 +333,30 @@ function RoomLoader() {
 	/// Returns an array of created Instances.
 	/// @context RoomLoader
 	static load_instances = function(_room, _x, _y, _lod, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
-		static _cc = function(_data, _creator, _lod, _xoffset, _yoffset) {
-			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_START
-				with (_inst) {
-					script_execute(_inst_data.creation_code);
-				}
-			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_END
+		static _cc = function(_data, _func, _lod, _xoffset, _yoffset) {
+			__ROOMLOADER_INSTANCE_STANDALONE_START
+			__ROOMLOADER_INSTANCE_CC
+			__ROOMLOADER_INSTANCE_STANDALONE_END
 		};
-		static _nocc = function(_data, _create_func, _lod, _xoffset, _yoffset) {
-			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_START
-			__ROOMLOADER_INSTANCE_ONLOAD_STANDALONE_END
+		static _nocc = function(_data, _func, _lod, _xoffset, _yoffset) {
+			__ROOMLOADER_INSTANCE_STANDALONE_START
+			__ROOMLOADER_INSTANCE_STANDALONE_END
 		};
 		static _func = (ROOMLOADER_INSTANCES_RUN_CREATION_CODE ? _cc : _nocc);
 		static _method_name = "load_instances";
 		
 		__benchmark.__start();
 		var _data = __get_load_data(_room, _method_name, "load instances for", "load their instances");
-		var _creator = undefined;
+		var _func = undefined;
 		if (is_real(_lod)) {
-			_creator = instance_create_depth;
+			_func = instance_create_depth;
 		}
 		else if (is_string(_lod) or is_handle(_lod)) {
-			_creator = instance_create_layer;
+			_func = instance_create_layer;
 		}
 		var _xoffset = _x - (_data.__width * _xorigin);
 		var _yoffset = _y - (_data.__height * _yorigin);
-		var _instances = _func(_data.__instances_data, _creator, _lod, _xoffset, _yoffset);
+		var _instances = _func(_data.__instances_data, _func, _lod, _xoffset, _yoffset);
 		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded instances for", _room);
 		
 		return _instances;

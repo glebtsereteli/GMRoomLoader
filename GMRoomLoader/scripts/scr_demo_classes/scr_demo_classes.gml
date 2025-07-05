@@ -43,7 +43,7 @@ function Demos(_pool) constructor {
 		static _names = array_map(pool, function(_demo) {
 			return _demo.name;
 		});
-		dbg_drop_down(ref_create(self, "index"), _indices, _names, "Demo");
+		dbg_drop_down(ref_create(self, "index2"), _indices, _names, "Demo");
 		
 		dbg_same_line();
 		dbg_button("-", function() { change(index - 1); }, 20, 20);
@@ -53,8 +53,8 @@ function Demos(_pool) constructor {
 		change(index);
 	};
 	static update = function() {
-		if (index != index2) {
-			change(index);
+		if (index2 != index) {
+			change(index2);
 		}
 		get_current().update();
 	};

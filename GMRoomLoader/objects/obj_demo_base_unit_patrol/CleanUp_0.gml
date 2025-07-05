@@ -1,2 +1,2 @@
 
-cleanup();
+path_delete(path);

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"roomloader_export_screenshots",
   "parent":{
-    "name":"Misc",
-    "path":"folders/Misc.yy",
+    "name":"02. Misc",
+    "path":"folders/02. Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

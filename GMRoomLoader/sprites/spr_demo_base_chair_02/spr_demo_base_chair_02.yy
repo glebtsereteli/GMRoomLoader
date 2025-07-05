@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Chairs",
-    "path":"folders/Demo/Demos/02. Base/Sprites/Chairs.yy",
+    "path":"folders/01. Demo/02. Base/Sprites/Chairs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

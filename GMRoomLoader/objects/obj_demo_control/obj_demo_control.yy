@@ -10,8 +10,8 @@
   "name":"obj_demo_control",
   "overriddenProperties":[],
   "parent":{
-    "name":"Core",
-    "path":"folders/Demo/Core.yy",
+    "name":"00. Core",
+    "path":"folders/01. Demo/00. Core.yy",
   },
   "parentObjectId":null,
   "persistent":true,

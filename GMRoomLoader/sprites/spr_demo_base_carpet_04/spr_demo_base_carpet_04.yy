@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"Carpets",
-    "path":"folders/Demo/Demos/02. Base/Sprites/Carpets.yy",
+    "path":"folders/01. Demo/02. Base/Sprites/Carpets.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

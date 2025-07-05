@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Demo/Demos/02. Base/Units/Sprites.yy",
+    "path":"folders/01. Demo/02. Base/Units/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -65,6 +65,8 @@
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
+    "seqHeight":22.0,
+    "seqWidth":27.0,
     "showBackdrop":true,
     "showBackdropImage":false,
     "timeUnits":1,
