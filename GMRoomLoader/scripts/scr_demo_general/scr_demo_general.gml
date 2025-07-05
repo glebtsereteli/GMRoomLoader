@@ -6,7 +6,7 @@ function DemoGeneral() : Demo("General") constructor {
 		y = DEMOS.ycenter;
 		RoomLoader.data_init(rm);
 		
-		// Whitelist:
+		// Whitelist & Blacklist:
 		layer_set_target_room(rm);
 		whitelist = array_map(layer_get_all(), function(_layer) {
 			return {
@@ -14,11 +14,12 @@ function DemoGeneral() : Demo("General") constructor {
 				enabled: false,
 			}
 		});
+		blacklist = variable_clone(whitelist);
 		layer_reset_target_room();
 		
 		// Interface:
 		DEMOS.info = dbg_section("Info");
-		dbg_text("This demo showcases the main \"RoomLoader.load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin and flags.");
+		dbg_text("This demo showcases the main \"RoomLoader.load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin, flags, layer whitelist and blacklist.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to unload the room.");
@@ -51,6 +52,11 @@ function DemoGeneral() : Demo("General") constructor {
 		
 		dbg_text_separator("Layer Whitelist", 1);
 		array_foreach(whitelist, function(_layer) {
+			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
+		});
+		
+		dbg_text_separator("Layer Blacklist", 1);
+		array_foreach(blacklist, function(_layer) {
 			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
 		});
 	};
@@ -99,6 +105,7 @@ function DemoGeneral() : Demo("General") constructor {
 		},
 	};
 	whitelist = undefined;
+	blacklist = undefined;
 	
 	static load = function() {
 		unload();
@@ -107,8 +114,14 @@ function DemoGeneral() : Demo("General") constructor {
 				RoomLoader.layer_whitelist_add(_layer.name);
 			}
 		});
+		array_foreach(blacklist, function(_layer) {
+			if (_layer.enabled) {
+				RoomLoader.layer_blacklist_add(_layer.name);
+			}
+		});
 		DEMO_ROOM_DATA = RoomLoader.load(rm, x, y, xorigin, yorigin, flags.get());
 		RoomLoader.layer_whitelist_reset();
+		RoomLoader.layer_blacklist_reset();
 	};
 	static unload = function() {
 		if (DEMO_ROOM_DATA == undefined) return;

@@ -21,7 +21,7 @@ function Demos(_pool) constructor {
 		var _pad = 8;
 		var _x = _pad;
 		var _y = _pad + 19;
-		var _w = 500;
+		var _w = 510;
 		var _h = window_get_height() - _y - _pad;
 		
 		x1 = _x + _w + _pad;
