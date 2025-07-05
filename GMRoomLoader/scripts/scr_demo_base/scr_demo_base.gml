@@ -1,5 +1,5 @@
 
-function DemoBase() : Demo("Base") constructor {
+function DemoBase() : DemoPar("Base") constructor {
 	// Shared:
 	static init = function() {
 		host.init();
@@ -11,10 +11,10 @@ function DemoBase() : Demo("Base") constructor {
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load random rooms for all Slots.");
 		dbg_text("  [HOLD SHIFT+1] to load random rooms for all Slots every frame.");
-		dbg_text("- [PRESS 2] to unload rooms for all Slots.");
+		dbg_text("- [PRESS 2] to clean up rooms for all Slots.");
 		dbg_text("- [PRESS LMB] on a Slot to load a random room for it.");
 		dbg_text("  [HOLD SHIFT+LMB] on a Slot to load a random room for it every frame.");
-		dbg_text("- [PRESS RMB] on a Slot to unload its room.");
+		dbg_text("- [PRESS RMB] on a Slot to clean up its room.");
 		
 		DEMOS.controls = dbg_section("Controls");
 		dbg_button("Load All", function() {

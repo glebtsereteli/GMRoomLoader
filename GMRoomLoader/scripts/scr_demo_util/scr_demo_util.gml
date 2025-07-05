@@ -23,3 +23,12 @@ function lerp_angle(_a, _b, _amount) {
 function mod2(_dividend, _divisor) {
     return (_dividend - floor(_dividend / _divisor) * _divisor);
 }
+
+function demo_draw_frame(_room, _px, _py, _origin, _scale = 1) {
+	var _w = RoomLoader.data_get_width(_room) * _scale;
+	var _h = RoomLoader.data_get_height(_room) * _scale;
+	var _x = floor(_px - (_w * _origin.x));
+	var _y = floor(_py - (_h * _origin.y));
+	draw_sprite_stretched(spr_demo_frame, 0, _x, _y, _w, _h);
+	draw_sprite(spr_demo_cross, 0, _px, _py);
+}

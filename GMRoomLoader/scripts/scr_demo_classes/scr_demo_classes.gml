@@ -77,7 +77,7 @@ function Demos(_pool) constructor {
 		return pool[index];
 	};
 }
-function Demo(_name) constructor {
+function DemoPar(_name) constructor {
 	name = _name;
 	index = undefined;
 	
