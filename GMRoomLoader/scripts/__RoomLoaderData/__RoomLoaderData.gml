@@ -351,7 +351,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				}
 			}
 		}
-		static __draw = function() {
+		static __draw = function(_flags) {
+			if (not __roomloader_check_flags(_flags)) return;
+			
 			with (__data) {
 				var _font = draw_get_font();
 				var _halign = draw_get_halign();
