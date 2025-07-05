@@ -48,7 +48,6 @@
     {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
     {"name":"obj_demo_base_unit_look","order":1,"path":"objects/obj_demo_base_unit_look/obj_demo_base_unit_look.yy",},
     {"name":"obj_demo_base_unit_patrol","order":2,"path":"objects/obj_demo_base_unit_patrol/obj_demo_base_unit_patrol.yy",},
-    {"name":"obj_demo_screenshots_control","order":1,"path":"objects/obj_demo_screenshots_control/obj_demo_screenshots_control.yy",},
     {"name":"pth_demo_base_cslot_orner_01_patrol_01","order":1,"path":"paths/pth_demo_base_cslot_orner_01_patrol_01/pth_demo_base_cslot_orner_01_patrol_01.yy",},
     {"name":"pth_demo_base_slot_02_01_patrol_01","order":1,"path":"paths/pth_demo_base_slot_02_01_patrol_01/pth_demo_base_slot_02_01_patrol_01.yy",},
     {"name":"pth_demo_base_slot_02_02_patrol_01","order":1,"path":"paths/pth_demo_base_slot_02_02_patrol_01/pth_demo_base_slot_02_02_patrol_01.yy",},
