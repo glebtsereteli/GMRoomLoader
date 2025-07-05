@@ -6,6 +6,17 @@ function DemoGeneral() : Demo("General") constructor {
 		y = DEMOS.ycenter;
 		RoomLoader.data_init(rm);
 		
+		// Whitelist:
+		layer_set_target_room(rm);
+		whitelist = array_map(layer_get_all(), function(_layer) {
+			return {
+				name: layer_get_name(_layer),
+				enabled: false,
+			}
+		});
+		layer_reset_target_room();
+		
+		// Interface:
 		DEMOS.info = dbg_section("Info");
 		dbg_text("This demo showcases the main \"RoomLoader.load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin and flags.");
 		dbg_text_separator("Shortcuts", 1);
@@ -30,23 +41,20 @@ function DemoGeneral() : Demo("General") constructor {
 		dbg_slider(ref_create(self, "yorigin"), 0, 1, "Y", 0.1);
 		
 		dbg_text_separator("Flags", 1);
-		dbg_checkbox(ref_create(self, "instances"), "Instances");
-		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
-		dbg_checkbox(ref_create(self, "sprites"), "Sprites");
-		dbg_checkbox(ref_create(self, "particle_systems"), "Particle Systems");
-		dbg_checkbox(ref_create(self, "texts"), "Texts");
-		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
+		dbg_checkbox(ref_create(flags, "instances"), "Instances");
+		dbg_checkbox(ref_create(flags, "tilemaps"), "Tilemaps");
+		dbg_checkbox(ref_create(flags, "sprites"), "Sprites");
+		dbg_checkbox(ref_create(flags, "particle_systems"), "Particle Systems");
+		dbg_checkbox(ref_create(flags, "sequences"), "Sequences");
+		dbg_checkbox(ref_create(flags, "texts"), "Texts");
+		dbg_checkbox(ref_create(flags, "backgrounds"), "Backgrounds");
+		
+		dbg_text_separator("Layer Whitelist", 1);
+		array_foreach(whitelist, function(_layer) {
+			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
+		});
 	};
 	static update = function() {
-		flags = ROOMLOADER_FLAG.NONE;
-		flags |= instances * ROOMLOADER_FLAG.INSTANCES;
-		flags |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;
-		flags |= sprites * ROOMLOADER_FLAG.SPRITES;
-		flags |= particle_systems * ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
-		flags |= sequences * ROOMLOADER_FLAG.SEQUENCES;
-		flags |= texts * ROOMLOADER_FLAG.TEXTS;
-		flags |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
-		
 		if (keyboard_check_pressed(ord("1"))) load();
 		if (keyboard_check_pressed(ord("2"))) unload();
 	};
@@ -69,18 +77,38 @@ function DemoGeneral() : Demo("General") constructor {
 	y = undefined;
 	xorigin = 0.5;
 	yorigin = 0.5;
-	instances = true;
-	tilemaps = true;
-	sprites = true;
-	particle_systems = true;
-	sequences = true;
-	texts = true;
-	backgrounds = true;
-	flags = undefined;
+	flags = {
+		instances: true,
+		tilemaps: true,
+		sprites: true,
+		particle_systems: true,
+		sequences: true,
+		texts: true,
+		backgrounds: true,
+		
+		get: function() {
+			var _total = ROOMLOADER_FLAG.NONE;
+			_total |= instances * ROOMLOADER_FLAG.INSTANCES;
+			_total |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;
+			_total |= sprites * ROOMLOADER_FLAG.SPRITES;
+			_total |= particle_systems * ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
+			_total |= sequences * ROOMLOADER_FLAG.SEQUENCES;
+			_total |= texts * ROOMLOADER_FLAG.TEXTS;
+			_total |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
+			return _total;
+		},
+	};
+	whitelist = undefined;
 	
 	static load = function() {
 		unload();
-		DEMO_ROOM_DATA = RoomLoader.load(rm, x, y, xorigin, yorigin, flags);
+		array_foreach(whitelist, function(_layer) {
+			if (_layer.enabled) {
+				RoomLoader.layer_whitelist_add(_layer.name);
+			}
+		});
+		DEMO_ROOM_DATA = RoomLoader.load(rm, x, y, xorigin, yorigin, flags.get());
+		RoomLoader.layer_whitelist_reset();
 	};
 	static unload = function() {
 		if (DEMO_ROOM_DATA == undefined) return;
