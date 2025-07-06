@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_demo_general_parrot",
+  "%Name":"obj_demo_parrot",
   "eventList":[],
   "managed":true,
-  "name":"obj_demo_general_parrot",
+  "name":"obj_demo_parrot",
   "overriddenProperties":[],
   "parent":{
     "name":"Parrot",
-    "path":"folders/01. Demo/01. General/Parrot.yy",
+    "path":"folders/01. Demo/98. Filler/Parrot.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_demo_general_parrot",
-    "path":"sprites/spr_demo_general_parrot/spr_demo_general_parrot.yy",
+    "name":"spr_demo_parrot",
+    "path":"sprites/spr_demo_parrot/spr_demo_parrot.yy",
   },
   "spriteMaskId":null,
   "visible":true,

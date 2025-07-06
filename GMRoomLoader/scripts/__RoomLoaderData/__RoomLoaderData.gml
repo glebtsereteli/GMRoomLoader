@@ -141,16 +141,16 @@ function __RoomLoaderData(_room) constructor {
 		_width = (_pwidth01 * _width);
 		_height = (_pheight01 * _height);
         var _sprite = sprite_create_from_surface(_final_surf, 
-			(_pleft01 * _width), (_ptop01 * _height), 
-			_width, _height, 
-			false, false, 
+			(_pleft01 * _width), (_ptop01 * _height),
+			_width, _height,
+			false, false,
 			(_xorigin * _width), (_yorigin * _height)
 		);
         
         // Cleanup & return:
         surface_free(_raw_surf);
         if (_scaled) {
-			surface_free(_final_surf);	
+			surface_free(_final_surf);
 		}
         return _sprite;
     };

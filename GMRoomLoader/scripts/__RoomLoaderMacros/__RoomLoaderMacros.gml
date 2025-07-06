@@ -12,7 +12,7 @@
 
 #macro __ROOMLOADER_INSTANCE_CC \
 with (_inst) { \
-	script_execute(_inst_data.creation_code); \
+	script_execute(_idata.creation_code); \
 }
 
 #endregion
@@ -24,12 +24,12 @@ var _ids = _return_data.__ids; \
 var _room_ids = _return_data.__room_ids; \
 var _index = _return_data.__index; \
 var _i = 0; repeat (array_length(__instances_data)) { \
-	var _inst_data = __instances_data[_i]; \
-	var _x = _inst_data.x + _xoffset; \
-	var _y = _inst_data.y + _yoffset; \
-	var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate); \
+	var _idata = __instances_data[_i]; \
+	var _ix = _idata.x + _xoffset; \
+	var _iy = _idata.y + _yoffset; \
+	var _inst = instance_create_layer(_ix, _iy, _layer, _idata.object_index, _idata.precreate); \
 	_ids[_index] = _inst; \
-	_room_ids[_index] = _inst_data.id;
+	_room_ids[_index] = _idata.id;
 
 #macro __ROOMLOADER_INSTANCE_FULL_END_RETURNDATA \
 	_i++; \
@@ -39,10 +39,10 @@ _return_data.__index = _index;
 
 #macro __ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA \
 var _i = 0; repeat (array_length(__instances_data)) { \
-	var _inst_data = __instances_data[_i]; \
-	var _x = _inst_data.x + _xoffset; \
-	var _y = _inst_data.y + _yoffset; \
-	var _inst = instance_create_layer(_x, _y, _layer, _inst_data.object_index, _inst_data.precreate);
+	var _idata = __instances_data[_i]; \
+	var _ix = _idata.x + _xoffset; \
+	var _iy = _idata.y + _yoffset; \
+	var _inst = instance_create_layer(_ix, _iy, _layer, _idata.object_index, _idata.precreate);
 
 #macro __ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA \
 	_i++; \
@@ -52,18 +52,38 @@ var _i = 0; repeat (array_length(__instances_data)) { \
 #region instances standalone
 
 #macro __ROOMLOADER_INSTANCE_STANDALONE_START \
-var _n = array_length(_data); \
-var _instances = array_create(_n, noone); \
 var _i = 0; repeat (_n) { \
-	var _inst_data = _data[_i]; \
-	var _x = _inst_data.x + _xoffset; \
-	var _y = _inst_data.y + _yoffset; \
-	var _inst = _func(_x, _y, _lod, _inst_data.object_index, _inst_data.precreate);
+	var _idata = _data[_i]; \
+	var _ix = _idata.x + _xoffset; \
+	var _iy = _idata.y + _yoffset; \
+	var _inst = _func(_ix, _iy, _lod, _idata.object_index, _idata.precreate);
 
 #macro __ROOMLOADER_INSTANCE_STANDALONE_END \
 	_instances[_i] = _inst; \
 	_i++; \
-} \
-return _instances;
+}
+
+#macro __ROOMLOADER_INSTANCE_STANDALONE_EXT_START \
+var _i = 0; repeat (_n) { \
+	var _idata = _idatas[_i]; \
+	var _precreate = _idata.precreate; \
+	var _xscaled = _idata.x * _xscale; \
+	var _yscaled = _idata.y * _yscale; \
+	var _dist = point_distance(0, 0, _xscaled, _yscaled); \
+	var _dir = point_direction(0, 0, _xscaled, _yscaled) + _angle; \
+	var _ix = _x1 + lengthdir_x(_dist, _dir); \
+	var _iy = _y1 + lengthdir_y(_dist, _dir); \
+	_precreate.image_xscale *= _ixscale; \
+	_precreate.image_yscale *= _iyscale; \
+	_precreate.image_angle += _iangle; \
+	var _inst = instance_create_depth(_ix, _iy, _lod, _idata.object_index, _idata.precreate);
+
+#macro __ROOMLOADER_INSTANCE_STANDALONE_EXT_END \
+_precreate.image_xscale /= _ixscale; \
+	_precreate.image_yscale /= _iyscale; \
+	_precreate.image_angle -= _iangle; \
+	_instances[_i] = _inst; \
+	_i++; \
+}
 
 #endregion
