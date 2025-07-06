@@ -374,12 +374,15 @@ function RoomLoader() {
 	/// @param {Real} xscale The horizontal scale applied to instance positioning.
 	/// @param {Real} yscale The vertical scale applied to instance positioning.
 	/// @param {Real} angle The angle applied to instance positioning.
-	/// @param {Bool} multiplicative_scale=[true] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
-	/// @param {Bool} additive_angle=[true] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
+	/// @param {Bool} multiplicative_scale=[ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
+	/// @param {Bool} additive_angle=[ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
 	/// @returns {Array<Id.Instance>}
-	static load_instances_ext = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, _mult_scale = true, _add_angle = true, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
+	static load_instances_ext = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, 
+		_mult_scale = ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE, _add_angle = ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE, 
+		_xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN
+	) {
 		static _method_name = "load_instances_ext";
 		static _body = "load instances for";
 		static _end = "load their instances";

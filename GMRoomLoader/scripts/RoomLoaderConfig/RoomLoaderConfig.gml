@@ -20,14 +20,16 @@
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_USE_RETURN_DATA true
 
-// Whether to merge loaded layers with existing ones (true) or keep them separate (false).
+// When loading rooms using RoomLoader.load(), whether to merge loaded layers with existing ones (true)
+// or keep them separate (false).
 //
 // If true: when loading a layer, its contents will be merged into an existing layer with the same name.
 // If no matching layer exists, a new one will be created.
 // 
 // If false: a new layer is always created, even if a layer with the same name already exists.
 // 
-// WARNING: Enabling this may result in shared layers being unintentionally destroyed during RoomLoaderReturnData cleanup.
+// WARNING: Enabling this may result in layers shared between elements loaded from multiple rooms to be
+// unintentionally destroyed during RoomLoaderReturnData.cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
 // Whether to initialize room parameters for loaded instances (true) or not (false).
@@ -39,6 +41,14 @@
 // 
 // NOTE: setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
+
+// When loading instances using RoomLoader.load_instances_ext(), whether to multiply individual instance scale
+// by the overall load scale (true) or not (false).
+#macro ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE true
+
+// When loading instances using RoomLoader.load_instances_ext(), whether to combine individual instance angle
+// with the overall load angle (true) or not (false).
+#macro ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE true
 
 // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false

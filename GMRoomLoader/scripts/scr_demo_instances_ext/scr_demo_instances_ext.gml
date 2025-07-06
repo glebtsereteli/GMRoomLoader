@@ -21,12 +21,12 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		
 		pos.init_dbg();
 		origin.init_dbg();
-		dbg_text_separator("Transform", 1);
+		dbg_text_separator("Room Transform", 1);
 		dbg_slider(ref_create(self, "xscale"), 0, 2, "X Scale", 0.1);
 		dbg_slider(ref_create(self, "yscale"), 0, 2, "Y Scale", 0.1);
 		dbg_slider_int(ref_create(self, "angle"), 0, 360, "Angle");
 		
-		dbg_text_separator("Local Instance Transform", 1)
+		dbg_text_separator("Instance Transform", 1)
 		dbg_checkbox(ref_create(self, "scale_multiplicative"), "Multiplicative Scale");
 		dbg_text(" - When enabled, individual instance \"image_x/yscale\" is multiplied by\n the overall load xscale/yscale.");
 		dbg_text("");
