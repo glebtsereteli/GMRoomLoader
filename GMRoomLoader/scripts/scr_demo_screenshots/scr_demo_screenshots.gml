@@ -28,6 +28,10 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			
 			sprite_save(sprite, 0, _path);
 		});
+		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
+		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
+		dbg_slider(ref_create(self, "w"), 0, 1, "Width %", 0.05);
+		dbg_slider(ref_create(self, "h"), 0, 1, "Height %", 0.05);
 		dbg_slider(ref_create(self, "scale"), 0, 2, "Scale", 0.05);
 		
 		origin.init_dbg();
@@ -40,13 +44,17 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		}
 	};
 	static draw = function() {
-		var _x = DEMOS.xcenter;
-		var _y = DEMOS.ycenter;
-		draw_sprite(sprite, 0, _x, _y);
-		demo_draw_frame(rm, _x, _y, origin);
-		if (scale != 1) {
-			demo_draw_frame(rm, _x, _y, origin, scale, c_orange);
-		}
+		var _x1 = DEMOS.xcenter;
+		var _y1 = DEMOS.ycenter;
+		draw_sprite(sprite, 0, _x1, _y1);
+		
+		var _w = RoomLoader.data_get_width(rm) * w * scale;
+		var _h = RoomLoader.data_get_height(rm) * h * scale;
+		var _x = floor(_x1 - (_w * origin.x));
+		var _y = floor(_y1 - (_h * origin.y));
+		
+		draw_sprite_stretched(spr_demo_frame, 0, _x, _y, _w * (1 - left), _h * (1 - top));
+		draw_sprite(spr_demo_cross, 0, _x1, _y1);
 	};
 	static cleanup = function() {
 		RoomLoader.data_remove_tag(tag);
@@ -58,6 +66,10 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	rooms = tag_get_asset_ids(tag, asset_room);
 	rm = undefined;
 	sprite = undefined;
+	left = 0;
+	top = 0;
+	w = 1;
+	h = 1;
 	scale = 1;
 	origin = new DemoModuleOrigin();
 	flags = new DemoModuleFlags();
@@ -71,7 +83,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	};
 	static retake = function() {
 		clear();
-		sprite = RoomLoader.take_screenshot(rm, origin.x, origin.y, scale, flags.get());
+		sprite = RoomLoader.take_screenshot_part(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
 	};
 	static clear = function() {
 		if (sprite == undefined) return;
