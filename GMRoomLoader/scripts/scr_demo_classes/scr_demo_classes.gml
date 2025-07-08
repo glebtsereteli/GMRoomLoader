@@ -16,6 +16,7 @@ function Demos(_pool) constructor {
 	ycenter = undefined;
 	w = undefined;
 	h = undefined;
+	live_refresh = true;
 	
 	static init = function() {
 		var _pad = 8;
@@ -35,7 +36,7 @@ function Demos(_pool) constructor {
 		
 		dbg_view($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} Demo", true, _x, _y, _w, _h);
 		
-		dbg_section("Selection");
+		dbg_section("Meta");
 		static _indices = array_create_ext(n, function(_i) {
 			pool[_i].index = _i;
 			return _i;
@@ -49,6 +50,7 @@ function Demos(_pool) constructor {
 		dbg_button("-", function() { change(index - 1); }, 20, 20);
 		dbg_same_line();
 		dbg_button("+", function() { change(index + 1); }, 20, 20);
+		dbg_checkbox(ref_create(self, "live_refresh"), "Live Refresh");
 		
 		change(index);
 	};
@@ -104,9 +106,10 @@ function DemoReloader(_pool) constructor {
 			return false;
 		};
 		
-		if (array_any(pool, _check)) {
-			cb_on_trigger();
-		}
+		if ((not DEMOS.live_refresh) and (not mouse_check_button_released(mb_left))) return;
+		if (not array_any(pool, _check)) return;
+		
+		cb_on_trigger();
 	};
 	
 	static add_variable = function(_scope, _name) {
