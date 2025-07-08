@@ -27,12 +27,13 @@ function DemoBase() : DemoPar("Base") constructor {
 		
 		flags.init_dbg();
 	};
-	static update = function() {
-		slots.update();
-	};
 	static cleanup = function() {
 		slots.cleanup();
 		host.cleanup();
+	};
+	
+	static on_update = function() {
+		slots.update();
 	};
 	
 	// Custom:
@@ -109,4 +110,10 @@ function DemoBase() : DemoPar("Base") constructor {
 		},
 	};
 	flags = new DemoModuleFlags();
+
+	reloader
+	.add_modules([flags])
+	.on_trigger(function() {
+		slots.load_all();
+	});
 }

@@ -37,12 +37,6 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		origin.init_dbg();
 		flags.init_dbg();
 	};
-	static update = function() {
-		var _checker = (keyboard_check(vk_shift) ? keyboard_check : keyboard_check_pressed);
-		if (_checker(ord("1"))) {
-			take_random();
-		}
-	};
 	static draw = function() {
 		var _x1 = DEMOS.xcenter;
 		var _y1 = DEMOS.ycenter;
@@ -59,6 +53,13 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	static cleanup = function() {
 		RoomLoader.data_remove_tag(tag);
 		clear();
+	};
+	
+	static on_update = function() {
+		var _checker = (keyboard_check(vk_shift) ? keyboard_check : keyboard_check_pressed);
+		if (_checker(ord("1"))) {
+			take_random();
+		}
 	};
 	
 	// Custom:
@@ -90,4 +91,11 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		sprite_delete(sprite);
 		sprite = undefined;
 	};
+	
+	reloader
+	.add_variables(self, ["left", "top", "w", "h", "scale"])
+	.add_modules([origin, flags])
+	.on_trigger(function() {
+		retake();
+	});
 }

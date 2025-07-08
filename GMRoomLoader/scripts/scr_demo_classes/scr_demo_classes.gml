@@ -80,9 +80,63 @@ function Demos(_pool) constructor {
 function DemoPar(_name) constructor {
 	name = _name;
 	index = undefined;
+	reloader = new DemoReloader();
 	
 	static init = noop;
-	static update = noop;
+	static update = function() {
+		reloader.update();
+		on_update();
+	};
 	static draw = noop;
 	static cleanup = noop;
 }
+function DemoReloader(_pool) constructor {
+	pool = [];
+	cb_on_trigger = noop;
+	
+	static update = function() {
+		static _check = function(_var) {
+			var _new = _var.scope[$ _var.name];
+			if (_new != _var.def) {
+				_var.def = _new;
+				return true;
+			}
+			return false;
+		};
+		
+		if (array_any(pool, _check)) {
+			cb_on_trigger();
+		}
+	};
+	
+	static add_variable = function(_scope, _name) {
+		array_push(pool, {
+			def: _scope[$ _name],
+			scope: _scope,
+			name: _name,
+		});
+		return self;
+	};
+	static add_variables = function(_scope, _pool) {
+		for (var _i = 0; _i < array_length(_pool); _i++) {
+			add_variable(_scope, _pool[_i]);
+		}
+		return self;
+	};
+	static add_modules = function(_pool) {
+		array_foreach(_pool, function(_module) {
+			add_variables(_module, _module.reloader_names);
+		});
+		return self;
+	};
+	static clear = function() {
+		pool = [];
+		return self;
+	};
+	
+	static on_trigger = function(_callback) {
+		cb_on_trigger = _callback;
+		return self;
+	};
+}
+

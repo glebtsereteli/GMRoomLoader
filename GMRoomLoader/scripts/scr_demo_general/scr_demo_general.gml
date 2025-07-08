@@ -44,10 +44,20 @@ function DemoGeneral() : DemoPar("General") constructor {
 		array_foreach(blacklist, function(_layer) {
 			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
 		});
-	};
-	static update = function() {
-		if (keyboard_check_pressed(ord("1"))) load();
-		if (keyboard_check_pressed(ord("2"))) unload();
+	
+		// Reloader:
+		reloader
+		.clear()
+		.add_modules([pos, origin, flags])
+		.on_trigger(function() {
+			load();
+		});
+		array_foreach(whitelist, function(_layer) {
+			reloader.add_variable(_layer, "enabled");
+		});
+		array_foreach(blacklist, function(_layer) {
+			reloader.add_variable(_layer, "enabled");
+		});
 	};
 	static draw = function() {
 		demo_draw_frame(rm, pos.x, pos.y, origin);
@@ -55,6 +65,11 @@ function DemoGeneral() : DemoPar("General") constructor {
 	static cleanup = function() {
 		RoomLoader.data_remove(rm);
 		unload();
+	};
+	
+	static on_update = function() {
+		if (keyboard_check_pressed(ord("1"))) load();
+		if (keyboard_check_pressed(ord("2"))) unload();
 	};
 	
 	// Custom:

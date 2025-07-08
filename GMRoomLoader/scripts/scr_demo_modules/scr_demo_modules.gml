@@ -1,5 +1,7 @@
 
 function DemoModulePos() constructor {
+	static reloader_names = ["x", "y"];
+	
 	x = undefined;
 	y = undefined;
 	
@@ -13,6 +15,8 @@ function DemoModulePos() constructor {
 	};
 }
 function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
+	static reloader_names = ["x", "y"];
+	
 	x = _x;
 	y = _y;
 	
@@ -23,6 +27,8 @@ function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
 	};
 }
 function DemoModuleFlags() constructor {
+	static reloader_names = ["instances", "tilemaps", "sprites", "particle_systems", "sequences", "texts", "backgrounds"];
+	
 	instances = true;
 	tilemaps = true;
 	sprites = true;

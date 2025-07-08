@@ -33,10 +33,6 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		dbg_checkbox(ref_create(self, "angle_additive"), "Additive Angle");
 		dbg_text(" - When enabled, individual instance \"image_angle\" is combined with\n the overall load scale.");
 	};
-	static update = function() {
-		if (keyboard_check_pressed(ord("1"))) load();
-		if (keyboard_check_pressed(ord("2"))) unload();
-	};
 	static draw = function() {
 		var _frame = spr_demo_frame;
 		var _w = RoomLoader.data_get_width(rm) * xscale;
@@ -54,13 +50,18 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		unload();
 	};
 	
+	static on_update = function() {
+		if (keyboard_check_pressed(ord("1"))) load();
+		if (keyboard_check_pressed(ord("2"))) unload();
+	};
+	
 	// Custom:
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	xscale = 1;
 	yscale = 1;
-	scale_multiplicative = true;
 	angle = 0;
+	scale_multiplicative = true;
 	angle_additive = true;
 	
 	rm = rm_demo_instances_ext_01;
@@ -78,4 +79,11 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		});
 		delete instances;
 	};
+	
+	reloader
+	.add_variables(self, ["xscale", "yscale", "angle", "scale_multiplicative", "angle_additive"])
+	.add_modules([pos, origin])
+	.on_trigger(function() {
+		load();
+	});
 }
