@@ -48,7 +48,7 @@ function __RoomLoaderData(_room) constructor {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
 				case layerelementtype_sequence:
-				//case layerelementtype_particlesystem:
+				//case layerelementtype_particlesystem: [@FIX] GM bug, currently broken.
 				case layerelementtype_text: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTilemap;
 				case layerelementtype_background: return __RoomLoaderDataLayerBackground;
@@ -266,6 +266,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			}
 		};
 	};
+	/* [@FIX] GM bug, currently broken.
 	static __DataParticleSystem = function(_data) constructor {
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
@@ -288,6 +289,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		}
 		static __draw = __roomloader_noop;
 	};
+	*/
 	static __DataSequence = function(_data) constructor {
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SEQUENCES;
@@ -374,7 +376,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			var _constructor = undefined;
 			switch (_data.type) {
 				case layerelementtype_sprite: _constructor = __DataSprite; break;
-				case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
+				//case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break; [@FIX] GM bug, currently broken.
 				case layerelementtype_sequence: _constructor = __DataSequence; break;
 				case layerelementtype_text: _constructor = __DataText; break;
 			}
@@ -430,7 +432,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__height = undefined;
 	
 	static __init = function() {
-		__tileset = __tilemap_data[$ "tileset_index"];
+		__tileset = __tilemap_data.tileset_index;
 		__width = __tilemap_data.width;
 		__height = __tilemap_data.height;
 		

@@ -53,10 +53,12 @@
 // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false
 
+/* [@FIX] GM bug, currently broken.
 // Steps to progress loaded particle systems by.
 // 
 // NOTE: increasing this value reduces loading performance.
 #macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
+*/
 
 // Whether to run the Creation Code for loaded rooms (true) or not (false).
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true

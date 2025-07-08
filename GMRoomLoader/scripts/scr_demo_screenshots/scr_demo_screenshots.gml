@@ -3,7 +3,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	// Shared:
 	static init = function() {
 		RoomLoader.data_init_tag(tag);
-		take_random();
+		shuffle_room();
 		
 		// Interface:
 		DEMOS.info = dbg_section("Info");
@@ -17,8 +17,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			take_random();
 		});
 		dbg_same_line();
-		dbg_button("Retake", function() {
-			retake();
+		dbg_button("Take", function() {
+			take();
 		});
 		dbg_same_line();
 		dbg_button("Export", function() {
@@ -28,8 +28,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			
 			sprite_save(sprite, 0, _path);
 		});
-		dbg_slider(ref_create(self, "left"), 0.1, 1, "Left %", 0.05);
-		dbg_slider(ref_create(self, "top"), 0.1, 1, "Top %", 0.05);
+		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
+		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
 		dbg_slider(ref_create(self, "w"), 0.1, 1, "Width %", 0.05);
 		dbg_slider(ref_create(self, "h"), 0.1, 1, "Height %", 0.05);
 		dbg_slider(ref_create(self, "scale"), 0.1, 2, "Scale", 0.05);
@@ -40,7 +40,9 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	static draw = function() {
 		var _x1 = DEMOS.xcenter;
 		var _y1 = DEMOS.ycenter;
-		draw_sprite(sprite, 0, _x1, _y1);
+		if (sprite != undefined) {
+			draw_sprite(sprite, 0, _x1, _y1);
+		}
 		
 		var _w = RoomLoader.data_get_width(rm) * w * scale;
 		var _h = RoomLoader.data_get_height(rm) * h * scale;
@@ -67,27 +69,31 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	rooms = tag_get_asset_ids(tag, asset_room);
 	rm = undefined;
 	sprite = undefined;
-	left = 0.1;
-	top = 0.1;
+	left = 0;
+	top = 0;
 	w = 1;
 	h = 1;
 	scale = 1;
 	origin = new DemoModuleOrigin();
 	flags = new DemoModuleFlags();
 	
-	static take_random = function() {
+	static shuffle_room = function() {
 		var _prev = rm;
 		do {
 			rm = script_execute_ext(choose, rooms);
 		} until (rm != _prev);
-		retake();
 	};
-	static retake = function() {
+	static take_random = function() {
+		shuffle_room();
+		take();
+	};
+	static take = function() {
 		clear();
 		sprite = RoomLoader.take_screenshot_part(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
 	};
 	static clear = function() {
 		if (sprite == undefined) return;
+		
 		sprite_delete(sprite);
 		sprite = undefined;
 	};
@@ -96,6 +102,6 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	.add_variables(self, ["left", "top", "w", "h", "scale"])
 	.add_modules([origin, flags])
 	.on_trigger(function() {
-		retake();
+		take();
 	});
 }

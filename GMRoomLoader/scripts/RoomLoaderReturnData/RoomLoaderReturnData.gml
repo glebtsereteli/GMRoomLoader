@@ -55,7 +55,7 @@ function RoomLoaderReturnData(_room) constructor {
 	__instances = new __Instances();
 	__tilemaps = new __Container(layer_tilemap_destroy);
 	__sprites = new __Container(layer_sprite_destroy);
-	__particle_systems = new __Container(part_system_destroy);
+	//__particle_systems = new __Container(part_system_destroy); [@FIX] GM bug, currently broken.
 	__sequences = new __Container(layer_sequence_destroy);
 	__texts = new __Container(layer_text_destroy);
 	__backgrounds = new __Container(layer_background_destroy);
@@ -126,6 +126,7 @@ function RoomLoaderReturnData(_room) constructor {
 		return __sprites.__ids;
 	};
 	
+	/* [@FIX] GM bug, currently broken.
 	/// @param {String} name The Particle System name to search for.
 	/// @returns {Id.ParticleSystem,undefined}
 	/// @desc Returns the created Particle System ID matching the given name or undefined if not found.
@@ -141,6 +142,7 @@ function RoomLoaderReturnData(_room) constructor {
 	static get_particle_systems = function() {
 		return __particle_systems.__ids;
 	};
+	*/
 	
 	/// @param {String} name The Sequence name to search for.
 	/// @returns {Id.Sequence,undefined}
@@ -196,7 +198,7 @@ function RoomLoaderReturnData(_room) constructor {
 		__instances.__destroy();
 		__tilemaps.__destroy();
 		__sprites.__destroy();
-		__particle_systems.__destroy();
+		//__particle_systems.__destroy(); [@FIX] GM bug, currently broken.
 		__sequences.__destroy();
 		__texts.__destroy();
 		__backgrounds.__destroy();
