@@ -48,7 +48,7 @@ function __RoomLoaderData(_room) constructor {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
 				case layerelementtype_sequence:
-				case layerelementtype_particlesystem:
+				//case layerelementtype_particlesystem:
 				case layerelementtype_text: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTilemap;
 				case layerelementtype_background: return __RoomLoaderDataLayerBackground;
@@ -237,9 +237,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SPRITES;
 		
-		static __load = function(_layer, _xoffset, _yoffset, _flags) {
-			if (not __roomloader_check_flags(_flags)) return undefined;
-			
+		static __load = function(_layer, _xoffset, _yoffset) {
 			with (__data) {
 				var _x = x + _xoffset;
 				var _y = y + _yoffset;
@@ -257,9 +255,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				}
 			}
 		};
-		static __draw = function(_flags) {
-			if (not __roomloader_check_flags(_flags)) return;
-			
+		static __draw = function() {
 			with (__data) {
 				draw_sprite_ext(
 					sprite_index, image_index,
@@ -274,9 +270,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		
-		static __load = function(_layer, _xoffset, _yoffset, _flags) {
-			if (not __roomloader_check_flags(_flags)) return undefined;
-			
+		static __load = function(_layer, _xoffset, _yoffset) {
 			var _particle_system = part_system_create_layer(_layer, false, __data.ps);
 			var _x = __data.x + _xoffset;
 			var _y = __data.y + _yoffset;
@@ -285,7 +279,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			part_system_angle(_particle_system, __data.angle);
 			
 			repeat (ROOMLOADER_PARTICLE_SYSTEMS_STEPS) {
-				part_system_update(_particle_system);	
+				part_system_update(_particle_system);
 			}
 			
 			if (ROOMLOADER_USE_RETURN_DATA) {
@@ -298,9 +292,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SEQUENCES;
 		
-		static __load = function(_layer, _xoffset, _yoffset, _flags) {
-			if (not __roomloader_check_flags(_flags)) return undefined;
-			
+		static __load = function(_layer, _xoffset, _yoffset) {
 			var _x = __data.x + _xoffset;
 			var _y = __data.y + _yoffset;
 			var _sequence = layer_sequence_create(_layer, _x, _y, __data.seq_id);
@@ -324,9 +316,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.TEXTS;
 		
-		static __load = function(_layer, _xoffset, _yoffset, _flags) {
-			if (not __roomloader_check_flags(_flags)) return undefined;
-			
+		static __load = function(_layer, _xoffset, _yoffset) {
 			with (__data) {
 				var _x = x + _xoffset;
 				var _y = y + _yoffset;
@@ -351,9 +341,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				}
 			}
 		}
-		static __draw = function(_flags) {
-			if (not __roomloader_check_flags(_flags)) return;
-			
+		static __draw = function() {
 			with (__data) {
 				var _font = draw_get_font();
 				var _halign = draw_get_halign();
@@ -386,7 +374,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			var _constructor = undefined;
 			switch (_data.type) {
 				case layerelementtype_sprite: _constructor = __DataSprite; break;
-				//case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
+				case layerelementtype_particlesystem: _constructor = __DataParticleSystem; break;
 				case layerelementtype_sequence: _constructor = __DataSequence; break;
 				case layerelementtype_text: _constructor = __DataText; break;
 			}
@@ -404,7 +392,11 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		
 		var _layer = __roomloader_get_layer(__layer_data);
 		var _i = 0; repeat (array_length(__data)) {
-			__data[_i].__load(_layer, _xoffset, _yoffset, _flags);
+			with (__data[_i]) {
+				if (__roomloader_check_flags(_flags)) {
+					__load(_layer, _xoffset, _yoffset);
+				}
+			}
 			_i++;
 		}
 		
@@ -418,7 +410,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
-				__draw(_flags);
+				if (__roomloader_check_flags(_flags)) {
+					__draw();
+				}
 			}
 			_i++;
 		}
