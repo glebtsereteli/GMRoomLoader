@@ -22,16 +22,16 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		pos.init_dbg();
 		origin.init_dbg();
 		dbg_text_separator("Room Transform", 1);
-		dbg_slider(ref_create(self, "xscale"), 0, 2, "X Scale", 0.1);
-		dbg_slider(ref_create(self, "yscale"), 0, 2, "Y Scale", 0.1);
-		dbg_slider_int(ref_create(self, "angle"), 0, 360, "Angle");
+		dbg_slider(ref_create(self, "xscale"), -2, 2, "X Scale", 0.05);
+		dbg_slider(ref_create(self, "yscale"), -2, 2, "Y Scale", 0.05);
+		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle");
 		
 		dbg_text_separator("Instance Transform", 1)
 		dbg_checkbox(ref_create(self, "scale_multiplicative"), "Multiplicative Scale");
-		dbg_text(" - When enabled, individual instance \"image_x/yscale\" is multiplied by\n the overall load xscale/yscale.");
+		dbg_text(" - When enabled, individual instance \"image_x/yscale\" is multiplied by\n the overall load xscale/yscale. Change the X/Y Scale parameters above\n and toggle this on/off to see it in action.");
 		dbg_text("");
 		dbg_checkbox(ref_create(self, "angle_additive"), "Additive Angle");
-		dbg_text(" - When enabled, individual instance \"image_angle\" is combined with\n the overall load scale.");
+		dbg_text(" - When enabled, individual instance \"image_angle\" is combined with\n the overall angle. Change the Angle parameter above and toggle this\n on/off to see it in action.");
 	};
 	static draw = function() {
 		var _frame = spr_demo_frame;

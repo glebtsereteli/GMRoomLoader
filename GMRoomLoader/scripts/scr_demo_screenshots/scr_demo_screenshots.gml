@@ -28,11 +28,11 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			
 			sprite_save(sprite, 0, _path);
 		});
-		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
-		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
-		dbg_slider(ref_create(self, "w"), 0, 1, "Width %", 0.05);
-		dbg_slider(ref_create(self, "h"), 0, 1, "Height %", 0.05);
-		dbg_slider(ref_create(self, "scale"), 0, 2, "Scale", 0.05);
+		dbg_slider(ref_create(self, "left"), 0.1, 1, "Left %", 0.05);
+		dbg_slider(ref_create(self, "top"), 0.1, 1, "Top %", 0.05);
+		dbg_slider(ref_create(self, "w"), 0.1, 1, "Width %", 0.05);
+		dbg_slider(ref_create(self, "h"), 0.1, 1, "Height %", 0.05);
+		dbg_slider(ref_create(self, "scale"), 0.1, 2, "Scale", 0.05);
 		
 		origin.init_dbg();
 		flags.init_dbg();
@@ -67,8 +67,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	rooms = tag_get_asset_ids(tag, asset_room);
 	rm = undefined;
 	sprite = undefined;
-	left = 0;
-	top = 0;
+	left = 0.1;
+	top = 0.1;
 	w = 1;
 	h = 1;
 	scale = 1;

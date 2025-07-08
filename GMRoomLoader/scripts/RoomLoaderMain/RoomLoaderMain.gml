@@ -89,8 +89,9 @@ function RoomLoader() {
 	/// @desc Initializes data for all given rooms.
 	/// @context RoomLoader
 	static data_init = function() {
+		static _method_name = "data_init";
 		var _i = 0; repeat (argument_count) {
-			__data.__add(argument[_i], "data_init");
+			__data.__add(argument[_i], _method_name);
 			_i++;
 		}
 		return self;
@@ -312,14 +313,18 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static load = function(_room, _x, _y, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _method_name = "load";
-		var _data = __get_load_data(_room, _method_name, "load", "load them");
+		static _nonroom_message = "load";
+		static _nodata_message = "load them";
+		static _bench_message = "loaded";
+		
+		var _data = __get_load_data(_room, _method_name, _nonroom_message, _nodata_message);
 		
 		__benchmark.__start();
 		if (ROOMLOADER_USE_RETURN_DATA) {
 			__return_data = new RoomLoaderReturnData(_room);
 		}
 		_data.__load(_x, _y, _xorigin, _yorigin, _flags);
-		__roomloader_log_method_timed(__message_prefix, _method_name, "loaded", _room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, _bench_message, _room);
 		
 		return (ROOMLOADER_USE_RETURN_DATA ? __return_data : undefined);
 	};
@@ -512,7 +517,8 @@ function RoomLoader() {
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		return __take_screenshot(_room, 0, 0, 1, 1, _xorigin, _yorigin, _scale, _flags, "take_screenshot");
+		static _method_name = "take_screenshot";
+		return __take_screenshot(_room, 0, 0, 1, 1, _xorigin, _yorigin, _scale, _flags, _method_name);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
@@ -530,7 +536,8 @@ function RoomLoader() {
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static take_screenshot_part = function(_room, _left, _top, _width, _height, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		return __take_screenshot(_room, _left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags, "take_screenshot_part");
+		static _method_name = "take_screenshot_part";
+		return __take_screenshot(_room, _left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags, _method_name);
 	};
 	
 	#endregion
