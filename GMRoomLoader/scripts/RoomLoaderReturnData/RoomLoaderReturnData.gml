@@ -47,7 +47,6 @@ function RoomLoaderReturnData(_room) constructor {
 			});
 		};
 	};
-	
 	static __message_prefix = "RoomLoaderReturnData";
 	
 	__room = _room;
@@ -188,9 +187,10 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @context RoomLoaderReturnData
 	static cleanup = function(_destroy_layers = true) {
 		static _method_name = "cleanup";
+		static _bench_message = "cleaned up data for";
 		
 		if (__cleaned_up) {
-			__roomloader_log_method(__message_prefix, "cleanup", $"data for \<{room_get_name(__room)}\> is already cleaned up");
+			__roomloader_log_method(__message_prefix, _method_name, $"data for \<{room_get_name(__room)}\> is already cleaned up");
 			return;
 		}
 		
@@ -207,7 +207,7 @@ function RoomLoaderReturnData(_room) constructor {
 		}
 		__cleaned_up = true;
 		
-		__roomloader_log_method_timed(__message_prefix, _method_name, "cleaned up data for", __room);
+		__roomloader_log_method_timed(__message_prefix, _method_name, _bench_message, __room);
 	};
 
 	#endregion

@@ -74,10 +74,14 @@ function __RoomLoaderData(_room) constructor {
 			var _layer_data = _layers_data[_i];
 			var _elements_data = _layer_data.elements;
 			if (_elements_data != 0) {
-				var _data_constructor = _get_data_constructor(_elements_data[0].type);
-				if (_data_constructor != undefined) {
-					var _data = new _data_constructor(_layer_data, _elements_data);
-					array_push(__data, _data);
+				var _j = 0; repeat (array_length(_elements_data)) {
+					var _data_constructor = _get_data_constructor(_elements_data[_j].type);
+					if (_data_constructor != undefined) {
+						var _data = new _data_constructor(_layer_data, _elements_data);
+						array_push(__data, _data);
+						break;
+					}
+					_j++;
 				}
 			}
 			_i++;
@@ -451,13 +455,12 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	};
 	static __create_tilemap = function(_layer, _x, _y) {
 		var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
-		
 		var _i = 0; repeat (array_length(__tiles_data)) {
-			var _tile_data = __tiles_data[_i];
-			tilemap_set(_tilemap, _tile_data.data, _tile_data.x, _tile_data.y);
+			with (__tiles_data[_i]) {
+				tilemap_set(_tilemap, data, x, y);
+			}
 			_i++;
 		}
-		
 		return _tilemap;
 	};
 	static __on_load = function(_layer, _xoffset, _yoffset) {
