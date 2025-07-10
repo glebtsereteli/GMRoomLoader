@@ -76,8 +76,8 @@
   ],
   "name":"rm_demo_instances_ext_01",
   "parent":{
-    "name":"03. InstancesExt",
-    "path":"folders/01. Demo/03. InstancesExt.yy",
+    "name":"02. Instances",
+    "path":"folders/01. Demo/02. Instances.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

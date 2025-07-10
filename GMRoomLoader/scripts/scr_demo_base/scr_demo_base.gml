@@ -1,5 +1,5 @@
 
-function DemoBase() : DemoPar("Base") constructor {
+function DemoBase() : DemoPar("Enemy Base") constructor {
 	// Shared:
 	static init = function() {
 		host.init();

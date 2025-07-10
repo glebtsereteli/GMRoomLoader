@@ -1,7 +1,7 @@
 
 DEMOS = new Demos([
 	new DemoGeneral(),
-	new DemoBase(),
-	new DemoInstancesExt(),
+	new DemoInstances(),
 	new DemoScreenshots(),
+	new DemoBase(),
 ]);

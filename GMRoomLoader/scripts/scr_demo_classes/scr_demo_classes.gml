@@ -142,4 +142,3 @@ function DemoReloader(_pool) constructor {
 		return self;
 	};
 }
-

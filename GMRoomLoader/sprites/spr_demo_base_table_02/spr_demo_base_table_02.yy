@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Tables",
-    "path":"folders/01. Demo/02. Base/Sprites/Tables.yy",
+    "path":"folders/01. Demo/04. Base/Sprites/Tables.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

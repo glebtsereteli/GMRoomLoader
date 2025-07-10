@@ -79,7 +79,7 @@
   "name":"rm_demo_base_slot_02_02",
   "parent":{
     "name":"02-02",
-    "path":"folders/01. Demo/02. Base/Slots/General/Rooms/02/02-02.yy",
+    "path":"folders/01. Demo/04. Base/Slots/General/Rooms/02/02-02.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

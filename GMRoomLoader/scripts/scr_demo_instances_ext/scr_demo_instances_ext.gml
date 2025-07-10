@@ -1,11 +1,11 @@
 
-function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
+function DemoInstances() : DemoPar("Instances") constructor {
 	// Shared:
 	static init = function() {
 		RoomLoader.data_init(rm);
 		
 		DEMOS.info = dbg_section("Info");
-		dbg_text("This is an example of using \"RoomLoader.load_instances_ext()\" to load\nroom instances scaled and rotated, with controls over both the overall\npositioning for all instances and individual instances scale and angle.\nRoom origin is still respected regardless of the transformations.");
+		dbg_text("This is an example of using \"RoomLoader.load_instances()\" to load\nroom instances with optional scale and rotation.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
@@ -24,7 +24,7 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 		dbg_text_separator("Room Transform", 1);
 		dbg_slider(ref_create(self, "xscale"), -2, 2, "X Scale", 0.05);
 		dbg_slider(ref_create(self, "yscale"), -2, 2, "Y Scale", 0.05);
-		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle");
+		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 5);
 		
 		dbg_text_separator("Instance Transform", 1)
 		dbg_checkbox(ref_create(self, "scale_multiplicative"), "Multiplicative Scale");
@@ -69,7 +69,7 @@ function DemoInstancesExt() : DemoPar("InstancesExt") constructor {
 	
 	static load = function() {
 		unload();
-		instances = RoomLoader.load_instances_ext(rm, pos.x, pos.y, 0, xscale, yscale, angle, scale_multiplicative, angle_additive, origin.x, origin.y);
+		instances = RoomLoader.load_instances(rm, pos.x, pos.y, 0, xscale, yscale, angle, scale_multiplicative, angle_additive, origin.x, origin.y);
 	};
 	static unload = function() {
 		if (instances == undefined) return;

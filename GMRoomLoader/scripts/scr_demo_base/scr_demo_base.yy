@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_demo_base",
   "parent":{
-    "name":"02. Base",
-    "path":"folders/01. Demo/02. Base.yy",
+    "name":"04. Base",
+    "path":"folders/01. Demo/04. Base.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

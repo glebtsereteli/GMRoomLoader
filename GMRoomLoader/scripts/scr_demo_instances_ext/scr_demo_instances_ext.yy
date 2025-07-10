@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_demo_instances_ext",
   "parent":{
-    "name":"03. InstancesExt",
-    "path":"folders/01. Demo/03. InstancesExt.yy",
+    "name":"02. Instances",
+    "path":"folders/01. Demo/02. Instances.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

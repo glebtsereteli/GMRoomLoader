@@ -53,7 +53,7 @@ var _i = 0; repeat (array_length(__instances_data)) { \
 
 #macro __ROOMLOADER_INSTANCE_STANDALONE_START \
 var _i = 0; repeat (_n) { \
-	var _idata = _data[_i]; \
+	var _idata = _idatas[_i]; \
 	var _ix = _idata.x + _xoffset; \
 	var _iy = _idata.y + _yoffset; \
 	var _inst = _func(_ix, _iy, _lod, _idata.object_index, _idata.precreate);
@@ -76,7 +76,7 @@ var _i = 0; repeat (_n) { \
 	_precreate.image_xscale *= _ixscale; \
 	_precreate.image_yscale *= _iyscale; \
 	_precreate.image_angle += _iangle; \
-	var _inst = instance_create_depth(_ix, _iy, _lod, _idata.object_index, _idata.precreate);
+	var _inst = _func(_ix, _iy, _lod, _idata.object_index, _idata.precreate);
 
 #macro __ROOMLOADER_INSTANCE_STANDALONE_EXT_END \
 _precreate.image_xscale /= _ixscale; \

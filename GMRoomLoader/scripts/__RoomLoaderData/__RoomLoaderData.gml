@@ -2,7 +2,8 @@
 
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
-	__data = undefined;
+	__layers_pool = [];
+	__layers_lut = {};
 	__instances_data = [];
 	__instances_init_lookup = {};
 	__width = undefined;
@@ -57,7 +58,7 @@ function __RoomLoaderData(_room) constructor {
 		};
 		
 		var _raw_data = room_get_info(__room, false, true, true, true, true);
-		__data = [];
+		__layers_pool = [];
 		__width = _raw_data.width;
 		__height = _raw_data.height;
 		__creation_code = __roomloader_process_script(_raw_data.creationCode);
@@ -78,7 +79,8 @@ function __RoomLoaderData(_room) constructor {
 					var _data_constructor = _get_data_constructor(_elements_data[_j].type);
 					if (_data_constructor != undefined) {
 						var _data = new _data_constructor(_layer_data, _elements_data);
-						array_push(__data, _data);
+						array_push(__layers_pool, _data);
+						__layers_lut[$ _layer_data.name] = _data;
 						break;
 					}
 					_j++;
@@ -97,8 +99,8 @@ function __RoomLoaderData(_room) constructor {
 			RoomLoader.__return_data.__instances.__init(array_length(__instances_data));
 		}
 		
-		var _i = 0; repeat (array_length(__data)) {
-			__data[_i].__load(_x, _y, _flags);
+		var _i = 0; repeat (array_length(__layers_pool)) {
+			__layers_pool[_i].__load(_x, _y, _flags);
 			_i++;
 		}
 		
@@ -119,9 +121,9 @@ function __RoomLoaderData(_room) constructor {
 	        var _bm = gpu_get_blendmode_ext_sepalpha();
 	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
 			
-            var _i = array_length(__data);
+            var _i = array_length(__layers_pool);
             while (_i--) { 
-                with (__data[_i]) {
+                with (__layers_pool[_i]) {
                     __draw(_flags);
                 }
             }

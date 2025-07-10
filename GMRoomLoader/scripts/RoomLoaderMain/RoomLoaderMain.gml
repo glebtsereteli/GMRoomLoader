@@ -333,19 +333,22 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layer_or_depth The layer ID, layer name or depth to create instances on.
+	/// @param {Real} xscale The horizontal scale applied to instance positioning.
+	/// @param {Real} yscale The vertical scale applied to instance positioning.
+	/// @param {Real} angle The angle applied to instance positioning.
+	/// @param {Bool} multiplicative_scale=[ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
+	/// @param {Bool} additive_angle=[ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
 	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
 	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
 	/// @returns {Array<Id.Instance>}
-	/// @desc Loads the given room's instances at the given coordinates, layer and [origins].
-	/// Returns an array of created Instances.
-	/// @context RoomLoader
-	static load_instances = function(_room, _x, _y, _lod, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN) {
+	static load_instances = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, 
+		_mult_scale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _add_angle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE, 
+		_xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN
+	) {
 		static _method_name = "load_instances";
 		static _body = "load instances for";
 		static _end = "load their instances";
 		
-		__benchmark.__start();
-		var _data = __get_load_data(_room, _method_name, _body, _end);
 		var _func = undefined;
 		if (is_real(_lod)) {
 			_func = instance_create_depth;
@@ -353,68 +356,48 @@ function RoomLoader() {
 		else if (is_string(_lod) or is_handle(_lod)) {
 			_func = instance_create_layer;
 		}
-		var _xoffset = _x - (_data.__width * _xorigin);
-		var _yoffset = _y - (_data.__height * _yorigin);
-		
-		var _n = array_length(_data.__instances_data);
-		var _instances = array_create(_n, noone);
-		if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
-			__ROOMLOADER_INSTANCE_STANDALONE_START
-			__ROOMLOADER_INSTANCE_CC
-			__ROOMLOADER_INSTANCE_STANDALONE_END
-		}
-		else {
-			__ROOMLOADER_INSTANCE_STANDALONE_START
-			__ROOMLOADER_INSTANCE_STANDALONE_END
-		}
-		__roomloader_log_method_timed(__message_prefix, _method_name, _body, _room);
-		
-		return _instances;
-	};
-	
-	/// @param {Asset.GMRoom} room The room to load instances for.
-	/// @param {Real} x The x coordinate to load instances at.
-	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Id.Layer, String, Real} layer_or_depth The layer ID, layer name or depth to create instances on.
-	/// @param {Real} xscale The horizontal scale applied to instance positioning.
-	/// @param {Real} yscale The vertical scale applied to instance positioning.
-	/// @param {Real} angle The angle applied to instance positioning.
-	/// @param {Bool} multiplicative_scale=[ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
-	/// @param {Bool} additive_angle=[ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
-	/// @returns {Array<Id.Instance>}
-	static load_instances_ext = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, 
-		_mult_scale = ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE, _add_angle = ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE, 
-		_xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN
-	) {
-		static _method_name = "load_instances_ext";
-		static _body = "load instances for";
-		static _end = "load their instances";
 		
 		__benchmark.__start();
 		var _data = __get_load_data(_room, _method_name, _body, _end);
-		var _xoffset = _data.__width * _xscale * _xorigin;
-		var _yoffset = _data.__height * _yscale * _yorigin;
-		var _x1 = _x - (lengthdir_x(_xoffset, _angle) + lengthdir_x(_yoffset, _angle - 90));
-		var _y1 = _y - (lengthdir_y(_xoffset, _angle) + lengthdir_y(_yoffset, _angle - 90));
-		
-		var _ixscale = (_mult_scale ? _xscale : 1);
-		var _iyscale = (_mult_scale ? _yscale : 1);
-		var _iangle = _angle * _add_angle;
-		
 		var _idatas = _data.__instances_data;
 		var _n = array_length(_idatas);
 		var _instances = array_create(_n, noone);
-		if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
-			__ROOMLOADER_INSTANCE_STANDALONE_EXT_START
-			__ROOMLOADER_INSTANCE_CC
-			__ROOMLOADER_INSTANCE_STANDALONE_EXT_END
+		
+		if ((_xscale == 1) and (_yscale == 1) and (_angle == 0)) {
+			var _xoffset = _x - (_data.__width * _xorigin);
+			var _yoffset = _y - (_data.__height * _yorigin);
+			
+			if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
+				__ROOMLOADER_INSTANCE_STANDALONE_START
+				__ROOMLOADER_INSTANCE_CC
+				__ROOMLOADER_INSTANCE_STANDALONE_END
+			}
+			else {
+				__ROOMLOADER_INSTANCE_STANDALONE_START
+				__ROOMLOADER_INSTANCE_STANDALONE_END
+			}
 		}
 		else {
-			__ROOMLOADER_INSTANCE_STANDALONE_EXT_START
-			__ROOMLOADER_INSTANCE_STANDALONE_EXT_END
+			var _xoffset = _data.__width * _xscale * _xorigin;
+			var _yoffset = _data.__height * _yscale * _yorigin;
+			var _x1 = _x - (lengthdir_x(_xoffset, _angle) + lengthdir_x(_yoffset, _angle - 90));
+			var _y1 = _y - (lengthdir_y(_xoffset, _angle) + lengthdir_y(_yoffset, _angle - 90));
+			
+			var _ixscale = (_mult_scale ? _xscale : 1);
+			var _iyscale = (_mult_scale ? _yscale : 1);
+			var _iangle = _angle * _add_angle;
+			
+			if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
+				__ROOMLOADER_INSTANCE_STANDALONE_EXT_START
+				__ROOMLOADER_INSTANCE_CC
+				__ROOMLOADER_INSTANCE_STANDALONE_EXT_END
+			}
+			else {
+				__ROOMLOADER_INSTANCE_STANDALONE_EXT_START
+				__ROOMLOADER_INSTANCE_STANDALONE_EXT_END
+			}
 		}
+		
 		__roomloader_log_method_timed(__message_prefix, _method_name, _body, _room);
 		
 		return _instances;

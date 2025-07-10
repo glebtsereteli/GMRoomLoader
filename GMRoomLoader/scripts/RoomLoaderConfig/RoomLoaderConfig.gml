@@ -34,21 +34,25 @@
 
 // Whether to initialize room parameters for loaded instances (true) or not (false).
 // 
-// NOTE: setting this to false improves loading performance.
+// NOTE: Setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
 
 // Whether to run Creation Code for loaded instances (true) or not (false).
 // 
-// NOTE: setting this to false improves loading performance.
+// NOTE: Setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
-// When loading instances using RoomLoader.load_instances_ext(), whether to multiply individual instance scale
+// When loading instances using RoomLoader.load_instances(), whether to multiply individual instance scale
 // by the overall load scale (true) or not (false).
-#macro ROOMLOADER_INSTANCES_EXT_DEFAULT_MULT_SCALE true
+// 
+// NOTE: This comes into play only when loading instances with a custom (not 1) scale.
+#macro ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE true
 
-// When loading instances using RoomLoader.load_instances_ext(), whether to combine individual instance angle
+// When loading instances using RoomLoader.load_instances(), whether to combine individual instance angle
 // with the overall load angle (true) or not (false).
-#macro ROOMLOADER_INSTANCES_EXT_DEFAULT_ADD_ANGLE true
+// 
+// NOTE: This comes into play only when loading instances with a custom (not 0) angle.
+#macro ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE true
 
 // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false
@@ -56,7 +60,7 @@
 /* [@FIX] GM bug, currently broken.
 // Steps to progress loaded particle systems by.
 // 
-// NOTE: increasing this value reduces loading performance.
+// NOTE: Increasing this value reduces loading performance.
 #macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
 */
 

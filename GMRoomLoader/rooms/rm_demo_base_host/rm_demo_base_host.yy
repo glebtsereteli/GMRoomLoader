@@ -56,8 +56,8 @@
   ],
   "name":"rm_demo_base_host",
   "parent":{
-    "name":"02. Base",
-    "path":"folders/01. Demo/02. Base.yy",
+    "name":"04. Base",
+    "path":"folders/01. Demo/04. Base.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
