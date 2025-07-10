@@ -38,11 +38,11 @@ function Demos(_pool) constructor {
 		
 		dbg_section("Meta");
 		static _indices = array_create_ext(n, function(_i) {
-			pool[_i].index = _i;
+			pool[_i].setup(_i);
 			return _i;
 		});
 		static _names = array_map(pool, function(_demo) {
-			return _demo.name;
+			return _demo.iname;
 		});
 		dbg_drop_down(ref_create(self, "index2"), _indices, _names, "Demo");
 		
@@ -69,7 +69,7 @@ function Demos(_pool) constructor {
 		if (controls != undefined) dbg_section_delete(controls);
 		if (info != undefined) dbg_section_delete(info);
 		get_current().init();
-		window_set_caption($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) Demo: {get_current().name}");
+		window_set_caption($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) Demo: {get_current().iname}");
 	};
 	static draw = function() {
 		get_current().draw();
@@ -81,9 +81,14 @@ function Demos(_pool) constructor {
 }
 function DemoPar(_name) constructor {
 	name = _name;
+	iname = undefined;
 	index = undefined;
 	reloader = new DemoReloader();
 	
+	static setup = function(_index) {
+		index = _index;
+		iname = $"0{index + 1}. {name}";
+	};
 	static init = noop;
 	static update = function() {
 		reloader.update();
