@@ -52,6 +52,13 @@ function Demos(_pool) constructor {
 		dbg_button("+", function() { change(index + 1); }, 20, 20);
 		dbg_checkbox(ref_create(self, "live_refresh"), "Live Refresh");
 		
+		dbg_same_line();
+		dbg_button("Repo", function() { url_open(__ROOMLOADER_REPO); }, 56, 20);
+		dbg_same_line();
+		dbg_button("Wiki", function() { url_open(__ROOMLOADER_WIKI); }, 56, 20);
+		dbg_same_line();
+		dbg_button("Itch", function() { url_open(__ROOMLOADER_ITCH); }, 57, 20);
+		
 		change(index);
 	};
 	static update = function() {
