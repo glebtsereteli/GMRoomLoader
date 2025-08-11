@@ -10,7 +10,7 @@ function __RoomLoaderData(_room) constructor {
 	__height = undefined;
 	__creation_code = undefined;
 	
-	static __init = function() {
+	static __Init = function() {
 		static _map_instance_data = function(_data) {
 			static _room_params = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
 				image_xscale = _data.xscale;
@@ -96,7 +96,7 @@ function __RoomLoaderData(_room) constructor {
 		_y -= (__height * _yorigin);
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__instances.__init(array_length(__instances_data));
+			RoomLoader.__return_data.__instances.__Init(array_length(__instances_data));
 		}
 		
 		var _i = 0; repeat (array_length(__layers_pool)) {
@@ -161,7 +161,7 @@ function __RoomLoaderData(_room) constructor {
         return _sprite;
     };
 	
-	__init();
+	__Init();
 };
 function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__owner = other;
@@ -376,7 +376,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 	
 	__data = _data;
 	
-	static __init = function() {
+	static __Init = function() {
 		var _i = 0; repeat (array_length(__data)) {
 			var _data = __data[_i];
 			var _constructor = undefined;
@@ -426,7 +426,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		}
 	};
 	
-	__init();
+	__Init();
 };
 function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
@@ -437,7 +437,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	__width = undefined;
 	__height = undefined;
 	
-	static __init = function() {
+	static __Init = function() {
 		__tileset = __tilemap_data.tileset_index;
 		__width = __tilemap_data.width;
 		__height = __tilemap_data.height;
@@ -479,7 +479,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 		layer_destroy(_layer);
 	};
 	
-	__init();
+	__Init();
 };
 function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;

@@ -24,7 +24,7 @@ with (_inst) { \
 #macro __ROOMLOADER_INSTANCE_FULL_START_RETURNDATA \
 var _return_data = RoomLoader.__return_data.__instances; \
 var _ids = _return_data.__ids; \
-var _room_ids = _return_data.__room_ids; \
+var _room_ids = _return_data.__roomIds; \
 var _index = _return_data.__index; \
 var _i = 0; repeat (array_length(__instances_data)) { \
 	var _idata = __instances_data[_i]; \

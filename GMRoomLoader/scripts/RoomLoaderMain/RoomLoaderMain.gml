@@ -39,7 +39,7 @@ function RoomLoader() {
 			struct_remove(__pool, _room_name);
 			__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Removed data for <{_room_name}>");
 		},
-		__get: function(_room) {
+		__Get: function(_room) {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
@@ -49,7 +49,7 @@ function RoomLoader() {
 		__start: function() {
 			__t = get_timer();	
 		},
-		__get: function() {
+		__Get: function() {
 			return ((get_timer() - __t) / 1000);
 		},
 	};
@@ -65,7 +65,7 @@ function RoomLoader() {
 	static __get_load_data = function(_room, _method_name, _nonroom_message, _nodata_message) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, _nonroom_message);
 		
-		var _data = __data.__get(_room);
+		var _data = __data.__Get(_room);
 		if (_data != undefined) return _data;
 		
 		var _room_name = $"<{room_get_name(_room)}>";
@@ -274,7 +274,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_is_initialized = function(_room) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, "data_is_initialized", _room, $"check whether data is initialized for");
-		return (__data.__get(_room) != undefined);
+		return (__data.__Get(_room) != undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get the width for.
@@ -443,7 +443,7 @@ function RoomLoader() {
 	/// @desc Returns an array of whitelisted layer names.
 	/// @context RoomLoader
 	static layer_whitelist_get = function() {
-		return __layer_whitelist.__get();
+		return __layer_whitelist.__Get();
 	};
 	
 	#endregion
@@ -484,7 +484,7 @@ function RoomLoader() {
 	/// @desc Returns an array of blacklisted layer names.
 	/// @context RoomLoader
 	static layer_blacklist_get = function() {
-		return __layer_blacklist.__get();
+		return __layer_blacklist.__Get();
 	};
 	
 	#endregion

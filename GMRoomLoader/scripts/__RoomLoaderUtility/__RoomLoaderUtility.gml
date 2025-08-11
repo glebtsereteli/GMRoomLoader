@@ -38,7 +38,7 @@ function __RoomLoaderLogMethod(_prefix, _methodName, _message) {
 function __RoomLoaderLogMethodTimed(_prefix, _methodName, _message, _room) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
 	
-	__RoomLoaderLogMethod(_prefix, _methodName, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
+	__RoomLoaderLogMethod(_prefix, _methodName, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__Get()} milliseconds");
 }
 
 function __RoomLoaderEror(_message) {
