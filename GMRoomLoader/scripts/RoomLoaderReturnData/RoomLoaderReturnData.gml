@@ -68,7 +68,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @desc Returns the layer ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_layer = function(_name) {
-		__roomloader_catch_string(__message_prefix, "get_layer", _name, "get a Layer ID from the", "name");
+		__RoomLoaderCatchString(__message_prefix, "get_layer", _name, "get a Layer ID from the", "name");
 		return __layers.__get(_name);
 	};
 	
@@ -98,7 +98,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @desc Returns the Tilemap ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_tilemap = function(_layer_name) {
-		__roomloader_catch_string(__message_prefix, "get_tilemap", _layer_name, "get a Tilemap ID from the", "layer name");
+		__RoomLoaderCatchString(__message_prefix, "get_tilemap", _layer_name, "get a Tilemap ID from the", "layer name");
 		return __tilemaps.__get(_layer_name);
 	};
 	
@@ -114,7 +114,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @desc Returns the Sprite ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_sprite = function(_name) {
-		__roomloader_catch_string(__message_prefix, "_name", _name, "get a Sprite ID from the", "name");
+		__RoomLoaderCatchString(__message_prefix, "_name", _name, "get a Sprite ID from the", "name");
 		return __sprites.__get(_name);
 	};
 	
@@ -148,7 +148,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @desc Returns the created Sequence ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_sequence = function(_name) {
-		__roomloader_catch_string(__message_prefix, "get_sequence", _name, "get a Sequence ID from the", "name");
+		__RoomLoaderCatchString(__message_prefix, "get_sequence", _name, "get a Sequence ID from the", "name");
 		return __sequences.__get(_name);
 	};
 	
@@ -164,7 +164,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @desc Returns the created Background ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
 	static get_background = function(_layer_name) {
-		__roomloader_catch_string(__message_prefix, "get_background", _layer_name, "get a Background ID from the", "layer name");
+		__RoomLoaderCatchString(__message_prefix, "get_background", _layer_name, "get a Background ID from the", "layer name");
 		return __backgrounds.__get(_layer_name);
 	};
 	
@@ -190,7 +190,7 @@ function RoomLoaderReturnData(_room) constructor {
 		static _bench_message = "cleaned up data for";
 		
 		if (__cleaned_up) {
-			__roomloader_log_method(__message_prefix, _method_name, $"data for \<{room_get_name(__room)}\> is already cleaned up");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, $"data for \<{room_get_name(__room)}\> is already cleaned up");
 			return;
 		}
 		
@@ -207,7 +207,7 @@ function RoomLoaderReturnData(_room) constructor {
 		}
 		__cleaned_up = true;
 		
-		__roomloader_log_method_timed(__message_prefix, _method_name, _bench_message, __room);
+		__RoomLoaderLogMethodTimed(__message_prefix, _method_name, _bench_message, __room);
 	};
 
 	#endregion

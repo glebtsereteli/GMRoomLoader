@@ -1,7 +1,7 @@
 /// @feather ignore all
 
-function __roomloader_noop() {}
-function __roomloader_get_layer(_data) {
+function __RoomLoaderNoop() {}
+function __RoomLoaderGetLayer(_data) {
 	if (ROOMLOADER_MERGE_LAYERS and layer_exists(_data.name)) {
 		return layer_get_id(_data.name);
 	}
@@ -15,46 +15,53 @@ function __roomloader_get_layer(_data) {
 	
 	return _layer;
 }
-function __roomloader_check_flags(_flags) {
+function __RoomLoaderCheckFlag(_flags) {
 	return ((_flags & __flag) == __flag);
 }
-function __roomloader_process_script(_script) {
-	return ((_script == -1) ? __roomloader_noop : _script);
+function __RoomLoaderProcessScript(_script) {
+	return ((_script == -1) ? __RoomLoaderNoop : _script);
 }
 
-function __roomloader_log(_message) {
-	if (not ROOMLOADER_ENABLE_DEBUG) return;
+function __RoomLoaderLogBase(_message) {
 	show_debug_message($"{__ROOMLOADER_LOG_PREFIX} {_message}.");
 }
-function __roomloader_log_method(_prefix, _method_name, _message) {
+function __RoomLoaderLog(_message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
-	__roomloader_log($"{_prefix}.{_method_name}(): {_message}");
+	
+	__RoomLoaderLogBase(_message);
 }
-function __roomloader_log_method_timed(_prefix, _method_name, _message, _room) {
+function __RoomLoaderLogMethod(_prefix, _methodName, _message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;
-	__roomloader_log_method(_prefix, _method_name, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
+	
+	__RoomLoaderLog($"{_prefix}.{_methodName}(): {_message}");
+}
+function __RoomLoaderLogMethodTimed(_prefix, _methodName, _message, _room) {
+	if (not ROOMLOADER_ENABLE_DEBUG) return;
+	
+	__RoomLoaderLogMethod(_prefix, _methodName, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__get()} milliseconds");
 }
 
-function __roomloader_error(_message) {
+function __RoomLoaderEror(_message) {
 	show_error($"[{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
 }
-function __roomloader_error_method(_prefix, _method_name, _message) {
-	__roomloader_error($"{_prefix}.{_method_name}(): {_message}");
+function __RoomLoaderErorMethod(_prefix, _methodName, _message) {
+	__RoomLoaderEror($"{_prefix}.{_methodName}(): {_message}");
 }
 
-function __roomloader_catch_nonroom(_prefix, _method_name, _room, _message) {
+function __RoomLoaderCatchNonRoom(_prefix, _methodName, _room, _message) {
 	var _type = typeof(_room);
 	if ((_type == "ref") and (room_exists(_room))) return;
-	__roomloader_error_method(_prefix, _method_name, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
+	
+	__RoomLoaderErorMethod(_prefix, _methodName, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
 }
-function __roomloader_catch_argument(_prefix, _method_name, _value, _checker, _type_name, _premessage = "use", _postmessage = "") {
+function __RoomLoaderCatchArgument(_prefix, _methodName, _value, _checker, _typeName, _preMessage = "use", _postMessage = "") {
 	if (not _checker(_value)) {
-		__roomloader_error_method(_prefix, _method_name, $"Could not {_premessage} <{_value}> {_postmessage}.\nExpected \{{_type_name}\}, got \{{typeof(_value)}\}");
+		__RoomLoaderErorMethod(_prefix, _methodName, $"Could not {_preMessage} <{_value}> {_postMessage}.\nExpected \{{_typeName}\}, got \{{typeof(_value)}\}");
 	}
 }
-function __roomloader_catch_string(_prefix, _method_name, _value, _premessage = undefined, _postmessage = undefined) {
-	__roomloader_catch_argument(_prefix, _method_name, _value, is_string, "String", _premessage, _postmessage);
+function __RoomLoaderCatchString(_prefix, _methodName, _value, _preMessage = undefined, _postMessage = undefined) {
+	__RoomLoaderCatchArgument(_prefix, _methodName, _value, is_string, "String", _preMessage, _postMessage);
 }
-function __roomloader_catch_array(_prefix, _method_name, _value, _premessage = undefined, _postmessage = undefined) {
-	__roomloader_catch_argument(_prefix, _method_name, _value, is_array, "Array", _premessage, _postmessage);
+function __RoomLoaderCatchArray(_prefix, _methodName, _value, _preMessage = undefined, _postMessage = undefined) {
+	__RoomLoaderCatchArgument(_prefix, _methodName, _value, is_array, "Array", _preMessage, _postMessage);
 }

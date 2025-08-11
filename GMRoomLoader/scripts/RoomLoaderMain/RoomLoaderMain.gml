@@ -15,29 +15,29 @@ function RoomLoader() {
 		__pool: {},
 		
 		__add: function(_room, _method_name) {
-			__roomloader_catch_nonroom(__message_prefix, _method_name, _room, "initialize data for");
+			__RoomLoaderCatchNonRoom(__message_prefix, _method_name, _room, "initialize data for");
 			
 			var _room_name = room_get_name(_room);
 			if (struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> is already initialized");
+				__RoomLoaderLogMethod(__message_prefix, _method_name, $"Data for <{_room_name}> is already initialized");
 				return;
 			}
 			
 			RoomLoader.__benchmark.__start();
 			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__roomloader_log_method_timed(__message_prefix, _method_name, "Initialized data for", _room);
+			__RoomLoaderLogMethodTimed(__message_prefix, _method_name, "Initialized data for", _room);
 		},
 		__remove: function(_room, _method_name) {
-			__roomloader_catch_nonroom(__message_prefix, _method_name, _room, "remove data for");
+			__RoomLoaderCatchNonRoom(__message_prefix, _method_name, _room, "remove data for");
 			
 			var _room_name = room_get_name(_room);
 			if (not struct_exists(__pool, _room_name)) {
-				__roomloader_log_method(__message_prefix, _method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
+				__RoomLoaderLogMethod(__message_prefix, _method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
 				return;
 			}
 			
 			struct_remove(__pool, _room_name);
-			__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_room_name}>");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, $"Removed data for <{_room_name}>");
 		},
 		__get: function(_room) {
 			return __pool[$ room_get_name(_room)];
@@ -63,21 +63,21 @@ function RoomLoader() {
 		return (not _match);
 	};
 	static __get_load_data = function(_room, _method_name, _nonroom_message, _nodata_message) {
-		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, _nonroom_message);
+		__RoomLoaderCatchNonRoom(__message_prefix, _method_name, _room, _nonroom_message);
 		
 		var _data = __data.__get(_room);
 		if (_data != undefined) return _data;
 		
 		var _room_name = $"<{room_get_name(_room)}>";
 		var _message = $"Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
-		__roomloader_error_method(__message_prefix, _method_name, _message);
+		__RoomLoaderErorMethod(__message_prefix, _method_name, _message);
 	};
 	static __take_screenshot = function(_room, _left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags, _method_name) {
 		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
 		
 		__benchmark.__start();
 		var _screenshot = _data.__take_screenshot(_left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags);
-		__roomloader_log_method_timed(__message_prefix, _method_name, "screenshotted", _room);
+		__RoomLoaderLogMethodTimed(__message_prefix, _method_name, "screenshotted", _room);
 		return _screenshot;
 	};
 	
@@ -104,7 +104,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_init_array = function(_rooms) {
 		static _method_name = "data_init_array";
-		__roomloader_catch_array(__message_prefix, _method_name, _rooms);
+		__RoomLoaderCatchArray(__message_prefix, _method_name, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__add(_rooms[_i], _method_name);
@@ -125,7 +125,7 @@ function RoomLoader() {
 			return (string_pos(prefix, _name) > 0);
 		});
 		
-		__roomloader_catch_string(__message_prefix, _method_name, _prefix);
+		__RoomLoaderCatchString(__message_prefix, _method_name, _prefix);
 		
 		__all_rooms ??= asset_get_ids(asset_room);
 		_closure.prefix = _prefix;
@@ -133,7 +133,7 @@ function RoomLoader() {
 		
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
 			return _rooms;
 		}
 		
@@ -151,12 +151,12 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_init_tag = function(_tag) {
 		static _method_name = "data_init_tag";
-		__roomloader_catch_string(__message_prefix, _method_name, _tag);
+		__RoomLoaderCatchString(__message_prefix, _method_name, _tag);
 		
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 			return _rooms;
 		}
 		
@@ -190,7 +190,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_remove_array = function(_rooms) {
 		static _method_name = "data_remove_array";
-		__roomloader_catch_array(__message_prefix, _method_name, _rooms);
+		__RoomLoaderCatchArray(__message_prefix, _method_name, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__remove(_rooms[_i], _method_name);
@@ -206,7 +206,7 @@ function RoomLoader() {
 	static data_remove_prefix = function(_prefix) {
 		static _method_name = "data_remove_prefix";
 		 
-		__roomloader_catch_string(__message_prefix, _method_name, _prefix);
+		__RoomLoaderCatchString(__message_prefix, _method_name, _prefix);
 		
 		var _removed = false;
 		var _pool = __data.__pool;
@@ -215,14 +215,14 @@ function RoomLoader() {
 			var _name = _names[_i];
 			if (string_pos(_prefix, _name) > 0) {
 				struct_remove(_pool, _names[_i]);
-				__roomloader_log_method(__message_prefix, _method_name, $"Removed data for <{_name}>");
+				__RoomLoaderLogMethod(__message_prefix, _method_name, $"Removed data for <{_name}>");
 				_removed = true;
 			}
 			_i++;
 		}
 		
 		if (not _removed) {
-			__roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
 		}
 		
 		return self;
@@ -234,12 +234,12 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_remove_tag = function(_tag) {
 		static _method_name = "data_remove_tag";
-		__roomloader_catch_string(__message_prefix, _method_name, _tag);
+		__RoomLoaderCatchString(__message_prefix, _method_name, _tag);
 		
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			return __roomloader_log_method(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			return __RoomLoaderLogMethod(__message_prefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 		}
 		
 		var _i = 0; repeat (_n) {
@@ -256,12 +256,12 @@ function RoomLoader() {
 	static data_clear = function() {
 		static _method_name = "data_clear";
 		if (struct_names_count(__data.__pool) == 0) {
-			__roomloader_log_method(__message_prefix, _method_name, "There's no data to clear");
+			__RoomLoaderLogMethod(__message_prefix, _method_name, "There's no data to clear");
 			return self;
 		}
 		
 		__data.__pool = {};
-		__roomloader_log_method(__message_prefix, _method_name, "Data cleared");
+		__RoomLoaderLogMethod(__message_prefix, _method_name, "Data cleared");
 		return self;
 	};
 	
@@ -273,7 +273,7 @@ function RoomLoader() {
 	/// @desc Returns whether the data for the given room is initialized (true) or not (false).
 	/// @context RoomLoader
 	static data_is_initialized = function(_room) {
-		__roomloader_catch_nonroom(__message_prefix, "data_is_initialized", _room, $"check whether data is initialized for");
+		__RoomLoaderCatchNonRoom(__message_prefix, "data_is_initialized", _room, $"check whether data is initialized for");
 		return (__data.__get(_room) != undefined);
 	};
 	
@@ -283,7 +283,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_get_width = function(_room) {
 		static _method_name = "data_get_width";
-		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, $"get room width for");
+		__RoomLoaderCatchNonRoom(__message_prefix, _method_name, _room, $"get room width for");
 		var _data = __get_load_data(_room, _method_name, "load", "get their widths");
 		return _data.__width;
 	};
@@ -294,7 +294,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static data_get_height = function(_room) {
 		static _method_name = "data_get_height";
-		__roomloader_catch_nonroom(__message_prefix, _method_name, _room, $"get room height for");
+		__RoomLoaderCatchNonRoom(__message_prefix, _method_name, _room, $"get room height for");
 		var _data = __get_load_data(_room, _method_name, "load", "get their heights");
 		return _data.__height;
 	};
@@ -325,7 +325,7 @@ function RoomLoader() {
 			__return_data = new RoomLoaderReturnData(_room);
 		}
 		_data.__load(_x, _y, _xorigin, _yorigin, _flags);
-		__roomloader_log_method_timed(__message_prefix, _method_name, _bench_message, _room);
+		__RoomLoaderLogMethodTimed(__message_prefix, _method_name, _bench_message, _room);
 		
 		return (ROOMLOADER_USE_RETURN_DATA ? __return_data : undefined);
 	};
@@ -399,7 +399,7 @@ function RoomLoader() {
 			}
 		}
 		
-		__roomloader_log_method_timed(__message_prefix, _method_name, _body, _room);
+		__RoomLoaderLogMethodTimed(__message_prefix, _method_name, _body, _room);
 		
 		return _instances;
 	};

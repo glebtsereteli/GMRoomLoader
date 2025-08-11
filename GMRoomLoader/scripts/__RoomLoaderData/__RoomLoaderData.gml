@@ -29,11 +29,11 @@ function __RoomLoaderData(_room) constructor {
 				}
 				image_index = _data.image_index;
 				image_speed = _data.image_speed;
-			} : __roomloader_noop);
+			} : __RoomLoaderNoop);
 			
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
-			_data.creation_code = __roomloader_process_script(_data.creation_code);
+			_data.creation_code = __RoomLoaderProcessScript(_data.creation_code);
 			_data.precreate = {}; with (_data.precreate) {
 				_room_params(_data);
 				var _precreate = _data.pre_creation_code;
@@ -61,7 +61,7 @@ function __RoomLoaderData(_room) constructor {
 		__layers_pool = [];
 		__width = _raw_data.width;
 		__height = _raw_data.height;
-		__creation_code = __roomloader_process_script(_raw_data.creationCode);
+		__creation_code = __RoomLoaderProcessScript(_raw_data.creationCode);
 		
 		// Store instances data:
 		var _instances_data = _raw_data.instances;
@@ -171,10 +171,10 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 		return RoomLoader.__layer_failed_filters(__layer_data.name);
 	};
 	static __load = function(_xoffset, _yoffset, _flags) {
-		if (not __roomloader_check_flags(_flags)) return undefined;
+		if (not __RoomLoaderCheckFlag(_flags)) return undefined;
 		if (__failed_filters()) return undefined;
 		
-		var _layer = __roomloader_get_layer(__layer_data);
+		var _layer = __RoomLoaderGetLayer(__layer_data);
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
 			RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
@@ -184,12 +184,12 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	};
 	static __draw = function(_flags) {
 		if (not __layer_data.visible) return;
-		if (not __roomloader_check_flags(_flags)) return;
+		if (not __RoomLoaderCheckFlag(_flags)) return;
 		if (__failed_filters()) return undefined;
 		__on_draw();
 	};
-	static __on_load = __roomloader_noop;
-	static __on_draw = __roomloader_noop;
+	static __on_load = __RoomLoaderNoop;
+	static __on_draw = __RoomLoaderNoop;
 }
 function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
@@ -318,7 +318,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
 			}
 		}
-		static __draw = __roomloader_noop;
+		static __draw = __RoomLoaderNoop;
 	};
 	static __DataText = function(_data) constructor {
 		__data = _data;
@@ -398,10 +398,10 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 	static __load = function(_xoffset, _yoffset, _flags) {
 		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
 		
-		var _layer = __roomloader_get_layer(__layer_data);
+		var _layer = __RoomLoaderGetLayer(__layer_data);
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
-				if (__roomloader_check_flags(_flags)) {
+				if (__RoomLoaderCheckFlag(_flags)) {
 					__load(_layer, _xoffset, _yoffset);
 				}
 			}
@@ -418,7 +418,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
-				if (__roomloader_check_flags(_flags)) {
+				if (__RoomLoaderCheckFlag(_flags)) {
 					__draw();
 				}
 			}
