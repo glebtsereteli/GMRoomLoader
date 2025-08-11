@@ -82,6 +82,7 @@ function RoomLoader() {
 	};
 	
 	#endregion
+	
 	#region data initialization
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to initialize data for. Supports any amount of arguments.
