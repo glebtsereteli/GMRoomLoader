@@ -37,11 +37,11 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		var _frame = spr_demo_frame;
 		var _w = RoomLoader.data_get_width(rm) * xscale;
 		var _h = RoomLoader.data_get_height(rm) * yscale;
-		var _xorigin = _w * origin.x;
-		var _yorigin = _h * origin.y;
+		var _xOrigin = _w * origin.x;
+		var _yOrigin = _h * origin.y;
 		var _xscale = _w / sprite_get_width(_frame);
 		var _yscale = _h / sprite_get_height(_frame);
-		draw_sprite_origin(_frame, 0, pos.x, pos.y, _xorigin, _yorigin, _xscale, _yscale, angle);
+		draw_sprite_origin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xscale, _yscale, angle);
 		
 		draw_sprite(spr_demo_cross, 0, pos.x, pos.y);
 	};

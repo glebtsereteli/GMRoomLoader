@@ -23,11 +23,11 @@ function lerp_angle(_a, _b, _amount) {
 function mod2(_dividend, _divisor) {
     return (_dividend - floor(_dividend / _divisor) * _divisor);
 }
-function draw_sprite_origin(_sprite, _subimg, _x, _y, _xorigin, _yorigin, _xscale = 1, _yscale = 1, _angle = 0, _color = c_white, _alpha = 1) {
-	_xorigin -= sprite_get_xoffset(_sprite);
-	_yorigin -= sprite_get_yoffset(_sprite);
-	_x -= ((lengthdir_x(_xorigin, _angle)) + (lengthdir_x(_yorigin, _angle - 90)));
-	_y -= ((lengthdir_y(_xorigin, _angle)) + (lengthdir_y(_yorigin, _angle - 90)));
+function draw_sprite_origin(_sprite, _subimg, _x, _y, _xOrigin, _yOrigin, _xscale = 1, _yscale = 1, _angle = 0, _color = c_white, _alpha = 1) {
+	_xOrigin -= sprite_get_xoffset(_sprite);
+	_yOrigin -= sprite_get_yoffset(_sprite);
+	_x -= ((lengthdir_x(_xOrigin, _angle)) + (lengthdir_x(_yOrigin, _angle - 90)));
+	_y -= ((lengthdir_y(_xOrigin, _angle)) + (lengthdir_y(_yOrigin, _angle - 90)));
 	draw_sprite_ext(_sprite, _subimg, floor(_x), floor(_y), _xscale, _yscale, _angle, _color, _alpha);
 }
 

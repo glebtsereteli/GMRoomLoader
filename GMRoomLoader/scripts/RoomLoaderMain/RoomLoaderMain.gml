@@ -56,7 +56,7 @@ function RoomLoader() {
 	static __all_rooms = undefined;
 	static __layer_whitelist = new __RoomLoaderFilter("Whitelist", true);
 	static __layer_blacklist = new __RoomLoaderFilter("Blacklist", false);
-	static __return_data = undefined;
+	static __returnData = undefined;
 	
 	static __layer_failed_filters = function(_name) {
 		var _match = ((__layer_whitelist.__check(_name)) and (not __layer_blacklist.__check(_name)));
@@ -72,11 +72,11 @@ function RoomLoader() {
 		var _message = $"Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
 		__RoomLoaderErorMethod(__messagePrefix, _method_name, _message);
 	};
-	static __take_screenshot = function(_room, _left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags, _method_name) {
+	static __take_screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _method_name) {
 		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
 		
 		__benchmark.__start();
-		var _screenshot = _data.__take_screenshot(_left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags);
+		var _screenshot = _data.__take_screenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, "screenshotted", _room);
 		return _screenshot;
 	};
@@ -312,7 +312,7 @@ function RoomLoader() {
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderReturnData if ROOMLOADER_USE_RETURN_DATA is true, undefined otherwise.
 	/// @context RoomLoader
-	static load = function(_room, _x, _y, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+	static load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _method_name = "load";
 		static _nonroom_message = "load";
 		static _nodata_message = "load them";
@@ -322,12 +322,12 @@ function RoomLoader() {
 		
 		__benchmark.__start();
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			__return_data = new RoomLoaderReturnData(_room);
+			__returnData = new RoomLoaderReturnData(_room);
 		}
-		_data.__load(_x, _y, _xorigin, _yorigin, _flags);
+		_data.__load(_x, _y, _xOrigin, _yOrigin, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, _bench_message, _room);
 		
-		return (ROOMLOADER_USE_RETURN_DATA ? __return_data : undefined);
+		return (ROOMLOADER_USE_RETURN_DATA ? __returnData : undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -344,7 +344,7 @@ function RoomLoader() {
 	/// @returns {Array<Id.Instance>}
 	static load_instances = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, 
 		_mult_scale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _add_angle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE, 
-		_xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN
+		_xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN
 	) {
 		static _method_name = "load_instances";
 		static _body = "load instances for";
@@ -360,13 +360,13 @@ function RoomLoader() {
 		
 		__benchmark.__start();
 		var _data = __get_load_data(_room, _method_name, _body, _end);
-		var _idatas = _data.__instances_data;
+		var _idatas = _data.__instancesData;
 		var _n = array_length(_idatas);
 		var _instances = array_create(_n, noone);
 		
 		if ((_xscale == 1) and (_yscale == 1) and (_angle == 0)) {
-			var _xoffset = _x - (_data.__width * _xorigin);
-			var _yoffset = _y - (_data.__height * _yorigin);
+			var _xOffset = _x - (_data.__width * _xOrigin);
+			var _yOffset = _y - (_data.__height * _yOrigin);
 			
 			if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
 				__ROOMLOADER_INSTANCE_STANDALONE_START
@@ -379,10 +379,10 @@ function RoomLoader() {
 			}
 		}
 		else {
-			var _xoffset = _data.__width * _xscale * _xorigin;
-			var _yoffset = _data.__height * _yscale * _yorigin;
-			var _x1 = _x - (lengthdir_x(_xoffset, _angle) + lengthdir_x(_yoffset, _angle - 90));
-			var _y1 = _y - (lengthdir_y(_xoffset, _angle) + lengthdir_y(_yoffset, _angle - 90));
+			var _xOffset = _data.__width * _xscale * _xOrigin;
+			var _yOffset = _data.__height * _yscale * _yOrigin;
+			var _x1 = _x - (lengthdir_x(_xOffset, _angle) + lengthdir_x(_yOffset, _angle - 90));
+			var _y1 = _y - (lengthdir_y(_xOffset, _angle) + lengthdir_y(_yOffset, _angle - 90));
 			
 			var _ixscale = (_mult_scale ? _xscale : 1);
 			var _iyscale = (_mult_scale ? _yscale : 1);
@@ -500,9 +500,9 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot = function(_room, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+	static take_screenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
 		static _method_name = "take_screenshot";
-		return __take_screenshot(_room, 0, 0, 1, 1, _xorigin, _yorigin, _scale, _flags, _method_name);
+		return __take_screenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _method_name);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
@@ -519,9 +519,9 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot_part = function(_room, _left, _top, _width, _height, _xorigin = ROOMLOADER_DEFAULT_XORIGIN, _yorigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+	static take_screenshot_part = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
 		static _method_name = "take_screenshot_part";
-		return __take_screenshot(_room, _left, _top, _width, _height, _xorigin, _yorigin, _scale, _flags, _method_name);
+		return __take_screenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _method_name);
 	};
 	
 	#endregion

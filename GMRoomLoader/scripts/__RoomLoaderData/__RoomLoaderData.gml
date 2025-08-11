@@ -2,13 +2,13 @@
 
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
-	__layers_pool = [];
-	__layers_lut = {};
-	__instances_data = [];
-	__instances_init_lookup = {};
+	__layersPool = [];
+	__layersLut = {};
+	__instancesData = [];
+	__instancesInitLut = {};
 	__width = undefined;
 	__height = undefined;
-	__creation_code = undefined;
+	__creationCode = undefined;
 	
 	static __Init = function() {
 		static _map_instance_data = function(_data) {
@@ -34,17 +34,17 @@ function __RoomLoaderData(_room) constructor {
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
 			_data.creation_code = __RoomLoaderProcessScript(_data.creation_code);
-			_data.precreate = {}; with (_data.precreate) {
+			_data.preCreate = {}; with (_data.preCreate) {
 				_room_params(_data);
 				var _precreate = _data.pre_creation_code;
 				if (_precreate != -1) {
 					_precreate();
 				}
 			};
-			__instances_init_lookup[$ _data.id] = _data;
+			__instancesInitLut[$ _data.id] = _data;
 			return _data;
 		};
-		static _get_data_constructor = function(_type) {
+		static _GetDataConstructor = function(_type) {
 			switch (_type) {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
@@ -57,30 +57,30 @@ function __RoomLoaderData(_room) constructor {
 			return undefined;
 		};
 		
-		var _raw_data = room_get_info(__room, false, true, true, true, true);
-		__layers_pool = [];
-		__width = _raw_data.width;
-		__height = _raw_data.height;
-		__creation_code = __RoomLoaderProcessScript(_raw_data.creationCode);
+		var _rawData = room_get_info(__room, false, true, true, true, true);
+		__layersPool = [];
+		__width = _rawData.width;
+		__height = _rawData.height;
+		__creationCode = __RoomLoaderProcessScript(_rawData.creationCode);
 		
 		// Store instances data:
-		var _instances_data = _raw_data.instances;
-		if (_instances_data != 0) {
-			__instances_data = array_map(_instances_data, _map_instance_data);
+		var _instancesData = _rawData.instances;
+		if (_instancesData != 0) {
+			__instancesData = array_map(_instancesData, _map_instance_data);
 		}
 		
 		// Collect data:
-		var _layers_data = _raw_data.layers;
-		var _i = 0; repeat (array_length(_layers_data)) {
-			var _layer_data = _layers_data[_i];
-			var _elements_data = _layer_data.elements;
-			if (_elements_data != 0) {
-				var _j = 0; repeat (array_length(_elements_data)) {
-					var _data_constructor = _get_data_constructor(_elements_data[_j].type);
-					if (_data_constructor != undefined) {
-						var _data = new _data_constructor(_layer_data, _elements_data);
-						array_push(__layers_pool, _data);
-						__layers_lut[$ _layer_data.name] = _data;
+		var _layersData = _rawData.layers;
+		var _i = 0; repeat (array_length(_layersData)) {
+			var _layerData = _layersData[_i];
+			var _elementsData = _layerData.elements;
+			if (_elementsData != 0) {
+				var _j = 0; repeat (array_length(_elementsData)) {
+					var _dataConstructor = _GetDataConstructor(_elementsData[_j].type);
+					if (_dataConstructor != undefined) {
+						var _data = new _dataConstructor(_layerData, _elementsData);
+						array_push(__layersPool, _data);
+						__layersLut[$ _layerData.name] = _data;
 						break;
 					}
 					_j++;
@@ -89,26 +89,26 @@ function __RoomLoaderData(_room) constructor {
 			_i++;
 		}
 		
-		delete __instances_init_lookup;
+		delete __instancesInitLut;
 	};
-	static __load = function(_x, _y, _xorigin, _yorigin, _flags) {
-		_x -= (__width * _xorigin);
-		_y -= (__height * _yorigin);
+	static __load = function(_x, _y, _xOrigin, _yOrigin, _flags) {
+		_x -= (__width * _xOrigin);
+		_y -= (__height * _yOrigin);
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__instances.__Init(array_length(__instances_data));
+			RoomLoader.__returnData.__instances.__Init(array_length(__instancesData));
 		}
 		
-		var _i = 0; repeat (array_length(__layers_pool)) {
-			__layers_pool[_i].__load(_x, _y, _flags);
+		var _i = 0; repeat (array_length(__layersPool)) {
+			__layersPool[_i].__load(_x, _y, _flags);
 			_i++;
 		}
 		
 		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) {
-			__creation_code();
+			__creationCode();
 		}
 	};
-	static __take_screenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xorigin, _yorigin, _scale, _flags) {
+	static __take_screenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xOrigin, _yOrigin, _scale, _flags) {
         var _scaled = (_scale != 1);
 		var _width = (__width * _scale);
 		var _height = (__height * _scale);
@@ -121,9 +121,9 @@ function __RoomLoaderData(_room) constructor {
 	        var _bm = gpu_get_blendmode_ext_sepalpha();
 	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
 			
-            var _i = array_length(__layers_pool);
+            var _i = array_length(__layersPool);
             while (_i--) { 
-                with (__layers_pool[_i]) {
+                with (__layersPool[_i]) {
                     __draw(_flags);
                 }
             }
@@ -150,7 +150,7 @@ function __RoomLoaderData(_room) constructor {
 			(_pleft01 * _width), (_ptop01 * _height),
 			_width, _height,
 			false, false,
-			(_xorigin * _width), (_yorigin * _height)
+			(_xOrigin * _width), (_yOrigin * _height)
 		);
         
         // Cleanup & return:
@@ -163,27 +163,27 @@ function __RoomLoaderData(_room) constructor {
 	
 	__Init();
 };
-function __RoomLoaderDataLayerParent(_layer_data) constructor {
+function __RoomLoaderDataLayerParent(_layerData) constructor {
 	__owner = other;
-	__layer_data = _layer_data;
+	__layerData = _layerData;
 	
 	static __failed_filters = function() {
-		return RoomLoader.__layer_failed_filters(__layer_data.name);
+		return RoomLoader.__layer_failed_filters(__layerData.name);
 	};
-	static __load = function(_xoffset, _yoffset, _flags) {
+	static __load = function(_xOffset, _yOffset, _flags) {
 		if (not __RoomLoaderCheckFlag(_flags)) return undefined;
 		if (__failed_filters()) return undefined;
 		
-		var _layer = __RoomLoaderGetLayer(__layer_data);
+		var _layer = __RoomLoaderGetLayer(__layerData);
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__layers.__Add(_layer, __layer_data.name);
+			RoomLoader.__returnData.__layers.__Add(_layer, __layerData.name);
 		}
 		
-		__on_load(_layer, _xoffset, _yoffset, _flags);
+		__on_load(_layer, _xOffset, _yOffset, _flags);
 	};
 	static __draw = function(_flags) {
-		if (not __layer_data.visible) return;
+		if (not __layerData.visible) return;
 		if (not __RoomLoaderCheckFlag(_flags)) return;
 		if (__failed_filters()) return undefined;
 		__on_draw();
@@ -191,15 +191,15 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 	static __on_load = __RoomLoaderNoop;
 	static __on_draw = __RoomLoaderNoop;
 }
-function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
-	__instances_data = array_map(_instances_data, __map_data);
+	__instancesData = array_map(_instancesData, __map_data);
 	
 	static __map_data = function(_inst_data) {
-		return __owner.__instances_init_lookup[$ _inst_data.inst_id];
+		return __owner.__instancesInitLut[$ _inst_data.inst_id];
 	};
 	
-	static __on_load = function(_layer, _xoffset, _yoffset, _flags) {
+	static __on_load = function(_layer, _xOffset, _yOffset, _flags) {
 		if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
 			if (ROOMLOADER_USE_RETURN_DATA) {
 				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA
@@ -224,29 +224,29 @@ function __RoomLoaderDataLayerInstance(_layer_data, _instances_data) : __RoomLoa
 		}
 	};
 	static __on_draw = function() {
-		var _i = 0; repeat (array_length(__instances_data)) {
-			with (__instances_data[_i]) {
+		var _i = 0; repeat (array_length(__instancesData)) {
+			with (__instancesData[_i]) {
 				if (sprite == -1) break;
 				draw_sprite_ext(
-					sprite, precreate.image_index,
+					sprite, preCreate.image_index,
 					x, y,
-					precreate.image_xscale, precreate.image_yscale, precreate.image_angle,
-					precreate.image_blend, precreate.image_alpha
+					preCreate.image_xscale, preCreate.image_yscale, preCreate.image_angle,
+					preCreate.image_blend, preCreate.image_alpha
 				);
 			}
 			_i++;
 		}
 	};
 }
-function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __DataSprite = function(_data) constructor {
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SPRITES;
 		
-		static __load = function(_layer, _xoffset, _yoffset) {
+		static __load = function(_layer, _xOffset, _yOffset) {
 			with (__data) {
-				var _x = x + _xoffset;
-				var _y = y + _yoffset;
+				var _x = x + _xOffset;
+				var _y = y + _yOffset;
 				var _sprite = layer_sprite_create(_layer, _x, _y, sprite_index);
 				layer_sprite_index(_sprite, image_index);
 				layer_sprite_xscale(_sprite, image_xscale);
@@ -257,7 +257,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_sprite_alpha(_sprite, image_alpha);
 				
 				if (ROOMLOADER_USE_RETURN_DATA) {
-					RoomLoader.__return_data.__sprites.__Add(_sprite, name);
+					RoomLoader.__returnData.__sprites.__Add(_sprite, name);
 				}
 			}
 		};
@@ -300,9 +300,9 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.SEQUENCES;
 		
-		static __load = function(_layer, _xoffset, _yoffset) {
-			var _x = __data.x + _xoffset;
-			var _y = __data.y + _yoffset;
+		static __load = function(_layer, _xOffset, _yOffset) {
+			var _x = __data.x + _xOffset;
+			var _y = __data.y + _yOffset;
 			var _sequence = layer_sequence_create(_layer, _x, _y, __data.seq_id);
 			layer_sequence_headpos(_sequence, __data.head_position);
 			layer_sequence_xscale(_sequence, __data.image_xscale);
@@ -315,7 +315,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			}
 			
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				RoomLoader.__return_data.__sequences.__Add(_sequence, __data.name);
+				RoomLoader.__returnData.__sequences.__Add(_sequence, __data.name);
 			}
 		}
 		static __draw = __RoomLoaderNoop;
@@ -324,10 +324,10 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		__data = _data;
 		__flag = ROOMLOADER_FLAG.TEXTS;
 		
-		static __load = function(_layer, _xoffset, _yoffset) {
+		static __load = function(_layer, _xOffset, _yOffset) {
 			with (__data) {
-				var _x = x + _xoffset;
-				var _y = y + _yoffset;
+				var _x = x + _xOffset;
+				var _y = y + _yOffset;
 				var _text = layer_text_create(_layer, _x, _y, font_index, text);
 				layer_text_xscale(_text, xscale);
 				layer_text_yscale(_text, yscale);
@@ -345,7 +345,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_text_alpha(_text, alpha);
 				
 				if (ROOMLOADER_USE_RETURN_DATA) {
-					RoomLoader.__return_data.__texts.__Add(_text, name);
+					RoomLoader.__returnData.__texts.__Add(_text, name);
 				}
 			}
 		}
@@ -395,25 +395,25 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			_i++;
 		}
 	};
-	static __load = function(_xoffset, _yoffset, _flags) {
-		if (RoomLoader.__layer_failed_filters(__layer_data.name)) return undefined;
+	static __load = function(_xOffset, _yOffset, _flags) {
+		if (RoomLoader.__layer_failed_filters(__layerData.name)) return undefined;
 		
-		var _layer = __RoomLoaderGetLayer(__layer_data);
+		var _layer = __RoomLoaderGetLayer(__layerData);
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
 				if (__RoomLoaderCheckFlag(_flags)) {
-					__load(_layer, _xoffset, _yoffset);
+					__load(_layer, _xOffset, _yOffset);
 				}
 			}
 			_i++;
 		}
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__layers.__Add(_layer, __layer_data.name);
+			RoomLoader.__returnData.__layers.__Add(_layer, __layerData.name);
 		}
 	};
 	static __draw = function(_flags) {
-		if (not __layer_data.visible) return;
+		if (not __layerData.visible) return;
 		if (__failed_filters()) return undefined;
 		
 		var _i = 0; repeat (array_length(__data)) {
@@ -428,25 +428,25 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 	
 	__Init();
 };
-function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+function __RoomLoaderDataLayerTilemap(_layerData, _elementsData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
-	__layer_data = _layer_data;
-	__tilemap_data = _elements_data[0];
-	__tiles_data = [];
+	__layerData = _layerData;
+	__tilemapData = _elementsData[0];
+	__tilesData = [];
 	__tileset = undefined;
 	__width = undefined;
 	__height = undefined;
 	
 	static __Init = function() {
-		__tileset = __tilemap_data.tileset_index;
-		__width = __tilemap_data.width;
-		__height = __tilemap_data.height;
+		__tileset = __tilemapData.tileset_index;
+		__width = __tilemapData.width;
+		__height = __tilemapData.height;
 		
-		var _tiles_data = __tilemap_data.tiles;
-		var _i = 0; repeat (array_length(_tiles_data)) {
-			var _data = _tiles_data[_i];
+		var _tilesData = __tilemapData.tiles;
+		var _i = 0; repeat (array_length(_tilesData)) {
+			var _data = _tilesData[_i];
 			if (_data > 0) {
-				array_push(__tiles_data, {
+				array_push(__tilesData, {
 					data: _data,
 					x: (_i mod __width),
 					y: (_i div __width),
@@ -455,25 +455,25 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 			_i++;
 		}
 	};
-	static __create_tilemap = function(_layer, _x, _y) {
+	static __CreateTilemap = function(_layer, _x, _y) {
 		var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
-		var _i = 0; repeat (array_length(__tiles_data)) {
-			with (__tiles_data[_i]) {
+		var _i = 0; repeat (array_length(__tilesData)) {
+			with (__tilesData[_i]) {
 				tilemap_set(_tilemap, data, x, y);
 			}
 			_i++;
 		}
 		return _tilemap;
 	};
-	static __on_load = function(_layer, _xoffset, _yoffset) {
-		var _tilemap = __create_tilemap(_layer, _xoffset, _yoffset);
+	static __on_load = function(_layer, _xOffset, _yOffset) {
+		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__tilemaps.__Add(_tilemap, __tilemap_data.name);
+			RoomLoader.__returnData.__tilemaps.__Add(_tilemap, __tilemapData.name);
 		}
 	};
 	static __on_draw = function() {
 		var _layer = layer_create(0);
-		var _tilemap = __create_tilemap(_layer, 0, 0);
+		var _tilemap = __CreateTilemap(_layer, 0, 0);
 		draw_tilemap(_tilemap, 0, 0);
 		layer_tilemap_destroy(_tilemap);
 		layer_destroy(_layer);
@@ -481,14 +481,14 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	
 	__Init();
 };
-function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDataLayerParent(_layer_data) constructor {
+function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;
-	__bg_data = _bg_data[0];
+	__bgData = _bgData[0];
 	
-	static __on_load = function(_layer, _xoffset, _yoffset, _flags, _return_data) {
-		with (__bg_data) {
-			layer_x(_layer, layer_get_x(_layer) + _xoffset);
-			layer_y(_layer, layer_get_y(_layer) + _yoffset);
+	static __on_load = function(_layer, _xOffset, _yOffset, _flags, _return_data) {
+		with (__bgData) {
+			layer_x(_layer, layer_get_x(_layer) + _xOffset);
+			layer_y(_layer, layer_get_y(_layer) + _yOffset);
 			
 			var _bg = layer_background_create(_layer, sprite_index);
 			layer_background_visible(_bg, visible);
@@ -503,7 +503,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 			layer_background_alpha(_bg, blendAlpha);
 			
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				RoomLoader.__return_data.__backgrounds.__Add(_bg, name);
+				RoomLoader.__returnData.__backgrounds.__Add(_bg, name);
 			}
 		}
 	};
@@ -526,20 +526,20 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 		
 		var _room_width = __owner.__width;
 		var _room_height = __owner.__height;
-		var _xoffset = __layer_data.xoffset;
-		var _yoffset = __layer_data.yoffset;
+		var _xOffset = __layerData.xoffset;
+		var _yOffset = __layerData.yoffset;
 		
-		with (__bg_data) {
+		with (__bgData) {
 			var _sprite = sprite_index;
 			if (_sprite == -1) return _fill(_room_width, _room_height);
 			
 			var _width = (stretch ? _room_width : sprite_get_width(_sprite));
 			var _height = (stretch ? _room_height : sprite_get_height(_sprite));
-			var _y1 = (vtiled ? (-_height + ((abs(_yoffset) mod _height) * sign(_yoffset))) : _yoffset);
+			var _y1 = (vtiled ? (-_height + ((abs(_yOffset) mod _height) * sign(_yOffset))) : _yOffset);
 			var _ny = (_room_height div _height) + 2;
 			
 			if (htiled) {
-				var _x1 = -_width + ((abs(_xoffset) mod _width) * sign(_xoffset));
+				var _x1 = -_width + ((abs(_xOffset) mod _width) * sign(_xOffset));
 				var _nx = (_room_width div _width) + 2;
 				for (var _i = 0; _i < _nx; _i++) {
 					var _x = _x1 + (_i * _width);
@@ -550,10 +550,10 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 				}
 			}
 			else if (vtiled) {
-				_vtiled(_sprite, _xoffset, _y1, _width, _height, _ny);
+				_vtiled(_sprite, _xOffset, _y1, _width, _height, _ny);
 			}
 			else {
-				draw_sprite_stretched_ext(_sprite, image_index, _xoffset, _yoffset, _width, _height, blendColour, blendAlpha);	
+				draw_sprite_stretched_ext(_sprite, image_index, _xOffset, _yOffset, _width, _height, blendColour, blendAlpha);	
 			}
 		}
 	};
