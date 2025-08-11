@@ -2,72 +2,72 @@
 function __RoomLoaderFilter(_name, _positive) constructor {
 	__name = _name;
 	__positive = _positive;
-	__layer_names = [];
-	__method_names = undefined;
-	__message_prefix = RoomLoader.__message_prefix;
+	__layerNames = [];
+	__methodNames = undefined;
+	__messagePrefix = RoomLoader.__messagePrefix;
 	
-	static __init = function() {
-		__check = __check_empty;
+	static __Init = function() {
+		__check = __CheckEmpty;
 		
 		var _prefix = $"layer_{string_lower(__name)}";
-		__method_names = {
+		__methodNames = {
 			__add: $"{_prefix}_add",
 			__remove: $"{_prefix}_remove",
 			__reset: $"{_prefix}_reset",
 		};
 	};
-	static __check_empty = function() {
+	static __CheckEmpty = function() {
 		return __positive;
 	};
-	static __check_active = function(_layer_name) {
-		return array_contains(__layer_names, _layer_name);	
+	static __CheckActive = function(_layer_name) {
+		return array_contains(__layerNames, _layer_name);	
 	};
-	static __add = function(_layer_name) {
-		var _method_name = __method_names.__add;
-		__RoomLoaderCatchString(__message_prefix, _method_name, _layer_name);
+	static __Add = function(_layer_name) {
+		var _method_name = __methodNames.__add;
+		__RoomLoaderCatchString(__messagePrefix, _method_name, _layer_name);
 		
-		if (__get_index(_layer_name) != -1) {
-			return __RoomLoaderLogMethod(__message_prefix, _method_name, $"Layer \"{_layer_name}\" is already {__name}ed");
+		if (__GetIndex(_layer_name) != -1) {
+			return __RoomLoaderLogMethod(__messagePrefix, _method_name, $"Layer \"{_layer_name}\" is already {__name}ed");
 		}
 		
-		array_push(__layer_names, _layer_name);
-		__check = __check_active;
-		__RoomLoaderLogMethod(__message_prefix, _method_name, $"{__name}ed layer \"{_layer_name}\"");
+		array_push(__layerNames, _layer_name);
+		__check = __CheckActive;
+		__RoomLoaderLogMethod(__messagePrefix, _method_name, $"{__name}ed layer \"{_layer_name}\"");
 	};
-	static __remove = function(_layer_name) {
-		var _method_name = __method_names.__remove;
-		__RoomLoaderCatchString(__message_prefix, _method_name, _layer_name);
+	static __Remove = function(_layer_name) {
+		var _method_name = __methodNames.__remove;
+		__RoomLoaderCatchString(__messagePrefix, _method_name, _layer_name);
 		
-		var _index = __get_index(_layer_name);
+		var _index = __GetIndex(_layer_name);
 		if (_index == -1) {
-			return __RoomLoaderLogMethod(__message_prefix, _method_name, $"Layer \"{_layer_name}\" is not {__name}ed");
+			return __RoomLoaderLogMethod(__messagePrefix, _method_name, $"Layer \"{_layer_name}\" is not {__name}ed");
 		}
 		
-		array_delete(__layer_names, _index, 1);
-		if (__is_empty()) {
-			__check = __check_empty;
+		array_delete(__layerNames, _index, 1);
+		if (__IsEmpty()) {
+			__check = __CheckEmpty;
 		}
-		return __RoomLoaderLogMethod(__message_prefix, _method_name, $"Removed layer \"{_layer_name}\" from {__name}");
+		return __RoomLoaderLogMethod(__messagePrefix, _method_name, $"Removed layer \"{_layer_name}\" from {__name}");
 	};
 	static __reset = function() {
-		var _method_name = __method_names.__reset;
-		if (__is_empty()) {
-			return __RoomLoaderLogMethod(__message_prefix, _method_name, $"{__name} is already empty");
+		var _method_name = __methodNames.__reset;
+		if (__IsEmpty()) {
+			return __RoomLoaderLogMethod(__messagePrefix, _method_name, $"{__name} is already empty");
 		}
 		
-		__layer_names = [];
-		__check = __check_empty;
-		__RoomLoaderLogMethod(__message_prefix, _method_name, $"{__name} is reset");
+		__layerNames = [];
+		__check = __CheckEmpty;
+		__RoomLoaderLogMethod(__messagePrefix, _method_name, $"{__name} is reset");
 	};
-	static __get = function() {
-		return __layer_names;
+	static __Get = function() {
+		return __layerNames;
 	};
-	static __get_index = function(_layer_name) {
-		 return array_get_index(__layer_names, _layer_name);
+	static __GetIndex = function(_layer_name) {
+		 return array_get_index(__layerNames, _layer_name);
 	};
-	static __is_empty = function() {
-		return (array_length(__layer_names) == 0);
+	static __IsEmpty = function() {
+		return (array_length(__layerNames) == 0);
 	};
 	
-	__init();
+	__Init();
 }

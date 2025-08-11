@@ -177,7 +177,7 @@ function __RoomLoaderDataLayerParent(_layer_data) constructor {
 		var _layer = __RoomLoaderGetLayer(__layer_data);
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+			RoomLoader.__return_data.__layers.__Add(_layer, __layer_data.name);
 		}
 		
 		__on_load(_layer, _xoffset, _yoffset, _flags);
@@ -257,7 +257,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_sprite_alpha(_sprite, image_alpha);
 				
 				if (ROOMLOADER_USE_RETURN_DATA) {
-					RoomLoader.__return_data.__sprites.__add(_sprite, name);
+					RoomLoader.__return_data.__sprites.__Add(_sprite, name);
 				}
 			}
 		};
@@ -315,7 +315,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 			}
 			
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				RoomLoader.__return_data.__sequences.__add(_sequence, __data.name);
+				RoomLoader.__return_data.__sequences.__Add(_sequence, __data.name);
 			}
 		}
 		static __draw = __RoomLoaderNoop;
@@ -345,7 +345,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 				layer_text_alpha(_text, alpha);
 				
 				if (ROOMLOADER_USE_RETURN_DATA) {
-					RoomLoader.__return_data.__texts.__add(_text, name);
+					RoomLoader.__return_data.__texts.__Add(_text, name);
 				}
 			}
 		}
@@ -409,7 +409,7 @@ function __RoomLoaderDataLayerAsset(_layer_data, _data) : __RoomLoaderDataLayerP
 		}
 		
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__layers.__add(_layer, __layer_data.name);
+			RoomLoader.__return_data.__layers.__Add(_layer, __layer_data.name);
 		}
 	};
 	static __draw = function(_flags) {
@@ -468,7 +468,7 @@ function __RoomLoaderDataLayerTilemap(_layer_data, _elements_data) : __RoomLoade
 	static __on_load = function(_layer, _xoffset, _yoffset) {
 		var _tilemap = __create_tilemap(_layer, _xoffset, _yoffset);
 		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__return_data.__tilemaps.__add(_tilemap, __tilemap_data.name);
+			RoomLoader.__return_data.__tilemaps.__Add(_tilemap, __tilemap_data.name);
 		}
 	};
 	static __on_draw = function() {
@@ -503,7 +503,7 @@ function __RoomLoaderDataLayerBackground(_layer_data, _bg_data) : __RoomLoaderDa
 			layer_background_alpha(_bg, blendAlpha);
 			
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				RoomLoader.__return_data.__backgrounds.__add(_bg, name);
+				RoomLoader.__return_data.__backgrounds.__Add(_bg, name);
 			}
 		}
 	};
