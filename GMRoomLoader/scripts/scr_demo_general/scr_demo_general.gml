@@ -2,7 +2,7 @@
 function DemoGeneral() : DemoPar("General") constructor {
 	// Shared:
 	static init = function() {
-		RoomLoader.data_init(rm);
+		RoomLoader.DataInit(rm);
 		
 		// Whitelist & Blacklist:
 		layer_set_target_room(rm);
@@ -17,7 +17,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		// Interface:
 		DEMOS.info = dbg_section("Info");
-		dbg_text("This demo showcases the main \"RoomLoader.load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin, flags, layer whitelist and blacklist.");
+		dbg_text("This demo showcases the main \"RoomLoader.Load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin, flags, layer whitelist and blacklist.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
@@ -63,7 +63,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		demo_draw_frame(rm, pos.x, pos.y, origin);
 	};
 	static cleanup = function() {
-		RoomLoader.data_remove(rm);
+		RoomLoader.DataRemove(rm);
 		unload();
 	};
 	
@@ -84,17 +84,17 @@ function DemoGeneral() : DemoPar("General") constructor {
 		unload();
 		array_foreach(whitelist, function(_layer) {
 			if (_layer.enabled) {
-				RoomLoader.layer_whitelist_add(_layer.name);
+				RoomLoader.LayerWhitelistAdd(_layer.name);
 			}
 		});
 		array_foreach(blacklist, function(_layer) {
 			if (_layer.enabled) {
-				RoomLoader.layer_blacklist_add(_layer.name);
+				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-		DEMO_ROOM_DATA = RoomLoader.load(rm, pos.x, pos.y, origin.x, origin.y, flags.get());
-		RoomLoader.layer_whitelist_reset();
-		RoomLoader.layer_blacklist_reset();
+		DEMO_ROOM_DATA = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get());
+		RoomLoader.LayerWhitelistReset();
+		RoomLoader.LayerBlacklistReset();
 	};
 	static unload = function() {
 		if (DEMO_ROOM_DATA == undefined) return;

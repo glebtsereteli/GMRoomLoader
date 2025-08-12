@@ -41,22 +41,22 @@ function __RoomLoaderLogMethodTimed(_prefix, _methodName, _message, _room) {
 	__RoomLoaderLogMethod(_prefix, _methodName, $"{_message} <{room_get_name(_room)}> in {RoomLoader.__benchmark.__Get()} milliseconds");
 }
 
-function __RoomLoaderEror(_message) {
+function __RoomLoaderError(_message) {
 	show_error($"[{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION}] Error.\n-----------------------------------\n{_message}.\n\n", true);
 }
-function __RoomLoaderErorMethod(_prefix, _methodName, _message) {
-	__RoomLoaderEror($"{_prefix}.{_methodName}(): {_message}");
+function __RoomLoaderErrorMethod(_prefix, _methodName, _message) {
+	__RoomLoaderError($"{_prefix}.{_methodName}(): {_message}");
 }
 
 function __RoomLoaderCatchNonRoom(_prefix, _methodName, _room, _message) {
 	var _type = typeof(_room);
 	if ((_type == "ref") and (room_exists(_room))) return;
 	
-	__RoomLoaderErorMethod(_prefix, _methodName, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
+	__RoomLoaderErrorMethod(_prefix, _methodName, $"Could not {_message} <{_room}>.\nExpected \{Asset.GMRoom\}, got \{{_type}\}");
 }
 function __RoomLoaderCatchArgument(_prefix, _methodName, _value, _checker, _typeName, _preMessage = "use", _postMessage = "") {
 	if (not _checker(_value)) {
-		__RoomLoaderErorMethod(_prefix, _methodName, $"Could not {_preMessage} <{_value}> {_postMessage}.\nExpected \{{_typeName}\}, got \{{typeof(_value)}\}");
+		__RoomLoaderErrorMethod(_prefix, _methodName, $"Could not {_preMessage} <{_value}> {_postMessage}.\nExpected \{{_typeName}\}, got \{{typeof(_value)}\}");
 	}
 }
 function __RoomLoaderCatchString(_prefix, _methodName, _value, _preMessage = undefined, _postMessage = undefined) {

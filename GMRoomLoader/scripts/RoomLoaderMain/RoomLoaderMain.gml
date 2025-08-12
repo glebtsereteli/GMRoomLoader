@@ -14,30 +14,30 @@ function RoomLoader() {
 		__messagePrefix: __messagePrefix,
 		__pool: {},
 		
-		__Add: function(_room, _method_name) {
-			__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, "initialize data for");
+		__Add: function(_room, _methodName) {
+			__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "initialize data for");
 			
-			var _room_name = room_get_name(_room);
-			if (struct_exists(__pool, _room_name)) {
-				__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Data for <{_room_name}> is already initialized");
+			var _roomName = room_get_name(_room);
+			if (struct_exists(__pool, _roomName)) {
+				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Data for <{_roomName}> is already initialized");
 				return;
 			}
 			
 			RoomLoader.__benchmark.__start();
-			__pool[$ _room_name] = new __RoomLoaderData(_room);
-			__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, "Initialized data for", _room);
+			__pool[$ _roomName] = new __RoomLoaderData(_room);
+			__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Initialized data for", _room);
 		},
-		__remove: function(_room, _method_name) {
-			__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, "remove data for");
+		__Remove: function(_room, _methodName) {
+			__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "remove data for");
 			
-			var _room_name = room_get_name(_room);
-			if (not struct_exists(__pool, _room_name)) {
-				__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Data for <{_room_name}> doesn't exist, there's nothing to remove");
+			var _roomName = room_get_name(_room);
+			if (not struct_exists(__pool, _roomName)) {
+				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Data for <{_roomName}> doesn't exist, there's nothing to remove");
 				return;
 			}
 			
-			struct_remove(__pool, _room_name);
-			__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Removed data for <{_room_name}>");
+			struct_remove(__pool, _roomName);
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_roomName}>");
 		},
 		__Get: function(_room) {
 			return __pool[$ room_get_name(_room)];
@@ -53,46 +53,46 @@ function RoomLoader() {
 			return ((get_timer() - __t) / 1000);
 		},
 	};
-	static __all_rooms = undefined;
-	static __layer_whitelist = new __RoomLoaderFilter("Whitelist", true);
-	static __layer_blacklist = new __RoomLoaderFilter("Blacklist", false);
+	static __allRooms = undefined;
+	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
+	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
 	static __returnData = undefined;
 	
-	static __layer_failed_filters = function(_name) {
-		var _match = ((__layer_whitelist.__check(_name)) and (not __layer_blacklist.__check(_name)));
+	static __LayerFailedFilters = function(_name) {
+		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
 		return (not _match);
 	};
-	static __get_load_data = function(_room, _method_name, _nonroom_message, _nodata_message) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, _nonroom_message);
+	static __GetLoadData = function(_room, _methodName, _nonroom_message, _nodata_message) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonroom_message);
 		
 		var _data = __data.__Get(_room);
 		if (_data != undefined) return _data;
 		
-		var _room_name = $"<{room_get_name(_room)}>";
-		var _message = $"Could not find the data for room {_room_name}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
-		__RoomLoaderErorMethod(__messagePrefix, _method_name, _message);
+		var _roomName = $"<{room_get_name(_room)}>";
+		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
+		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
-	static __take_screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _method_name) {
-		var _data = __get_load_data(_room, _method_name, "take a screenshot of", "take screenshots");
+	static __TakeScreenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName) {
+		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
 		
 		__benchmark.__start();
-		var _screenshot = _data.__take_screenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, "screenshotted", _room);
+		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
 		return _screenshot;
 	};
 	
 	#endregion
 	
-	#region data initialization
+	#region Data: Initialization
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to initialize data for. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all given rooms.
 	/// @context RoomLoader
-	static data_init = function() {
-		static _method_name = "data_init";
+	static DataInit = function() {
+		static _methodName = "DataInit";
 		var _i = 0; repeat (argument_count) {
-			__data.__Add(argument[_i], _method_name);
+			__data.__Add(argument[_i], _methodName);
 			_i++;
 		}
 		return self;
@@ -102,12 +102,12 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Initializes data for all rooms in the given array.
 	/// @context RoomLoader
-	static data_init_array = function(_rooms) {
-		static _method_name = "data_init_array";
-		__RoomLoaderCatchArray(__messagePrefix, _method_name, _rooms);
+	static DataInitArray = function(_rooms) {
+		static _methodName = "DataInitArray";
+		__RoomLoaderCatchArray(__messagePrefix, _methodName, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
-			__data.__Add(_rooms[_i], _method_name);
+			__data.__Add(_rooms[_i], _methodName);
 			_i++;
 		}
 		return self;
@@ -117,28 +117,28 @@ function RoomLoader() {
 	/// @returns {Array<Asset.GMRoom>}
 	/// @desc Initializes data for all rooms starting with the given prefix. Returns an array of found rooms.
 	/// @context RoomLoader
-	static data_init_prefix = function(_prefix) {
-		static _method_name = "data_init_prefix";
+	static DataInitPrefix = function(_prefix) {
+		static _methodName = "DataInitPrefix";
 		static _closure = { prefix: undefined };
 		static _filter = method(_closure, function(_room) {
 			var _name = room_get_name(_room);
 			return (string_pos(prefix, _name) > 0);
 		});
 		
-		__RoomLoaderCatchString(__messagePrefix, _method_name, _prefix);
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _prefix);
 		
-		__all_rooms ??= asset_get_ids(asset_room);
+		__allRooms ??= asset_get_ids(asset_room);
 		_closure.prefix = _prefix;
-		var _rooms = array_filter(__all_rooms, _filter);
+		var _rooms = array_filter(__allRooms, _filter);
 		
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms starting with \"{_prefix}\"");
 			return _rooms;
 		}
 		
 		var _i = 0; repeat (_n) {
-			__data.__Add(_rooms[_i], _method_name);
+			__data.__Add(_rooms[_i], _methodName);
 			_i++;
 		}
 		
@@ -149,19 +149,19 @@ function RoomLoader() {
 	/// @returns {Array<Asset.GMRoom>}
 	/// @desc Initializes data for all rooms with the given tag assigned. Returns an array of found rooms.
 	/// @context RoomLoader
-	static data_init_tag = function(_tag) {
-		static _method_name = "data_init_tag";
-		__RoomLoaderCatchString(__messagePrefix, _method_name, _tag);
+	static DataInitTag = function(_tag) {
+		static _methodName = "DataInitTag";
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _tag);
 		
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 			return _rooms;
 		}
 		
 		var _i = 0; repeat (_n) {
-			__data.__Add(_rooms[_i], _method_name);
+			__data.__Add(_rooms[_i], _methodName);
 			_i++;
 		}
 		
@@ -169,16 +169,16 @@ function RoomLoader() {
 	};
 	
 	#endregion
-	#region data removal
+	#region Data: Removal
 	
 	/// @param {Asset.GMRoom} ...rooms The rooms to remove data for. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) given rooms.
 	/// @context RoomLoader
-	static data_remove = function() {
-		static _method_name = "data_remove";
+	static DataRemove = function() {
+		static _methodName = "DataRemove";
 		var _i = 0; repeat (argument_count) {
-			__data.__remove(argument[_i], _method_name);
+			__data.__Remove(argument[_i], _methodName);
 			_i++;
 		}
 		return self;
@@ -188,12 +188,12 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) rooms in the given array.
 	/// @context RoomLoader
-	static data_remove_array = function(_rooms) {
-		static _method_name = "data_remove_array";
-		__RoomLoaderCatchArray(__messagePrefix, _method_name, _rooms);
+	static DataRemoveArray = function(_rooms) {
+		static _methodName = "DataRemoveArray";
+		__RoomLoaderCatchArray(__messagePrefix, _methodName, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
-			__data.__remove(_rooms[_i], _method_name);
+			__data.__Remove(_rooms[_i], _methodName);
 			_i++;
 		}
 		return self;
@@ -203,10 +203,10 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) rooms starting with the given prefix.
 	/// @context RoomLoader
-	static data_remove_prefix = function(_prefix) {
-		static _method_name = "data_remove_prefix";
+	static DataRemovePrefix = function(_prefix) {
+		static _methodName = "DataRemovePrefix";
 		 
-		__RoomLoaderCatchString(__messagePrefix, _method_name, _prefix);
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _prefix);
 		
 		var _removed = false;
 		var _pool = __data.__pool;
@@ -215,14 +215,14 @@ function RoomLoader() {
 			var _name = _names[_i];
 			if (string_pos(_prefix, _name) > 0) {
 				struct_remove(_pool, _names[_i]);
-				__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Removed data for <{_name}>");
+				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_name}>");
 				_removed = true;
 			}
 			_i++;
 		}
 		
 		if (not _removed) {
-			__RoomLoaderLogMethod(__messagePrefix, _method_name, $"Could not find any rooms starting with \"{_prefix}\"");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms starting with \"{_prefix}\"");
 		}
 		
 		return self;
@@ -232,18 +232,18 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all rooms with the given tag assigned.
 	/// @context RoomLoader
-	static data_remove_tag = function(_tag) {
-		static _method_name = "data_remove_tag";
-		__RoomLoaderCatchString(__messagePrefix, _method_name, _tag);
+	static DataRemoveTag = function(_tag) {
+		static _methodName = "DataRemoveTag";
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _tag);
 		
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			return __RoomLoaderLogMethod(__messagePrefix, _method_name, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms with the \"{_tag}\" tag assigned");
 		}
 		
 		var _i = 0; repeat (_n) {
-			__data.__remove(_rooms[_i], _method_name);
+			__data.__Remove(_rooms[_i], _methodName);
 			_i++;
 		}
 	
@@ -253,27 +253,27 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @desc Clears all initialized room data.
 	/// @context RoomLoader
-	static data_clear = function() {
-		static _method_name = "data_clear";
+	static DataClear = function() {
+		static _methodName = "DataClear";
 		if (struct_names_count(__data.__pool) == 0) {
-			__RoomLoaderLogMethod(__messagePrefix, _method_name, "There's no data to clear");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, "There's no data to clear");
 			return self;
 		}
 		
 		__data.__pool = {};
-		__RoomLoaderLogMethod(__messagePrefix, _method_name, "Data cleared");
+		__RoomLoaderLogMethod(__messagePrefix, _methodName, "Data cleared");
 		return self;
 	};
 	
 	#endregion
-	#region data status/getters
+	#region Data: Status & Getters
 	
 	/// @param {Asset.GMRoom} room The room to check.
 	/// @returns {Bool}
 	/// @desc Returns whether the data for the given room is initialized (true) or not (false).
 	/// @context RoomLoader
-	static data_is_initialized = function(_room) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, "data_is_initialized", _room, $"check whether data is initialized for");
+	static dataIsInitialized = function(_room) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, "dataIsInitialized", _room, $"check whether data is initialized for");
 		return (__data.__Get(_room) != undefined);
 	};
 	
@@ -281,10 +281,10 @@ function RoomLoader() {
 	/// @returns {Real}
 	/// @desc Returns the width of the given room.
 	/// @context RoomLoader
-	static data_get_width = function(_room) {
-		static _method_name = "data_get_width";
-		__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, $"get room width for");
-		var _data = __get_load_data(_room, _method_name, "load", "get their widths");
+	static DataGetWidth = function(_room) {
+		static _methodName = "DataGetWidth";
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room width for");
+		var _data = __GetLoadData(_room, _methodName, "load", "get their widths");
 		return _data.__width;
 	};
 	
@@ -292,40 +292,40 @@ function RoomLoader() {
 	/// @returns {Real}
 	/// @desc Returns the height of the given room.
 	/// @context RoomLoader
-	static data_get_height = function(_room) {
-		static _method_name = "data_get_height";
-		__RoomLoaderCatchNonRoom(__messagePrefix, _method_name, _room, $"get room height for");
-		var _data = __get_load_data(_room, _method_name, "load", "get their heights");
+	static DataGetHeight = function(_room) {
+		static _methodName = "DataGetHeight";
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room height for");
+		var _data = __GetLoadData(_room, _methodName, "load", "get their heights");
 		return _data.__height;
 	};
 	
 	#endregion
-	#region loading
+	#region Loading
 	
 	/// @param {Asset.GMRoom} room The room to load.
 	/// @param {Real} x The x coordinate to load the room at.
 	/// @param {Real} y The y coordinate to load the room at.
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
+	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
+	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
 	/// @returns {struct.RoomLoaderReturnData,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderReturnData if ROOMLOADER_USE_RETURN_DATA is true, undefined otherwise.
 	/// @context RoomLoader
-	static load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		static _method_name = "load";
+	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+		static _methodName = "load";
 		static _nonroom_message = "load";
 		static _nodata_message = "load them";
 		static _bench_message = "loaded";
 		
-		var _data = __get_load_data(_room, _method_name, _nonroom_message, _nodata_message);
+		var _data = __GetLoadData(_room, _methodName, _nonroom_message, _nodata_message);
 		
 		__benchmark.__start();
 		if (ROOMLOADER_USE_RETURN_DATA) {
 			__returnData = new RoomLoaderReturnData(_room);
 		}
 		_data.__load(_x, _y, _xOrigin, _yOrigin, _flags);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, _bench_message, _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _bench_message, _room);
 		
 		return (ROOMLOADER_USE_RETURN_DATA ? __returnData : undefined);
 	};
@@ -339,14 +339,14 @@ function RoomLoader() {
 	/// @param {Real} angle The angle applied to instance positioning.
 	/// @param {Bool} multiplicative_scale=[ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
 	/// @param {Bool} additive_angle=[ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
+	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
+	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
 	/// @returns {Array<Id.Instance>}
-	static load_instances = function(_room, _x, _y, _lod, _xscale, _yscale, _angle, 
-		_mult_scale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _add_angle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE, 
+	static LoadInstances = function(_room, _x, _y, _lod, _xScale, _yScale, _angle, 
+		_multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE, 
 		_xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN
 	) {
-		static _method_name = "load_instances";
+		static _methodName = "load_instances";
 		static _body = "load instances for";
 		static _end = "load their instances";
 		
@@ -359,12 +359,12 @@ function RoomLoader() {
 		}
 		
 		__benchmark.__start();
-		var _data = __get_load_data(_room, _method_name, _body, _end);
+		var _data = __GetLoadData(_room, _methodName, _body, _end);
 		var _idatas = _data.__instancesData;
 		var _n = array_length(_idatas);
 		var _instances = array_create(_n, noone);
 		
-		if ((_xscale == 1) and (_yscale == 1) and (_angle == 0)) {
+		if ((_xScale == 1) and (_yScale == 1) and (_angle == 0)) {
 			var _xOffset = _x - (_data.__width * _xOrigin);
 			var _yOffset = _y - (_data.__height * _yOrigin);
 			
@@ -379,14 +379,14 @@ function RoomLoader() {
 			}
 		}
 		else {
-			var _xOffset = _data.__width * _xscale * _xOrigin;
-			var _yOffset = _data.__height * _yscale * _yOrigin;
+			var _xOffset = _data.__width * _xScale * _xOrigin;
+			var _yOffset = _data.__height * _yScale * _yOrigin;
 			var _x1 = _x - (lengthdir_x(_xOffset, _angle) + lengthdir_x(_yOffset, _angle - 90));
 			var _y1 = _y - (lengthdir_y(_xOffset, _angle) + lengthdir_y(_yOffset, _angle - 90));
 			
-			var _ixscale = (_mult_scale ? _xscale : 1);
-			var _iyscale = (_mult_scale ? _yscale : 1);
-			var _iangle = _angle * _add_angle;
+			var _ixscale = (_multScale ? _xScale : 1);
+			var _iyscale = (_multScale ? _yScale : 1);
+			var _iangle = _angle * _addAngle;
 			
 			if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
 				__ROOMLOADER_INSTANCE_STANDALONE_EXT_START
@@ -399,21 +399,21 @@ function RoomLoader() {
 			}
 		}
 		
-		__RoomLoaderLogMethodTimed(__messagePrefix, _method_name, _body, _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _body, _room);
 		
 		return _instances;
 	};
 	
 	#endregion
-	#region layer whitelist
+	#region Layer Whitelist
 	
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Adds all given layer names to the Whitelist filter.
+	/// @desc Adds all given layer names to the Whitelist layer filter.
 	/// @context RoomLoader
-	static layer_whitelist_add = function() {
+	static LayerWhitelistAdd = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_whitelist.__Add(argument[_i]);
+			__layerWhitelist.__Add(argument[_i]);
 			_i++;
 		}
 		return self;
@@ -421,41 +421,41 @@ function RoomLoader() {
 	
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Removes all given layer names from the Whitelist filter.
+	/// @desc Removes all given layer names from the Whitelist layer filter.
 	/// @context RoomLoader
-	static layer_whitelist_remove = function() {
+	static LayerWhitelistRemove = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_whitelist.__remove(argument[_i]);
+			__layerWhitelist.__Remove(argument[_i]);
 			_i++;
 		}
 		return self;
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Resets the Whitelist filter.
+	/// @desc Resets the Whitelist layer filter.
 	/// @context RoomLoader
-	static layer_whitelist_reset = function() {
-		__layer_whitelist.__reset();
+	static LayerWhitelistReset = function() {
+		__layerWhitelist.__Reset();
 		return self;
 	};
 	
 	/// @returns {Array<String>}
 	/// @desc Returns an array of whitelisted layer names.
 	/// @context RoomLoader
-	static layer_whitelist_get = function() {
-		return __layer_whitelist.__Get();
+	static LayerWhitelistGet = function() {
+		return __layerWhitelist.__Get();
 	};
 	
 	#endregion
-	#region layer blacklist
+	#region Layer Blacklist
 	
 	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Adds all given layer names to the Blacklist filter.
+	/// @desc Adds all given layer names to the Blacklist layer filter.
 	/// @context RoomLoader
-	static layer_blacklist_add = function() {
+	static LayerBlacklistAdd = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_blacklist.__Add(argument[_i]);
+			__layerBlacklist.__Add(argument[_i]);
 			_i++;
 		}
 		return self;
@@ -463,36 +463,36 @@ function RoomLoader() {
 	
 	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Removes all given layer names from the Blacklist filter.
+	/// @desc Removes all given layer names from the Blacklist layer filter.
 	/// @context RoomLoader
-	static layer_blacklist_remove = function() {
+	static LayerBlacklistRemove = function() {
 		var _i = 0; repeat (argument_count) {
-			__layer_blacklist.__remove(argument[_i]);
+			__layerBlacklist.__Remove(argument[_i]);
 			_i++;
 		}
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Resets the Blacklist filter.
+	/// @desc Resets the Blacklist layer filter.
 	/// @context RoomLoader
-	static layer_blacklist_reset = function() {
-		__layer_blacklist.__reset();
+	static LayerBlacklistReset = function() {
+		__layerBlacklist.__Reset();
 		return self;
 	};
 	
 	/// @returns {Array<String>}
 	/// @desc Returns an array of blacklisted layer names.
 	/// @context RoomLoader
-	static layer_blacklist_get = function() {
-		return __layer_blacklist.__Get();
+	static LayerBlacklistGet = function() {
+		return __layerBlacklist.__Get();
 	};
 	
 	#endregion
-	#region screenshotting
+	#region Screenshotting
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
+	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
+	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
 	/// @param {Real} scale=[1] The scale to create the sprite at.
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured elements by.
 	/// @returns {Asset.GMSprite}
@@ -500,9 +500,9 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		static _method_name = "take_screenshot";
-		return __take_screenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _method_name);
+	static TakeScreenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+		static _methodName = "TakeScreenshot";
+		return __TakeScreenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
@@ -510,8 +510,8 @@ function RoomLoader() {
 	/// @param {Real} top The y position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
 	/// @param {Real} width The width of the area to capture, as a 0-1 percentage.
 	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
-	/// @param {Real} xorigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
-	/// @param {Real} yorigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
+	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
+	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
 	/// @param {Real} scale=[1] The scale to create the sprite at.
 	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured elements by.
 	/// @returns {Asset.GMSprite}
@@ -519,9 +519,9 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static take_screenshot_part = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		static _method_name = "take_screenshot_part";
-		return __take_screenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _method_name);
+	static TakeScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+		static _methodName = "TakeScreenshotPart";
+		return __TakeScreenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
 	#endregion

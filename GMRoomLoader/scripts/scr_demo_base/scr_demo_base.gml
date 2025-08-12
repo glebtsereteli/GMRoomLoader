@@ -42,11 +42,11 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		data: undefined,
 		
 		init: function() {
-			RoomLoader.data_init(ref);
-			data = RoomLoader.load(ref, DEMOS.xcenter, DEMOS.ycenter, 0.5, 0.5);
+			RoomLoader.DataInit(ref);
+			data = RoomLoader.Load(ref, DEMOS.xcenter, DEMOS.ycenter, 0.5, 0.5);
 		},
 		cleanup: function() {
-			RoomLoader.data_remove(ref);
+			RoomLoader.DataRemove(ref);
 			data.cleanup();
 		},
 	};
@@ -56,7 +56,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		obj: obj_demo_base_slot_parent,
 		
 		init: function() {
-			RoomLoader.data_init_tag(tag);
+			RoomLoader.DataInitTag(tag);
 		},
 		update: function() {
 			var _hovered_slot = noone;
@@ -93,7 +93,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 			}
 		},
 		cleanup: function() {
-			RoomLoader.data_remove_tag(tag);
+			RoomLoader.DataRemoveTag(tag);
 			cleanup_all();
 		},
 		

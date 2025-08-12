@@ -2,7 +2,7 @@
 function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	// Shared:
 	static init = function() {
-		RoomLoader.data_init_tag(tag);
+		RoomLoader.DataInitTag(tag);
 		shuffle_room();
 		
 		// Interface:
@@ -44,8 +44,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			draw_sprite(sprite, 0, _x1, _y1);
 		}
 		
-		var _w = RoomLoader.data_get_width(rm) * w * scale;
-		var _h = RoomLoader.data_get_height(rm) * h * scale;
+		var _w = RoomLoader.DataGetWidth(rm) * w * scale;
+		var _h = RoomLoader.DataGetHeight(rm) * h * scale;
 		var _x = floor(_x1 - (_w * origin.x));
 		var _y = floor(_y1 - (_h * origin.y));
 		
@@ -53,7 +53,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		draw_sprite(spr_demo_cross, 0, _x1, _y1);
 	};
 	static cleanup = function() {
-		RoomLoader.data_remove_tag(tag);
+		RoomLoader.DataRemoveTag(tag);
 		clear();
 	};
 	
@@ -89,7 +89,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	};
 	static take = function() {
 		clear();
-		sprite = RoomLoader.take_screenshot_part(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
+		sprite = RoomLoader.TakeScreenshotPart(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
 	};
 	static clear = function() {
 		if (sprite == undefined) return;

@@ -17,11 +17,11 @@ function roomloader_export_screenshots(_rooms = asset_get_ids(asset_room), _path
 		zip = zip_create();
 		
 		array_foreach(_rooms, function(_room) {
-			var _initialized = RoomLoader.data_is_initialized(_room);
-			RoomLoader.data_init(_room);
-			var _screenshot = RoomLoader.take_screenshot(_room);
+			var _initialized = RoomLoader.dataIsInitialized(_room);
+			RoomLoader.DataInit(_room);
+			var _screenshot = RoomLoader.TakeScreenshot(_room);
 			if (not _initialized) {
-				RoomLoader.data_remove(_room);
+				RoomLoader.DataRemove(_room);
 			}
 			
 			var _local_path = $"{room_get_name(_room)}.png";

@@ -13,14 +13,14 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// If true, RoomLoader.load() returns a RoomLoaderReturnData instance containing the IDs of all loaded elements.
+// If true, RoomLoader.Load() returns a RoomLoaderReturnData instance containing the IDs of all loaded elements.
 // If false, no IDs are collected or returned, improving loading performance.
 // 
 // NOTE: Set this to false if you don't need to manually clean up loaded contents.
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_USE_RETURN_DATA true
 
-// When loading rooms using RoomLoader.load(), whether to merge loaded layers with existing ones (true)
+// When loading rooms using RoomLoader.Load(), whether to merge loaded layers with existing ones (true)
 // or keep them separate (false).
 //
 // If true: when loading a layer, its contents will be merged into an existing layer with the same name.
@@ -42,13 +42,13 @@
 // NOTE: Setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
-// When loading instances using RoomLoader.load_instances(), whether to multiply individual instance scale
+// When loading instances using RoomLoader.LoadInstances(), whether to multiply individual instance scale
 // by the overall load scale (true) or not (false).
 // 
 // NOTE: This comes into play only when loading instances with a custom (not 1) scale.
 #macro ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE true
 
-// When loading instances using RoomLoader.load_instances(), whether to combine individual instance angle
+// When loading instances using RoomLoader.LoadInstances(), whether to combine individual instance angle
 // with the overall load angle (true) or not (false).
 // 
 // NOTE: This comes into play only when loading instances with a custom (not 0) angle.

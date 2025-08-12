@@ -168,7 +168,7 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 	__layerData = _layerData;
 	
 	static __failed_filters = function() {
-		return RoomLoader.__layer_failed_filters(__layerData.name);
+		return RoomLoader.__LayerFailedFilters(__layerData.name);
 	};
 	static __load = function(_xOffset, _yOffset, _flags) {
 		if (not __RoomLoaderCheckFlag(_flags)) return undefined;
@@ -396,7 +396,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 		}
 	};
 	static __load = function(_xOffset, _yOffset, _flags) {
-		if (RoomLoader.__layer_failed_filters(__layerData.name)) return undefined;
+		if (RoomLoader.__LayerFailedFilters(__layerData.name)) return undefined;
 		
 		var _layer = __RoomLoaderGetLayer(__layerData);
 		var _i = 0; repeat (array_length(__data)) {

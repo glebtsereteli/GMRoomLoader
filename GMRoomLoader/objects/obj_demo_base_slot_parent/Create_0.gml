@@ -79,7 +79,7 @@ update = function() {
 load = function(_all, _flags) {
 	(_all ? index.shuffle : index.progress)();
 	var _room = asset_get_index($"rm_demo_base_slot_{vd_name}_0{index.value}");
-	var _data = RoomLoader.load(_room, x + 4, y + 4, 0, 0, _flags);
+	var _data = RoomLoader.Load(_room, x + 4, y + 4, 0, 0, _flags);
 	data.set(_data);
 	fill.click(c_orange, 0.3);
 };
