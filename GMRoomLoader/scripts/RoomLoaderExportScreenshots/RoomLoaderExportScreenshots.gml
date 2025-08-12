@@ -1,10 +1,10 @@
 
-/// @func roomloader_export_screenshots()
-/// @param {Array<Asset.GMRoom>} rooms=[all rooms] An array of rooms to export screenshots of.
-/// @param {String} path=[prompt] The path to export the .zip to.
+/// @func RoomLoaderExportScreenshots()
+/// @param {Array<Asset.GMRoom>} rooms An array of rooms to export screenshots of. (default = all rooms)
+/// @param {String} path The path to export the .zip to. (default = undefined, prompt)
 /// @descr Takes screenshots of all given rooms and exports them into a .zip archive at the given path.
 /// Note: make sure to have the "Disable file system sandbox" setting disabled for your target platform.
-function roomloader_export_screenshots(_rooms = asset_get_ids(asset_room), _path = undefined) {
+function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path = undefined) {
 	with ({}) {
 		path = _path;
 		if (path == undefined) {
@@ -13,7 +13,7 @@ function roomloader_export_screenshots(_rooms = asset_get_ids(asset_room), _path
 			path = get_save_filename_ext($"zip|*.zip", $"{_prefix}.zip", "", _title);
 			if (path == "") return;
 		}
-		dir = $"{game_save_id}__gmroomloader_screenshots_export";
+		dir = $"{game_save_id}__gmroomloaderScreenshotsExport";
 		zip = zip_create();
 		
 		array_foreach(_rooms, function(_room) {

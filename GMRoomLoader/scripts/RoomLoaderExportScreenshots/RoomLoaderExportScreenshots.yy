@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"roomloader_export_screenshots",
+  "%Name":"RoomLoaderExportScreenshots",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"roomloader_export_screenshots",
+  "name":"RoomLoaderExportScreenshots",
   "parent":{
     "name":"03. Misc",
     "path":"folders/03. Misc.yy",
