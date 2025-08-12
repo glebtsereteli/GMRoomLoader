@@ -108,7 +108,7 @@ function __RoomLoaderData(_room) constructor {
 			__creationCode();
 		}
 	};
-	static __take_screenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xOrigin, _yOrigin, _scale, _flags) {
+	static __TakeScreenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xOrigin, _yOrigin, _scale, _flags) {
         var _scaled = (_scale != 1);
 		var _width = (__width * _scale);
 		var _height = (__height * _scale);

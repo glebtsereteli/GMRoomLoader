@@ -1,7 +1,7 @@
 
 function DemoGeneral() : DemoPar("General") constructor {
 	// Shared:
-	static init = function() {
+	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
 		// Whitelist & Blacklist:
@@ -28,12 +28,12 @@ function DemoGeneral() : DemoPar("General") constructor {
 		});
 		dbg_same_line();
 		dbg_button("Clean Up", function() {
-			unload();
+			Unload();
 		});
 		
-		pos.init_dbg();
-		origin.init_dbg();
-		flags.init_dbg();
+		pos.InitDbg();
+		origin.InitDbg();
+		flags.InitDbg();
 		
 		dbg_text_separator("Layer Whitelist", 1);
 		array_foreach(whitelist, function(_layer) {
@@ -47,41 +47,41 @@ function DemoGeneral() : DemoPar("General") constructor {
 	
 		// Reloader:
 		reloader
-		.clear()
-		.add_modules([pos, origin, flags])
-		.on_trigger(function() {
+		.Clear()
+		.AddModules([pos, origin, flags])
+		.OnTrigger(function() {
 			load();
 		});
 		array_foreach(whitelist, function(_layer) {
-			reloader.add_variable(_layer, "enabled");
+			reloader.addVariable(_layer, "enabled");
 		});
 		array_foreach(blacklist, function(_layer) {
-			reloader.add_variable(_layer, "enabled");
+			reloader.addVariable(_layer, "enabled");
 		});
 	};
-	static draw = function() {
+	static Draw = function() {
 		demo_draw_frame(rm, pos.x, pos.y, origin);
 	};
-	static cleanup = function() {
+	static Cleanup = function() {
 		RoomLoader.DataRemove(rm);
-		unload();
+		Unload();
 	};
 	
-	static on_update = function() {
-		if (keyboard_check_pressed(ord("1"))) load();
-		if (keyboard_check_pressed(ord("2"))) unload();
+	static OnUpdate = function() {
+		if (keyboard_check_pressed(ord("1"))) Load();
+		if (keyboard_check_pressed(ord("2"))) Unload();
 	};
 	
 	// Custom:
-	rm = rm_demo_general_01;
+	rm = rmDemoGeneral01;
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	flags = new DemoModuleFlags();
 	whitelist = undefined;
 	blacklist = undefined;
 	
-	static load = function() {
-		unload();
+	static Load = function() {
+		Unload();
 		array_foreach(whitelist, function(_layer) {
 			if (_layer.enabled) {
 				RoomLoader.LayerWhitelistAdd(_layer.name);
@@ -96,10 +96,10 @@ function DemoGeneral() : DemoPar("General") constructor {
 		RoomLoader.LayerWhitelistReset();
 		RoomLoader.LayerBlacklistReset();
 	};
-	static unload = function() {
+	static Unload = function() {
 		if (DEMO_ROOM_DATA == undefined) return;
 		
-		DEMO_ROOM_DATA.cleanup();
+		DEMO_ROOM_DATA.Cleanup();
 		delete DEMO_ROOM_DATA;
 	};
 }

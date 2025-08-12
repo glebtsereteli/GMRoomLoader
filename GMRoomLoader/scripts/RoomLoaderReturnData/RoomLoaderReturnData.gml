@@ -178,7 +178,7 @@ function RoomLoaderReturnData(_room) constructor {
 	};
 	
 	#endregion
-	#region cleanup
+	#region Cleanup
 	
 	/// @returns {Undefined}
 	/// @param {Bool} destroy_layers=[true] Whether to destroy loaded layers (true) or not (false).
@@ -187,8 +187,8 @@ function RoomLoaderReturnData(_room) constructor {
 	/// NOTE: Setting "destroy_layers" to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to
 	/// accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
 	/// @context RoomLoaderReturnData
-	static cleanup = function(_destroyLayers = true) {
-		static _methodName = "cleanup";
+	static Cleanup = function(_destroyLayers = true) {
+		static _methodName = "Cleanup";
 		static _benchMessage = "cleaned up data for";
 		
 		if (__cleanedUp) {
