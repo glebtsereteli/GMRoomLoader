@@ -182,8 +182,7 @@ function RoomLoaderReturnData(_room) constructor {
 	
 	/// @returns {Undefined}
 	/// @param {Bool} destroy_layers=[true] Whether to destroy loaded layers (true) or not (false).
-	/// After calling this method, the instance becomes practically useless and should be dereferenced
-	/// to be picked up by the Garbage Collector.
+	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// NOTE: Setting "destroy_layers" to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to
 	/// accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
 	/// @context RoomLoaderReturnData
@@ -196,7 +195,7 @@ function RoomLoaderReturnData(_room) constructor {
 			return;
 		}
 		
-		RoomLoader.__benchmark.__start();
+		__ROOMLOADER_BENCH_START;
 		__instances.__Destroy();
 		__tilemaps.__Destroy();
 		__sprites.__Destroy();

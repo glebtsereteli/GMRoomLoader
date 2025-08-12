@@ -23,7 +23,7 @@ function RoomLoader() {
 				return;
 			}
 			
-			RoomLoader.__benchmark.__start();
+			__ROOMLOADER_BENCH_START;
 			__pool[$ _roomName] = new __RoomLoaderData(_room);
 			__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Initialized data for", _room);
 		},
@@ -43,16 +43,8 @@ function RoomLoader() {
 			return __pool[$ room_get_name(_room)];
 		},
 	};
-	static __benchmark = {
-		__t: undefined,
-		
-		__start: function() {
-			__t = get_timer();	
-		},
-		__Get: function() {
-			return ((get_timer() - __t) / 1000);
-		},
-	};
+	static __benchTime = undefined;
+	
 	static __allRooms = undefined;
 	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
 	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
@@ -75,7 +67,7 @@ function RoomLoader() {
 	static __TakeScreenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName) {
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
 		
-		__benchmark.__start();
+		__ROOMLOADER_BENCH_START;
 		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
 		return _screenshot;
@@ -305,9 +297,9 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to load.
 	/// @param {Real} x The x coordinate to load the room at.
 	/// @param {Real} y The y coordinate to load the room at.
-	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
-	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
-	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the loaded data by.
+	/// @param {Real} xOrigin The x origin to load the room at. (default = ROOMLOADER_DEFAULT_XORIGIN)
+	/// @param {Real} yOrigin The y origin to load the room at. (default = ROOMLOADER_DEFAULT_YORIGIN)
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. (default = ROOMLOADER_DEFAULT_FLAGS)
 	/// @returns {struct.RoomLoaderReturnData,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderReturnData if ROOMLOADER_USE_RETURN_DATA is true, undefined otherwise.
@@ -320,7 +312,7 @@ function RoomLoader() {
 		
 		var _data = __GetLoadData(_room, _methodName, _nonroom_message, _nodata_message);
 		
-		__benchmark.__start();
+		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_USE_RETURN_DATA) {
 			__returnData = new RoomLoaderReturnData(_room);
 		}
@@ -333,19 +325,16 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to load instances for.
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
-	/// @param {Id.Layer, String, Real} layer_or_depth The layer ID, layer name or depth to create instances on.
+	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
 	/// @param {Real} xscale The horizontal scale applied to instance positioning.
 	/// @param {Real} yscale The vertical scale applied to instance positioning.
 	/// @param {Real} angle The angle applied to instance positioning.
-	/// @param {Bool} multiplicative_scale=[ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE] Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false).
-	/// @param {Bool} additive_angle=[ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE] Whether to combinte loaded instances' image_angle with angle (true) or not (false).
-	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin to load the room at.
-	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin to load the room at.
+	/// @param {Bool} multiplicative_scale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). (default = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE)
+	/// @param {Bool} additive_angle Whether to combinte loaded instances' image_angle with angle (true) or not (false). (default = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE)
+	/// @param {Real} xOrigin The x origin to load the room at. (default = ROOMLOADER_DEFAULT_XORIGIN)
+	/// @param {Real} yOrigin The y origin to load the room at. (default = ROOMLOADER_DEFAULT_YORIGIN)
 	/// @returns {Array<Id.Instance>}
-	static LoadInstances = function(_room, _x, _y, _lod, _xScale, _yScale, _angle, 
-		_multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE, 
-		_xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN
-	) {
+	static LoadInstances = function(_room, _x, _y, _lod, _xScale, _yScale, _angle, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
 		static _methodName = "load_instances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -358,10 +347,10 @@ function RoomLoader() {
 			_func = instance_create_layer;
 		}
 		
-		__benchmark.__start();
+		__ROOMLOADER_BENCH_START;
 		var _data = __GetLoadData(_room, _methodName, _body, _end);
-		var _idatas = _data.__instancesData;
-		var _n = array_length(_idatas);
+		var _instancesData = _data.__instancesData;
+		var _n = array_length(_instancesData);
 		var _instances = array_create(_n, noone);
 		
 		if ((_xScale == 1) and (_yScale == 1) and (_angle == 0)) {
@@ -384,8 +373,8 @@ function RoomLoader() {
 			var _x1 = _x - (lengthdir_x(_xOffset, _angle) + lengthdir_x(_yOffset, _angle - 90));
 			var _y1 = _y - (lengthdir_y(_xOffset, _angle) + lengthdir_y(_yOffset, _angle - 90));
 			
-			var _ixscale = (_multScale ? _xScale : 1);
-			var _iyscale = (_multScale ? _yScale : 1);
+			var _iXScale = (_multScale ? _xScale : 1);
+			var _iYScale = (_multScale ? _yScale : 1);
 			var _iangle = _angle * _addAngle;
 			
 			if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
@@ -491,10 +480,10 @@ function RoomLoader() {
 	#region Screenshotting
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
-	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
-	/// @param {Real} scale=[1] The scale to create the sprite at.
-	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured elements by.
+	/// @param {Real} xOrigin The x origin of the created sprite. (default = ROOMLOADER_DEFAULT_XORIGIN)
+	/// @param {Real} yOrigin The y origin of the created sprite. (default = ROOMLOADER_DEFAULT_YORIGIN)
+	/// @param {Real} scale The scale to create the sprite at. (default = 1)
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. (default = ROOMLOADER_DEFAULT_FLAGS)
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
@@ -510,10 +499,10 @@ function RoomLoader() {
 	/// @param {Real} top The y position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
 	/// @param {Real} width The width of the area to capture, as a 0-1 percentage.
 	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
-	/// @param {Real} xOrigin=[ROOMLOADER_DEFAULT_XORIGIN] The x origin of the created sprite.
-	/// @param {Real} yOrigin=[ROOMLOADER_DEFAULT_YORIGIN] The y origin of the created sprite.
-	/// @param {Real} scale=[1] The scale to create the sprite at.
-	/// @param {Enum.ROOMLOADER_FLAG} flags=[ROOMLOADER_DEFAULT_FLAGS] The flags to filter the captured elements by.
+	/// @param {Real} xOrigin The x origin of the created sprite. (default = ROOMLOADER_DEFAULT_XORIGIN)
+	/// @param {Real} yOrigin The y origin of the created sprite. (default = ROOMLOADER_DEFAULT_YORIGIN)
+	/// @param {Real} scale The scale to create the sprite at. (default = 1)
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. (default = ROOMLOADER_DEFAULT_FLAGS)
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.

@@ -33,12 +33,12 @@ function __RoomLoaderData(_room) constructor {
 			
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
-			_data.creation_code = __RoomLoaderProcessScript(_data.creation_code);
+			_data.creationCode = __RoomLoaderProcessScript(_data.creation_code);
 			_data.preCreate = {}; with (_data.preCreate) {
 				_room_params(_data);
-				var _precreate = _data.pre_creation_code;
-				if (_precreate != -1) {
-					_precreate();
+				var _preCreate = _data.pre_creation_code;
+				if (_preCreate != -1) {
+					_preCreate();
 				}
 			};
 			__instancesInitLut[$ _data.id] = _data;
@@ -162,7 +162,7 @@ function __RoomLoaderData(_room) constructor {
     };
 	
 	__Init();
-};
+}
 function __RoomLoaderDataLayerParent(_layerData) constructor {
 	__owner = other;
 	__layerData = _layerData;
@@ -202,24 +202,24 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __on_load = function(_layer, _xOffset, _yOffset, _flags) {
 		if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) {
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA
-				__ROOMLOADER_INSTANCE_CC
-				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA;
+				__ROOMLOADER_INSTANCE_CC;
+				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA;
 			}
 			else {
-				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA
-				__ROOMLOADER_INSTANCE_CC
-				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA;
+				__ROOMLOADER_INSTANCE_CC;
+				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA;
 			}
 		}
 		else {
 			if (ROOMLOADER_USE_RETURN_DATA) {
-				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA
-				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_START_RETURNDATA;
+				__ROOMLOADER_INSTANCE_FULL_END_RETURNDATA;
 			}
 			else {
-				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA
-				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA
+				__ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA;
+				__ROOMLOADER_INSTANCE_FULL_END_NORETURNDATA;
 			}
 		}
 	};
@@ -427,7 +427,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 	};
 	
 	__Init();
-};
+}
 function __RoomLoaderDataLayerTilemap(_layerData, _elementsData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
 	__layerData = _layerData;
@@ -480,7 +480,7 @@ function __RoomLoaderDataLayerTilemap(_layerData, _elementsData) : __RoomLoaderD
 	};
 	
 	__Init();
-};
+}
 function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	__bgData = _bgData[0];
@@ -557,4 +557,4 @@ function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderData
 			}
 		}
 	};
-};
+}
