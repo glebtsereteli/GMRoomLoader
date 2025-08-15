@@ -16,9 +16,9 @@ hero:
 
 features:
   - title: 🗺️ Procedural Generation
-    details: Create reusable level templates for rooms, NPCs, or props, and place them procedurally throughout your levels.
+    details: Create reusable level templates for rooms, NPCs or props, and place them procedurally throughout your levels.
   - title: 🧩 Chunking
-    details: Divide huge (or infinite) words into smaller sections that dynamically load or unload as players approach.
+    details: Divide big worlds into smaller sections that dynamically load or unload as players approach.
   - title: 🏗️ Flexible Rooms
     details: Load and position rooms at custom coordinates and origins, with filtering by layer type or name.
   - title: 📐 Dynamic Instances
@@ -26,7 +26,6 @@ features:
   - title: ⚙️ Full Control
     details: From merging or creating new layers to tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Thumbnails
-    details: Capture room screenshots without ever visiting them on game start! Could be used for level selection, marketing, design feedback, or notes.
+    details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
 
 ---
-

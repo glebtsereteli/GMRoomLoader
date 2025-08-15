@@ -3,6 +3,12 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/GMRoomLoader/',
 
+  vite: {
+    define: {
+      ROOM_GET_INFO: JSON.stringify('/pages/home/gettingStarted/#installation')
+    }
+  },
+
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
   themeConfig: {
@@ -16,7 +22,8 @@ export default defineConfig({
       { text: 'API', link: '/pages/api/overview' },
       { text: 'Releases', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases' },
     ],
-
+    
+    outline: [2, 3],
     sidebar: [
       {
         text: '🏡 Home',
