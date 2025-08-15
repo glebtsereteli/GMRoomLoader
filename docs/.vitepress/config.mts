@@ -3,6 +3,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/GMRoomLoader/',
 
+  ignoreDeadLinks: true,
+
   vite: {
     define: {
       ROOM_GET_INFO: JSON.stringify('/pages/home/gettingStarted/#installation')

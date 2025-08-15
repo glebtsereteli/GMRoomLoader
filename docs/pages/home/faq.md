@@ -50,7 +50,7 @@ The execution order follows GameMaker's default and is structured like this:
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
 * If you're loading full rooms with [RoomLoader.Load()](/pages/api/roomLoader/#load), it returns an instance of [ReturnData](/pages/api/returnData), which includes a [.Cleanup()](/pages/api/returnData/#cleanup-1) method for removing all loaded layers and their elements.
-* If you're loading instances with [RoomLoader.LoadInstances()](/pages/api/roomLoader/#loadinstances), those methods return an array of loaded instance IDs. Loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to remove them.
+* If you're loading instances with [RoomLoader.LoadInstances()](/pages/api/roomLoader.md/#loadinstances), those methods return an array of loaded instance IDs. Loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to remove them.
 
 ::: info NOTE
 GMRoomLoader only tracks layers and elements it loads itself. Anything else you add afterwards must be cleaned up manually.
