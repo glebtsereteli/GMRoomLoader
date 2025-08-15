@@ -12,9 +12,9 @@ next:
 
 ## Loading
 
-### `.Load()`
+### `.Load()` {#load}
 
-### `.LoadInstances()`
+### `.LoadInstances()` {#loadinstances}
 
 ## Layer Filtering
 
