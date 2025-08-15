@@ -22,17 +22,24 @@ export default defineConfig({
         text: 'Home',
         collapsed: false,
         items: [
-          {
-            text: 'What is GMRoomLoader?',
-            link: '/pages/home/whatIsIt',
-          },
+          { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
+          { text: 'Getting Started', link: '/pages/home/gettingStarted' },
+          { text: 'Demo Guide', link: '/pages/home/demoGuide' },
+          { text: 'FAQ', link: '/pages/home/faq' },
         ]
       },
       {
         text: 'API',
         collapsed: false,
         items: [
-          { text: 'Overview', link: '/pages/api/overview', },
+          { text: 'Overview', link: '/pages/api/overview' },
+        ]
+      },
+      {
+        items: [
+          { text: 'Help & Support', link: '/pages/others/helpSupport' },
+          { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
+          { text: 'Credits', link: '/pages/others/credits' },
         ]
       },
     ],
