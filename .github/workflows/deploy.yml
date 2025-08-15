@@ -2,7 +2,10 @@ name: Deploy VitePress site to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # change if your default branch is different
+    branches: # trigger on any branch
+      - '*'
+    paths:
+      - 'docs/**' # only when files in docs/ change
 
 permissions:
   contents: read
