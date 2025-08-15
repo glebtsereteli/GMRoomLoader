@@ -61,8 +61,8 @@ When you load a room with a tile layer, a new tilemap is created. To collide wit
 
 If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
 
-::: info EXAMPLE
-```js
+::: code-group
+```js [Example]
 // In some script, initialize a global array of collision tilemaps:
 global.collisionTilemaps = [];
 
@@ -76,7 +76,7 @@ array_push(global.collisionTilemaps, _collisionTilemap);
 
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
 var _collisionTilemap = roomData.GetTilemap("CollisionTilemap");
-var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, loadedRoom.collisionTilemap);
+var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
 if (_collisionTilemapIndex != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }

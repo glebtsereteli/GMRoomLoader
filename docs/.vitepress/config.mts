@@ -54,7 +54,7 @@ export default defineConfig({
             ]
           },
           {
-            text: 'Return Data',
+            text: 'ReturnData',
             collapsed: true,
             link: '/pages/api/returnData',
             items: [

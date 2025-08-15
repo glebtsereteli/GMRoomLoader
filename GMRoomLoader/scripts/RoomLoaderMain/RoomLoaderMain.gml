@@ -514,4 +514,3 @@ function RoomLoader() {
 	
 	#endregion
 }
-RoomLoader();

@@ -8,9 +8,45 @@ next:
 
 ## Overview
 
+about...
+
 ## Data
 
+about...
+
+### Initialization
+
+#### `.DataInit()`
+
+#### `.DataInitArray()`
+
+#### `.DataInitPrefix()`
+
+#### `.DataInitTag()`
+
+### Removal
+
+#### `.DataRemove()`
+
+#### `.DataRemoveArray()`
+
+#### `.DataRemovePrefix()`
+
+#### `.DataRemoveTag()`
+
+#### `.DataClear()`
+
+### Status & Getters
+
+#### `.DataIsInitialized()`
+
+#### `.DataGetWidth()`
+
+#### `.DataGetHeight()`
+
 ## Loading
+
+about...
 
 ### `.Load()` {#load}
 
@@ -18,4 +54,32 @@ next:
 
 ## Layer Filtering
 
+about...
+
+### Whitelist
+
+#### `.LayerWhitelistAdd()`
+
+#### `.LayerWhitelistRemove()`
+
+#### `.LayerWhitelistReset()`
+
+#### `.LayerWhitelistGet()`
+
+### Blacklist
+
+#### `.LayerBlacklistAdd()`
+
+#### `.LayerBlacklistRemove()`
+
+#### `.LayerBlacklistReset()`
+
+#### `.LayerBlacklistGet()`
+
 ## Screenshotting
+
+about...
+
+### `.TakeScreenshot()`
+
+### `.TakeScreenshotPart()`
