@@ -1,0 +1,12 @@
+.VPHomeHero .name {
+    margin-bottom: 1rem;
+}
+.VPHomeHero .text {
+    font-size: 2rem;
+    line-height: 1.2;
+    white-space: nowrap; /* prevents newlines */
+}
+.VPHomeHero .tagline {
+    font-size: 1.5rem;
+    line-height: 1.2;
+}

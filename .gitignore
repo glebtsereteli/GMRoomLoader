@@ -57,3 +57,8 @@ Temporary Items
 # GameMaker temporary files
 *.resource_order
 *.old
+
+# Docs
+docs/node_modules/
+docs/.vitepress/dist
+docs/.vitepress/cache

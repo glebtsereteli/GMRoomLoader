@@ -4,7 +4,7 @@
 /// @desc Main interface. Handles data initialization and removal, room loading, 
 /// layer filtering and taking room screenshots.
 /// 
-/// NOTE: This is a "static namespace" (made up term), initialized in this script. No further initialization is required.
+/// NOTE: This is a "static namespace" function (made up term), no initialization is required.
 /// All methods are to be called as follows: RoomLoader.action(arguments...).
 function RoomLoader() {
 	#region __private
@@ -45,7 +45,7 @@ function RoomLoader() {
 	};
 	static __benchTime = undefined;
 	
-	static __allRooms = undefined;
+	static __allRooms = asset_get_ids(asset_room);
 	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
 	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
 	static __returnData = undefined;
@@ -119,7 +119,6 @@ function RoomLoader() {
 		
 		__RoomLoaderCatchString(__messagePrefix, _methodName, _prefix);
 		
-		__allRooms ??= asset_get_ids(asset_room);
 		_closure.prefix = _prefix;
 		var _rooms = array_filter(__allRooms, _filter);
 		
@@ -264,8 +263,8 @@ function RoomLoader() {
 	/// @returns {Bool}
 	/// @desc Returns whether the data for the given room is initialized (true) or not (false).
 	/// @context RoomLoader
-	static dataIsInitialized = function(_room) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, "dataIsInitialized", _room, $"check whether data is initialized for");
+	static DataIsInitialized = function(_room) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, "DataIsInitialized", _room, $"check whether data is initialized for");
 		return (__data.__Get(_room) != undefined);
 	};
 	

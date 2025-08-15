@@ -60,6 +60,8 @@
 // Whether to run the Creation Code for loaded rooms (true) or not (false).
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true
 
+
+
 /* 
 	[@FIX] GM bug, currently broken.
 
