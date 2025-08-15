@@ -19,7 +19,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Home',
+        text: '🏡 Home',
         collapsed: false,
         items: [
           { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
@@ -29,18 +29,19 @@ export default defineConfig({
         ]
       },
       {
-        text: 'API',
+        text: '💻 API',
         collapsed: false,
         items: [
           { text: 'Overview', link: '/pages/api/overview' },
         ]
       },
       {
-        items: [
-          { text: 'Help & Support', link: '/pages/others/helpSupport' },
-          { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
-          { text: 'Credits', link: '/pages/others/credits' },
-        ]
+          text: '🗂️ Others',
+          items: [
+            { text: 'Help & Support', link: '/pages/others/helpSupport' },
+            { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
+            { text: 'Credits', link: '/pages/others/credits' },
+          ]
       },
     ],
 

@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: '/pages/home/gettingStarted'
+      link: '/pages/home/whatIsIt'
     - theme: alt
       text: View on GitHub
       link: https://github.com/glebtsereteli/GMRoomLoader
