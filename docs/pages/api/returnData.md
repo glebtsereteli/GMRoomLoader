@@ -7,7 +7,7 @@ next:
   link: '/pages/api/enums'
 ---
 
-# Return Data
+# RoomLoaderReturnData
 
 ## Overview
 

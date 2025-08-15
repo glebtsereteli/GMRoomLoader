@@ -77,7 +77,7 @@ array_push(global.collisionTilemaps, _collisionTilemap);
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
 var _collisionTilemap = roomData.GetTilemap("CollisionTilemap");
 var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
-if (_collisionTilemapIndex != -1) {
+if (_index != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }
 loadedRoom.returnData();

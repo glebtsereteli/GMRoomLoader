@@ -32,8 +32,8 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
-          { text: 'Getting Started', link: '/pages/home/gettingStarted' },
-          { text: 'Demo Guide', link: '/pages/home/demoGuide' },
+          { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
+          { text: 'Demo Guide', link: '/pages/home/demo' },
           { text: 'FAQ', link: '/pages/home/faq' },
         ]
       },
