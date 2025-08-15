@@ -1,5 +1,5 @@
 # Getting Started
 
-## Import
+## Installation
 
 ## Quick Setup

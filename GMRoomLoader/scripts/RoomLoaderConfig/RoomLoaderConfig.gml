@@ -1,5 +1,7 @@
 /// @feather ignore all
 
+#region Meta
+
 // Whether to show debug messages in Output (true) or not (false).
 #macro ROOMLOADER_ENABLE_DEBUG true
 
@@ -32,6 +34,9 @@
 // unintentionally destroyed during RoomLoaderReturnData.cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
+#endregion
+#region Assets
+
 // Whether to initialize room parameters for loaded instances (true) or not (false).
 // 
 // NOTE: Setting this to false improves loading performance.
@@ -60,7 +65,7 @@
 // Whether to run the Creation Code for loaded rooms (true) or not (false).
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true
 
-
+#endregion
 
 /* 
 	[@FIX] GM bug, currently broken.

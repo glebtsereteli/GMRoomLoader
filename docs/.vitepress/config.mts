@@ -33,10 +33,33 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'Overview', link: '/pages/api/overview' },
+          {
+            text: 'RoomLoader',
+            collapsed: true,
+            link: '/pages/api/roomLoader',
+            items: [
+              { text: 'Data', link: '/pages/api/roomLoader/#data' },
+              { text: 'Loading', link: '/pages/api/roomLoader/#loading' },
+              { text: 'Layer Filtering', link: '/pages/api/roomLoader/#layer-filtering' },
+              { text: 'Screenshotting', link: '/pages/api/roomLoader/#screenshotting' },
+            ]
+          },
+          {
+            text: 'Return Data',
+            collapsed: true,
+            link: '/pages/api/returnData',
+            items: [
+              { text: 'Getters', link: '/pages/api/returnData/#getters' },
+              { text: 'Cleanup', link: '/pages/api/returnData/#cleanup' },
+            ]
+          },
+          { text: 'Enums', link: '/pages/api/enums' },
+          { text: 'Configuration', link: '/pages/api/config' },
         ]
       },
       {
           text: '🗂️ Others',
+          collapsed: false,
           items: [
             { text: 'Help & Support', link: '/pages/others/helpSupport' },
             { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },

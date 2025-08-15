@@ -61,7 +61,8 @@ function RoomLoaderReturnData(_room) constructor {
 	__cleanedUp = false;
 	
 	#endregion
-	#region getters
+	
+	#region Getters
 	
 	/// @param {String} name Thes layer name to search for.
 	/// @returns {Id.Layer,undefined}
