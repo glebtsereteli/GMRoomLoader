@@ -52,7 +52,7 @@ const team = [
   {
     avatar: 'https://avatars.githubusercontent.com/u/159041753?v=4',
     name: 'Kate',
-    title: 'Visuals, Testing, Demo Level Design',
+    title: 'Visuals, Testing, Demo Levels',
     links: [
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/kate-ivanova22/' },
       { icon: 'instagram', link: 'https://www.instagram.com/k8te_iv' },

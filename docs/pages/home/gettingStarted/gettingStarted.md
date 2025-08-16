@@ -21,7 +21,7 @@ GMRoomLoader offers many tools for handling room data, loading rooms and working
 RoomLoader.DataInit(rmExample);
 ```
 ### 2. Load
-[Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of [ReturnData](/pages/api/returndata) in a variable to clean up later.
+[Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of :ReturnData: in a variable to clean up later.
 ```js
 roomData = RoomLoader.Load(rmExample, 0, 0);
 ```

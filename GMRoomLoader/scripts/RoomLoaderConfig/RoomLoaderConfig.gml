@@ -66,12 +66,3 @@
 #macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true
 
 #endregion
-
-/* 
-	[@FIX] GM bug, currently broken.
-
-	// Steps to progress loaded particle systems by.
-	// 
-	// NOTE: Increasing this value reduces loading performance.
-	#macro ROOMLOADER_PARTICLE_SYSTEMS_STEPS 0
-*/
