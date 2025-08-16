@@ -10,7 +10,7 @@
     ![alt text](import02.png)
     * Click __Import__.
     ![alt text](import03.png)
-3. You're good to go!
+3. You're good to go! Check out the [Quick Setup](#quick-setup) section below to load your first room!
 
 ## Quick Setup
 GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, but the following are the only basics you need to get started!
@@ -35,4 +35,4 @@ That's it for the basic setup! To dive deeper, check out:
 * The [FAQ](/pages/home/faq) page to find answers to common questions.
 * The [Demo](/pages/home/demo) page to see GMRoomLoader in action.
 * The [API](/pages/api/overview) section to explore all available methods.
-* The __Others__ section for help, [Upcoming](/pages/others/upcomingFeatures) and [Credits](/pages/others/credits).
+* The __Others__ section for [Help & Support](/pages/others/helpSupport), [Upcoming Features](/pages/others/upcomingFeatures) and [Credits](/pages/others/credits).
