@@ -1,15 +1,10 @@
 import { defineConfig } from 'vitepress'
+import MarkdownIt from 'markdown-it'
 
 export default defineConfig({
   base: '/GMRoomLoader/',
 
   ignoreDeadLinks: true,
-
-  vite: {
-    define: {
-      ROOM_GET_INFO: JSON.stringify('/pages/home/gettingStarted/#installation')
-    }
-  },
 
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
@@ -86,5 +81,41 @@ export default defineConfig({
       message: 'Released under the <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE">MIT License</a>. Built with <a href="https://vitepress.dev/">VitePress</a>.',
       copyright: 'Copyright © 2025 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
     },
-  }
+  },
+
+   markdown: {
+    config: (md: MarkdownIt) => {
+      const shortcuts: Record<string, string> = {
+        // types
+        'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variables/Real.htm',
+        'String': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variables/Strings.htm',
+        'Array': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm',
+        'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',
+
+        // assets
+        'Asset.GMRoom': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm',
+        
+        // functions
+        'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
+        'RoomLoader': '/pages/api/roomloader',
+      }
+
+      md.inline.ruler.before('link', 'gamemaker_shortcuts', (state, silent) => {
+        for (const key in shortcuts) {
+          const tokenText = `:${key}:`
+          if (state.src.startsWith(tokenText, state.pos)) {
+            if (!silent) {
+              const token = state.push('link_open', 'a', 1)
+              token.attrs = [['href', shortcuts[key]]]
+              state.push('text', '', 0).content = key
+              state.push('link_close', 'a', -1)
+            }
+            state.pos += tokenText.length
+            return true
+          }
+        }
+        return false
+      })
+    }
+  },
 })

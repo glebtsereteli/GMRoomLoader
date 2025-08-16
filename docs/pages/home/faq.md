@@ -33,13 +33,13 @@ No. GMRoomLoader is designed specifically for loading rooms. Procedural generati
 ## 📍 How does GMRoomLoader actually "load rooms" if GameMaker can only have a single room active at a time? Does the library get around that somehow?
 GameMaker can indeed only have a single room active at a time. GMRoomLoader doesn't change that.
 
-When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), processing it for optimized loading, and using it to recreate room layers and their respective elements.
+When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from :room_get_info():, processing it for optimized loading, and using it to recreate room layers and their respective elements.
 
 ## 📍 I'm loading a room and it appears to work (?), but I can't see some (or all) of the loaded layers/instances. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 
 ## 📍 My rooms have instances with Variable Definitions and Creation Code. Does GMRoomLoader support those?
-It does! [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm) provides both as scripts for GMRoomLoader to use. 
+It does! :room_get_info(): provides both as scripts for GMRoomLoader to use. 
 
 ::: info NOTE
 The execution order follows GameMaker's default and is structured like this:
