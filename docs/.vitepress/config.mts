@@ -28,7 +28,7 @@ export default defineConfig({
         items: [
           { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
           { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
-          { text: 'Demo Guide', link: '/pages/home/demo' },
+          { text: 'Demo', link: '/pages/home/demo' },
           { text: 'FAQ', link: '/pages/home/faq' },
         ]
       },
@@ -39,7 +39,7 @@ export default defineConfig({
           { text: 'Overview', link: '/pages/api/overview' },
           {
             text: 'RoomLoader',
-            collapsed: false,
+            collapsed: true,
             link: '/pages/api/roomLoader/overview',
             items: [
               { text: 'Data', link: '/pages/api/roomLoader/data' },
@@ -50,7 +50,7 @@ export default defineConfig({
           },
           {
             text: 'ReturnData',
-            collapsed: false,
+            collapsed: true,
             link: '/pages/api/returnData/overview',
             items: [
               { text: 'Getters', link: '/pages/api/returnData/getters' },
@@ -97,10 +97,19 @@ export default defineConfig({
         
         // functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
+        
+        // links
         'RoomLoader': '/pages/api/roomloader/overview',
+        'ReturnData': '/pages/api/returndata/overview',
+
+        'Loading': '/pages/api/roomloader/loading',
+        'Screenshotting': '/pages/api/roomloader/screenshotting',
+        'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
+        'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
+        'ReturnData.Cleanup()': '/pages/api/returndata/cleanup',
       }
 
-      md.inline.ruler.before('link', 'gamemaker_shortcuts', (state, silent) => {
+      md.inline.ruler.before('link', 'shortcuts', (state, silent) => {
         for (const key in shortcuts) {
           const tokenText = `:${key}:`
           if (state.src.startsWith(tokenText, state.pos)) {

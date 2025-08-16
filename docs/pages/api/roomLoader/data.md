@@ -106,11 +106,11 @@ RoomLoader.DataInitAll([rmInit]);
 ```
 :::
 
----
 ## Removal
 
 Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from [RoomLoader](#roomloader)'s internal pool.
 
+---
 ### `.DataRemove()`
 
 `RoomLoader.DataRemove(...rooms)` ➜ :Struct:.:RoomLoader:
@@ -132,6 +132,7 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 ```
 :::
 
+---
 ### `.DataRemoveArray()`
 
 `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
@@ -149,6 +150,7 @@ RoomLoader.DataRemoveArray(rooms);
 ```
 :::
 
+---
 ### `.DataRemovePrefix()`
 
 `RoomLoader.DataRemovePrefix(prefix)` ➜ :Struct:.:RoomLoader:
@@ -166,6 +168,7 @@ RoomLoader.DataRemovePrefix("rmLevel");
 ```
 :::
 
+---
 ### `.DataRemoveTag()`
 
 `RoomLoader.DataRemoveTag(tag)` ➜ :Struct:.:RoomLoader:
@@ -183,6 +186,7 @@ RoomLoader.DataRemoveTag("Dungeon");
 ```
 :::
 
+---
 ### `.DataRemoveAll()`
 
 `RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
@@ -202,8 +206,11 @@ RoomLoader.DataRemoveAll([rmHub]);
 
 ## Status & Getters
 
+---
 ### `.DataIsInitialized()`
 
+---
 ### `.DataGetWidth()`
 
+---
 ### `.DataGetHeight()`
