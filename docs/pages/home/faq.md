@@ -22,18 +22,24 @@ The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.
 2. Delete the `GMRoomLoader` folder from your project.
 3. Repeat the [Installation](/pages/home/gettingStarted/#installation) process.
 4. If you've made changes to the `RoomLoaderConfig` script, paste the changes back from your backup.
-
-::: warning KEEP IN MIND
-The config setup might change between versions, so make sure to pay attention to the release notes and adjust your pasted configs accordingly.
-:::
+    ::: warning KEEP IN MIND
+    The config setup might change between versions, so make sure to pay attention to the release notes and adjust your pasted configs accordingly.
+    :::
 
 ## 📍 Can GMRoomLoader assist with procedural generation?
 No. GMRoomLoader is designed specifically for loading rooms. Procedural generation, along with any custom logic for determining which room to pick and where it should go, will need to be handled on your own.
 
+## 📍 Can GMRoomLoader be used for modding? Is live reloading supported?
+No. GMRoomLoader retrieves data from :room_get_info():, which only provides access to room information initialized at compile time. This means that at runtime, you can only access rooms exactly as they existed when the game was compiled. 
+
+As a result, modding and live reloading aren't possible by design.
+
+If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. While it's not as modern and fancy as GMRoomLoader, it works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
+
 ## 📍 How does GMRoomLoader actually "load rooms" if GameMaker can only have a single room active at a time? Does the library get around that somehow?
 GameMaker can indeed only have a single room active at a time. GMRoomLoader doesn't change that.
 
-When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from :room_get_info():, processing it for optimized loading, and using it to recreate room layers and their respective elements.
+When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from :room_get_info():, processing it for  loading, and using it to recreate room layers and their respective elements.
 
 ## 📍 I'm loading a room and it appears to work (?), but I can't see some (or all) of the loaded layers/instances. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
@@ -49,11 +55,31 @@ The execution order follows GameMaker's default and is structured like this:
 :::
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
-* If you're loading full rooms with [RoomLoader.Load()](/pages/api/roomLoader/#load), it returns an instance of [ReturnData](/pages/api/returnData), which includes a [.Cleanup()](/pages/api/returnData/#cleanup-1) method for removing all loaded layers and their elements.
-* If you're loading instances with [RoomLoader.LoadInstances()](/pages/api/roomLoader.md/#loadinstances), those methods return an array of loaded instance IDs. Loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to remove them.
+* If you're loading full rooms with [RoomLoader.Load()](/pages/api/roomLoader//loading/#load), it returns an instance of [ReturnData](/pages/api/returnData/overview), which includes a [.Cleanup()](/pages/api/returnData/cleanup/#cleanup-1) method for removing all loaded layers and their elements.
+:::code-group
+```js [Example]
+// When you load a room:
+loadedRoomData = RoomLoader.Load(rmExample, 0, 0);
 
+// When you need to unload a room:
+loadedRoomData.Cleanup();
+```
+:::
 ::: info NOTE
 GMRoomLoader only tracks layers and elements it loads itself. Anything else you add afterwards must be cleaned up manually.
+:::
+
+* If you're loading instances with [RoomLoader.LoadInstances()](/pages/api/roomLoader/loading/#loadinstances), it return an array of loaded instance IDs. Loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to remove them.
+:::code-group
+```js [Example]
+// When you load instances:
+loadedInstances = RoomLoader.LoadInstances(rmExample, 0, 0);
+
+// When you need to destroy loaded instances:
+array_foreach(loadedInstances, function(_instance) {
+    instance_destroy(_instance);
+});
+```
 :::
 
 ## 📍 How can I collide with loaded tilemaps?
