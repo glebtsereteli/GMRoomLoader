@@ -315,7 +315,7 @@ function RoomLoader() {
 		if (ROOMLOADER_USE_RETURN_DATA) {
 			__returnData = new RoomLoaderReturnData(_room);
 		}
-		_data.__load(_x, _y, _xOrigin, _yOrigin, _flags);
+		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _bench_message, _room);
 		
 		return (ROOMLOADER_USE_RETURN_DATA ? __returnData : undefined);
