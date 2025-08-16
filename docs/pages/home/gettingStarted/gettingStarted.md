@@ -16,12 +16,12 @@
 GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, but the following are the only basics you need to get started!
 
 ### 1. Initialize
-[Initialize](/pages/api/roomloader/#initialization) the data for the room you'd like to load *at the start of the game*.
+[Initialize](/pages/api/roomloader/data/#initialization) the data for the room you'd like to load *at the start of the game*.
 ```js
 RoomLoader.DataInit(rmExample);
 ```
 ### 2. Load
-[Load](/pages/api/roomloader/#load) the room and store the returned instance of [ReturnData](/pages/api/returndata) in a variable to clean up later.
+[Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of [ReturnData](/pages/api/returndata) in a variable to clean up later.
 ```js
 roomData = RoomLoader.Load(rmExample, 0, 0);
 ```

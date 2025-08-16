@@ -1,0 +1,7 @@
+# Screenshotting
+
+about...
+
+## `.TakeScreenshot()`
+
+## `.TakeScreenshotPart()`

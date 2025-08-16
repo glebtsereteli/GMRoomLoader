@@ -1,30 +1,6 @@
----
-next:
-  text: 'ReturnData'
-  link: '/pages/api/returnData'
----
+# Data
 
-# RoomLoader
-
-<!-- <h1>
-  RoomLoader
-  <span style="display:none">RoomLoader</span>
-  <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/GMRoomLoader/scripts/RoomLoaderMain/RoomLoaderMain.gml" target="_blank">
-    <Badge type="info" text="Source Code" />
-  </a>
-</h1> -->
-
-## Overview
-
-`RoomLoader` is the main interface of GMRoomLoader. It managers room [data](#data) and [loading](#loading), handles [whitelist](#whitelist) and [blacklist](#blacklist) layer filtering and [taking screenshots](#screenshotting).
-
-It's a function containing static data variables and methods inside, essentially serving as a makeshift GML [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170). It's initialized internally and doesn't require any additional setup from the user.
-
-All methods are called using the following syntax: `RoomLoader.MethodName(arguments...);`. Notice the lack of `()` after `RoomLoader`.
-
-## Data
-
-### Initialization
+## Initialization
 
 The following methods initialize room data to be used for [loading](#loading) and [screenshotting](#screenshotting).
 
@@ -33,13 +9,13 @@ Loading is only possible for rooms with initialized data. Ensure that data initi
 :::
 
 ::: tip
-While GMRoomLoader is optimized for best possible performance, this section is the most resource-intensive because it relies on :room_get_info(): to fetch and process room data.
+While GMRoomLoader is optimized to handle data efficiently, this section is the most resource-intensive because it relies on :room_get_info(): to fetch and process room data.
 
 For best results, call these methods at the very start of your game. If your project involves large amounts of data or requires loading/unloading during gameplay, call them between levels, hidden behind a transition or loading screen.
 :::
 
 ---
-#### `.DataInit()`
+### `.DataInit()`
 
 `RoomLoader.DataInit(...rooms)` ➜ :Struct:.:RoomLoader:
 
@@ -61,7 +37,7 @@ RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 :::
 
 ---
-#### `.DataInitArray()`
+### `.DataInitArray()`
 `RoomLoader.DataInitArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Initializes data for all rooms in the given array.
@@ -79,7 +55,7 @@ RoomLoader.DataInitArray(rooms);
 :::
 
 ---
-#### `.DataInitPrefix()`
+### `.DataInitPrefix()`
 
 `RoomLoader.DataInitPrefix(prefix)` ➜ :Array: of :Asset.GMRoom:
 
@@ -97,7 +73,7 @@ rooms = RoomLoader.DataInitPrefix("rmLevel");
 :::
 
 ---
-#### `.DataInitTag()`
+### `.DataInitTag()`
 
 `RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
 
@@ -113,7 +89,7 @@ dungeonRooms = RoomLoader.DataInitTag("Dungeon");
 :::
 
 ---
-#### `.DataInitAll()`
+### `.DataInitAll()`
 
 `RoomLoader.DataInitAll(blacklist)` ➜ :Struct:.:RoomLoader:
 
@@ -131,11 +107,11 @@ RoomLoader.DataInitAll([rmInit]);
 :::
 
 ---
-### Removal
+## Removal
 
 Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from [RoomLoader](#roomloader)'s internal pool.
 
-#### `.DataRemove()`
+### `.DataRemove()`
 
 `RoomLoader.DataRemove(...rooms)` ➜ :Struct:.:RoomLoader:
 
@@ -156,7 +132,7 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 ```
 :::
 
-#### `.DataRemoveArray()`
+### `.DataRemoveArray()`
 
 `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
 
@@ -165,7 +141,6 @@ Removes data for all rooms in the given array.
 | --------- | ------------------------- | -------------------------------------- |
 | `rooms`   | :Array: of :Asset.GMRoom: | The array of rooms to remove data for. |
 
-#### Example
 :::code-group
 ```js [Example]
 // Removes data for all rooms inside the rooms array:
@@ -174,7 +149,7 @@ RoomLoader.DataRemoveArray(rooms);
 ```
 :::
 
-#### `.DataRemovePrefix()`
+### `.DataRemovePrefix()`
 
 `RoomLoader.DataRemovePrefix(prefix)` ➜ :Struct:.:RoomLoader:
 
@@ -191,7 +166,7 @@ RoomLoader.DataRemovePrefix("rmLevel");
 ```
 :::
 
-#### `.DataRemoveTag()`
+### `.DataRemoveTag()`
 
 `RoomLoader.DataRemoveTag(tag)` ➜ :Struct:.:RoomLoader:
 
@@ -208,7 +183,7 @@ RoomLoader.DataRemoveTag("Dungeon");
 ```
 :::
 
-#### `.DataRemoveAll()`
+### `.DataRemoveAll()`
 
 `RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
 
@@ -225,50 +200,10 @@ RoomLoader.DataRemoveAll([rmHub]);
 ```
 :::
 
-### Status & Getters
+## Status & Getters
 
-#### `.DataIsInitialized()`
+### `.DataIsInitialized()`
 
-#### `.DataGetWidth()`
+### `.DataGetWidth()`
 
-#### `.DataGetHeight()`
-
-## Loading
-
-about...
-
-### `.Load()` {#load}
-
-### `.LoadInstances()` {#loadinstances}
-
-## Layer Filtering
-
-about...
-
-### Whitelist
-
-#### `.LayerWhitelistAdd()`
-
-#### `.LayerWhitelistRemove()`
-
-#### `.LayerWhitelistReset()`
-
-#### `.LayerWhitelistGet()`
-
-### Blacklist
-
-#### `.LayerBlacklistAdd()`
-
-#### `.LayerBlacklistRemove()`
-
-#### `.LayerBlacklistReset()`
-
-#### `.LayerBlacklistGet()`
-
-## Screenshotting
-
-about...
-
-### `.TakeScreenshot()`
-
-### `.TakeScreenshotPart()`
+### `.DataGetHeight()`

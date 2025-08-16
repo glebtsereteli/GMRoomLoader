@@ -39,22 +39,22 @@ export default defineConfig({
           { text: 'Overview', link: '/pages/api/overview' },
           {
             text: 'RoomLoader',
-            collapsed: true,
-            link: '/pages/api/roomLoader',
+            collapsed: false,
+            link: '/pages/api/roomLoader/overview',
             items: [
-              { text: 'Data', link: '/pages/api/roomLoader/#data' },
-              { text: 'Loading', link: '/pages/api/roomLoader/#loading' },
-              { text: 'Layer Filtering', link: '/pages/api/roomLoader/#layer-filtering' },
-              { text: 'Screenshotting', link: '/pages/api/roomLoader/#screenshotting' },
+              { text: 'Data', link: '/pages/api/roomLoader/data' },
+              { text: 'Loading', link: '/pages/api/roomLoader/loading' },
+              { text: 'Layer Filtering', link: '/pages/api/roomLoader/layerFiltering' },
+              { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
             ]
           },
           {
             text: 'ReturnData',
-            collapsed: true,
-            link: '/pages/api/returnData',
+            collapsed: false,
+            link: '/pages/api/returnData/overview',
             items: [
-              { text: 'Getters', link: '/pages/api/returnData/#getters' },
-              { text: 'Cleanup', link: '/pages/api/returnData/#cleanup' },
+              { text: 'Getters', link: '/pages/api/returnData/getters' },
+              { text: 'Cleanup', link: '/pages/api/returnData/cleanup' },
             ]
           },
           { text: 'Enums', link: '/pages/api/enums' },
@@ -97,7 +97,7 @@ export default defineConfig({
         
         // functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
-        'RoomLoader': '/pages/api/roomloader',
+        'RoomLoader': '/pages/api/roomloader/overview',
       }
 
       md.inline.ruler.before('link', 'gamemaker_shortcuts', (state, silent) => {
