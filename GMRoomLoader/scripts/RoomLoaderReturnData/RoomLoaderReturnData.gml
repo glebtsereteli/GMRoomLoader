@@ -14,6 +14,7 @@ function RoomLoaderReturnData(_room) constructor {
 		__names = [];
 		
 		__OnDestroy = _on_destroy;
+		
 		static __Add = function(_id, _name) {
 			array_push(__ids, _id);
 			array_push(__names, _name);
@@ -68,45 +69,45 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @returns {Id.Layer,undefined}
 	/// @desc Returns the layer ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
-	static get_layer = function(_name) {
-		__RoomLoaderCatchString(__messagePrefix, "get_layer", _name, "get a Layer ID from the", "name");
+	static GetLayer = function(_name) {
+		__RoomLoaderCatchString(__messagePrefix, "GetLayer", _name, "get a Layer ID from the", "name");
 		return __layers.__Get(_name);
 	};
 	
 	/// @returns {Array<Id.Layer>}
 	/// @desc Returns an array of created layers.
 	/// @context RoomLoaderReturnData
-	static get_layers = function() {
+	static GetLayers = function() {
 		return __layers.__ids;
 	};
 	
 	/// @param {Id.Instance} roomId The room ID of the instance to search for.
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoaderReturnData
-	static get_instance = function(_roomId) {
+	static GetInstance = function(_roomId) {
 		return __instances.__Get(_roomId);
 	};
 	
 	/// @returns {Array<Id.Instance>}
 	/// @desc Returns an array of created Instances.
 	/// @context RoomLoaderReturnData
-	static get_instances = function() {
+	static GetInstances = function() {
 		return __instances.__ids;
 	};
 	
-	/// @param {String} layer_name The Tilemap layer name to search for.
+	/// @param {String} layerName The Tilemap layer name to search for.
 	/// @returns {Id.Tilemap,undefined}
 	/// @desc Returns the Tilemap ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
-	static get_tilemap = function(_layerName) {
-		__RoomLoaderCatchString(__messagePrefix, "get_tilemap", _layerName, "get a Tilemap ID from the", "layer name");
+	static GetTilemap = function(_layerName) {
+		__RoomLoaderCatchString(__messagePrefix, "GetTilemap", _layerName, "get a Tilemap ID from the", "layer name");
 		return __tilemaps.__Get(_layerName);
 	};
 	
 	/// @returns {Array<Id.Tilemap>}
 	/// @desc Returns an array of created Tilemaps.
 	/// @context RoomLoaderReturnData
-	static get_tilemaps = function() {
+	static GetTilemaps = function() {
 		return __tilemaps.__ids;
 	};
 	
@@ -114,7 +115,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @returns {Id.Sprite,undefined}
 	/// @desc Returns the Sprite ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
-	static get_sprite = function(_name) {
+	static GetSprite = function(_name) {
 		__RoomLoaderCatchString(__messagePrefix, "_name", _name, "get a Sprite ID from the", "name");
 		return __sprites.__Get(_name);
 	};
@@ -122,7 +123,7 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @returns {Array<Id.Sprite>}
 	/// @desc Returns an array of created Sprites.
 	/// @context RoomLoaderReturnData
-	static get_sprites = function() {
+	static GetSprites = function() {
 		return __sprites.__ids;
 	};
 	
@@ -133,15 +134,15 @@ function RoomLoaderReturnData(_room) constructor {
 		/// @returns {Id.ParticleSystem,undefined}
 		/// @desc Returns the created Particle System ID matching the given name or undefined if not found.
 		/// @context RoomLoaderReturnData
-		static get_particle_system = function(_name) {
-			__roomloader_catch_string(__message_prefix, "get_particle_system", _name, "get a Particle System ID from the", "name");
+		static GetParticleSystem = function(_name) {
+			__roomloader_catch_string(__message_prefix, "GetParticleSystem", _name, "get a Particle System ID from the", "name");
 			return __particle_systems.__Get(_name);
 		};
 	
 		/// @returns {Array<Id.ParticleSystem>}
 		/// @desc Returns an array of created Particle Systems.
 		/// @context RoomLoaderReturnData
-		static get_particle_systems = function() {
+		static GetParticleSystems = function() {
 			return __particle_systems.__ids;
 		};
 	*/
@@ -150,31 +151,31 @@ function RoomLoaderReturnData(_room) constructor {
 	/// @returns {Id.Sequence,undefined}
 	/// @desc Returns the created Sequence ID matching the given name or undefined if not found.
 	/// @context RoomLoaderReturnData
-	static get_sequence = function(_name) {
-		__RoomLoaderCatchString(__messagePrefix, "get_sequence", _name, "get a Sequence ID from the", "name");
+	static GetSequence = function(_name) {
+		__RoomLoaderCatchString(__messagePrefix, "GetSequence", _name, "get a Sequence ID from the", "name");
 		return __sequences.__Get(_name);
 	};
 	
 	/// @returns {Array<Id.Sequence>}
 	/// @desc Returns an array of created Sequences.
 	/// @context RoomLoaderReturnData
-	static get_sequences = function() {
+	static GetSequences = function() {
 		return __sequences.__ids;
 	};
 	
-	/// @param {String} layer_name The Background layer name to search for.
+	/// @param {String} layerName The Background layer name to search for.
 	/// @returns {Id.Background}
 	/// @desc Returns the created Background ID matching the given layer name or undefined if not found.
 	/// @context RoomLoaderReturnData
-	static get_background = function(_layerName) {
-		__RoomLoaderCatchString(__messagePrefix, "get_background", _layerName, "get a Background ID from the", "layer name");
+	static GetBackground = function(_layerName) {
+		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
 		return __backgrounds.__Get(_layerName);
 	};
 	
 	/// @returns {Array<Id.Background>}
 	/// @desc Returns an array of created Backgrounds.
 	/// @context RoomLoaderReturnData
-	static get_backgrounds = function() {
+	static GetBackgrounds = function() {
 		return __backgrounds.__ids;
 	};
 	
