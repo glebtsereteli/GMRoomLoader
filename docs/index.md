@@ -29,3 +29,35 @@ features:
     details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
 
 ---
+
+<hr style="border: none; border-top: 2px solid #888; margin:4em 0 1em;" />
+
+<div style="text-align:center; font-size:1.1em; color:#555; margin-bottom:2em;">
+  <strong>GMRoomLoader</strong> Team
+</div>
+
+<script setup>
+import { VPTeamMembers } from 'vitepress/theme'
+
+const team = [
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/50461722?v=4',
+    name: 'Gleb Tsereteli',
+    title: 'Developer',
+    links: [
+      { icon: 'github', link: 'https://github.com/GlebTsereteli' },
+      { icon: 'twitter', link: 'https://x.com/GlebTsereteli' }
+    ]
+  },
+  {
+    avatar: 'https://avatars.githubusercontent.com/u/159041753?v=4',
+    name: 'K8te',
+    title: 'Illustrator, Tester, Level Designer',
+    links: [
+      { icon: 'instagram', link: 'https://www.instagram.com/k8te_iv' },
+    ]
+  }
+]
+</script>
+
+<VPTeamMembers :members="team" />
