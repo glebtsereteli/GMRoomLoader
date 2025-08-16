@@ -1,5 +1,10 @@
 # Data
 
+This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
+* [Initialization](#initialization) - essential for setting up room data.
+* [Removal](#removal) - optional, for cleaning up data that's no longer needed.
+* [Status & Getters](#status-getters) - situational, for checking or retrieving room data.
+
 ## Initialization
 
 The following methods initialize room data to be used for [loading](#loading) and [screenshotting](#screenshotting).

@@ -5,6 +5,7 @@ export default defineConfig({
   base: '/GMRoomLoader/',
 
   ignoreDeadLinks: true,
+  lastUpdated: true,
 
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
@@ -81,9 +82,17 @@ export default defineConfig({
       message: 'Released under the <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE">MIT License</a>. Built with <a href="https://vitepress.dev/">VitePress</a>.',
       copyright: 'Copyright © 2025 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
     },
+
+    lastUpdated: {
+      text: 'Last modified on',
+      formatOptions: {
+        dateStyle: 'long',
+        timeStyle: 'short'
+      }
+    },
   },
 
-   markdown: {
+  markdown: {
     config: (md: MarkdownIt) => {
       const shortcuts: Record<string, string> = {
         // types

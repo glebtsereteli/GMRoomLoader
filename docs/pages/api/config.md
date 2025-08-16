@@ -1,3 +1,7 @@
+# Configuration
+
+This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, loading parameters and other options that affect loading performance and behaviors.
+
 ## Meta
 
 ### `ROOMLOADER_ENABLE_DEBUG`

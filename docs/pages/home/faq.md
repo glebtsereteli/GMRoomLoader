@@ -1,5 +1,7 @@
 # Frequently Asked Questions
 
+This page contains answers to frequently asked questions about GMRoomLoader.
+
 ## 📍 What platforms does GMRoomLoader support?
 | Platform            | Status   | Notes                                   |
 | ------------------- | -------- | --------------------------------------- |
