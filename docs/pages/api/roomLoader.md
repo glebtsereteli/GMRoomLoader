@@ -4,11 +4,21 @@ next:
   link: '/pages/api/returnData'
 ---
 
-# RoomLoader
+<h1>
+  RoomLoader
+  <span style="display:none">RoomLoader</span>
+  <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/GMRoomLoader/scripts/RoomLoaderMain/RoomLoaderMain.gml" target="_blank">
+    <Badge type="info" text="Source Code" />
+  </a>
+</h1>
 
 ## Overview
 
-about...
+`RoomLoader` is the main interface of GMRoomLoader. It managers room [data](#data) and [loading](#loading), handles [whitelist](#whitelist) and [blacklist](#blacklist) layer filtering and [taking screenshots](#screenshotting).
+
+It's a function containing static data variables and methods inside, essentially serving as a makeshift GML [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170). It's initialized internally and doesn't require any additional setup from the user.
+
+All methods are called using the following syntax: `RoomLoader.MethodName(arguments...);`. Notice the lack of `()` after `RoomLoader`.
 
 ## Data
 
