@@ -159,6 +159,32 @@ function RoomLoader() {
 		return _rooms;
 	};
 	
+	/// @param {Array<Asset.GMRoom>} blacklist The rooms to NOT initialize data for. (default = empty)
+	/// @returns {Struct.RoomLoader}
+	/// @desc Initializes data for all rooms in the project BUT the ones listed in the blacklist array.
+	static DataInitAll = function(_blacklist = []) {
+		static _methodName = "DataInitAll";
+		__RoomLoaderCatchArray(__messagePrefix, _methodName, _blacklist);
+		
+		if (array_length(_blacklist) > 0) {
+			var _i = 0; repeat (array_length(__allRooms)) {
+				var _room = __allRooms[_i];
+				if (not array_contains(_blacklist, _room)) {
+					__data.__Add(_room, _methodName);
+				}
+				_i++;
+			}
+		}
+		else {
+			var _i = 0; repeat (array_length(__allRooms)) {
+				__data.__Add(__allRooms[_i], _methodName);
+				_i++;
+			}
+		}
+		
+		return self;
+	};
+	
 	#endregion
 	#region Data: Removal
 	
