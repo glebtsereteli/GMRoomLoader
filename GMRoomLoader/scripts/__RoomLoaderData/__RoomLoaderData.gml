@@ -11,7 +11,7 @@ function __RoomLoaderData(_room) constructor {
 	__creationCode = undefined;
 	
 	static __Init = function() {
-		static _map_instance_data = function(_data) {
+		static _MapInstanceData = function(_data) {
 			static _room_params = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
 				image_xscale = _data.xscale;
 				image_yscale = _data.yscale;
@@ -34,7 +34,8 @@ function __RoomLoaderData(_room) constructor {
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
 			_data.creationCode = __RoomLoaderProcessScript(_data.creation_code);
-			_data.preCreate = {}; with (_data.preCreate) {
+			_data.preCreate = {}; 
+			with (_data.preCreate) {
 				_room_params(_data);
 				var _preCreate = _data.pre_creation_code;
 				if (_preCreate != -1) {
@@ -58,6 +59,7 @@ function __RoomLoaderData(_room) constructor {
 		};
 		
 		var _rawData = room_get_info(__room, false, true, true, true, true);
+		
 		__layersPool = [];
 		__width = _rawData.width;
 		__height = _rawData.height;
@@ -66,7 +68,7 @@ function __RoomLoaderData(_room) constructor {
 		// Store instances data:
 		var _instancesData = _rawData.instances;
 		if (_instancesData != 0) {
-			__instancesData = array_map(_instancesData, _map_instance_data);
+			__instancesData = array_map(_instancesData, _MapInstanceData);
 		}
 		
 		// Collect data:
@@ -108,14 +110,14 @@ function __RoomLoaderData(_room) constructor {
 			__creationCode();
 		}
 	};
-	static __TakeScreenshot = function(_pleft01, _ptop01, _pwidth01, _pheight01, _xOrigin, _yOrigin, _scale, _flags) {
+	static __TakeScreenshot = function(_pLeft01, _pTop01, _pWidth01, _pHeight01, _xOrigin, _yOrigin, _scale, _flags) {
         var _scaled = (_scale != 1);
-		var _width = (__width * _scale);
-		var _height = (__height * _scale);
+		var _width = __width * _scale;
+		var _height = __height * _scale;
         
         // Raw surface, room contents:
-        var _raw_surf = surface_create(__width, __height);
-        surface_set_target(_raw_surf); {
+        var _rawSurf = surface_create(__width, __height);
+        surface_set_target(_rawSurf); {
             draw_clear_alpha(c_black, 0);
 			
 	        var _bm = gpu_get_blendmode_ext_sepalpha();
@@ -133,30 +135,30 @@ function __RoomLoaderData(_room) constructor {
         }
         
         // Final (scaled) surface:
-        var _final_surf = _raw_surf;
+        var _finalSurf = _rawSurf;
         if (_scaled) {
-            _final_surf = surface_create(_width, _height);
-            surface_set_target(_final_surf); {
+            _finalSurf = surface_create(_width, _height);
+            surface_set_target(_finalSurf); {
                 draw_clear_alpha(c_black, 0);
-                draw_surface_stretched(_raw_surf, 0, 0, _width, _height);
+                draw_surface_stretched(_rawSurf, 0, 0, _width, _height);
                 surface_reset_target();
             }
         }
         
         // Generate sprite:
-		_width = (_pwidth01 * _width);
-		_height = (_pheight01 * _height);
-        var _sprite = sprite_create_from_surface(_final_surf, 
-			(_pleft01 * _width), (_ptop01 * _height),
+		_width = _pWidth01 * _width;
+		_height = _pHeight01 * _height;
+        var _sprite = sprite_create_from_surface(_finalSurf, 
+			(_pLeft01 * _width), (_pTop01 * _height),
 			_width, _height,
 			false, false,
 			(_xOrigin * _width), (_yOrigin * _height)
 		);
         
         // Cleanup & return:
-        surface_free(_raw_surf);
+        surface_free(_rawSurf);
         if (_scaled) {
-			surface_free(_final_surf);
+			surface_free(_finalSurf);
 		}
         return _sprite;
     };

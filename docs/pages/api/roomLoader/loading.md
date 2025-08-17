@@ -1,7 +1,8 @@
 # Loading
 
-> [!Important]
-> Loading is only possible for rooms with initialized data. Make sure that data [initialization](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-initialization) is performed **before** utilizing the following functions.
+::: danger IMPORTANT
+Rooms can only be loaded if their data has been initialized. Make sure to [initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
+:::
 
 ## `.Load()`
 
@@ -12,7 +13,7 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 * If [ROOMLOADER_USE_RETURN_DATA](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :ReturnData:.
 * Otherwise returns :Undefined:.
 
-| Parameter   | Type                    | Description & Default                                                        |
+| Parameter   | Type                    | Description                                                                  |
 | ----------- | ----------------------- | -----------------------------------------------------------------------------|
 | `room`      | :Asset.GMRoom:          | The room to load                                                             |
 | `x`         | :Real:                  | The x coordinate to load the room at                                         |
@@ -34,7 +35,7 @@ RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5);
 // Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
 // and stores the returned instance of ReturnData in a variable to be cleaned up later:
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
-data = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags);
+loadedRoomData = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags);
 ```
 :::
 

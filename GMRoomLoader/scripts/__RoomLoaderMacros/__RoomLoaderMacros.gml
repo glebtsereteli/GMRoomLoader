@@ -24,7 +24,7 @@ with (_inst) { \
 #macro __ROOMLOADER_INSTANCE_FULL_START_RETURNDATA \
 var _return_data = RoomLoader.__returnData.__instances; \
 var _ids = _return_data.__ids; \
-var _room_ids = _return_data.__roomIds; \
+var _roomIds = _return_data.__roomIds; \
 var _index = _return_data.__index; \
 var _i = 0; repeat (array_length(__instancesData)) { \
 	var _iData = __instancesData[_i]; \
@@ -32,7 +32,7 @@ var _i = 0; repeat (array_length(__instancesData)) { \
 	var _iY = _iData.y + _yOffset; \
 	var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object_index, _iData.preCreate); \
 	_ids[_index] = _inst; \
-	_room_ids[_index] = _iData.id;
+	_roomIds[_index] = _iData.id;
 
 #macro __ROOMLOADER_INSTANCE_FULL_END_RETURNDATA \
 	_i++; \

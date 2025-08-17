@@ -43,7 +43,24 @@ GameMaker can indeed only have a single room active at a time. GMRoomLoader does
 
 When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from :room_get_info():, processing it for  loading, and using it to recreate room layers and their respective elements.
 
-## 📍 I'm loading a room and it appears to work (?), but I can't see some (or all) of the loaded layers/instances. How can I fix that?
+## 📍 What room elements does GMRoomLoader support? Can I load everything?
+
+| Element                           | Layer Type      | Status                                 |
+|-----------------------------------|----------------|----------------------------------------|
+| Instance                          | Instance        | ✔️                                     |
+| Tilemap                           | Tile            | ✔️                                     |
+| Sprite                            | Asset           | ✔️                                     |
+| Particle System                   | Asset           | 🚧 Broken because of a GM bug         |
+| Sequence                          | Asset           | ✔️                                     |
+| Background                        | Background      | ✔️                                     |
+| Filter/Effect                     | Filter/Effect   | ❌                                     |
+| In-layer Filter/Effect            | Any             | 🚧 Missing :room_get_info(): data     |
+| Creation Code                      | -               | ✔️                                     |
+| Views                              | -               | ❌                                     |
+| Physics                            | -               | ❌                                     |
+| Display Buffer & Viewport Clearing | -               | ❌                                     |
+
+## 📍 I'm loading a room and it I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 
 ## 📍 My rooms have instances with Variable Definitions and Creation Code. Does GMRoomLoader support those?
@@ -67,7 +84,8 @@ loadedRoomData = RoomLoader.Load(rmExample, 0, 0);
 loadedRoomData.Cleanup();
 ```
 :::
-::: info NOTE
+
+::: warning
 GMRoomLoader only tracks layers and elements it loads itself. Anything else you add afterwards must be cleaned up manually.
 :::
 
