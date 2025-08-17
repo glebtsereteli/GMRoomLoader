@@ -3,7 +3,6 @@
 function __RoomLoaderData(_room) constructor {
 	__room = _room;
 	__layersPool = [];
-	__layersLut = {};
 	__instancesData = [];
 	__instancesInitLut = {};
 	__width = undefined;
@@ -12,7 +11,7 @@ function __RoomLoaderData(_room) constructor {
 	
 	static __Init = function() {
 		static _MapInstanceData = function(_data) {
-			static _room_params = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
+			static _RoomParams = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
 				image_xscale = _data.xscale;
 				image_yscale = _data.yscale;
 				image_angle = _data.angle;
@@ -36,7 +35,7 @@ function __RoomLoaderData(_room) constructor {
 			_data.creationCode = __RoomLoaderProcessScript(_data.creation_code);
 			_data.preCreate = {}; 
 			with (_data.preCreate) {
-				_room_params(_data);
+				_RoomParams(_data);
 				var _preCreate = _data.pre_creation_code;
 				if (_preCreate != -1) {
 					_preCreate();
@@ -82,7 +81,6 @@ function __RoomLoaderData(_room) constructor {
 					if (_dataConstructor != undefined) {
 						var _data = new _dataConstructor(_layerData, _elementsData);
 						array_push(__layersPool, _data);
-						__layersLut[$ _layerData.name] = _data;
 						break;
 					}
 					_j++;
@@ -169,12 +167,12 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 	__owner = other;
 	__layerData = _layerData;
 	
-	static __failed_filters = function() {
+	static __HasFailedFilters = function() {
 		return RoomLoader.__LayerFailedFilters(__layerData.name);
 	};
 	static __Load = function(_xOffset, _yOffset, _flags) {
-		if (not __RoomLoaderCheckFlag(_flags)) return undefined;
-		if (__failed_filters()) return undefined;
+		if (not __RoomLoaderCheckFlag(_flags)) return;
+		if (__HasFailedFilters()) return;
 		
 		var _layer = __RoomLoaderGetLayer(__layerData);
 		
@@ -187,9 +185,10 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;
 		if (not __RoomLoaderCheckFlag(_flags)) return;
-		if (__failed_filters()) return undefined;
+		if (__HasFailedFilters()) return;
 		__OnDraw();
 	};
+	
 	static __OnLoad = __RoomLoaderNoop;
 	static __OnDraw = __RoomLoaderNoop;
 }
@@ -197,8 +196,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	__instancesData = array_map(_instancesData, __MapData);
 	
-	static __MapData = function(_inst_data) {
-		return __owner.__instancesInitLut[$ _inst_data.inst_id];
+	static __MapData = function(_iData) {
+		return __owner.__instancesInitLut[$ _iData.inst_id];
 	};
 	
 	static __OnLoad = function(_layer, _xOffset, _yOffset, _flags) {
@@ -398,7 +397,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 		}
 	};
 	static __Load = function(_xOffset, _yOffset, _flags) {
-		if (RoomLoader.__LayerFailedFilters(__layerData.name)) return undefined;
+		if (RoomLoader.__LayerFailedFilters(__layerData.name)) return;
 		
 		var _layer = __RoomLoaderGetLayer(__layerData);
 		var _i = 0; repeat (array_length(__data)) {
@@ -416,7 +415,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 	};
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;
-		if (__failed_filters()) return undefined;
+		if (__HasFailedFilters()) return;
 		
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
@@ -432,7 +431,6 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 }
 function __RoomLoaderDataLayerTilemap(_layerData, _elementsData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	__flag = ROOMLOADER_FLAG.TILEMAPS;
-	__layerData = _layerData;
 	__tilemapData = _elementsData[0];
 	__tilesData = [];
 	__tileset = undefined;
@@ -450,8 +448,8 @@ function __RoomLoaderDataLayerTilemap(_layerData, _elementsData) : __RoomLoaderD
 			if (_data > 0) {
 				array_push(__tilesData, {
 					data: _data,
-					x: (_i mod __width),
-					y: (_i div __width),
+					x: _i mod __width,
+					y: _i div __width,
 				});
 			}
 			_i++;
