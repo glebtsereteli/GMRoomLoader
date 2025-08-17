@@ -90,6 +90,11 @@ _preCreate.image_xscale /= _iXScale; \
 }
 
 #endregion
+#region Other Elements
+
+#macro __ROOMLOADER_TILE_STEP 3
+
+#endregion
 #region Benchmarking
 
 #macro __ROOMLOADER_BENCH_START RoomLoader.__benchTime = get_timer();

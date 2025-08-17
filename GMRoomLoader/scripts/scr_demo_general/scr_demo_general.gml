@@ -24,7 +24,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		DEMOS.controls = dbg_section("Controls");
 		dbg_button("Load", function() {
-			load();
+			Load();
 		});
 		dbg_same_line();
 		dbg_button("Clean Up", function() {
@@ -50,7 +50,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		.Clear()
 		.AddModules([pos, origin, flags])
 		.OnTrigger(function() {
-			load();
+			Load();
 		});
 		array_foreach(whitelist, function(_layer) {
 			reloader.addVariable(_layer, "enabled");
