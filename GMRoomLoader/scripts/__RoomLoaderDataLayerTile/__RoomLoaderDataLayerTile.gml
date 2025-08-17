@@ -10,17 +10,25 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		__height = __tilemapData.height;
 		
 		var _tilesData = __tilemapData.tiles;
-		var _i = 0; repeat (array_length(_tilesData)) {
-			var _data = _tilesData[_i];
-			if (_data > 0) {
-				array_push(__tilesData, {
-					data: _data,
-					x: _i mod __width,
-					y: _i div __width,
-				});
-			}
+		var _n = array_length(_tilesData);
+		
+		__tilesData = array_create(_n);
+		var _count = 0;
+		
+		var _i = 0; repeat (_n) {
+		    var _data = _tilesData[_i];
+		    if (_data > 0) {
+		        __tilesData[_count] = {
+		            data: _data,
+		            x: _i mod __width,
+		            y: _i div __width,
+		        };
+		        _count++;
+		    }
 			_i++;
 		}
+		
+		array_resize(__tilesData, _count);
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
