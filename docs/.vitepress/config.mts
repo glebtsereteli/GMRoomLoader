@@ -96,10 +96,12 @@ export default defineConfig({
     config: (md: MarkdownIt) => {
       const shortcuts: Record<string, string> = {
         // types
-        'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variables/Real.htm',
+        'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'String': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variables/Strings.htm',
         'Array': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm',
         'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',
+        'Undefined': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
+        'Enum': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#:~:text=of%20this%20page.-,Enums,-An%20enum%20is',
 
         // assets
         'Asset.GMRoom': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm',
@@ -116,6 +118,10 @@ export default defineConfig({
         'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
         'ReturnData.Cleanup()': '/pages/api/returndata/cleanup',
+        
+        'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/configs/#roomloader-default-xorigin',
+        'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/configs/#roomloader-default-yorigin',
+        'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/configs/#roomloader-default-flags',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

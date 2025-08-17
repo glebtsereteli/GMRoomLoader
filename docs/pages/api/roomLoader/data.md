@@ -22,7 +22,7 @@ For best results, call these methods at the very start of your game. If your pro
 ---
 ### `.DataInit()`
 
-`RoomLoader.DataInit(...rooms)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataInit(...rooms)` ➜ :Struct:.:RoomLoader:
 
 Initializes data for all given rooms.
 
@@ -43,7 +43,8 @@ RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 
 ---
 ### `.DataInitArray()`
-`RoomLoader.DataInitArray(rooms)` ➜ :Struct:.:RoomLoader:
+
+> `RoomLoader.DataInitArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Initializes data for all rooms in the given array.
 
@@ -62,7 +63,7 @@ RoomLoader.DataInitArray(rooms);
 ---
 ### `.DataInitPrefix()`
 
-`RoomLoader.DataInitPrefix(prefix)` ➜ :Array: of :Asset.GMRoom:
+> `RoomLoader.DataInitPrefix(prefix)` ➜ :Array: of :Asset.GMRoom:
 
 Initializes data for all rooms starting with the given prefix. Returns an array of found rooms.
 
@@ -80,7 +81,7 @@ rooms = RoomLoader.DataInitPrefix("rmLevel");
 ---
 ### `.DataInitTag()`
 
-`RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
+> `RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
 
 | Parameter | Type     | Description                 |
 | --------- | -------- | --------------------------- |
@@ -96,7 +97,7 @@ dungeonRooms = RoomLoader.DataInitTag("Dungeon");
 ---
 ### `.DataInitAll()`
 
-`RoomLoader.DataInitAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataInitAll(blacklist)` ➜ :Struct:.:RoomLoader:
 
 Initializes data for all rooms in the project, except the ones listed in the `blacklist` array.
 
@@ -118,7 +119,7 @@ Although initialized room data takes up little space, you may still want to remo
 ---
 ### `.DataRemove()`
 
-`RoomLoader.DataRemove(...rooms)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataRemove(...rooms)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all given rooms.
 
@@ -140,7 +141,7 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 ---
 ### `.DataRemoveArray()`
 
-`RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms in the given array.
 | Parameter | Type                      | Description                            |
@@ -158,7 +159,7 @@ RoomLoader.DataRemoveArray(rooms);
 ---
 ### `.DataRemovePrefix()`
 
-`RoomLoader.DataRemovePrefix(prefix)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataRemovePrefix(prefix)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms starting with the given prefix.
 
@@ -176,7 +177,7 @@ RoomLoader.DataRemovePrefix("rmLevel");
 ---
 ### `.DataRemoveTag()`
 
-`RoomLoader.DataRemoveTag(tag)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataRemoveTag(tag)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms with the given tag.
 
@@ -194,7 +195,7 @@ RoomLoader.DataRemoveTag("Dungeon");
 ---
 ### `.DataRemoveAll()`
 
-`RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms, except the ones listed in the `blacklist` array.
 
