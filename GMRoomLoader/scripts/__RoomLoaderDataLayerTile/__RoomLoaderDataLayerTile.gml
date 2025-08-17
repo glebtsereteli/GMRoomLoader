@@ -27,8 +27,6 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 		array_resize(__tilesData, _count);
 		__n = _count / __ROOMLOADER_TILE_STEP;
-		
-		show_message(__n)
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);

@@ -97,6 +97,7 @@ export default defineConfig({
       const shortcuts: Record<string, string> = {
         // types
         'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
+        'Bool': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'String': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variables/Strings.htm',
         'Array': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm',
         'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',

@@ -92,7 +92,7 @@ _preCreate.image_xscale /= _iXScale; \
 #endregion
 #region Other Elements
 
-#macro __ROOMLOADER_TILE_STEP 3
+#macro __ROOMLOADER_TILE_STEP 3 // data, x, y
 
 #endregion
 #region Benchmarking

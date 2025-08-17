@@ -212,11 +212,56 @@ RoomLoader.DataRemoveAll([rmHub]);
 
 ## Status & Getters
 
----
 ### `.DataIsInitialized()`
+
+>`RoomLoader.DataIsInitialized(room)` -> :Bool:
+
+Checks whether the data for the given room is initialized (returns `true`) or not (return `false`).
+
+| Parameter | Type           | Description       |
+|-----------|----------------|-------------------|
+| `room`    | :Asset.GMRoom: | The room to check |
+
+:::code-group
+```js [Example]
+if (RoomLoader.DataIsInitialized(rmLevelTower)) {
+    // Yay, the data for rmLevelTower is initialized!
+}
+```
+:::
 
 ---
 ### `.DataGetWidth()`
 
+> `RoomLoader.DataGetWidth(room)` ➜ :Real:
+
+Returns the width of the given room.
+
+| Argument | Type           | Description                   |
+|----------|----------------|-------------------------------|
+| `room`   | :Asset.GMRoom: | The room to get the width of  |
+
+:::code-group
+```js [Example]
+// Gets the width of rmLevelDungeon:
+var _width = RoomLoader.DataGetWidth(rmLevelDungeon);
+```
+:::
+
 ---
 ### `.DataGetHeight()`
+
+> `RoomLoader.DataGetHeight(room)` ➜ :Real:
+
+Returns the height of the given room.
+
+| Argument | Type           | Description                    |
+|----------|----------------|--------------------------------|
+| `room`   | :Asset.GMRoom: | The room to get the height of  |
+
+:::code-group
+```js [Example]
+// Gets the height of rmLevelDungeon:
+var _height = RoomLoader.DataGetHeight(rmLevelDungeon);
+```
+:::
