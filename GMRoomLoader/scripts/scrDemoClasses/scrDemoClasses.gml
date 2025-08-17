@@ -44,20 +44,21 @@ function Demos(_pool) constructor {
 		static _names = array_map(pool, function(_demo) {
 			return _demo.iname;
 		});
-		dbg_drop_down(ref_create(self, "index2"), _indices, _names, "Demo");
+		dbg_drop_down(ref_create(self, "index2"), _indices, _names, "Demo (cycle with Left/Right)");
 		
 		dbg_same_line();
 		dbg_button("-", function() { Change(index - 1); }, 20, 20);
 		dbg_same_line();
 		dbg_button("+", function() { Change(index + 1); }, 20, 20);
-		dbg_checkbox(ref_create(self, "liveRefresh"), "Live Refresh");
 		
+		var _w = 109;
+		dbg_button("GitHub", function() { url_open("https://github.com/glebtsereteli/GMRoomLoader"); }, _w, 20);
 		dbg_same_line();
-		dbg_button("Repo", function() { url_open(__ROOMLOADER_REPO); }, 56, 20);
+		dbg_button("Last Release", function() { url_open($"https://github.com/glebtsereteli/GMRoomLoader/Releases/tag/{__ROOMLOADER_VERSION}"); }, _w, 20);
 		dbg_same_line();
-		dbg_button("Wiki", function() { url_open(__ROOMLOADER_WIKI); }, 56, 20);
+		dbg_button("Docs", function() { url_open("https://GlebTsereteli.github.io/GMRoomLoader"); }, _w, 20);
 		dbg_same_line();
-		dbg_button("Itch", function() { url_open(__ROOMLOADER_ITCH); }, 57, 20);
+		dbg_button("Itch", function() { url_open("https://glebtsereteli.itch.io/gmroomloader"); }, _w, 20);
 		
 		Change(index);
 	};
@@ -65,6 +66,12 @@ function Demos(_pool) constructor {
 		if (index2 != index) {
 			Change(index2);
 		}
+		
+		var _input = keyboard_check_pressed(vk_right) - keyboard_check_pressed(vk_left);
+		if (_input != 0) {
+			Change(index + _input);
+		}
+		
 		GetCurrent().Update();
 	};
 	static Draw = function() {

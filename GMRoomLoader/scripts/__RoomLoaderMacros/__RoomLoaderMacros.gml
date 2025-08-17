@@ -2,13 +2,10 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v1.9.0" // major.minor.patch
+#macro __ROOMLOADER_VERSION "v2.0.0" // major.minor.patch
 #macro __ROOMLOADER_DATE "2025.xx.xx" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 #macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
-#macro __ROOMLOADER_REPO "https://github.com/glebtsereteli/GMRoomLoader"
-#macro __ROOMLOADER_WIKI $"{__ROOMLOADER_REPO}/wiki"
-#macro __ROOMLOADER_ITCH "https://glebtsereteli.itch.io/gmroomloader"
 
 #endregion
 #region Instances: Generic
