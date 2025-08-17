@@ -11,37 +11,38 @@ function __RoomLoaderDataRoom(_room) constructor {
 	
 	static __Init = function() {
 		static _MapInstanceData = function(_data) {
-			static _RoomParams = (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS ? function(_data) {
-				image_xscale = _data.xscale;
-				image_yscale = _data.yscale;
-				image_angle = _data.angle;
-				var _color = _data.colour;
-				if (_color == -1) {
-					image_blend = c_white;
-					image_alpha = 1;
-				}
-				else {
-					image_blend = (_color & 0xffffff);
-					var _c = (_color >> 24);
-					_c += (256 * (_c < 0));
-					image_alpha = (_c / 255);
-				}
-				image_index = _data.image_index;
-				image_speed = _data.image_speed;
-			} : __RoomLoaderNoop);
-			
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
 			_data.creationCode = __RoomLoaderProcessScript(_data.creation_code);
+			
 			_data.preCreate = {}; 
 			with (_data.preCreate) {
-				_RoomParams(_data);
+				if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
+					image_xscale = _data.xscale;
+					image_yscale = _data.yscale;
+					image_angle = _data.angle;
+					var _color = _data.colour;
+					if (_color == -1) {
+						image_blend = c_white;
+						image_alpha = 1;
+					}
+					else {
+						image_blend = (_color & 0xffffff);
+						var _c = (_color >> 24);
+						_c += (256 * (_c < 0));
+						image_alpha = (_c / 255);
+					}
+					image_index = _data.image_index;
+					image_speed = _data.image_speed;
+				}
 				var _preCreate = _data.pre_creation_code;
 				if (_preCreate != -1) {
 					_preCreate();
 				}
 			};
+			
 			__instancesInitLut[$ _data.id] = _data;
+			
 			return _data;
 		};
 		static _GetDataConstructor = function(_type) {
