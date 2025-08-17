@@ -3,8 +3,8 @@
   "%Name":"RoomLoaderInfo",
   "name":"RoomLoaderInfo",
   "parent":{
-    "name":"Notes",
-    "path":"folders/02. GMRoomLoader/Notes.yy",
+    "name":"03. Notes",
+    "path":"folders/02. GMRoomLoader/03. Notes.yy",
   },
   "resourceType":"GMNotes",
   "resourceVersion":"2.0",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"RoomLoaderEnums",
   "parent":{
-    "name":"Public",
-    "path":"folders/02. GMRoomLoader/Scripts/Public.yy",
+    "name":"01. Public",
+    "path":"folders/02. GMRoomLoader/01. Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

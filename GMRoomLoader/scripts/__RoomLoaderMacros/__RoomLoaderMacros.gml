@@ -22,10 +22,10 @@ with (_inst) { \
 #region Instances: Full
 
 #macro __ROOMLOADER_INSTANCE_FULL_START_RETURNDATA \
-var _return_data = RoomLoader.__returnData.__instances; \
-var _ids = _return_data.__ids; \
-var _roomIds = _return_data.__roomIds; \
-var _index = _return_data.__index; \
+var _returnData = RoomLoader.__returnData.__instances; \
+var _ids = _returnData.__ids; \
+var _roomIds = _returnData.__roomIds; \
+var _index = _returnData.__index; \
 var _i = 0; repeat (array_length(__instancesData)) { \
 	var _iData = __instancesData[_i]; \
 	var _iX = _iData.x + _xOffset; \
@@ -38,7 +38,7 @@ var _i = 0; repeat (array_length(__instancesData)) { \
 	_i++; \
 	_index++; \
 } \
-_return_data.__index = _index;
+_returnData.__index = _index;
 
 #macro __ROOMLOADER_INSTANCE_FULL_START_NORETURNDATA \
 var _i = 0; repeat (array_length(__instancesData)) { \

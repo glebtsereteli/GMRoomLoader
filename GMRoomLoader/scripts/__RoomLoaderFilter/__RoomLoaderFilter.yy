@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__RoomLoaderFilter",
   "parent":{
-    "name":"__Private",
-    "path":"folders/02. GMRoomLoader/Scripts/__Private.yy",
+    "name":"01. General",
+    "path":"folders/02. GMRoomLoader/02. Private/01. General.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,9 +1,3 @@
----
-next:
-  text: 'ReturnData'
-  link: '/pages/api/returnData'
----
-
 # RoomLoader
 
 <!-- <h1>

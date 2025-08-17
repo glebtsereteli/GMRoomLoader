@@ -24,7 +24,7 @@ function RoomLoader() {
 			}
 			
 			__ROOMLOADER_BENCH_START;
-			__pool[$ _roomName] = new __RoomLoaderData(_room);
+			__pool[$ _roomName] = new __RoomLoaderDataRoom(_room);
 			__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Initialized data for", _room);
 		},
 		__Remove: function(_room, _methodName) {
