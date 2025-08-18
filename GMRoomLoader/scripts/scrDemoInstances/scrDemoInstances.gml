@@ -41,7 +41,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		var _yOrigin = _h * origin.y;
 		var _xScale = _w / sprite_get_width(_frame);
 		var _yScale = _h / sprite_get_height(_frame);
-		draw_sprite_origin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xScale, _yScale, angle);
+		DrawSpriteOrigin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xScale, _yScale, angle);
 		
 		draw_sprite(sprDemoCross, 0, pos.x, pos.y);
 	};

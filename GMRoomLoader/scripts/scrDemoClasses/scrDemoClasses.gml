@@ -84,7 +84,7 @@ function Demos(_pool) constructor {
 	};
 	
 	static Change = function(_index) {
-		_index = mod2(_index, n);
+		_index = Mod2(_index, n);
 		GetCurrent().Cleanup();
 		index = _index;
 		index2 = index;

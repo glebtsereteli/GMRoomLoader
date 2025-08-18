@@ -116,16 +116,16 @@ global.collisionTilemaps = [];
 global.collisionTilemaps = [layer_tilemap_get_id("CollisionTilemap")];
 
 // When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array:
-roomData = RoomLoader.Load(rmExample, 0, 0);
-var _collisionTilemap = roomData.GetTilemap("CollisionTilemap");
+roomPayload = RoomLoader.Load(rmExample, 0, 0);
+var _collisionTilemap = roomPayload.GetTilemap("CollisionTilemap");
 array_push(global.collisionTilemaps, _collisionTilemap);
 
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
-var _collisionTilemap = roomData.GetTilemap("CollisionTilemap");
+var _collisionTilemap = roomPayload.GetTilemap("CollisionTilemap");
 var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
 if (_index != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }
-loadedRoom.Cleanup();
+roomPayload.Cleanup();
 ```
 :::

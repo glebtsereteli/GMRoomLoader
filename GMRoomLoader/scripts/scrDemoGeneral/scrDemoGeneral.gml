@@ -60,7 +60,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		});
 	};
 	static Draw = function() {
-		demo_draw_frame(rm, pos.x, pos.y, origin);
+		DemoDrawFrame(rm, pos.x, pos.y, origin);
 	};
 	static Cleanup = function() {
 		RoomLoader.DataRemove(rm);
@@ -92,14 +92,14 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-		DEMO_ROOM_DATA = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get());
+		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get());
 		RoomLoader.LayerWhitelistReset();
 		RoomLoader.LayerBlacklistReset();
 	};
 	static Unload = function() {
-		if (DEMO_ROOM_DATA == undefined) return;
+		if (DEMO_PAYLOAD == undefined) return;
 		
-		DEMO_ROOM_DATA.Cleanup();
-		delete DEMO_ROOM_DATA;
+		DEMO_PAYLOAD.Cleanup();
+		delete DEMO_PAYLOAD;
 	};
 }

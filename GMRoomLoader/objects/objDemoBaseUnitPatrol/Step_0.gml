@@ -1,2 +1,2 @@
 
-image_angle = lerp_angle(image_angle, direction, 0.2);
+image_angle = LerpAngle(image_angle, direction, 0.2);

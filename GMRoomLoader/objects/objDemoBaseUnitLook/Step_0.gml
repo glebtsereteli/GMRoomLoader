@@ -1,2 +1,2 @@
 
-image_angle = sine_between(t++ mod duration, duration, vdAngleFrom, vdAngleTo);
+image_angle = SineBetween(t++ mod duration, duration, vdAngleFrom, vdAngleTo);
