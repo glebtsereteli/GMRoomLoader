@@ -35,7 +35,7 @@
 #macro ROOMLOADER_MERGE_LAYERS false
 
 #endregion
-#region Assets
+#region Instances
 
 // Whether to initialize room parameters for loaded instances (true) or not (false).
 // 
@@ -58,6 +58,9 @@
 // 
 // NOTE: This comes into play only when loading instances with a custom (not 0) angle.
 #macro ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE true
+
+#endregion
+#region Other Elements
 
 // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false

@@ -54,6 +54,7 @@
   "ResourceOrderSettings":[
     {"name":"fntDemoText","order":1,"path":"fonts/fntDemoText/fntDemoText.yy",},
     {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
+    {"name":"objBlank","order":3,"path":"objects/objBlank/objBlank.yy",},
     {"name":"objDemoBaseUnitLook","order":1,"path":"objects/objDemoBaseUnitLook/objDemoBaseUnitLook.yy",},
     {"name":"objDemoBaseUnitPatrol","order":2,"path":"objects/objDemoBaseUnitPatrol/objDemoBaseUnitPatrol.yy",},
     {"name":"pthDemoBaseSlot02_01_patrol_01","order":1,"path":"paths/pthDemoBaseSlot02_01_patrol_01/pthDemoBaseSlot02_01_patrol_01.yy",},
@@ -84,7 +85,6 @@
     {"name":"RoomLoaderEnums","order":2,"path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},
     {"name":"RoomLoaderReturnData","order":1,"path":"scripts/RoomLoaderReturnData/RoomLoaderReturnData.yy",},
     {"name":"scrDemoClasses","order":2,"path":"scripts/scrDemoClasses/scrDemoClasses.yy",},
-    {"name":"scrDemoData","order":1,"path":"scripts/scrDemoData/scrDemoData.yy",},
     {"name":"scrDemoModules","order":3,"path":"scripts/scrDemoModules/scrDemoModules.yy",},
     {"name":"sprDemoBaseCarpet02","order":1,"path":"sprites/sprDemoBaseCarpet02/sprDemoBaseCarpet02.yy",},
     {"name":"sprDemoBaseCarpet03","order":2,"path":"sprites/sprDemoBaseCarpet03/sprDemoBaseCarpet03.yy",},

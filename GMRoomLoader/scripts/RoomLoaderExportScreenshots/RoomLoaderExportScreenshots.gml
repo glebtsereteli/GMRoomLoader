@@ -24,12 +24,12 @@ function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path =
 				RoomLoader.DataRemove(_room);
 			}
 			
-			var _local_path = $"{room_get_name(_room)}.png";
-			var _path = $"{dir}/{_local_path}";
+			var _localPath = $"{room_get_name(_room)}.png";
+			var _path = $"{dir}/{_localPath}";
 			sprite_save(_screenshot, 0, path);
 			sprite_delete(_screenshot);
 			
-			zip_add_file(zip, _local_path, path);
+			zip_add_file(zip, _localPath, path);
 		});
 		
 		zip_save(zip, path);

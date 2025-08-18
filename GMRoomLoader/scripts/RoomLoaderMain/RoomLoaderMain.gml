@@ -415,7 +415,7 @@ function RoomLoader() {
 				_preCreate.image_xscale *= _iXScale;
 				_preCreate.image_yscale *= _iYScale;
 				_preCreate.image_angle += _iangle;
-				var _inst = _func(_iX, _iY, _lod, _iData.object_index, _iData.preCreate);
+				var _inst = _func(_iX, _iY, _lod, _iData.object_index, _preCreate);
 				__ROOMLOADER_INSTANCE_CC;
 				_preCreate.image_xscale /= _iXScale;
 				_preCreate.image_yscale /= _iYScale;

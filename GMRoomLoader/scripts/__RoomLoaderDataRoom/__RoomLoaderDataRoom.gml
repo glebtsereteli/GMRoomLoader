@@ -27,10 +27,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 						image_alpha = 1;
 					}
 					else {
-						image_blend = (_color & 0xffffff);
-						var _c = (_color >> 24);
-						_c += (256 * (_c < 0));
-						image_alpha = (_c / 255);
+						image_blend = _color & 0xffffff;
+						image_alpha = ((_color >> 24) & 0xff) / 255;
 					}
 					image_index = _data.image_index;
 					image_speed = _data.image_speed;

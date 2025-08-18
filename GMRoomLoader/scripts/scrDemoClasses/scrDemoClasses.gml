@@ -2,7 +2,12 @@
 #macro DEMOS global.__demos
 
 function Demos(_pool) constructor {
-	pool = _pool;
+	pool = [
+		new DemoGeneral(),
+		new DemoInstances(),
+		new DemoScreenshots(),
+		new DemoBase(),
+	];
 	n = array_length(pool);
 	index = 0;
 	index2 = 0;

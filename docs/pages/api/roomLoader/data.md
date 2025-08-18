@@ -237,9 +237,9 @@ if (RoomLoader.DataIsInitialized(rmLevelTower)) {
 
 Returns the width of the given room.
 
-| Argument | Type           | Description                   |
-|----------|----------------|-------------------------------|
-| `room`   | :Asset.GMRoom: | The room to get the width of  |
+| Parameter | Type           | Description                   |
+|-----------|----------------|-------------------------------|
+| `room`    | :Asset.GMRoom: | The room to get the width of  |
 
 :::code-group
 ```js [Example]
@@ -255,9 +255,9 @@ var _width = RoomLoader.DataGetWidth(rmLevelDungeon);
 
 Returns the height of the given room.
 
-| Argument | Type           | Description                    |
-|----------|----------------|--------------------------------|
-| `room`   | :Asset.GMRoom: | The room to get the height of  |
+| Parameter | Type           | Description                    |
+|-----------|----------------|--------------------------------|
+| `room`    | :Asset.GMRoom: | The room to get the height of  |
 
 :::code-group
 ```js [Example]
