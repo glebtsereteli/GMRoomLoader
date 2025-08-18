@@ -1,10 +1,6 @@
 event_inherited();
 
-duration = (FPS * irandom_range(2, 3));
+duration = irandom_range(FPS * 2, FPS * 3);
 t = irandom(duration);
 
-Update = function() {
-	image_angle = sine_between(t++ mod duration, duration, vdAngleFrom, vdAngleTo);
-};
-
-Update();
+event_perform(ev_step, ev_step_normal);

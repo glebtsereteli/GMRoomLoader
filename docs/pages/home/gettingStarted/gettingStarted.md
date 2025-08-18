@@ -23,12 +23,12 @@ RoomLoader.DataInit(rmExample);
 ### 2. Load
 [Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of :ReturnData: in a variable to clean up later.
 ```js
-roomData = RoomLoader.Load(rmExample, 0, 0);
+loadedRoomData = RoomLoader.Load(rmExample, 0, 0);
 ```
 ### 3. Clean Up
-[Clean Up](/pages/api/returndata/#cleanup) *(often called "unload" or "destroy")* the loaded room when needed, if necessary.
+[Clean Up](/pages/api/returndata/cleanup) *(often called "unload" or "destroy")* the loaded room when needed, if necessary.
 ```js
-roomData.Cleanup();
+loadedRoomData.Cleanup();
 ```
 ## What's Next?
 That's it for the basic setup! To dive deeper, check out:

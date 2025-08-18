@@ -120,9 +120,9 @@ export default defineConfig({
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
         'ReturnData.Cleanup()': '/pages/api/returndata/cleanup',
         
-        'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/configs/#roomloader-default-xorigin',
-        'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/configs/#roomloader-default-yorigin',
-        'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/configs/#roomloader-default-flags',
+        'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
+        'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
+        'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {
