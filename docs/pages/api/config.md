@@ -52,7 +52,7 @@ When loading rooms using :RoomLoader.Load():, whether to merge loaded layers wit
 Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
 :::
 
-## Assets
+## Instances
 
 ### `ROOMLOADER_INSTANCES_USE_ROOM_PARAMS`
 > Default: `true`.
@@ -88,6 +88,8 @@ This is relevant only when loading instances with a custom scale (values other t
 When loading instances using :RoomLoader.LoadInstances():, whether to combine individual instance angle with the overall load angle (`true`) or not (`false`).
 
 This releavant only when loading instances with a custom angle (values other than `0`).
+
+## Others
 
 ---
 ### `ROOMLOADER_SEQUENCES_PAUSE`

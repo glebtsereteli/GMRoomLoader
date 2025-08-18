@@ -111,6 +111,8 @@ export default defineConfig({
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
         
         // links
+        'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
+        
         'RoomLoader': '/pages/api/roomloader/overview',
         'Payload': '/pages/api/payload/overview',
 

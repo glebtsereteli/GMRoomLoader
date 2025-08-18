@@ -16,6 +16,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iData = __instancesData[_i];
 			var _iX = _iData.x + _xOffset;
 			var _iY = _iData.y + _yOffset;
+			
 			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object_index, _iData.preCreate);
 			__ROOMLOADER_INSTANCE_CC;
 			if (ROOMLOADER_DELIVER_PAYLOAD) {

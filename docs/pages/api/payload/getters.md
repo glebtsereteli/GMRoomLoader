@@ -4,6 +4,8 @@
 
 ## `.GetLayers()`
 
+## `.GetInstance()`
+
 ## `.GetInstances()`
 
 ## `.GetTilemap()`

@@ -13,7 +13,9 @@ function __RoomLoaderDataRoom(_room) constructor {
 		static _MapInstanceData = function(_data) {
 			_data.object_index = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object_index);
-			_data.creationCode = __RoomLoaderProcessScript(_data.creation_code);
+			
+			var _cc = _data.creation_code;
+			_data.creationCode = ((_cc != -1) ? _cc : __RoomLoaderNoop);
 			
 			_data.preCreate = {}; 
 			with (_data.preCreate) {
