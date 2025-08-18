@@ -19,7 +19,7 @@ function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path =
 		array_foreach(_rooms, function(_room) {
 			var _initialized = RoomLoader.DataIsInitialized(_room);
 			RoomLoader.DataInit(_room);
-			var _screenshot = RoomLoader.TakeScreenshot(_room);
+			var _screenshot = RoomLoader.Screenshot(_room);
 			if (not _initialized) {
 				RoomLoader.DataRemove(_room);
 			}

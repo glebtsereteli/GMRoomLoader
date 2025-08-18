@@ -89,7 +89,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	};
 	static Take = function() {
 		Clear();
-		sprite = RoomLoader.TakeScreenshotPart(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
+		sprite = RoomLoader.ScreenshotPart(rm, left, top, w, h, origin.x, origin.y, scale, flags.get());
 	};
 	static Clear = function() {
 		if (sprite == undefined) return;

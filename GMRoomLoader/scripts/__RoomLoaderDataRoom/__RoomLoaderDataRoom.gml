@@ -11,8 +11,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 	
 	static __Init = function() {
 		static _MapInstanceData = function(_data) {
-			_data.object_index = asset_get_index(_data.object_index);
-			_data.sprite = object_get_sprite(_data.object_index);
+			_data.object = asset_get_index(_data.object_index);
+			_data.sprite = object_get_sprite(_data.object);
 			
 			var _cc = _data.creation_code;
 			_data.creationCode = ((_cc != -1) ? _cc : __RoomLoaderNoop);

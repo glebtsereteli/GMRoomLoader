@@ -387,7 +387,7 @@ function RoomLoader() {
 				var _iData = _instancesData[_i];
 				var _iX = _iData.x + _xOffset;
 				var _iY = _iData.y + _yOffset;
-				var _inst = _func(_iX, _iY, _lod, _iData.object_index, _iData.preCreate);
+				var _inst = _func(_iX, _iY, _lod, _iData.object, _iData.preCreate);
 				__ROOMLOADER_INSTANCE_CC;
 				_instances[_i] = _inst;
 				_i++;
@@ -415,7 +415,7 @@ function RoomLoader() {
 				_preCreate.image_xscale *= _iXScale;
 				_preCreate.image_yscale *= _iYScale;
 				_preCreate.image_angle += _iangle;
-				var _inst = _func(_iX, _iY, _lod, _iData.object_index, _preCreate);
+				var _inst = _func(_iX, _iY, _lod, _iData.object, _preCreate);
 				__ROOMLOADER_INSTANCE_CC;
 				_preCreate.image_xscale /= _iXScale;
 				_preCreate.image_yscale /= _iYScale;
@@ -526,8 +526,8 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static TakeScreenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		static _methodName = "TakeScreenshot";
+	static Screenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+		static _methodName = "Screenshot";
 		return __TakeScreenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
@@ -545,8 +545,8 @@ function RoomLoader() {
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static TakeScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
-		static _methodName = "TakeScreenshotPart";
+	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
+		static _methodName = "ScreenshotPart";
 		return __TakeScreenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
