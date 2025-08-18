@@ -74,14 +74,14 @@ The execution order follows GameMaker's default and is structured like this:
 :::
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
-* If you're loading full rooms with :RoomLoader.Load():, it returns an instance of :ReturnData:, which has a [.Cleanup()](/pages/api/returnData/cleanup/#cleanup-1) method for removing all loaded layers and their elements.
+* If you're loading full rooms with :RoomLoader.Load():, it returns an instance of :Payload:, which has a [.Cleanup()](/pages/api/payload/cleanup/#cleanup-1) method for removing all loaded layers and their elements.
 :::code-group
 ```js [Example]
 // When you load a room:
-loadedRoomData = RoomLoader.Load(rmExample, 0, 0);
+roomPayload = RoomLoader.Load(rmExample, 0, 0);
 
 // When you need to unload a room:
-loadedRoomData.Cleanup();
+roomPayload.Cleanup();
 ```
 :::
 
@@ -126,6 +126,6 @@ var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisio
 if (_index != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }
-loadedRoom.returnData();
+loadedRoom.Cleanup();
 ```
 :::

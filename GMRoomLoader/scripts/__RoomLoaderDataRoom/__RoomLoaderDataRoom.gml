@@ -94,7 +94,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		_x -= (__width * _xOrigin);
 		_y -= (__height * _yOrigin);
 		
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__instances.__Init(array_length(__instancesData));
 		}
 		

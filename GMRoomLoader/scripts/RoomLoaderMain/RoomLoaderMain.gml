@@ -327,7 +327,7 @@ function RoomLoader() {
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. (default = ROOMLOADER_DEFAULT_FLAGS)
 	/// @returns {struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
-	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_USE_PAYLOAD is true, undefined otherwise.
+	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _methodName = "load";
@@ -338,13 +338,13 @@ function RoomLoader() {
 		var _data = __GetLoadData(_room, _methodName, _nonroom_message, _nodata_message);
 		
 		__ROOMLOADER_BENCH_START;
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			__payload = new RoomLoaderPayload(_room);
 		}
 		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _bench_message, _room);
 		
-		return (ROOMLOADER_USE_PAYLOAD ? __payload : undefined);
+		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.

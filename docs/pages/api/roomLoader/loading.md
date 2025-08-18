@@ -6,11 +6,11 @@ Rooms can only be loaded if their data has been initialized. Make sure to [initi
 
 ## `.Load()`
 
-> `RoomLoader.Load(room, x, y, [xorigin], [yorigin], [flags])` ➜ :Struct:.:ReturnData: or :Undefined:
+> `RoomLoader.Load(room, x, y, [xorigin], [yorigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
 
 Loads the given room at the given coordinates and origin, filtered by the given flags.
 
-* If [ROOMLOADER_USE_RETURN_DATA](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :ReturnData:.
+* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :Payload:.
 * Otherwise returns :Undefined:.
 
 | Parameter   | Type                    | Description                                                                  |
@@ -33,9 +33,9 @@ var _y = room_height / 2;
 RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5);
 
 // Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
-// and stores the returned instance of ReturnData in a variable to be cleaned up later:
+// and stores the returned instance of Payload in a variable to be cleaned up later:
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
-loadedRoomData = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags);
+roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags);
 ```
 :::
 

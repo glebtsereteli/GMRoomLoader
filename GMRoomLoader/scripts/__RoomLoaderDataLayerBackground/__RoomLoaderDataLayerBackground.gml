@@ -21,7 +21,7 @@ function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderData
 			layer_background_blend(_bg, blendColour);
 			layer_background_alpha(_bg, blendAlpha);
 			
-			if (ROOMLOADER_USE_PAYLOAD) {
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				RoomLoader.__payload.__backgrounds.__Add(_bg, name);
 			}
 		}

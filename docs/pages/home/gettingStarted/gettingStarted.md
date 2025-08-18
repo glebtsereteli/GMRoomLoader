@@ -21,14 +21,14 @@ GMRoomLoader offers many tools for handling room data, loading rooms and working
 RoomLoader.DataInit(rmExample);
 ```
 ### 2. Load
-[Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of :ReturnData: in a variable to clean up later.
+[Load](/pages/api/roomloader/loading/#load) the room and store the returned instance of :Payload: in a variable to clean up later.
 ```js
-loadedRoomData = RoomLoader.Load(rmExample, 0, 0);
+roomPayload = RoomLoader.Load(rmExample, 0, 0);
 ```
 ### 3. Clean Up
-[Clean Up](/pages/api/returndata/cleanup) *(often called "unload" or "destroy")* the loaded room when needed, if necessary.
+[Clean Up](/pages/api/payload/cleanup) *(often called "unload" or "destroy")* the loaded room when needed, if necessary.
 ```js
-loadedRoomData.Cleanup();
+roomPayload.Cleanup();
 ```
 ## What's Next?
 That's it for the basic setup! To dive deeper, check out:

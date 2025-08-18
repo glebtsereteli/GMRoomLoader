@@ -5,7 +5,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	
 	static __OnLoad = function(_layer, _xOffset, _yOffset, _flags) {
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			var _payload = RoomLoader.__payload.__instances;
 			var _ids = _payload.__ids;
 			var _roomIds = _payload.__roomIds;
@@ -18,7 +18,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iY = _iData.y + _yOffset;
 			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object_index, _iData.preCreate);
 			__ROOMLOADER_INSTANCE_CC;
-			if (ROOMLOADER_USE_PAYLOAD) {
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				_ids[_index] = _inst;
 				_roomIds[_index] = _iData.id;
 				_index++;
@@ -26,7 +26,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			_i++;
 		}
 		
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			_payload.__index = _index;
 		}
 	};

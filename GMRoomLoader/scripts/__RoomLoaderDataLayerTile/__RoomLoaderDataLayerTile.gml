@@ -30,7 +30,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name);
 		}
 	};

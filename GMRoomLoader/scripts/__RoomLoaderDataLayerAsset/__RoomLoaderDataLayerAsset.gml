@@ -15,7 +15,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 			_i++;
 		}
 		
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__layers.__Add(_layer, __layerData.name);
 		}
 	};
@@ -73,7 +73,7 @@ function __RoomLoaderDataLayerAssetSprite(_data) constructor {
 			layer_sprite_blend(_sprite, image_blend);
 			layer_sprite_alpha(_sprite, image_alpha);
 			
-			if (ROOMLOADER_USE_PAYLOAD) {
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				RoomLoader.__payload.__sprites.__Add(_sprite, name);
 			}
 		}
@@ -108,7 +108,7 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 			layer_sequence_pause(_sequence);
 		}
 		
-		if (ROOMLOADER_USE_PAYLOAD) {
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__sequences.__Add(_sequence, __data.name);
 		}
 	}
@@ -139,7 +139,7 @@ function __RoomLoaderDataLayerAssetText(_data) constructor {
 			layer_text_blend(_text, blend);
 			layer_text_alpha(_text, alpha);
 			
-			if (ROOMLOADER_USE_PAYLOAD) {
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				RoomLoader.__payload.__texts.__Add(_text, name);
 			}
 		}

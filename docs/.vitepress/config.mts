@@ -50,12 +50,12 @@ export default defineConfig({
             ]
           },
           {
-            text: 'ReturnData',
+            text: 'Payload',
             collapsed: true,
-            link: '/pages/api/returnData/overview',
+            link: '/pages/api/payload/overview',
             items: [
-              { text: 'Getters', link: '/pages/api/returnData/getters' },
-              { text: 'Cleanup', link: '/pages/api/returnData/cleanup' },
+              { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
           { text: 'Enums', link: '/pages/api/enums' },
@@ -112,13 +112,13 @@ export default defineConfig({
         
         // links
         'RoomLoader': '/pages/api/roomloader/overview',
-        'ReturnData': '/pages/api/returndata/overview',
+        'Payload': '/pages/api/payload/overview',
 
         'Loading': '/pages/api/roomloader/loading',
         'Screenshotting': '/pages/api/roomloader/screenshotting',
         'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
-        'ReturnData.Cleanup()': '/pages/api/returndata/cleanup',
+        'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',

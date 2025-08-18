@@ -28,10 +28,10 @@ Default Y origin used by :RoomLoader:'s :Loading: and :Screenshotting:. Origins 
 Default flags used by :RoomLoader:'s :Loading: methods.
 
 ---
-### `ROOMLOADER_USE_RETURN_DATA`
+### `ROOMLOADER_DELIVER_PAYLOAD`
 > Default: `true`.
 
-* If true, :RoomLoader.Load(): returns an instance of :ReturnData: containing the IDs of all loaded layers and their elements.  
+* If true, :RoomLoader.Load(): returns an instance of :Payload: containing the IDs of all loaded layers and their elements.  
 * If `false`, no IDs are collected or returned, improving loading performance.  
 
 :::tip
@@ -49,7 +49,7 @@ When loading rooms using :RoomLoader.Load():, whether to merge loaded layers wit
 - If `false`: a new layer is always created, even if a layer with the same name already exists.  
 
 ::: warning
-Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :ReturnData.Cleanup():.
+Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
 :::
 
 ## Assets
