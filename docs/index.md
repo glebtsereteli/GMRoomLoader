@@ -25,7 +25,7 @@ features:
     details: In addition to positions and origins, load instances at custom angles and scales. Great for enemy layouts, collectibles and effects.
   - title: ⚙️ Full Control
     details: From merging or creating new layers to tracking and removing loaded elements, you have full control of the loading process.
-  - title: 🖼️ Thumbnails
+  - title: 🖼️ Screenshots
     details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
 
 ---

@@ -80,7 +80,6 @@
     {"id":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"RoomLoaderLicence","path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},},
-    {"id":{"name":"objBlank","path":"objects/objBlank/objBlank.yy",},},
     {"id":{"name":"objDemoBaseSlotCorner","path":"objects/objDemoBaseSlotCorner/objDemoBaseSlotCorner.yy",},},
     {"id":{"name":"objDemoBaseSlotGeneral","path":"objects/objDemoBaseSlotGeneral/objDemoBaseSlotGeneral.yy",},},
     {"id":{"name":"objDemoBaseSlotParent","path":"objects/objDemoBaseSlotParent/objDemoBaseSlotParent.yy",},},

@@ -54,7 +54,6 @@
   "ResourceOrderSettings":[
     {"name":"fntDemoText","order":1,"path":"fonts/fntDemoText/fntDemoText.yy",},
     {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
-    {"name":"objBlank","order":3,"path":"objects/objBlank/objBlank.yy",},
     {"name":"objDemoBaseUnitLook","order":1,"path":"objects/objDemoBaseUnitLook/objDemoBaseUnitLook.yy",},
     {"name":"objDemoBaseUnitPatrol","order":2,"path":"objects/objDemoBaseUnitPatrol/objDemoBaseUnitPatrol.yy",},
     {"name":"pthDemoBaseSlot02_01_patrol_01","order":1,"path":"paths/pthDemoBaseSlot02_01_patrol_01/pthDemoBaseSlot02_01_patrol_01.yy",},
