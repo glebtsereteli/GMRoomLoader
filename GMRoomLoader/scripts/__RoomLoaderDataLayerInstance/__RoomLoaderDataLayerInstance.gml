@@ -5,11 +5,11 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	
 	static __OnLoad = function(_layer, _xOffset, _yOffset, _flags) {
-		if (ROOMLOADER_USE_RETURN_DATA) {
-			var _returnData = RoomLoader.__returnData.__instances;
-			var _ids = _returnData.__ids;
-			var _roomIds = _returnData.__roomIds;
-			var _index = _returnData.__index;
+		if (ROOMLOADER_USE_PAYLOAD) {
+			var _payload = RoomLoader.__payload.__instances;
+			var _ids = _payload.__ids;
+			var _roomIds = _payload.__roomIds;
+			var _index = _payload.__index;
 		}
 		
 		var _i = 0; repeat (array_length(__instancesData)) {
@@ -18,7 +18,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iY = _iData.y + _yOffset;
 			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object_index, _iData.preCreate);
 			__ROOMLOADER_INSTANCE_CC;
-			if (ROOMLOADER_USE_RETURN_DATA) {
+			if (ROOMLOADER_USE_PAYLOAD) {
 				_ids[_index] = _inst;
 				_roomIds[_index] = _iData.id;
 				_index++;
@@ -26,8 +26,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			_i++;
 		}
 		
-		if (ROOMLOADER_USE_RETURN_DATA) {
-			_returnData.__index = _index;
+		if (ROOMLOADER_USE_PAYLOAD) {
+			_payload.__index = _index;
 		}
 	};
 	static __OnDraw = function() {

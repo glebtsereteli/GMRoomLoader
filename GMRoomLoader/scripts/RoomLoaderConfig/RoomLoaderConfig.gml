@@ -15,12 +15,12 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// If true, RoomLoader.Load() returns a RoomLoaderReturnData instance containing the IDs of all loaded elements.
+// If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded elements.
 // If false, no IDs are collected or returned, improving loading performance.
 // 
 // NOTE: Set this to false if you don't need to manually clean up loaded contents.
 // e.g. When room switching automatically destroys all instances, layers and assets.
-#macro ROOMLOADER_USE_RETURN_DATA true
+#macro ROOMLOADER_USE_PAYLOAD true
 
 // When loading rooms using RoomLoader.Load(), whether to merge loaded layers with existing ones (true)
 // or keep them separate (false).
@@ -31,7 +31,7 @@
 // If false: a new layer is always created, even if a layer with the same name already exists.
 // 
 // WARNING: Enabling this may result in layers shared between elements loaded from multiple rooms to be
-// unintentionally destroyed during RoomLoaderReturnData.cleanup().
+// unintentionally destroyed during RoomLoaderPayload.cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
 #endregion

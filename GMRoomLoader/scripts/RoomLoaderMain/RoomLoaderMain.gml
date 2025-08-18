@@ -48,7 +48,7 @@ function RoomLoader() {
 	static __allRooms = asset_get_ids(asset_room);
 	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
 	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
-	static __returnData = undefined;
+	static __payload = undefined;
 	
 	static __LayerFailedFilters = function(_name) {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
@@ -325,9 +325,9 @@ function RoomLoader() {
 	/// @param {Real} xOrigin The x origin to load the room at. (default = ROOMLOADER_DEFAULT_XORIGIN)
 	/// @param {Real} yOrigin The y origin to load the room at. (default = ROOMLOADER_DEFAULT_YORIGIN)
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. (default = ROOMLOADER_DEFAULT_FLAGS)
-	/// @returns {struct.RoomLoaderReturnData,undefined}
+	/// @returns {struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
-	/// Returns an instance of RoomLoaderReturnData if ROOMLOADER_USE_RETURN_DATA is true, undefined otherwise.
+	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_USE_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _methodName = "load";
@@ -338,13 +338,13 @@ function RoomLoader() {
 		var _data = __GetLoadData(_room, _methodName, _nonroom_message, _nodata_message);
 		
 		__ROOMLOADER_BENCH_START;
-		if (ROOMLOADER_USE_RETURN_DATA) {
-			__returnData = new RoomLoaderReturnData(_room);
+		if (ROOMLOADER_USE_PAYLOAD) {
+			__payload = new RoomLoaderPayload(_room);
 		}
 		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _bench_message, _room);
 		
-		return (ROOMLOADER_USE_RETURN_DATA ? __returnData : undefined);
+		return (ROOMLOADER_USE_PAYLOAD ? __payload : undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.

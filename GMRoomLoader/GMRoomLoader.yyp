@@ -136,7 +136,7 @@
     {"id":{"name":"RoomLoaderEnums","path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},},
     {"id":{"name":"RoomLoaderExportScreenshots","path":"scripts/RoomLoaderExportScreenshots/RoomLoaderExportScreenshots.yy",},},
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
-    {"id":{"name":"RoomLoaderReturnData","path":"scripts/RoomLoaderReturnData/RoomLoaderReturnData.yy",},},
+    {"id":{"name":"RoomLoaderPayload","path":"scripts/RoomLoaderPayload/RoomLoaderPayload.yy",},},
     {"id":{"name":"scrDemoBase","path":"scripts/scrDemoBase/scrDemoBase.yy",},},
     {"id":{"name":"scrDemoClasses","path":"scripts/scrDemoClasses/scrDemoClasses.yy",},},
     {"id":{"name":"scrDemoGeneral","path":"scripts/scrDemoGeneral/scrDemoGeneral.yy",},},

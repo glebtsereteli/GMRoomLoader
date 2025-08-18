@@ -13,8 +13,8 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 		
 		var _layer = __RoomLoaderGetLayer(__layerData);
 		
-		if (ROOMLOADER_USE_RETURN_DATA) {
-			RoomLoader.__returnData.__layers.__Add(_layer, __layerData.name);
+		if (ROOMLOADER_USE_PAYLOAD) {
+			RoomLoader.__payload.__layers.__Add(_layer, __layerData.name);
 		}
 		
 		__OnLoad(_layer, _xOffset, _yOffset, _flags);
