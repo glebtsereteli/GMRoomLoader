@@ -27,12 +27,11 @@ function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
 	};
 }
 function DemoModuleFlags() constructor {
-	static reloader_names = ["instances", "tilemaps", "sprites", /*"particle_systems",*/ "sequences", "texts", "backgrounds"];
+	static reloader_names = ["instances", "tilemaps", "sprites", "sequences", "texts", "backgrounds"];
 	
 	instances = true;
 	tilemaps = true;
 	sprites = true;
-	//particle_systems = true; [@FIX] GM bug, currently broken.
 	sequences = true;
 	texts = true;
 	backgrounds = true;
@@ -42,7 +41,6 @@ function DemoModuleFlags() constructor {
 		dbg_checkbox(ref_create(self, "instances"), "Instances");
 		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
 		dbg_checkbox(ref_create(self, "sprites"), "Sprites");
-		//dbg_checkbox(ref_create(self, "particle_systems"), "Particle Systems");
 		dbg_checkbox(ref_create(self, "sequences"), "Sequences");
 		dbg_checkbox(ref_create(self, "texts"), "Texts");
 		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
@@ -52,7 +50,6 @@ function DemoModuleFlags() constructor {
 		_total |= instances * ROOMLOADER_FLAG.INSTANCES;
 		_total |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;
 		_total |= sprites * ROOMLOADER_FLAG.SPRITES;
-		//_total |= particle_systems * ROOMLOADER_FLAG.PARTICLE_SYSTEMS;
 		_total |= sequences * ROOMLOADER_FLAG.SEQUENCES;
 		_total |= texts * ROOMLOADER_FLAG.TEXTS;
 		_total |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
