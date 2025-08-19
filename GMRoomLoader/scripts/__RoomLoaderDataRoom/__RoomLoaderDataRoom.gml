@@ -5,6 +5,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 	__layersPool = [];
 	__instancesData = [];
 	__instancesInitLut = {};
+	__tilemapsLut = {};
 	__width = undefined;
 	__height = undefined;
 	__creationCode = undefined;

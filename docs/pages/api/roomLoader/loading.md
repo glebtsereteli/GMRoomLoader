@@ -13,14 +13,14 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 * If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :Payload:.
 * Otherwise returns :Undefined:.
 
-| Parameter   | Type                     | Description                                                                  |
-|-------------|--------------------------|------------------------------------------------------------------------------|
-| `room`      | :Asset.GMRoom:           | The room to load                                                             |
-| `x`         | :Real:                   | The x coordinate to load the room at                                         |
-| `y`         | :Real:                   | The y coordinate to load the room at                                         |
-| `[xorigin]` | :Real:                   | The x origin to load the room at. Default = :ROOMLOADER_DEFAULT_XORIGIN:     |
-| `[yorigin]` | :Real:                   | The y origin to load the room at. Default = :ROOMLOADER_DEFAULT_YORIGIN:     |
-| `[flags]`   | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. Default = :ROOMLOADER_DEFAULT_FLAGS: |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to load |
+| `x` | :Real: | The x coordinate to load the room at |
+| `y` | :Real: | The y coordinate to load the room at |
+| `[xorigin]` | :Real: | The x origin to load the room at. Default = :ROOMLOADER_DEFAULT_XORIGIN: |
+| `[yorigin]` | :Real: | The y origin to load the room at. Default = :ROOMLOADER_DEFAULT_YORIGIN: |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. Default = :ROOMLOADER_DEFAULT_FLAGS: |
 
 :::code-group
 ```js [Examples]
@@ -68,7 +68,7 @@ RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth,,,,,,
 var _room = rmProps;
 var _xscale = room_width / RoomLoader.DataGetWidth(_room);
 var _yscale = room_height / RoomLoader.DataGetHeight(_room);
-RoomLoader.LoadInstances(rmProps, 0, 0, depth, _xscale, _yscale, 0, false); // [!code highlight]
+RoomLoader.LoadInstances(_room, 0, 0, depth, _xscale, _yscale, 0, false); // [!code highlight]
 
 // Loads a random arrangement of collectible randomly rotated at the center of the room:
 var _room = choose(rmCollectibles01, rmCollectibles02, rmCollectibles03);

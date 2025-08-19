@@ -22,14 +22,14 @@ Flags stored in the `ROOMLOADER_FLAG` enum are used to filter room elements by t
 :::code-group
 ```js [Examples]
 // Loads rmLevelCastle01's Tilemaps centered:
-RoomLoader.load(rmLevelCastle01, 0, 0, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS);
+RoomLoader.Load(rmLevelCastle01, 0, 0, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
 
 // Loads rmLevelMaze11's Instances, Sprites and Particle Systems: 
-var _flags = (ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.PARTICLE_SYSTEMS);
-RoomLoader.load(rmMaze11, 0, 0, 0, 0, _flags);
+var _flags = (ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.PARTICLE_SYSTEMS); // [!code highlight]
+RoomLoader.Load(rmMaze11, 0, 0, 0, 0, _flags);
 
 // Loads rmLevelRoof's with flags set to All BUT Sequences:
-var _flags = (ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES);
-RoomLoader.load(rmLevelRoof, 0, 0, 0, 0, _flags);
+var _flags = (ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES); // [!code highlight]
+RoomLoader.Load(rmLevelRoof, 0, 0, 0, 0, _flags);
 ```
 :::

@@ -449,6 +449,14 @@ function RoomLoader() {
 		return _instances;
 	};
 	
+	static LoadTilemap = function(_room, _x, _y, _sourceLayer, _targetLayer) {
+		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
+		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayer];
+		
+		
+		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, );
+	};
+	
 	#endregion
 	#region Layer Whitelist
 	

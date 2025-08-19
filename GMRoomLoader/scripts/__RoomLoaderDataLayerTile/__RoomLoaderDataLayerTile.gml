@@ -27,6 +27,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 		array_resize(__tilesData, _count);
 		__n = _count / __ROOMLOADER_TILE_STEP;
+		
+		__owner.__tilemapsLut[$ __layerData.name] = self;
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
@@ -51,6 +53,17 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	__height = undefined;
 	
 	static __CreateTilemap = function(_layer, _x, _y) {
+	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
+		
+	    var _data = __tilesData;
+		var _i = 0; repeat (__n) {
+			tilemap_set(_tilemap, _data[_i], _data[_i + 1], _data[_i + 2]);
+			_i += __ROOMLOADER_TILE_STEP;
+		}
+		
+	    return _tilemap;
+	};
+	static __CreateTilemapExt = function(_layer, _x, _y) {
 	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
 		
 	    var _data = __tilesData;

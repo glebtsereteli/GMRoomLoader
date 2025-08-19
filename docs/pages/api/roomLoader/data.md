@@ -7,10 +7,10 @@ This section covers room data management - GMRoomLoader's entry point and the be
 
 ## Initialization
 
-The following methods initialize room data to be used for [loading](#loading) and [screenshotting](#screenshotting).
+The following methods initialize room data to be used for :Loading: and :Screenshotting:.
 
 ::: danger IMPORTANT
-Loading is only possible for rooms with initialized data. Ensure that data initialization is completed before using [loading](#loading) or [screenshotting](#screenshotting) functions. Attempting to use a room whose data hasn't been initialized will cause a crash.
+Loading is only possible for rooms with initialized data. Ensure that data initialization is completed before using :Loading: or :Screenshotting: functions. Attempting to use a room whose data hasn't been initialized will cause a crash.
 :::
 
 ::: tip
