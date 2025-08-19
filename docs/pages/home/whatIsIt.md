@@ -19,6 +19,9 @@ It provides tools to process the data returned by :room_get_info():, use it to l
 - Full control over loaded contents: :Payload: tracking, fetching element IDs and cleanup - unloading/destroying loaded elements.
 - Room [screenshotting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-take_screenshotroom-xorigin-yorigin-flags---idsprite).
 
+## How does it work?
+
+
 ## GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
 ![RoomLoader-Tool](https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d)

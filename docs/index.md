@@ -46,7 +46,7 @@ const team = [
     title: 'Developer',
     links: [
       { icon: 'github', link: 'https://github.com/GlebTsereteli' },
-      { icon: 'twitter', link: 'https://x.com/GlebTsereteli' }
+      { icon: 'twitter', link: 'https://x.com/GlebTsereteli' },
     ]
   },
   {

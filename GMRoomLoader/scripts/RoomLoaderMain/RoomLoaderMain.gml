@@ -54,14 +54,14 @@ function RoomLoader() {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
 		return (not _match);
 	};
-	static __GetLoadData = function(_room, _methodName, _nonroom_message, _nodata_message) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonroom_message);
+	static __GetLoadData = function(_room, _methodName, _nonroomMessage, _nodataMessage) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonroomMessage);
 		
 		var _data = __data.__Get(_room);
 		if (_data != undefined) return _data;
 		
 		var _roomName = $"<{room_get_name(_room)}>";
-		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_nodata_message}"
+		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_nodataMessage}"
 		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
 	static __TakeScreenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName) {
@@ -83,10 +83,12 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataInit = function() {
 		static _methodName = "DataInit";
+		
 		var _i = 0; repeat (argument_count) {
 			__data.__Add(argument[_i], _methodName);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -96,12 +98,14 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataInitArray = function(_rooms) {
 		static _methodName = "DataInitArray";
+		
 		__RoomLoaderCatchArray(__messagePrefix, _methodName, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__Add(_rooms[_i], _methodName);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -164,6 +168,7 @@ function RoomLoader() {
 	/// @desc Initializes data for all rooms in the project BUT the ones listed in the blacklist array.
 	static DataInitAll = function(_blacklist = []) {
 		static _methodName = "DataInitAll";
+		
 		__RoomLoaderCatchArray(__messagePrefix, _methodName, _blacklist);
 		
 		if (array_length(_blacklist) > 0) {
@@ -194,10 +199,12 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataRemove = function() {
 		static _methodName = "DataRemove";
+		
 		var _i = 0; repeat (argument_count) {
 			__data.__Remove(argument[_i], _methodName);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -207,12 +214,14 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataRemoveArray = function(_rooms) {
 		static _methodName = "DataRemoveArray";
+		
 		__RoomLoaderCatchArray(__messagePrefix, _methodName, _rooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
 			__data.__Remove(_rooms[_i], _methodName);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -251,6 +260,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataRemoveTag = function(_tag) {
 		static _methodName = "DataRemoveTag";
+		
 		__RoomLoaderCatchString(__messagePrefix, _methodName, _tag);
 		
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
@@ -272,6 +282,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataClear = function() {
 		static _methodName = "DataClear";
+		
 		if (struct_names_count(__data.__pool) == 0) {
 			__RoomLoaderLogMethod(__messagePrefix, _methodName, "There's no data to clear");
 			return self;
@@ -279,6 +290,7 @@ function RoomLoader() {
 		
 		__data.__pool = {};
 		__RoomLoaderLogMethod(__messagePrefix, _methodName, "Data cleared");
+		
 		return self;
 	};
 	
@@ -300,6 +312,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataGetWidth = function(_room) {
 		static _methodName = "DataGetWidth";
+		
 		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room width for");
 		var _data = __GetLoadData(_room, _methodName, "load", "get their widths");
 		return _data.__width;
@@ -311,6 +324,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataGetHeight = function(_room) {
 		static _methodName = "DataGetHeight";
+		
 		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room height for");
 		var _data = __GetLoadData(_room, _methodName, "load", "get their heights");
 		return _data.__height;
@@ -331,18 +345,18 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _methodName = "load";
-		static _nonroom_message = "load";
-		static _nodata_message = "load them";
-		static _bench_message = "loaded";
+		static _nonroomMessage = "load";
+		static _nodataMessage = "load them";
+		static _benchMessage = "loaded";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonroom_message, _nodata_message);
+		var _data = __GetLoadData(_room, _methodName, _nonroomMessage, _nodataMessage);
 		
 		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			__payload = new RoomLoaderPayload(_room);
 		}
 		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _bench_message, _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);
 	};
@@ -351,19 +365,21 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
-	/// @param {Real} xscale The horizontal scale applied to instance positioning.
-	/// @param {Real} yscale The vertical scale applied to instance positioning.
-	/// @param {Real} angle The angle applied to instance positioning.
-	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). (default = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE)
-	/// @param {Bool} additiveAngle Whether to combinte loaded instances' image_angle with angle (true) or not (false). (default = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE)
-	/// @param {Real} xOrigin The x origin to load the room at. (default = ROOMLOADER_DEFAULT_XORIGIN)
-	/// @param {Real} yOrigin The y origin to load the room at. (default = ROOMLOADER_DEFAULT_YORIGIN)
+	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: 1]
+	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: 1]
+	/// @param {Real} angle The angle applied to instance positioning. [Default: 0]
+	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE].
+	/// @param {Bool} additiveAngle Whether to combinte loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
+	/// @param {Real} xOrigin The x origin to load the room at. [Default: ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the room at. [Default: ROOMLOADER_DEFAULT_YORIGIN]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x, _y, _lod, _xScale, _yScale, _angle, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
-		static _methodName = "load_instances";
+	static LoadInstances = function(_room, _x, _y, _lod, _xScale = 1, _yScale = 1, _angle = 0, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
+		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
+		
+		var _data = __GetLoadData(_room, _methodName, _body, _end);
 		
 		var _func = undefined;
 		if (is_real(_lod)) {
@@ -372,9 +388,12 @@ function RoomLoader() {
 		else if (is_string(_lod) or is_handle(_lod)) {
 			_func = instance_create_layer;
 		}
+		else {
+			var _message = $"Could not load instances at layer or depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
+		}
 		
 		__ROOMLOADER_BENCH_START;
-		var _data = __GetLoadData(_room, _methodName, _body, _end);
 		var _instancesData = _data.__instancesData;
 		var _n = array_length(_instancesData);
 		var _instances = array_create(_n, noone);
@@ -442,6 +461,7 @@ function RoomLoader() {
 			__layerWhitelist.__Add(argument[_i]);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -454,6 +474,7 @@ function RoomLoader() {
 			__layerWhitelist.__Remove(argument[_i]);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -462,6 +483,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LayerWhitelistReset = function() {
 		__layerWhitelist.__Reset();
+		
 		return self;
 	};
 	
@@ -484,6 +506,7 @@ function RoomLoader() {
 			__layerBlacklist.__Add(argument[_i]);
 			_i++;
 		}
+		
 		return self;
 	};
 	
@@ -496,6 +519,8 @@ function RoomLoader() {
 			__layerBlacklist.__Remove(argument[_i]);
 			_i++;
 		}
+		
+		return self;
 	};
 	
 	/// @returns {Struct.RoomLoader}
@@ -503,6 +528,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LayerBlacklistReset = function() {
 		__layerBlacklist.__Reset();
+		
 		return self;
 	};
 	

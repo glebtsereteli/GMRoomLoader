@@ -33,7 +33,7 @@ Takes a screenshot of the given room. Assigns the given origin and scale to the 
 // Take a screenshot of the rmExample room with a Middle Center origin,
 // only capture only Tilemaps and Sprites:
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
-screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags);
+screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags); // [!code highlight]
 
 // Draw GUI event. Draw screenshot centered on the screen:
 var _x = display_get_gui_width() / 2;
@@ -67,7 +67,7 @@ Assigns the given origin and scale to the created sprite and filters the capture
 // Create event.
 // Take a screenshot of the top-left quadrant of the rmExample room with a Middle Center origin,
 // scale it up by a factor of 2, and capture only Instances:
-screenshot = RoomLoader.ScreenshotPart(rm_chunk_easy_01, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, ROOMLOADER_FLAG.INSTANCES);
+screenshot = RoomLoader.ScreenshotPart(rm_chunk_easy_01, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
 
 // Draw GUI event. Draw screenshot centered on the screen:
 var _x = display_get_gui_width() / 2;
