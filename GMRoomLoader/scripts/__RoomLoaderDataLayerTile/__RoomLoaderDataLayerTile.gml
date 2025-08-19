@@ -63,12 +63,30 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 	    return _tilemap;
 	};
-	static __CreateTilemapExt = function(_layer, _x, _y) {
+	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle) {
+		static _tileMirrorFlag = 0x10000000;
+		static _tileFlipFlag = 0x20000000;
+		
 	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
 		
-	    var _data = __tilesData;
+	    var _tilesData = __tilesData;
+		
+		var _mirrorMult = (_mirror ? -1 : 1);
+	    var _mirrorOffset = (_mirror ? __width - 1 : 0);
+	    var _flipMult = (_flip ? -1 : 1);
+	    var _flipOffset = (_flip ? __height - 1 : 0);
+		
 		var _i = 0; repeat (__n) {
-			tilemap_set(_tilemap, _data[_i], _data[_i + 1], _data[_i + 2]);
+			var _t = _tilesData[_i];
+			
+			_x = (_tilesData[_i + 1] * _mirrorMult) + _mirrorOffset;
+			_y = (_tilesData[_i + 2] * _flipMult) + _flipOffset;
+			
+			_t ^= _mirror * _tileMirrorFlag;
+			_t ^= _flip * _tileFlipFlag;
+			
+			tilemap_set(_tilemap, _t, _x, _y);
+			
 			_i += __ROOMLOADER_TILE_STEP;
 		}
 		

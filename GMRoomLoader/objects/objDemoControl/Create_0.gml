@@ -5,4 +5,8 @@ texture_prefetch("Default");
 DEMOS = new Demos();
 DEMOS.Init();
 
-RoomLoader.LoadTilemap(rmDemoGeneral01, room_width / 2, room_height / 2, "TilesMid", layer, 0.5, 0.5);
+RoomLoader.DataInit(rmTilemapTest);
+RoomLoader.LoadTilemap(rmTilemapTest, 100 + 000, 100, "Test", layer, false, false, 0);
+RoomLoader.LoadTilemap(rmTilemapTest, 100 + 320, 100, "Test", layer, false, false, 90);
+RoomLoader.LoadTilemap(rmTilemapTest, 100 + 640, 100, "Test", layer, false, false, 180);
+RoomLoader.LoadTilemap(rmTilemapTest, 100 + 960, 100, "Test", layer, false, false, 270);
