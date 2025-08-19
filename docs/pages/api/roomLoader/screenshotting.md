@@ -19,13 +19,13 @@ Make sure to keep track of them and delete them using [sprite_delete()](https://
 
 Takes a screenshot of the given room. Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags. Returns the created :Asset.GMSprite: ref.
 
-| Parameter    | Type                     | Description                                                              |
-|--------------|--------------------------|--------------------------------------------------------------------------|
-| `room`       | :Asset.GMRoom:           | The room to take a screenshot of                                         |
-| `[xorigin]`  | :Real:                   | The x sprite origin. Default: :ROOMLOADER_DEFAULT_XORIGIN:               |
-| `[yorigin]`  | :Real:                   | The y sprite origin. Default: :ROOMLOADER_DEFAULT_YORIGIN:               |
-| `[scale]`    | :Real:                   | The sprite scale. Default: 1                                             |
-| `[flags]`    | :Enum:.`ROOMLOADER_FLAG` | The flags to filter captured elements by. Default: `ROOMLOADER_FLAG.ALL` |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `room` | :Asset.GMRoom: | The room to take a screenshot of |
+| `[xorigin]` | :Real: | The x sprite origin. Default: :ROOMLOADER_DEFAULT_XORIGIN: |
+| `[yorigin]` | :Real: | The y sprite origin. Default: :ROOMLOADER_DEFAULT_YORIGIN: |
+| `[scale]` | :Real: | The sprite scale. Default: 1 |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by. Default: `ROOMLOADER_FLAG.ALL` |
 
 :::code-group
 ```js [Example]
@@ -50,18 +50,17 @@ Takes a screenshot part of the given room defined by `left`, `top`, `width` and 
 
 Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags. Returns the created :Asset.GMSprite: ref.
 
-| Parameter    | Type                      | Description                                                                                 |
-|--------------|---------------------------|---------------------------------------------------------------------------------------------|
-| `room`       | :GMRoom:                  | The room to take a screenshot of                                                            |
-| `left`       | :Real:                    | The x position on the sprite of the top-left corner of the area to capture (0-1 percentage) |
-| `top`        | :Real:                    | The y position on the sprite of the top-left corner of the area to capture (0-1 percentage) |
-| `width`      | :Real:                    | The width of the area to capture (0-1 percentage)                                           |
-| `height`     | :Real:                    | The height of the area to capture (0-1 percentage)                                          |
-| `[xorigin]`  | :Real:                    | The x origin to load the room at. Default: :ROOMLOADER_DEFAULT_XORIGIN:                     |
-| `[yorigin]`  | :Real:                    | The y origin to load the room at. Default: :ROOMLOADER_DEFAULT_YORIGIN:                     |
-| `[scale]`    | :Real:                    | The scale to create the sprite at. Default: 1                                               |
-| `[flags]`    | :Enum:.`ROOMLOADER_FLAG`: | The flags to filter the captured elements by. Default: ROOMLOADER_FLAG.ALL                  |
-
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `room` | :GMRoom: | The room to take a screenshot of |
+| `left` | :Real: | The x position on the sprite of the top-left corner of the area to capture (0–1 percentage) |
+| `top` | :Real: | The y position on the sprite of the top-left corner of the area to capture (0–1 percentage) |
+| `width` | :Real: | The width of the area to capture (0–1 percentage) |
+| `height` | :Real: | The height of the area to capture (0–1 percentage) |
+| `[xorigin]` | :Real: | The x origin to load the room at. Default: :ROOMLOADER_DEFAULT_XORIGIN: |
+| `[yorigin]` | :Real: | The y origin to load the room at. Default: :ROOMLOADER_DEFAULT_YORIGIN: |
+| `[scale]` | :Real: | The scale to create the sprite at. Default: 1 |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the captured elements by. Default: ROOMLOADER_FLAG.ALL |
 
 :::code-group
 ```js [Example]

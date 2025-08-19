@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"RoomLoaderEnums",
+  "%Name":"RoomLoaderFlags",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"RoomLoaderEnums",
+  "name":"RoomLoaderFlags",
   "parent":{
     "name":"01. Public",
     "path":"folders/02. GMRoomLoader/01. Public.yy",

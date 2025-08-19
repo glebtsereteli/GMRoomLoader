@@ -81,7 +81,7 @@
     {"name":"__RoomLoaderMacros","order":3,"path":"scripts/__RoomLoaderMacros/__RoomLoaderMacros.yy",},
     {"name":"__RoomLoaderUtility","order":2,"path":"scripts/__RoomLoaderUtility/__RoomLoaderUtility.yy",},
     {"name":"RoomLoaderConfig","order":3,"path":"scripts/RoomLoaderConfig/RoomLoaderConfig.yy",},
-    {"name":"RoomLoaderEnums","order":2,"path":"scripts/RoomLoaderEnums/RoomLoaderEnums.yy",},
+    {"name":"RoomLoaderFlags","order":2,"path":"scripts/RoomLoaderFlags/RoomLoaderFlags.yy",},
     {"name":"RoomLoaderPayload","order":1,"path":"scripts/RoomLoaderPayload/RoomLoaderPayload.yy",},
     {"name":"scrDemoClasses","order":2,"path":"scripts/scrDemoClasses/scrDemoClasses.yy",},
     {"name":"scrDemoModules","order":3,"path":"scripts/scrDemoModules/scrDemoModules.yy",},

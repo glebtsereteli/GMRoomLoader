@@ -1,8 +1,8 @@
 // @feather ignore all
 
 /// @func RoomLoader()
-/// @desc Main interface. Handles data initialization and removal, room loading, 
-/// layer filtering and taking room screenshots.
+/// @desc Main interface. Handles data initialization and removal, room and instances loading, 
+/// layer filtering and taking screenshots.
 /// 
 /// NOTE: This is a "static namespace" function (made up term), no initialization is required.
 /// All methods are to be called as follows: RoomLoader.action(arguments...).

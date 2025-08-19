@@ -25,7 +25,7 @@ Default Y origin used by :RoomLoader:'s :Loading: and :Screenshotting:. Origins 
 ### `ROOMLOADER_DEFAULT_FLAGS`
 > Default: `ROOMLOADER_FLAG.CORE`.
 
-Default flags used by :RoomLoader:'s :Loading: methods.
+Default flags used by :RoomLoader:'s :Loading: and :Screenshotting:.
 
 ---
 ### `ROOMLOADER_DELIVER_PAYLOAD`

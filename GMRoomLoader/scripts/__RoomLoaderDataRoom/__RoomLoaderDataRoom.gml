@@ -13,9 +13,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		static _MapInstanceData = function(_data) {
 			_data.object = asset_get_index(_data.object_index);
 			_data.sprite = object_get_sprite(_data.object);
-			
-			var _cc = _data.creation_code;
-			_data.creationCode = ((_cc != -1) ? _cc : __RoomLoaderNoop);
+			_data.creationCode = ((_data.creation_code != -1) ? _data.creation_code : __RoomLoaderNoop);
 			
 			_data.preCreate = {}; 
 			with (_data.preCreate) {
@@ -35,9 +33,10 @@ function __RoomLoaderDataRoom(_room) constructor {
 					image_index = _data.image_index;
 					image_speed = _data.image_speed;
 				}
-				var _preCreate = _data.pre_creation_code;
-				if (_preCreate != -1) {
-					_preCreate();
+				
+				var _pcc = _data.pre_creation_code;
+				if (_pcc != -1) {
+					_pcc();
 				}
 			};
 			

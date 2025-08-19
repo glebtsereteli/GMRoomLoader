@@ -58,7 +58,7 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
-          { text: 'Enums', link: '/pages/api/enums' },
+          { text: 'Flags', link: '/pages/api/flags' },
           { text: 'Configuration', link: '/pages/api/config' },
         ]
       },
@@ -116,13 +116,14 @@ export default defineConfig({
         
         'RoomLoader': '/pages/api/roomloader/overview',
         'Payload': '/pages/api/payload/overview',
-
+        
         'Loading': '/pages/api/roomloader/loading',
         'Screenshotting': '/pages/api/roomloader/screenshotting',
         'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
+        'ROOMLOADER_FLAG': '/pages/api/flags#roomloader_flag',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',

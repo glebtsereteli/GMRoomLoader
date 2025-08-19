@@ -18,6 +18,3 @@ The following list of ideas includes features that might or might not be introdu
 * Level selection.
 * Drag'n'drop map.
 * Endless runner.
-
-## Docs
-* Short description for biwsise flags.

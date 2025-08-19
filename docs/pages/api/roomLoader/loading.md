@@ -13,14 +13,14 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 * If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :Payload:.
 * Otherwise returns :Undefined:.
 
-| Parameter   | Type                    | Description                                                                  |
-| ----------- | ----------------------- | -----------------------------------------------------------------------------|
-| `room`      | :Asset.GMRoom:          | The room to load                                                             |
-| `x`         | :Real:                  | The x coordinate to load the room at                                         |
-| `y`         | :Real:                  | The y coordinate to load the room at                                         |
-| `[xorigin]` | :Real:                  | The x origin to load the room at. Default = :ROOMLOADER_DEFAULT_XORIGIN:     |
-| `[yorigin]` | :Real:                  | The y origin to load the room at. Default = :ROOMLOADER_DEFAULT_YORIGIN:     |
-| `[flags]`   | :Enum:.ROOMLOADER_FLAG: | The flags to filter the loaded data by. Default = :ROOMLOADER_DEFAULT_FLAGS: |
+| Parameter   | Type                     | Description                                                                  |
+|-------------|--------------------------|------------------------------------------------------------------------------|
+| `room`      | :Asset.GMRoom:           | The room to load                                                             |
+| `x`         | :Real:                   | The x coordinate to load the room at                                         |
+| `y`         | :Real:                   | The y coordinate to load the room at                                         |
+| `[xorigin]` | :Real:                   | The x origin to load the room at. Default = :ROOMLOADER_DEFAULT_XORIGIN:     |
+| `[yorigin]` | :Real:                   | The y origin to load the room at. Default = :ROOMLOADER_DEFAULT_YORIGIN:     |
+| `[flags]`   | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. Default = :ROOMLOADER_DEFAULT_FLAGS: |
 
 :::code-group
 ```js [Examples]

@@ -12,6 +12,9 @@
     ![alt text](import03.png)
 3. You're good to go! Check out the [Quick Setup](#quick-setup) section below to load your first room!
 
+:::tip UPDATING
+If you already have GMRoomLoader installed and want to update to the latest version, check the [Updating](/pages/home/faq/#updating) FAQ entry for instructions.
+:::
 ## Quick Setup
 GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, but the following are the only basics you need to get started!
 

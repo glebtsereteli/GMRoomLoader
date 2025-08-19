@@ -19,7 +19,7 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 ## 📍 What versions of GameMaker does GMRoomLoader support?
 The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.1.242`.
 
-## 📍 How do I update to the latest version of GMRoomLoader?
+## 📍 How do I update to the latest version of GMRoomLoader? {#updating}
 1. If you've made changes to the `RoomLoaderConfig` script, make a backup of the script before continuing.
 2. Delete the `GMRoomLoader` folder from your project.
 3. Repeat the [Installation](/pages/home/gettingStarted/#installation) process.
