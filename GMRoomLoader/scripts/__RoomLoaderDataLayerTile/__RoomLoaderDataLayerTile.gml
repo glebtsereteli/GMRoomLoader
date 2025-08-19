@@ -64,26 +64,60 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	    return _tilemap;
 	};
 	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle) {
-		static _tileMirrorFlag = 0x10000000;
-		static _tileFlipFlag = 0x20000000;
-		
 	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
 		
-	    var _tilesData = __tilesData;
+		var _mat00 = 1, _mat01 = 0, _rotXOffset = 0;
+		var _mat10 = 0, _mat11 = 1, _rotYOffset = 0;
+		var _rotFlag = 0;
+		
+		_angle = _angle - (floor(_angle / 360) * 360);
+		_angle = round(_angle / 90) * 90;
+		
+		switch (_angle) {
+		    case 90: { 
+		        _mat00 = 0; _mat01 = 1; _rotXOffset = 0;
+		        _mat10 = -1; _mat11 = 0; _rotYOffset = __width - 1;
+		        _rotFlag = tile_mirror | tile_flip | tile_rotate;
+		        break;
+			}
+		    case 180: {
+		        _mat00 = -1; _mat01 = 0; _rotXOffset = __width - 1;
+		        _mat10 = 0; _mat11 = -1; _rotYOffset = __height - 1;
+		        _rotFlag = tile_mirror | tile_flip;
+		        break;
+			}
+		    case 270: {
+		        _mat00 = 0; _mat01 = -1; _rotXOffset = __height - 1;
+		        _mat10 = 1; _mat11 = 0; _rotYOffset = 0;
+		        _rotFlag = tile_rotate;
+		        break;
+			}
+		}
 		
 		var _mirrorMult = (_mirror ? -1 : 1);
 	    var _mirrorOffset = (_mirror ? __width - 1 : 0);
 	    var _flipMult = (_flip ? -1 : 1);
 	    var _flipOffset = (_flip ? __height - 1 : 0);
 		
+		var _tilesData = __tilesData;
 		var _i = 0; repeat (__n) {
 			var _t = _tilesData[_i];
 			
-			_x = (_tilesData[_i + 1] * _mirrorMult) + _mirrorOffset;
-			_y = (_tilesData[_i + 2] * _flipMult) + _flipOffset;
+			var _xStart = _tilesData[_i + 1];
+			var _yStart = _tilesData[_i + 2];
 			
-			_t ^= _mirror * _tileMirrorFlag;
-			_t ^= _flip * _tileFlipFlag;
+			// rotate
+			_x = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset;
+			_y = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
+			_t ^= _rotFlag;
+			
+			// mirror
+			_x = (_x * _mirrorMult) + _mirrorOffset;
+			_t ^= _mirror * tile_mirror;
+			
+			// flip
+			_y = (_y * _flipMult) + _flipOffset;
+			_t ^= _flip * tile_flip;
 			
 			tilemap_set(_tilemap, _t, _x, _y);
 			
