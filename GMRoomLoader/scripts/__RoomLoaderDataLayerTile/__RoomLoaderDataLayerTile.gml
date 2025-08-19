@@ -63,8 +63,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 	    return _tilemap;
 	};
-	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle) {
-	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
+	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle, _tileset = __tileset) {
+	    var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
 		
 		var _mat00 = 1, _mat01 = 0, _rotXOffset = 0;
 		var _mat10 = 0, _mat11 = 1, _rotYOffset = 0;

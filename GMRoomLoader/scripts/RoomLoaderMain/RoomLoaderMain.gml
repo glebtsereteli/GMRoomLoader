@@ -449,11 +449,11 @@ function RoomLoader() {
 		return _instances;
 	};
 	
-	static LoadTilemap = function(_room, _x, _y, _sourceLayer, _targetLayer, _mirror = false, _flip = false, _angle = 0) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayer, _targetLayer, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
 		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayer];
 		
-		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle);
+		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
 	};
 	
 	#endregion
