@@ -29,14 +29,14 @@ While GMRoomLoader offers many tools for handling room data, loading rooms and w
 > Download the [First Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
 
 ### 1. Initialize
-[Initialize](/pages/api/roomloader/data/#initialization) the data for the room you'd like to load. 
+[Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you'd like to load. 
 ```js
 RoomLoader.DataInit(room);
 ```
 It's best to do this at the very start of your game in some "initialization" or "master" manager object. For this simple example, feel free to do it in the Create event of the object you'd like to handle your room loading, or at any point *before* loading the room.
 
 ### 2. Load
-[Load](/pages/api/roomloader/loading/#load) the room on the mouse position and store the returned instance of :Payload: in a variable to clean up later.
+[Load](/pages/api/roomLoader/loading/#load) the room on the mouse position and store the returned instance of :Payload: in a variable to clean up later.
 ```js
 payload = RoomLoader.Load(room, mouse_x, mouse_y, 0.5, 0.5);
 ```

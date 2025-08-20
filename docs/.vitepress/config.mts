@@ -132,15 +132,15 @@ export default defineConfig({
         // links
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
         
-        'RoomLoader': '/pages/api/roomloader/overview',
+        'RoomLoader': '/pages/api/roomLoader/overview',
         'Payload': '/pages/api/payload/overview',
         
-        'Initialization': '/pages/api/roomloader/data/#initialization',
-        'Loading': '/pages/api/roomloader/loading',
-        'Screenshotting': '/pages/api/roomloader/screenshotting',
+        'Initialization': '/pages/api/roomLoader/data/#initialization',
+        'Loading': '/pages/api/roomLoader/loading',
+        'Screenshotting': '/pages/api/roomLoader/screenshotting',
         'Cleanup': '/pages/api/payload/cleanup',
-        'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
-        'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
+        'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
+        'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
         'ROOMLOADER_FLAG': '/pages/api/flags#roomloader_flag',
