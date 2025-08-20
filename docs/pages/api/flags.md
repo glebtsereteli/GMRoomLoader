@@ -24,8 +24,8 @@ Flags stored in the `ROOMLOADER_FLAG` enum are used to filter room elements by t
 // Loads rmLevelCastle01's Tilemaps centered:
 RoomLoader.Load(rmLevelCastle01, 0, 0, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
 
-// Loads rmLevelMaze11's Instances, Sprites and Particle Systems: 
-var _flags = (ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.PARTICLE_SYSTEMS); // [!code highlight]
+// Loads rmLevelMaze11's Instances and Sprites: 
+var _flags = (ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
 RoomLoader.Load(rmMaze11, 0, 0, 0, 0, _flags);
 
 // Loads rmLevelRoof's with flags set to All BUT Sequences:

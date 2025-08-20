@@ -54,14 +54,14 @@ function RoomLoader() {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
 		return (not _match);
 	};
-	static __GetLoadData = function(_room, _methodName, _nonroomMessage, _nodataMessage) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonroomMessage);
+	static __GetLoadData = function(_room, _methodName, _nonRoomMessage, _noDataMessage) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonRoomMessage);
 		
 		var _data = __data.__Get(_room);
 		if (_data != undefined) return _data;
 		
 		var _roomName = $"<{room_get_name(_room)}>";
-		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_nodataMessage}"
+		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_noDataMessage}"
 		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
 	static __TakeScreenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName) {
@@ -330,6 +330,18 @@ function RoomLoader() {
 		return _data.__height;
 	};
 	
+	/// @param {Asset.GMRoom} room The room to get the instances data for.
+	/// @returns {Real}
+	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
+	/// @context RoomLoader
+	static DataGetInstances = function(_room) {
+		static _methodName = "DataGetInstances";
+		
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "get instances data for");
+		var _data = __GetLoadData(_room, _methodName, "load", "get their instances data");
+		return _data.__instancesPool;
+	};
+	
 	#endregion
 	#region Loading
 	
@@ -345,11 +357,11 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _methodName = "load";
-		static _nonroomMessage = "load";
-		static _nodataMessage = "load them";
+		static _nonRoomMessage = "load";
+		static _noDataMessage = "load them";
 		static _benchMessage = "loaded";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonroomMessage, _nodataMessage);
+		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
 		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
@@ -394,7 +406,7 @@ function RoomLoader() {
 		}
 		
 		__ROOMLOADER_BENCH_START;
-		var _instancesData = _data.__instancesData;
+		var _instancesData = _data.__instancesPool;
 		var _n = array_length(_instancesData);
 		var _instances = array_create(_n, noone);
 		

@@ -3,7 +3,7 @@
 function __RoomLoaderDataRoom(_room) constructor {
 	__room = _room;
 	__layersPool = [];
-	__instancesData = [];
+	__instancesPool = [];
 	__instancesInitLut = {};
 	__tilemapsLut = {};
 	__width = undefined;
@@ -67,7 +67,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		// Store instances data:
 		var _instancesData = _rawData.instances;
 		if (_instancesData != 0) {
-			__instancesData = array_map(_instancesData, _MapInstanceData);
+			__instancesPool = array_map(_instancesData, _MapInstanceData);
 		}
 		
 		// Collect data:
@@ -97,7 +97,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		_y -= (__height * _yOrigin);
 		
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__instances.__Init(array_length(__instancesData));
+			RoomLoader.__payload.__instances.__Init(array_length(__instancesPool));
 		}
 		
 		var _i = 0; repeat (array_length(__layersPool)) {

@@ -255,9 +255,9 @@ var _width = RoomLoader.DataGetWidth(rmLevelDungeon);
 
 Returns the height of the given room.
 
-| Parameter | Type           | Description                    |
-|-----------|----------------|--------------------------------|
-| `room`    | :Asset.GMRoom: | The room to get the height of  |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get the height of  |
 
 :::code-group
 ```js [Example]
@@ -265,3 +265,24 @@ Returns the height of the given room.
 var _height = RoomLoader.DataGetHeight(rmLevelDungeon);
 ```
 :::
+
+---
+### `.DataGetInstances()`
+
+> `RoomLoader.DataGetInstances(room)` ➜ :Array: of :Struct:
+
+Returns an array of processed instance data for the given room.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get an array of instance data for  |
+
+:::code-group
+```js [Example]
+// Fetches instance data for rmExample:
+var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
+
+// Maps the data array to an array of instance IDs using a custom function
+// for creating instances:
+instances = array_map(_instancesData, CustomInstanceCreate);
+```

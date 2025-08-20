@@ -12,8 +12,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _index = _payload.__index;
 		}
 		
-		var _i = 0; repeat (array_length(__instancesData)) {
-			var _iData = __instancesData[_i];
+		var _i = 0; repeat (array_length(__instancesPool)) {
+			var _iData = __instancesPool[_i];
 			var _iX = _iData.x + _xOffset;
 			var _iY = _iData.y + _yOffset;
 			
@@ -32,8 +32,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		}
 	};
 	static __OnDraw = function() {
-		var _i = 0; repeat (array_length(__instancesData)) {
-			with (__instancesData[_i]) {
+		var _i = 0; repeat (array_length(__instancesPool)) {
+			with (__instancesPool[_i]) {
 				if (sprite == -1) break;
 				draw_sprite_ext(
 					sprite, preCreate.image_index,
@@ -47,7 +47,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	};
 	
 	// custom
-	__instancesData = array_map(_instancesData, __MapData);
+	__instancesPool = array_map(_instancesData, __MapData);
 	
 	static __MapData = function(_iData) {
 		return __owner.__instancesInitLut[$ _iData.inst_id];
