@@ -137,8 +137,8 @@ export default defineConfig({
         
         'Initialization': '/pages/api/roomloader/data/#initialization',
         'Loading': '/pages/api/roomloader/loading',
-        'Cleanup': '/pages/api/payload/cleanup',
         'Screenshotting': '/pages/api/roomloader/screenshotting',
+        'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',

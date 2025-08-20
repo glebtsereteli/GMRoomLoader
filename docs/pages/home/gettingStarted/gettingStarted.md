@@ -18,15 +18,15 @@
     ![alt text](import02.png)
     * Click __Import__.
     ![alt text](import03.png)
-3. You're good to go! Next check out the [Quick Setup](#quick-setup) section below to load your first room!
+3. You're good to go! Next check out the [First Setup](#first-setup) section below to load your first room!
 
 :::tip UPDATING
 If you already have GMRoomLoader installed and want to update to the latest version, check the [Updating](/pages/home/faq/#updating) FAQ entry for instructions.
 :::
-## Quick Setup
+## First Setup
 While GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, the following :Initialization:, :Loading: and :Cleanup: methods are the only basics you need to get things working and load your first room!
 
-> Download the [Quick Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
+> Download the [First Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
 
 ### 1. Initialize
 [Initialize](/pages/api/roomloader/data/#initialization) the data for the room you'd like to load. 
