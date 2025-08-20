@@ -48,6 +48,7 @@ export default defineConfig({
               { text: 'Loading', link: '/pages/api/roomLoader/loading' },
               { text: 'Layer Filtering', link: '/pages/api/roomLoader/layerFiltering' },
               { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
+              { text: 'Origin', link: '/pages/api/roomLoader/origin' },
             ]
           },
           {

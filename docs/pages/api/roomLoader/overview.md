@@ -12,10 +12,11 @@
 
 `RoomLoader` is the main interface of GMRoomLoader. It handles most library operations and is organized into the following modules:
 
-- [Data](/pages/api/roomLoader/data) - manages room data flow required for loading and screenshotting.  
+- [Data](/pages/api/roomLoader/data) - manages room data flow required for :Loading: and :Screenshotting:.  
 - [Loading](/pages/api/roomLoader/loading) - the fun part, handles the actual loading of rooms and instances.  
 - [Layer Filtering](/pages/api/roomLoader/layerFiltering) - allows sorting rooms by name before loading.  
 - [Screenshotting](/pages/api/roomLoader/screenshotting) - captures screenshots of rooms.
+- [Origin](/pages/api/roomLoader/origin) - describes the Origin concept used in all :Loading: and :Screenshotting: methods.
 
 ## Syntax
 `RoomLoader` is a function containing static data variables and methods, effectively acting as a makeshift GML [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170). It's initialized internally and requires no additional setup.

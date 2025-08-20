@@ -1,0 +1,17 @@
+# Origin
+
+All :Loading: and :Screenshotting: methods have optional `[xOrigin]` and `[yOrigin]` parameters that define the origin point for the target room.
+
+These parameters are relative, ranging from `0` (no offset) to `1` (full width/height). Any value between `0` and `1` (inclusive) is valid.
+* `xOrigin` determines the horizontal origin. `0` aligns to the left, `0.5` to the center, and `1` to the right. Defaults to the :ROOMLOADER_DEFAULT_XORIGIN: config macro.
+* `yOrigin` determines the vertical origin. `0` aligns to the top, `0.5` to the center, and `1` to the bottom. Defaults to the :ROOMLOADER_DEFAULT_YORIGIN: config macro.
+
+::: code-group
+```js [Examples]
+// Loads rmChunkEasy01 at the bottom right corner of the room:
+RoomLoader.Load(rmChunkEasy01, room_width, room_height, 1, 1);
+
+// Takes a screenshot of rmLevelCliffs with a centered origin:
+screenshot = RoomLoader.Screenshot(rmLevelCliffs, 0.5, 0.5);
+```
+:::

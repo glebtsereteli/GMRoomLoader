@@ -69,8 +69,8 @@ Cleanup = function() { // The method we'll use to unload the loaded room.
 ```js [Step Event]
 if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.
-
-    // Load the room centered on the mouse position:
+    
+    // Load the room on the mouse position:
     payload = RoomLoader.Load(room, mouse_x, mouse_y);
 }
 
