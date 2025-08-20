@@ -271,7 +271,7 @@ var _height = RoomLoader.DataGetHeight(rmLevelDungeon);
 
 > `RoomLoader.DataGetInstances(room)` ➜ :Array: of :Struct:
 
-Returns an array of processed instance data for the given room.
+Returns an array of instance data structs for the given room. Format listed [below](#struct-format).
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -284,7 +284,11 @@ var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight
 
 // Maps the data array to an array of instance IDs using a custom function
 // for creating instances:
-instances = array_map(_instancesData, CustomInstanceCreate);
+instances = array_map(_instancesData, function(_instanceData) {
+    var _instanceId = ...; // Use _instanceData for custom instance creation.
+    // More custom logic...
+    return _instanceId;
+});
 ```
 :::
 
@@ -294,14 +298,14 @@ instances = array_map(_instancesData, CustomInstanceCreate);
 | ├─ `x` | :Real: |
 | ├─ `y` | :Real: |
 | ├─ `id` | :Id.Instance: |
-| ├─ `object` | :Id.Object: |
-| ├─ `sprite` | :Id.Sprite: |
-| ├─ `creationCode` | :Id.Script: |
+| ├─ `object` | :Asset.GMObject: |
+| ├─ `sprite` | :Asset.GMSprite: |
+| ├─ `creationCode` | :Id.Function: |
 | └─ `preCreate` | :Struct: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_xscale` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_yscale` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_angle` | :Real: |
-| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
-| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_blend` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_speed` | :Real: |
-| &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_index` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_index` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_blend` | :Real: |

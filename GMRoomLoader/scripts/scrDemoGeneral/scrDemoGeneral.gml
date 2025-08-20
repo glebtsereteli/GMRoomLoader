@@ -46,30 +46,29 @@ function DemoGeneral() : DemoPar("General") constructor {
 		});
 	
 		// Reloader:
-		reloader
-		.Clear()
+		owner.reloader
 		.AddModules([pos, origin, flags])
 		.OnTrigger(function() {
 			Load();
 		});
 		array_foreach(whitelist, function(_layer) {
-			reloader.addVariable(_layer, "enabled");
+			owner.reloader.AddVariable(_layer, "enabled");
 		});
 		array_foreach(blacklist, function(_layer) {
-			reloader.addVariable(_layer, "enabled");
+			owner.reloader.AddVariable(_layer, "enabled");
 		});
 	};
 	static Draw = function() {
 		DemoDrawFrame(rm, pos.x, pos.y, origin);
 	};
-	static Cleanup = function() {
-		RoomLoader.DataRemove(rm);
-		Unload();
-	};
 	
 	static OnUpdate = function() {
 		if (keyboard_check_pressed(ord("1"))) Load();
 		if (keyboard_check_pressed(ord("2"))) Unload();
+	};
+	static OnCleanup = function() {
+		RoomLoader.DataRemove(rm);
+		Unload();
 	};
 	
 	// Custom:

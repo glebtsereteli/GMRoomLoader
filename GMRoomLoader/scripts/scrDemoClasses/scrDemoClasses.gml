@@ -2,9 +2,11 @@
 #macro DEMOS global.__demos
 
 function Demos(_pool) constructor {
+	reloader = new DemoReloader();
 	pool = [
 		new DemoGeneral(),
 		new DemoInstances(),
+		new DemoTilemap(),
 		new DemoScreenshots(),
 		new DemoBase(),
 	];
@@ -21,7 +23,6 @@ function Demos(_pool) constructor {
 	yCenter = undefined;
 	w = undefined;
 	h = undefined;
-	liveRefresh = true;
 	
 	static Init = function() {
 		var _pad = 8;
@@ -77,6 +78,7 @@ function Demos(_pool) constructor {
 			Change(index + _input);
 		}
 		
+		reloader.Update();
 		GetCurrent().Update();
 	};
 	static Draw = function() {
@@ -85,6 +87,7 @@ function Demos(_pool) constructor {
 	
 	static Change = function(_index) {
 		_index = Mod2(_index, n);
+		reloader.Clear();
 		GetCurrent().Cleanup();
 		index = _index;
 		index2 = index;
@@ -99,10 +102,10 @@ function Demos(_pool) constructor {
 	};
 }
 function DemoPar(_name) constructor {
+	owner = other;
 	name = _name;
 	iname = undefined;
 	index = undefined;
-	reloader = new DemoReloader();
 	
 	static Setup = function(_index) {
 		index = _index;
@@ -110,13 +113,15 @@ function DemoPar(_name) constructor {
 	};
 	static Init = noop;
 	static Update = function() {
-		reloader.Update();
 		OnUpdate();
 	};
 	static Draw = noop;
-	static Cleanup = noop;
+	static Cleanup = function() {
+		OnCleanup();
+	};
 
 	static OnUpdate = noop;
+	static OnCleanup = noop;
 }
 function DemoReloader(_pool) constructor {
 	pool = [];
@@ -132,13 +137,12 @@ function DemoReloader(_pool) constructor {
 			return false;
 		};
 		
-		if ((not DEMOS.liveRefresh) and (not mouse_check_button_released(mb_left))) return;
-		if (not array_any(pool, _check)) return;
-		
-		callbackOnTrigger();
+		if (array_any(pool, _check)) {
+			callbackOnTrigger();
+		}
 	};
 	
-	static addVariable = function(_scope, _name) {
+	static AddVariable = function(_scope, _name) {
 		array_push(pool, {
 			def: _scope[$ _name],
 			scope: _scope,
@@ -148,13 +152,13 @@ function DemoReloader(_pool) constructor {
 	};
 	static AddVariables = function(_scope, _pool) {
 		for (var _i = 0; _i < array_length(_pool); _i++) {
-			addVariable(_scope, _pool[_i]);
+			AddVariable(_scope, _pool[_i]);
 		}
 		return self;
 	};
 	static AddModules = function(_pool) {
 		array_foreach(_pool, function(_module) {
-			AddVariables(_module, _module.reloader_names);
+			AddVariables(_module, _module.reloaderNames);
 		});
 		return self;
 	};

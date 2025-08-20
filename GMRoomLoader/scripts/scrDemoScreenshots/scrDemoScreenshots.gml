@@ -36,6 +36,14 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		
 		origin.InitDbg();
 		flags.InitDbg();
+		
+		// Reloader:
+		owner.reloader
+		.AddVariables(self, ["left", "top", "w", "h", "scale"])
+		.AddModules([origin, flags])
+		.OnTrigger(function() {
+			Take();
+		});
 	};
 	static Draw = function() {
 		var _x1 = DEMOS.xCenter;
@@ -52,16 +60,16 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		draw_sprite_stretched(sprDemoFrame, 0, _x, _y, _w * (1 - left), _h * (1 - top));
 		draw_sprite(sprDemoCross, 0, _x1, _y1);
 	};
-	static Cleanup = function() {
-		RoomLoader.DataRemoveTag(tag);
-		Clear();
-	};
 	
 	static OnUpdate = function() {
 		var _checker = (keyboard_check(vk_shift) ? keyboard_check : keyboard_check_pressed);
 		if (_checker(ord("1"))) {
 			TakeRandom();
 		}
+	};
+	static OnCleanup = function() {
+		RoomLoader.DataRemoveTag(tag);
+		Clear();
 	};
 	
 	// Custom:
@@ -97,11 +105,4 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		sprite_delete(sprite);
 		sprite = undefined;
 	};
-	
-	reloader
-	.AddVariables(self, ["left", "top", "w", "h", "scale"])
-	.AddModules([origin, flags])
-	.OnTrigger(function() {
-		Take();
-	});
 }

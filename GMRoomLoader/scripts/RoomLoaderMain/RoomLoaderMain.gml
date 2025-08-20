@@ -377,16 +377,16 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
+	/// @param {Real} xOrigin The x origin to load the room at. [Default: ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the room at. [Default: ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: 1]
 	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: 0]
 	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE].
 	/// @param {Bool} additiveAngle Whether to combinte loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
-	/// @param {Real} xOrigin The x origin to load the room at. [Default: ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin to load the room at. [Default: ROOMLOADER_DEFAULT_YORIGIN]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x, _y, _lod, _xScale = 1, _yScale = 1, _angle = 0, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
+	static LoadInstances = function(_room, _x, _y, _lod, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _xScale = 1, _yScale = 1, _angle = 0, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
 		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -461,9 +461,22 @@ function RoomLoader() {
 		return _instances;
 	};
 	
-	static LoadTilemap = function(_room, _x, _y, _sourceLayer, _targetLayer, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
+	/// @param {Asset.GMRoom} room The room to load a tilemap from.
+	/// @param {Real} x The x coordinate to load the tilemap at.
+	/// @param {Real} y The y coordinate to load the tilemap at.
+	/// @param {String} sourceLayerName The source layer name to load a tilemap from.
+	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on.
+	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: false]
+	/// @param {Bool} flip Flip the loaded tilemap? [Default: false]
+	/// @param {Real} angle The angle to load the tilemap at. [Default: 0]
+	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default = source]
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = 0, _yOrigin = 0, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
 		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
-		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayer];
+		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
+		_x -= (_roomData.__width * _xOrigin);
+		_y -= (_roomData.__height * _yOrigin);
 		
 		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
 	};

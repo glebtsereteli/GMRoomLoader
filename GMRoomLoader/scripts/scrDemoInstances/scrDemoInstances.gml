@@ -4,6 +4,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
+		// Interface:
 		DEMOS.info = dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load\nroom instances with optional scale and rotation.");
 		dbg_text_separator("Shortcuts", 1);
@@ -32,6 +33,14 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		dbg_text("");
 		dbg_checkbox(ref_create(self, "angleAdditive"), "Additive Angle");
 		dbg_text(" - When enabled, individual instance \"image_angle\" is combined with\n the overall angle. Change the Angle parameter above and toggle this\n on/off to see it in action.");
+	
+		// Reloader:
+		owner.reloader
+		.AddVariables(self, ["xScale", "yScale", "angle", "scaleMultiplicative", "angleAdditive"])
+		.AddModules([pos, origin])
+		.OnTrigger(function() {
+			Load();
+		});
 	};
 	static Draw = function() {
 		var _frame = sprDemoFrame;
@@ -45,14 +54,14 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		
 		draw_sprite(sprDemoCross, 0, pos.x, pos.y);
 	};
-	static Cleanup = function() {
-		RoomLoader.DataRemove(rm);
-		Unload();
-	};
 	
 	static OnUpdate = function() {
 		if (keyboard_check_pressed(ord("1"))) Load();
 		if (keyboard_check_pressed(ord("2"))) Unload();
+	};
+	static OnCleanup = function() {
+		RoomLoader.DataRemove(rm);
+		Unload();
 	};
 	
 	// Custom:
@@ -69,7 +78,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	
 	static Load = function() {
 		Unload();
-		instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, xScale, yScale, angle, origin.x, origin.y, scaleMultiplicative, angleAdditive);
+		instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);
 	};
 	static Unload = function() {
 		if (instances == undefined) return;
@@ -79,11 +88,4 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		});
 		delete instances;
 	};
-	
-	reloader
-	.AddVariables(self, ["xScale", "yScale", "angle", "scaleMultiplicative", "angleAdditive"])
-	.AddModules([pos, origin])
-	.OnTrigger(function() {
-		Load();
-	});
 }

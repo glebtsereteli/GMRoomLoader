@@ -26,14 +26,21 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		});
 		
 		flags.InitDbg();
-	};
-	static Cleanup = function() {
-		slots.Cleanup();
-		host.Cleanup();
+		
+		// Reloader:
+		owner.reloader
+		.AddModules([flags])
+		.OnTrigger(function() {
+			slots.LoadAll();
+		});
 	};
 	
 	static OnUpdate = function() {
 		slots.Update();
+	};
+	static OnCleanup = function() {
+		slots.Cleanup();
+		host.Cleanup();
 	};
 	
 	// Custom:
@@ -110,10 +117,4 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		},
 	};
 	flags = new DemoModuleFlags();
-
-	reloader
-	.AddModules([flags])
-	.OnTrigger(function() {
-		slots.LoadAll();
-	});
 }

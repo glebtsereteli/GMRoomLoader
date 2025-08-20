@@ -11,43 +11,43 @@ function __RoomLoaderLayerFilter(_name, _positive) constructor {
 		
 		var _prefix = $"layer_{string_lower(__name)}";
 		__methodNames = {
-			__add: $"{_prefix}_add",
-			__remove: $"{_prefix}_remove",
-			__reset: $"{_prefix}_reset",
+			__add: $"{_prefix}Add",
+			__remove: $"{_prefix}Remove",
+			__reset: $"{_prefix}Reset",
 		};
 	};
 	static __CheckEmpty = function() {
 		return __positive;
 	};
-	static __CheckActive = function(_layer_name) {
-		return array_contains(__layerNames, _layer_name);	
+	static __CheckActive = function(_layerName) {
+		return array_contains(__layerNames, _layerName);	
 	};
-	static __Add = function(_layer_name) {
+	static __Add = function(_layerName) {
 		var _methodName = __methodNames.__add;
-		__RoomLoaderCatchString(__messagePrefix, _methodName, _layer_name);
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _layerName);
 		
-		if (__GetIndex(_layer_name) != -1) {
-			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Layer \"{_layer_name}\" is already {__name}ed");
+		if (__GetIndex(_layerName) != -1) {
+			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Layer \"{_layerName}\" is already {__name}ed");
 		}
 		
-		array_push(__layerNames, _layer_name);
+		array_push(__layerNames, _layerName);
 		__check = __CheckActive;
-		__RoomLoaderLogMethod(__messagePrefix, _methodName, $"{__name}ed layer \"{_layer_name}\"");
+		__RoomLoaderLogMethod(__messagePrefix, _methodName, $"{__name}ed layer \"{_layerName}\"");
 	};
-	static __Remove = function(_layer_name) {
+	static __Remove = function(_layerName) {
 		var _methodName = __methodNames.__remove;
-		__RoomLoaderCatchString(__messagePrefix, _methodName, _layer_name);
+		__RoomLoaderCatchString(__messagePrefix, _methodName, _layerName);
 		
-		var _index = __GetIndex(_layer_name);
+		var _index = __GetIndex(_layerName);
 		if (_index == -1) {
-			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Layer \"{_layer_name}\" is not {__name}ed");
+			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Layer \"{_layerName}\" is not {__name}ed");
 		}
 		
 		array_delete(__layerNames, _index, 1);
 		if (__IsEmpty()) {
 			__check = __CheckEmpty;
 		}
-		return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed layer \"{_layer_name}\" from {__name}");
+		return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed layer \"{_layerName}\" from {__name}");
 	};
 	static __Reset = function() {
 		var _methodName = __methodNames.__reset;
@@ -62,8 +62,8 @@ function __RoomLoaderLayerFilter(_name, _positive) constructor {
 	static __Get = function() {
 		return __layerNames;
 	};
-	static __GetIndex = function(_layer_name) {
-		 return array_get_index(__layerNames, _layer_name);
+	static __GetIndex = function(_layerName) {
+		 return array_get_index(__layerNames, _layerName);
 	};
 	static __IsEmpty = function() {
 		return (array_length(__layerNames) == 0);

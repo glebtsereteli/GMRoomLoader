@@ -18,7 +18,7 @@ index = {
 		value = 0;	
 	},
 };
-data = {
+payload = {
 	ref: undefined,
 	
 	Set: function(_ref) {
@@ -79,12 +79,12 @@ Update = function() {
 Load = function(_all, _flags) {
 	(_all ? index.shuffle : index.progress)();
 	var _room = asset_get_index($"rmDemoBaseSlot{vdName}_0{index.value}");
-	var _data = RoomLoader.Load(_room, x + 4, y + 4, 0, 0, _flags);
-	data.Set(_data);
+	var _payload = RoomLoader.Load(_room, x + 4, y + 4, 0, 0, _flags);
+	payload.Set(_payload);
 	fill.Click(c_orange, 0.3);
 };
 Cleanup = function(_all) {
-	data.Cleanup();
+	payload.Cleanup();
 	index.reset();
 	fill.Click(c_white, (_all ? 0.1 : 0.25));
 };

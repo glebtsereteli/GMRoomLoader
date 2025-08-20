@@ -1,6 +1,6 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmTilemapTest",
+  "%Name":"rmDemoTilemap",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
@@ -8,16 +8,16 @@
   "instanceCreationOrder":[],
   "isDnd":false,
   "layers":[
-    {"$GMRTileLayer":"","%Name":"Test","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Test","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":10,"SerialiseWidth":10,"TileCompressedData":[
+    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":10,"SerialiseWidth":10,"TileCompressedData":[
           -3,1,-4,0,-3,2,5,1,0,-2147483648,0,0,-3,-2147483648,3,0,2,1,-8,-2147483648,1,2,-9,-2147483648,1,0,-9,
           -2147483648,1,0,-8,-2147483648,4,0,-2147483648,-2147483648,0,-6,-2147483648,4,0,-2147483648,4,0,-6,-2147483648,
           4,0,3,4,0,-6,-2147483648,2,0,3,-3,4,-4,0,-3,3,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"TileSet3","path":"tilesets/TileSet3/TileSet3.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tsDemoTilemapNumbers","path":"tilesets/tsDemoTilemapNumbers/tsDemoTilemapNumbers.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
-  "name":"rmTilemapTest",
+  "name":"rmDemoTilemap",
   "parent":{
-    "name":"GMRoomLoader",
-    "path":"GMRoomLoader.yyp",
+    "name":"03. Tilemap",
+    "path":"folders/01. Demo/03. Tilemap.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

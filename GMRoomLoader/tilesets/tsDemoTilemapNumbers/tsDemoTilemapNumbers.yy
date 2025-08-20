@@ -1,25 +1,25 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"TileSet3",
+  "%Name":"tsDemoTilemapNumbers",
   "autoTileSets":[],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,
     "TileSerialiseData":[],
   },
-  "name":"TileSet3",
+  "name":"tsDemoTilemapNumbers",
   "out_columns":2,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"GMRoomLoader",
-    "path":"GMRoomLoader.yyp",
+    "name":"03. Tilemap",
+    "path":"folders/01. Demo/03. Tilemap.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"sprTsTest",
-    "path":"sprites/sprTsTest/sprTsTest.yy",
+    "name":"sprTsDemoTilemapNumbers",
+    "path":"sprites/sprTsDemoTilemapNumbers/sprTsDemoTilemapNumbers.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{

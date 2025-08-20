@@ -19,37 +19,37 @@ function __RoomLoaderDataRoom(_room) constructor {
 				id: _dataIn.id,
 			    object: _object,
 			    sprite: object_get_sprite(_object),
-			    creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
 				preCreate: {},
+				creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
 			};
 			
-			with (_dataOut.preCreate) {
-			    if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-			        image_xscale = _dataIn.xscale;
-			        image_yscale = _dataIn.yscale;
-			        image_angle = _dataIn.angle;
+			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
+				with (_dataOut.preCreate) {
+				    image_xscale = _dataIn.xscale;
+				    image_yscale = _dataIn.yscale;
+				    image_angle = _dataIn.angle;
 					
-			        var _color = _dataIn.colour;
-			        if (_color == -1) {
-			            image_blend = c_white;
-			            image_alpha = 1;
-			        } else {
-			            image_blend = _color & 0xffffff;
-			            image_alpha = ((_color >> 24) & 0xff) / 255;
-			        }
+				    var _color = _dataIn.colour;
+				    if (_color == -1) {
+				        image_blend = c_white;
+				        image_alpha = 1;
+				    } else {
+				        image_blend = _color & 0xffffff;
+				        image_alpha = ((_color >> 24) & 0xff) / 255;
+				    }
 					
-			        image_index = _dataIn.image_index;
-			        image_speed = _dataIn.image_speed;
-			    }
+				    image_index = _dataIn.image_index;
+				    image_speed = _dataIn.image_speed;
 				
-			    var _pcc = _dataIn.pre_creation_code;
-			    if (_pcc != -1) {
-			        _pcc();
-			    }
-			};
+				    var _pcc = _dataIn.pre_creation_code;
+				    if (_pcc != -1) {
+				        _pcc();
+				    }
+				};
+			}
 			
 			__instancesInitLut[$ _dataIn.id] = _dataOut;
-						
+			
 			return _dataOut;
 		};
 		static _GetDataConstructor = function(_type) {
