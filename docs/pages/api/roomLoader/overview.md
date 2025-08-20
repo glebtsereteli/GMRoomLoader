@@ -16,10 +16,10 @@
 - [Loading](/pages/api/roomLoader/loading) - the fun part, handles the actual loading of rooms and instances.  
 - [Layer Filtering](/pages/api/roomLoader/layerFiltering) - allows sorting rooms by name before loading.  
 - [Screenshotting](/pages/api/roomLoader/screenshotting) - captures screenshots of rooms.
-- [Origin](/pages/api/roomLoader/origin) - describes the Origin concept used in all :Loading: and :Screenshotting: methods.
+- [Origin](/pages/api/roomLoader/origin) - defines the Origin system used in all :Loading: and :Screenshotting: methods.
 
 ## Syntax
-`RoomLoader` is a function containing static data variables and methods, effectively acting as a makeshift GML [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170). It's initialized internally and requires no additional setup.
+`RoomLoader` is a function containing static data variables and methods, effectively acting as a makeshift [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170)-like construct. It's initialized internally and requires no extra setup.
 
 All methods are accessed using the `RoomLoader.MethodName(arguments...)` syntax:
 * Initialize data: `RoomLoader.DataInit(rmDungeon);`.

@@ -26,10 +26,10 @@ For best results, call these methods at the very start of your game. If your pro
 
 Initializes data for all given rooms.
 
-| Parameter | Type           | Description                                        |
-| --------- | -------------- | -------------------------------------------------- |
-| `room`    | :Asset.GMRoom: | The room to initialize data for.                   |
-| `...`     | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments. |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to initialize data for |
+| `...` | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments |
 
 :::code-group
 ```js [Example]
@@ -48,9 +48,9 @@ RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 
 Initializes data for all rooms in the given array.
 
-| Parameter | Type                      | Description                               |
-| --------- | ------------------------- | ----------------------------------------- |
-| `rooms`   | :Array: of :Asset.GMRoom: | The array of rooms to initialize data for |
+| Parameter | Type | Description |
+|---|---|---|
+| `rooms` | :Array: of :Asset.GMRoom: | The array of rooms to initialize data for |
 
 :::code-group
 ```js [Example]
@@ -67,9 +67,9 @@ RoomLoader.DataInitArray(rooms);
 
 Initializes data for all rooms starting with the given prefix. Returns an array of found rooms.
 
-| Parameter | Type     | Description                     |
-| --------- | -------- | ------------------------------- |
-| `prefix`  | :String: | The prefix to filter rooms with |
+| Parameter | Type | Description |
+|---|---|---|
+| `prefix` | :String: | The prefix to filter rooms with |
 
 ::: code-group
 ```js [Example]
@@ -83,9 +83,9 @@ rooms = RoomLoader.DataInitPrefix("rmLevel");
 
 > `RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
 
-| Parameter | Type     | Description                 |
-| --------- | -------- | --------------------------- |
-| `tag`     | :String: | The tag to parse rooms from |
+| Parameter | Type | Description |
+|---|---|---|
+| `tag` | :String: | The tag to parse rooms from |
 
 ::: code-group
 ```js [Example]
@@ -101,9 +101,9 @@ dungeonRooms = RoomLoader.DataInitTag("Dungeon");
 
 Initializes data for all rooms in the project, except the ones listed in the `blacklist` array.
 
-| Parameter   | Type                      | Description                                                |
-| ----------- | ------------------------- | ---------------------------------------------------------- |
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** initialize data for (default = empty) |
+| Parameter | Type | Description |
+|---|---|---|
+| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** initialize data for. [Default: empty] |
 
 ::: code-group
 ```js [Example]
@@ -123,10 +123,10 @@ Although initialized room data takes up little space, you may still want to remo
 
 Removes data for all given rooms.
 
-| Parameter | Type           | Description                                        |
-| --------- | -------------- | -------------------------------------------------- |
-| `room`    | :Asset.GMRoom: | The room to remove data for.                       |
-| `...`     | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments. |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to remove data for                       |
+| `...` | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments |
 
 :::code-group
 ```js [Example]
@@ -144,9 +144,9 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs);
 > `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms in the given array.
-| Parameter | Type                      | Description                            |
-| --------- | ------------------------- | -------------------------------------- |
-| `rooms`   | :Array: of :Asset.GMRoom: | The array of rooms to remove data for. |
+| Parameter | Type | Description |
+|---|---|---|
+| `rooms` | :Array: of :Asset.GMRoom: | The array of rooms to remove data for |
 
 :::code-group
 ```js [Example]
@@ -163,9 +163,9 @@ RoomLoader.DataRemoveArray(rooms);
 
 Removes data for all rooms starting with the given prefix.
 
-| Parameter | Type     | Description                     |
-| --------- | -------- | ------------------------------- |
-| `prefix`  | :String: | The prefix to filter rooms with |
+| Parameter | Type | Description |
+|---|---|---|
+| `prefix` | :String: | The prefix to filter rooms with |
 
 ::: code-group
 ```js [Example]
@@ -181,9 +181,9 @@ RoomLoader.DataRemovePrefix("rmLevel");
 
 Removes data for all rooms with the given tag.
 
-| Parameter | Type     | Description                 |
-| --------- | -------- | --------------------------- |
-| `tag`     | :String: | The tag to parse rooms from |
+| Parameter | Type | Description |
+|---|---|---|
+| `tag` | :String: | The tag to parse rooms from |
 
 ::: code-group
 ```js [Example]
@@ -199,9 +199,9 @@ RoomLoader.DataRemoveTag("Dungeon");
 
 Removes data for all rooms, except the ones listed in the `blacklist` array.
 
-| Parameter   | Type                      | Description                                           |
-| ----------- | ------------------------- | ----------------------------------------------------- |
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for. Default = empty |
+| Parameter | Type | Description |
+|---|---|---|
+| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for. [Default: empty] |
 
 ::: code-group
 ```js [Example]
@@ -216,11 +216,11 @@ RoomLoader.DataRemoveAll([rmHub]);
 
 >`RoomLoader.DataIsInitialized(room)` -> :Bool:
 
-Checks whether the data for the given room is initialized (returns `true`) or not (return `false`).
+Checks whether the data for the given room is initialized (returns `true`) or not (returns `false`).
 
-| Parameter | Type           | Description       |
-|-----------|----------------|-------------------|
-| `room`    | :Asset.GMRoom: | The room to check |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to check |
 
 :::code-group
 ```js [Example]
@@ -237,9 +237,9 @@ if (RoomLoader.DataIsInitialized(rmLevelTower)) {
 
 Returns the width of the given room.
 
-| Parameter | Type           | Description                   |
-|-----------|----------------|-------------------------------|
-| `room`    | :Asset.GMRoom: | The room to get the width of  |
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get the width of  |
 
 :::code-group
 ```js [Example]
@@ -275,7 +275,7 @@ Returns an array of instance data structs for the given room. Format listed [bel
 
 | Parameter | Type | Description |
 |---|---|---|
-| `room` | :Asset.GMRoom: | The room to get an array of instance data for  |
+| `room` | :Asset.GMRoom: | The room to get an array of instance data for |
 
 :::code-group
 ```js [Example]

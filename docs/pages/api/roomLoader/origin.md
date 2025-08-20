@@ -8,7 +8,7 @@ These parameters are relative, ranging from `0` (no offset) to `1` (full width/h
 
 ::: code-group
 ```js [Examples]
-// Loads rmChunkEasy01 at the bottom right corner of the room:
+// Loads rmChunkEasy01 at the bottom right corner of the current room:
 RoomLoader.Load(rmChunkEasy01, room_width, room_height, 1, 1);
 
 // Takes a screenshot of rmLevelCliffs with a centered origin:

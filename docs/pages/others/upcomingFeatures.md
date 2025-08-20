@@ -3,7 +3,7 @@
 The following list of ideas includes features that might or might not be introduced in the future. If you have a feature you'd like to suggest, please open a :New Issue: with the `feature` label.
 
 ## Library
-* `RoomLoader.LoadTilemap(room, layer_name, x, y, [mirror], [flip], [angle], [xorigin], [yorigin])`.
+* `RoomLoader.LoadTilemap(room, layer_name, x, y, [mirror], [flip], [angle], [xOrigin], [yOrigin])`.
 * Deferred loading over time for heavier loading.
     * `RoomLoader.LoadDeferred()`.
     * `RoomLoader.LoadInstancesDeferred()`.

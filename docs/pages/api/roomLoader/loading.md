@@ -6,7 +6,7 @@ Rooms can only be loaded if their data has been initialized. Make sure to [Initi
 
 ## `.Load()`
 
-> `RoomLoader.Load(room, x, y, [xorigin], [yorigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
+> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
 
 Loads the given room at the given coordinates and origin, filtered by the given flags.
 
@@ -18,9 +18,9 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 | `room` | :Asset.GMRoom: | The room to load |
 | `x` | :Real: | The x coordinate to load the room at |
 | `y` | :Real: | The y coordinate to load the room at |
-| `[xorigin]` | :Real: | The x origin to load the room at. [Default = :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yorigin]` | :Real: | The y origin to load the room at. [Default = :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. [Default = :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xOrigin]` | :Real: | The x origin to load the room at. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the room at. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. [Default: :ROOMLOADER_DEFAULT_FLAGS:] |
 
 :::code-group
 ```js [Examples]
@@ -41,7 +41,7 @@ roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _fla
 
 ## `.LoadInstances()`
 
-> `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xScale], [yScale], [angle], [multScale])` ➜ :Array: of :Id.Instance:
+> `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle], [multScale])` ➜ :Array: of :Id.Instance:
 
 Loads all instances from the given room at the given coordinates and origin, with optional scaling and rotation transformations.
 
@@ -62,7 +62,7 @@ Loads all instances from the given room at the given coordinates and origin, wit
 :::code-group
 ```js [Examples]
 // Loads instances from rmLevelPartBottom at the bottom-right corner of the room:
-RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth,,,,,, 1, 1); // [!code highlight]
+RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth, 1, 1); // [!code highlight]
 
 // Loads a layout of props to fill the size of the current room, while keeping instance scale unaffected:
 var _room = rmProps;
@@ -109,7 +109,7 @@ Loads a tilemap from the given room and layer at the given coordinates and origi
 | `[mirror]` | :Bool: | Mirror the loaded tilemap? [Default: `false`] |
 | `[flip]` | :Bool: | Flip the loaded tilemap? [Default: `false`] |
 | `[angle]` | :Real: | The angle to load the tilemap at. [Default: `0`] |
-| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap. [Default = source] |
+| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap. [Default: source] |
 
 :::code-group
 ```js [Examples]
@@ -121,12 +121,12 @@ var _y = room_height / 2;
 var _layer = "TilesFloor";
 var _mirror = choose(true, false);
 var _flip = choose(true, false);
-floorTilemap = RoomLoader.LoadTilemap(rmCasinoDetails, _x, _y, _layer, 0.5, 0.5, _mirror, _flip); // [!code highlight] 
+floorTilemap = RoomLoader.LoadTilemap(rmCasinoDetails, _x, _y, _layer, _layer, 0.5, 0.5, _mirror, _flip); // [!code highlight] 
 
 // Loads a tilemap from the "TilesWalls" layer in rmChunkSpecial01,
 // creates it on the newly created collision layer, assigns the tsWallsCollision tileset to it
 // and stores its ID in the collisionTilemap variable:
 collisionLayer = layer_create(0, "Collision");
-collisionTilemap = RoomLoader.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer,,,,,, tsWallsCollision); // [!code highlight]
+collisionTilemap = RoomLoader.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer, 0, 0, false, false, 0, tsWallsCollision); // [!code highlight]
 ```
 :::
