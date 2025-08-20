@@ -88,7 +88,7 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 :::
 
 ## `.LoadTilemap()`
+@TODO
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayer, [targetLayer], [tileset], [mirror], [flip], [angle])` ➜ :Id.Tilemap:
 
-Coming soon:tm:

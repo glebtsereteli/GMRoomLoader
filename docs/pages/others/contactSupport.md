@@ -1,4 +1,4 @@
-# Help & Support
+# Contact & Support
 
 * Need help with GMRoomLoader? Drop a message in the `#gleb__gmroomloader` channel on the [GameMaker Kitchen](https://discord.gg/gamemakerkitchen) Discord server, or open a :New Issue: with the `help` label.
 

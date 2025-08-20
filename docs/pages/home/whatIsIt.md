@@ -10,17 +10,23 @@ It provides tools to process the data returned by :room_get_info():, use it to l
 * **Room Thumbnails**. Take screenshots of your rooms and use them in level selection menus, seamless room transitions or loading previews. 
 * **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game (as of [2024.13](https://gamemaker.io/en/blog/release-2024-13),​ this is mostly superseded by GM's [UI Layers](https://manual.gamemaker.io/monthly/en/#t=The_Asset_Editors%2FRoom_Properties%2FUI_Layers.htm)​).
 
+::: warning DISCLAIMER
+GMRoomLoader is designed specifically for __loading room contents__.
+
+It does NOT provide tools for procedural generation or level layout creation of any kind (like deciding which room to load and where to place it). You'll need to handle that yourself.
+:::
+
 ## Features
 - Pure GML library with no external tools required.
-- Multiple ways to initialize room data: [single or multiple](/pages/api/roomLoader/data/#datainit), [array](/pages/api/roomLoader/data/#datainitarray), [prefix](/pages/api/roomLoader/data/#datainitprefix), [tag](/pages/api/roomLoader/data/#datainittag), [all](/pages/api/roomLoader/data/#datainitall).
-- Loading [full rooms](/pages/api/roomLoader/loading/#load) including all layers and elements, or [just instances](/pages/api/roomLoader/loading/#loadinstances) (with optional scale and rotation transformations) at custom coordinates and origins.
-- Element type filtering using [bitwise flags](https://github.com/glebtsereteli/GMRoomLoader/wiki/Enums#roomloader_flag).
-- Layer filtering using [whitelisting/blacklisting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#%E2%84%B9%EF%B8%8F-whitelistblacklist-layer-filtering).
+- Multiple ways to handle room data: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall).
+- Loading [Full Rooms](/pages/api/roomLoader/loading/#load) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) (with optional scale/mirror/flip and rotation transformations) at any position and origin.
+- Element type filtering using [Bitwise Flags](/pages/api/flags).
+- Layer filtering using [Whitelisting](/pages/api/roomLoader/layerFiltering/#whitelist) and [Blacklisting](/pages/api/roomLoader/layerFiltering/#blacklist).
 - Full control over loaded contents: :Payload: tracking, fetching element IDs and cleanup - unloading/destroying loaded elements.
-- Room [screenshotting](https://github.com/glebtsereteli/GMRoomLoader/wiki/RoomLoader()-static-constructor-%E2%80%90-main-interface#-take_screenshotroom-xorigin-yorigin-flags---idsprite).
+- Room :Screenshotting:.
 
 ## How does it work?
-
+@TODO
 
 ## GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!

@@ -24,6 +24,6 @@ Check out the [Getters](/pages/api/payload/getters) and [Cleanup](/pages/api/pay
 
 ## Exception
 
-This default behavior can be changed if you set the [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-use-return-data) config to `false`. When disabled, :RoomLoader.Load(): will return :Undefined: instead of a :Struct:.:Payload:.
+This default behavior can be changed if you set the [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) config to `false`. When disabled, :RoomLoader.Load(): will return :Undefined: instead of a :Struct:.:Payload:.
 
-Disabling this can improve loading performance at scale, since element IDs are no longer tracked. This is especially useful in cases where cleanup isn't needed, like when you know that switching rooms will automatically remove all loaded elements.
+Disabling this can improve loading performance at scale, since element IDs are no longer tracked. This is especially useful in cases where cleanup isn't needed, like when you know that [switching rooms](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm#:~:text=room_get_info-,Switching%20Rooms,-room_goto) will automatically remove all loaded elements.

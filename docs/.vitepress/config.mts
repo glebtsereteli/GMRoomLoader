@@ -65,10 +65,10 @@ export default defineConfig({
       },
       {
           text: '🗂️ Others',
-          link: '/pages/others/helpSupport',
+          link: '/pages/others/contactSupport',
           collapsed: false,
           items: [
-            { text: 'Help & Support', link: '/pages/others/helpSupport' },
+            { text: 'Contact & Support', link: '/pages/others/contactSupport' },
             { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
             { text: 'Credits', link: '/pages/others/credits' },
           ]
@@ -133,7 +133,7 @@ export default defineConfig({
         
         'Initialization': '/pages/api/roomloader/data/#initialization',
         'Loading': '/pages/api/roomloader/loading',
-        'Cleanup': '/pages/api/roomloader/data/#cleanup',
+        'Cleanup': '/pages/api/payload/cleanup',
         'Screenshotting': '/pages/api/roomloader/screenshotting',
         'RoomLoader.Load()': '/pages/api/roomloader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomloader/loading#loadinstances',

@@ -1,5 +1,13 @@
 # Getting Started
 
+## Requirements
+
+* [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.13.1.193` and `Runtime v2024.13.1.242` or above.
+* Basic familiarity with GameMaker and GML, including:
+    * Asset types (rooms, objects, sprites, etc).
+    * Objects and events.
+    * Structs, functions/methods and arguments, macros and enums.
+
 ## Installation
 1. Download the latest `.yymps` package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
 2. Import the package into your project.
@@ -10,7 +18,7 @@
     ![alt text](import02.png)
     * Click __Import__.
     ![alt text](import03.png)
-3. You're good to go! Check out the [Quick Setup](#quick-setup) section below to load your first room!
+3. You're good to go! Next check out the [Quick Setup](#quick-setup) section below to load your first room!
 
 :::tip UPDATING
 If you already have GMRoomLoader installed and want to update to the latest version, check the [Updating](/pages/home/faq/#updating) FAQ entry for instructions.
@@ -18,7 +26,7 @@ If you already have GMRoomLoader installed and want to update to the latest vers
 ## Quick Setup
 While GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, the following :Initialization:, :Loading: and :Cleanup: methods are the only basics you need to get things working and load your first room!
 
-> Download the [Quick Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. <span style="color: red;">@TODO</span>
+> Download the [Quick Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
 
 ### 1. Initialize
 [Initialize](/pages/api/roomloader/data/#initialization) the data for the room you'd like to load. 
@@ -78,4 +86,4 @@ That's it for the basic setup! To learn more, check out:
 * The [FAQ](/pages/home/faq) page to find answers to common questions.
 * The [Demo](/pages/home/demo) page to see GMRoomLoader in action.
 * The [API](/pages/api/overview) section to explore all available methods.
-* The __Others__ section for [Help & Support](/pages/others/helpSupport), [Upcoming Features](/pages/others/upcomingFeatures) and [Credits](/pages/others/credits).
+* The __Others__ section for [Contact & Support](/pages/others/contactSupport), [Upcoming Features](/pages/others/upcomingFeatures) and [Credits](/pages/others/credits).
