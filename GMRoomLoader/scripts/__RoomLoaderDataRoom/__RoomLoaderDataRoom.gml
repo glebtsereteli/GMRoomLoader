@@ -11,39 +11,46 @@ function __RoomLoaderDataRoom(_room) constructor {
 	__creationCode = undefined;
 	
 	static __Init = function() {
-		static _MapInstanceData = function(_data) {
-			_data.object = asset_get_index(_data.object_index);
-			_data.sprite = object_get_sprite(_data.object);
-			_data.creationCode = ((_data.creation_code != -1) ? _data.creation_code : __RoomLoaderNoop);
-			
-			_data.preCreate = {}; 
-			with (_data.preCreate) {
-				if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-					image_xscale = _data.xscale;
-					image_yscale = _data.yscale;
-					image_angle = _data.angle;
-					var _color = _data.colour;
-					if (_color == -1) {
-						image_blend = c_white;
-						image_alpha = 1;
-					}
-					else {
-						image_blend = _color & 0xffffff;
-						image_alpha = ((_color >> 24) & 0xff) / 255;
-					}
-					image_index = _data.image_index;
-					image_speed = _data.image_speed;
-				}
-				
-				var _pcc = _data.pre_creation_code;
-				if (_pcc != -1) {
-					_pcc();
-				}
+		static _MapInstanceData = function(_dataIn) {
+			var _object = asset_get_index(_dataIn.object_index);
+			var _dataOut = {
+				x: _dataIn.x,
+				y: _dataIn.y,
+				id: _dataIn.id,
+			    object: _object,
+			    sprite: object_get_sprite(_object),
+			    creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
+				preCreate: {},
 			};
 			
-			__instancesInitLut[$ _data.id] = _data;
+			with (_dataOut.preCreate) {
+			    if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
+			        image_xscale = _dataIn.xscale;
+			        image_yscale = _dataIn.yscale;
+			        image_angle = _dataIn.angle;
+					
+			        var _color = _dataIn.colour;
+			        if (_color == -1) {
+			            image_blend = c_white;
+			            image_alpha = 1;
+			        } else {
+			            image_blend = _color & 0xffffff;
+			            image_alpha = ((_color >> 24) & 0xff) / 255;
+			        }
+					
+			        image_index = _dataIn.image_index;
+			        image_speed = _dataIn.image_speed;
+			    }
+				
+			    var _pcc = _dataIn.pre_creation_code;
+			    if (_pcc != -1) {
+			        _pcc();
+			    }
+			};
 			
-			return _data;
+			__instancesInitLut[$ _dataIn.id] = _dataOut;
+						
+			return _dataOut;
 		};
 		static _GetDataConstructor = function(_type) {
 			switch (_type) {

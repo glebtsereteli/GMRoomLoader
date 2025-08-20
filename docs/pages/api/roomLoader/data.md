@@ -286,3 +286,22 @@ var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight
 // for creating instances:
 instances = array_map(_instancesData, CustomInstanceCreate);
 ```
+:::
+
+#### Struct Format
+| Property | Type |
+|----------|------|
+| ├─ `x` | :Real: |
+| ├─ `y` | :Real: |
+| ├─ `id` | :Id.Instance: |
+| ├─ `object` | :Id.Object: |
+| ├─ `sprite` | :Id.Sprite: |
+| ├─ `creationCode` | :Id.Script: |
+| └─ `preCreate` | :Struct: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_xscale` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_yscale` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_angle` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_blend` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_speed` | :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_index` | :Real: |
