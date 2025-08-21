@@ -46,9 +46,10 @@ export default defineConfig({
             items: [
               { text: 'Data', link: '/pages/api/roomLoader/data' },
               { text: 'Loading', link: '/pages/api/roomLoader/loading' },
-              { text: 'Layer Filtering', link: '/pages/api/roomLoader/layerFiltering' },
               { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
               { text: 'Origin', link: '/pages/api/roomLoader/origin' },
+              { text: 'Filter Asset Types', link: '/pages/api/roomLoader/filterAssetTypes' },
+              { text: 'Filter Layer Names', link: '/pages/api/roomLoader/filterLayerNames' },
             ]
           },
           {
@@ -60,7 +61,6 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
-          { text: 'Flags', link: '/pages/api/flags' },
           { text: 'Configuration', link: '/pages/api/config' },
         ]
       },
@@ -143,6 +143,9 @@ export default defineConfig({
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
+        'Asset Type': '/pages/api/roomLoader/filterAssetTypes',
+        'Layer Name': '/pages/api/roomLoader/filterLayerNames',
+
         'ROOMLOADER_FLAG': '/pages/api/flags#roomloader_flag',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',

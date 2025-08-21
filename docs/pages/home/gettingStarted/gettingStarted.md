@@ -18,7 +18,7 @@
     ![alt text](import02.png)
     * Click __Import__.
     ![alt text](import03.png)
-3. You're good to go! Next check out the [First Setup](#first-setup) section below to load your first room!
+3. You're good to go! Next, check out the [First Setup](#first-setup) section below to load your first room.
 
 :::tip UPDATING
 If you already have GMRoomLoader installed and want to update to the latest version, check the [Updating](/pages/home/faq/#updating) FAQ entry for instructions.
@@ -29,14 +29,14 @@ While GMRoomLoader offers many tools for handling room data, loading rooms and w
 > Download the [First Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
 
 ### 1. Initialize
-[Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you'd like to load. 
+[Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you want to load. 
 ```js
 RoomLoader.DataInit(room);
 ```
 It's best to do this at the very start of your game in some "initialization" or "master" manager object. For this simple example, feel free to do it in the Create event of the object you'd like to handle your room loading, or at any point *before* loading the room.
 
 ### 2. Load
-[Load](/pages/api/roomLoader/loading/#load) the room on the mouse position and store the returned instance of :Payload: in a variable to clean up later.
+[Load](/pages/api/roomLoader/loading/#load) the room at the mouse position and store the returned :Payload: instance in a variable to clean up later.
 ```js
 payload = RoomLoader.Load(room, mouse_x, mouse_y, 0.5, 0.5);
 ```
@@ -52,7 +52,7 @@ payload.Cleanup();
 Now that we know the required steps, let's put this together in a simple way for you to see it working. We'll do this in your object responsible for loading rooms.
 
 * First, we'll initialize the data in the Create event.
-* Then in the Step event, we'll load the room on the mouse position when we press 1, and unload the room when we press 2.
+* Then in the Step event, we'll load the room at the mouse position when we press 1, and unload the room when we press 2.
 :::code-group
 ```js [Create Event]
 room = rmExample; // The room you'd like to load.
@@ -63,14 +63,14 @@ Cleanup = function() { // The method we'll use to unload the loaded room.
     if (payload == undefined) return; // Only do this when a Payload exists.
 
     payload.Cleanup(); // Destroy all loaded layers and their elements.
-    payload = undefined; // Payload is no longer needed, dereference it to be picked up by the Garbage Collector.
+    payload = undefined; // We're done here, dereference the payload so it can be picked up by the Garbage Collector.
 };
 ```
 ```js [Step Event]
 if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.
     
-    // Load the room on the mouse position:
+    // Load the room at the mouse position:
     payload = RoomLoader.Load(room, mouse_x, mouse_y);
 }
 

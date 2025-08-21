@@ -10,8 +10,8 @@
     line-height: 1.2;
 }
 
-.markdown table,
-.markdown pre {
-  max-width: 100%;
-  overflow-x: auto;
-}
+/*
+.main {
+    margin-left: -20px;
+    margin-right: -20px;
+} */

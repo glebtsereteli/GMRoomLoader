@@ -1,6 +1,4 @@
-# Flags
-
-## Overview
+# Filtering Asset Types
 
 Flags stored in the `ROOMLOADER_FLAG` enum are used to filter room elements by type during :Loading: and :Screenshotting:. In most cases, you'll use them either individually or combined with the bitwise OR `|` operator to work with multiple asset types at once. 
 

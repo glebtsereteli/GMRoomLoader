@@ -56,7 +56,7 @@ Loads all instances from the given room at the given coordinates and origin, wit
 | `[xscale]` | :Real: | The horizontal scale transformation |
 | `[yscale]` | :Real: | The vertical scale transformation |
 | `[angle]` | :Real: | The angle transformation |
-| `[multScale]` | :Bool: | Scale instances with `xscale/yscale`? [Default: [ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-instances-default-mult-scale)] |
+| `[multScale]` | :Bool: | Scale instances with `xScale/yScale`? [Default: [ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-instances-default-mult-scale)] |
 | `[addAngle]` | :Bool: | Rotate instances with `angle`? [Default: [ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-instances-default-add-angle)] |
 
 :::code-group
