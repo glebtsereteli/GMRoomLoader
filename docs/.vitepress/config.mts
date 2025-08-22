@@ -18,7 +18,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/pages/home/whatIsIt' },
       { text: 'API', link: '/pages/api/overview' },
-      { text: 'Releases', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
     ],
     
     outline: [2, 3],
@@ -42,20 +42,18 @@ export default defineConfig({
           {
             text: 'RoomLoader',
             link: '/pages/api/roomLoader/overview',
-            collapsed: true,
             items: [
               { text: 'Data', link: '/pages/api/roomLoader/data' },
               { text: 'Loading', link: '/pages/api/roomLoader/loading' },
               { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
               { text: 'Origin', link: '/pages/api/roomLoader/origin' },
-              { text: 'Filter Asset Types', link: '/pages/api/roomLoader/filterAssetTypes' },
-              { text: 'Filter Layer Names', link: '/pages/api/roomLoader/filterLayerNames' },
+              { text: 'Asset Type Filtering', link: '/pages/api/roomLoader/assetTypeFiltering' },
+              { text: 'Layer Name Filtering', link: '/pages/api/roomLoader/layerNameFiltering' },
             ]
           },
           {
             text: 'Payload',
             link: '/pages/api/payload/overview',
-            collapsed: true,
             items: [
               { text: 'Getters', link: '/pages/api/payload/getters' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },

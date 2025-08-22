@@ -1,7 +1,5 @@
 # Payload
 
-## Overview
-
 When loading rooms using :RoomLoader.Load():, the function returns an instance of the `RoomLoaderPayload()` constructor - a struct that stores the IDs of all created layers and their elements. It can be used to retrieve element IDs and, if necessary, clean up the loaded content (which you might also call "unloading" or "destroying" a loaded room).
 :::code-group
 ```js [Example]

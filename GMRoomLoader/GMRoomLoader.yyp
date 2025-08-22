@@ -124,6 +124,7 @@
     {"id":{"name":"rmDemoGeneral02","path":"rooms/rmDemoGeneral02/rmDemoGeneral02.yy",},},
     {"id":{"name":"rmDemoInstances01","path":"rooms/rmDemoInstances01/rmDemoInstances01.yy",},},
     {"id":{"name":"rmDemoTilemap","path":"rooms/rmDemoTilemap/rmDemoTilemap.yy",},},
+    {"id":{"name":"__RoomLoaderDataCore","path":"scripts/__RoomLoaderDataCore/__RoomLoaderDataCore.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerAsset","path":"scripts/__RoomLoaderDataLayerAsset/__RoomLoaderDataLayerAsset.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerBackground","path":"scripts/__RoomLoaderDataLayerBackground/__RoomLoaderDataLayerBackground.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerInstance","path":"scripts/__RoomLoaderDataLayerInstance/__RoomLoaderDataLayerInstance.yy",},},

@@ -10,39 +10,7 @@ function RoomLoader() {
 	#region __private
 	
 	static __messagePrefix = "RoomLoader";
-	static __data = {
-		__messagePrefix: __messagePrefix,
-		__pool: {},
-		
-		__Add: function(_room, _methodName) {
-			__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "initialize data for");
-			
-			var _roomName = room_get_name(_room);
-			if (struct_exists(__pool, _roomName)) {
-				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Data for <{_roomName}> is already initialized");
-				return;
-			}
-			
-			__ROOMLOADER_BENCH_START;
-			__pool[$ _roomName] = new __RoomLoaderDataRoom(_room);
-			__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Initialized data for", _room);
-		},
-		__Remove: function(_room, _methodName) {
-			__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "remove data for");
-			
-			var _roomName = room_get_name(_room);
-			if (not struct_exists(__pool, _roomName)) {
-				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Data for <{_roomName}> doesn't exist, there's nothing to remove");
-				return;
-			}
-			
-			struct_remove(__pool, _roomName);
-			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_roomName}>");
-		},
-		__Get: function(_room) {
-			return __pool[$ room_get_name(_room)];
-		},
-	};
+	static __data = new __RoomLoaderDataCore();
 	static __benchTime = undefined;
 	
 	static __allRooms = asset_get_ids(asset_room);

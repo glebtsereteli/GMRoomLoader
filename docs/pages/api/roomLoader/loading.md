@@ -39,6 +39,12 @@ roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _fla
 ```
 :::
 
+## `.LoadExt()` [COMING SOON]
+
+> `RoomLoader.LoadExt(room, x, y, xScale, yScale, angle, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
+
+Coming Soon:tm:
+
 ## `.LoadInstances()`
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle], [multScale])` ➜ :Array: of :Id.Instance:

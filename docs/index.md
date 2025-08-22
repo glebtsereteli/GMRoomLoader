@@ -12,7 +12,7 @@ hero:
       link: '/pages/home/whatIsIt'
     - theme: alt
       text: View on GitHub
-      link: https://github.com/glebtsereteli/GMRoomLoader
+      link: import01.png
 
 features:
   - title: 🗺️ Procedural Generation
