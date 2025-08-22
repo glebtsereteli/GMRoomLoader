@@ -61,10 +61,10 @@ The execution order follows GameMaker's default and is structured like this:
 :::code-group
 ```js [Example]
 // When you load a room:
-roomPayload = RoomLoader.Load(rmExample, 0, 0);
+payload = RoomLoader.Load(rmExample, 0, 0);
 
 // When you need to unload a room:
-roomPayload.Cleanup();
+payload.Cleanup();
 ```
 :::
 
@@ -99,16 +99,16 @@ global.collisionTilemaps = [];
 global.collisionTilemaps = [layer_tilemap_get_id("CollisionTilemap")];
 
 // When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array:
-roomPayload = RoomLoader.Load(rmExample, 0, 0);
-var _collisionTilemap = roomPayload.GetTilemap("CollisionTilemap");
+payload = RoomLoader.Load(rmExample, 0, 0);
+var _collisionTilemap = payload.GetTilemap("CollisionTilemap");
 array_push(global.collisionTilemaps, _collisionTilemap);
 
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
-var _collisionTilemap = roomPayload.GetTilemap("CollisionTilemap");
+var _collisionTilemap = payload.GetTilemap("CollisionTilemap");
 var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
 if (_index != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }
-roomPayload.Cleanup();
+payload.Cleanup();
 ```
 :::

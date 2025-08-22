@@ -298,6 +298,19 @@ function RoomLoader() {
 		return _data.__height;
 	};
 	
+	/// @param {Asset.GMRoom} room The room to an array of layer names for.
+	/// @returns {Array<String>}
+	/// @desc Returns an array of layer names from the given room, in the order defined in the room editor.
+	/// @context RoomLoader
+	static DataGetLayerNames = function(_room) {
+		static _methodName = "DataGetLayerNames";
+		
+		var _data = __GetLoadData(_room, _methodName, "get layer names for", "get their layer names");
+		return array_map(_data.__layersPool, function(_layer) {
+			return _layer.__layerData.name;
+		});
+	};
+	
 	/// @param {Asset.GMRoom} room The room to get the instances data for.
 	/// @returns {Real}
 	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.

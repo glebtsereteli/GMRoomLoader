@@ -4,7 +4,7 @@ This section covers loading room contents - the core functionality of the librar
 
 GMRoomLoader can load [full rooms](#full-rooms) with all their layers and elements at any position and :Origin:, with optional filtering by :Asset Type: and/or :Layer Name:. 
 
-It can also load only specific parts of rooms, such as [Instances](#loadinstances) or [Tilemaps](#loadtilemap), and apply optional transformations like scaling, mirroring, flipping, or rotation as needed.
+It can also load only specific parts of rooms, such as [Instances](#loadinstances) or [Tilemaps](#loadtilemap), and apply optional scaling, mirroring, flipping and rotation transformations.
 
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
@@ -63,7 +63,7 @@ RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5); // [!code highlight]
 // Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
 // and stores the returned instance of Payload in a variable to be cleaned up later:
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
-roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
+payload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
 ```
 :::
 
@@ -131,25 +131,17 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, targetLayer, [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and layer at the given coordinates and origin. Creates it on the `targetLayer` with optional mirroring (flip on the x axis), flipping (flip on y axis) and rotation transformations, and tileset.
+Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset.
 
 * The loaded tilemap is rotated first, then mirrored and flipped.
 * Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
-* When using a custom tileset, make sure that tiles on both tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `room` | :Asset.GMRoom: | The room to load a tilemap from |
-| `x` | :Real: | The x coordinate to load the tilemap at |
-| `y` | :Real: | The y coordinate to load the tilemap at |
-| `sourceLayerName` | :String: | The source layer name to load a tilemap from |
-| `targetLayer` | :Id.Layer:, :String: | The target layer to create the tilemap on |
-| `[xOrigin]` | :Real: | The x origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[mirror]` | :Bool: | Mirror the loaded tilemap? [Default: `false`] |
-| `[flip]` | :Bool: | Flip the loaded tilemap? [Default: `false`] |
-| `[angle]` | :Real: | The angle to load the tilemap at [Default: `0`] |
-| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap [Default: source] |
+#### Custom Tilesets
+The optional `[tileset]` parameter can be especially useful for loading:
+* The same layout of tiles with different skins based on the current biome or dimension.
+* A visual + collision pair of tilemaps. Great for tiles with perspective or detailing that doesn't match with collision 1:1.
+
+When using such tileset groups/pairs, make sure that tiles on both tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
 
 :::code-group
 ```js [Examples]
@@ -162,6 +154,12 @@ var _layer = "TilesFloor";
 var _mirror = choose(true, false);
 var _flip = choose(true, false);
 floorTilemap = RoomLoader.LoadTilemap(rmCasinoDetails, _x, _y, _layer, _layer, 0.5, 0.5, _mirror, _flip); // [!code highlight] 
+
+// Loads a tilemap from the "WallsLayout" layer in rmLayoutHard on the "Walls" layer,
+// using a custom tileset based on the current dimension and rotates it randomly:
+var _tileset = DIMENSIONS.GetCurrent().GetWallsTileset();
+var _angle = random(360);
+tilemap = RoomLoader.LoadTilemap(rmLayoutHard, 0, 0, "WallsLayout", "Walls", 0, 0, false, false, _angle_, _tileset); // [!code highlight]
 
 // Loads a tilemap from the "TilesWalls" layer in rmChunkSpecial01,
 // creates it on the newly created collision layer, assigns the tsWallsCollision tileset to it

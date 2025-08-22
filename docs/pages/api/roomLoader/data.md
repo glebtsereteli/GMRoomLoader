@@ -266,6 +266,31 @@ var _height = RoomLoader.DataGetHeight(rmLevelDungeon);
 ```
 :::
 
+### `.DataGetLayerNames()`
+
+> `RoomLoader.DataGetLayerNames(room)` ➜ :Array: of :String:
+
+Returns an array of layer names for the given room, in the order defined in the room editor. Can be safely operated on with array functions since the internal data is not touched.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get an array of layer names for |
+
+:::code-group
+```js [Example]
+// Fetches layers names from rmLevelGarden and whitelists 3 random layers before loading:
+var _room = rmLevelGarden;
+var _layerNames = RoomLoader.DataGetLayerNames(_room); // [!code highlight]
+array_shuffle_ext(_layerNames);
+array_resize(_layerNames, 3);
+array_foreach(_layerNames, function(_layerName) {
+    RoomLoader.LayerWhitelistAdd(_layerName);
+});
+// Load...
+RoomLoader.LayerWhitelistReset();
+```
+:::
+
 ---
 ### `.DataGetInstances()`
 

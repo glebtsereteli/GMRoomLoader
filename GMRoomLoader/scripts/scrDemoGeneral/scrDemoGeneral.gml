@@ -5,19 +5,18 @@ function DemoGeneral() : DemoPar("General") constructor {
 		RoomLoader.DataInit(rm);
 		
 		// Whitelist & Blacklist:
-		layer_set_target_room(rm);
-		whitelist = array_map(layer_get_all(), function(_layer) {
+		var _layerNames = RoomLoader.DataGetLayerNames(rm);
+		whitelist = array_map(_layerNames, function(_layer) {
 			return {
-				name: layer_get_name(_layer),
+				name: _layer,
 				enabled: false,
 			};
 		});
 		blacklist = variable_clone(whitelist);
-		layer_reset_target_room();
 		
 		// Interface:
 		DEMOS.info = dbg_section("Info");
-		dbg_text("This demo showcases the main \"RoomLoader.Load()\" method for general\nroom loading. Use the controls below to adjust the loading position,\norigin, flags, layer whitelist and blacklist.");
+		dbg_text("This demo shows the main \"RoomLoader.Load/LoadExt()\" methods for full\nroom loading. Use the controls below to adjust the loading position,\norigin, Flags, layer Whitelist and Blacklist.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
