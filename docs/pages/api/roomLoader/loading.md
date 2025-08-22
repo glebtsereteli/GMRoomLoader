@@ -43,6 +43,8 @@ roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _fla
 
 > `RoomLoader.LoadExt(room, x, y, xScale, yScale, angle, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
 
+Loads the given room at the given coordinates, scale, angle and origin, filtered by the given flags.
+
 Coming Soon:tm:
 
 ## `.LoadInstances()`

@@ -9,6 +9,15 @@ export default defineConfig({
 
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
+
+  head: [
+    ['meta', { property: 'og:title', content: 'My Docs' }],
+    ['meta', { property: 'og:description', content: 'Check out my awesome docs!' }],
+    ['meta', { property: 'og:image', content: 'https://example.com/your-image.png' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://yourusername.github.io/docs/' }],
+  ],
+
   themeConfig: {
     search: {
       provider: 'local'

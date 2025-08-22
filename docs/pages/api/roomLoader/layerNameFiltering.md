@@ -10,15 +10,15 @@ This section explains how to achieve this using [Whitelisting](#whitelist) and [
 ::: code-group
 ```js [Loading With Filters]
 // Whitelists "Trees", "Rocks" and "Grass" layers, only those will be loaded:
-RoomLoader.LayerWhitelistAdd("Trees", "Rocks", "Grass");
+RoomLoader.LayerWhitelistAdd("Trees", "Rocks", "Grass"); // [!code highlight]
 
 // Blacklists the "Rocks" layer. Now only "Trees" and "Grass" will be loaded:
-RoomLoader.LayerBlacklistAdd("Rocks");
+RoomLoader.LayerBlacklistAdd("Rocks"); // [!code highlight]
 
 payload = RoomLoader.load(rmForest, someX, someY);
 
 // Reset both filters:
-RoomLoader.LayerWhitelistReset().LayerBlackListReset();
+RoomLoader.LayerWhitelistReset().LayerBlackListReset(); // [!code highlight]
 ```
 :::
 

@@ -57,12 +57,12 @@ Now that we know the required steps, let's put this together in a simple way for
 ```js [Create Event]
 room = rmExample; // The room you'd like to load.
 payload = undefined; // The variable to hold our Payload after loading.
-RoomLoader.DataInit(room); // Initialize the data for "room".
+RoomLoader.DataInit(room); // Initialize the data for "room". [!code highlight]
 
 Cleanup = function() { // The method we'll use to unload the loaded room.
     if (payload == undefined) return; // Only do this when a Payload exists.
 
-    payload.Cleanup(); // Destroy all loaded layers and their elements.
+    payload.Cleanup(); // Destroy all loaded layers and their elements. [!code highlight]
     payload = undefined; // We're done here, dereference the payload so it can be picked up by the Garbage Collector.
 };
 ```
@@ -71,7 +71,7 @@ if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.
     
     // Load the room at the mouse position:
-    payload = RoomLoader.Load(room, mouse_x, mouse_y);
+    payload = RoomLoader.Load(room, mouse_x, mouse_y); // [!code highlight]
 }
 
 if (keyboard_check_pressed(ord("2"))) {
