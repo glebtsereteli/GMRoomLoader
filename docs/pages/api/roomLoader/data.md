@@ -286,7 +286,7 @@ array_resize(_layerNames, 3);
 array_foreach(_layerNames, function(_layerName) {
     RoomLoader.LayerWhitelistAdd(_layerName);
 });
-// Load...
+RoomLoader.Load(_room, someX, someY);
 RoomLoader.LayerWhitelistReset();
 ```
 :::
