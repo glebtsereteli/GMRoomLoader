@@ -1,5 +1,9 @@
 ---
 
+title: Getting Started
+description: How to get started with My Docs
+image: /images/preview.png
+
 layout: home
 
 hero:
@@ -12,7 +16,7 @@ hero:
       link: '/pages/home/whatIsIt'
     - theme: alt
       text: View on GitHub
-      link: import01.png
+      link: https://github.com/glebtsereteli/GMRoomLoader
 
 features:
   - title: 🗺️ Procedural Generation

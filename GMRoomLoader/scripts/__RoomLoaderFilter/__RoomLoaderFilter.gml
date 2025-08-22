@@ -9,7 +9,7 @@ function __RoomLoaderLayerFilter(_name, _positive) constructor {
 	static __Init = function() {
 		__check = __CheckEmpty;
 		
-		var _prefix = $"layer_{string_lower(__name)}";
+		var _prefix = $"Layer{__name}";
 		__methodNames = {
 			__add: $"{_prefix}Add",
 			__remove: $"{_prefix}Remove",

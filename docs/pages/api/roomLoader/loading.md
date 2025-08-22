@@ -1,16 +1,44 @@
 # Loading
 
+This section covers loading room contents - the core functionality of the library.
+
+GMRoomLoader can load [full rooms](#full-rooms) with all their layers and elements at any position and :Origin:, with optional filtering by :Asset Type: and/or :Layer Name:. 
+
+It can also load only specific parts of rooms, such as [Instances](#loadinstances) or [Tilemaps](#loadtilemap), and apply optional transformations like scaling, mirroring, flipping, or rotation as needed.
+
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
 :::
 
-## `.Load()`
+## Full Rooms
+
+### Coverage
+
+Full room loading supports the following elements.
+
+| Element | Layer Type | Status |
+|---|---|---|
+| Instance | Instance | ✔️ |
+| Tilemap | Tile | ✔️ |
+| Sprite | Asset | ✔️ |
+| Particle System | Asset | 🚧 Broken because of a GM bug |
+| Sequence | Asset | ✔️ |
+| Background | Background | ✔️ |
+| Filter/Effect | Filter/Effect   | ❌ |
+| In-layer Filter/Effect | Any | 🚧 Missing :room_get_info(): data |
+| Creation Code | - | ✔️ |
+| Views | - | ❌ |
+| Physics | - | ❌ |
+| Display Buffer & Viewport Clearing | - | ❌ |
+
+---
+### `.Load()`
 
 > `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
 
 Loads the given room at the given coordinates and origin, filtered by the given flags.
 
-* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-use-return-data) is `true`, returns an instance of :Payload:.
+* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:.
 * Otherwise returns :Undefined:.
 
 | Parameter | Type | Description |
@@ -39,7 +67,8 @@ roomPayload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _fla
 ```
 :::
 
-## `.LoadExt()` [COMING SOON]
+---
+### `.LoadExt()` [COMING SOON]
 
 > `RoomLoader.LoadExt(room, x, y, xScale, yScale, angle, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
 
@@ -47,7 +76,9 @@ Loads the given room at the given coordinates, scale, angle and origin, filtered
 
 Coming Soon:tm:
 
-## `.LoadInstances()`
+## Individual Parts
+---
+### `.LoadInstances()`
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle], [multScale])` ➜ :Array: of :Id.Instance:
 
@@ -95,7 +126,8 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 ```
 :::
 
-## `.LoadTilemap()`
+---
+### `.LoadTilemap()`
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, targetLayer, [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 

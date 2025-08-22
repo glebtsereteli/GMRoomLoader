@@ -324,7 +324,7 @@ function RoomLoader() {
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
-		static _methodName = "load";
+		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
 		static _benchMessage = "loaded";

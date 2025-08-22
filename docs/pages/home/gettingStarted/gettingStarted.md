@@ -9,7 +9,7 @@
     * Structs, functions/methods and arguments, macros and enums.
 
 ## Installation
-1. Download the latest `.yymps` package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
+1. Download the `.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0).
 2. Import the package into your project.
     * Navigate to __Tools__ in the top toolbar and click __Import Local Package__, or just drag and drop the file into GameMaker.
     ![alt text](import01.png)

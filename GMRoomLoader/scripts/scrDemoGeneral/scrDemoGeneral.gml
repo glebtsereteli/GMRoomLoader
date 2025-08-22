@@ -10,7 +10,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 			return {
 				name: layer_get_name(_layer),
 				enabled: false,
-			}
+			};
 		});
 		blacklist = variable_clone(whitelist);
 		layer_reset_target_room();
@@ -33,6 +33,12 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		pos.InitDbg();
 		origin.InitDbg();
+		
+		dbg_text_separator("Transform", 1);
+		dbg_slider(ref_create(self, "xScale"), -2, 2, "X Scale", 0.1);
+		dbg_slider(ref_create(self, "yScale"), -2, 2, "Y Scale", 0.1);
+		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 10);
+		
 		flags.InitDbg();
 		
 		dbg_text_separator("Layer Whitelist", 1);
@@ -47,6 +53,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 	
 		// Reloader:
 		owner.reloader
+		.AddVariables(self, ["xScale", "yScale", "angle"])
 		.AddModules([pos, origin, flags])
 		.OnTrigger(function() {
 			Load();
@@ -75,6 +82,9 @@ function DemoGeneral() : DemoPar("General") constructor {
 	rm = rmDemoGeneral01;
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
+	xScale = 1;
+	yScale = 1;
+	angle = 0;
 	flags = new DemoModuleFlags();
 	whitelist = undefined;
 	blacklist = undefined;

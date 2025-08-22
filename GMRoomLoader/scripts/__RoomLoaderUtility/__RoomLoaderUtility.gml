@@ -18,10 +18,6 @@ function __RoomLoaderGetLayer(_data) {
 function __RoomLoaderCheckFlag(_flags) {
 	return ((_flags & __flag) == __flag);
 }
-function __RoomLoaderProcessScript(_script) {
-	return ((_script == -1) ? __RoomLoaderNoop : _script);
-}
-
 function __RoomLoaderLogBase(_message) {
 	show_debug_message($"{__ROOMLOADER_LOG_PREFIX} {_message}.");
 }

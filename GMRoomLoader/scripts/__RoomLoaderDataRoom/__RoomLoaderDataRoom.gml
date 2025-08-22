@@ -69,7 +69,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		__layersPool = [];
 		__width = _rawData.width;
 		__height = _rawData.height;
-		__creationCode = __RoomLoaderProcessScript(_rawData.creationCode);
+		__creationCode = max(_rawData.creationCode, __RoomLoaderNoop);
 		
 		// Store instances data:
 		var _instancesData = _rawData.instances;

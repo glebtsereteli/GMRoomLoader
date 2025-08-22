@@ -10,14 +10,6 @@ export default defineConfig({
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
 
-  head: [
-    ['meta', { property: 'og:title', content: 'My Docs' }],
-    ['meta', { property: 'og:description', content: 'Check out my awesome docs!' }],
-    ['meta', { property: 'og:image', content: 'https://example.com/your-image.png' }],
-    ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:url', content: 'https://yourusername.github.io/docs/' }],
-  ],
-
   themeConfig: {
     search: {
       provider: 'local'
@@ -184,7 +176,10 @@ export default defineConfig({
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
         
         'RoomLoader': '/pages/api/roomLoader/overview',
+        'Origin': '/pages/api/roomLoader/origin',
         'Payload': '/pages/api/payload/overview',
+        'Asset Type': '/pages/api/roomLoader/filterAssetTypes',
+        'Layer Name': '/pages/api/roomLoader/filterLayerNames',
         
         'Initialization': '/pages/api/roomLoader/data/#initialization',
         'Loading': '/pages/api/roomLoader/loading',
@@ -194,9 +189,6 @@ export default defineConfig({
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
-        'Asset Type': '/pages/api/roomLoader/filterAssetTypes',
-        'Layer Name': '/pages/api/roomLoader/filterLayerNames',
-
         'ROOMLOADER_FLAG': '/pages/api/flags#roomloader_flag',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
