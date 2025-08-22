@@ -1,13 +1,15 @@
 # Payload
 
-When loading rooms using :RoomLoader.Load():, the function returns an instance of the `RoomLoaderPayload()` constructor - a struct that stores the IDs of all created layers and their elements. It can be used to retrieve element IDs and, if necessary, clean up the loaded content (which you might also call "unloading" or "destroying" a loaded room).
+When loading rooms using :RoomLoader.Load():, the method returns a `RoomLoaderPayload()` instance - a struct storing the IDs of all created layers and their elements.
+
+It can be used to retrieve element IDs and, if necessary, clean up the loaded content (which you might also call "unloading" or "destroying" a loaded room).
 :::code-group
 ```js [Example]
 // Load rmExample and store its Payload in a variable:
 roomPayload = RoomLoader.Load(rmExample, 0, 0);
 
 // Fetch the ID of the Collision tilemap:
-collisionTilemap = RoomLoader.GetTilemap("Collision");
+collisionTilemap = roomPayload.GetTilemap("Collision");
 
 // Unload the room at some later point:
 roomPayload.Cleanup();

@@ -15,9 +15,54 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/pages/home/whatIsIt' },
-      { text: 'API', link: '/pages/api/overview' },
+      {
+        text: 'Guide',
+        items: [
+          {
+            text: '🏡 Home',
+            items: [
+              { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
+              { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
+              { text: 'FAQ', link: '/pages/home/faq' },
+            ]
+          },
+          {
+            text: '🗂️ Others',
+            items: [
+              { text: 'Contact & Support', link: '/pages/others/contactSupport' },
+              { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
+              { text: 'Credits', link: '/pages/others/credits' },
+            ]
+          }
+        ]
+      },
+      { 
+        text: 'API',
+        activeMatch: '^/pages/api/',
+        items: [
+          { 
+            text: '🗺️ RoomLoader',
+            items: [
+              { text: 'Overview', link: '/pages/api/roomLoader/overview' },
+              { text: 'Data', link: '/pages/api/roomLoader/data' },
+              { text: 'Loading', link: '/pages/api/roomLoader/loading' },
+              { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
+              { text: 'Origin', link: '/pages/api/roomLoader/origin' },
+              { text: 'Asset Type Filtering', link: '/pages/api/roomLoader/assetTypeFiltering' },
+              { text: 'Layer Name Filtering', link: '/pages/api/roomLoader/layerNameFiltering' },
+            ]
+          },
+          {
+            text: '📦 Payload',
+            items: [
+              { text: 'Overview', link: '/pages/api/payload/overview' },
+              { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
+            ],
+          },
+          { text: '⚙️ Configuration', link: '/pages/api/config', },
+        ]
+      },
       { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
     ],
     
@@ -30,7 +75,6 @@ export default defineConfig({
         items: [
           { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
           { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
-          { text: 'Demo', link: '/pages/home/demo' },
           { text: 'FAQ', link: '/pages/home/faq' },
         ]
       },

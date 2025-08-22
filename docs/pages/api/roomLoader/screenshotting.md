@@ -22,10 +22,10 @@ Takes a screenshot of the given room. Assigns the given origin and scale to the 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
-| `[xOrigin]` | :Real: | The x sprite origin. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y sprite origin. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[scale]` | :Real: | The sprite scale. [Default: `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by. [Default: :ROOMLOADER_FLAG:.`ALL`] |
+| `[xOrigin]` | :Real: | The x sprite origin [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y sprite origin [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[scale]` | :Real: | The sprite scale [Default: `1`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Example]
@@ -57,10 +57,10 @@ Assigns the given origin and scale to the created sprite and filters the capture
 | `top` | :Real: | The y position on the sprite of the top-left corner of the area to capture (`0–1` percentage) |
 | `width` | :Real: | The width of the area to capture (`0–1` percentage) |
 | `height` | :Real: | The height of the area to capture (`0–1` percentage) |
-| `[xOrigin]` | :Real: | The x origin to load the room at. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the room at. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[scale]` | :Real: | The scale to create the sprite at. [Default: `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the captured elements by. [Default: :ROOMLOADER_FLAG:.`ALL`] |
+| `[xOrigin]` | :Real: | The x origin to load the room at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the room at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[scale]` | :Real: | The scale to create the sprite at [Default: `1`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Example]

@@ -18,9 +18,9 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 | `room` | :Asset.GMRoom: | The room to load |
 | `x` | :Real: | The x coordinate to load the room at |
 | `y` | :Real: | The y coordinate to load the room at |
-| `[xOrigin]` | :Real: | The x origin to load the room at. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the room at. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by. [Default: :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xOrigin]` | :Real: | The x origin to load the room at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the room at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by [Default: :ROOMLOADER_DEFAULT_FLAGS:] |
 
 :::code-group
 ```js [Examples]
@@ -57,8 +57,8 @@ Loads all instances from the given room at the given coordinates and origin, wit
 | `x` | :Real: | The x coordinate to load instances at |
 | `y` | :Real: | The y coordinate to load instances at |
 | `layerOrDepth` | :Id.Layer: or :String: or :Real: | The layer ID, layer name, or depth to create instances on |
-| `[xOrigin]` | :Real: | The x origin to load the room at. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the room at. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xOrigin]` | :Real: | The x origin to load the room at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the room at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[xscale]` | :Real: | The horizontal scale transformation |
 | `[yscale]` | :Real: | The vertical scale transformation |
 | `[angle]` | :Real: | The angle transformation |
@@ -110,12 +110,12 @@ Loads a tilemap from the given room and layer at the given coordinates and origi
 | `y` | :Real: | The y coordinate to load the tilemap at |
 | `sourceLayerName` | :String: | The source layer name to load a tilemap from |
 | `targetLayer` | :Id.Layer:, :String: | The target layer to create the tilemap on |
-| `[xOrigin]` | :Real: | The x origin to load the tilemap at. [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the tilemap at. [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xOrigin]` | :Real: | The x origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[mirror]` | :Bool: | Mirror the loaded tilemap? [Default: `false`] |
 | `[flip]` | :Bool: | Flip the loaded tilemap? [Default: `false`] |
-| `[angle]` | :Real: | The angle to load the tilemap at. [Default: `0`] |
-| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap. [Default: source] |
+| `[angle]` | :Real: | The angle to load the tilemap at [Default: `0`] |
+| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap [Default: source] |
 
 :::code-group
 ```js [Examples]

@@ -103,7 +103,7 @@ Initializes data for all rooms in the project, except the ones listed in the `bl
 
 | Parameter | Type | Description |
 |---|---|---|
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** initialize data for. [Default: empty] |
+| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** initialize data for [Default: empty] |
 
 ::: code-group
 ```js [Example]
@@ -201,7 +201,7 @@ Removes data for all rooms, except the ones listed in the `blacklist` array.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for. [Default: empty] |
+| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for [Default: empty] |
 
 ::: code-group
 ```js [Example]
