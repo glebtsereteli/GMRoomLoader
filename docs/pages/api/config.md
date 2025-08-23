@@ -96,9 +96,3 @@ This is relevant only when loading instances with a custom angle (values other t
 > Default: `false`.
 
 Whether to pause loaded sequences (`true`) or not (`false`).
-
----
-### `ROOMLOADER_ROOMS_RUN_CREATION_CODE`
-> Default: `true`.
-
-Whether to run the Creation Code for loaded rooms (`true`) or not (`false`).

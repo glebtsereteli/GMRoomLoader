@@ -329,14 +329,14 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to load.
 	/// @param {Real} x The x coordinate to load the room at.
 	/// @param {Real} y The y coordinate to load the room at.
-	/// @param {Real} xOrigin The x origin to load the room at. (default = ROOMLOADER_DEFAULT_XORIGIN)
-	/// @param {Real} yOrigin The y origin to load the room at. (default = ROOMLOADER_DEFAULT_YORIGIN)
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. (default = ROOMLOADER_DEFAULT_FLAGS)
+	/// @param {Real} xOrigin The x origin to load the room at. [Default = ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the room at. [Default = ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. [Default = ROOMLOADER_DEFAULT_FLAGS]
 	/// @returns {struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS, _depthOffset = 0) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
@@ -348,7 +348,7 @@ function RoomLoader() {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			__payload = new RoomLoaderPayload(_room);
 		}
-		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
+		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags, _depthOffset);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);

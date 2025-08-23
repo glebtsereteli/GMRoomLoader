@@ -21,9 +21,9 @@ It does NOT provide tools for procedural generation or level layout creation of 
 ## Features
 - Pure GML library with no external tools required.
 - Multiple ways to handle room data: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall).
-- Loading [Full Rooms](/pages/api/roomLoader/loading/#load) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) (with optional scale/mirror/flip and rotation transformations) at any position and origin.
-- Element type filtering using [Bitwise Flags](/pages/api/flags).
-- Layer filtering using [Whitelisting](/pages/api/roomLoader/layerFiltering/#whitelist) and [Blacklisting](/pages/api/roomLoader/layerFiltering/#blacklist).
+- Loading [Full Rooms](/pages/api/roomLoader/loading/#full-rooms) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) (with optional scale/mirror/flip and rotation transformations) at any position and origin.
+- Element filtering by :Asset Type:.
+- :Layer Name: filtering with [Whitelisting](/pages/api/roomLoader/layerNameFiltering/#whitelist) and [Blacklisting](/pages/api/roomLoader/layerNameFiltering/#blacklist).
 - Full control over loaded contents: :Payload: tracking, fetching element IDs and cleanup - unloading/destroying loaded elements.
 - Room :Screenshotting:.
 

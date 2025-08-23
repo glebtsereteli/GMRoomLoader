@@ -65,7 +65,4 @@
 // Whether to pause loaded sequences (true) or not (false).
 #macro ROOMLOADER_SEQUENCES_PAUSE false
 
-// Whether to run the Creation Code for loaded rooms (true) or not (false).
-#macro ROOMLOADER_ROOMS_RUN_CREATION_CODE true
-
 #endregion

@@ -100,9 +100,8 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get());
-		RoomLoader.LayerWhitelistReset();
-		RoomLoader.LayerBlacklistReset();
+		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), -1000);
+		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 	};
 	static Unload = function() {
 		if (DEMO_PAYLOAD == undefined) return;

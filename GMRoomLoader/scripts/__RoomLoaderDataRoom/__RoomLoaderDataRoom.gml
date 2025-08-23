@@ -112,9 +112,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 			_i++;
 		}
 		
-		if (ROOMLOADER_ROOMS_RUN_CREATION_CODE) {
-			__creationCode();
-		}
+		__creationCode();
 	};
 	static __TakeScreenshot = function(_pLeft01, _pTop01, _pWidth01, _pHeight01, _xOrigin, _yOrigin, _scale, _flags) {
         var _scaled = (_scale != 1);

@@ -9,11 +9,11 @@
 function RoomLoaderPayload(_room) constructor {
 	#region __private
 	
-	static __Container = function(_on_destroy) constructor {
+	static __Container = function(_OnDestroy) constructor {
 		__ids = [];
 		__names = [];
 		
-		__OnDestroy = _on_destroy;
+		__OnDestroy = _OnDestroy;
 		
 		static __Add = function(_id, _name) {
 			array_push(__ids, _id);
@@ -60,8 +60,78 @@ function RoomLoaderPayload(_room) constructor {
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleanedUp = false;
 	
+	static __GetTargetDepth = function(_lod, _methodName) {
+		var _targetDepth = undefined;
+		if (is_real(_lod)) {
+			_targetDepth = _lod;
+		}
+		else if (is_string(_lod) or is_handle(_lod)) {
+			_targetDepth = layer_get_depth(_lod);
+		}
+		else {
+			var _message = $"Could not shift layer depths for Layer Or Depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
+		}
+		
+		return _targetDepth;
+	};
+	
 	#endregion
 	
+	#region Depth
+	
+	static DepthAbove = function(_lod, _offset = -100) {
+		static _methodName = "DepthAbove";
+		
+		var _targetDepth = __GetTargetDepth(_lod, _methodName) + _offset;
+		
+		var _layers = GetLayers();
+		var _n = array_length(_layers);
+		
+		var _highestDepth = -infinity;
+		var _i = 0; repeat (_n) {
+			_highestDepth = max(_highestDepth, layer_get_depth(_layers[_i]));
+			_i++;
+		}
+		
+		var _depthOffset = _targetDepth - _highestDepth;
+		var _i = 0; repeat (_n) {
+			var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
+		    layer_depth(_layers[_i], _newDepth);
+			_i++;
+		}
+		
+		return self;
+	};
+	
+	static DepthBelow = function(_lod, _offset = 100) {
+		static _methodName = "DepthBelow";
+		
+		var _targetDepth = __GetTargetDepth(_lod, _methodName) + _offset;
+		
+	    var _layers = GetLayers();
+	    var _n = array_length(_layers);
+		
+	    var _lowestDepth = infinity;
+	    var _i = 0; repeat (_n) {
+	        var _depth = layer_get_depth(_layers[_i]);
+	        if (_depth < _lowestDepth) {
+	            _lowestDepth = _depth;
+	        }
+	        _i++;
+	    }
+		
+	    var _depthOffset = _targetDepth - _lowestDepth;
+	    _i = 0; repeat (_n) {
+	        var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
+	        layer_depth(_layers[_i], _newDepth);
+	        _i++;
+	    }
+		
+	    return self;
+	};
+	
+	#endregion
 	#region Getters
 	
 	/// @param {String} name Thes layer name to search for.
