@@ -17,6 +17,9 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/glebtsereteli/GMRoomLoader
+  # image:
+  #   src: /logo.png
+  #   alt: Icon
 
 features:
   - title: 🗺️ Procedural Generation

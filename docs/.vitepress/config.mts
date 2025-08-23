@@ -58,6 +58,7 @@ export default defineConfig({
             text: '📦 Payload',
             items: [
               { text: 'Overview', link: '/pages/api/payload/overview' },
+              { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
@@ -101,6 +102,7 @@ export default defineConfig({
             text: 'Payload',
             link: '/pages/api/payload/overview',
             items: [
+              { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
@@ -119,7 +121,7 @@ export default defineConfig({
           ]
       },
     ],
-
+    
     socialLinks: [
       { icon: 'github', link: 'https://github.com/glebtsereteli/GMRoomLoader' },
       {

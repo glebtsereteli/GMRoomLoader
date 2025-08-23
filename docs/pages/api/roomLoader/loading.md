@@ -12,7 +12,9 @@ Rooms can only be loaded if their data has been initialized. Make sure to [Initi
 
 ## Full Rooms
 
-This section covers loading full rooms with all their layers and elements.
+This section covers loading full rooms with all their layers and elements. Layers are sorted in the same order as defined in the Room Editor, with their depths preserved.
+
+Check the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths after loading.
 
 ### Coverage
 
