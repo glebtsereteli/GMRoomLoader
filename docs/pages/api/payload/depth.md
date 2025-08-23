@@ -24,8 +24,8 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 :::code-group
 ```js [Example]
 // Load rmLevelForest and shift all its layers above the "Instances" layer:
-payload = GMRoomLoader.Load(rmLevelForest, someX, someY);
-payload.DepthAbove("Instances");
+payload = RoomLoader.Load(rmLevelForest, someX, someY);
+payload.DepthAbove("Instances"); // [!code highlight]
 ```
 :::
 
@@ -42,8 +42,8 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 
 :::code-group
 ```js [Example]
-// Load rmLevelCave and shift all its layers 500 below the "Overlay" layer:
-payload = GMRoomLoader.Load(rmLevelCave);
-payload.DepthBelow("Overlay", 500);
+// Load rmLevelCave and shift all its layers 500 depth below the "Overlay" layer:
+payload = RoomLoader.Load(rmLevelCave);
+payload.DepthBelow("Overlay", 500); // [!code highlight]
 ```
 :::

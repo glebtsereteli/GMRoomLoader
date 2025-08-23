@@ -13,7 +13,7 @@ Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll
 * Combined together using the bitwise OR `|` operator to target multiple asset types. 
 
 | Member  | Description |
-| ------------- | ------------- |
+| --- | --- |
 | `NONE` | Doesn't load anything. |
 | `INSTANCES` | Loads Instances from Instance layers. |
 | `TILEMAPS` | Loads Tilemaps from Tile layers. |

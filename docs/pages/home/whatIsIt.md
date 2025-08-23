@@ -29,11 +29,9 @@ It does NOT provide tools for procedural generation or level layout creation of 
 
 ## How does it work?
 
-GMRoomLoader doesn't magically activate multiple rooms at once. GameMaker only allows one active room, and this does not change.
+GameMaker only ever runs one active room at a time, that never changes. GMRoomLoader works around this by recreating the contents of other rooms inside the current one.
 
-Instead, it recreates the contents of any room inside the current room.
-
-This is achieved through :room_get_info():: the library parses the data it provides, processes it for efficient loading, and then rebuilds the room layers and their elements when you call :Loading: methods.
+It does this by calling :room_get_info(): to grab the raw data of a room. The library then parses that data, optimizes it for loading, and finally rebuilds the room's layers and elements when you use its :Loading: methods.
 
 ## GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
