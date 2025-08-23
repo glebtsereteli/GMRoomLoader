@@ -1,7 +1,7 @@
 
 /// @func RoomLoaderExportScreenshots()
-/// @param {Array<Asset.GMRoom>} rooms An array of rooms to export screenshots of. (default = all rooms)
-/// @param {String} path The path to export the .zip to. (default = undefined, prompt)
+/// @param {Array<Asset.GMRoom>} rooms An array of rooms to export screenshots of. [Default: all rooms]
+/// @param {String} path The path to export the .zip to. [Default: undefined, prompt]
 /// @descr Takes screenshots of all given rooms and exports them into a .zip archive at the given path.
 /// Note: make sure to have the "Disable file system sandbox" setting disabled for your target platform.
 function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path = undefined) {
