@@ -17,7 +17,9 @@ Make sure to keep track of them and delete them using [sprite_delete()](https://
 
 > `RoomLoader.Screenshot(room, [xOrigin], [yOrigin], [scale], [flags]` ➜ :Asset.GMSprite:
 
-Takes a screenshot of the given room. Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags. Returns the created :Asset.GMSprite: reference.
+Takes a screenshot of the given room. Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags.
+
+Returns the created :Asset.GMSprite: reference.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|

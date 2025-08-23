@@ -38,11 +38,6 @@ As a result, modding and live reloading aren't possible by design.
 
 If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. While it's not as modern and fancy as GMRoomLoader, it works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
 
-## 📍 How does GMRoomLoader actually "load rooms" if GameMaker can only have a single room active at a time? Does the library get around that somehow?
-GameMaker can indeed only have a single room active at a time. GMRoomLoader doesn't change that.
-
-When we say "load a room", what we really mean is "recreate a room" or "load room contents". GMRoomLoader does this by taking the data from :room_get_info():, processing it for  loading, and using it to recreate room layers and their respective elements.
-
 ## 📍 I'm loading a room and it I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 

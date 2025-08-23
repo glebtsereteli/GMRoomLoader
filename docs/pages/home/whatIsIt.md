@@ -1,16 +1,16 @@
 # What is GMRoomLoader?
 
-GMRoomLoader is a pure GML open source ([FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)) GameMaker library for making room prefabs and loading room contents at runtime.
+GMRoomLoader is a pure GML open source ([FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)) GameMaker library for creating room prefabs and loading room contents at runtime.
 
 Also known as "loading other rooms into the current room".
 
-It provides tools to process the data returned by :room_get_info():, use it to load rooms contents efficiently during gameplay, and clean up created elements when needed.
+It provides tools to process the data returned by :room_get_info():, use that data to load room contents efficiently during gameplay, and clean up created elements when needed.
 
 ## Use Cases
 * **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, NPCs or randomized props).
 * **Chunking**. Divide large rooms into smaller sections, loading or unloading them dynamically as the player moves closer or farther away.​
 * **Room Thumbnails**. Take screenshots of your rooms and use them in level selection menus, seamless room transitions or loading previews. 
-* **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game (as of [2024.13](https://gamemaker.io/en/blog/release-2024-13),​ this is mostly superseded by GM's [UI Layers](https://manual.gamemaker.io/monthly/en/#t=The_Asset_Editors%2FRoom_Properties%2FUI_Layers.htm)​).
+* **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game (as of [2024.13](https://gamemaker.io/en/blog/release-2024-13),​ this is mostly superseded by GameMaker's [UI Layers](https://manual.gamemaker.io/monthly/en/#t=The_Asset_Editors%2FRoom_Properties%2FUI_Layers.htm)​).
 
 ::: warning DISCLAIMER
 GMRoomLoader is designed specifically for __loading room contents__.
@@ -28,7 +28,12 @@ It does NOT provide tools for procedural generation or level layout creation of 
 - Room :Screenshotting:.
 
 ## How does it work?
-@TODO
+
+GMRoomLoader doesn't magically activate multiple rooms at once. GameMaker only allows one active room, and this does not change.
+
+Instead, it recreates the contents of any room inside the current room.
+
+This is achieved through :room_get_info():: the library parses the data it provides, processes it for efficient loading, and then rebuilds the room layers and their elements when you call :Loading: methods.
 
 ## GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!

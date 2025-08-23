@@ -41,6 +41,7 @@ export default defineConfig({
         text: 'API',
         activeMatch: '^/pages/api/',
         items: [
+          { text: '📖 Overview', link: '/pages/api/overview' },
           { 
             text: '🗺️ RoomLoader',
             items: [
@@ -178,8 +179,8 @@ export default defineConfig({
         'RoomLoader': '/pages/api/roomLoader/overview',
         'Origin': '/pages/api/roomLoader/origin',
         'Payload': '/pages/api/payload/overview',
-        'Asset Type': '/pages/api/roomLoader/filterAssetTypes',
-        'Layer Name': '/pages/api/roomLoader/filterLayerNames',
+        'Asset Type': '/pages/api/roomLoader/assetTypeFiltering',
+        'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
         
         'Initialization': '/pages/api/roomLoader/data/#initialization',
         'Loading': '/pages/api/roomLoader/loading',
@@ -189,7 +190,7 @@ export default defineConfig({
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         
-        'ROOMLOADER_FLAG': '/pages/api/flags#roomloader_flag',
+        'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering/#roomloader-flag',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',

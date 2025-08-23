@@ -141,7 +141,7 @@ The optional `[tileset]` parameter can be especially useful for loading:
 * The same layout of tiles with different skins based on the current biome or dimension.
 * A visual + collision pair of tilemaps. Great for tiles with perspective or detailing that doesn't match with collision 1:1.
 
-When using such tileset groups/pairs, make sure that tiles on both tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
+When using such tileset groups/pairs, make sure that tiles on all tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
 
 :::code-group
 ```js [Examples]

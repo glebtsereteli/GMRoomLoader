@@ -18,14 +18,16 @@
 
 ## Static Namespace
 
-`RoomLoader` is a function containing static data variables and methods, effectively acting as a makeshift [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170)-like construct. It's initialized internally and requires no extra setup.
+`RoomLoader` is a global script function containing static data variables and methods, effectively acting as a makeshift [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170)-like construct. It's initialized internally and requires no extra setup.
 
 All methods are accessed using the `RoomLoader.MethodName(arguments...)` syntax:
 * Initialize data: `RoomLoader.DataInit(rmDungeon);`.
-* Load a room: `RoomLoader.Load(rmDungeon, 0, 0);`.
+* Load a room: `RoomLoader.Load(rmDungeon, someX, someY);`.
 
 Note the lack of parentheses after `RoomLoader`. Unlike the classic `function_name()` calls you’re used to in GML, this accesses static methods within the `RoomLoader` interface. 
 
 This design offers a single, clean entry point for the entire library, with all internal data and public methods contained within a single "namespace".
 
 ## Fluent Interface
+
+@TODO

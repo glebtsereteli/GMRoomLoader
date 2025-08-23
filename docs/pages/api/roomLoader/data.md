@@ -298,6 +298,10 @@ RoomLoader.LayerWhitelistReset();
 
 Returns an array of instance data structs for the given room. Format listed [below](#struct-format).
 
+::: danger IMPORTANT
+This method fetches the original internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
+:::
+
 | Parameter | Type | Description |
 |---|---|---|
 | `room` | :Asset.GMRoom: | The room to get an array of instance data for |
@@ -307,8 +311,7 @@ Returns an array of instance data structs for the given room. Format listed [bel
 // Fetches instance data for rmExample:
 var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
 
-// Maps the data array to an array of instance IDs using a custom function
-// for creating instances:
+// Maps the data array to an array of instance IDs using a custom instance creation function:
 instances = array_map(_instancesData, function(_instanceData) {
     var _instanceId = ...; // Use _instanceData for custom instance creation.
     // More custom logic...
