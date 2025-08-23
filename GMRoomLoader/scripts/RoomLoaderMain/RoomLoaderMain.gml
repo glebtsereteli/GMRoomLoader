@@ -408,32 +408,41 @@ function RoomLoader() {
 		else {
 			var _xOffset = _data.__width * _xScale * _xOrigin;
 			var _yOffset = _data.__height * _yScale * _yOrigin;
-			var _x1 = _x - (lengthdir_x(_xOffset, _angle) + lengthdir_x(_yOffset, _angle - 90));
-			var _y1 = _y - (lengthdir_y(_xOffset, _angle) + lengthdir_y(_yOffset, _angle - 90));
 			
-			var _iXScale = (_multScale ? _xScale : 1);
-			var _iYScale = (_multScale ? _yScale : 1);
-			var _iangle = _angle * _addAngle;
+			var _negAngle = -_angle;
+			var _cos = dcos(_negAngle);
+			var _sin = dsin(_negAngle);
+			
+			var _x1 = _x - (_xOffset * _cos - _yOffset * _sin);
+			var _y1 = _y - (_xOffset * _sin + _yOffset * _cos);
+			
+			var _xScaleInst = (_multScale ? _xScale : 1);
+			var _yScaleInst = (_multScale ? _yScale : 1);
+			_angle *= _addAngle;
 			
 			var _i = 0; repeat (_n) {
-				var _iData = _instancesData[_i];
+			    var _iData = _instancesData[_i];
+				
+			    var _xLocal = _iData.x * _xScale;
+			    var _yLocal = _iData.y * _yScale;
+				
+			    var _xFinal = _x1 + (_xLocal * _cos) - (_yLocal * _sin);
+			    var _yFinal = _y1 + (_xLocal * _sin) + (_yLocal * _cos);
+				
 				var _preCreate = _iData.preCreate;
-				var _xScaled = _iData.x * _xScale;
-				var _yScaled = _iData.y * _yScale;
-				var _dist = point_distance(0, 0, _xScaled, _yScaled);
-				var _dir = point_direction(0, 0, _xScaled, _yScaled) + _angle;
-				var _iX = _x1 + lengthdir_x(_dist, _dir);
-				var _iY = _y1 + lengthdir_y(_dist, _dir);
-				_preCreate.image_xscale *= _iXScale;
-				_preCreate.image_yscale *= _iYScale;
-				_preCreate.image_angle += _iangle;
-				var _inst = _func(_iX, _iY, _lod, _iData.object, _preCreate);
-				__ROOMLOADER_INSTANCE_CC;
-				_preCreate.image_xscale /= _iXScale;
-				_preCreate.image_yscale /= _iYScale;
-				_preCreate.image_angle -= _iangle;
-				_instances[_i] = _inst;
-				_i++;
+				var _xScalePrev = _preCreate.image_xscale; _preCreate.image_xscale *= _xScaleInst;
+				var _yScalePrev = _preCreate.image_yscale; _preCreate.image_yscale *= _yScaleInst;
+			    _preCreate.image_angle += _angle;
+				
+			    var _inst = _func(_xFinal, _yFinal, _lod, _iData.object, _preCreate);
+			    __ROOMLOADER_INSTANCE_CC;
+				
+			    _preCreate.image_xscale = _xScalePrev;
+			    _preCreate.image_yscale = _yScalePrev;
+			    _preCreate.image_angle -= _angle;
+				
+			    _instances[_i] = _inst;
+			    _i++;
 			}
 		}
 		
@@ -567,6 +576,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static Screenshot = function(_room, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
 		static _methodName = "Screenshot";
+		
 		return __TakeScreenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
@@ -586,6 +596,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _scale = 1, _flags = ROOMLOADER_FLAG.ALL) {
 		static _methodName = "ScreenshotPart";
+		
 		return __TakeScreenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName);
 	};
 	
