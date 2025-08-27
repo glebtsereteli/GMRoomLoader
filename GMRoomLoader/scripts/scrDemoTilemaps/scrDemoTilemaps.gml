@@ -27,6 +27,7 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		dbg_checkbox(ref_create(self, "flip"), "Flip");
 		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 90);
 		
+		dbg_text_separator("Tilesets", 1);
 		base.InitDbg();
 		details.InitDbg();
 		
@@ -87,6 +88,7 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 	};
 }
 function DemoTilemapsPart(_name, _depthOffset) constructor {
+	owner = other;
 	name = _name;
 	layer = layer_create(CONTROL.depth + _depthOffset);
 	tilemap = undefined;
@@ -97,7 +99,17 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 	});
 	
 	static InitDbg = function() {
-		dbg_drop_down(ref_create(self, "tileset"), tilesetIds, tilesetNames, $"{name} Tileset");
+		dbg_drop_down(ref_create(self, "tileset"), tilesetIds, tilesetNames, $"{name}");
+		dbg_same_line();
+		dbg_button("-", function() { Cycle(-1); }, 20, 20);
+		dbg_same_line();
+		dbg_button("+", function() { Cycle(+1); }, 20, 20);
+	};
+	static Cycle = function(_dir) {
+		var _index = array_get_index(tilesetIds, tileset);
+		_index = Mod2(_index + _dir, array_length(tilesetIds));
+		tileset = tilesetIds[_index];
+		owner.Load();
 	};
 	static Destroy = function() {
 		if (tilemap == undefined) return;
