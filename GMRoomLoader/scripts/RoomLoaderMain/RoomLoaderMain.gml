@@ -462,8 +462,13 @@ function RoomLoader() {
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = 0, _yOrigin = 0, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
 		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
-		_x -= (_roomData.__width * _xOrigin);
-		_y -= (_roomData.__height * _yOrigin);
+		
+		_angle = _angle - (floor(_angle / 360) * 360);
+		_angle = round(_angle / 90) * 90;
+		
+		var _transposed = ((_angle mod 180) == 90);
+		_x -= (_transposed ? _roomData.__height : _roomData.__width) * _xOrigin;
+		_y -= (_transposed ? _roomData.__width : _roomData.__height) * _yOrigin;
 		
 		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
 	};

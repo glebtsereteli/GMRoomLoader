@@ -41,7 +41,9 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		});
 	};
 	static Draw = function() {
-		DemoDrawFrame(rm, pos.x, pos.y, origin,, ((angle mod 180) == 90));
+		var _angle = angle - (floor(angle / 360) * 360);
+		var _transposed = ((_angle mod 180) == 90);
+		DemoDrawFrame(rm, pos.x, pos.y, origin,, _transposed);
 		draw_sprite(sprDemoCross, 0, pos.x, pos.y);
 	};
 	

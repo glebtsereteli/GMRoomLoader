@@ -64,9 +64,6 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	    return _tilemap;
 	};
 	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle, _tileset = __tileset) {
-		_angle = _angle - (floor(_angle / 360) * 360);
-		_angle = round(_angle / 90) * 90;
-		
 		var _transposed = ((_angle mod 180) == 90);
 		var _w = (_transposed ? __height : __width);
 		var _h = (_transposed ? __width : __height);
