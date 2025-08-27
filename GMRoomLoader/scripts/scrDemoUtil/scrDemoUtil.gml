@@ -31,9 +31,11 @@ function DrawSpriteOrigin(_sprite, _subimg, _x, _y, _xOrigin, _yOrigin, _xScale 
 	draw_sprite_ext(_sprite, _subimg, floor(_x), floor(_y), _xScale, _yScale, _angle, _color, _alpha);
 }
 
-function DemoDrawFrame(_room, _px, _py, _origin, _scale = 1) {
-	var _w = RoomLoader.DataGetWidth(_room) * _scale;
-	var _h = RoomLoader.DataGetHeight(_room) * _scale;
+function DemoDrawFrame(_room, _px, _py, _origin, _scale = 1, _transpose = false) {
+	var _wBase = RoomLoader.DataGetWidth(_room);
+	var _hBase = RoomLoader.DataGetHeight(_room);
+	var _w = (_transpose ? _hBase : _wBase) * _scale;
+	var _h = (_transpose ? _wBase : _hBase) * _scale;
 	var _x = floor(_px - (_w * _origin.x));
 	var _y = floor(_py - (_h * _origin.y));
 	draw_sprite_stretched(sprDemoFrame, 0, _x, _y, _w, _h);

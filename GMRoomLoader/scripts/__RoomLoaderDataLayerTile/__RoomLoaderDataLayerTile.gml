@@ -18,10 +18,10 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _i = 0; repeat (_n) {
 		    var _data = _tilesData[_i];
 		    if (_data > 0) {
-			    __tilesData[_count++] = _data;
 			    __tilesData[_count++] = _i mod __width;
 			    __tilesData[_count++] = _i div __width;
-		    }
+				__tilesData[_count++] = _data;
+			}
 			_i++;
 		}
 		
@@ -57,73 +57,76 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 	    var _data = __tilesData;
 		var _i = 0; repeat (__n) {
-			tilemap_set(_tilemap, _data[_i], _data[_i + 1], _data[_i + 2]);
+			tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]);
 			_i += __ROOMLOADER_TILE_STEP;
 		}
 		
 	    return _tilemap;
 	};
 	static __CreateTilemapExt = function(_layer, _x, _y, _mirror, _flip, _angle, _tileset = __tileset) {
-	    var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
+		_angle = _angle - (floor(_angle / 360) * 360);
+		_angle = round(_angle / 90) * 90;
+		
+		var _transposed = ((_angle mod 180) == 90);
+		var _w = (_transposed ? __height : __width);
+		var _h = (_transposed ? __width : __height);
 		
 		var _mat00 = 1, _mat01 = 0, _rotXOffset = 0;
 		var _mat10 = 0, _mat11 = 1, _rotYOffset = 0;
 		var _rotFlag = 0;
 		
-		_angle = _angle - (floor(_angle / 360) * 360);
-		_angle = round(_angle / 90) * 90;
-		
 		switch (_angle) {
-		    case 90: { 
+		    case 90: {
 		        _mat00 = 0; _mat01 = 1; _rotXOffset = 0;
 		        _mat10 = -1; _mat11 = 0; _rotYOffset = __width - 1;
 		        _rotFlag = tile_mirror | tile_flip | tile_rotate;
 		        break;
-			}
+		    }
 		    case 180: {
 		        _mat00 = -1; _mat01 = 0; _rotXOffset = __width - 1;
 		        _mat10 = 0; _mat11 = -1; _rotYOffset = __height - 1;
 		        _rotFlag = tile_mirror | tile_flip;
 		        break;
-			}
+		    }
 		    case 270: {
 		        _mat00 = 0; _mat01 = -1; _rotXOffset = __height - 1;
 		        _mat10 = 1; _mat11 = 0; _rotYOffset = 0;
 		        _rotFlag = tile_rotate;
 		        break;
-			}
+		    }
 		}
 		
 		var _mirrorMult = (_mirror ? -1 : 1);
-	    var _mirrorOffset = (_mirror ? __width - 1 : 0);
-	    var _flipMult = (_flip ? -1 : 1);
-	    var _flipOffset = (_flip ? __height - 1 : 0);
+		var _mirrorOff = (_mirror ? __width  - 1 : 0);
+		var _flipMult = (_flip ? -1 : 1);
+		var _flipOff = (_flip ? __height - 1 : 0);
 		
+		var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _w, _h);
 		var _tilesData = __tilesData;
+		
 		var _i = 0; repeat (__n) {
-			var _t = _tilesData[_i];
+		    var _t = _tilesData[_i + 2];
+		    var _xStart = _tilesData[_i];
+		    var _yStart = _tilesData[_i + 1];
 			
-			var _xStart = _tilesData[_i + 1];
-			var _yStart = _tilesData[_i + 2];
+		    // mirror
+		    _xStart = (_xStart * _mirrorMult) + _mirrorOff;
+		    _t ^= _mirror * tile_mirror;
 			
-			// rotate
-			_x = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset;
-			_y = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
-			_t ^= _rotFlag;
+		    // flip
+		    _yStart = (_yStart * _flipMult) + _flipOff;
+		    _t ^= _flip * tile_flip;
 			
-			// mirror
-			_x = (_x * _mirrorMult) + _mirrorOffset;
-			_t ^= _mirror * tile_mirror;
+		    // rotate
+		    var _rx = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset;
+		    var _ry = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
+		    _t ^= _rotFlag;
 			
-			// flip
-			_y = (_y * _flipMult) + _flipOffset;
-			_t ^= _flip * tile_flip;
+		    tilemap_set(_tilemap, _t, _rx, _ry);
 			
-			tilemap_set(_tilemap, _t, _x, _y);
-			
-			_i += __ROOMLOADER_TILE_STEP;
+		    _i += __ROOMLOADER_TILE_STEP;
 		}
 		
-	    return _tilemap;
+		return _tilemap;
 	};
 }

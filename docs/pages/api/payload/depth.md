@@ -7,7 +7,7 @@ This is especially useful if you don't want the hassle of manually aligning laye
 The methods below allow you to shift depths for all loaded layers at once.
 
 ::: tip
-If you need more precise control over individual layer depths, use [.GetLayers()](/pages/api/payload/getters/#get-layers) or [.GetLayer()](/pages/api/payload/getters/#get-layers) Payload methods to fetch layer ids and [layer_get_depth()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_get_depth.htm) and [layer_depth()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_depth.htm) functions to adjust their depths manually.
+If you need more precise control over individual layer depths, use [.GetLayer()](/pages/api/payload/getters/#getlayer) or [.GetLayers()](/pages/api/payload/getters/#getlayers) Payload methods to fetch layer IDs and [layer_get_depth()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_get_depth.htm) + [layer_depth()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_depth.htm) functions to adjust their depths manually.
 :::
 
 ## `.DepthAbove()`

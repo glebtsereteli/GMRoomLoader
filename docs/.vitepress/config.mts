@@ -186,6 +186,7 @@ export default defineConfig({
         
         'Initialization': '/pages/api/roomLoader/data/#initialization',
         'Loading': '/pages/api/roomLoader/loading',
+        'Full Room Loading': '/pages/api/roomLoader/loading/#full-rooms',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',

@@ -1,6 +1,6 @@
 # What is GMRoomLoader?
 
-GMRoomLoader is a pure GML open source ([FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software)) GameMaker library for creating room prefabs and loading room contents at runtime.
+GMRoomLoader is a pure GML [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library for creating room prefabs and loading room contents at runtime.
 
 Also known as "loading other rooms into the current room".
 
@@ -29,9 +29,9 @@ It does NOT provide tools for procedural generation or level layout creation of 
 
 ## How does it work?
 
-GameMaker only ever runs one active room at a time, that never changes. GMRoomLoader works around this by recreating the contents of other rooms inside the current one.
+GMRoomLoader works by calling :room_get_info(): to grab the raw data of a room, parsing that data, optimizing it for loading, and then rebuilding room layers and elements when you use its :Loading: methods.
 
-It does this by calling :room_get_info(): to grab the raw data of a room. The library then parses that data, optimizes it for loading, and finally rebuilds the room's layers and elements when you use its :Loading: methods.
+GameMaker can only have a single room active at a time and GMRoomLoader doesn't magically change that. Instead, it recreates the contents of other rooms inside the current room.
 
 ## GameMaker Awards 2024
 GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!

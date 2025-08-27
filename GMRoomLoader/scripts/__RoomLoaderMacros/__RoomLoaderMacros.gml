@@ -17,7 +17,7 @@ if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
 	} \
 }
 
-#macro __ROOMLOADER_TILE_STEP 3 // data, x, y
+#macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion
 #region Benchmarking

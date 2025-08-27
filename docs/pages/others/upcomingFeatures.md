@@ -13,6 +13,5 @@ The following list of ideas includes features that might or might not be introdu
 
 ## Demos
 * Procedural generation.
-* Level selection.
 * Drag'n'drop map.
 * Endless runner.

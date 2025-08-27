@@ -6,7 +6,7 @@ function Demos(_pool) constructor {
 	pool = [
 		new DemoGeneral(),
 		new DemoInstances(),
-		new DemoTilemap(),
+		new DemoTilemaps(),
 		new DemoScreenshots(),
 		new DemoBase(),
 	];

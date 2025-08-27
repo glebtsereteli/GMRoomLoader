@@ -1,0 +1,38 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"tsDemoTilemapsGrass",
+  "autoTileSets":[],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"tsDemoTilemapsGrass",
+  "out_columns":18,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"01. Grass",
+    "path":"folders/01. Demo/03. Tilemap/01. Grass.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"sprTsDemoTilemapsGrass",
+    "path":"sprites/sprTsDemoTilemapsGrass/sprTsDemoTilemapsGrass.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":35,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":35,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":324,
+}

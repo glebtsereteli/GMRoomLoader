@@ -114,10 +114,7 @@ function RoomLoaderPayload(_room) constructor {
 		
 	    var _lowestDepth = infinity;
 	    var _i = 0; repeat (_n) {
-	        var _depth = layer_get_depth(_layers[_i]);
-	        if (_depth < _lowestDepth) {
-	            _lowestDepth = _depth;
-	        }
+			_lowestDepth = min(_lowestDepth, layer_get_depth(_layers[_i]));
 	        _i++;
 	    }
 		

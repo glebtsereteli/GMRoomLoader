@@ -281,8 +281,7 @@ function RoomLoader() {
 	static DataGetWidth = function(_room) {
 		static _methodName = "DataGetWidth";
 		
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room width for");
-		var _data = __GetLoadData(_room, _methodName, "load", "get their widths");
+		var _data = __GetLoadData(_room, _methodName, "get width for", "get their widths");
 		return _data.__width;
 	};
 	
@@ -293,8 +292,7 @@ function RoomLoader() {
 	static DataGetHeight = function(_room) {
 		static _methodName = "DataGetHeight";
 		
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, $"get room height for");
-		var _data = __GetLoadData(_room, _methodName, "load", "get their heights");
+		var _data = __GetLoadData(_room, _methodName, "get height for", "get their heights");
 		return _data.__height;
 	};
 	
@@ -318,8 +316,7 @@ function RoomLoader() {
 	static DataGetInstances = function(_room) {
 		static _methodName = "DataGetInstances";
 		
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "get instances data for");
-		var _data = __GetLoadData(_room, _methodName, "load", "get their instances data");
+		var _data = __GetLoadData(_room, _methodName, "get intances data for", "get their instances data");
 		return _data.__instancesPool;
 	};
 	
