@@ -333,7 +333,7 @@ function RoomLoader() {
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS, _depthOffset = 0) {
+	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
@@ -345,7 +345,7 @@ function RoomLoader() {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			__payload = new RoomLoaderPayload(_room);
 		}
-		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags, _depthOffset);
+		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);
@@ -463,14 +463,22 @@ function RoomLoader() {
 		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
-		_angle = _angle - (floor(_angle / 360) * 360);
-		_angle = round(_angle / 90) * 90;
-		
-		var _transposed = ((_angle mod 180) == 90);
-		_x -= (_transposed ? _roomData.__height : _roomData.__width) * _xOrigin;
-		_y -= (_transposed ? _roomData.__width : _roomData.__height) * _yOrigin;
-		
-		return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
+		if ((not _mirror) and (not _flip) and (_angle == 0)) {
+			_x -= _roomData.__width * _xOrigin;
+			_y -= _roomData.__height * _yOrigin;
+			
+			return _tilemapData.__CreateTilemap(_targetLayer, _x, _y, _tileset);
+		}
+		else {
+			_angle = _angle - (floor(_angle / 360) * 360);
+			_angle = round(_angle / 90) * 90;
+			
+			var _transposed = ((_angle mod 180) == 90);
+			_x -= (_transposed ? _roomData.__height : _roomData.__width) * _xOrigin;
+			_y -= (_transposed ? _roomData.__width : _roomData.__height) * _yOrigin;
+			
+			return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
+		}
 	};
 	
 	#endregion

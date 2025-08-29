@@ -52,8 +52,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	__width = undefined;
 	__height = undefined;
 	
-	static __CreateTilemap = function(_layer, _x, _y) {
-	    var _tilemap = layer_tilemap_create(_layer, _x, _y, __tileset, __width, __height);
+	static __CreateTilemap = function(_layer, _x, _y, _tileset = __tileset) {
+	    var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
 		
 	    var _data = __tilesData;
 		var _i = 0; repeat (__n) {
