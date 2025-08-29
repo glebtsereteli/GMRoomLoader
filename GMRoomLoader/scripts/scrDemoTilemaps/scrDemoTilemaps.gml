@@ -113,13 +113,17 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 		dbg_button("+", function() { Cycle(+1); }, 20, 20);
 	};
 	static Cycle = function(_dir) {
-		var _index = array_get_index(tilesetIds, tileset);
-		_index = Mod2(_index + _dir, n);
+		_index = Mod2(GetTilesetIndex() + _dir, n);
 		tileset = tilesetIds[_index];
 		owner.Load();
 	};
 	static Randomize = function() {
-		var _index = irandom(n - 1);
+		var _prevIndex = GetTilesetIndex();
+		do {
+			var _index = irandom(n - 1);
+		}
+		until (_index != _prevIndex);
+		
 		tileset = tilesetIds[_index];
 	};
 	static Destroy = function() {
@@ -127,5 +131,9 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 		
 		layer_tilemap_destroy(tilemap);
 		tilemap = undefined;
+	};
+	
+	static GetTilesetIndex = function() {
+		return array_get_index(tilesetIds, tileset);
 	};
 }

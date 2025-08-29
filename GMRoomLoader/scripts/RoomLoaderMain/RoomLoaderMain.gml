@@ -459,7 +459,7 @@ function RoomLoader() {
 	/// @param {Bool} flip Flip the loaded tilemap? [Default: false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: source]
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = 0, _yOrigin = 0, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _mirror = false, _flip = false, _angle = 0, _tileset = undefined) {
 		var _roomData = __GetLoadData(_room, "load tilemap", "body", "end");
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
