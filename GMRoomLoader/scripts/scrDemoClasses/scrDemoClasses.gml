@@ -33,8 +33,8 @@ function Demos(_pool) constructor {
 		
 		x1 = _x + _w + _pad;
 		y1 = _y;
-		x2 = window_get_width() - _pad;
-		y2 = window_get_height() - _pad;
+		x2 = room_width - _pad;
+		y2 = room_height - _pad;
 		xCenter = mean(x1, x2);
 		yCenter = mean(y1, y2);
 		w = x2 - x1;

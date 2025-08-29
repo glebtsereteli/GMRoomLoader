@@ -1,5 +1,9 @@
 # Getting Started
 
+This page walks you through installing and setting up GMRoomLoader in your GameMaker project for the first time.
+
+We'll begin by importing the `.yyymps` package. Then in the [First Setup](#first-setup) section, we'll go through core library operations with [Initialization](#_1-initialize), [Loading](#_2-load), and [Cleanup](#_3-clean-up). By the end, you'll have a simple working example that lets you load and unload rooms in real time.
+
 ## Requirements
 
 * [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.13.1.193` and `Runtime v2024.13.1.242` or above.

@@ -19,6 +19,12 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		dbg_button("Destroy", function() {
 			Destroy();
 		});
+		dbg_same_line();
+		dbg_button("Randomize", function() {
+			base.Randomize();
+			details.Randomize();
+			Load();
+		});
 		
 		pos.InitDbg();
 		origin.InitDbg();
@@ -97,6 +103,7 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 	tilesetIds = array_map(tilesetNames, function(_name) {
 		return asset_get_index($"tsDemoTilemaps{_name}");
 	});
+	n = array_length(tilesetIds);
 	
 	static InitDbg = function() {
 		dbg_drop_down(ref_create(self, "tileset"), tilesetIds, tilesetNames, $"{name}");
@@ -107,9 +114,13 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 	};
 	static Cycle = function(_dir) {
 		var _index = array_get_index(tilesetIds, tileset);
-		_index = Mod2(_index + _dir, array_length(tilesetIds));
+		_index = Mod2(_index + _dir, n);
 		tileset = tilesetIds[_index];
 		owner.Load();
+	};
+	static Randomize = function() {
+		var _index = irandom(n - 1);
+		tileset = tilesetIds[_index];
 	};
 	static Destroy = function() {
 		if (tilemap == undefined) return;

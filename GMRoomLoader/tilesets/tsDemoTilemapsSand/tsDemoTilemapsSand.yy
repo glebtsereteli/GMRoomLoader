@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"02. Sand",
-    "path":"folders/01. Demo/03. Tilemap/02. Sand.yy",
+    "name":"03. Tilemaps",
+    "path":"folders/01. Demo/03. Tilemaps.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

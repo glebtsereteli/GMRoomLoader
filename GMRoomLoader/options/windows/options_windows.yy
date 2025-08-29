@@ -7,7 +7,7 @@
   "option_windows_company_info":"Gleb Tsereteli",
   "option_windows_copyright_info":"Copyright (c) 2025 Gleb Tsereteli - MIT License",
   "option_windows_copy_exe_to_dest":false,
-  "option_windows_description_info":"Runtime room loading for GameMaker 2024.11+",
+  "option_windows_description_info":"Runtime room loading for GameMaker 2024.13+",
   "option_windows_disable_sandbox":true,
   "option_windows_display_cursor":true,
   "option_windows_display_name":"GMRoomLoader",

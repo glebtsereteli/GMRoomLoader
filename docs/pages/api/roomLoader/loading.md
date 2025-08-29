@@ -18,7 +18,7 @@ Check the [Payload/Depth](/pages/api/payload/depth) section if you need to adjus
 
 ### Coverage
 
-Full room loading supports the following elements.
+Full room loading supports the following room elements.
 
 | Element | Layer Type | Status |
 |---|---|---|
