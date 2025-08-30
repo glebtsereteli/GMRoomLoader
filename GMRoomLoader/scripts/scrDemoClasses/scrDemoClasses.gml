@@ -13,8 +13,6 @@ function Demos(_pool) constructor {
 	n = array_length(pool);
 	index = 0;
 	index2 = 0;
-	controls = undefined;
-	info = undefined;
 	x1 = undefined;
 	y1 = undefined;
 	x2 = undefined;
@@ -25,6 +23,28 @@ function Demos(_pool) constructor {
 	h = undefined;
 	
 	static Init = function() {
+		Change(index);
+	};
+	static Update = function() {
+		if (index2 != index) {
+			Change(index2);
+		}
+		
+		var _input = keyboard_check_pressed(vk_right) - keyboard_check_pressed(vk_left);
+		if (_input != 0) {
+			Change(index + _input);
+		}
+		
+		reloader.Update();
+		GetCurrent().Update();
+	};
+	static Draw = function() {
+		GetCurrent().Draw();
+	};
+	
+	static RefreshInterface = function() {
+		static _view = undefined;
+		
 		var _pad = 8;
 		var _x = _pad;
 		var _y = _pad + 19;
@@ -40,7 +60,11 @@ function Demos(_pool) constructor {
 		w = x2 - x1;
 		h = y2 - y1;
 		
-		dbg_view($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} Demo", true, _x, _y, _w, _h);
+		if (_view != undefined) {
+			dbg_view_delete(_view);
+		}
+		
+		_view = dbg_view($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} Demo", true, _x, _y, _w, _h);
 		
 		dbg_section("Meta");
 		static _indices = array_create_ext(n, function(_i) {
@@ -65,35 +89,17 @@ function Demos(_pool) constructor {
 		dbg_button("Docs", function() { url_open("https://GlebTsereteli.github.io/GMRoomLoader"); }, _w, 20);
 		dbg_same_line();
 		dbg_button("Itch", function() { url_open("https://glebtsereteli.itch.io/gmroomloader"); }, _w, 20);
-		
-		Change(index);
 	};
-	static Update = function() {
-		if (index2 != index) {
-			Change(index2);
-		}
-		
-		var _input = keyboard_check_pressed(vk_right) - keyboard_check_pressed(vk_left);
-		if (_input != 0) {
-			Change(index + _input);
-		}
-		
-		reloader.Update();
-		GetCurrent().Update();
-	};
-	static Draw = function() {
-		GetCurrent().Draw();
-	};
-	
 	static Change = function(_index) {
 		_index = Mod2(_index, n);
 		reloader.Clear();
 		GetCurrent().Cleanup();
 		index = _index;
 		index2 = index;
-		if (controls != undefined) dbg_section_delete(controls);
-		if (info != undefined) dbg_section_delete(info);
+		
+		RefreshInterface();
 		GetCurrent().Init();
+		
 		window_set_caption($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} ({__ROOMLOADER_DATE}) Demo: {GetCurrent().iname}");
 	};
 	

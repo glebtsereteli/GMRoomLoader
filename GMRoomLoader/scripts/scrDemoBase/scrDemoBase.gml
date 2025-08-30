@@ -5,7 +5,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		host.Init();
 		slots.Init();
 		
-		DEMOS.info = dbg_section("Info");
+		dbg_section("Info");
 		dbg_text("This demo shows an enemy base composed of multiple Room Slots,\neach filled with randomized GameMaker rooms to create a unique level.");
 		dbg_text("\nFirst we load a Host room, then fill each Slot with a random room.\nThis shows 2 \"layers\" of room loading working together.");
 		dbg_text_separator("Shortcuts", 1);
@@ -16,7 +16,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		dbg_text("  [HOLD SHIFT+LMB] on a Slot to load a random room for it every frame.");
 		dbg_text("- [PRESS RMB] on a Slot to clean up its room.");
 		
-		DEMOS.controls = dbg_section("Controls");
+		dbg_section("Controls");
 		dbg_button("Load All", function() {
 			slots.LoadAll();
 		});

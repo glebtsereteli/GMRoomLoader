@@ -15,13 +15,13 @@ function DemoGeneral() : DemoPar("General") constructor {
 		blacklist = variable_clone(whitelist);
 		
 		// Interface:
-		DEMOS.info = dbg_section("Info");
+		dbg_section("Info");
 		dbg_text("This demo shows the main \"RoomLoader.Load/LoadExt()\" methods for full\nroom loading. Use the controls below to adjust the loading position,\norigin, Flags, layer Whitelist and Blacklist.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
 		
-		DEMOS.controls = dbg_section("Controls");
+		dbg_section("Controls");
 		dbg_button("Load", function() {
 			Load();
 		});

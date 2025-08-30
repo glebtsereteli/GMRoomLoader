@@ -5,13 +5,13 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		RoomLoader.DataInit(rm);
 		
 		// Interface:
-		DEMOS.info = dbg_section("Info");
+		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load\nroom instances with optional scale and rotation.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to Load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
 		
-		DEMOS.controls = dbg_section("Controls");
+		dbg_section("Controls");
 		dbg_button("Load", function() {
 			Load();
 		});

@@ -6,13 +6,13 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		ShuffleRoom();
 		
 		// Interface:
-		DEMOS.info = dbg_section("Info");
+		dbg_section("Info");
 		dbg_text("This demo shows an example of taking room screenshots with adjustable\nparameters, pulling rooms from the Base demo.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to take a screenshot of a random room.");
 		dbg_text("- [HOLD SHIFT+1] to take a screenshot of a random room every frame.");
 		
-		DEMOS.controls = dbg_section("Controls");
+		dbg_section("Controls");
 		dbg_button("Take Random", function() {
 			TakeRandom();
 		});
