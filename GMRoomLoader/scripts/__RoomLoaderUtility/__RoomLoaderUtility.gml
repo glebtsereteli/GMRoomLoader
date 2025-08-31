@@ -15,9 +15,6 @@ function __RoomLoaderGetLayer(_data) {
 	
 	return _layer;
 }
-function __RoomLoaderCheckFlag(_flags) {
-	return ((_flags & __flag) == __flag);
-}
 function __RoomLoaderLogBase(_message) {
 	show_debug_message($"{__ROOMLOADER_LOG_PREFIX} {_message}.");
 }

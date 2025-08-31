@@ -99,17 +99,34 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		delete __instancesInitLut;
 	};
-	static __Load = function(_x, _y, _xOrigin, _yOrigin, _flags) {
-		_x -= (__width * _xOrigin);
-		_y -= (__height * _yOrigin);
-		
+	static __Load = function(_x, _y, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle) {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__instances.__Init(array_length(__instancesPool));
 		}
 		
-		var _i = 0; repeat (array_length(__layersPool)) {
-			__layersPool[_i].__Load(_x, _y, _flags);
-			_i++;
+		if (__ROOMLOADER_NOTRANSFORM) {
+			_x -= __width * _xOrigin;
+			_y -= __height * _yOrigin;
+			
+			var _i = 0; repeat (array_length(__layersPool)) {
+				__layersPool[_i].__Load(_x, _y, _flags);
+				_i++;
+			}
+		}
+		else {
+			var _xOffset = __width * _xScale * _xOrigin;
+			var _yOffset = __height * _yScale * _yOrigin;
+			
+			var _cos = dcos(_angle);
+		    var _sin = dsin(_angle);
+			
+		    var _x1 = _x - (_xOffset * _cos + _yOffset * _sin);
+		    var _y1 = _y - (-_xOffset * _sin + _yOffset * _cos);
+			
+			var _i = 0; repeat (array_length(__layersPool)) {
+				__layersPool[_i].__LoadTransformed(_x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos);
+				_i++;
+			}
 		}
 		
 		__creationCode();

@@ -30,7 +30,9 @@ If you already have GMRoomLoader installed and want to update to the latest vers
 ## First Setup
 While GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, the following :Initialization:, :Loading: and :Cleanup: methods are the only basics you need to get things working and load your first room!
 
-> Download the [First Setup](https://www.youtube.com/watch?v=dQw4w9WgXcQ) example project. @TODO
+::: tip DOWNLOAD!
+Download the example project to see the following setup in action: [First Setup.yyz](https://www.youtube.com/watch?v=dQw4w9WgXcQ) @TODO
+::::
 
 ### 1. Initialize
 [Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you want to load.

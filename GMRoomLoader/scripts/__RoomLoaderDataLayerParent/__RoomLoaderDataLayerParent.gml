@@ -1,27 +1,25 @@
 /// @feather ignore all
 
 function __RoomLoaderDataLayerParent(_layerData) constructor {
+	static __flag = undefined;
+	
 	__owner = other;
 	__layerData = _layerData;
 	
 	static __Init = function() {
 		__OnInit();
 	};
-	static __Load = function(_xOffset, _yOffset, _flags) {
-		if (not __RoomLoaderCheckFlag(_flags)) return;
-		if (__HasFailedFilters()) return;
-		
-		var _layer = __RoomLoaderGetLayer(__layerData);
-		
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__layers.__Add(_layer, __layerData.name);
-		}
-		
-		__OnLoad(_layer, _xOffset, _yOffset, _flags);
+	static __Load = function(_x, _y, _flags) {
+		__ROOMLOADER_LOAD_LAYER_START;
+		__OnLoad(_layer, _x, _y, _flags);
+	};
+	static __LoadTransformed = function(_x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos) {
+		__ROOMLOADER_LOAD_LAYER_START;
+		__OnLoadTransformed(_layer, _x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos);
 	};
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;
-		if (not __RoomLoaderCheckFlag(_flags)) return;
+		if (not __ROOMLOADER_HAS_FLAG) return;
 		if (__HasFailedFilters()) return;
 		__OnDraw();
 	};
@@ -32,5 +30,6 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 	
 	static __OnInit = __RoomLoaderNoop;
 	static __OnLoad = __RoomLoaderNoop;
+	static __OnLoadTransformed = __RoomLoaderNoop;
 	static __OnDraw = __RoomLoaderNoop;
 }
