@@ -63,7 +63,7 @@ Tile layers can only be mirrored, flipped and rotated at 90-degree angle increme
 | `[angle]` | :Real: | The angle to load the room at [Default: 0] |
 
 :::code-group
-```js [Basics]
+```js [Basic]
 // Loads rmLevelCastle at arbitrary coordinates:
 RoomLoader.Load(rmLevelCastle, someX, someY); // [!code highlight]
 
@@ -77,7 +77,7 @@ RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5); // [!code highlight]
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
 payload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
 ```
-```js [Transformations]
+```js [Transformed]
 @TODO
 ```
 :::
@@ -137,7 +137,9 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, targetLayer, [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset. Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset.
+
+Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
 
 #### Custom Tilesets
 The optional `[tileset]` parameter can be especially useful for loading:
@@ -145,6 +147,20 @@ The optional `[tileset]` parameter can be especially useful for loading:
 * A visual + collision pair of tilemaps. Great for tiles with perspective or detailing that doesn't match with collision 1:1.
 
 When using such tileset groups/pairs, make sure that tiles on all tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `room` | :Asset.GMRoom: | The room to load a tilemap from |
+| `x` | :Real: | The x coordinate to load the tilemap at |
+| `y` | :Real: | The y coordinate to load the tilemap at |
+| `sourceLayerName` | :String: | The source layer name to load a tilemap from |
+| `targetLayer` | :Id.Layer: or :String: | The target layer to create the tilemap on |
+| `[xOrigin]` | :Real: | The x origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the tilemap at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[mirror]` | :Bool: | Mirror the loaded tilemap? [Default: `false`] |
+| `[flip]` | :Bool: | Flip the loaded tilemap? [Default: `false`] |
+| `[angle]` | :Real: | The angle to load the tilemap at [Default: `0`] |
+| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap [Default: source tileset] |
 
 :::code-group
 ```js [Examples]

@@ -329,11 +329,14 @@ function RoomLoader() {
 	/// @param {Real} xOrigin The x origin to load the room at. [Default: ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the room at. [Default: ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. [Default: ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xscale The horizontal scale to load the room at. [Default: 1]
+	/// @param {Real} yscale The vertical scale to load the room at. [Default: 1]
+	/// @param {Real} angle The angle to load the room at. [Default: 0]
 	/// @returns {struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS) {
+	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS, _xScale = 1, _yScale = 1, _angle = 0) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";

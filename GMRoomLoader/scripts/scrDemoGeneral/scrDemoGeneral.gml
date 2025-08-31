@@ -16,7 +16,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This demo shows the main \"RoomLoader.Load/LoadExt()\" methods for full\nroom loading. Use the controls below to adjust the loading position,\norigin, Flags, layer Whitelist and Blacklist.");
+		dbg_text("This demo shows the main \"RoomLoader.Load()\" methods for full\nroom loading. Use the controls below to adjust the loading position,\norigin, Flags, layer Whitelist and Blacklist.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load the room.");
 		dbg_text("- [PRESS 2] to clean up the room.");
@@ -100,7 +100,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), -1000);
+		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 	};
 	static Unload = function() {
