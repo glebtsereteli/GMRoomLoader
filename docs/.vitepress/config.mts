@@ -30,6 +30,7 @@ export default defineConfig({
           {
             text: '🗂️ Others',
             items: [
+              { text: 'Changes From v1', link: '/pages/others/changesFromV1' },
               { text: 'Contact & Support', link: '/pages/others/contactSupport' },
               { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
               { text: 'Credits', link: '/pages/others/credits' },
@@ -66,7 +67,7 @@ export default defineConfig({
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
+      {text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
     ],
     
     outline: [2, 3],
@@ -115,6 +116,7 @@ export default defineConfig({
           link: '/pages/others/contactSupport',
           collapsed: false,
           items: [
+            { text: 'Changes From v1', link: '/pages/others/changesFromV1' },
             { text: 'Contact & Support', link: '/pages/others/contactSupport' },
             { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
             { text: 'Credits', link: '/pages/others/credits' },
@@ -158,6 +160,7 @@ export default defineConfig({
         'Array': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Arrays.htm',
         'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',
         'Undefined': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
+        'Noone': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Instance%20Keywords/noone.htm',
         'Enum': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#:~:text=of%20this%20page.-,Enums,-An%20enum%20is',
 
         // assets
@@ -165,13 +168,15 @@ export default defineConfig({
         'Asset.GMObject': 'https://manual.gamemaker.io/lts/en/GameMaker_Language/GML_Reference/Asset_Management/Objects/Objects.htm',
         'Asset.GMSprite': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprites.htm',
         'Asset.GMTileset': 'https://manual.gamemaker.io/monthly/en/Quick_Start_Guide/Creating_Tile_Sets.htm',
+        'Asset.GMSequence': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sequences/Sequences.htm',
 
         // IDs
         'Id.Layer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/General_Layer_Functions.htm',
         'Id.Tilemap': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/Tile_Map_Layers.htm',
         'Id.Instance': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/Instances.htm',
         'Id.Function': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Script_Functions.htm',
-        
+        'Id.Background': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Background_Layers/Background_Layers.htm',
+
         // functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
         

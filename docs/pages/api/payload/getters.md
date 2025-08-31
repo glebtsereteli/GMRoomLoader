@@ -1,38 +1,220 @@
 # Getters
-@TODO
+
+This section covers two ways to retrieve created element IDs:
+1. Individual ID `.Get<ElementType>` getters.
+    * Instances, Sprites, Particle Systems and Sequences use their room IDs.
+    * Tilemaps and Backgrounds use the name of the layer they're on.
+2. Type-based `.Get<ElementType>s()` getters that return an array of element IDs, using layer names for lookup.
+
+::: info NOTE
+All code examples on this page assume you have an existing instance of :Payload: retrieved from :RoomLoader.Load(): and stored in a `payload` variable.
+:::
 
 ## `.GetLayer()`
-@TODO
+
+> `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:
+
+Returns the created Layer ID matching the given name, or :Undefined: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `name` | :String: | The layer name to search for |
+
+:::code-group
+```js [Example]
+// Gets the created "Clouds" layer ID and randomizes its horizontal speed:
+var _cloudsLayer = payload.GetLayer("Clouds");
+if (_cloudsLayer != undefined) {
+    layer_hspeed(_cloudsLayer, random_range(5, 8));
+}
+```
+:::
 
 ## `.GetLayers()`
-@TODO
+
+> `payload.GetLayers()` ➜ :Array: of :Id.Layer: 
+
+Returns an array of created Layers.
+
+:::code-group
+```js [Example]
+// Gets an array of created Layers and randomly toggles their visibility:
+array_foreach(payload.GetLayers(), function(_layer) {
+    layer_set_visible(_layer, choose(true, false));
+});
+```
+:::
+
 
 ## `.GetInstance()`
-@TODO
+
+Returns the created Instance ID from the given room ID, or :Noone: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `roomId` | `Constant` | The Instance room ID to search for |
+
+:::code-group
+```js [Example]
+// Grabs the created Instance ID from the InstWaypoint room ID and assigns it
+// to objPlayer's waypointID:
+objPlayer.waypointID = payload.GetInstance(InstWaypoint);
+```
+:::
+
 
 ## `.GetInstances()`
-@TODO
+
+> `payload.GetInstances()` ➜ :Array: of :Id.Instance:
+
+Returns an array of created Instances.
+
+:::code-group
+```js [Example]
+// Gets an array of created Instances and targets a random one:
+var _instances = payload.GetInstances();
+var _randomInstance = script_execute_ext(choose, _instances);
+```
+:::
+
 
 ## `.GetTilemap()`
-@TODO
+
+> `payload.GetTilemap(layerName)` ➜ :Id.Tilemap: or :Undefined:
+
+Returns the created Tilemap ID from the given layer name, or :Undefined: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `layerName` | :String: | The Tile layer name to search for |
+
+:::code-group
+```js [Example]
+// Gets the created Tilemap ID from the "TilesCollision" layer
+// to use for collision:
+var _collisionTilemap = payload.GetTilemap("TilesCollision");
+if (_collisionTilemap != undefined) {
+    array_push(global.collisionTilemaps, _collisionTilemap);
+}
+```
+:::
+
 
 ## `.GetTilemaps()`
-@TODO
+
+> `payload.GetTilemaps()` ➜ :Array: of :Id.Tilemap:
+
+Returns an array of created Tilemaps.
+
+:::code-group
+```js [Example]
+// Gets an array of created Tilemaps and targets a random one:
+var _tilemaps = payload.GetTilemaps();
+var _randomTilemap = script_execute_ext(choose, _tilemaps);
+```
+:::
 
 ## `.GetSprite()`
-@TODO
+
+> `payload.GetSprite(roomId)` ➜ :Asset.GMSprite: or :Undefined:
+
+Returns the created Sprite ID matching the room ID, or :Undefined: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `roomId` | :String: | The Sprite room ID to search for |
+
+:::code-group
+```js [Example]
+// Gets the created Sprite ID using its "SpriteStar" room ID, and if found,
+// rotates it randomly:
+var _sprite = payload.GetSprite("SpriteStar");
+if (_sprite != undefined) {
+    layer_sprite_angle(_sprite, irandom(360));
+}
+```
+:::
 
 ## `.GetSprites()`
-@TODO
+
+> `payload.GetSprites()` ➜ :Array: of :Asset.GMSprite:
+
+Returns an array of created Sprites.
+
+:::code-group
+```js [Example]
+// Gets an array of created Sprites and blends them red:
+array_foreach(payload.GetSprites(), function(_sprite) {
+    layer_sprite_blend(_sprite, c_red);
+});
+```
+:::
 
 ## `.GetSequence()`
-@TODO
+
+> `payload.GetSequence(roomId)` ➜ :Asset.GMSequence: or :Undefined:
+
+Returns the created Sequence ID matching the given room ID, or :Undefined: if not found.
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `roomId` | :String: | The Sequence room ID to search for |
+
+:::code-group
+```js [Example]
+// Gets the created Sequence ID using its "SequenceWindow" room ID, and if found,
+// randomizes its playhead position:
+var _sequence = payload.GetSequence("SequenceWindow");
+if (_sequence != undefined) {
+    var _length = layer_sequence_get_length(_sequence);
+    layer_sequence_headpos(_sequence, random(_length));
+}
+```
 
 ## `.GetSequences()`
-@TODO
+
+> `payload.GetSequences()` ➜ :Array: of :Asset.GMSequence: 
+
+Returns an array of created Sequences.
+
+:::code-group
+```js [Example]
+// Gets an array of created Sequences and randomizes their speed scales:
+array_foreach(payload.GetSequences(), function(_sequence) {
+    layer_sequence_speedscale(_sequence, random(0.75, 1.25));
+});
+```
 
 ## `.GetBackground()`
-@TODO
+
+> `payload.GetBackground(layerName)` ➜ :Id.Background: or :Undefined:
+
+Returns the created Background ID matching the given layer name, or :Undefined: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `layerName` | :String: | The Background layer name to search for |
+
+:::code-group
+```js [Example]
+// Gets the created Background ID from the "BackgroundClouds" layer and if found,
+// blends it orange:
+var _bg = payload.GetBackground("BackgroundClouds");
+if (_bg != undefined) {
+    layer_background_blend(_bg, c_orange);
+}
+```
+:::
 
 ## `.GetBackgrounds()`
-@TODO
+
+> `payload.GetBackgrounds()` ➜ :Array: of :Id.Background:
+
+:::code-group
+```js [Example]
+// Gets an array of created Backgrounds and randomizes their image indices:
+array_foreach(payload.GetBackgrounds(), function(_bg) {
+    var _frames = sprite_get_number(layer_background_get_sprite(_bg));
+    layer_background_index(_bg, irandom(_frames - 1));
+});
+```
+:::

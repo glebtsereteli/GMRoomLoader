@@ -11,6 +11,16 @@
     line-height: 1.2;
 }
 
+html.dark:has(.VPHome) body {
+  background: url('/background.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(0deg, #039D5B, #3eaf7c);
+}
+
 /*
 .main {
     margin-left: -20px;

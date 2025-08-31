@@ -1,6 +1,4 @@
 :root {
-  /* Light Mode */
-
   /* Brand Colors (site accent) */
   --vp-c-brand-1: #3eaf7c;   /* normal state (links, buttons) */
   --vp-c-brand-2: #36a06f;   /* when hovering */
@@ -14,10 +12,7 @@
   --vp-c-text-1: #1a1a1a;    /* main text */
   --vp-c-text-2: #444444;    /* softer/secondary text */
 }
-
 .dark {
-  /* Dark Mode */
-
   /* Brand Colors (site accent) */
   --vp-c-brand-1: #4fc08d;   /* normal state (links, buttons) */
   --vp-c-brand-2: #45ad7d;   /* when hovering */

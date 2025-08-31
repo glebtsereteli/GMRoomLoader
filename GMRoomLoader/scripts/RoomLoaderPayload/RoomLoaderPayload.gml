@@ -1,26 +1,26 @@
 /// @feather ignore all
 
-/// @func RoomLoaderPayload()
+/// @func RoomLoaderPayload() constructor
 /// @param {Asset.GMRoom} room
-/// @desc Returned by RoomLoader's .Load() method. Stores all layers and elements created on load, 
+/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created on load,
 /// and handles element fetching and cleanup.
 /// 
-/// NOTE: This constructor is only used by RoomLoader's .Load() method, it should NOT be explicitly instantiated.
+/// NOTE: This constructor is only used by RoomLoader.Load() method and should NOT be explicitly instantiated.
 function RoomLoaderPayload(_room) constructor {
 	#region __private
 	
 	static __Container = function(_OnDestroy) constructor {
 		__ids = [];
-		__names = [];
+		__roomIds = [];
 		
 		__OnDestroy = _OnDestroy;
 		
-		static __Add = function(_id, _name) {
+		static __Add = function(_id, _roomId) {
 			array_push(__ids, _id);
-			array_push(__names, _name);
+			array_push(__roomIds, _roomId);
 		};
-		static __Get = function(_name) {
-			var _index = array_get_index(__names, _name);
+		static __Get = function(_roomId) {
+			var _index = array_get_index(__roomIds, _roomId);
 			return ((_index == -1) ? undefined : __ids[_index]);
 		};
 		static __Destroy = function() {
@@ -93,8 +93,8 @@ function RoomLoaderPayload(_room) constructor {
 			_highestDepth = max(_highestDepth, layer_get_depth(_layers[_i]));
 			_i++;
 		}
-		
 		var _depthOffset = _targetDepth - _highestDepth;
+		
 		var _i = 0; repeat (_n) {
 			var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
 		    layer_depth(_layers[_i], _newDepth);
@@ -117,9 +117,9 @@ function RoomLoaderPayload(_room) constructor {
 			_lowestDepth = min(_lowestDepth, layer_get_depth(_layers[_i]));
 	        _i++;
 	    }
-		
 	    var _depthOffset = _targetDepth - _lowestDepth;
-	    _i = 0; repeat (_n) {
+		
+	    var _i = 0; repeat (_n) {
 	        var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
 	        layer_depth(_layers[_i], _newDepth);
 	        _i++;
@@ -133,7 +133,7 @@ function RoomLoaderPayload(_room) constructor {
 	
 	/// @param {String} name Thes layer name to search for.
 	/// @returns {Id.Layer,undefined}
-	/// @desc Returns the layer ID matching the given name or undefined if not found.
+	/// @desc Returns the layer ID matching the given name, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetLayer = function(_name) {
 		__RoomLoaderCatchString(__messagePrefix, "GetLayer", _name, "get a Layer ID from the", "name");
@@ -147,8 +147,9 @@ function RoomLoaderPayload(_room) constructor {
 		return __layers.__ids;
 	};
 	
-	/// @param {Id.Instance} roomId The room ID of the instance to search for.
+	/// @param {Id.Instance} roomId The Instance room ID to search for, as a constant.
 	/// @returns {Array<Id.Instance>}
+	/// @desc Returns the Instance ID matching the given room ID, or noone if not found.
 	/// @context RoomLoaderPayload
 	static GetInstance = function(_roomId) {
 		return __instances.__Get(_roomId);
@@ -163,7 +164,7 @@ function RoomLoaderPayload(_room) constructor {
 	
 	/// @param {String} layerName The Tilemap layer name to search for.
 	/// @returns {Id.Tilemap,undefined}
-	/// @desc Returns the Tilemap ID matching the given layer name or undefined if not found.
+	/// @desc Returns the Tilemap ID matching the given layer name, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetTilemap = function(_layerName) {
 		__RoomLoaderCatchString(__messagePrefix, "GetTilemap", _layerName, "get a Tilemap ID from the", "layer name");
@@ -177,13 +178,13 @@ function RoomLoaderPayload(_room) constructor {
 		return __tilemaps.__ids;
 	};
 	
-	/// @param {String} name The Sprite name to search for.
+	/// @param {String} roomId The Sprite room ID to search for, as a String.
 	/// @returns {Id.Sprite,undefined}
-	/// @desc Returns the Sprite ID matching the given name or undefined if not found.
+	/// @desc Returns the Sprite ID matching the given name, or undefined if not found.
 	/// @context RoomLoaderPayload
-	static GetSprite = function(_name) {
-		__RoomLoaderCatchString(__messagePrefix, "_name", _name, "get a Sprite ID from the", "name");
-		return __sprites.__Get(_name);
+	static GetSprite = function(_roomId) {
+		__RoomLoaderCatchString(__messagePrefix, "GetSprite", _roomId, "get a Sprite ID from the", "room ID");
+		return __sprites.__Get(_roomId);
 	};
 	
 	/// @returns {Array<Id.Sprite>}
@@ -193,13 +194,13 @@ function RoomLoaderPayload(_room) constructor {
 		return __sprites.__ids;
 	};
 	
-	/// @param {String} name The Sequence name to search for.
+	/// @param {String} roomId The Sequence room ID to search for, as a String.
 	/// @returns {Id.Sequence,undefined}
-	/// @desc Returns the created Sequence ID matching the given name or undefined if not found.
+	/// @desc Returns the created Sequence ID matching the given room ID, or undefined if not found.
 	/// @context RoomLoaderPayload
-	static GetSequence = function(_name) {
-		__RoomLoaderCatchString(__messagePrefix, "GetSequence", _name, "get a Sequence ID from the", "name");
-		return __sequences.__Get(_name);
+	static GetSequence = function(_roomId) {
+		__RoomLoaderCatchString(__messagePrefix, "GetSequence", _roomId, "get a Sequence ID from the", "room ID");
+		return __sequences.__Get(_roomId);
 	};
 	
 	/// @returns {Array<Id.Sequence>}
@@ -209,13 +210,13 @@ function RoomLoaderPayload(_room) constructor {
 		return __sequences.__ids;
 	};
 	
-	/// @param {String} layerName The Background layer name to search for.
+	/// @param {String} roomId The Background room ID to search for, as a String.
 	/// @returns {Id.Background}
-	/// @desc Returns the created Background ID matching the given layer name or undefined if not found.
+	/// @desc Returns the created Background ID matching the given room ID, or undefined if not found.
 	/// @context RoomLoaderPayload
-	static GetBackground = function(_layerName) {
-		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
-		return __backgrounds.__Get(_layerName);
+	static GetBackground = function(_roomId) {
+		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _roomId, "get a Background ID from the", "room ID");
+		return __backgrounds.__Get(_roomId);
 	};
 	
 	/// @returns {Array<Id.Background>}
