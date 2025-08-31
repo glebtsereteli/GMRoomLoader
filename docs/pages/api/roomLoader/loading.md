@@ -38,12 +38,17 @@ Full room loading supports the following room elements.
 ---
 ### `.Load()`
 
-> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
+> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle])` ➜ :Struct:.:Payload: or :Undefined:
 
-Loads the given room at the given coordinates and origin, filtered by the given flags.
+Loads the given room at the given coordinates and origin, filtered by optional `[flags]`, with optional `[xScale]`, `[yScale]` and `[angle]` transformations.
 
-* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:.
-* Otherwise returns :Undefined:.
+If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:. Otherwise returns :Undefined:.
+
+::: tip TILE LAYER TRANSFORMATION
+Tile layers can only be mirrored, flipped and rotated at 90-degree angle increments:
+* `[xScale]` and `[yScale]` are converted to to the sign of the scale (e.g. `1.5` becomes `1`, `-0.5` becomes `-1`), resulting in mirroring and flipping.
+* `[angle]` is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+:::
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -53,9 +58,12 @@ Loads the given room at the given coordinates and origin, filtered by the given 
 | `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by [Default: :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xScale]` | :Real: | The horizontal scale to load the room at [Default: 1] |
+| `[yScale]` | :Real: | The vertical scale to load the room at [Default: 1] |
+| `[angle]` | :Real: | The angle to load the room at [Default: 0] |
 
 :::code-group
-```js [Examples]
+```js [Basics]
 // Loads rmLevelCastle at arbitrary coordinates:
 RoomLoader.Load(rmLevelCastle, someX, someY); // [!code highlight]
 
@@ -69,16 +77,10 @@ RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5); // [!code highlight]
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
 payload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
 ```
+```js [Transformations]
+@TODO
+```
 :::
-
----
-### `.LoadExt()` [COMING SOON]
-
-> `RoomLoader.LoadExt(room, x, y, xScale, yScale, angle, [xOrigin], [yOrigin], [flags])` ➜ :Struct:.:Payload: or :Undefined:
-
-Loads the given room at the given coordinates, scale, angle and origin, filtered by the given flags.
-
-Coming Soon:tm:
 
 ## Individual Parts
 ---
@@ -135,10 +137,7 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, targetLayer, [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset.
-
-* The loaded tilemap is rotated first, then mirrored and flipped.
-* Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset. Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
 
 #### Custom Tilesets
 The optional `[tileset]` parameter can be especially useful for loading:
