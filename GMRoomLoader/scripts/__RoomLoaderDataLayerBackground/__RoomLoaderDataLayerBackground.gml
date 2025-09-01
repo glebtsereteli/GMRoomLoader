@@ -4,26 +4,18 @@ function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderData
 	// shared
 	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;
 	
-	static __OnLoad = function(_layer, _xOffset, _yOffset, _flags) {
+	static __OnLoad = function(_layer, _x, _y) {
 		with (__bgData) {
-			layer_x(_layer, layer_get_x(_layer) + _xOffset);
-			layer_y(_layer, layer_get_y(_layer) + _yOffset);
-			
-			var _bg = layer_background_create(_layer, sprite_index);
-			layer_background_visible(_bg, visible);
-			layer_background_htiled(_bg, htiled);
-			layer_background_vtiled(_bg, vtiled);
-			layer_background_stretch(_bg, stretch);
+			__ROOMLOADER_BG_LOAD;
 			layer_background_xscale(_bg, xscale);
 			layer_background_yscale(_bg, yscale);
-			layer_background_index(_bg, image_index);
-			layer_background_speed(_bg, image_speed);
-			layer_background_blend(_bg, blendColour);
-			layer_background_alpha(_bg, blendAlpha);
-			
-			if (ROOMLOADER_DELIVER_PAYLOAD) {
-				RoomLoader.__payload.__backgrounds.__Add(_bg, name);
-			}
+		}
+	};
+	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale) {
+		with (__bgData) {
+			__ROOMLOADER_BG_LOAD;
+			layer_background_xscale(_bg, xscale * _xScale);
+			layer_background_yscale(_bg, yscale * _yScale);
 		}
 	};
 	static __OnDraw = function() {

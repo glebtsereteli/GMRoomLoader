@@ -44,10 +44,11 @@ Loads the given room at the given coordinates and origin, filtered by optional `
 
 If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:. Otherwise returns :Undefined:.
 
-::: tip TILE LAYER TRANSFORMATION
-Tile layers can only be mirrored, flipped and rotated at 90-degree angle increments:
-* `[xScale]` and `[yScale]` are converted to to the sign of the scale (e.g. `1.5` becomes `1`, `-0.5` becomes `-1`), resulting in mirroring and flipping.
-* `[angle]` is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+::: details TRANSFORMATION NOTES {closed}
+* Tiilemaps can only be mirrored, flipped and rotated at 90-degree angle increments.
+    * `[xScale]` and `[yScale]` are converted to to the sign of the scale (e.g. `1.5` becomes `1`, `-0.5` becomes `-1`), resulting in mirroring and flipping.
+    * `[angle]` is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+* Backgrounds only support scaling, rotation is not supported. If you need to rotate a Background, use [layer_script_begin()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_script_begin.htm) and [layer_script_end()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/layer_script_end.htm) to apply a matrix before drawing the layer.
 :::
 
 | Parameter | Type | Description |

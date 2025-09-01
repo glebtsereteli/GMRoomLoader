@@ -100,6 +100,22 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__texts.__Add(_text, __roomId); \
 }
 
+#macro __ROOMLOADER_BG_LOAD \
+layer_x(_layer, _x); \
+layer_y(_layer, _y); \
+var _bg = layer_background_create(_layer, sprite_index); \
+layer_background_visible(_bg, visible); \
+layer_background_htiled(_bg, htiled); \
+layer_background_vtiled(_bg, vtiled); \
+layer_background_stretch(_bg, stretch); \
+layer_background_index(_bg, image_index); \
+layer_background_speed(_bg, image_speed); \
+layer_background_blend(_bg, blendColour); \
+layer_background_alpha(_bg, blendAlpha); \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+	RoomLoader.__payload.__backgrounds.__Add(_bg, name); \
+}
+
 #macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion
