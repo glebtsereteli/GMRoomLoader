@@ -83,6 +83,23 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__sequences.__Add(_sequence, __roomId); \
 }
 
+#macro __ROOMLOADER_TEXT_LOAD \
+var _text = layer_text_create(_layer, _x, _y, __font, __text); \
+layer_text_halign(_text, __hAlign); \
+layer_text_valign(_text, __vAlign); \
+layer_text_charspacing(_text, __charSpacing); \
+layer_text_linespacing(_text, __lineSpacing); \
+layer_text_framew(_text, __frameWidth); \
+layer_text_frameh(_text, __frameHeight); \
+layer_text_wrap(_text, __wrap); \
+layer_text_xorigin(_text, __xOrigin); \
+layer_text_yorigin(_text, __yOrigin); \
+layer_text_blend(_text, __blend); \
+layer_text_alpha(_text, __alpha); \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+	RoomLoader.__payload.__texts.__Add(_text, __roomId); \
+}
+
 #macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion

@@ -40,7 +40,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
 				if (__ROOMLOADER_HAS_FLAG) {
-					__Load(_layer, _x, _y);
+					__Load(_layer, _x + __x, _y + __y);
 				}
 			}
 			_i++;
@@ -79,9 +79,7 @@ function __RoomLoaderDataLayerAssetSprite(_data) constructor {
 	__blend = _data.image_blend;
 	__alpha = _data.image_alpha;
 	
-	static __Load = function(_layer, _x1, _y1) {
-		var _x = _x1 + __x;
-		var _y = _y1 + __y;
+	static __Load = function(_layer, _x, _y) {
 		__ROOMLOADER_SPRITE_LOAD;
 		layer_sprite_xscale(_sprite, __xScale);
 		layer_sprite_yscale(_sprite, __yScale);
@@ -110,9 +108,7 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 	__angle = _data.image_angle;
 	__speedScale = _data.image_speed;
 	
-	static __Load = function(_layer, _x1, _y1) {
-		var _x = _x1 + __x;
-		var _y = _y1 + __y;
+	static __Load = function(_layer, _x, _y) {
 		__ROOMLOADER_SEQUENCE_LOAD;
 		layer_sequence_xscale(_sequence, __xScale);
 		layer_sequence_yscale(_sequence, __yScale);
@@ -149,30 +145,18 @@ function __RoomLoaderDataLayerAssetText(_data) constructor {
 	__blend = _data.blend;
 	__alpha = _data.alpha;
 	
-	static __Load = function(_layer, _x1, _y1) {
-		var _x = _x1 + __x;
-		var _y = _y1 + __y;
-		var _text = layer_text_create(_layer, _x, _y, __font, __text);
+	static __Load = function(_layer, _x, _y) {
+		__ROOMLOADER_TEXT_LOAD;
 		layer_text_xscale(_text, __xScale);
 		layer_text_yscale(_text, __yScale);
 		layer_text_angle(_text, __angle);
-		layer_text_halign(_text, __hAlign);
-		layer_text_valign(_text, __vAlign);
-		layer_text_charspacing(_text, __charSpacing);
-		layer_text_linespacing(_text, __lineSpacing);
-		layer_text_framew(_text, __frameWidth);
-		layer_text_frameh(_text, __frameHeight);
-		layer_text_wrap(_text, __wrap);
-		layer_text_xorigin(_text, __xOrigin);
-		layer_text_yorigin(_text, __yOrigin);
-		layer_text_blend(_text, __blend);
-		layer_text_alpha(_text, __alpha);
-			
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__texts.__Add(_text, __roomId);
-		}
 	}
-	static __LoadTransformed = __RoomLoaderNoop;
+	static __LoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
+		__ROOMLOADER_TEXT_LOAD;
+		layer_text_xscale(_text, __xScale * _xScale);
+		layer_text_yscale(_text, __yScale * _yScale);
+		layer_text_angle(_text, __angle + _angle);
+	}
 	static __Draw = function() {
 		var _font = draw_get_font();
 		var _halign = draw_get_halign();
