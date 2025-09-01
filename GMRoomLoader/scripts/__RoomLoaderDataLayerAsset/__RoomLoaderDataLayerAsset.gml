@@ -46,11 +46,15 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 			_i++;
 		}
 	};
-	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _flags) {
+	static __OnLoadTransformed = function(_layer, _x1, _y1, _xScale, _yScale, _angle, _sin, _cos, _flags) {
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
 				if (__ROOMLOADER_HAS_FLAG) {
-					__LoadTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos);
+					var _xScaled = __x * _xScale;
+					var _yScaled = __y * _yScale;
+					var _x = _x1 + (_xScaled * _cos) + (_yScaled * _sin);
+					var _y = _y1 + (-_xScaled * _sin) + (_yScaled * _cos);
+					__LoadTransformed(_layer, _x, _y, _xScale, _yScale, _angle);
 				}
 			}
 			_i++;
@@ -83,11 +87,7 @@ function __RoomLoaderDataLayerAssetSprite(_data) constructor {
 		layer_sprite_yscale(_sprite, __yScale);
 		layer_sprite_angle(_sprite, __angle);
 	};
-	static __LoadTransformed = function(_layer, _x1, _y1, _xScale, _yScale, _angle, _sin, _cos) {
-		var _xScaled = __x * _xScale;
-		var _yScaled = __y * _yScale;
-		var _x = _x1 + (_xScaled * _cos) + (_yScaled * _sin);
-		var _y = _y1 + (-_xScaled * _sin) + (_yScaled * _cos);
+	static __LoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
 		__ROOMLOADER_SPRITE_LOAD;
 		layer_sprite_xscale(_sprite, __xScale * _xScale);
 		layer_sprite_yscale(_sprite, __yScale * _yScale);
@@ -113,22 +113,17 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 	static __Load = function(_layer, _x1, _y1) {
 		var _x = _x1 + __x;
 		var _y = _y1 + __y;
-		var _sequence = layer_sequence_create(_layer, _x, _y, __id);
-		layer_sequence_headpos(_sequence, __headPos);
+		__ROOMLOADER_SEQUENCE_LOAD;
 		layer_sequence_xscale(_sequence, __xScale);
 		layer_sequence_yscale(_sequence, __yScale);
 		layer_sequence_angle(_sequence, __angle);
-		layer_sequence_speedscale(_sequence, __speedScale);
-		
-		if (ROOMLOADER_SEQUENCES_PAUSE) {
-			layer_sequence_pause(_sequence);
-		}
-		
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__sequences.__Add(_sequence, __roomId);
-		}
 	}
-	static __LoadTransformed = __RoomLoaderNoop;
+	static __LoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
+		__ROOMLOADER_SEQUENCE_LOAD;
+		layer_sequence_xscale(_sequence, __xScale * _xScale);
+		layer_sequence_yscale(_sequence, __yScale * _yScale);
+		layer_sequence_angle(_sequence, __angle + _angle);
+	}
 	static __Draw = __RoomLoaderNoop;
 }
 function __RoomLoaderDataLayerAssetText(_data) constructor {
