@@ -4,7 +4,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	// shared
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	
-	static __OnLoad = function(_layer, _x1, _y1, _flags) {
+	static __OnLoad = function(_layer, _x1, _y1) {
 		__ROOMLOADER_INST_LAYER_PRELOAD;
 
 		var _i = 0; repeat (array_length(__instancesPool)) {
@@ -23,8 +23,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		
 		__ROOMLOADER_INST_LAYER_POSTLOAD;
 	};
-	static __OnLoadTransformed = function(_layer, _x1, _y1, _flags, _xScale, _yScale, _angle, _sin, _cos) {
-		__ROOMLOADER_INST_LAYER_PRELOAD
+	static __OnLoadTransformed = function(_layer, _x1, _y1, _xScale, _yScale, _angle, _sin, _cos) {
+		__ROOMLOADER_INST_LAYER_PRELOAD;
 		
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			var _iData = __instancesPool[_i];
@@ -41,7 +41,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			_i++;
 		}
 		
-		__ROOMLOADER_INST_LAYER_POSTLOAD
+		__ROOMLOADER_INST_LAYER_POSTLOAD;
 	};
 	static __OnDraw = function() {
 		var _i = 0; repeat (array_length(__instancesPool)) {

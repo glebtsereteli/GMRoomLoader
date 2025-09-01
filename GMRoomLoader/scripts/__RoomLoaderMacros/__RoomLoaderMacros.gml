@@ -62,6 +62,16 @@ _preCreate.image_xscale = _xScalePrev; \
 _preCreate.image_yscale = _yScalePrev; \
 _preCreate.image_angle -= _angle;
 
+#macro __ROOMLOADER_SPRITE_LOAD \
+var _sprite = layer_sprite_create(_layer, _x, _y, __sprite); \
+layer_sprite_index(_sprite, __frame); \
+layer_sprite_speed(_sprite, __spd); \
+layer_sprite_blend(_sprite, __blend); \
+layer_sprite_alpha(_sprite, __alpha); \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+	RoomLoader.__payload.__sprites.__Add(_sprite, __roomId); \
+}
+
 #macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion
