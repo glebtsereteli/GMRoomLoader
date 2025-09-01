@@ -5,19 +5,14 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __flag = ROOMLOADER_FLAG.INSTANCES;
 	
 	static __OnLoad = function(_layer, _x1, _y1, _flags) {
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			var _payload = RoomLoader.__payload.__instances;
-			var _ids = _payload.__ids;
-			var _roomIds = _payload.__roomIds;
-			var _index = _payload.__index;
-		}
-		
+		__ROOMLOADER_INST_LAYER_PRELOAD;
+
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			var _iData = __instancesPool[_i];
 			var _x = _x1 + _iData.x;
 			var _y = _y1 + _iData.y;
 			var _inst = instance_create_layer(_x, _y, _layer, _iData.object, _iData.preCreate);
-			__ROOMLOADER_INSTANCE_CC;
+			__ROOMLOADER_INST_CC;
 			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				_ids[_index] = _inst;
 				_roomIds[_index] = _iData.id;
@@ -26,9 +21,27 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			_i++;
 		}
 		
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			_payload.__index = _index;
+		__ROOMLOADER_INST_LAYER_POSTLOAD;
+	};
+	static __OnLoadTransformed = function(_layer, _x1, _y1, _flags, _xScale, _yScale, _angle, _sin, _cos) {
+		__ROOMLOADER_INST_LAYER_PRELOAD
+		
+		var _i = 0; repeat (array_length(__instancesPool)) {
+			var _iData = __instancesPool[_i];
+			
+			__ROOMLOADER_INST_TRANSFORM_PRELOAD;
+			var _inst = instance_create_layer(_x, _y, _layer, _iData.object, _preCreate);
+			__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
+			
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
+				_ids[_index] = _inst;
+				_roomIds[_index] = _iData.id;
+				_index++;
+			}
+			_i++;
 		}
+		
+		__ROOMLOADER_INST_LAYER_POSTLOAD
 	};
 	static __OnDraw = function() {
 		var _i = 0; repeat (array_length(__instancesPool)) {

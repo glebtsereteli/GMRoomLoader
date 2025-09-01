@@ -457,7 +457,7 @@ function RoomLoader() {
 	/// @param {Bool} additiveAngle Whether to combinte loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x, _y, _lod, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _xScale = 1, _yScale = 1, _angle = 0, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
+	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _xScale = 1, _yScale = 1, _angle = 0, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
 		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -482,15 +482,15 @@ function RoomLoader() {
 		var _instances = array_create(_n, noone);
 		
 		if (__ROOMLOADER_NOTRANSFORM) {
-			var _xOffset = _x - (_data.__width * _xOrigin);
-			var _yOffset = _y - (_data.__height * _yOrigin);
+			var _xOffset = _x0 - (_data.__width * _xOrigin);
+			var _yOffset = _y0 - (_data.__height * _yOrigin);
 			
 			var _i = 0; repeat (_n) {
 				var _iData = _instancesData[_i];
 				var _iX = _iData.x + _xOffset;
 				var _iY = _iData.y + _yOffset;
 				var _inst = _func(_iX, _iY, _lod, _iData.object, _iData.preCreate);
-				__ROOMLOADER_INSTANCE_CC;
+				__ROOMLOADER_INST_CC;
 				_instances[_i] = _inst;
 				_i++;
 			}
@@ -502,8 +502,8 @@ function RoomLoader() {
 		    var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
-		    var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
+		    var _x1 = _x0 - ((_xOffset * _cos) + (_yOffset * _sin));
+		    var _y1 = _y0 - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 		    var _xScaleInst = (_multScale ? _xScale : 1);
 		    var _yScaleInst = (_multScale ? _yScale : 1);
@@ -512,27 +512,10 @@ function RoomLoader() {
 		    var _i = 0; repeat (_n) {
 		        var _iData = _instancesData[_i];
 				
-		        var _xScaled = _iData.x * _xScale;
-		        var _yScaled = _iData.y * _yScale;
-				
-		        var _xFinal = _x1 + (_xScaled * _cos) + (_yScaled * _sin);
-		        var _yFinal = _y1 + (-_xScaled * _sin) + (_yScaled * _cos);
-				
-		        var _preCreate = _iData.preCreate;
-		        var _xScalePrev = _preCreate.image_xscale;
-		        var _yScalePrev = _preCreate.image_yscale;
-				
-				_preCreate.image_xscale *= _xScaleInst;
-				_preCreate.image_yscale *= _yScaleInst;
-		        _preCreate.image_angle += _angle;
-				
-		        var _inst = _func(_xFinal, _yFinal, _lod, _iData.object, _preCreate);
+				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
+				var _inst = _func(_x, _y, _lod, _iData.object, _preCreate);
 		        _instances[_i] = _inst;
-		        __ROOMLOADER_INSTANCE_CC;
-				
-		        _preCreate.image_xscale = _xScalePrev;
-		        _preCreate.image_yscale = _yScalePrev;
-		        _preCreate.image_angle -= _angle;
+				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				
 		        _i++;
 		    }

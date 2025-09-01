@@ -22,12 +22,45 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
 }
 
-#macro __ROOMLOADER_INSTANCE_CC \
+#macro __ROOMLOADER_INST_CC \
 if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
 	with (_inst) { \
 		script_execute(_iData.creationCode); \
 	} \
 }
+
+#macro __ROOMLOADER_INST_TRANSFORM_PRELOAD \
+var _xScaled = _iData.x * _xScale; \
+var _yScaled = _iData.y * _yScale; \
+var _x = _x1 + (_xScaled * _cos) + (_yScaled * _sin); \
+var _y = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
+\
+var _preCreate = _iData.preCreate; \
+var _xScalePrev = _preCreate.image_xscale; \
+var _yScalePrev = _preCreate.image_yscale; \
+\
+_preCreate.image_xscale *= _xScale; \
+_preCreate.image_yscale *= _yScale; \
+_preCreate.image_angle += _angle;
+
+#macro __ROOMLOADER_INST_LAYER_PRELOAD \		
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+	var _payload = RoomLoader.__payload.__instances; \
+	var _ids = _payload.__ids; \
+	var _roomIds = _payload.__roomIds; \
+	var _index = _payload.__index; \
+}
+
+#macro __ROOMLOADER_INST_LAYER_POSTLOAD \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+	_payload.__index = _index; \
+}
+
+#macro __ROOMLOADER_INST_TRANSFORM_POSTLOAD \
+__ROOMLOADER_INST_CC \
+_preCreate.image_xscale = _xScalePrev; \
+_preCreate.image_yscale = _yScalePrev; \
+_preCreate.image_angle -= _angle;
 
 #macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
