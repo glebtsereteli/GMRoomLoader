@@ -14,10 +14,9 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			var _iData = __instancesPool[_i];
-			var _iX = _x1 + _iData.x;
-			var _iY = _y1 + _iData.y;
-			
-			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object, _iData.preCreate);
+			var _x = _x1 + _iData.x;
+			var _y = _y1 + _iData.y;
+			var _inst = instance_create_layer(_x, _y, _layer, _iData.object, _iData.preCreate);
 			__ROOMLOADER_INSTANCE_CC;
 			if (ROOMLOADER_DELIVER_PAYLOAD) {
 				_ids[_index] = _inst;
@@ -35,6 +34,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			with (__instancesPool[_i]) {
 				if (sprite == -1) break;
+				
 				draw_sprite_ext(
 					sprite, preCreate.image_index,
 					x, y,

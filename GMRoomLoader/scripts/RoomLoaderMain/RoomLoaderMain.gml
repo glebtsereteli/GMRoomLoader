@@ -426,7 +426,7 @@ function RoomLoader() {
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x = __x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS, _xScale = 1, _yScale = 1, _angle = 0) {
+	static Load = function(_room, _x, _y, _xOrigin = ROOMLOADER_DEFAULT_XORIGIN, _yOrigin = ROOMLOADER_DEFAULT_YORIGIN, _flags = ROOMLOADER_DEFAULT_FLAGS, _xScale = 1, _yScale = 1, _angle = 0) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
@@ -502,8 +502,8 @@ function RoomLoader() {
 		    var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    var _x1 = _x - (_xOffset * _cos + _yOffset * _sin);
-		    var _y1 = _y - (-_xOffset * _sin + _yOffset * _cos);
+		    var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
+		    var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 		    var _xScaleInst = (_multScale ? _xScale : 1);
 		    var _yScaleInst = (_multScale ? _yScale : 1);
@@ -512,15 +512,18 @@ function RoomLoader() {
 		    var _i = 0; repeat (_n) {
 		        var _iData = _instancesData[_i];
 				
-		        var _xLocal = _iData.x * _xScale;
-		        var _yLocal = _iData.y * _yScale;
+		        var _xScaled = _iData.x * _xScale;
+		        var _yScaled = _iData.y * _yScale;
 				
-		        var _xFinal = _x1 + (_xLocal * _cos + _yLocal * _sin);
-		        var _yFinal = _y1 + (-_xLocal * _sin + _yLocal * _cos);
+		        var _xFinal = _x1 + (_xScaled * _cos) + (_yScaled * _sin);
+		        var _yFinal = _y1 + (-_xScaled * _sin) + (_yScaled * _cos);
 				
 		        var _preCreate = _iData.preCreate;
-		        var _xScalePrev = _preCreate.image_xscale; _preCreate.image_xscale *= _xScaleInst;
-		        var _yScalePrev = _preCreate.image_yscale; _preCreate.image_yscale *= _yScaleInst;
+		        var _xScalePrev = _preCreate.image_xscale;
+		        var _yScalePrev = _preCreate.image_yscale;
+				
+				_preCreate.image_xscale *= _xScaleInst;
+				_preCreate.image_yscale *= _yScaleInst;
 		        _preCreate.image_angle += _angle;
 				
 		        var _inst = _func(_xFinal, _yFinal, _lod, _iData.object, _preCreate);
