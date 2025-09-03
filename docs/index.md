@@ -1,9 +1,5 @@
 ---
 
-title: Getting Started
-description: How to get started with My Docs
-image: /images/preview.png
-
 layout: home
 
 hero:
@@ -18,7 +14,7 @@ hero:
       text: View on GitHub
       link: https://github.com/glebtsereteli/GMRoomLoader
   # image:
-  #   src: /logo.png
+  #   src: /logo.svg
   #   alt: Icon
 
 features:
