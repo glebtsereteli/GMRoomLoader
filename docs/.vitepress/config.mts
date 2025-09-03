@@ -9,7 +9,7 @@ export default defineConfig({
 
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
-  head: [['link', { rel: 'icon', href: 'favicon.png' }]],
+  head: [['link', { rel: 'icon', href: 'logo.svg' }]],
 
   themeConfig: {
     logo: '/logo.svg',
