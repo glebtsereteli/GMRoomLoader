@@ -23,9 +23,31 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		pos.InitDbg();
 		origin.InitDbg();
 		dbg_text_separator("Room Transform", 1);
-		dbg_slider(ref_create(self, "xScale"), -2, 2, "X Scale", 0.05);
-		dbg_slider(ref_create(self, "yScale"), -2, 2, "Y Scale", 0.05);
-		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 5);
+		dbg_slider(ref_create(self, "xScale"), -2, 2, "X Scale", 0.1);
+		dbg_same_line();
+		dbg_button("Mirror", function() {
+			xScale *= -1;
+		}, 68, 19);
+		dbg_slider(ref_create(self, "yScale"), -2, 2, "Y Scale", 0.1);
+		dbg_same_line();
+		dbg_button("Flip", function() {
+			yScale *= -1;
+		}, 68, 19);
+		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 10);
+		dbg_same_line();
+		dbg_button("-90", function() {
+			angle -= 90;
+			if (angle < -180) {
+				angle = 180;
+			}
+		}, 30, 19);
+		dbg_same_line();
+		dbg_button("+90", function() {
+			angle += 90;
+			if (angle > 180) {
+				angle = -180;
+			}
+		}, 30, 19);
 		
 		dbg_text_separator("Instance Transform", 1)
 		dbg_checkbox(ref_create(self, "scaleMultiplicative"), "Multiplicative Scale");

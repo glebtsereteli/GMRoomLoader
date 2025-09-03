@@ -29,7 +29,7 @@ features:
   - title: 🏗️ Flexible Room Loading
     details: Load full rooms with all layers and elements at custom coordinates, origins, scales and angles, filtered by asset type and layer name.
   - title: 📐 Instances & Tilemaps
-    details: ... @TODO
+    details: stufff
   - title: ⚙️ Full Control
     details: From merging or creating new layers to shifting depths, tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Screenshots

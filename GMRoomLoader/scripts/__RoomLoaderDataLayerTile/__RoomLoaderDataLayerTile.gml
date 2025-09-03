@@ -85,7 +85,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _mirrorOffset = (_mirror ? __width  - 1 : 0);
 		
 		_yScale = sign(_yScale);
-		var _flip = (sign(_yScale) == -1);
+		var _flip = (_yScale == -1);
 		var _flipOffset = (_flip ? __height - 1 : 0);
 		
 		var _info = _tilesetsInfo[? _tileset];
@@ -109,8 +109,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 			    break;
 			}
 			case 90:  {
-				_x -= _wPx * (_yOrigin + (1 - 2 * _yOrigin) * _flip);
 				_y -= _hPx * ((1 - _xOrigin) + (2 * _xOrigin - 1) * _mirror);
+				_x -= _wPx * (_yOrigin + (1 - 2 * _yOrigin) * _flip);
 				
 				_mat00 = 0; _mat01 = 1; _rotXOffset = 0;
 		        _mat10 = -1; _mat11 = 0; _rotYOffset = __width - 1;
@@ -129,8 +129,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				break;
 			}
 			case 270: {
-			    _x -= _wPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				_y -= _hPx * (_xOrigin + (1 - 2 * _xOrigin) * _mirror);
+			    _x -= _wPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				
 			    _mat00 = 0; _mat01 = -1; _rotXOffset = __height - 1;
 			    _mat10 = 1; _mat11 = 0; _rotYOffset = 0;
