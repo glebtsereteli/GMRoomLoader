@@ -46,7 +46,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 			_i++;
 		}
 	};
-	static __OnLoadTransformed = function(_layer, _x1, _y1, _xScale, _yScale, _angle, _sin, _cos, _flags) {
+	static __OnLoadTransformed = function(_layer, _x1, _y1, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin, _flags) {
 		var _i = 0; repeat (array_length(__data)) {
 			with (__data[_i]) {
 				if (__ROOMLOADER_HAS_FLAG) {

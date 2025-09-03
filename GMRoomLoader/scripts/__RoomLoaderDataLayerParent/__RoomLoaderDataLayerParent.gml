@@ -13,9 +13,9 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 		__ROOMLOADER_LOAD_LAYER_START;
 		__OnLoad(_layer, _x, _y, _flags);
 	};
-	static __LoadTransformed = function(_x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos) {
+	static __LoadTransformed = function(_x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin) {
 		__ROOMLOADER_LOAD_LAYER_START;
-		__OnLoadTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _flags);
+		__OnLoadTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin, _flags);
 	};
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;

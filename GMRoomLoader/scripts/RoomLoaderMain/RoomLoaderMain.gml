@@ -548,14 +548,9 @@ function RoomLoader() {
 			return _tilemapData.__CreateTilemap(_targetLayer, _x, _y, _tileset);
 		}
 		else {
-			_angle = _angle - (floor(_angle / 360) * 360);
-			_angle = round(_angle / 90) * 90;
-			
-			var _transposed = ((_angle mod 180) == 90);
-			_x -= (_transposed ? _roomData.__height : _roomData.__width) * _xOrigin;
-			_y -= (_transposed ? _roomData.__width : _roomData.__height) * _yOrigin;
-			
-			return _tilemapData.__CreateTilemapExt(_targetLayer, _x, _y, _mirror, _flip, _angle, _tileset);
+			var _xScale = (_mirror ? -1 : 1);
+			var _yScale = (_flip ? -1 : 1);
+			return _tilemapData.__CreateTilemapTransformed(_targetLayer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset);
 		}
 	};
 	

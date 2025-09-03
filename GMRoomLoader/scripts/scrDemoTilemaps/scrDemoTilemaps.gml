@@ -48,9 +48,15 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		});
 	};
 	static Draw = function() {
-		var _angle = angle - (floor(angle / 360) * 360);
-		var _transposed = ((_angle mod 180) == 90);
-		DemoDrawFrame(rm, pos.x, pos.y, origin,, _transposed);
+		var _frame = sprDemoFrame;
+		var _w = RoomLoader.DataGetWidth(rm) * (mirror ? -1 : 1);
+		var _h = RoomLoader.DataGetHeight(rm) * (flip ? -1 : 1);
+		var _xOrigin = _w * origin.x;
+		var _yOrigin = _h * origin.y;
+		var _xScale = _w / sprite_get_width(_frame);
+		var _yScale = _h / sprite_get_height(_frame);
+		DrawSpriteOrigin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xScale, _yScale, angle);
+		
 		draw_sprite(sprDemoCross, 0, pos.x, pos.y);
 	};
 	
