@@ -48,6 +48,9 @@ function RoomLoader() {
 	static __flagsDefault = true;
 	static __xScale = 1;
 	static __yScale = 1;
+	static __multScale = ROOMLOADER_DEFAULT_MULT_SCALE;
+	static __addAngle = ROOMLOADER_DEFAULT_ADD_ANGLE;
+	static __tileset = undefined;
 	
 	static __ResetState = function() {
 		__xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
@@ -56,6 +59,9 @@ function RoomLoader() {
 		__flagsDefault = true;
 		__xScale = 1;
 		__yScale = 1;
+		__multScale = ROOMLOADER_DEFAULT_MULT_SCALE;
+		__addAngle = ROOMLOADER_DEFAULT_ADD_ANGLE;
+		__tileset = undefined;
 	};
 	static __ResetStateFlags = function() {
 		if (__flagsDefault) {
@@ -378,6 +384,8 @@ function RoomLoader() {
 		__ResetState();
 		
 		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);
+		
+		// @TODO multScale, addAngle
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -389,11 +397,11 @@ function RoomLoader() {
 	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
 	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
-	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE]
-	/// @param {Bool} additiveAngle Whether to combine loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
+	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). [Default: State.MultlScale or ROOMLOADER_DEFAULT_MULT_SCALE]
+	/// @param {Bool} additiveAngle Whether to combine loaded instances' image_angle with angle (true) or not (false). [Default: Scale.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
+	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle, _multScale = __multScale, _addAngle = __addAngle) {
 		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -473,8 +481,8 @@ function RoomLoader() {
 	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: State.Mirror or false]
 	/// @param {Bool} flip Flip the loaded tilemap? [Default: State.Flip or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
-	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: source]
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = undefined) {
+	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		
 		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
@@ -741,6 +749,30 @@ function RoomLoader() {
 	/// 
 	static Angle = function(_angle) {
 		__angle = _angle;
+		
+		return self;
+	};
+	
+	#endregion
+	#region State: Miscellaneous
+	
+	/// 
+	static MultScale = function(_multScale) {
+		__multScale = _multScale;
+		
+		return self;
+	};
+	
+	/// 
+	static AddAngle = function(_addAngle) {
+		__addAngle = _addAngle;
+		
+		return self;
+	};
+	
+	/// 
+	static Tileset = function(_tileset) {
+		__tileset = _tileset;
 		
 		return self;
 	};

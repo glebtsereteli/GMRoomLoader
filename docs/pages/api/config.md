@@ -77,6 +77,8 @@ Setting this to `false` improves loading performance.
 ### `ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE`
 > Default: `true`.
 
+@TODO
+
 When loading instances using :RoomLoader.LoadInstances():, whether to multiply individual instance scale by the overall load scale (`true`) or not (`false`).
 
 This is relevant only when loading instances with a custom scale (values other than `1`).
@@ -84,6 +86,8 @@ This is relevant only when loading instances with a custom scale (values other t
 ---
 ### `ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE`
 * Default: `true`.
+
+@TODO
 
 When loading instances using :RoomLoader.LoadInstances():, whether to combine individual instance angle with the overall load angle (`true`) or not (`false`).
 

@@ -88,11 +88,10 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 			_part.tilemap = RoomLoader
 			.Origin(origin.x, origin.y)
 			.Angle(angle)
+			.Tileset(_part.tileset)
 			.LoadTilemap(
 				rm, pos.x, pos.y,
 				$"Tiles{_part.name}", _part.layer,
-				,,,,, 
-				_part.tileset
 			);
 			
 			//_part.tilemap = RoomLoader.LoadTilemap(

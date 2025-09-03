@@ -11,20 +11,19 @@ This system uses a [Builder](https://refactoring.guru/design-patterns/builder)-l
 
 :::code-group
 ```js [Examples]
-// Loads rmExample's instances and sprites centered in the room
-// and randomly rotated:
+// Loads rmExample's sprites and sequences centered in the room and randomly rotated:
 payload = RoomLoader
-    .Instances().Sprites()
-    .MiddleCenter().Angle(random(360)))
+    .Sprites().Sequences() // [!code highlight]
+    .MiddleCenter().Angle(random(360))) // [!code highlight]
     .Load(rmExample, room_width / 2, room_height / 2);
 
 // Loads rmExample's instances scaled up by x2:
-instances = RoomLoader.Scale(2).LoadInstances(rmExample, someX, someY);
+instances = RoomLoader.Scale(2).LoadInstances(rmExample, someX, someY); // [!code highlight]
 
 // Whene working with perspective visuals, turns a visual walls tilemap into
 // a collision tilemap:
 collisionTilemap = RoomLoader
-    .Tileset(tsWallsCollision)
+    .Tileset(tsWallsCollision) // [!code highlight]
     .LoadTilemap(rmExample, 0, 0, "Walls", collisionLayer);
 ```
 :::
@@ -84,15 +83,15 @@ The following sections break down the available state categories
 
 | Method | X Origin | Y Origin |
 |---|---|---|
-| `.TopLeft()` | `0` | `0` |
-| `.TopCenter()` | `0.5` | `0` |
-| `.TopRight()` | `1` | `0` |
-| `.MiddleLeft()` | `0` | `0.5` |
+| `.TopLeft()` | `0.0` | `0.0` |
+| `.TopCenter()` | `0.5` | `0.0` |
+| `.TopRight()` | `1.0` | `0.0` |
+| `.MiddleLeft()` | `0.0` | `0.5` |
 | `.MiddleCenter()` | `0.5` | `0.5` |
-| `.MiddleRight()` | `1` | `0.5` |
-| `.BottomLeft()` | `0` | `1` |
-| `.BottomCenter()` | `0.5` | `1` |
-| `.BottomRight()` | `1` | `1` |
+| `.MiddleRight()` | `0.1` | `0.5` |
+| `.BottomLeft()` | `0.0` | `1.0` |
+| `.BottomCenter()` | `0.5` | `1.0` |
+| `.BottomRight()` | `0.1` | `1.0` |
 
 ## Flags
 

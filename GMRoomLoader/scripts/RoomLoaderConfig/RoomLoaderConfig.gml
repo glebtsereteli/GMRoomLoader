@@ -15,6 +15,20 @@
 // Default flags used by RoomLoader's load methods.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
+// @TODO
+// When loading instances using RoomLoader.LoadInstances(), whether to multiply individual instance scale
+// by the overall load scale (true) or not (false).
+// 
+// NOTE: This comes into play only when loading instances with a custom (not 1) scale.
+#macro ROOMLOADER_DEFAULT_MULT_SCALE true
+
+// @TODO
+// When loading instances using RoomLoader.LoadInstances(), whether to combine individual instance angle
+// with the overall load angle (true) or not (false).
+// 
+// NOTE: This comes into play only when loading instances with a custom (not 0) angle.
+#macro ROOMLOADER_DEFAULT_ADD_ANGLE true
+
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all layers and their elements.
 // If false, no IDs are collected or returned, improving loading performance.
 // 
@@ -46,18 +60,6 @@
 // 
 // NOTE: Setting this to false improves loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
-
-// When loading instances using RoomLoader.LoadInstances(), whether to multiply individual instance scale
-// by the overall load scale (true) or not (false).
-// 
-// NOTE: This comes into play only when loading instances with a custom (not 1) scale.
-#macro ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE true
-
-// When loading instances using RoomLoader.LoadInstances(), whether to combine individual instance angle
-// with the overall load angle (true) or not (false).
-// 
-// NOTE: This comes into play only when loading instances with a custom (not 0) angle.
-#macro ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE true
 
 #endregion
 #region Other Elements

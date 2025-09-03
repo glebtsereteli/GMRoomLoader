@@ -78,7 +78,8 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		instances = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Scale(xScale, yScale).Angle(angle)
-		.LoadInstances(rm, pos.x, pos.y, 0,,,,,, scaleMultiplicative, angleAdditive);
+		.MultScale(scaleMultiplicative).AddAngle(angleAdditive)
+		.LoadInstances(rm, pos.x, pos.y, 0);
 		
 		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);
 	};
