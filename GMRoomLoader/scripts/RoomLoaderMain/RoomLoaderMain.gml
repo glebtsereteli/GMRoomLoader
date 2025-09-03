@@ -738,6 +738,7 @@ function RoomLoader() {
 		return self;
 	};
 	
+	/// 
 	static Angle = function(_angle) {
 		__angle = _angle;
 		
