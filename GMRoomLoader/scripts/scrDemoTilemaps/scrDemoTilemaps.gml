@@ -82,12 +82,15 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 	
 	static Load = function() {
 		static _LoadPart = function(_part) {
+			if (mirror) RoomLoader.Mirror();
+			if (flip) RoomLoader.Flip();
+			
 			_part.tilemap = RoomLoader
 			.Origin(origin.x, origin.y)
 			.LoadTilemap(
 				rm, pos.x, pos.y,
 				$"Tiles{_part.name}", _part.layer,
-				,, mirror, flip, angle, 
+				,,,, angle, 
 				_part.tileset
 			);
 		};
