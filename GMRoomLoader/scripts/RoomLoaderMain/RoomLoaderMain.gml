@@ -42,18 +42,26 @@ function RoomLoader() {
 	};
 	
 	// state
-	static __xOrigin = undefined;
-	static __yOrigin = undefined;
-	static __flags = undefined;
-	static __xScale = undefined;
-	static __yScale = undefined;
+	static __xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
+	static __yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
+	static __flags = ROOMLOADER_DEFAULT_FLAGS;
+	static __flagsDefault = true;
+	static __xScale = 1;
+	static __yScale = 1;
 	
 	static __ResetState = function() {
 		__xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
 		__yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
-		__flags = __flags;
+		__flags = ROOMLOADER_DEFAULT_FLAGS;
+		__flagsDefault = true;
 		__xScale = 1;
 		__yScale = 1;
+	};
+	static __ResetStateFlags = function() {
+		if (__flagsDefault) {
+			__flags = 0;
+			__flagsDefault = false;
+		}
 	};
 	
 	#endregion
@@ -536,7 +544,7 @@ function RoomLoader() {
 	
 	#endregion
 	
-	#region State
+	#region State: Origin
 	
 	/// 
 	static XOrigin = function(_xOrigin) {
@@ -553,7 +561,7 @@ function RoomLoader() {
 	};
 	
 	/// 
-	static Origin = function(_xOrigin, _yOrigin) {
+	static Origin = function(_xOrigin, _yOrigin = _xOrigin) {
 		__xOrigin = _xOrigin;
 		__yOrigin = _yOrigin;
 		
@@ -632,12 +640,67 @@ function RoomLoader() {
 		return self;
 	};
 	
+	#endregion
+	#region State: Flags
+	
 	///
 	static Flags = function(_flags) {
-		__flags = _flags
+		__ResetStateFlags();
+		__flags = _flags;
 		
 		return self;
 	};
+	
+	///
+	static Instances = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.INSTANCES;
+		
+		return self;
+	};
+	
+	///
+	static Tilemaps = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.TILEMAPS;
+		
+		return self;
+	};
+	
+	///
+	static Sprites = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.SPRITES;
+		
+		return self;
+	};
+	
+	///
+	static Sequences = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.SEQUENCES;
+		
+		return self;
+	};
+	
+	///
+	static Texts = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.TEXTS;
+		
+		return self;
+	};
+	
+	///
+	static Backgrounds = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.BACKGROUNDS;
+		
+		return self;
+	};
+	
+	#endregion
+	#region State: Scale
 	
 	///
 	static XScale = function(_scale) {
@@ -654,7 +717,7 @@ function RoomLoader() {
 	};
 	
 	///
-	static Scale = function(_xScale, _yScale) {
+	static Scale = function(_xScale, _yScale = _xScale) {
 		__xScale = _xScale;
 		__yScale = _yScale;
 		
@@ -676,6 +739,7 @@ function RoomLoader() {
 	};
 	
 	#endregion
+	
 	#region Layer Name Filtering: Whitelist
 	
 	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
