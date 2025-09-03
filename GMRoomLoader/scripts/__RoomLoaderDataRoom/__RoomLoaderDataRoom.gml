@@ -99,17 +99,17 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		delete __instancesInitLut;
 	};
-	static __Load = function(_x, _y, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle) {
+	static __Load = function(_x1, _y1, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle) {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__instances.__Init(array_length(__instancesPool));
 		}
 		
 		if (__ROOMLOADER_NOTRANSFORM) {
-			_x -= __width * _xOrigin;
-			_y -= __height * _yOrigin;
+			_x1 -= __width * _xOrigin;
+			_y1 -= __height * _yOrigin;
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
-				__layersPool[_i].__Load(_x, _y, _flags);
+				__layersPool[_i].__Load(_x1, _y1, _flags);
 				_i++;
 			}
 		}
@@ -120,11 +120,15 @@ function __RoomLoaderDataRoom(_room) constructor {
 			var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    _x -= ((_xOffset * _cos) + (_yOffset * _sin));
-		    _y -= ((-_xOffset * _sin) + (_yOffset * _cos));
+		    var _x = _x1 - ((_xOffset * _cos) + (_yOffset * _sin));
+		    var _y = _y1 - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
-				__layersPool[_i].__LoadTransformed(_x, _y, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin);
+				var _layer = __layersPool[_i];
+				var _tile = is_instanceof(_layer, __RoomLoaderDataLayerTile);
+				var _xx = (_tile ? _x1 : _x);
+				var _yy = (_tile ? _y1 : _y);
+				_layer.__LoadTransformed(_xx, _yy, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin);
 				_i++;
 			}
 		}

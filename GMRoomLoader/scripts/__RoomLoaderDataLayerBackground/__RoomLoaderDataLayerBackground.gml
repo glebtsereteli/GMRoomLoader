@@ -11,7 +11,9 @@ function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderData
 			layer_background_yscale(_bg, yscale);
 		}
 	};
-	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale) {
+	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
+		if (_angle != 0) return;
+		
 		with (__bgData) {
 			__ROOMLOADER_BG_LOAD;
 			layer_background_xscale(_bg, xscale * _xScale);
