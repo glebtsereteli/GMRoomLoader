@@ -2,15 +2,15 @@ import { defineConfig } from 'vitepress'
 import MarkdownIt from 'markdown-it'
 
 export default defineConfig({
-  title: "GMRoomLoader",
-  description: "GMRoomLoader Documentation",
+  base: '/GMRoomLoader/',
 
   ignoreDeadLinks: true,
   lastUpdated: true,
-  
+
+  title: "GMRoomLoader",
+  description: "GMRoomLoader Documentation",
+
   themeConfig: {
-    logo: '/logo 1.svg',
-    
     search: {
       provider: 'local'
     },

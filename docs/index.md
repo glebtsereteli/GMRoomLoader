@@ -17,21 +17,21 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/glebtsereteli/GMRoomLoader
-  image:
-    src: /logo 4.svg
-    alt: Icon
+  # image:
+  #   src: /logo.png
+  #   alt: Icon
 
 features:
   - title: 🗺️ Procedural Generation
     details: Create reusable level templates for rooms, NPCs or props, and place them procedurally throughout your levels.
   - title: 🧩 Chunking
     details: Divide big worlds into smaller sections that dynamically load or unload as players approach.
-  - title: 🏗️ Flexible Room Loading
-    details: Load full rooms with all layers and elements at custom coordinates, origins, scales and angles, filtered by asset type and layer name.
-  - title: 📐 Instances & Tilemaps
-    details: stufff
+  - title: 🏗️ Flexible Rooms
+    details: Load and position rooms at custom coordinates and origins, with filtering by layer type or name.
+  - title: 📐 Dynamic Instances
+    details: In addition to positions and origins, load instances at custom angles and scales. Great for enemy layouts, collectibles and effects.
   - title: ⚙️ Full Control
-    details: From merging or creating new layers to shifting depths, tracking and removing loaded elements, you have full control of the loading process.
+    details: From merging or creating new layers to tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Screenshots
     details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
 
