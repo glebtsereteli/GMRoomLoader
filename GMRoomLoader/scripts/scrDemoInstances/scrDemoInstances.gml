@@ -77,8 +77,10 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		Unload();
 		instances = RoomLoader
 		.Origin(origin.x, origin.y)
-		.Scale(xScale, yScale)
-		.LoadInstances(rm, pos.x, pos.y, 0,,,,, angle, scaleMultiplicative, angleAdditive);
+		.Scale(xScale, yScale).Angle(angle)
+		.LoadInstances(rm, pos.x, pos.y, 0,,,,,, scaleMultiplicative, angleAdditive);
+		
+		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);
 	};
 	static Unload = function() {
 		if (instances == undefined) return;

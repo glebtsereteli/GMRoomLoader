@@ -104,12 +104,15 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
+			
 		DEMO_PAYLOAD = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Flags(flags.get())
-		.Sequences()
-		.Scale(xScale, yScale)
-		.Load(rm, pos.x, pos.y,,,,,, angle);
+		.Scale(xScale, yScale).Angle(angle)
+		.Load(rm, pos.x, pos.y);
+		
+		//DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
+		
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 	};
 	static Unload = function() {

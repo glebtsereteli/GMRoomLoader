@@ -355,12 +355,12 @@ function RoomLoader() {
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xscale The horizontal scale to load the room at. [Default: State.XScale or 1]
 	/// @param {Real} yscale The vertical scale to load the room at. [Default: State.YScale or 1]
-	/// @param {Real} angle The angle to load the room at. [Default: 0]
+	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
 	/// @returns {struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = 0) {
+	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
@@ -388,12 +388,12 @@ function RoomLoader() {
 	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
 	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
-	/// @param {Real} angle The angle applied to instance positioning. [Default: 0]
+	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
 	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xscale/yscale (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE]
-	/// @param {Bool} additiveAngle Whether to combinte loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
+	/// @param {Bool} additiveAngle Whether to combine loaded instances' image_angle with angle (true) or not (false). [Default: ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = 0, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
+	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle, _multScale = ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE, _addAngle = ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE) {
 		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -472,9 +472,9 @@ function RoomLoader() {
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: State.Mirror or false]
 	/// @param {Bool} flip Flip the loaded tilemap? [Default: State.Flip or false]
-	/// @param {Real} angle The angle to load the tilemap at. [Default: 0]
+	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: source]
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = 0, _tileset = undefined) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = undefined) {
 		static _methodName = "LoadTilemap";
 		
 		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
@@ -700,7 +700,7 @@ function RoomLoader() {
 	};
 	
 	#endregion
-	#region State: Scale
+	#region State: Transformations
 	
 	///
 	static XScale = function(_scale) {
@@ -734,6 +734,12 @@ function RoomLoader() {
 	/// 
 	static Flip = function() {
 		__yScale = -1;
+		
+		return self;
+	};
+	
+	static Angle = function(_angle) {
+		__angle = _angle;
 		
 		return self;
 	};
