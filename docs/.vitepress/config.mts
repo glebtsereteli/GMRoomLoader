@@ -48,7 +48,7 @@ export default defineConfig({
             items: [
               { text: 'Overview', link: '/pages/api/roomLoader/overview' },
               { text: 'Data', link: '/pages/api/roomLoader/data' },
-              { text: 'Loading', link: '/pages/api/roomLoader/loading' },
+              { text: 'Loading ⭐', link: '/pages/api/roomLoader/loading' },
               { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
               { text: 'Origin', link: '/pages/api/roomLoader/origin' },
               { text: 'Asset Type Filtering', link: '/pages/api/roomLoader/assetTypeFiltering' },
@@ -92,7 +92,7 @@ export default defineConfig({
             link: '/pages/api/roomLoader/overview',
             items: [
               { text: 'Data', link: '/pages/api/roomLoader/data' },
-              { text: 'Loading', link: '/pages/api/roomLoader/loading' },
+              { text: 'Loading ⭐', link: '/pages/api/roomLoader/loading' },
               { text: 'Screenshotting', link: '/pages/api/roomLoader/screenshotting' },
               { text: 'Origin', link: '/pages/api/roomLoader/origin' },
               { text: 'Asset Type Filtering', link: '/pages/api/roomLoader/assetTypeFiltering' },

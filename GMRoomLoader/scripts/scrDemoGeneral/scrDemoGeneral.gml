@@ -104,7 +104,9 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-		DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
+		DEMO_PAYLOAD = RoomLoader
+		.Origin(origin.x, origin.y)
+		.Load(rm, pos.x, pos.y,,, flags.get(), xScale, yScale, angle);
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 	};
 	static Unload = function() {
