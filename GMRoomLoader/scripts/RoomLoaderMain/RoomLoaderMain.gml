@@ -503,14 +503,14 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _scale = 1, _flags = __flags) {
+	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _scale = 1) {
 		static _methodName = "Screenshot";
 		
 		var _screenshot = __TakeScreenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _methodName);
@@ -526,14 +526,14 @@ function RoomLoader() {
 	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
 	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _scale = 1, _flags = __flags) {
+	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _scale = 1,) {
 		static _methodName = "ScreenshotPart";
 		
 		var _screenshot = __TakeScreenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName);
