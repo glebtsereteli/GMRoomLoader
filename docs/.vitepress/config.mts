@@ -33,7 +33,6 @@ export default defineConfig({
           {
             text: '🗂️ Others',
             items: [
-              { text: 'Changes From v1', link: '/pages/others/changesFromV1' },
               { text: 'Contact & Support', link: '/pages/others/contactSupport' },
               { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
               { text: 'Credits', link: '/pages/others/credits' },
@@ -121,7 +120,6 @@ export default defineConfig({
           link: '/pages/others/contactSupport',
           collapsed: false,
           items: [
-            { text: 'Changes From v1', link: '/pages/others/changesFromV1' },
             { text: 'Contact & Support', link: '/pages/others/contactSupport' },
             { text: 'Upcoming Features', link: '/pages/others/upcomingFeatures' },
             { text: 'Credits', link: '/pages/others/credits' },
