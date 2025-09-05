@@ -10,19 +10,25 @@
     font-size: 1.5rem;
     line-height: 1.2;
 }
-
+.VPHero .VPImage {
+  filter: drop-shadow(-10px 10px 10px rgba(0, 0, 0, 0.3));
+  padding: 18px;
+}
 html.dark:has(.VPHome) body {
   background: url('/background.png') no-repeat center center fixed;
   background-size: cover;
 }
-
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(0deg, #039D5B, #3eaf7c);
+  --vp-home-hero-name-background: -webkit-linear-gradient(0deg, #3eaf7c, #3eaf7c);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 10%,
+    rgba(3, 157, 91, 0.4) 90%
+  );
+  --vp-home-hero-image-filter: blur(60px);
 }
-
-/*
-.main {
-    margin-left: -20px;
-    margin-right: -20px;
+/* .main {
+    margin-left: -30px;
+    margin-right: -30px;
 } */

@@ -115,12 +115,12 @@ The following sections break down the available state categories
 
 | Method | Flag |
 |---|---|
-| `.Instances()` | ROOMLOADER_FLAG.INSTANCES |
-| `.Tilemaps()` | ROOMLOADER_FLAG.TILEMAPS |
-| `.Sprites()` | ROOMLOADER_FLAG.SPRITES |
-| `.Sequences()` | ROOMLOADER_FLAG.SEQUENCES |
-| `.Texts()` | ROOMLOADER_FLAG.TEXTS |
-| `.Backgrounds()` | ROOMLOADER_FLAG.BACKGROUNDS |
+| `.Instances()` | `ROOMLOADER_FLAG.INSTANCES` |
+| `.Tilemaps()` | `ROOMLOADER_FLAG.TILEMAPS` |
+| `.Sprites()` | `ROOMLOADER_FLAG.SPRITES` |
+| `.Sequences()` | `ROOMLOADER_FLAG.SEQUENCES` |
+| `.Texts()` | `ROOMLOADER_FLAG.TEXTS` |
+| `.Backgrounds()` | `ROOMLOADER_FLAG.BACKGROUNDS` |
 
 @TODO
 
@@ -198,8 +198,6 @@ The following sections break down the available state categories
 ```
 :::
 
-## Miscellaneous
-
 ### `.MultScale()`
 
 > `RoomLoader.Flip(tileset)` ➜ :Struct:.:RoomLoader:
@@ -223,6 +221,9 @@ The following sections break down the available state categories
 
 ```
 :::
+
+
+## Miscellaneous
 
 ### `.Tileset()`
 

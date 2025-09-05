@@ -3,9 +3,9 @@
 When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you may want to filter target room data by layer name, so that only layers with the specified names are loaded/screenshotted.
 
 This section explains how to achieve this using [Whitelisting](#whitelist) and [Blacklisting](#blacklist).
-* Both filters are fully user-managed and are not reset automatically after loading.
+* Both filters are fully user-managed and do not reset automatically after loading.
 * Both filters have their own sets of methods and can be used independently or together. You can also combine them with :Asset Type: filtering in any configuration.
-* Blacklist takes precedence over Whitelist - any layer that appears in both will not be loaded.
+* Blacklist takes precedence over Whitelist - layers included in both filters are ignored.
 
 ::: warning WARNING
 Just like everywhere else in GameMaker, layer names are case-sensitive and must match the room editor layer names exactly.

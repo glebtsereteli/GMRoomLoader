@@ -1,6 +1,6 @@
 # Payload
 
-When loading rooms using :RoomLoader.Load():, the method returns a `RoomLoaderPayload()` instance - a struct storing the IDs of all created layers and their elements. It is organized into the following sections:
+When loading full rooms using :RoomLoader.Load():, the method returns a `RoomLoaderPayload()` instance - a struct that stores the IDs of all created layers and their elements and provides methods organized into the following sections:
 * [Depth](/pages/api/payload/depth) allows you to shift layer depths to be above or below a certain layer or depth.
 * [Getters](/pages/api/payload/getters) provide options to retreive an ID of any loaded layer or element.
 * [Cleanup](/pages/api/payload/cleanup) is used for cleaning up loaded contents. This is also often called "unloading" or "destroying" a loaded room.

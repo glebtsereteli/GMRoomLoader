@@ -67,7 +67,7 @@ function RoomLoader() {
 	};
 	static __ResetStateFlags = function() {
 		if (__flagsDefault) {
-			__flags = 0;
+			__flags = ROOMLOADER_FLAG.NONE;
 			__flagsDefault = false;
 		}
 	};
@@ -347,7 +347,7 @@ function RoomLoader() {
 	static DataGetInstances = function(_room) {
 		static _methodName = "DataGetInstances";
 		
-		var _data = __GetLoadData(_room, _methodName, "get intances data for", "get their instances data");
+		var _data = __GetLoadData(_room, _methodName, "get instances data for", "get their instances data");
 		return _data.__instancesPool;
 	};
 	
@@ -366,7 +366,7 @@ function RoomLoader() {
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
 	/// @param {Bool} multiplicativeScale Whether to multiply loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false). [Default: State.MultlScale or ROOMLOADER_DEFAULT_MULT_SCALE]
 	/// @param {Bool} additiveAngle Whether to combine loaded elements' image_angle with angle (true) or not (false). [Default: Scale.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
-	/// @returns {struct.RoomLoaderPayload,undefined}
+	/// @returns {Struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
@@ -388,8 +388,6 @@ function RoomLoader() {
 		__ResetState();
 		
 		return (ROOMLOADER_DELIVER_PAYLOAD ? __payload : undefined);
-		
-		// @TODO multScale, addAngle
 	};
 	
 	/// @param {Asset.GMRoom} room The room to load instances for.
@@ -482,8 +480,8 @@ function RoomLoader() {
 	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on.
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: State.Mirror or false]
-	/// @param {Bool} flip Flip the loaded tilemap? [Default: State.Flip or false]
+	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
+	/// @param {Bool} flip Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
@@ -558,21 +556,34 @@ function RoomLoader() {
 	
 	#region State: Origin
 	
-	/// 
+	/// @param {Real} xOrigin The X Origin to use in the next load/screenshot call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the X Origin to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static XOrigin = function(_xOrigin) {
 		__xOrigin = _xOrigin;
 		
 		return self;
 	};
 	
-	///
+	/// @param {Real} yOrigin The Y Origin to use in the next load/screenshot call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the Y Origin to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static YOrigin = function(_yOrigin) {
 		__yOrigin = _yOrigin;
 		
 		return self;
 	};
 	
-	/// 
+	/// @param {Real} xOrigin The X Origin to use in the next load/screenshot call.
+	/// @param {Real} yOrigin The Y Origin to use in the next load/screenshot call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the X and Y Origins to use in the next load/screenshot call.
+	/// Both reset automatically right after.
+	/// @context RoomLoader
 	static Origin = function(_xOrigin, _yOrigin = _xOrigin) {
 		__xOrigin = _xOrigin;
 		__yOrigin = _yOrigin;
@@ -580,7 +591,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Top-Left origin (x: 0, y: 0) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static TopLeft = function() {
 		__xOrigin = 0;
 		__yOrigin = 0;
@@ -588,7 +602,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Top-Center origin (x: 0.5, y: 0) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static TopCenter = function() {
 		__xOrigin = 0.5;
 		__yOrigin = 0;
@@ -596,7 +613,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Top-Right origin (x: 1, y: 0) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static TopRight = function() {
 		__xOrigin = 1;
 		__yOrigin = 0;
@@ -604,7 +624,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Middle-Left origin (x: 0, y: 0.5) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static MiddleLeft = function() {
 		__xOrigin = 0;
 		__yOrigin = 0.5;
@@ -612,7 +635,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Middle-Center origin (x: 0.5, y: 0.5) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static MiddleCenter = function() {
 		__xOrigin = 0.5;
 		__yOrigin = 0.5;
@@ -620,7 +646,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Middle-Right origin (x: 1, y: 0.5) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static MiddleRight = function() {
 		__xOrigin = 1;
 		__yOrigin = 0.5;
@@ -628,7 +657,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Bottom-Left origin (x: 0, y: 1) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static BottomLeft = function() {
 		__xOrigin = 0;
 		__yOrigin = 1;
@@ -636,7 +668,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Bottom-Center origin (x: 0.5, y: 1) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static BottomCenter = function() {
 		__xOrigin = 0.5;
 		__yOrigin = 1;
@@ -644,7 +679,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a Bottom-Right origin (x: 1, y: 1) to use in the next load/screenshot call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static BottomRight = function() {
 		__xOrigin = 1;
 		__yOrigin = 1;
@@ -655,7 +693,10 @@ function RoomLoader() {
 	#endregion
 	#region State: Flags
 	
-	///
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by.
+	/// @return {Struct.RoomLoader}
+	/// @desc Sets the flags to use in the next load/screenshot call.
+	/// @context RoomLoader
 	static Flags = function(_flags) {
 		__ResetStateFlags();
 		__flags = _flags;
@@ -663,7 +704,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Instances (ROOMLOADER_FLAG.INSTANCES) to the flags to use in the next load/screenshot call.
+	/// First set before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Instances = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.INSTANCES;
@@ -671,7 +716,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Tilemaps (ROOMLOADER_FLAG.TILEMAPS) to the flags to use in the next load/screenshot call.
+	/// First set before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Tilemaps = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.TILEMAPS;
@@ -679,7 +728,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Sprites (ROOMLOADER_FLAG.SPRITES) to the flags to use in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Sprites = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.SPRITES;
@@ -687,7 +740,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Sequences (ROOMLOADER_FLAG.SEQUENCES) to the flags to use in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Sequences = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.SEQUENCES;
@@ -695,7 +752,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Texts (ROOMLOADER_FLAG.TEXTS) to the flags to use in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Texts = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.TEXTS;
@@ -703,7 +764,11 @@ function RoomLoader() {
 		return self;
 	};
 	
-	///
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Backgrounds (ROOMLOADER_FLAG.BACKGROUNDS) to the flags to use in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
 	static Backgrounds = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.BACKGROUNDS;
@@ -714,21 +779,34 @@ function RoomLoader() {
 	#endregion
 	#region State: Transformations
 	
-	///
-	static XScale = function(_scale) {
-		__xScale = _scale;
+	/// @param {Real} xScale The horizontal scale to use in the next loading method call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the horizontal scale to be used in the next loading method call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static XScale = function(_xScale) {
+		__xScale = _xScale;
 		
 		return self;
 	};
 	
-	///
-	static YScale = function(_scale) {
-		__yScale = _scale;
+	/// @param {Real} yScale The vertical scale to use in the next loading method call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the vertical scale to be used in the next loading method call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static YScale = function(_yScale) {
+		__yScale = _yScale;
 		
 		return self;
 	};
 	
-	///
+	/// @param {Real} xScale The horizontal scale to use in the next loading method call.
+	/// @param {Real} yScale The vertical scale to use in the next loading method call. [Default: xScale]
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets horizontal and vertical scales to be used in the next load/screenshot method.
+	/// Both reset automatically right after.
+	/// @context RoomLoader
 	static Scale = function(_xScale, _yScale = _xScale) {
 		__xScale = _xScale;
 		__yScale = _yScale;
@@ -736,23 +814,61 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// 
-	static Mirror = function() {
-		__xScale = -1;
+	/// @param {Bool} mirror? Should the next load be mirrored? [Default: true]
+	/// @returns {Struct.RoomLoader}
+	/// @desc Mirrors the next result of loading by setting the XScale State to -1.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static Mirror = function(_mirror = true) {
+		if (_mirror) {
+			__xScale = -1;
+		}
 		
 		return self;
 	};
 	
-	/// 
-	static Flip = function() {
-		__yScale = -1;
+	/// @param {Bool} flip? Should the next load be mirrored? [Default: true]
+	/// @returns {Struct.RoomLoader}
+	/// @desc Flips the next result of loading by setting the YScale State to -1.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static Flip = function(_flip = true) {
+		if (_flip) {
+			__yScale = -1;
+		}
 		
 		return self;
 	};
 	
-	/// 
+	/// @param {Real} angle The angle to use in the next loading method call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the angle to be used in the next loading method call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static Angle = function(_angle) {
 		__angle = _angle;
+		
+		return self;
+	};
+	
+	/// @param {Bool} multiplicativeScale Whether to multiply future loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false).
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a parameter for whether to multiply loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false) in the next loading method call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static MultScale = function(_multScale) {
+		__multScale = _multScale;
+		
+		return self;
+	};
+	
+	/// @param {Bool} additiveAngle Whether to combine future loaded elements' image_angle with angle (true) or not (false). [Default: State.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets a parameter for whether to add loaded elements' image_angle with angle (true) or not (false) in the next loading method call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
+	static AddAngle = function(_addAngle) {
+		__addAngle = _addAngle;
 		
 		return self;
 	};
@@ -760,21 +876,11 @@ function RoomLoader() {
 	#endregion
 	#region State: Miscellaneous
 	
-	/// 
-	static MultScale = function(_multScale) {
-		__multScale = _multScale;
-		
-		return self;
-	};
-	
-	/// 
-	static AddAngle = function(_addAngle) {
-		__addAngle = _addAngle;
-		
-		return self;
-	};
-	
-	/// 
+	/// @param {Asset.GMTileset} tileset The tileset to use in the next RoomLoader.LoadTilemap() call.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the tileset for the next RoomLoader.LoadTilemap() call.
+	/// Resets automatically right after.
+	/// @context RoomLoader
 	static Tileset = function(_tileset) {
 		__tileset = _tileset;
 		

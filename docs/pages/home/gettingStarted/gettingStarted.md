@@ -30,9 +30,9 @@ If you already have GMRoomLoader installed and want to update to the latest vers
 ## First Setup
 While GMRoomLoader offers many tools for handling room data, loading rooms and working with created elements, the following :Initialization:, :Loading: and :Cleanup: methods are the only basics you need to get things working and load your first room!
 
-::: tip DOWNLOAD!
-Download the example project to see the following setup in action: [First Setup.yyz](https://www.youtube.com/watch?v=dQw4w9WgXcQ) @TODO
-::::
+We'll go over each step first and then bring them all together in a simple complete example.
+
+#### ℹ️ <u>Download the example project</u>: [First Setup.yyz](https://www.youtube.com/watch?v=dQw4w9WgXcQ) @TODO
 
 ### 1. Initialize
 [Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you want to load.
@@ -49,7 +49,7 @@ payload = RoomLoader.Load(rmExample, mouse_x, mouse_y);
 For this example, this can be called right after initialization in the Create event, or on a key press to see the room load in real time.
 
 ### 3. Clean Up
-[Clean Up](/pages/api/payload/cleanup) *(often called "unload" or "destroy")* the loaded room when needed.
+[Clean Up](/pages/api/payload/cleanup) the loaded room when needed by destroying all loaded layers and elements. Often called "unloading" or "destroying" the loaded room.
 ```js
 payload.Cleanup();
 ```

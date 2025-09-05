@@ -199,12 +199,26 @@ export default defineConfig({
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
+        'RoomLoader.LoadTilemap()': '/pages/api/roomLoader/loading#loadtilemap',
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
+        '.Cleanup()': '/pages/api/payload/cleanup',
         
         'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering/#roomloader-flag',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',
+
+        'State.XOrigin': '/pages/api/roomLoader/states.html#xorigin',
+        'State.YOrigin': '/pages/api/roomLoader/states.html#yorigin',
+        'State.Flags': '/pages/api/roomLoader/states.html#flags',
+        'State.XScale': '/pages/api/roomLoader/states.html#xscale',
+        'State.YScale': '/pages/api/roomLoader/states.html#yscale',
+        'State.Mirror': '/pages/api/roomLoader/states.html#mirror',
+        'State.Flip': '/pages/api/roomLoader/states.html#flip',
+        'State.Angle': '/pages/api/roomLoader/states.html#angle',
+        'State.MultScale': '/pages/api/roomLoader/states.html#multscale',
+        'State.AddAngle': '/pages/api/roomLoader/states.html#addangle',
+        'State.Tileset': '/pages/api/roomLoader/states.html#tileset',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

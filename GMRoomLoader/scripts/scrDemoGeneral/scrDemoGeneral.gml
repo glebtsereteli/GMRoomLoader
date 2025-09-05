@@ -107,7 +107,6 @@ function DemoGeneral() : DemoPar("General") constructor {
 			
 		DEMO_PAYLOAD = RoomLoader
 		.Origin(origin.x, origin.y)
-		.AddAngle(false)
 		.Flags(flags.get())
 		.Scale(xScale, yScale).Angle(angle)
 		.Load(rm, pos.x, pos.y);

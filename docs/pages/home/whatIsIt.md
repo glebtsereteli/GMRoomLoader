@@ -1,6 +1,6 @@
 # What is GMRoomLoader?
 
-GMRoomLoader is a pure GML [Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library for creating room prefabs and loading room contents at runtime. AKA "loading other rooms into the current room".
+GMRoomLoader is a pure GML [Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library made for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
 
 It provides tools to process the data returned by :room_get_info():, use that data to load room contents efficiently during gameplay, and clean up created elements when needed.
 
@@ -19,11 +19,12 @@ It does NOT provide tools for procedural generation or level layout creation of 
 ## Features
 - Pure GML library with no external tools required.
 - Multiple ways to handle room data: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall).
-- Loading [Full Rooms](/pages/api/roomLoader/loading/#full-rooms) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) (with optional scale/mirror/flip and rotation transformations) at any position and origin.
+- Loading [Full Rooms](/pages/api/roomLoader/loading/#full-rooms) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) with optional scale/mirror/flip and rotation transformations at any position and origin.
 - Element filtering by :Asset Type:.
 - :Layer Name: filtering with [Whitelisting](/pages/api/roomLoader/layerNameFiltering/#whitelist) and [Blacklisting](/pages/api/roomLoader/layerNameFiltering/#blacklist).
 - Full control over loaded contents: :Payload: tracking, fetching element IDs and cleanup - unloading/destroying loaded elements.
 - Room :Screenshotting:.
+- Pre-load/screenshot state management with a fluent Builder interface.
 
 ## How does it work?
 

@@ -74,7 +74,7 @@ Setting this to `false` improves loading performance.
 :::
 
 ---
-### `ROOMLOADER_INSTANCES_DEFAULT_MULT_SCALE`
+### `ROOMLOADER_DEFAULT_MULT_SCALE`
 > Default: `true`.
 
 @TODO
@@ -84,7 +84,7 @@ When loading instances using :RoomLoader.LoadInstances():, whether to multiply i
 This is relevant only when loading instances with a custom scale (values other than `1`).
 
 ---
-### `ROOMLOADER_INSTANCES_DEFAULT_ADD_ANGLE`
+### `ROOMLOADER_DEFAULT_ADD_ANGLE`
 * Default: `true`.
 
 @TODO

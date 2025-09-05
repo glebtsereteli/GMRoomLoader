@@ -38,7 +38,7 @@ As a result, modding and live reloading aren't possible by design.
 
 If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. While it's not as modern and fancy as GMRoomLoader, it works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
 
-## 📍 I'm loading a room and it I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
+## 📍 I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 
 The good news is layer depths are easily adjustable and you're not locked into those default depths from the loaded room. Check out the [Payload Depth](/pages/api/payload/depth) section to see how you can shift depths for loaded layers.
@@ -54,7 +54,15 @@ The execution order follows GameMaker's default and is structured like this:
 :::
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
-* If you're loading full rooms with :RoomLoader.Load():, it returns an instance of :Payload:, which has a [.Cleanup()](/pages/api/payload/cleanup/#cleanup-1) method for removing all loaded layers and their elements.
+
+Totally, of course you can! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
+
+### Full Rooms
+
+When loading full rooms with :RoomLoader.Load():, it returns a :Payload: struct that has a :.Cleanup(): method for removing all loaded layers and their elements.
+
+First store the struct in a variable when you load the room, and when it's time to destroy the room, call :.Cleanup(): on the returned struct:
+
 :::code-group
 ```js [Example]
 // When you load a room:
@@ -69,16 +77,37 @@ payload.Cleanup();
 GMRoomLoader only tracks layers and elements it loads itself. Anything else you add afterwards must be cleaned up manually.
 :::
 
-* If you're loading instances with :RoomLoader.LoadInstances():, it return an array of loaded instance IDs. Loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to remove them.
+### Instances
+
+When loading instances with :RoomLoader.LoadInstances():, it returns an array of loaded [Instance IDs](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/Instances.htm).
+
+First store the array in a variable when you load instances, and when it's time to destroy them, loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to destroy it:
 :::code-group
 ```js [Example]
 // When you load instances:
-loadedInstances = RoomLoader.LoadInstances(rmExample, 0, 0);
+loadedInstances = RoomLoader.LoadInstances(rmExample, someX, someY);
 
 // When you need to destroy loaded instances:
 array_foreach(loadedInstances, function(_instance) {
     instance_destroy(_instance);
 });
+```
+:::
+
+### Tilemaps
+
+When loading tilemaps with :RoomLoader.LoadTilemap():, it returns an :Id.Tilemap:.
+
+First store the ID in a variable, and when it's time to destroy it, call [layer_tilemap_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/layer_tilemap_destroy.htm)
+
+:::code-group
+```js [Example]
+// When you load the tilemap:
+var _layer = "SomeTilemap";
+tilemap = RoomLoader.LoadTilemap(rmExample, someX, someY, _layer, _layer);
+
+// When you need to destroy the tilemap:
+layer_tilemap_destroy(tilemap);
 ```
 :::
 
@@ -103,7 +132,7 @@ array_push(global.collisionTilemaps, _collisionTilemap);
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
 var _collisionTilemap = payload.GetTilemap("CollisionTilemap");
 var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
-if (_index != -1) {
+if (_collisionTilemapIndex != -1) {
     array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
 }
 payload.Cleanup();
