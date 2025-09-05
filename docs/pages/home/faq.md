@@ -3,18 +3,18 @@
 This page contains answers to frequently asked questions about GMRoomLoader.
 
 ## 📍 What platforms does GMRoomLoader support?
-| Platform            | Status   | Notes                                   |
-| ------------------- | -------- | --------------------------------------- |
-| **Windows**         | ✅ Yes    | Fully tested and stable                 |
-| **macOS**           | ✅ Yes    | Fully tested and stable                 |
-| **GX.games**        | ✅ Yes    | Fully tested and stable                 |
-| **Linux**           | 🚧 Likely | Untested                                |
-| **HTML5**           | ❌ No     | Cursed. Use WASM with GX.games          |
-| **Android**         | 🚧 Likely | Untested                                |
-| **iOS**             | 🚧 Likely | Untested                                |
-| **PS5**             | 🚧 Likely | Untested                                |
-| **Xbox**            | 🚧 Likely | Untested                                |
-| **Nintendo Switch** | 🚧 Likely | Untested                                |
+| Platform | Status | Notes |
+| --- | --- | --- |
+| **Windows** | ✅ Yes | Tested |
+| **macOS** | ✅ Yes | Tested |
+| **GX.games** | ✅ Yes    | Tested |
+| **Linux** | 🚧 Likely | Untested |
+| **HTML5** | ❌ No     | No, it's cursed. Use WASM with GX.games |
+| **Android** | 🚧 Likely | Untested |
+| **iOS** | 🚧 Likely | Untested |
+| **PS5** | 🚧 Likely | Untested |
+| **Xbox** | 🚧 Likely | Untested |
+| **Nintendo Switch** | 🚧 Likely | Untested |
 
 ## 📍 What versions of GameMaker does GMRoomLoader support?
 The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.1.242`.
@@ -112,7 +112,7 @@ layer_tilemap_destroy(tilemap);
 :::
 
 ## 📍 How can I collide with loaded tilemaps?
-When you load a room with a tile layer, a new tilemap is created. To collide with this newly loaded tilemap, you need to grab its ID and store it somewhere.
+When you load a room with a tile layer, a new tilemap is created. To collide with this newly loaded tilemap, you need to grab its ID and store it in some variable.
 
 If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
 
@@ -126,15 +126,12 @@ global.collisionTilemaps = [layer_tilemap_get_id("CollisionTilemap")];
 
 // When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array:
 payload = RoomLoader.Load(rmExample, someX, someY);
-var _collisionTilemap = payload.GetTilemap("CollisionTilemap");
-array_push(global.collisionTilemaps, _collisionTilemap);
+collisionTilemap = payload.GetTilemap("CollisionTilemap");
+array_push(global.collisionTilemaps, collisionTilemap);
 
 // When unloading a room, remove the collision tilemap from the global collision tilemaps array:
-var _collisionTilemap = payload.GetTilemap("CollisionTilemap");
-var _collisionTilemapIndex = array_get_index(global.collisionTilemaps, _collisionTilemap);
-if (_collisionTilemapIndex != -1) {
-    array_delete(global.collisionTilemaps, _collisionTilemapIndex, 1);
-}
+var _index = array_get_index(global.collisionTilemaps, collisionTilemap);
+array_delete(global.collisionTilemaps, _index, 1);
 payload.Cleanup();
 ```
 :::
