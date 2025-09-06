@@ -16,13 +16,13 @@ This system uses a [Builder](https://refactoring.guru/design-patterns/builder) p
 // Loads rmExample's sprites and sequences centered in the room and randomly rotated:
 payload = RoomLoader
 .Sprites().Sequences() // [!code highlight]
-.MiddleCenter().Angle(random(360))) // [!code highlight]
+.MiddleCenter().Angle(random(360)) // [!code highlight]
 .Load(rmExample, room_width / 2, room_height / 2);
 
 // Loads rmExample's instances scaled up by x2:
 instances = RoomLoader.Scale(2).LoadInstances(rmExample, x, y); // [!code highlight]
 
-// Whene working with perspective visuals, turns a visual walls tilemap into
+// When working with perspective visuals, turns a visual walls tilemap into
 // a collision tilemap:
 collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision) // [!code highlight]
@@ -38,8 +38,8 @@ Instead, it provides a more verbose and cleaner alternative, letting you cherry-
 The following sections break down the available state categories
 * [Origin](#origin) - Where the room is anchored.
 * [Flags](#flags) - Which asset types to include.
-* [Transformation](#transformation) - Scaling, mirorring, flipping and rotating options.
-* [Miscellaneous](#miscellaneous) - Extra parameters like multiplicative scaling and additive rotation when loading full rooms or instances, and custom tilesets when loading tilemaps.
+* [Transformation](#transformation) - Scaling, mirroring, flipping and rotating options.
+* [Miscellaneous](#miscellaneous) - Extra parameters like custom tilesets when loading tilemaps, maybe more in the future.
 
 ## Origin
 
@@ -55,7 +55,7 @@ Sets the X Origin state to use in the next :Loading: or :Screenshotting: call.
 
 :::code-group
 ```js [Example]
-// Loads rmExample with a Middle-Left origin:
+// Loads rmExample with a Top-Center origin:
 RoomLoader.XOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -72,7 +72,7 @@ Sets the Y Origin state to use in the next :Loading: or :Screenshotting: call.
 
 :::code-group
 ```js [Example]
-// Loads rmExample with a Top-Center origin:
+// Loads rmExample with a Middle-Left origin:
 RoomLoader.YOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -129,7 +129,7 @@ screenshot = RoomLoader.MiddleCenter().Screenshot(rmExample); // [!code highligh
 
 > `RoomLoader.Flags(flags)` ➜ :Struct:.:RoomLoader:
 
-Sets the Flags to use in the next load/screenshot call. Check out filtering by :Asset Type: for more information.
+Sets the Flags to use in the next :Loading: or :Screenshotting: call. Check out filtering by :Asset Type: for more information.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -138,7 +138,7 @@ Sets the Flags to use in the next load/screenshot call. Check out filtering by :
 :::code-group
 ```js [Example]
 // Loads rmExample's Tilemaps and Sequences:
-var _flags = ROOMLOADER_FLAG.TIEMAPS | ROOMLOADER_FLAG.SEQUENCES;
+var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SEQUENCES;
 RoomLoader.Flags(_flags).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -151,7 +151,7 @@ Each Builder method corresponds to a specific :ROOMLOADER_FLAG: enum member and 
 * The first call to any of these methods before :Loading: or :Screenshotting: resets the state and sets it to that method's flag, so you always start clean from the one you choose.
 * Subsequent calls add their flags on top, letting you combine multiple asset types.
 
-Similar to [Origin Presets](#presets) above, This approach makes the code read in an English-like flow and provides an alternative interface if you don't like dealing with bitwise operators.
+Similar to [Origin Presets](#presets) above, this approach makes the code read in an English-like flow and provides an alternative interface if you don't like dealing with bitwise operators.
 
 | Method | Flag |
 |---|---|
@@ -215,7 +215,7 @@ RoomLoader.XScale(2).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.YScale(yScale)` ➜ :Struct:.:RoomLoader:
 
-Vertically scales the next :Loading: by setting State.YScale.
+Vertically scales the next :Loading: by setting **State.YScale**.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -241,7 +241,7 @@ Sets horizontal and vertical scale states to be used in the next :Loading: or :S
 
 :::code-group
 ```js [Example]
-// Loads rmExample vertically scaled half-scaled:
+// Loads rmExample scaled to half-size:
 RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -250,7 +250,7 @@ RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.Mirror([mirror?])` ➜ :Struct:.:RoomLoader:
 
-Mirrors the next :Loading: by setting **State.XScale** to -1.
+When `true`, mirrors the next :Loading: by setting **State.XScale** to -1.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -267,7 +267,7 @@ RoomLoader.Mirror().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight
 
 > `RoomLoader.Flip([flip?])` ➜ :Struct:.:RoomLoader:
 
-Flips the next :Loading: by setting **State.YScale** to `-1`.
+When `true`, flips the next :Loading: by setting **State.YScale** to `-1`.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -282,7 +282,7 @@ RoomLoader.Flip().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 
 ### `.Angle()`
 
-> `RoomLoader.Angle()` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.Angle(angle)` ➜ :Struct:.:RoomLoader:
 
 Rotates the next :Loading: by setting **State.Angle**.
 
@@ -337,7 +337,7 @@ RoomLoader.AddAngle(false).Angle(random(360)).LoadInstances(rmExample, x, y); //
 
 ### `.Tileset()`
 
-> `RoomLoader.Flip(tileset)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.Tileset(tileset)` ➜ :Struct:.:RoomLoader:
 
 Sets the tileset to use in the next :RoomLoader.LoadTilemap(): call.
 
@@ -347,12 +347,10 @@ Sets the tileset to use in the next :RoomLoader.LoadTilemap(): call.
 
 :::code-group
 ```js [Example]
-// Loads a tilemap from the "TilesWalls" layer in rmChunkSpecial01,
-// creates it on the newly created collision layer, assigns the tsWallsCollision 
-// tileset to it and stores its ID in the collisionTilemap variable:
-collisionLayer = layer_create(0, "Collision");
+// When working with perspective visuals, turns a visual walls tilemap into
+// a collision tilemap:
 collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision) // [!code highlight]
-.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer);
+.LoadTilemap(rmExample, 0, 0, "Walls", collisionLayer);
 ```
 :::
