@@ -61,9 +61,9 @@ Now that we know the required steps, let's put this together in a simple way for
 * Then in the Step event, we'll load the room at the mouse position when we press 1, and unload the room when we press 2.
 :::code-group
 ```js [Create Event]
-room = rmExample; // The room you'd like to load.
+rm = rmExample; // The room we'll load.
 payload = undefined; // The variable to hold our Payload after loading.
-RoomLoader.DataInit(room); // Initialize the data for "room". [!code highlight]
+RoomLoader.DataInit(rm); // Initialize the data for our room. [!code highlight]
 
 Cleanup = function() { // The method we'll use to unload the loaded room.
     if (payload == undefined) return; // Only do this when a Payload exists.
@@ -77,7 +77,7 @@ if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.
     
     // Load the room at the mouse position:
-    payload = RoomLoader.Load(room, mouse_x, mouse_y); // [!code highlight]
+    payload = RoomLoader.Load(rm, mouse_x, mouse_y); // [!code highlight]
 }
 
 if (keyboard_check_pressed(ord("2"))) {

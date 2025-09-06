@@ -1,6 +1,6 @@
 # Layer Name Filtering
 
-When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you may want to filter target room data by layer name, so that only layers with the specified names are loaded/screenshotted.
+When loading full rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you may want to filter target room layers by name, so that only layers with the specified names are loaded/screenshotted.
 
 This section explains how to achieve this using [Whitelisting](#whitelist) and [Blacklisting](#blacklist).
 * Both filters are fully user-managed and do not reset automatically after loading.

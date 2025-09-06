@@ -693,9 +693,9 @@ function RoomLoader() {
 	#endregion
 	#region State: Flags
 	
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by.
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded elements by.
 	/// @return {Struct.RoomLoader}
-	/// @desc Sets the flags to use in the next load/screenshot call.
+	/// @desc Sets the Flags to use in the next load/screenshot call.
 	/// @context RoomLoader
 	static Flags = function(_flags) {
 		__ResetStateFlags();

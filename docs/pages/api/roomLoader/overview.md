@@ -14,6 +14,7 @@
 - :Loading: handles loading full rooms and separate room parts (instances and tilemaps).  
 - :Screenshotting: captures screenshots of rooms.
 - [Origin](/pages/api/roomLoader/origin) explains the Origin system used in all :Loading: and :Screenshotting: methods.
+- [State](/pages/api/roomLoader/state) goes over an alternative way to preconfigure :Loading: and :Screenshotting: parameters using a [Builder](https://refactoring.guru/design-patterns/builder) pattern with a [Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface).
 - :Asset Type: and :Layer Name: filtering allow filtering layers by asset type and name respectively when using :RoomLoader.Load(): and :Screenshotting: methods.
 
 ---

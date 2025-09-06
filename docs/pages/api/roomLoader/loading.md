@@ -78,6 +78,18 @@ RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5); // [!code highlight]
 var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
 payload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
 ```
+```js [State]
+// Loads rmLevelForest centered in the room: 
+var _x = room_width / 2;
+var _y = room_height / 2;
+RoomLoader.MiddleCenter().Load(rmLevelForest, _x, _y); // [!code highlight]
+
+// Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
+// and stores the returned instance of Payload in a variable to be cleaned up later:
+payload = RoomLoader
+    .BottomRight().Sprites().Tilemaps()
+    .Load(rmLevelCliffs, room_width, room_height); // [!code highlight]
+```
 ```js [Transformed]
 @TODO
 ```
@@ -106,7 +118,7 @@ Loads all instances from the given room at the given coordinates and origin, wit
 | `[addAngle]` | :Bool: | Rotate instances with `angle`? [Default: :State.AddAngle: or [ROOMLOADER_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-instances-default-add-angle)] |
 
 :::code-group
-```js [Examples]
+```js [Regular]
 // Loads instances from rmLevelPartBottom at the bottom-right corner of the room:
 RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth, 1, 1); // [!code highlight]
 
@@ -130,6 +142,34 @@ var _x = objPlayer.x + lengthdir_x(_offset, objPlayer.angle);
 var _y = objPlayer.y + lengthdir_y(_offset, objPlayer.angle);
 var _angle = objPlayer.angle - 90;
 loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!code highlight]
+```
+```js [State]
+// Loads instances from rmLevelPartBottom at the bottom-right corner of the room:
+RoomLoader.BottomRight().LoadInstances(rmLevelPartBottom, room_width, room_height, depth); // [!code highlight]
+
+// Loads a layout of props to fill the size of the current room,
+// while keeping instance scale unaffected:
+var _room = rmProps;
+RoomLoader
+    .XScale(room_width / RoomLoader.DataGetWidth(_room))
+    .YScale(room_height / RoomLoader.DataGetHeight(_room))
+    .MultScale(false)
+    .LoadInstances(_room, 0, 0, depth); // [!code highlight]
+
+// Loads a random arrangement of collectibles randomly rotated at the center
+// of the room:
+var _room = choose(rmCollectibles01, rmCollectibles02, rmCollectibles03);
+var _x = room_width / 2;
+var _y = room_height / 2;
+RoomLoader.Angle(random(360)).LoadInstances(_room, _x, _y, depth); // [!code highlight]
+
+// Loads a random enemy layout in front of the player and stores their IDs
+// in the loadedEnemies array:
+var _room = script_execute_ext(choose, enemyLayoutRooms);
+var _offset = 200;
+var _x = objPlayer.x + lengthdir_x(_offset, objPlayer.angle);
+var _y = objPlayer.y + lengthdir_y(_offset, objPlayer.angle);
+enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, depth); // [!code highlight]
 ```
 :::
 

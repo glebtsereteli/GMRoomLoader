@@ -26,16 +26,27 @@ Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll
 | `ALL` | Includes `CORE` and `EXTENDED`. |
 
 :::code-group
-```js [Examples]
+```js [Regular]
 // Loads rmLevelCastle01's Tilemaps centered:
-RoomLoader.Load(rmLevelCastle01, 0, 0, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
+RoomLoader.Load(rmLevelCastle01, someX, someY, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
 
 // Loads rmLevelMaze11's Instances and Sprites: 
-var _flags = (ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
-RoomLoader.Load(rmMaze11, 0, 0, 0, 0, _flags);
+var _flags = ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS; // [!code highlight]
+RoomLoader.Load(rmMaze11, someX, someY, 0, 0, _flags);
 
 // Loads rmLevelRoof's with flags set to All BUT Sequences:
-var _flags = (ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES); // [!code highlight]
-RoomLoader.Load(rmLevelRoof, 0, 0, 0, 0, _flags);
+var _flags = ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES; // [!code highlight]
+RoomLoader.Load(rmLevelRoof, someX, someY, 0, 0, _flags);
+```
+```js [State]
+// Loads rmLevelCastle01's Tilemaps centered:
+RoomLoader.MiddleCenter().Tilemaps().Load(rmLevelCastle01, someX, someY); // [!code highlight]
+
+// Loads rmLevelMaze11's Instances and Sprites: 
+RoomLoader.Instances().Tilemaps().Load(rmMaze11, someX, someY); // [!code highlight]
+
+// Loads rmLevelRoof's with flags set to All BUT Sequences:
+var _flags = ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES;
+RoomLoader.Flags(_flags).Load(rmLevelRoof, someX, someY); // [!code highlight]
 ```
 :::
