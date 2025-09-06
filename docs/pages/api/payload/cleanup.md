@@ -19,9 +19,9 @@ Setting `destroy_layers` to `false` can be useful when [ROOMLOADER_MERGE_LAYERS]
 :::code-group
 ```js [Example]
 // When you load the room:
-payload = RoomLoader.Load(rmExample, someX, someY);
+payload = RoomLoader.Load(rmExample, x, y);
 
 // When it's time to unload the room:
-payload.Cleanup();
+payload.Cleanup(); // [!code highlight]
 ```
 :::

@@ -18,13 +18,13 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 
 | Parameter | Type | Description |
 |---|---|---|
-| `layerOrDepth` | :Id.Layer: or :String: or :Real: | |
+| `layerOrDepth` | :Id.Layer: or :String: or :Real: | The layer or depth to shift depth above |
 | `[offset]` | :Real: | The depth offset [Default: `-100`] |
 
 :::code-group
 ```js [Example]
 // Load rmLevelForest and shift all its layers above the "Instances" layer:
-payload = RoomLoader.Load(rmLevelForest, someX, someY);
+payload = RoomLoader.Load(rmLevelForest, x, y);
 payload.DepthAbove("Instances"); // [!code highlight]
 ```
 :::
@@ -37,7 +37,7 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 
 | Parameter | Type | Description |
 |---|---|---|
-| `layerOrDepth` | :Id.Layer: or :String: or :Real: | |
+| `layerOrDepth` | :Id.Layer: or :String: or :Real: | The layer or depth to shift depth below |
 | `[offset]` | :Real: | The depth offset [Default: `100`] |
 
 :::code-group

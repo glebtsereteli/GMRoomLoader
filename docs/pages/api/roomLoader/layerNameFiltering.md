@@ -19,7 +19,7 @@ RoomLoader.LayerWhitelistAdd("Trees", "Rocks", "Grass"); // [!code highlight]
 // Blacklists the "Rocks" layer. Now only "Trees" and "Grass" will be loaded:
 RoomLoader.LayerBlacklistAdd("Rocks"); // [!code highlight]
 
-payload = RoomLoader.Load(rmForest, someX, someY);
+payload = RoomLoader.Load(rmForest, x, y);
 
 // Reset both filters:
 RoomLoader.LayerWhitelistReset().LayerBlacklistReset(); // [!code highlight]

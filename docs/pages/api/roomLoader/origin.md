@@ -13,16 +13,16 @@ In addition to using origins as optional arguments, they can also be preconfigur
 ::: code-group
 ```js [Regular]
 // Loads rmChunkEasy01 at the bottom right corner of the current room:
-RoomLoader.Load(rmChunkEasy01, room_width, room_height, 1, 1);
+RoomLoader.Load(rmChunkEasy01, room_width, room_height, 1, 1); // [!code highlight]
 
 // Takes a screenshot of rmLevelCliffs with a centered origin:
-screenshot = RoomLoader.Screenshot(rmLevelCliffs, 0.5, 0.5);
+screenshot = RoomLoader.Screenshot(rmLevelCliffs, 0.5, 0.5); // [!code highlight]
 ```
 ```js [State]
 // Loads rmChunkEasy01 at the bottom right corner of the current room:
-RoomLoader.BottomRight().Load(rmChunkEasy01, room_width, room_height);
+RoomLoader.BottomRight().Load(rmChunkEasy01, room_width, room_height); // [!code highlight]
 
 // Takes a screenshot of rmLevelCliffs with a centered origin:
-screenshot = RoomLoader.MiddleCenter().Screenshot(rmLevelCliffs);
+screenshot = RoomLoader.MiddleCenter().Screenshot(rmLevelCliffs); // [!code highlight]
 ```
 :::

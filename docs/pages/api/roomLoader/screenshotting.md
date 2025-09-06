@@ -30,17 +30,16 @@ Returns the created :Asset.GMSprite: reference.
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
-```js [Example]
-// Create event.
+```js [Regular]
 // Take a screenshot of the rmExample room with a Middle Center origin,
 // capture only Tilemaps and Sprites:
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags); // [!code highlight]
-
-// Draw GUI event. Draw screenshot centered on the screen:
-var _x = display_get_gui_width() / 2;
-var _y = display_get_gui_height() / 2;
-draw_sprite(screenshot, 0, _x, _y);
+```
+```js [State]
+// Take a screenshot of the rmExample room with a Middle Center origin,
+// capture only Tilemaps and Sprites:
+screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample); // [!code highlight]
 ```
 :::
 
@@ -70,10 +69,5 @@ Assigns the given origin and scale to the created sprite and filters the capture
 // Take a screenshot of the top-left quadrant of the rmExample room with a Middle Center origin,
 // scale it up by a factor of 2, and capture only Instances:
 screenshot = RoomLoader.ScreenshotPart(rm_chunk_easy_01, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
-
-// Draw GUI event. Draw screenshot centered on the screen:
-var _x = display_get_gui_width() / 2;
-var _y = display_get_gui_height() / 2;
-draw_sprite(screenshot, 0, _x, _y);
 ```
 :::

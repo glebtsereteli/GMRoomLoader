@@ -34,10 +34,10 @@ Initializes data for all given rooms.
 :::code-group
 ```js [Example]
 // Initializes data for rmLevelCastle:
-RoomLoader.DataInit(rmLevelCastle);
+RoomLoader.DataInit(rmLevelCastle); // [!code highlight]
 
 // Initializes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
-RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs);
+RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
 
@@ -56,7 +56,7 @@ Initializes data for all rooms in the given array.
 ```js [Example]
 // Initializes data for all rooms inside the rooms array:
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
-RoomLoader.DataInitArray(rooms);
+RoomLoader.DataInitArray(rooms); // [!code highlight]
 ```
 :::
 
@@ -74,7 +74,7 @@ Initializes data for all rooms starting with the given prefix. Returns an array 
 ::: code-group
 ```js [Example]
 // Initializes data for all rooms starting with "rmLevel" and stores found room IDs in a variable:
-rooms = RoomLoader.DataInitPrefix("rmLevel");
+rooms = RoomLoader.DataInitPrefix("rmLevel"); // [!code highlight]
 ```
 :::
 
@@ -90,7 +90,7 @@ rooms = RoomLoader.DataInitPrefix("rmLevel");
 ::: code-group
 ```js [Example]
 // Initializes data for all rooms with the "Dungeon" tag assigned and stores their IDs in a variable:
-dungeonRooms = RoomLoader.DataInitTag("Dungeon");
+dungeonRooms = RoomLoader.DataInitTag("Dungeon"); // [!code highlight]
 ```
 :::
 
@@ -108,7 +108,8 @@ Initializes data for all rooms in the project, except the ones listed in the `bl
 ::: code-group
 ```js [Example]
 // Initializes data for all rooms in the project BUT rmInit:
-RoomLoader.DataInitAll([rmInit]);
+var _blacklist = [rmInit];
+RoomLoader.DataInitAll(_blacklist); // [!code highlight]
 ```
 :::
 
@@ -131,10 +132,10 @@ Removes data for all given rooms.
 :::code-group
 ```js [Example]
 // Removes data for rmLevelCastle:
-RoomLoader.DataRemove(rmLevelCastle);
+RoomLoader.DataRemove(rmLevelCastle); // [!code highlight]
 
 // Removes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
-RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs);
+RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
 
@@ -152,7 +153,7 @@ Removes data for all rooms in the given array.
 ```js [Example]
 // Removes data for all rooms inside the rooms array:
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
-RoomLoader.DataRemoveArray(rooms);
+RoomLoader.DataRemoveArray(rooms); // [!code highlight]
 ```
 :::
 
@@ -170,7 +171,7 @@ Removes data for all rooms starting with the given prefix.
 ::: code-group
 ```js [Example]
 // Removes data for all rooms starting with "rmLevel":
-RoomLoader.DataRemovePrefix("rmLevel");
+RoomLoader.DataRemovePrefix("rmLevel"); // [!code highlight]
 ```
 :::
 
@@ -188,7 +189,7 @@ Removes data for all rooms with the given tag.
 ::: code-group
 ```js [Example]
 // Removes data for all rooms with the "Dungeon" tag assigned:
-RoomLoader.DataRemoveTag("Dungeon");
+RoomLoader.DataRemoveTag("Dungeon"); // [!code highlight]
 ```
 :::
 
@@ -206,7 +207,8 @@ Removes data for all rooms, except the ones listed in the `blacklist` array.
 ::: code-group
 ```js [Example]
 // Removes data for all rooms in the project BUT rmHub:
-RoomLoader.DataRemoveAll([rmHub]);
+var _blacklist = [rmHub];
+RoomLoader.DataRemoveAll(_blacklist); // [!code highlight]
 ```
 :::
 
@@ -224,7 +226,7 @@ Checks whether the data for the given room is initialized (returns `true`) or no
 
 :::code-group
 ```js [Example]
-if (RoomLoader.DataIsInitialized(rmLevelTower)) {
+if (RoomLoader.DataIsInitialized(rmLevelTower)) { // [!code highlight]
     // Yay, the data for rmLevelTower is initialized!
 }
 ```
@@ -244,7 +246,7 @@ Returns the width of the given room.
 :::code-group
 ```js [Example]
 // Gets the width of rmLevelDungeon:
-var _width = RoomLoader.DataGetWidth(rmLevelDungeon);
+var _width = RoomLoader.DataGetWidth(rmLevelDungeon); // [!code highlight]
 ```
 :::
 
@@ -262,7 +264,7 @@ Returns the height of the given room.
 :::code-group
 ```js [Example]
 // Gets the height of rmLevelDungeon:
-var _height = RoomLoader.DataGetHeight(rmLevelDungeon);
+var _height = RoomLoader.DataGetHeight(rmLevelDungeon); // [!code highlight]
 ```
 :::
 
@@ -286,7 +288,7 @@ array_resize(_layerNames, 3);
 array_foreach(_layerNames, function(_layerName) {
     RoomLoader.LayerWhitelistAdd(_layerName);
 });
-RoomLoader.Load(_room, someX, someY);
+RoomLoader.Load(_room, x, y);
 RoomLoader.LayerWhitelistReset();
 ```
 :::

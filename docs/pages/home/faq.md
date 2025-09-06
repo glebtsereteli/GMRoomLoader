@@ -66,7 +66,7 @@ First store the struct in a variable when you load the room, and when it's time 
 :::code-group
 ```js [Example]
 // When you load a room:
-payload = RoomLoader.Load(rmExample, someX, someY);
+payload = RoomLoader.Load(rmExample, x, y);
 
 // When you need to unload a room:
 payload.Cleanup();
@@ -85,7 +85,7 @@ First store the array in a variable when you load instances, and when it's time 
 :::code-group
 ```js [Example]
 // When you load instances:
-loadedInstances = RoomLoader.LoadInstances(rmExample, someX, someY);
+loadedInstances = RoomLoader.LoadInstances(rmExample, x, y);
 
 // When you need to destroy loaded instances:
 array_foreach(loadedInstances, function(_instance) {
@@ -104,7 +104,7 @@ First store the ID in a variable, and when it's time to destroy it, call [layer_
 ```js [Example]
 // When you load the tilemap:
 var _layer = "SomeTilemap";
-tilemap = RoomLoader.LoadTilemap(rmExample, someX, someY, _layer, _layer);
+tilemap = RoomLoader.LoadTilemap(rmExample, x, y, _layer, _layer);
 
 // When you need to destroy the tilemap:
 layer_tilemap_destroy(tilemap);
@@ -125,7 +125,7 @@ global.collisionTilemaps = [];
 global.collisionTilemaps = [layer_tilemap_get_id("CollisionTilemap")];
 
 // When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array:
-payload = RoomLoader.Load(rmExample, someX, someY);
+payload = RoomLoader.Load(rmExample, x, y);
 collisionTilemap = payload.GetTilemap("CollisionTilemap");
 array_push(global.collisionTilemaps, collisionTilemap);
 

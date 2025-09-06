@@ -23,7 +23,7 @@ Returns the created Layer ID matching the given name, or :Undefined: if not foun
 :::code-group
 ```js [Example]
 // Gets the created "Clouds" layer ID and randomizes its horizontal speed:
-var _cloudsLayer = payload.GetLayer("Clouds");
+var _cloudsLayer = payload.GetLayer("Clouds"); // [!code highlight]
 if (_cloudsLayer != undefined) {
     layer_hspeed(_cloudsLayer, random_range(5, 8));
 }
@@ -39,7 +39,7 @@ Returns an array of created Layers.
 :::code-group
 ```js [Example]
 // Gets an array of created Layers and randomly toggles their visibility:
-array_foreach(payload.GetLayers(), function(_layer) {
+array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
     layer_set_visible(_layer, choose(true, false));
 });
 ```
@@ -58,7 +58,7 @@ Returns the created Instance ID from the given room ID, or :Noone: if not found.
 ```js [Example]
 // Grabs the created Instance ID from the InstWaypoint room ID and assigns it
 // to objPlayer's waypointID:
-objPlayer.waypointID = payload.GetInstance(InstWaypoint);
+objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ```
 :::
 
@@ -72,7 +72,7 @@ Returns an array of created Instances.
 :::code-group
 ```js [Example]
 // Gets an array of created Instances and targets a random one:
-var _instances = payload.GetInstances();
+var _instances = payload.GetInstances(); // [!code highlight]
 var _randomInstance = script_execute_ext(choose, _instances);
 ```
 :::
@@ -92,7 +92,7 @@ Returns the created Tilemap ID from the given layer name, or :Undefined: if not 
 ```js [Example]
 // Gets the created Tilemap ID from the "TilesCollision" layer
 // to use for collision:
-var _collisionTilemap = payload.GetTilemap("TilesCollision");
+var _collisionTilemap = payload.GetTilemap("TilesCollision"); // [!code highlight]
 if (_collisionTilemap != undefined) {
     array_push(global.collisionTilemaps, _collisionTilemap);
 }
@@ -109,7 +109,7 @@ Returns an array of created Tilemaps.
 :::code-group
 ```js [Example]
 // Gets an array of created Tilemaps and targets a random one:
-var _tilemaps = payload.GetTilemaps();
+var _tilemaps = payload.GetTilemaps(); // [!code highlight]
 var _randomTilemap = script_execute_ext(choose, _tilemaps);
 ```
 :::
@@ -128,7 +128,7 @@ Returns the created Sprite ID matching the room ID, or :Undefined: if not found.
 ```js [Example]
 // Gets the created Sprite ID using its "SpriteStar" room ID, and if found,
 // rotates it randomly:
-var _sprite = payload.GetSprite("SpriteStar");
+var _sprite = payload.GetSprite("SpriteStar"); // [!code highlight]
 if (_sprite != undefined) {
     layer_sprite_angle(_sprite, irandom(360));
 }
@@ -144,7 +144,7 @@ Returns an array of created Sprites.
 :::code-group
 ```js [Example]
 // Gets an array of created Sprites and blends them red:
-array_foreach(payload.GetSprites(), function(_sprite) {
+array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
     layer_sprite_blend(_sprite, c_red);
 });
 ```
@@ -163,7 +163,7 @@ Returns the created Sequence ID matching the given room ID, or :Undefined: if no
 ```js [Example]
 // Gets the created Sequence ID using its "SequenceWindow" room ID, and if found,
 // randomizes its playhead position:
-var _sequence = payload.GetSequence("SequenceWindow");
+var _sequence = payload.GetSequence("SequenceWindow"); // [!code highlight]
 if (_sequence != undefined) {
     var _length = layer_sequence_get_length(_sequence);
     layer_sequence_headpos(_sequence, random(_length));
@@ -179,7 +179,7 @@ Returns an array of created Sequences.
 :::code-group
 ```js [Example]
 // Gets an array of created Sequences and randomizes their speed scales:
-array_foreach(payload.GetSequences(), function(_sequence) {
+array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
     layer_sequence_speedscale(_sequence, random(0.75, 1.25));
 });
 ```
@@ -198,7 +198,7 @@ Returns the created Background ID matching the given layer name, or :Undefined: 
 ```js [Example]
 // Gets the created Background ID from the "BackgroundClouds" layer and if found,
 // blends it orange:
-var _bg = payload.GetBackground("BackgroundClouds");
+var _bg = payload.GetBackground("BackgroundClouds"); // [!code highlight]
 if (_bg != undefined) {
     layer_background_blend(_bg, c_orange);
 }
@@ -212,7 +212,7 @@ if (_bg != undefined) {
 :::code-group
 ```js [Example]
 // Gets an array of created Backgrounds and randomizes their image indices:
-array_foreach(payload.GetBackgrounds(), function(_bg) {
+array_foreach(payload.GetBackgrounds(), function(_bg) { // [!code highlight]
     var _frames = sprite_get_number(layer_background_get_sprite(_bg));
     layer_background_index(_bg, irandom(_frames - 1));
 });

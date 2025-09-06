@@ -477,14 +477,14 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load the tilemap at.
 	/// @param {Real} y The y coordinate to load the tilemap at.
 	/// @param {String} sourceLayerName The source layer name to load a tilemap from.
-	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on.
+	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: soruceLayerName]
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
 	/// @param {Bool} flip Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		
 		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
@@ -777,11 +777,11 @@ function RoomLoader() {
 	};
 	
 	#endregion
-	#region State: Transformations
+	#region State: Transformation
 	
-	/// @param {Real} xScale The horizontal scale to use in the next loading method call.
+	/// @param {Real} xScale The horizontal scale to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets the horizontal scale to be used in the next loading method call.
+	/// @desc Horizontally scales the next Loading by setting State.XScale.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static XScale = function(_xScale) {
@@ -790,9 +790,9 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {Real} yScale The vertical scale to use in the next loading method call.
+	/// @param {Real} yScale The vertical scale to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets the vertical scale to be used in the next loading method call.
+	/// @desc Vertically scales the next Loading by setting State.YScale.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static YScale = function(_yScale) {
@@ -801,10 +801,10 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {Real} xScale The horizontal scale to use in the next loading method call.
-	/// @param {Real} yScale The vertical scale to use in the next loading method call. [Default: xScale]
+	/// @param {Real} xScale The horizontal scale to use in the next loading call.
+	/// @param {Real} yScale The vertical scale to use in the next loading call. [Default: xScale]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets horizontal and vertical scales to be used in the next load/screenshot method.
+	/// @desc Scales the next Loading horizontally and vertically by setting State.XScale and State.YScale.
 	/// Both reset automatically right after.
 	/// @context RoomLoader
 	static Scale = function(_xScale, _yScale = _xScale) {
@@ -816,7 +816,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} mirror? Should the next load be mirrored? [Default: true]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Mirrors the next result of loading by setting the XScale State to -1.
+	/// @desc Mirrors the next Loading by setting State.XScale to -1.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Mirror = function(_mirror = true) {
@@ -829,7 +829,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} flip? Should the next load be mirrored? [Default: true]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Flips the next result of loading by setting the YScale State to -1.
+	/// @desc Flips the next Loading by setting State.YScale to -1.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Flip = function(_flip = true) {
@@ -840,9 +840,9 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {Real} angle The angle to use in the next loading method call.
+	/// @param {Real} angle The angle to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets the angle to be used in the next loading method call.
+	/// @desc Rotates the next Loading by setting State.Angle.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Angle = function(_angle) {
@@ -853,7 +853,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} multiplicativeScale Whether to multiply future loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false).
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a parameter for whether to multiply loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false) in the next loading method call.
+	/// @desc Sets the next Loading's' elements' `image_xscale/yscale` to be multiplied by `xScale/yScale` arguments (`true`) or not (`false`).
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static MultScale = function(_multScale) {
@@ -864,7 +864,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} additiveAngle Whether to combine future loaded elements' image_angle with angle (true) or not (false). [Default: State.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a parameter for whether to add loaded elements' image_angle with angle (true) or not (false) in the next loading method call.
+	/// @desc Sets a parameter for whether to add loaded elements' image_angle with angle (true) or not (false) in the next loading call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static AddAngle = function(_addAngle) {

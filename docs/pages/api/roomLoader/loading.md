@@ -66,7 +66,7 @@ If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) i
 :::code-group
 ```js [Basic]
 // Loads rmLevelCastle at arbitrary coordinates:
-RoomLoader.Load(rmLevelCastle, someX, someY); // [!code highlight]
+RoomLoader.Load(rmLevelCastle, x, y); // [!code highlight]
 
 // Loads rmLevelForest centered in the room: 
 var _x = room_width / 2;
@@ -87,8 +87,8 @@ RoomLoader.MiddleCenter().Load(rmLevelForest, _x, _y); // [!code highlight]
 // Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
 // and stores the returned instance of Payload in a variable to be cleaned up later:
 payload = RoomLoader
-    .BottomRight().Sprites().Tilemaps()
-    .Load(rmLevelCliffs, room_width, room_height); // [!code highlight]
+.BottomRight().Sprites().Tilemaps()
+.Load(rmLevelCliffs, room_width, room_height); // [!code highlight]
 ```
 ```js [Transformed]
 @TODO
@@ -151,10 +151,10 @@ RoomLoader.BottomRight().LoadInstances(rmLevelPartBottom, room_width, room_heigh
 // while keeping instance scale unaffected:
 var _room = rmProps;
 RoomLoader
-    .XScale(room_width / RoomLoader.DataGetWidth(_room))
-    .YScale(room_height / RoomLoader.DataGetHeight(_room))
-    .MultScale(false)
-    .LoadInstances(_room, 0, 0, depth); // [!code highlight]
+.XScale(room_width / RoomLoader.DataGetWidth(_room))
+.YScale(room_height / RoomLoader.DataGetHeight(_room))
+.MultScale(false)
+.LoadInstances(_room, 0, 0, depth); // [!code highlight]
 
 // Loads a random arrangement of collectibles randomly rotated at the center
 // of the room:
@@ -176,7 +176,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 ---
 ### `.LoadTilemap()`
 
-> `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, targetLayer, [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
+> `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
 Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset.
 
@@ -195,7 +195,7 @@ When using such tileset groups/pairs, make sure that tiles on all tilesets are p
 | `x` | :Real: | The x coordinate to load the tilemap at |
 | `y` | :Real: | The y coordinate to load the tilemap at |
 | `sourceLayerName` | :String: | The source layer name to load a tilemap from |
-| `targetLayer` | :Id.Layer: or :String: | The target layer to create the tilemap on |
+| `[targetLayer]` | :Id.Layer: or :String: | The target layer to create the tilemap on [Default: `sourceLayerName`] |
 | `[xOrigin]` | :Real: | The x origin to load the tilemap at <br> [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y origin to load the tilemap at <br> [Default: :State.YOrigin: or :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[mirror]` | :Bool: | Mirror the loaded tilemap? <br> [Default: (:State.XScale: `< 0`) or :State.Mirror: or `false`] |
@@ -204,7 +204,7 @@ When using such tileset groups/pairs, make sure that tiles on all tilesets are p
 | `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap <br> [Default: :State.Tileset: or source tileset] |
 
 :::code-group
-```js [Examples]
+```js [Regular]
 // Loads a tilemap from the "TilesFloor" layer in rmCasinoDetails,
 // creates it in the centered in the room on the layer with the same name,
 // and randomly mirrors and flips it:
@@ -226,5 +226,33 @@ tilemap = RoomLoader.LoadTilemap(rmLayoutHard, 0, 0, "WallsLayout", "Walls", 0, 
 // and stores its ID in the collisionTilemap variable:
 collisionLayer = layer_create(0, "Collision");
 collisionTilemap = RoomLoader.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer, 0, 0, false, false, 0, tsWallsCollision); // [!code highlight]
+```
+```js [State]
+// Loads a tilemap from the "TilesFloor" layer in rmCasinoDetails,
+// creates it in the centered in the room on the layer with the same name,
+// and randomly mirrors and flips it:
+var _x = room_width / 2;
+var _y = room_height / 2;
+var _layer = "TilesFloor";
+floorTilemap = RoomLoader
+.MiddleCenter()
+.Mirror(choose(true, false))
+.Flip(choose(true, false))
+.LoadTilemap(rmCasinoDetails, _x, _y, _layer, _layer); // [!code highlight] 
+
+// Loads a tilemap from the "WallsLayout" layer in rmLayoutHard on the "Walls" layer,
+// using a custom tileset based on the current dimension and rotates it randomly:
+tilemap = RoomLoader
+.Angle(random(360))
+.Tileset(DIMENSIONS.GetCurrent().GetWallsTileset())
+.LoadTilemap(rmLayoutHard, 0, 0, "WallsLayout", "Walls"); // [!code highlight]
+
+// Loads a tilemap from the "TilesWalls" layer in rmChunkSpecial01,
+// creates it on the newly created collision layer, assigns the tsWallsCollision tileset to it
+// and stores its ID in the collisionTilemap variable:
+collisionLayer = layer_create(0, "Collision");
+collisionTilemap = RoomLoader
+.Tileset(tsWallsCollision)
+.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer); // [!code highlight]
 ```
 :::

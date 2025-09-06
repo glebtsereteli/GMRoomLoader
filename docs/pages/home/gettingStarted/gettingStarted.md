@@ -8,8 +8,8 @@ We'll begin by importing the `.yyymps` package. Then in the [First Setup](#first
 
 * [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.13.1.193` and `Runtime v2024.13.1.242` or above.
 * Basic familiarity with GameMaker and GML, including:
-    * Asset types (rooms, objects, sprites, etc).
-    * Objects and events.
+    * Asset types (rooms, objects, scripts, sprites, tilemaps, etc).
+    * Working with objects and events.
     * Structs, functions/methods and arguments, macros and enums.
 
 ## Installation

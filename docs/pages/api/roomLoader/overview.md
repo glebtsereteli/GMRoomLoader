@@ -23,7 +23,7 @@
 
 All methods are accessed using the `RoomLoader.MethodName(arguments...)` syntax:
 * Initialize data: `RoomLoader.DataInit(rmDungeon);`.
-* Load a room: `RoomLoader.Load(rmDungeon, someX, someY);`.
+* Load a room: `RoomLoader.Load(rmDungeon, x, y);`.
 
 Note the lack of parentheses after `RoomLoader`. Unlike the classic `function_name()` calls you’re used to in GML, this accesses static methods within the `RoomLoader` interface. 
 
