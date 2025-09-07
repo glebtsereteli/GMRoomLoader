@@ -76,9 +76,6 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 var _sequence = layer_sequence_create(_layer, _x, _y, __id); \
 layer_sequence_headpos(_sequence, __headPos); \
 layer_sequence_speedscale(_sequence, __speedScale); \
-if (ROOMLOADER_SEQUENCES_PAUSE) { \
-	layer_sequence_pause(_sequence); \
-} \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__sequences.__Add(_sequence, __roomId); \
 }

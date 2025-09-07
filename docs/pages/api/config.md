@@ -1,8 +1,8 @@
 # Configuration
 
-This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, loading parameters and other options that affect loading performance and behaviors.
+This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, :Loading: parameters and other options that affect performance and behaviors.
 
-## Meta
+## General
 
 ### `ROOMLOADER_ENABLE_DEBUG`
 > Default: `true`.
@@ -13,19 +13,19 @@ Whether to show debug messages in Output (`true`) or not (`false`).
 ### `ROOMLOADER_DEFAULT_XORIGIN`
 > Default: `0`.
 
-Default X origin used by :RoomLoader:'s :Loading: and :Screenshotting:. Origins range from `0` to `1`: `0` is left, `0.5` is center, `1` is right.
+Default X origin used in :Loading: and :Screenshotting:. [Origins](/pages/api/roomLoader/origin) range from `0` to `1`: `0` is left, `0.5` is center, `1` is right.
 
 ---
 ### `ROOMLOADER_DEFAULT_YORIGIN`
 > Default: `0`.
 
-Default Y origin used by :RoomLoader:'s :Loading: and :Screenshotting:. Origins range from `0` to `1`: `0` is top, `0.5` is center, `1` is bottom.
+Default Y origin used in :Loading: and :Screenshotting:. [Origins](/pages/api/roomLoader/origin) range from `0` to `1`: `0` is top, `0.5` is center, `1` is bottom.
 
 ---
 ### `ROOMLOADER_DEFAULT_FLAGS`
 > Default: `ROOMLOADER_FLAG.CORE`.
 
-Default flags used by :RoomLoader:'s :Loading: and :Screenshotting:.
+Default flags used in :Loading: and :Screenshotting:.
 
 ---
 ### `ROOMLOADER_DELIVER_PAYLOAD`
@@ -60,7 +60,7 @@ Enabling this may result in layers shared between elements loaded from multiple 
 Whether to initialize room parameters for loaded instances (`true`) or not (`false`).  
 
 :::tip
-Setting this to `false` improves loading performance.
+Setting this to `false` improves :Loading: performance.
 :::
 
 ---
@@ -70,33 +70,17 @@ Setting this to `false` improves loading performance.
 Whether to run Creation Code for loaded instances (`true`) or not (`false`).  
 
 :::tip
-Setting this to `false` improves loading performance.
+Setting this to `false` improves :Loading: performance.
 :::
 
 ---
 ### `ROOMLOADER_DEFAULT_MULT_SCALE`
 > Default: `true`.
 
-@TODO
-
-When loading instances using :RoomLoader.LoadInstances():, whether to multiply individual instance scale by the overall load scale (`true`) or not (`false`).
-
-This is relevant only when loading instances with a custom scale (values other than `1`).
+Whether to multiply individual elements' `image_xscale/image_yscale` by the overall load `xScale/yScale` (`true`) or not (`false`).
 
 ---
 ### `ROOMLOADER_DEFAULT_ADD_ANGLE`
 * Default: `true`.
 
-@TODO
-
-When loading instances using :RoomLoader.LoadInstances():, whether to combine individual instance angle with the overall load angle (`true`) or not (`false`).
-
-This is relevant only when loading instances with a custom angle (values other than `0`).
-
-## Miscellaneous
-
----
-### `ROOMLOADER_SEQUENCES_PAUSE`
-> Default: `false`.
-
-Whether to pause loaded sequences (`true`) or not (`false`).
+Whether to combine individual elements' `image_angle` with the overall load `angle` (`true`) or not (`false`).

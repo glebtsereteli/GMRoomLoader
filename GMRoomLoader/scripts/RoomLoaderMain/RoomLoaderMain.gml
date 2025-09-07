@@ -1,11 +1,8 @@
 // @feather ignore all
 
 /// @func RoomLoader()
-/// @desc Main interface. Handles data initialization and removal, room and instances loading, 
-/// layer filtering and taking screenshots.
-/// 
-/// NOTE: This is a "static namespace" function (made up term), no initialization is required.
-/// All methods are to be called as follows: RoomLoader.action(arguments...).
+/// @desc Main GMRoomLoader interface. Handles room data, loading of rooms, instances and tilemaps, 
+/// taking screenshots, state management and layer filtering.
 function RoomLoader() {
 	#region __private
 	

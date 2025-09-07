@@ -91,7 +91,30 @@ payload = RoomLoader
 .Load(rmLevelCliffs, room_width, room_height); // [!code highlight]
 ```
 ```js [Transformed]
-@TODO
+// Loads rmExample stretched to fill the room:
+RoomLoader
+.XScale(room_width / RoomLoader.DataGetWidth(rmExample))
+.YScale(room_height / RoomLoader.DataGetHeight(rmExample))
+.Load(rmExample, 0, 0); // [!code highlight]
+
+// Loads rmExample's instances randomly scaled and rotated:
+RoomLoader
+.Scale(random_range(0.8, 1.2)).Angle(random(360))
+.Instances().Load(rmExample, x, y); // [!code highlight]
+
+// Loads rmExample 4 times rotated around a point:
+RoomLoader
+.Angle(0).Load(rmExample, x, y) // [!code highlight]
+.Angle(90).Load(rmExample, x, y) // [!code highlight]
+.Angle(180).Load(rmExample, x, y) // [!code highlight]
+.Angle(270).Load(rmExample, x, y); // [!code highlight]
+
+// Loads rmExample mirrored and flipped in all 4 corners of the room:
+RoomLoader
+.Load(rmExample, 0, 0) // [!code highlight]
+.Mirror().Load(rmExample, room_width, 0) // [!code highlight]
+.Mirror().Flip().Load(rmExample, room_width, room_height) // [!code highlight]
+.Flip().Load(rmExample, 0, room_height); // [!code highlight]
 ```
 :::
 
@@ -206,7 +229,7 @@ When using such tileset groups/pairs, make sure that tiles on all tilesets are p
 :::code-group
 ```js [Regular]
 // Loads a tilemap from the "TilesFloor" layer in rmCasinoDetails,
-// creates it in the centered in the room on the layer with the same name,
+// creates it centered in the room on the layer with the same name,
 // and randomly mirrors and flips it:
 var _x = room_width / 2;
 var _y = room_height / 2;

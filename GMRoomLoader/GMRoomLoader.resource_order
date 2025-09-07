@@ -43,7 +43,7 @@
     {"name":"Units","order":5,"path":"folders/01. Demo/05. Base/Units.yy",},
     {"name":"Sprites","order":3,"path":"folders/01. Demo/05. Base/Units/Sprites.yy",},
     {"name":"99. Misc","order":7,"path":"folders/01. Demo/99. Misc.yy",},
-    {"name":"Parrot","order":4,"path":"folders/01. Demo/99. Misc/Parrot.yy",},
+    {"name":"Parrot","order":5,"path":"folders/01. Demo/99. Misc/Parrot.yy",},
     {"name":"02. GMRoomLoader","order":1,"path":"folders/02. GMRoomLoader.yy",},
     {"name":"01. Public","order":1,"path":"folders/02. GMRoomLoader/01. Public.yy",},
     {"name":"02. Private","order":2,"path":"folders/02. GMRoomLoader/02. Private.yy",},
