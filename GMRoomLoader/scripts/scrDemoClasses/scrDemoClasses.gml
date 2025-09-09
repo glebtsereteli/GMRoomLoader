@@ -1,7 +1,7 @@
 
 #macro DEMOS global.__demos
 
-function Demos(_pool) constructor {
+function Demos() constructor {
 	reloader = new DemoReloader();
 	pool = [
 		new DemoGeneral(),
@@ -129,7 +129,7 @@ function DemoPar(_name) constructor {
 	static OnUpdate = noop;
 	static OnCleanup = noop;
 }
-function DemoReloader(_pool) constructor {
+function DemoReloader() constructor {
 	pool = [];
 	callbackOnTrigger = noop;
 	

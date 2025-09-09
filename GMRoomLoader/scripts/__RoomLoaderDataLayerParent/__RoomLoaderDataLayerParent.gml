@@ -2,6 +2,7 @@
 
 function __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __flag = undefined;
+	static __tile = false;
 	
 	__owner = other;
 	__layerData = _layerData;

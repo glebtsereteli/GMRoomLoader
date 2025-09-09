@@ -3,6 +3,7 @@
 function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	// shared
 	static __flag = ROOMLOADER_FLAG.TILEMAPS;
+	static __tile = true;
 	
 	static __OnInit = function() {
 		__tileset = __tilemapData.tileset_index;

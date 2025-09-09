@@ -132,11 +132,11 @@ function __RoomLoaderDataRoom(_room) constructor {
 			}
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
-				var _layer = __layersPool[_i];
-				var _tile = is_instanceof(_layer, __RoomLoaderDataLayerTile);
-				var _xx = (_tile ? _x1 : _x);
-				var _yy = (_tile ? _y1 : _y);
-				_layer.__LoadTransformed(_xx, _yy, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin);
+				with (__layersPool[_i]) {
+					var _xx = (__tile ? _x1 : _x);
+					var _yy = (__tile ? _y1 : _y);
+					__LoadTransformed(_xx, _yy, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin);
+				}
 				_i++;
 			}
 		}

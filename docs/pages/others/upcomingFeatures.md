@@ -6,6 +6,7 @@ The following list of ideas includes features that might or might not be introdu
 * Deferred loading over time for large rooms with many elements.
     * `RoomLoader.LoadDeferred()`.
     * `RoomLoader.LoadInstancesDeferred()`.
+    * `RoomLoader.LoadTilemapDeferred()`.
 * Particle systems support (GM bug?).
 * In-layer Filters/Effects support (GM bug?).
 * Debug view with initialized rooms display, screenshots and customizable loading.

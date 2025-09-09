@@ -2,9 +2,9 @@
 
 This section covers loading room contents - the core functionality of the library.
 
-GMRoomLoader can load [full rooms](#full-rooms) with all their layers and elements at any position and :Origin:, with optional filtering by :Asset Type: and/or :Layer Name:. 
+GMRoomLoader can load [Full Rooms](#full-rooms) with all their layers and elements at any position, with optional :Origin:, scaling, rotation, filtering by :Asset Type: and/or :Layer Name:. 
 
-It can also load only specific parts of rooms, such as [Instances](#loadinstances) or [Tilemaps](#loadtilemap), and apply optional scaling, mirroring, flipping and rotation transformations.
+It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separately, also with optional transformation parameters.
 
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
@@ -25,11 +25,11 @@ Full room loading supports the following room elements.
 | Instance | Instance | ✔️ |
 | Tilemap | Tile | ✔️ |
 | Sprite | Asset | ✔️ |
-| Particle System | Asset | 🚧 Broken because of a GM bug |
+| Particle System | Asset | 🚧 Broken, GM bug |
 | Sequence | Asset | ✔️ |
 | Background | Background | ✔️ |
 | Filter/Effect | Filter/Effect   | ❌ |
-| In-layer Filter/Effect | Any | 🚧 Missing :room_get_info(): data |
+| In-layer Filter/Effect | Any | 🚧 GM Bug, missing :room_get_info(): data |
 | Creation Code | - | ✔️ |
 | Views | - | ❌ |
 | Physics | - | ❌ |
@@ -118,7 +118,7 @@ RoomLoader
 ```
 :::
 
-## Individual Parts
+## Separate Parts
 ---
 ### `.LoadInstances()`
 
@@ -256,12 +256,11 @@ collisionTilemap = RoomLoader.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", 
 // and randomly mirrors and flips it:
 var _x = room_width / 2;
 var _y = room_height / 2;
-var _layer = "TilesFloor";
 floorTilemap = RoomLoader
 .MiddleCenter()
 .Mirror(choose(true, false))
 .Flip(choose(true, false))
-.LoadTilemap(rmCasinoDetails, _x, _y, _layer, _layer); // [!code highlight] 
+.LoadTilemap(rmCasinoDetails, _x, _y, "TilesFloor"); // [!code highlight] 
 
 // Loads a tilemap from the "WallsLayout" layer in rmLayoutHard on the "Walls" layer,
 // using a custom tileset based on the current dimension and rotates it randomly:

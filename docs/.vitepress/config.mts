@@ -141,7 +141,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE">MIT License</a>. Built with <a href="https://vitepress.dev/">VitePress</a>.',
-      copyright: 'Copyright © 2025 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
+      copyright: 'Copyright © 2024-2025 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
     },
 
     lastUpdated: {

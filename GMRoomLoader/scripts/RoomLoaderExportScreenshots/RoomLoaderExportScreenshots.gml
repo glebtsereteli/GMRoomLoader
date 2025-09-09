@@ -9,11 +9,11 @@ function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path =
 		path = _path;
 		if (path == undefined) {
 			var _prefix = $"{game_project_name} Room Screenshots";
-			var _title = $"{__ROOMLOADER_NAME}: {_prefix} Export";
+			var _title = $"{game_project_name}: {_prefix} Export";
 			path = get_save_filename_ext($"zip|*.zip", $"{_prefix}.zip", "", _title);
 			if (path == "") return;
 		}
-		dir = $"{game_save_id}__gmroomloaderScreenshotsExport";
+		dir = $"{game_save_id}__GMRoomLoaderScreenshotsExport";
 		zip = zip_create();
 		
 		array_foreach(_rooms, function(_room) {
@@ -25,11 +25,10 @@ function RoomLoaderExportScreenshots(_rooms = asset_get_ids(asset_room), _path =
 			}
 			
 			var _localPath = $"{room_get_name(_room)}.png";
-			var _path = $"{dir}/{_localPath}";
-			sprite_save(_screenshot, 0, path);
+			var _tempPath = $"{dir}/{_localPath}";
+			sprite_save(_screenshot, 0, _tempPath);
 			sprite_delete(_screenshot);
-			
-			zip_add_file(zip, _localPath, path);
+			zip_add_file(zip, _localPath, _tempPath);
 		});
 		
 		zip_save(zip, path);
