@@ -8,16 +8,16 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load\nroom instances with optional scale and rotation.");
 		dbg_text_separator("Shortcuts", 1);
-		dbg_text("- [PRESS 1] to Load the room.");
-		dbg_text("- [PRESS 2] to clean up the room.");
+		dbg_text("- [PRESS 1] to Load instances.");
+		dbg_text("- [PRESS 2] to Destroy instances.");
 		
 		dbg_section("Controls");
 		dbg_button("Load", function() {
 			Load();
 		});
 		dbg_same_line();
-		dbg_button("Clean Up", function() {
-			Unload();
+		dbg_button("Destroy", function() {
+			Destroy();
 		});
 		
 		pos.InitDbg();
@@ -54,11 +54,11 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	
 	static OnUpdate = function() {
 		if (keyboard_check_pressed(ord("1"))) Load();
-		if (keyboard_check_pressed(ord("2"))) Unload();
+		if (keyboard_check_pressed(ord("2"))) Destroy();
 	};
 	static OnCleanup = function() {
 		RoomLoader.DataRemove(rm);
-		Unload();
+		Destroy();
 	};
 	
 	// Custom:
@@ -74,7 +74,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	instances = undefined;
 	
 	static Load = function() {
-		Unload();
+		Destroy();
 		instances = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Scale(xScale, yScale).Angle(angle)
@@ -83,12 +83,12 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		
 		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);
 	};
-	static Unload = function() {
+	static Destroy = function() {
 		if (instances == undefined) return;
 		
 		array_foreach(instances, function(_inst) {
 			instance_destroy(_inst);
 		});
-		delete instances;
+		instances = undefined;
 	};
 }

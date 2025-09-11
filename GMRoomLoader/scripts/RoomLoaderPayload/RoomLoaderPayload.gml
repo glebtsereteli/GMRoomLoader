@@ -35,7 +35,7 @@ function RoomLoaderPayload(_room) constructor {
 		__index = 0;
 		
 		static __Init = function(_n) {
-			__ids = array_create(_n, noone)
+			__ids = array_create(_n, noone);
 			__roomIds = array_create(_n, noone);
 		};
 		static __Get = function(_room_id) {
@@ -131,7 +131,7 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Getters
 	
-	/// @param {String} name Thes layer name to search for.
+	/// @param {String} name The layer name to search for.
 	/// @returns {Id.Layer,undefined}
 	/// @desc Returns the layer ID matching the given name, or undefined if not found.
 	/// @context RoomLoaderPayload
@@ -148,7 +148,7 @@ function RoomLoaderPayload(_room) constructor {
 	};
 	
 	/// @param {Id.Instance} roomId The Instance room ID to search for, as a constant.
-	/// @returns {Array<Id.Instance>}
+	/// @returns {Id.Instance,noone}
 	/// @desc Returns the Instance ID matching the given room ID, or noone if not found.
 	/// @context RoomLoaderPayload
 	static GetInstance = function(_roomId) {
@@ -211,7 +211,7 @@ function RoomLoaderPayload(_room) constructor {
 	};
 	
 	/// @param {String} roomId The Background room ID to search for, as a String.
-	/// @returns {Id.Background}
+	/// @returns {Id.Background,undefined}
 	/// @desc Returns the created Background ID matching the given room ID, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetBackground = function(_roomId) {

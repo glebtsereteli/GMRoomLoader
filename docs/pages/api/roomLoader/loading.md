@@ -2,7 +2,7 @@
 
 This section covers loading room contents - the core functionality of the library.
 
-GMRoomLoader can load [Full Rooms](#full-rooms) with all their layers and elements at any position, with optional :Origin:, scaling, rotation, filtering by :Asset Type: and/or :Layer Name:. 
+GMRoomLoader can load [Full Rooms](#load) with all their layers and elements at any position, with optional :Origin:, scaling, rotation, filtering by :Asset Type: and/or :Layer Name:. 
 
 It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separately, also with optional transformation parameters.
 
@@ -10,15 +10,19 @@ It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separa
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
 :::
 
-## Full Rooms
+## `.Load()`
 
-This section covers loading full rooms with all their layers and elements. Layers are sorted in the same order as defined in the Room Editor, with their depths preserved.
+> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle], [multScale], [addAngle])` ➜ :Struct:.:Payload: or :Undefined:
 
-Check the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths after loading.
+Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, scaling and rotation.
 
-### Coverage
+Layers are created at the same depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
 
-Full room loading supports the following room elements.
+* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:.
+* Otherwise returns :Undefined:.
+
+::: details ℹ️ ROOM ELEMENT COVERAGE {closed}
+Full room loading supports the following elements.
 
 | Element | Layer Type | Status |
 |---|---|---|
@@ -34,17 +38,8 @@ Full room loading supports the following room elements.
 | Views | - | ❌ |
 | Physics | - | ❌ |
 | Display Buffer & Viewport Clearing | - | ❌ |
-
----
-### `.Load()`
-
-> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle], [multScale], [addAngle])` ➜ :Struct:.:Payload: or :Undefined:
-
-Loads the given room at the given coordinates and origin, filtered by optional `[flags]`, with optional `[xScale]`, `[yScale]` and `[angle]` transformations.
-
-If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:. Otherwise returns :Undefined:.
-
-::: details TRANSFORMATION EXCEPTIONS {closed}
+:::
+::: details ℹ️ TRANSFORMATION EXCEPTIONS {closed}
 * Tilemaps only load if `[x/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
 * Backgrounds only load if `[angle]` is `0`. Otherwise they are ignored.
 :::
@@ -60,8 +55,8 @@ If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) i
 | `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: or 1] |
 | `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: or 1] |
 | `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: or 0] |
-| `[multScale]` | :Bool: | Scale instances with `xScale/yScale`? [Default: :State.MultScale: or [ROOMLOADER_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-default-mult-scale)] |
-| `[addAngle]` | :Bool: | Rotate instances with `angle`? [Default: :State.AddAngle: or [ROOMLOADER_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-default-add-angle)] |
+| `[multScale]` | :Bool: | Scale elements with `xScale/yScale`? [Default: :State.MultScale: or [ROOMLOADER_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-default-mult-scale)] |
+| `[addAngle]` | :Bool: | Rotate elements with `angle`? [Default: :State.AddAngle: or [ROOMLOADER_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-default-add-angle)] |
 
 :::code-group
 ```js [Basic]
@@ -118,13 +113,13 @@ RoomLoader
 ```
 :::
 
-## Separate Parts
----
-### `.LoadInstances()`
+## `.LoadInstances()`
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle], [multScale], [addAngle])` ➜ :Array: of :Id.Instance:
 
-Loads all instances from the given room at the given coordinates and origin, with optional scaling and rotation transformations.
+Loads all instances from the given room at the given coordinates, with optional :Origin:, scaling and rotation.
+
+Unlike :Full Room Loading:, all instances are placed onto the specified layer (or depth) instead of their original room layers.
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -197,7 +192,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 :::
 
 ---
-### `.LoadTilemap()`
+## `.LoadTilemap()`
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 

@@ -16,17 +16,17 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This demo shows the main \"RoomLoader.Load()\" methods for full\nroom loading. Use the controls below to adjust the loading position,\norigin, Flags, layer Whitelist and Blacklist.");
+		dbg_text("This demo shows the main \"RoomLoader.Load()\" method for loading full\nrooms with all layers and elements.\n\nUse the controls below to adjust the loading Position, Origin,\nTransformation, Flags, Layer Whitelist and Blacklist.");
 		dbg_text_separator("Shortcuts", 1);
-		dbg_text("- [PRESS 1] to load the room.");
-		dbg_text("- [PRESS 2] to clean up the room.");
+		dbg_text("- [PRESS 1] to Load the room.");
+		dbg_text("- [PRESS 2] to Cleanup the room.");
 		
 		dbg_section("Controls");
 		dbg_button("Load", function() {
 			Load();
 		});
 		dbg_same_line();
-		dbg_button("Clean Up", function() {
+		dbg_button("Cleanup", function() {
 			Unload();
 		});
 		

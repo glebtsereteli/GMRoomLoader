@@ -194,7 +194,7 @@ export default defineConfig({
         
         'Initialization': '/pages/api/roomLoader/data/#initialization',
         'Loading': '/pages/api/roomLoader/loading',
-        'Full Room Loading': '/pages/api/roomLoader/loading/#full-rooms',
+        'Full Room Loading': '/pages/api/roomLoader/loading/#load',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
@@ -208,17 +208,17 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',
 
-        'State.XOrigin': '/pages/api/roomLoader/states.html#xorigin',
-        'State.YOrigin': '/pages/api/roomLoader/states.html#yorigin',
-        'State.Flags': '/pages/api/roomLoader/states.html#flags',
-        'State.XScale': '/pages/api/roomLoader/states.html#xscale',
-        'State.YScale': '/pages/api/roomLoader/states.html#yscale',
-        'State.Mirror': '/pages/api/roomLoader/states.html#mirror',
-        'State.Flip': '/pages/api/roomLoader/states.html#flip',
-        'State.Angle': '/pages/api/roomLoader/states.html#angle',
-        'State.MultScale': '/pages/api/roomLoader/states.html#multscale',
-        'State.AddAngle': '/pages/api/roomLoader/states.html#addangle',
-        'State.Tileset': '/pages/api/roomLoader/states.html#tileset',
+        'State.XOrigin': '/pages/api/roomLoader/state.html#xorigin',
+        'State.YOrigin': '/pages/api/roomLoader/state.html#yorigin',
+        'State.Flags': '/pages/api/roomLoader/state.html#flags',
+        'State.XScale': '/pages/api/roomLoader/state.html#xscale',
+        'State.YScale': '/pages/api/roomLoader/state.html#yscale',
+        'State.Mirror': '/pages/api/roomLoader/state.html#mirror',
+        'State.Flip': '/pages/api/roomLoader/state.html#flip',
+        'State.Angle': '/pages/api/roomLoader/state.html#angle',
+        'State.MultScale': '/pages/api/roomLoader/state.html#multscale',
+        'State.AddAngle': '/pages/api/roomLoader/state.html#addangle',
+        'State.Tileset': '/pages/api/roomLoader/state.html#tileset',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {
