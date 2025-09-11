@@ -119,6 +119,10 @@ Loads all instances from the given room at the given coordinates, with optional 
 
 Unlike :Full Room Loading:, all instances are placed onto the specified layer (or depth) instead of their original room layers.
 
+::: tip Custom Loading
+If you'd like to handle instance creation yourself rather than using GMRoomLoader's built-in method, call [RoomLoader.DataGetInstances()](/pages/api/roomLoader/data/#datagetinstances) to retrieve an array of instance data and apply your own logic to it.
+:::
+
 | Parameter | Type | Description |
 |---|---|---|
 | `room` | :Asset.GMRoom: | The room to load instances from |
@@ -189,16 +193,17 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and source layer at the given coordinates and origin. The tilemap is created on the target layer with optional mirroring, flipping and rotation transformations, and tileset.
+Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional mirroring, flipping, rotation and tileset.
 
 Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
 
-#### Custom Tilesets
+::: info Custom Tilesets
 The optional `[tileset]` parameter can be especially useful for loading:
-* The same layout of tiles with different skins based on the current biome or dimension.
+* The same layout of tiles with different skins based on the set of levels/world/biome/dimension.
 * A visual + collision pair of tilemaps. Great for tiles with perspective or detailing that doesn't match with collision 1:1.
 
 When using such tileset groups/pairs, make sure that tiles on all tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
+:::
 
 | Parameter | Type | Description |
 | --- | --- | --- |
