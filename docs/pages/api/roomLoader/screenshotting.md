@@ -31,21 +31,21 @@ Returns the created :Asset.GMSprite: reference.
 
 :::code-group
 ```js [Regular]
-// Take a screenshot of the rmExample room with a Middle Center origin,
-// capture only Tilemaps and Sprites:
+// Take a screenshot of rmExample with a Middle Center origin, capture only
+// Tilemaps and Sprites:
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags); // [!code highlight]
 ```
 ```js [State]
-// Take a screenshot of the rmExample room with a Middle Center origin,
-// capture only Tilemaps and Sprites:
+// Take a screenshot of rmExample with a Middle Center origin, capture only
+// Tilemaps and Sprites:
 screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample); // [!code highlight]
 ```
 :::
 
 ## `.ScreenshotPart()`
 
-> `RoomLoader.ScreenshotPart(room, left, top, width, height, [xOrigin], [yOrigin], [scale], [flags])` ➜ :Asset.GMSprite:
+> `RoomLoader.ScreenshotPart(room, left, top, width, height, [xOrigin], [yOrigin], [xScale], [yScale], [flags])` ➜ :Asset.GMSprite:
 
 Takes a screenshot part of the given room defined by `left`, `top`, `width` and `height` parameters, just like [draw_sprite_part()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm).
 
@@ -76,9 +76,7 @@ screenshot = RoomLoader.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, 2
 // Take a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
 // scale it up by a factor of 2, and capture only Instances:
 screenshot = RoomLoader
-.MiddleCenter()
-.Scale(2)
-.Instances()
+.MiddleCenter().Scale(2).Instances()
 .ScreenshotPart(rmExample, 0, 0, 0.5, 0.5); // [!code highlight]
 ```
 :::

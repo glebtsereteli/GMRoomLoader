@@ -1,3 +1,4 @@
+/// @feather ignore all
 
 function DemoBase() : DemoPar("Enemy Base") constructor {
 	// Shared:

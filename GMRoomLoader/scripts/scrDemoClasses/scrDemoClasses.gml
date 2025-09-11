@@ -1,3 +1,4 @@
+/// @feather ignore all
 
 #macro DEMOS global.__demos
 

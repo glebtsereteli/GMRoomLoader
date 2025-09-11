@@ -48,13 +48,11 @@
     {"name":"01. Public","order":1,"path":"folders/02. GMRoomLoader/01. Public.yy",},
     {"name":"02. Private","order":2,"path":"folders/02. GMRoomLoader/02. Private.yy",},
     {"name":"02. Data","order":1,"path":"folders/02. GMRoomLoader/02. Private/02. Data.yy",},
-    {"name":"03. Cache","order":2,"path":"folders/02. GMRoomLoader/02. Private/03. Cache.yy",},
     {"name":"03. Notes","order":3,"path":"folders/02. GMRoomLoader/03. Notes.yy",},
     {"name":"03. Misc","order":2,"path":"folders/03. Misc.yy",},
   ],
   "ResourceOrderSettings":[
     {"name":"fntDemoText","order":1,"path":"fonts/fntDemoText/fntDemoText.yy",},
-    {"name":"RoomLoaderLicence","order":1,"path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},
     {"name":"objDemoBaseUnitLook","order":1,"path":"objects/objDemoBaseUnitLook/objDemoBaseUnitLook.yy",},
     {"name":"objDemoBaseUnitPatrol","order":2,"path":"objects/objDemoBaseUnitPatrol/objDemoBaseUnitPatrol.yy",},
     {"name":"pthDemoBaseSlot02_01_patrol_01","order":1,"path":"paths/pthDemoBaseSlot02_01_patrol_01/pthDemoBaseSlot02_01_patrol_01.yy",},

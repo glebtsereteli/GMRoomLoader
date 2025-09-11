@@ -1,3 +1,4 @@
+/// @feather ignore all
 
 function DemoModulePos() constructor {
 	static reloaderNames = ["x", "y"];

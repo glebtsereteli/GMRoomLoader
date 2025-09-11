@@ -1,3 +1,4 @@
+/// @feather ignore all
 
 function DemoGeneral() : DemoPar("General") constructor {
 	// Shared:

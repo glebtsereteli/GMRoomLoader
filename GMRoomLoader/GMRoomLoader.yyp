@@ -65,12 +65,13 @@
     {"$GMFolder":"","%Name":"02. Private","folderPath":"folders/02. GMRoomLoader/02. Private.yy","name":"02. Private","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. General","folderPath":"folders/02. GMRoomLoader/02. Private/01. General.yy","name":"01. General","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Data","folderPath":"folders/02. GMRoomLoader/02. Private/02. Data.yy","name":"02. Data","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"03. Cache","folderPath":"folders/02. GMRoomLoader/02. Private/03. Cache.yy","name":"03. Cache","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Notes","folderPath":"folders/02. GMRoomLoader/03. Notes.yy","name":"03. Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Misc","folderPath":"folders/03. Misc.yy","name":"03. Misc","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
-  "IncludedFiles":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
@@ -80,7 +81,6 @@
   "resources":[
     {"id":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
-    {"id":{"name":"RoomLoaderLicence","path":"notes/RoomLoaderLicence/RoomLoaderLicence.yy",},},
     {"id":{"name":"objDemoBaseSlotCorner","path":"objects/objDemoBaseSlotCorner/objDemoBaseSlotCorner.yy",},},
     {"id":{"name":"objDemoBaseSlotGeneral","path":"objects/objDemoBaseSlotGeneral/objDemoBaseSlotGeneral.yy",},},
     {"id":{"name":"objDemoBaseSlotParent","path":"objects/objDemoBaseSlotParent/objDemoBaseSlotParent.yy",},},

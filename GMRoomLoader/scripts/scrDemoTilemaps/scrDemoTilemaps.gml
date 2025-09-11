@@ -1,3 +1,4 @@
+/// @feather ignore all
 
 function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 	// Shared:
