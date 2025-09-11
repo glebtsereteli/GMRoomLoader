@@ -13,6 +13,7 @@ function __RoomLoaderLayerFilter(_name, _positive) constructor {
 		__methodNames = {
 			__add: $"{_prefix}Add",
 			__remove: $"{_prefix}Remove",
+			__set: $"{_prefix}Set",
 			__reset: $"{_prefix}Reset",
 		};
 	};
@@ -48,6 +49,14 @@ function __RoomLoaderLayerFilter(_name, _positive) constructor {
 			__check = __CheckEmpty;
 		}
 		return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed layer \"{_layerName}\" from {__name}");
+	};
+	static __Set = function(_layerNames) {
+		var _methodName = __methodNames.__set;
+		
+		__layerNames = _layerNames;
+		__check = (__IsEmpty() ? __CheckEmpty : __CheckActive);
+		
+		return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Set {__name} to: {_layerNames}");
 	};
 	static __Reset = function() {
 		var _methodName = __methodNames.__reset;

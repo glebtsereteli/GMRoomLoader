@@ -73,6 +73,21 @@ RoomLoader.LayerWhitelistRemove("Trees", "Rocks");
 :::
 
 ---
+### `.LayerWhitelistSet()`
+
+> `RoomLoader.LayerWhitelistSet(layerNames)` ➜ :Struct:.:RoomLoader:
+
+Sets the Whitelist layer filter to the given array of layer names.
+
+::: code-group
+```js [Example]
+// Whitelists "Bushes", "Trees" and "Flowers" array from the _whitelist array:
+var _whitelist = ["Bushes", "Trees", "Flowers"];
+RoomLoader.LayerWhitelistSet(_whitelist);
+```
+:::
+
+---
 ### `.LayerWhitelistReset()`
 
 > `RoomLoader.LayerWhitelistReset()` ➜ :Struct:.:RoomLoader:
@@ -139,6 +154,21 @@ RoomLoader.LayerBlacklistRemove("Buildings");
 
 // Removes "Trees" and "Rocks" layer names from Blacklist:
 RoomLoader.LayerBlacklistRemove("Trees", "Rocks");
+```
+:::
+
+---
+### `.LayerBlacklistSet()`
+
+> `RoomLoader.LayerBlacklistSet(layerNames)` ➜ :Struct:.:RoomLoader:
+
+Sets the Blacklist layer filter to the given array of layer names.
+
+::: code-group
+```js [Example]
+// Blacklists "Bushes", "Trees" and "Flowers" array from the _blacklist array:
+var _blacklist = ["Bushes", "Trees", "Flowers"];
+RoomLoader.LayerBlacklistSet(_blacklist);
 ```
 :::
 

@@ -2,7 +2,7 @@
 
 When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you may want to filter target room data by asset type, so that only assets of the specified types are loaded/screenshotted.
 
-This section explains how to achieve this using the `ROOMLOAD_FLAG` :Enum:.
+This section explains how to achieve this using the :ROOMLOAD_FLAG: :Enum:.
 
 ## `ROOMLOADER_FLAG`
 
@@ -10,7 +10,11 @@ This section explains how to achieve this using the `ROOMLOAD_FLAG` :Enum:.
 
 Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll use them:
 * Individually to target a single asset type.
-* Combined together using the bitwise OR `|` operator to target multiple asset types. 
+* Combined together using the bitwise OR `|` operator to target multiple asset types.
+
+::: tip State Handling
+If you're not a fan of bitwise operations, see the alternative way to filter by asset type via :State.Flags:, and the **State** examples below.
+:::
 
 | Member  | Description |
 | --- | --- |

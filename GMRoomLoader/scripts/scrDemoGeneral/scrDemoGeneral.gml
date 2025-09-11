@@ -95,6 +95,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 	
 	static Load = function() {
 		Unload();
+		
 		array_foreach(whitelist, function(_layer) {
 			if (_layer.enabled) {
 				RoomLoader.LayerWhitelistAdd(_layer.name);
@@ -105,7 +106,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 				RoomLoader.LayerBlacklistAdd(_layer.name);
 			}
 		});
-			
+		
 		DEMO_PAYLOAD = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Flags(flags.get())

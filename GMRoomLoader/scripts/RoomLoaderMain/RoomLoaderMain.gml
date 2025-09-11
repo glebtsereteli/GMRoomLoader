@@ -856,7 +856,7 @@ function RoomLoader() {
 	
 	#region Layer Name Filtering: Whitelist
 	
-	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Adds all given layer names to the Whitelist layer filter.
 	/// @context RoomLoader
@@ -869,7 +869,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {String} ...layer_names The layer names to whitelist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to whitelist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes all given layer names from the Whitelist layer filter.
 	/// @context RoomLoader
@@ -878,6 +878,16 @@ function RoomLoader() {
 			__layerWhitelist.__Remove(argument[_i]);
 			_i++;
 		}
+		
+		return self;
+	};
+	
+	/// @param {Array<String>} layerNames An array of layer names to whitelist.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the Whitelist layer filter to the given array of layer names.
+	/// @context RoomLoader
+	static LayerWhitelistSet = function(_layerNames) {
+		__layerWhitelist.__Set(_layerNames);
 		
 		return self;
 	};
@@ -901,7 +911,7 @@ function RoomLoader() {
 	#endregion
 	#region Layer Name Filtering: Blacklist
 	
-	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Adds all given layer names to the Blacklist layer filter.
 	/// @context RoomLoader
@@ -914,7 +924,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {String} ...layer_names The layer names to blacklist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to blacklist. Supports any amount of arguments.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes all given layer names from the Blacklist layer filter.
 	/// @context RoomLoader
@@ -923,6 +933,16 @@ function RoomLoader() {
 			__layerBlacklist.__Remove(argument[_i]);
 			_i++;
 		}
+		
+		return self;
+	};
+	
+	/// @param {Array<String>} layerNames An array of layer names to whitelist.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Sets the Blacklist layer filter to the given array of layer names.
+	/// @context RoomLoader
+	static LayerBlacklistSet = function(_layerNames) {
+		__layerBlacklist.__Set(_layerNames);
 		
 		return self;
 	};

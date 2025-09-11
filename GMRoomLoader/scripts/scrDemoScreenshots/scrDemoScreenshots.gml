@@ -14,12 +14,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		dbg_text("- [HOLD SHIFT+1] to take a screenshot of a random room every frame.");
 		
 		dbg_section("Controls");
-		dbg_button("Take Random", function() {
-			TakeRandom();
-		});
-		dbg_same_line();
 		dbg_button("Take", function() {
-			Take();
+			TakeRandom();
 		});
 		dbg_same_line();
 		dbg_button("Export", function() {
@@ -28,6 +24,11 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			if (_path == "") return;
 			
 			sprite_save(sprite, 0, _path);
+		});
+		dbg_same_line();
+		dbg_button("Export All", function() {
+			show_message("This is an example of exporting screenshots of all rooms in the project into a ZIP archive. It is not a part of the library. See the \"RoomLoaderExportScreenshots\" script in the demo project for reference.");
+			RoomLoaderExportScreenshots();
 		});
 		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
 		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);

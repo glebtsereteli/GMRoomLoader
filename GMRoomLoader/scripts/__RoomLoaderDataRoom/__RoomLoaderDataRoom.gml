@@ -99,7 +99,6 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		delete __instancesInitLut;
 	};
-		
 	static __Load = function(_x1, _y1, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle) {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__instances.__Init(array_length(__instancesPool));
