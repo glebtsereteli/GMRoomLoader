@@ -29,11 +29,11 @@ function RoomLoader() {
 		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_noDataMessage}"
 		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
-	static __TakeScreenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName) {
+	static __Screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
 		
 		__ROOMLOADER_BENCH_START;
-		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags);
+		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
 		return _screenshot;
 	};
@@ -354,8 +354,8 @@ function RoomLoader() {
 	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} xscale The horizontal scale to load the room at. [Default: State.XScale or 1]
-	/// @param {Real} yscale The vertical scale to load the room at. [Default: State.YScale or 1]
+	/// @param {Real} xScale The horizontal scale to load the room at. [Default: State.XScale or 1]
+	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
 	/// @returns {Struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
@@ -387,8 +387,8 @@ function RoomLoader() {
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
 	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
-	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
+	/// @param {Real} xScale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
+	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
@@ -465,8 +465,8 @@ function RoomLoader() {
 	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: soruceLayerName]
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Bool} mirror Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
-	/// @param {Bool} flip Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
+	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
+	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
@@ -499,16 +499,17 @@ function RoomLoader() {
 	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
+	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale or 1]
+	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _scale = 1) {
+	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "Screenshot";
 		
-		var _screenshot = __TakeScreenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _scale, _flags, _methodName);
+		var _screenshot = __Screenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
 		__ResetState();
 		
 		return _screenshot;
@@ -522,16 +523,17 @@ function RoomLoader() {
 	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} scale The scale to create the sprite at. [Default: 1]
+	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale or 1]
+	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room.
 	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
-	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _scale = 1) {
+	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "ScreenshotPart";
 		
-		var _screenshot = __TakeScreenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _scale, _flags, _methodName);
+		var _screenshot = __Screenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
 		__ResetState();
 		
 		return _screenshot;

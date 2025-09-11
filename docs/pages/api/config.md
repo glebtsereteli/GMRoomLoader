@@ -72,15 +72,3 @@ Whether to run Creation Code for loaded instances (`true`) or not (`false`).
 :::tip
 Setting this to `false` improves :Loading: performance.
 :::
-
----
-### `ROOMLOADER_DEFAULT_MULT_SCALE`
-> Default: `true`.
-
-Whether to multiply individual elements' `image_xscale/image_yscale` by the overall load `xScale/yScale` (`true`) or not (`false`).
-
----
-### `ROOMLOADER_DEFAULT_ADD_ANGLE`
-* Default: `true`.
-
-Whether to combine individual elements' `image_angle` with the overall load `angle` (`true`) or not (`false`).

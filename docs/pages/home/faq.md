@@ -69,7 +69,7 @@ First store the struct in a variable when you load the room, and when it's time 
 payload = RoomLoader.Load(rmExample, x, y);
 
 // When you need to unload a room:
-payload.Cleanup();
+payload.Cleanup(); // [!code highlight]
 ```
 :::
 
@@ -88,9 +88,9 @@ First store the array in a variable when you load instances, and when it's time 
 loadedInstances = RoomLoader.LoadInstances(rmExample, x, y);
 
 // When you need to destroy loaded instances:
-array_foreach(loadedInstances, function(_instance) {
-    instance_destroy(_instance);
-});
+array_foreach(loadedInstances, function(_instance) { // [!code highlight]
+    instance_destroy(_instance); // [!code highlight]
+}); // [!code highlight]
 ```
 :::
 
@@ -103,11 +103,10 @@ First store the ID in a variable, and when it's time to destroy it, call [layer_
 :::code-group
 ```js [Example]
 // When you load the tilemap:
-var _layer = "SomeTilemap";
-tilemap = RoomLoader.LoadTilemap(rmExample, x, y, _layer, _layer);
+tilemap = RoomLoader.LoadTilemap(rmExample, x, y, "Tiles");
 
 // When you need to destroy the tilemap:
-layer_tilemap_destroy(tilemap);
+layer_tilemap_destroy(tilemap); // [!code highlight]
 ```
 :::
 

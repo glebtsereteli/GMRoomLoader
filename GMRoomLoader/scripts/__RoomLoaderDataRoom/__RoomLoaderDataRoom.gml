@@ -136,10 +136,10 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
-	static __TakeScreenshot = function(_pLeft01, _pTop01, _pWidth01, _pHeight01, _xOrigin, _yOrigin, _scale, _flags) {
-        var _scaled = (_scale != 1);
-		var _width = __width * _scale;
-		var _height = __height * _scale;
+	static __TakeScreenshot = function(_pLeft01, _pTop01, _pWidth01, _pHeight01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
+        var _scaled = ((_xScale != 1) or (_yScale != 1));
+		var _width = __width * _xScale;
+		var _height = __height * _yScale;
         
         // Raw surface, room contents:
         var _rawSurf = surface_create(__width, __height);

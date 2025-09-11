@@ -60,14 +60,25 @@ Assigns the given origin and scale to the created sprite and filters the capture
 | `height` | :Real: | The height of the area to capture (`0–1` percentage) |
 | `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[scale]` | :Real: | The scale to create the sprite at [Default: `1`] |
+| `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: or `1`] |
+| `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: or `1`] |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
-```js [Example]
+```js [Regular]
 // Create event.
-// Take a screenshot of the top-left quadrant of the rmExample room with a Middle Center origin,
+// Take a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
 // scale it up by a factor of 2, and capture only Instances:
-screenshot = RoomLoader.ScreenshotPart(rm_chunk_easy_01, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
+screenshot = RoomLoader.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
+```
+```js [State]
+// Create event.
+// Take a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
+// scale it up by a factor of 2, and capture only Instances:
+screenshot = RoomLoader
+.MiddleCenter()
+.Scale(2)
+.Instances()
+.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5); // [!code highlight]
 ```
 :::
