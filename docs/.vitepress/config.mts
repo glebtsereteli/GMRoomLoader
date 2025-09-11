@@ -193,9 +193,9 @@ export default defineConfig({
         'Asset Type': '/pages/api/roomLoader/assetTypeFiltering',
         'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
         
-        'Initialization': '/pages/api/roomLoader/data/#initialization',
+        'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
-        'Full Room Loading': '/pages/api/roomLoader/loading/#load',
+        'Full Room Loading': '/pages/api/roomLoader/loading#load',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
@@ -204,10 +204,10 @@ export default defineConfig({
         'Payload.Cleanup()': '/pages/api/payload/cleanup',
         '.Cleanup()': '/pages/api/payload/cleanup',
         
-        'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering/#roomloader-flag',
-        'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config/#roomloader-default-xorigin',
-        'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
-        'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',
+        'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering#roomloader-flag',
+        'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
+        'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config#roomloader-default-yorigin',
+        'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',
 
         'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
         'State.YOrigin': '/pages/api/roomLoader/state#yorigin',
