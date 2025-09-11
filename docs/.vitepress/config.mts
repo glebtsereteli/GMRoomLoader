@@ -3,6 +3,7 @@ import MarkdownIt from 'markdown-it'
 
 export default defineConfig({
   base: '/GMRoomLoader/',
+  cleanUrls: true,
 
   ignoreDeadLinks: true,
   lastUpdated: true,
@@ -208,15 +209,15 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config/#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config/#roomloader-default-flags',
 
-        'State.XOrigin': '/pages/api/roomLoader/state.html#xorigin',
-        'State.YOrigin': '/pages/api/roomLoader/state.html#yorigin',
-        'State.Flags': '/pages/api/roomLoader/state.html#flags',
-        'State.XScale': '/pages/api/roomLoader/state.html#xscale',
-        'State.YScale': '/pages/api/roomLoader/state.html#yscale',
-        'State.Mirror': '/pages/api/roomLoader/state.html#mirror',
-        'State.Flip': '/pages/api/roomLoader/state.html#flip',
-        'State.Angle': '/pages/api/roomLoader/state.html#angle',
-        'State.Tileset': '/pages/api/roomLoader/state.html#tileset',
+        'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
+        'State.YOrigin': '/pages/api/roomLoader/state#yorigin',
+        'State.Flags': '/pages/api/roomLoader/state#flags',
+        'State.XScale': '/pages/api/roomLoader/state#xscale',
+        'State.YScale': '/pages/api/roomLoader/state#yscale',
+        'State.Mirror': '/pages/api/roomLoader/state#mirror',
+        'State.Flip': '/pages/api/roomLoader/state#flip',
+        'State.Angle': '/pages/api/roomLoader/state#angle',
+        'State.Tileset': '/pages/api/roomLoader/state#tileset',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {
