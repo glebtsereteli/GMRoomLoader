@@ -216,8 +216,6 @@ export default defineConfig({
         'State.Mirror': '/pages/api/roomLoader/state.html#mirror',
         'State.Flip': '/pages/api/roomLoader/state.html#flip',
         'State.Angle': '/pages/api/roomLoader/state.html#angle',
-        'State.MultScale': '/pages/api/roomLoader/state.html#multscale',
-        'State.AddAngle': '/pages/api/roomLoader/state.html#addangle',
         'State.Tileset': '/pages/api/roomLoader/state.html#tileset',
       }
 

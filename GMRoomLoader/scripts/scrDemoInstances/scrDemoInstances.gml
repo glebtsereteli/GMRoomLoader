@@ -23,13 +23,6 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		pos.InitDbg();
 		origin.InitDbg();
 		DemoDbgTransform("Room Transform");
-		
-		dbg_text_separator("Instance Transform", 1)
-		dbg_checkbox(ref_create(self, "scaleMultiplicative"), "Multiplicative Scale");
-		dbg_text(" - When enabled, individual instance \"image_x/yScale\" is multiplied by\n the overall load xScale/yScale. Change the X/Y Scale parameters above\n and toggle this on/off to see it in action.");
-		dbg_text("");
-		dbg_checkbox(ref_create(self, "angleAdditive"), "Additive Angle");
-		dbg_text(" - When enabled, individual instance \"image_angle\" is combined with\n the overall angle. Change the Angle parameter above and toggle this\n on/off to see it in action.");
 	
 		// Reloader:
 		owner.reloader
@@ -78,7 +71,6 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		instances = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Scale(xScale, yScale).Angle(angle)
-		.MultScale(scaleMultiplicative).AddAngle(angleAdditive)
 		.LoadInstances(rm, pos.x, pos.y, 0);
 		
 		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);

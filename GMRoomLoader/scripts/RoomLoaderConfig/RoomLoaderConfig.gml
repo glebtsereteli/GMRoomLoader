@@ -16,12 +16,6 @@
 // Default flags used in Loading and Screenshotting.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// Whether to multiply individual elements' image_xscale/image_yscale by the overall load xScale/yScale (true) or not (false).
-#macro ROOMLOADER_DEFAULT_MULT_SCALE true
-
-// Whether to combine individual elements' image_angle with the overall load angle (true) or not (false).
-#macro ROOMLOADER_DEFAULT_ADD_ANGLE true
-
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.
 // 

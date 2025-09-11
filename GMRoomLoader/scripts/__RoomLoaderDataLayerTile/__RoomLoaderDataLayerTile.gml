@@ -36,7 +36,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		__AddToPayload(_tilemap);
 	};
 	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin, _flags) {
-		if ((_xScale == 0) or (_yScale == 0)) return;
+		if ((abs(_xScale) != 1) or (abs(_yScale) != 1)) return;
 		
 		var _tilemap = __CreateTilemapTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin);
 		if (_tilemap != undefined) {

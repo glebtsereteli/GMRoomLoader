@@ -293,46 +293,6 @@ RoomLoader.Angle(random(360)).MiddleCenter().LoadInstances(rmExample, x, y); // 
 ```
 :::
 
-### `.MultScale()`
-
-> `RoomLoader.MultScale(multiplicative?)` ➜ :Struct:.:RoomLoader:
-
-Sets the next :Loading:'s elements' `image_xscale/yscale` to be multiplied by `xScale/yScale` arguments (`true`) or not (`false`).
-
-|Parameter|Type|Description|
-|---|---|---|
-|`multiplicative?`|:Bool:|Multiply next :Loading:'s elements' `image_xscale/yscale` by `xScale/yScale` arguments (`true`) or not (`false`)?|
-
-:::code-group
-```js [Example]
-// Loads rmExample's instances scaled to fit the room, while keeping their own
-// individual scales untouched:
-RoomLoader
-.XScale(room_width / RoomLoader.DataGetWidth(rmExample))
-.YScale(room_height / RoomLoader.DataGetHeight(rmExample))
-.MultScale(false) // [!code highlight]
-.LoadInstances(rmExample, x, y);
-```
-:::
-
-### `.AddAngle()`
-
-> `RoomLoader.AddAngle(additive?)` ➜ :Struct:.:RoomLoader:
-
-Sets the next :Loading:'s elements' `image_angle` to be combined with `angle` arguments (`true`) or not (`false`).
-
-|Parameter|Type|Description|
-|---|---|---|
-|`additive?`|:Bool:|Combine next :Loading:'s elements' `image_angle` with `angle` arguments (`true`) or not (`false`)?|
-
-:::code-group
-```js [Example]
-// Loads rmExample's instances randomly rotated, while keeping their own
-// individual angles untouched:
-RoomLoader.AddAngle(false).Angle(random(360)).LoadInstances(rmExample, x, y); // [!code highlight]
-```
-:::
-
 ## Miscellaneous
 
 ### `.Tileset()`

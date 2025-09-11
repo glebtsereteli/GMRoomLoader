@@ -12,7 +12,7 @@ Rooms can only be loaded if their data has been initialized. Make sure to [Initi
 
 ## `.Load()`
 
-> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle], [multScale], [addAngle])` ➜ :Struct:.:Payload: or :Undefined:
+> `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle])` ➜ :Struct:.:Payload: or :Undefined:
 
 Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, scaling and rotation.
 
@@ -40,7 +40,7 @@ Full room loading supports the following elements.
 | Display Buffer & Viewport Clearing | - | ❌ |
 :::
 ::: details ℹ️ TRANSFORMATION EXCEPTIONS {closed}
-* Tilemaps only load if `[x/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
+* Tilemaps only load if `[xScale/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
 * Backgrounds only load if `[angle]` is `0`. Otherwise they are ignored.
 :::
 
@@ -55,8 +55,6 @@ Full room loading supports the following elements.
 | `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: or 1] |
 | `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: or 1] |
 | `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: or 0] |
-| `[multScale]` | :Bool: | Scale elements with `xScale/yScale`? [Default: :State.MultScale: or [ROOMLOADER_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-default-mult-scale)] |
-| `[addAngle]` | :Bool: | Rotate elements with `angle`? [Default: :State.AddAngle: or [ROOMLOADER_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-default-add-angle)] |
 
 :::code-group
 ```js [Basic]
@@ -115,7 +113,7 @@ RoomLoader
 
 ## `.LoadInstances()`
 
-> `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle], [multScale], [addAngle])` ➜ :Array: of :Id.Instance:
+> `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle])` ➜ :Array: of :Id.Instance:
 
 Loads all instances from the given room at the given coordinates, with optional :Origin:, scaling and rotation.
 
@@ -132,19 +130,17 @@ Unlike :Full Room Loading:, all instances are placed onto the specified layer (o
 | `[xscale]` | :Real: | The horizontal scale transformation [Default: :State.XScale: or 1] |
 | `[yscale]` | :Real: | The vertical scale transformation [Default: :State.YScale: or 1] |
 | `[angle]` | :Real: | The angle transformation [Default: :State.Angle: or 0] |
-| `[multScale]` | :Bool: | Scale instances with `xScale/yScale`? [Default: :State.MultScale: or [ROOMLOADER_DEFAULT_MULT_SCALE](/pages/api/config/#roomloader-instances-default-mult-scale)] |
-| `[addAngle]` | :Bool: | Rotate instances with `angle`? [Default: :State.AddAngle: or [ROOMLOADER_DEFAULT_ADD_ANGLE](/pages/api/config/#roomloader-instances-default-add-angle)] |
 
 :::code-group
 ```js [Regular]
 // Loads instances from rmLevelPartBottom at the bottom-right corner of the room:
 RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth, 1, 1); // [!code highlight]
 
-// Loads a layout of props to fill the size of the current room, while keeping instance scale unaffected:
+// Loads a layout of props to fill the size of the current room:
 var _room = rmProps;
 var _xscale = room_width / RoomLoader.DataGetWidth(_room);
 var _yscale = room_height / RoomLoader.DataGetHeight(_room);
-RoomLoader.LoadInstances(_room, 0, 0, depth, _xscale, _yscale, 0, false); // [!code highlight]
+RoomLoader.LoadInstances(_room, 0, 0, depth, _xscale, _yscale); // [!code highlight]
 
 // Loads a random arrangement of collectibles randomly rotated at the center of the room:
 var _room = choose(rmCollectibles01, rmCollectibles02, rmCollectibles03);
@@ -166,12 +162,10 @@ loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!c
 RoomLoader.BottomRight().LoadInstances(rmLevelPartBottom, room_width, room_height, depth); // [!code highlight]
 
 // Loads a layout of props to fill the size of the current room,
-// while keeping instance scale unaffected:
 var _room = rmProps;
 RoomLoader
 .XScale(room_width / RoomLoader.DataGetWidth(_room))
 .YScale(room_height / RoomLoader.DataGetHeight(_room))
-.MultScale(false)
 .LoadInstances(_room, 0, 0, depth); // [!code highlight]
 
 // Loads a random arrangement of collectibles randomly rotated at the center

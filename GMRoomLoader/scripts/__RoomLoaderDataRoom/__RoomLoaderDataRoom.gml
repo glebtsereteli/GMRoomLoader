@@ -99,7 +99,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		delete __instancesInitLut;
 	};
-	static __Load = function(_x1, _y1, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle, _multScale, _addAngle) {
+		
+	static __Load = function(_x1, _y1, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle) {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			RoomLoader.__payload.__instances.__Init(array_length(__instancesPool));
 		}
@@ -122,14 +123,6 @@ function __RoomLoaderDataRoom(_room) constructor {
 			
 		    var _x = _x1 - ((_xOffset * _cos) + (_yOffset * _sin));
 		    var _y = _y1 - ((-_xOffset * _sin) + (_yOffset * _cos));
-			
-			if (not _multScale) {
-				_xScale = 1;
-				_yScale = 1;
-			}
-			if (not _addAngle) {
-				_angle = 0;
-			}
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
 				with (__layersPool[_i]) {

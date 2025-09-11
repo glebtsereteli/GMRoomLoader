@@ -85,10 +85,10 @@ function DemoGeneral() : DemoPar("General") constructor {
 	rm = rmDemoGeneral01;
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
+	flags = new DemoModuleFlags();
 	xScale = 1;
 	yScale = 1;
 	angle = 0;
-	flags = new DemoModuleFlags();
 	whitelist = undefined;
 	blacklist = undefined;
 	

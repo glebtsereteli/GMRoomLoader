@@ -46,8 +46,6 @@ function RoomLoader() {
 	static __xScale = 1;
 	static __yScale = 1;
 	static __angle = 0;
-	static __multScale = ROOMLOADER_DEFAULT_MULT_SCALE;
-	static __addAngle = ROOMLOADER_DEFAULT_ADD_ANGLE;
 	static __tileset = undefined;
 	
 	static __ResetState = function() {
@@ -58,8 +56,6 @@ function RoomLoader() {
 		__xScale = 1;
 		__yScale = 1;
 		__angle = 0;
-		__multScale = ROOMLOADER_DEFAULT_MULT_SCALE;
-		__addAngle = ROOMLOADER_DEFAULT_ADD_ANGLE;
 		__tileset = undefined;
 	};
 	static __ResetStateFlags = function() {
@@ -361,13 +357,11 @@ function RoomLoader() {
 	/// @param {Real} xscale The horizontal scale to load the room at. [Default: State.XScale or 1]
 	/// @param {Real} yscale The vertical scale to load the room at. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
-	/// @param {Bool} multiplicativeScale Whether to multiply loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false). [Default: State.MultlScale or ROOMLOADER_DEFAULT_MULT_SCALE]
-	/// @param {Bool} additiveAngle Whether to combine loaded elements' image_angle with angle (true) or not (false). [Default: Scale.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
 	/// @returns {Struct.RoomLoaderPayload,undefined}
 	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
-	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle, _multScale = __multScale, _addAngle = __addAngle) {
+	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
@@ -379,7 +373,7 @@ function RoomLoader() {
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
 			__payload = new RoomLoaderPayload(_room);
 		}
-		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle, _multScale, _addAngle);
+		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		__ResetState();
@@ -396,11 +390,9 @@ function RoomLoader() {
 	/// @param {Real} xscale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
 	/// @param {Real} yscale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
-	/// @param {Bool} multiplicativeScale Whether to multiply loaded instances' image_xscale/yscale by xScale/yScale (true) or not (false). [Default: State.MultlScale or ROOMLOADER_DEFAULT_MULT_SCALE]
-	/// @param {Bool} additiveAngle Whether to combine loaded instances' image_angle with angle (true) or not (false). [Default: Scale.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
 	/// @returns {Array<Id.Instance>}
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle, _multScale = __multScale, _addAngle = __addAngle) {
+	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
 		static _body = "load instances for";
 		static _end = "load their instances";
@@ -447,10 +439,6 @@ function RoomLoader() {
 			
 		    var _x1 = _x0 - ((_xOffset * _cos) + (_yOffset * _sin));
 		    var _y1 = _y0 - ((-_xOffset * _sin) + (_yOffset * _cos));
-			
-		    var _xScaleInst = (_multScale ? _xScale : 1);
-		    var _yScaleInst = (_multScale ? _yScale : 1);
-		    _angle *= _addAngle;
 			
 		    var _i = 0; repeat (_n) {
 		        var _iData = _instancesData[_i];
@@ -844,28 +832,6 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static Angle = function(_angle) {
 		__angle = _angle;
-		
-		return self;
-	};
-	
-	/// @param {Bool} multiplicativeScale Whether to multiply future loaded elements' image_xscale/yscale by xScale/yScale (true) or not (false).
-	/// @returns {Struct.RoomLoader}
-	/// @desc Sets the next Loading's' elements' `image_xscale/yscale` to be multiplied by `xScale/yScale` arguments (`true`) or not (`false`).
-	/// Resets automatically right after.
-	/// @context RoomLoader
-	static MultScale = function(_multScale) {
-		__multScale = _multScale;
-		
-		return self;
-	};
-	
-	/// @param {Bool} additiveAngle Whether to combine future loaded elements' image_angle with angle (true) or not (false). [Default: State.AddAngle ROOMLOADER_DEFAULT_ADD_ANGLE]
-	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a parameter for whether to add loaded elements' image_angle with angle (true) or not (false) in the next loading call.
-	/// Resets automatically right after.
-	/// @context RoomLoader
-	static AddAngle = function(_addAngle) {
-		__addAngle = _addAngle;
 		
 		return self;
 	};
