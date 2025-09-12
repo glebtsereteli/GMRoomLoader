@@ -17,14 +17,13 @@ It does NOT provide tools for procedural generation or level layout creation of 
 :::
 
 ## Features
-- Pure GML library with no external tools required.
-- Multiple ways to handle room data: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall).
-- Loading [Full Rooms](/pages/api/roomLoader/loading/#full-rooms) including all layers and elements, or just [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) with optional scale/mirror/flip and rotation transformations at any position and origin.
-- Element filtering by :Asset Type:.
-- :Layer Name: filtering with [Whitelisting](/pages/api/roomLoader/layerNameFiltering/#whitelist) and [Blacklisting](/pages/api/roomLoader/layerNameFiltering/#blacklist).
-- Full control over loaded contents: :Payload: tracking, fetching element IDs and cleanup - unloading/destroying loaded elements.
-- Room :Screenshotting:.
-- Pre-load/screenshot :State: management with a fluent Builder interface.
+- **Pure GML Implementation**. No extensions or external tools required.
+- **Flexible Data Handling**. Initialize and remove data in multiple ways: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall). Retrieve core room parameters with [Getters](/pages/api/payload/getters).
+- **Robust Loading**. Load [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) at any position in the current room, with optional origin, scaling, mirroring, flipping and rotation.
+- **Filtering Options**. Filter elements by :Asset Type: and/or layers by :Layer Name:.
+- **Full Lifecycle Control**. Manage loaded contents with :Payload: tracking - [Fetch IDs](/pages/api/payload/getters) and [Destroy](/pages/api/payload/cleanup) loaded elements.
+- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever entering target rooms.
+- **Fluent :State: Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 
 ## How does it work?
 
