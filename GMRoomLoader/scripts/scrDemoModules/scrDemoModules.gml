@@ -46,7 +46,7 @@ function DemoModuleFlags() constructor {
 		dbg_checkbox(ref_create(self, "texts"), "Texts");
 		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
 	};
-	static get = function() {
+	static Get = function() {
 		var _total = ROOMLOADER_FLAG.NONE;
 		_total |= instances * ROOMLOADER_FLAG.INSTANCES;
 		_total |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;

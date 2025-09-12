@@ -101,7 +101,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		Clear();
 		sprite = RoomLoader
 		.Origin(origin.x, origin.y)
-		.Flags(flags.get())
+		.Flags(flags.Get())
 		.Scale(scale)
 		.ScreenshotPart(rm, left, top, w, h);
 	};

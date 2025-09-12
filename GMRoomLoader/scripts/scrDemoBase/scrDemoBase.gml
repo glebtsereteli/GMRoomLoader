@@ -82,7 +82,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 			with (_hoveredSlot) {
 				var _checker = (_fast ? mouse_check_button : mouse_check_button_pressed);
 				if (_checker(mb_left)) {
-					Load(false, other.owner.flags.get());
+					Load(false, other.owner.flags.Get());
 				}
 				if (mouse_check_button_pressed(mb_right)) {
 					Cleanup(false);
@@ -106,7 +106,7 @@ function DemoBase() : DemoPar("Enemy Base") constructor {
 		},
 		
 		LoadAll: function() {
-			var _flags = owner.flags.get();
+			var _flags = owner.flags.Get();
 			with (obj) {
 				Load(true, _flags);
 			}

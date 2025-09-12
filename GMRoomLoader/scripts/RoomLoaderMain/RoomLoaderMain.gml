@@ -110,7 +110,7 @@ function RoomLoader() {
 		static _closure = { prefix: undefined };
 		static _filter = method(_closure, function(_room) {
 			var _name = room_get_name(_room);
-			return (string_pos(prefix, _name) > 0);
+			return string_starts_with(_name, prefix);
 		});
 		
 		__RoomLoaderCatchString(__messagePrefix, _methodName, _prefix);
@@ -231,7 +231,7 @@ function RoomLoader() {
 		var _names = struct_get_names(_pool);
 		var _i = 0; repeat (array_length(_names)) {
 			var _name = _names[_i];
-			if (string_pos(_prefix, _name) > 0) {
+			if (string_starts_with(_name, _prefix) > 0) {
 				struct_remove(_pool, _names[_i]);
 				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_name}>");
 				_removed = true;
@@ -334,7 +334,7 @@ function RoomLoader() {
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get the instances data for.
-	/// @returns {Real}
+	/// @returns {Array<Struct>}
 	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
 	/// @context RoomLoader
 	static DataGetInstances = function(_room) {

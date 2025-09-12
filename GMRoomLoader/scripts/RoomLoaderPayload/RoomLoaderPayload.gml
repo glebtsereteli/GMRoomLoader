@@ -38,8 +38,8 @@ function RoomLoaderPayload(_room) constructor {
 			__ids = array_create(_n, noone);
 			__roomIds = array_create(_n, noone);
 		};
-		static __Get = function(_room_id) {
-			var _index = array_get_index(__roomIds, _room_id);
+		static __Get = function(_roomId) {
+			var _index = array_get_index(__roomIds, _roomId);
 			return ((_index == -1) ? noone : __ids[_index]);
 		};
 		static __Destroy = function() {
@@ -230,9 +230,9 @@ function RoomLoaderPayload(_room) constructor {
 	#region Cleanup
 	
 	/// @returns {Undefined}
-	/// @param {Bool} destroy_layers=[true] Whether to destroy loaded layers (true) or not (false).
+	/// @param {Bool} destroyLayers=[true] Whether to destroy loaded layers (true) or not (false).
 	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
-	/// NOTE: Setting "destroy_layers" to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to
+	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to
 	/// accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
 	/// @context RoomLoaderPayload
 	static Cleanup = function(_destroyLayers = true) {
