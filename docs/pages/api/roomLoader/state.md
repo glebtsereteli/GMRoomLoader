@@ -147,7 +147,7 @@ RoomLoader.Flags(_flags).Load(rmExample, x, y); // [!code highlight]
 
 The **Flags Builder** lets you define what elements of the room should be included in the next :Loading: or :Screenshotting: call.
 
-Each Builder method corresponds to a specific :ROOMLOADER_FLAG: enum member and adds it to the internal Flags state.
+Each Builder method corresponds to a specific :ROOMLOADER_FLAG: enum member and adds it to the Flags state.
 * The first call to any of these methods before :Loading: or :Screenshotting: resets the state and sets it to that method's flag, so you always start clean from the one you choose.
 * Subsequent calls add their flags on top, letting you combine multiple asset types.
 
@@ -198,7 +198,7 @@ RoomLoader.Instances().Tilemaps().Backgrounds().Load(rmExample, x, y); // [!code
 
 > `RoomLoader.XScale(xScale)` ➜ :Struct:.:RoomLoader:
 
-Horizontally scales the next :Loading: by setting **State.XScale**.
+Horizontally scales the next :Loading: by setting the **XScale** State.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -215,7 +215,7 @@ RoomLoader.XScale(2).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.YScale(yScale)` ➜ :Struct:.:RoomLoader:
 
-Vertically scales the next :Loading: by setting **State.YScale**.
+Vertically scales the next :Loading: by setting the **YScale** State.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -250,7 +250,7 @@ RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.Mirror([mirror?])` ➜ :Struct:.:RoomLoader:
 
-When `true`, mirrors the next :Loading: by setting **State.XScale** to -1.
+When `true`, mirrors the next :Loading: by setting the **XScale** State to -1.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -267,7 +267,7 @@ RoomLoader.Mirror().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight
 
 > `RoomLoader.Flip([flip?])` ➜ :Struct:.:RoomLoader:
 
-When `true`, flips the next :Loading: by setting **State.YScale** to `-1`.
+When `true`, flips the next :Loading: by setting the **YScale** State to `-1`.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -284,7 +284,7 @@ RoomLoader.Flip().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 
 > `RoomLoader.Angle(angle)` ➜ :Struct:.:RoomLoader:
 
-Rotates the next :Loading: by setting **State.Angle**.
+Rotates the next :Loading: by setting **Angle** State.
 
 :::code-group
 ```js [Example]
@@ -299,7 +299,7 @@ RoomLoader.Angle(random(360)).MiddleCenter().LoadInstances(rmExample, x, y); // 
 
 > `RoomLoader.Tileset(tileset)` ➜ :Struct:.:RoomLoader:
 
-Sets the tileset to use in the next :RoomLoader.LoadTilemap(): call.
+Uses the given in the next :RoomLoader.LoadTilemap(): call by setting the **Tileset** State.
 
 |Parameter|Type|Description|
 |---|---|---|

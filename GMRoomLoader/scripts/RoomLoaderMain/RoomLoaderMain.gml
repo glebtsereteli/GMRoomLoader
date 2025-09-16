@@ -101,7 +101,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {String} prefix The prefix to filter rooms with.
+	/// @param {String} prefix The prefix used to filter room names.
 	/// @returns {Array<Asset.GMRoom>}
 	/// @desc Initializes data for all rooms starting with the given prefix. Returns an array of found rooms.
 	/// @context RoomLoader
@@ -217,7 +217,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// @param {String} prefix The prefix to filter rooms with.
+	/// @param {String} prefix The prefix used to filter room names.
 	/// @returns {Struct.RoomLoader}
 	/// @desc Removes data for all (initialized) rooms starting with the given prefix.
 	/// @context RoomLoader
@@ -231,7 +231,7 @@ function RoomLoader() {
 		var _names = struct_get_names(_pool);
 		var _i = 0; repeat (array_length(_names)) {
 			var _name = _names[_i];
-			if (string_starts_with(_name, _prefix) > 0) {
+			if (string_starts_with(_name, _prefix)) {
 				struct_remove(_pool, _names[_i]);
 				__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_name}>");
 				_removed = true;
@@ -320,7 +320,7 @@ function RoomLoader() {
 		return _data.__height;
 	};
 	
-	/// @param {Asset.GMRoom} room The room to an array of layer names for.
+	/// @param {Asset.GMRoom} room The room to get an array of layer names for.
 	/// @returns {Array<String>}
 	/// @desc Returns an array of layer names from the given room, in the order defined in the room editor.
 	/// @context RoomLoader
@@ -358,7 +358,7 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
 	/// @returns {Struct.RoomLoaderPayload,undefined}
-	/// @desc Loads the given room at the given coordinates and [origins], filtered by the given [flags]. 
+	/// @desc Loads all layers and elements of the given room at the given coordinates, with optional Origin, Asset Type filtering, scaling and rotation.
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// @context RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
@@ -391,6 +391,9 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
 	/// @returns {Array<Id.Instance>}
+	/// @desc Loads all instances from the given room at the given coordinates, with optional Origin, scaling and rotation.
+	/// Unlike .Load(), all instances are placed onto the given layer (or depth) instead of their original room layers.
+	/// Returns an array of loaded instance IDs.
 	/// @context RoomLoader
 	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
@@ -462,13 +465,17 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load the tilemap at.
 	/// @param {Real} y The y coordinate to load the tilemap at.
 	/// @param {String} sourceLayerName The source layer name to load a tilemap from.
-	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: soruceLayerName]
+	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: sourceLayerName]
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
 	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
+	/// @returns {Id.Tilemap}
+	/// @desc Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional mirroring, flipping, rotation and tileset. Angle is wrapped around 360 degrees and snapped to a 90-degree increment.
+	/// Returns the loaded tilemap ID.
+	/// @context RoomLoader
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		
@@ -503,7 +510,7 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
-	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
+	/// Takes a screenshot of the given room. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
@@ -526,8 +533,8 @@ function RoomLoader() {
 	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale or 1]
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
 	/// @returns {Asset.GMSprite}
-	/// @desc Takes a screenshot part of the given room.
-	/// Assigns the given xorigin/yorigin origin to the created sprite and filters the captured elements by the given flags.
+	/// @desc Takes a screenshot part of the given room, with the captured area defined by left, top, width and height parameters, just like draw_sprite_part().
+	/// If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
@@ -579,7 +586,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Top-Left origin (x: 0, y: 0) to use in the next load/screenshot call.
+	/// @desc Sets a Top-Left Origin (x: 0, y: 0) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static TopLeft = function() {
@@ -590,7 +597,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Top-Center origin (x: 0.5, y: 0) to use in the next load/screenshot call.
+	/// @desc Sets a Top-Center Origin (x: 0.5, y: 0) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static TopCenter = function() {
@@ -601,7 +608,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Top-Right origin (x: 1, y: 0) to use in the next load/screenshot call.
+	/// @desc Sets a Top-Right Origin (x: 1, y: 0) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static TopRight = function() {
@@ -612,7 +619,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Middle-Left origin (x: 0, y: 0.5) to use in the next load/screenshot call.
+	/// @desc Sets a Middle-Left Origin (x: 0, y: 0.5) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static MiddleLeft = function() {
@@ -623,7 +630,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Middle-Center origin (x: 0.5, y: 0.5) to use in the next load/screenshot call.
+	/// @desc Sets a Middle-Center Origin (x: 0.5, y: 0.5) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static MiddleCenter = function() {
@@ -634,7 +641,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Middle-Right origin (x: 1, y: 0.5) to use in the next load/screenshot call.
+	/// @desc Sets a Middle-Right Origin (x: 1, y: 0.5) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static MiddleRight = function() {
@@ -645,7 +652,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Bottom-Left origin (x: 0, y: 1) to use in the next load/screenshot call.
+	/// @desc Sets a Bottom-Left Origin (x: 0, y: 1) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static BottomLeft = function() {
@@ -656,7 +663,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Bottom-Center origin (x: 0.5, y: 1) to use in the next load/screenshot call.
+	/// @desc Sets a Bottom-Center Origin (x: 0.5, y: 1) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static BottomCenter = function() {
@@ -667,7 +674,7 @@ function RoomLoader() {
 	};
 	
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets a Bottom-Right origin (x: 1, y: 1) to use in the next load/screenshot call.
+	/// @desc Sets a Bottom-Right Origin (x: 1, y: 1) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static BottomRight = function() {
@@ -692,8 +699,8 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Instances (ROOMLOADER_FLAG.INSTANCES) to the flags to use in the next load/screenshot call.
-	/// First set before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// @desc Adds Instances (ROOMLOADER_FLAG.INSTANCES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
 	static Instances = function() {
@@ -704,8 +711,8 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Tilemaps (ROOMLOADER_FLAG.TILEMAPS) to the flags to use in the next load/screenshot call.
-	/// First set before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// @desc Adds Tilemaps (ROOMLOADER_FLAG.TILEMAPS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
 	static Tilemaps = function() {
@@ -716,7 +723,7 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Sprites (ROOMLOADER_FLAG.SPRITES) to the flags to use in the next load/screenshot call.
+	/// @desc Adds Sprites (ROOMLOADER_FLAG.SPRITES) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
@@ -728,7 +735,7 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Sequences (ROOMLOADER_FLAG.SEQUENCES) to the flags to use in the next load/screenshot call.
+	/// @desc Adds Sequences (ROOMLOADER_FLAG.SEQUENCES) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
@@ -740,7 +747,7 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Texts (ROOMLOADER_FLAG.TEXTS) to the flags to use in the next load/screenshot call.
+	/// @desc Adds Texts (ROOMLOADER_FLAG.TEXTS) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
@@ -752,7 +759,7 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
-	/// @desc Adds Backgrounds (ROOMLOADER_FLAG.BACKGROUNDS) to the flags to use in the next load/screenshot call.
+	/// @desc Adds Backgrounds (ROOMLOADER_FLAG.BACKGROUNDS) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.
 	/// @context RoomLoader
@@ -768,7 +775,7 @@ function RoomLoader() {
 	
 	/// @param {Real} xScale The horizontal scale to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Horizontally scales the next Loading by setting State.XScale.
+	/// @desc Horizontally scales the next Loading by setting the XScale State.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static XScale = function(_xScale) {
@@ -779,7 +786,7 @@ function RoomLoader() {
 	
 	/// @param {Real} yScale The vertical scale to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Vertically scales the next Loading by setting State.YScale.
+	/// @desc Vertically scales the next Loading by setting YScale State.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static YScale = function(_yScale) {
@@ -791,7 +798,7 @@ function RoomLoader() {
 	/// @param {Real} xScale The horizontal scale to use in the next loading call.
 	/// @param {Real} yScale The vertical scale to use in the next loading call. [Default: xScale]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Scales the next Loading horizontally and vertically by setting State.XScale and State.YScale.
+	/// @desc Scales the next Loading horizontally and vertically by setting XScale and YScale States.
 	/// Both reset automatically right after.
 	/// @context RoomLoader
 	static Scale = function(_xScale, _yScale = _xScale) {
@@ -803,7 +810,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} mirror? Should the next load be mirrored? [Default: true]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Mirrors the next Loading by setting State.XScale to -1.
+	/// @desc Mirrors the next Loading by setting the XScale State to -1.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Mirror = function(_mirror = true) {
@@ -816,7 +823,7 @@ function RoomLoader() {
 	
 	/// @param {Bool} flip? Should the next load be mirrored? [Default: true]
 	/// @returns {Struct.RoomLoader}
-	/// @desc Flips the next Loading by setting State.YScale to -1.
+	/// @desc Flips the next Loading by setting YScale State to -1.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Flip = function(_flip = true) {
@@ -829,7 +836,7 @@ function RoomLoader() {
 	
 	/// @param {Real} angle The angle to use in the next loading call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Rotates the next Loading by setting State.Angle.
+	/// @desc Rotates the next Loading by setting the Angle State.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Angle = function(_angle) {
@@ -843,7 +850,7 @@ function RoomLoader() {
 	
 	/// @param {Asset.GMTileset} tileset The tileset to use in the next RoomLoader.LoadTilemap() call.
 	/// @returns {Struct.RoomLoader}
-	/// @desc Sets the tileset for the next RoomLoader.LoadTilemap() call.
+	/// @desc Uses the given tileset in the next RoomLoader.LoadTilemap() call by setting the Tileset State.
 	/// Resets automatically right after.
 	/// @context RoomLoader
 	static Tileset = function(_tileset) {

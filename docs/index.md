@@ -8,11 +8,11 @@ hero:
   tagline: Room prefabs and runtime content loading made effortless with GMRoomLoader's robust interface.
   actions:
     - theme: brand
-      text: Get Started
+      text: What is GMRoomLoader?
       link: '/pages/home/whatIsIt'
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/glebtsereteli/GMRoomLoader
+      text: Get Started
+      link: '/pages/home/gettingStarted/gettingStarted'
   image:
     src: /logo.svg
     alt: Icon
@@ -22,12 +22,12 @@ features:
     details: Create reusable level templates for rooms, NPCs or props, and place them procedurally throughout your levels.
   - title: 🧩 Chunking
     details: Divide big worlds into smaller sections that dynamically load or unload as players approach.
-  - title: 🏗️ Flexible Rooms
-    details: Load and position rooms at custom coordinates and origins, with filtering by layer type or name.
-  - title: 📐 Dynamic Instances
-    details: In addition to positions and origins, load instances at custom angles and scales. Great for enemy layouts, collectibles and effects.
-  - title: ⚙️ Full Control
-    details: From merging or creating new layers to tracking and removing loaded elements, you have full control of the loading process.
+  - title: 🏗️ Flexible Loading
+    details: Load Full Rooms, Instances or Tilemaps at any position in the current room — all with optional origin, filtering, scaling and rotation.
+  - title: 📐 Fluent State Management
+    details: Configure optional arguments before loading or screenshotting in a simple English-like flow via the Fluent State Builder.
+  - title: ⚙️ Full Lifecycle Control
+    details: From merging or creating new layers to Payload tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Screenshots
     details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
 

@@ -35,5 +35,5 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 - Demo art by [Kenney](https://twitter.com/KenneyNL).
 
 # GameMaker Awards 2024
-GMRoomLoader was nominated for Best Tool in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
+GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
 ![RoomLoader-Tool](https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d)

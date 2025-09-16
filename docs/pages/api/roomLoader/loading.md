@@ -115,7 +115,7 @@ RoomLoader
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle])` ➜ :Array: of :Id.Instance:
 
-Loads all instances from the given room at the given coordinates, with optional :Origin:, scaling and rotation.
+Loads all instances from the given room at the given coordinates, with optional :Origin:, scaling and rotation. Returns an array of loaded instance IDs.
 
 Unlike :Full Room Loading:, all instances are placed onto the specified layer (or depth) instead of their original room layers.
 
@@ -195,7 +195,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 
 Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional mirroring, flipping, rotation and tileset.
 
-Angle is internally wrapped around 360 degrees and snapped to a 90-degree increment.
+Angle is wrapped around 360 degrees and snapped to a 90-degree increment.
 
 ::: info Custom Tilesets
 The optional `[tileset]` parameter can be especially useful for loading:

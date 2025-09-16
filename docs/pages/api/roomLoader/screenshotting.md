@@ -15,19 +15,20 @@ Make sure to keep track of them and delete them using [sprite_delete()](https://
 
 ## `.Screenshot()`
 
-> `RoomLoader.Screenshot(room, [xOrigin], [yOrigin], [scale], [flags]` ➜ :Asset.GMSprite:
+> `RoomLoader.Screenshot(room, [xOrigin], [yOrigin], [xScale], [yScale], [flags]` ➜ :Asset.GMSprite:
 
-Takes a screenshot of the given room. Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags.
+Takes a screenshot of the given room. If specified, assigns the optional :Origin: and scale to the created sprite and filters the captured elements by the given :Flags:.
 
-Returns the created :Asset.GMSprite: reference.
+Returns the created :Asset.GMSprite:.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
 | `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[scale]` | :Real: | The sprite scale [Default: `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
+| `[xScale]` | :Real: | The horizontal sprite scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical sprite scale [Default: :State.YScale: if set, or `1`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Regular]
@@ -47,9 +48,9 @@ screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample
 
 > `RoomLoader.ScreenshotPart(room, left, top, width, height, [xOrigin], [yOrigin], [xScale], [yScale], [flags])` ➜ :Asset.GMSprite:
 
-Takes a screenshot part of the given room defined by `left`, `top`, `width` and `height` parameters, just like [draw_sprite_part()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm).
+Takes a screenshot part of the given room, with the captured area defined by `left`, `top`, `width` and `height` parameters, just like [draw_sprite_part()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm). If specified, assigns the optional :Origin: and scale to the created sprite and filters the captured elements by the given :Flags:.
 
-Assigns the given origin and scale to the created sprite and filters the captured elements by the given flags. Returns the created :Asset.GMSprite: ref.
+Returns the created :Asset.GMSprite:.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|

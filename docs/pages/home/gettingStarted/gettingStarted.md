@@ -2,7 +2,7 @@
 
 This page walks you through installing and setting up GMRoomLoader in your GameMaker project for the first time.
 
-We'll begin by importing the `.yyymps` package. Then in the [First Setup](#first-setup) section, we'll go through core library operations with [Initialization](#_1-initialize), [Loading](#_2-load), and [Cleanup](#_3-clean-up). By the end, you'll have a simple working example that lets you load and unload rooms in real time.
+We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-setup) section, we'll go through core library operations with [Initialization](#_1-initialize), [Loading](#_2-load), and [Cleanup](#_3-clean-up). By the end, you'll have a simple working example that lets you load and unload rooms in real time.
 
 ## Requirements
 
@@ -55,7 +55,7 @@ payload.Cleanup();
 ```
 
 ### 4. All Together
-Now that we know the required steps, let's put this together in a simple way for you to see it working. We'll do this in your object responsible for loading rooms.
+Now that we know the required steps, let's put this together in a simple way for you to see it working. We'll do this in our object responsible for loading rooms.
 
 * First, we'll initialize the data in the Create event.
 * Then in the Step event, we'll load the room at the mouse position when we press 1, and unload the room when we press 2.

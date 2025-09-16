@@ -69,7 +69,7 @@ Initializes data for all rooms starting with the given prefix. Returns an array 
 
 | Parameter | Type | Description |
 |---|---|---|
-| `prefix` | :String: | The prefix to filter rooms with |
+| `prefix` | :String: | The prefix used to filter room names |
 
 ::: code-group
 ```js [Example]
@@ -166,7 +166,7 @@ Removes data for all rooms starting with the given prefix.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `prefix` | :String: | The prefix to filter rooms with |
+| `prefix` | :String: | The prefix used to filter room names |
 
 ::: code-group
 ```js [Example]

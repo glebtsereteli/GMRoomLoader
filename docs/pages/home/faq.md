@@ -7,9 +7,9 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | --- | --- | --- |
 | **Windows** | ✅ Yes | Tested |
 | **macOS** | ✅ Yes | Tested |
-| **GX.games** | ✅ Yes    | Tested |
+| **GX.games** | ✅ Yes | Tested |
 | **Linux** | 🚧 Likely | Untested |
-| **HTML5** | ❌ No     | No, it's cursed. Use WASM with GX.games |
+| **HTML5** | ❌ No | No, it's cursed. Use WASM with GX.games |
 | **Android** | 🚧 Likely | Untested |
 | **iOS** | 🚧 Likely | Untested |
 | **PS5** | 🚧 Likely | Untested |
@@ -36,7 +36,7 @@ No. GMRoomLoader retrieves data from :room_get_info():, which only provides acce
 
 As a result, modding and live reloading aren't possible by design.
 
-If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. While it's not as modern and fancy as GMRoomLoader, it works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
+If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. It works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
 
 ## 📍 I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
@@ -85,10 +85,10 @@ First store the array in a variable when you load instances, and when it's time 
 :::code-group
 ```js [Example]
 // When you load instances:
-loadedInstances = RoomLoader.LoadInstances(rmExample, x, y);
+instances = RoomLoader.LoadInstances(rmExample, x, y);
 
 // When you need to destroy loaded instances:
-array_foreach(loadedInstances, function(_instance) { // [!code highlight]
+array_foreach(instances, function(_instance) { // [!code highlight]
     instance_destroy(_instance); // [!code highlight]
 }); // [!code highlight]
 ```

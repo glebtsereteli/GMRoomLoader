@@ -190,6 +190,7 @@ export default defineConfig({
         'RoomLoader': '/pages/api/roomLoader/overview',
         'Origin': '/pages/api/roomLoader/origin',
         'Payload': '/pages/api/payload/overview',
+        'Flags': '/pages/api/roomLoader/assetTypeFiltering',
         'Asset Type': '/pages/api/roomLoader/assetTypeFiltering',
         'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
         
