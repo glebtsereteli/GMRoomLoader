@@ -6,7 +6,7 @@ It provides tools to process the data returned by :room_get_info():, use that da
 
 ## Use Cases
 * **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, chunks, NPCs or randomized props).
-* **Chunking**. Divide large rooms into smaller sections, loading or unloading them dynamically as the player moves closer or farther away.​
+* **Chunking**. Divide large worlds into smaller chunks that dynamically load when players approach and unload when they move away.
 * **Room Thumbnails**. Take screenshots of your rooms and use them in level selection menus, seamless room transitions or loading previews. 
 * **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game (as of [2024.13](https://gamemaker.io/en/blog/release-2024-13),​ this is mostly superseded by GameMaker's [UI Layers](https://manual.gamemaker.io/monthly/en/#t=The_Asset_Editors%2FRoom_Properties%2FUI_Layers.htm)​).
 
@@ -22,7 +22,7 @@ It does NOT provide tools for procedural generation or level layout creation of 
 - **Flexible Loading**. Load [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) at any position in the current room, with optional origin, scaling, mirroring, flipping and rotation.
 - **Filtering Options**. Filter elements by :Asset Type: and/or layers by :Layer Name:.
 - **Full Lifecycle Control**. Manage loaded contents with :Payload: tracking - [Fetch IDs](/pages/api/payload/getters) and [Destroy](/pages/api/payload/cleanup) loaded elements.
-- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever entering target rooms.
+- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever visiting target rooms — with optional part definition, scaling and filtering.
 - **Fluent :State: Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 
 ## How does it work?

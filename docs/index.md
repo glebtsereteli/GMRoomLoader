@@ -21,7 +21,7 @@ features:
   - title: 🗺️ Procedural Generation
     details: Create reusable level templates for rooms, NPCs or props, and place them procedurally throughout your levels.
   - title: 🧩 Chunking
-    details: Divide big worlds into smaller sections that dynamically load or unload as players approach.
+    details: Divide large worlds into smaller chunks that dynamically load when players approach and unload when they move away.
   - title: 🏗️ Flexible Loading
     details: Load Full Rooms, Instances or Tilemaps at any position in the current room — all with optional origin, filtering, scaling and rotation.
   - title: 📐 Fluent State Management
@@ -29,7 +29,7 @@ features:
   - title: ⚙️ Full Lifecycle Control
     details: From merging or creating new layers to Payload tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Screenshots
-    details: Capture room screenshots without ever visiting rooms on game start. Could be used for level selection, marketing, design feedback or notes.
+    details: Capture room Screenshots from anywhere, without ever visiting target rooms — with optional part definition, scaling and filtering.
 
 ---
 
