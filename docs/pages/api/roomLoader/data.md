@@ -268,6 +268,7 @@ var _height = RoomLoader.DataGetHeight(rmLevelDungeon); // [!code highlight]
 ```
 :::
 
+---
 ### `.DataGetLayerNames()`
 
 > `RoomLoader.DataGetLayerNames(room)` ➜ :Array: of :String:

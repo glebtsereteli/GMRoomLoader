@@ -28,18 +28,6 @@ Default Y origin used in :Loading: and :Screenshotting:. [Origins](/pages/api/ro
 Default flags used in :Loading: and :Screenshotting:.
 
 ---
-### `ROOMLOADER_DELIVER_PAYLOAD`
-> Default: `true`.
-
-* If true, :RoomLoader.Load(): returns an instance of :Payload: containing the IDs of all loaded layers and their elements.  
-* If `false`, no IDs are collected or returned, improving loading performance.  
-
-:::tip
-Set this to `false` if you don't need to manually clean up loaded contents.  
-For example, when room switching automatically destroys all instances, layers and assets, or if cleanup is generally irrelevant.
-:::
-
----
 ### `ROOMLOADER_MERGE_LAYERS`
 > Default: `false`.
 
@@ -50,6 +38,18 @@ When loading rooms using :RoomLoader.Load():, whether to merge loaded layers wit
 
 ::: warning
 Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
+:::
+
+---
+### `ROOMLOADER_DELIVER_PAYLOAD`
+> Default: `true`.
+
+* If true, :RoomLoader.Load(): returns an instance of :Payload: containing the IDs of all loaded layers and their elements.  
+* If `false`, no IDs are collected or returned, improving loading performance.  
+
+:::tip
+Set this to `false` if you don't need to manually clean up loaded contents.  
+For example, when room switching automatically destroys all instances, layers and assets, or if cleanup is generally irrelevant.
 :::
 
 ## Instances
