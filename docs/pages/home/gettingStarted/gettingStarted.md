@@ -32,8 +32,6 @@ While GMRoomLoader offers many tools for handling room data, loading rooms and w
 
 We'll go over each step first and then bring them all together in a simple complete example.
 
-#### ℹ️ <u>Download the example project</u>: [First Setup.yyz](https://www.youtube.com/watch?v=dQw4w9WgXcQ) @TODO
-
 ### 1. Initialize
 [Initialize](/pages/api/roomLoader/data/#initialization) the data for the room you want to load.
 ```js
@@ -58,11 +56,12 @@ payload.Cleanup();
 Now that we know the required steps, let's put this together in a simple way for you to see it working. We'll do this in our object responsible for loading rooms.
 
 * First, we'll initialize the data in the Create event.
-* Then in the Step event, we'll load the room at the mouse position when we press 1, and unload the room when we press 2.
+* Then in the Step event, we'll load the room centered at the mouse position when we press 1, and unload the room when we press 2.
 :::code-group
 ```js [Create Event]
 rm = rmExample; // The room we'll load.
 payload = undefined; // The variable to hold our Payload after loading.
+
 RoomLoader.DataInit(rm); // Initialize the data for our room. [!code highlight]
 
 Cleanup = function() { // The method we'll use to unload the loaded room.
@@ -75,17 +74,24 @@ Cleanup = function() { // The method we'll use to unload the loaded room.
 ```js [Step Event]
 if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.
-    
-    // Load the room at the mouse position:
-    payload = RoomLoader.Load(rm, mouse_x, mouse_y); // [!code highlight]
-}
 
+    // Load the room centered at the mouse position: 
+    payload = RoomLoader.MiddleCenter().Load(rm, mouse_x, mouse_y); // [!code highlight]
+}
 if (keyboard_check_pressed(ord("2"))) {
     Cleanup(); // Clean up the loaded room.
 }
-
 ```
 :::
+
+ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/blob/v2/docs/GMRoomLoaderFirstSetup.yyz) example project to see this in action.
+
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/gettingStarted/firstSetup.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ## What's Next?
 That's it for the basic setup! To learn more, check out:
