@@ -84,10 +84,7 @@ if (keyboard_check_pressed(ord("2"))) {
 ```
 :::
 
-ℹ️ Download the <a href="https://github.com/glebtsereteli/GMRoomLoader/raw/v2/docs/GMRoomLoaderFirstSetup.yyz" download>
-  GMRoomLoader First Setup.yyz
-</a>
-example project to see this in action.
+ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/v2/docs/GMRoomLoaderFirstSetup.yyz) example project to see this in action.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>
