@@ -26,13 +26,12 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 * **Screenshotting**. Capture room [Screenshots](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting) from anywhere, without ever visiting target rooms — with optional part definition, scaling and filtering.
 * **Fluent [State](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state) Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 
-
 # Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
 - Logos and demo rooms designed by Gleb's wifey - [Kate](https://www.instagram.com/k8te_iv) ❣️
 - Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
-- Inspired by [YellowAfterlife](https://twitter.com/YellowAfterlife)'s [GMRoomPack](https://yellowafterlife.itch.io/gmroompack).
-- Demo art by [Kenney](https://twitter.com/KenneyNL).
+- Thank you to [Vadym/YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
+- Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
 
 # GameMaker Awards 2024
 GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
