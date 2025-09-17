@@ -8,9 +8,8 @@ GMRoomLoader is a pure GML [Free and Open Source](https://en.wikipedia.org/wiki/
 
 It provides tools to process the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), use that data to load room contents efficiently during gameplay, and clean up created elements when needed.
 
-### ℹ️ Download the `.yymps` local package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
-
-### ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for full API reference and usage examples.
+* ℹ️ Download the `.yymps` local package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
+* ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for full API reference and usage examples.
 
 # Use Cases
 * **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, chunks, NPCs or randomized props).
