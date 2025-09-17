@@ -84,7 +84,7 @@ if (keyboard_check_pressed(ord("2"))) {
 ```
 :::
 
-ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/blob/v2/docs/GMRoomLoaderFirstSetup.yyz) example project to see this in action.
+ℹ️ Download the [GMRoomLoader First Setup.yyz](https://www.dropbox.com/scl/fi/5j333k2ldszb7ik1ur9lk/GMRoomLoader-First-Setup.yyz?rlkey=a5hn4s8t86w8e47m60wg760ot&st=pzwy3nmv&dl=0) example project to see this in action.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>
