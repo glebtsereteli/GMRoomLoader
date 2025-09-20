@@ -10,7 +10,16 @@ export default defineConfig({
 
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
-  head: [['link', { rel: 'icon', href: 'logo.svg' }]],
+  head: [
+    ['link', { rel: 'icon', href: 'logo.svg' }],
+  
+    // Open Graph
+    ["meta", { property: "og:title", content: "GMRoomLoader Documentation" }],
+    ["meta", { property: "og:description", content: "Documentation for the GMRoomLoader GameMaker library" }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:url", content: "https://glebtsereteli.github.io/GMRoomLoader/" }],
+    ["meta", { property: "og:image", content: "https://glebtsereteli.github.io/GMRoomLoader/socialPreview.png" }],
+  ],
 
   themeConfig: {
     logo: '/logo.svg',
