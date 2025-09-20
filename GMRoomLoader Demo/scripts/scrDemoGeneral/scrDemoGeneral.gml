@@ -45,7 +45,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		array_foreach(blacklist, function(_layer) {
 			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
 		});
-	
+		
 		// Reloader:
 		owner.reloader
 		.AddVariables(self, ["xScale", "yScale", "angle"])
@@ -112,8 +112,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		.Flags(flags.Get())
 		.Scale(xScale, yScale).Angle(angle)
 		.Load(rm, pos.x, pos.y);
-		
-		//DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
+		// DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
 		
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 	};

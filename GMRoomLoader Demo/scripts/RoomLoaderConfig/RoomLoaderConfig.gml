@@ -1,4 +1,5 @@
 /// @feather ignore all
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
 
 #region General
 

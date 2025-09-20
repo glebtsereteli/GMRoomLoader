@@ -84,7 +84,7 @@ if (keyboard_check_pressed(ord("2"))) {
 ```
 :::
 
-ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20First%20Setup.yyz) example project to see this in action.
+> ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20First%20Setup.yyz) example project to see this in action.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>
@@ -96,6 +96,6 @@ if (keyboard_check_pressed(ord("2"))) {
 ## What's Next?
 That's it for the basic setup! To learn more, check out:
 * The [FAQ](/pages/home/faq) page to find answers to common questions.
-* The [Demo](/pages/home/demo) page to see GMRoomLoader in action.
+* The [Demos & Tutorials](/pages/home/demosTutorials) page to learn about available demos and (future) tutorials.
 * The [API](/pages/api/overview) section to explore all available methods.
 * The __Others__ section for [Contact & Support](/pages/others/contactSupport), [Upcoming Features](/pages/others/upcomingFeatures) and [Credits](/pages/others/credits).

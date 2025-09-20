@@ -1,0 +1,2 @@
+
+tick = random(60);

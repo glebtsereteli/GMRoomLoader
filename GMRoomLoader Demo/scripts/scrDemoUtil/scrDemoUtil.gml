@@ -11,7 +11,7 @@ DEMO_PAYLOAD = undefined;
 #macro BENCH_START global.__benchmarkTime = get_timer();
 #macro BENCH_END ((get_timer() - global.__benchmarkTime) / 1000)
 
-function noop() {}
+function Noop() {}
 function SineBetween(_time, _duration, _from, _to) {
 	static _2pi = (pi * 2);
     var _midpoint = mean(_from, _to);

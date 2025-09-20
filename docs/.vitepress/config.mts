@@ -28,6 +28,7 @@ export default defineConfig({
             items: [
               { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
               { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
+              { text: 'Demos & Tutorials', link: '/pages/home/demosTutorials/demosTutorials' },
               { text: 'FAQ', link: '/pages/home/faq' },
             ]
           },
@@ -71,7 +72,7 @@ export default defineConfig({
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      {text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
     ],
     
     outline: [2, 3],
@@ -83,6 +84,7 @@ export default defineConfig({
         items: [
           { text: 'What is GMRoomLoader?', link: '/pages/home/whatIsIt' },
           { text: 'Getting Started', link: '/pages/home/gettingStarted/gettingStarted' },
+          { text: 'Demos & Tutorials', link: '/pages/home/demosTutorials/demosTutorials' },
           { text: 'FAQ', link: '/pages/home/faq' },
         ]
       },
@@ -191,8 +193,10 @@ export default defineConfig({
         'Origin': '/pages/api/roomLoader/origin',
         'Payload': '/pages/api/payload/overview',
         'Flags': '/pages/api/roomLoader/assetTypeFiltering',
+
         'Asset Type': '/pages/api/roomLoader/assetTypeFiltering',
         'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
+        'Layer Name Filtering': '/pages/api/roomLoader/layerNameFiltering',
         
         'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
@@ -209,7 +213,8 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',
-
+        
+        // state
         'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
         'State.YOrigin': '/pages/api/roomLoader/state#yorigin',
         'State.Flags': '/pages/api/roomLoader/state#flags',
@@ -219,6 +224,13 @@ export default defineConfig({
         'State.Flip': '/pages/api/roomLoader/state#flip',
         'State.Angle': '/pages/api/roomLoader/state#angle',
         'State.Tileset': '/pages/api/roomLoader/state#tileset',
+        
+        'Scaling': '/pages/api/roomLoader/state#scale',
+        'Scale': '/pages/api/roomLoader/state#scale',
+        'Rotation': '/pages/api/roomLoader/state#angle',
+        'Mirroring': '/pages/api/roomLoader/state#mirror',
+        'Flipping': '/pages/api/roomLoader/state#flip',
+        'Tileset': '/pages/api/roomLoader/state#tileset',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

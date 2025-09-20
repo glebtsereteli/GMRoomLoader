@@ -32,13 +32,13 @@ Returns the created :Asset.GMSprite:.
 
 :::code-group
 ```js [Regular]
-// Take a screenshot of rmExample with a Middle Center origin, capture only
+// Takes a screenshot of rmExample with a Middle Center origin, captures only
 // Tilemaps and Sprites:
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags); // [!code highlight]
 ```
 ```js [State]
-// Take a screenshot of rmExample with a Middle Center origin, capture only
+// Takes a screenshot of rmExample with a Middle Center origin, captures only
 // Tilemaps and Sprites:
 screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample); // [!code highlight]
 ```
@@ -67,15 +67,13 @@ Returns the created :Asset.GMSprite:.
 
 :::code-group
 ```js [Regular]
-// Create event.
-// Take a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
-// scale it up by a factor of 2, and capture only Instances:
+// Takes a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
+// scales it up by a factor of 2, and captures only Instances:
 screenshot = RoomLoader.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
 ```
 ```js [State]
-// Create event.
-// Take a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
-// scale it up by a factor of 2, and capture only Instances:
+// Takes a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
+// scales it up by a factor of 2, and captures only Instances:
 screenshot = RoomLoader
 .MiddleCenter().Scale(2).Instances()
 .ScreenshotPart(rmExample, 0, 0, 0.5, 0.5); // [!code highlight]

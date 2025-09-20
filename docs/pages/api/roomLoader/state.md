@@ -60,6 +60,7 @@ RoomLoader.XOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### `.YOrigin()`
 
 > `RoomLoader.YOrigin(yOrigin)` ➜ :Struct:.:RoomLoader:
@@ -77,6 +78,7 @@ RoomLoader.YOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### `.Origin()`
 
 > `RoomLoader.Origin(xOrigin, [yOrigin])` ➜ :Struct:.:RoomLoader:
@@ -95,6 +97,7 @@ RoomLoader.Origin(0.5, 0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### Presets
 
 For convenience, GMRoomLoader provides a set of built-in origin presets. These are shorthand methods with common values mimicking the GameMaker's sprite origin presets layout, so the pattern should feel immediately familiar.
@@ -143,6 +146,7 @@ RoomLoader.Flags(_flags).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### Builder
 
 The **Flags Builder** lets you define what elements of the room should be included in the next :Loading: or :Screenshotting: call.
@@ -211,6 +215,7 @@ RoomLoader.XScale(2).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### `.YScale()`
 
 > `RoomLoader.YScale(yScale)` ➜ :Struct:.:RoomLoader:
@@ -228,6 +233,7 @@ RoomLoader.YScale(2).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### `.Scale()`
 
 > `RoomLoader.Scale(xScale, [yScale])` ➜ :Struct:.:RoomLoader:
@@ -246,6 +252,7 @@ RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 
+---
 ### `.Mirror()`
 
 > `RoomLoader.Mirror([mirror?])` ➜ :Struct:.:RoomLoader:
@@ -263,6 +270,7 @@ RoomLoader.Mirror().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight
 ```
 :::
 
+---
 ### `.Flip()`
 
 > `RoomLoader.Flip([flip?])` ➜ :Struct:.:RoomLoader:
@@ -280,6 +288,7 @@ RoomLoader.Flip().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 ```
 :::
 
+---
 ### `.Angle()`
 
 > `RoomLoader.Angle(angle)` ➜ :Struct:.:RoomLoader:

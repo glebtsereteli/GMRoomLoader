@@ -1,8 +1,10 @@
 // @feather ignore all
 
 /// @func RoomLoader()
-/// @desc Main GMRoomLoader interface. Handles room data, loading of rooms, instances and tilemaps, 
-/// taking screenshots, state management and layer filtering.
+/// @desc Main GMRoomLoader interface. Manages room Data, Loading Full Rooms, Instances and Tilemaps, Screenshotting, State management and Layer Name Filtering.
+/// Initialized internally, no additional setup required.
+/// Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
 function RoomLoader() {
 	#region __private
 	

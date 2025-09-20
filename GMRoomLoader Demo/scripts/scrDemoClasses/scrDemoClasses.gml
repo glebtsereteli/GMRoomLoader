@@ -118,21 +118,21 @@ function DemoPar(_name) constructor {
 		index = _index;
 		iname = $"0{index + 1}. {name}";
 	};
-	static Init = noop;
+	static Init = Noop;
 	static Update = function() {
 		OnUpdate();
 	};
-	static Draw = noop;
+	static Draw = Noop;
 	static Cleanup = function() {
 		OnCleanup();
 	};
 
-	static OnUpdate = noop;
-	static OnCleanup = noop;
+	static OnUpdate = Noop;
+	static OnCleanup = Noop;
 }
 function DemoReloader() constructor {
 	pool = [];
-	callbackOnTrigger = noop;
+	callbackOnTrigger = Noop;
 	
 	static Update = function() {
 		static _check = function(_var) {

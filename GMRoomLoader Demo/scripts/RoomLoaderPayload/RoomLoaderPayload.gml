@@ -2,10 +2,9 @@
 
 /// @func RoomLoaderPayload() constructor
 /// @param {Asset.GMRoom} room
-/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created on load,
-/// and handles element fetching and cleanup.
-/// 
-/// NOTE: This constructor is only used by RoomLoader.Load() method and should NOT be explicitly instantiated.
+/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created by RoomLoader.Load(), handles element fetching and cleanup.
+/// Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
 function RoomLoaderPayload(_room) constructor {
 	#region __private
 	
