@@ -1,6 +1,6 @@
 # Asset Type Filtering
 
-When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you may want to filter target room data by asset type, so that only assets of the specified types are loaded/screenshotted.
+When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you might want to filter target room data by asset type, so that only assets of the specified types are loaded or screenshotted.
 
 This section explains how to achieve this using the :ROOMLOADER_FLAG: :Enum:.
 
@@ -8,9 +8,9 @@ This section explains how to achieve this using the :ROOMLOADER_FLAG: :Enum:.
 
 > `ROOMLOADER_FLAG.INSTANCES`
 
-Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll use them:
+Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll use these:
 * Individually to target a single asset type.
-* Combined together using the bitwise OR `|` operator to target multiple asset types.
+* Combined using the bitwise OR `|` operator to target multiple asset types.
 
 ::: tip State Handling
 If you're not a fan of bitwise operations, see the alternative way to filter by asset type via :State.Flags:, and the **State** examples below.
@@ -38,7 +38,7 @@ RoomLoader.Load(rmLevelCastle01, x, y, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [
 var _flags = ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS; // [!code highlight]
 RoomLoader.Load(rmMaze11, x, y, 0, 0, _flags);
 
-// Loads rmLevelRoof's with flags set to All BUT Sequences:
+// Loads rmLevelRoof with flags set to All BUT Sequences:
 var _flags = ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES; // [!code highlight]
 RoomLoader.Load(rmLevelRoof, x, y, 0, 0, _flags);
 ```
@@ -49,7 +49,7 @@ RoomLoader.MiddleCenter().Tilemaps().Load(rmLevelCastle01, x, y); // [!code high
 // Loads rmLevelMaze11's Instances and Sprites: 
 RoomLoader.Instances().Tilemaps().Load(rmMaze11, x, y); // [!code highlight]
 
-// Loads rmLevelRoof's with flags set to All BUT Sequences:
+// Loads rmLevelRoof with flags set to All BUT Sequences:
 var _flags = ROOMLOADER_FLAG.ALL & ~ROOMLOADER_FLAG.SEQUENCES;
 RoomLoader.Flags(_flags).Load(rmLevelRoof, x, y); // [!code highlight]
 ```

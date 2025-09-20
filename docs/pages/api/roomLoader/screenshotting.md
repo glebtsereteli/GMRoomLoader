@@ -28,7 +28,7 @@ Returns the created :Asset.GMSprite:.
 | `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[xScale]` | :Real: | The horizontal sprite scale [Default: :State.XScale: if set, or `1`] |
 | `[yScale]` | :Real: | The vertical sprite scale [Default: :State.YScale: if set, or `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter captured elements by [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Regular]
@@ -63,7 +63,7 @@ Returns the created :Asset.GMSprite:.
 | `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: or `1`] |
 | `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: or `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the captured elements by [Default: :ROOMLOADER_FLAG:.`ALL`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Regular]

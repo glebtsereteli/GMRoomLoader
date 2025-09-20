@@ -1,15 +1,15 @@
 # State
 
-State is an alternative way of preconfiguring :Loading: and :Screenshotting: parameters before calling the methods.
+State is an alternative way to preconfigure :Loading: and :Screenshotting: parameters before calling the methods.
 
-It defines how rooms are positioned, filtered by flags, transformed, and adjusted in other ways during :Loading: and :Screenshotting:. The intended workflow goes like this:
-1. Set state before calling any :Loading: or :Screenshotting: methods.
+It defines how rooms are positioned, filtered by flags, transformed, and otherwise adjusted during :Loading: and :Screenshotting:. The intended workflow is as follows:
+1. Set State before calling any :Loading: or :Screenshotting: methods.
 2. Call any :Loading: or :Screenshotting: method.
-3. State resets automatically afterwards. If you want to apply the same configuration again, you'll need to re-specify it before the next call.
+3. State resets automatically afterward. If you want to apply the same configuration again, you must re-specify it before the next call.
 
 ---
 
-This system uses a [Builder](https://refactoring.guru/design-patterns/builder) pattern with a [Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface), meaning you can chain methods together in a natural, English-like flow to set up optional parameters in any order before :Loading: or :Screenshotting: a room.
+This system uses a [Builder](https://refactoring.guru/design-patterns/builder) pattern with a [Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface), allowing you to chain methods in a natural, English-like flow to set up optional parameters in any order before :Loading: or :Screenshotting: a room.
 
 :::code-group
 ```js [Examples]
@@ -35,7 +35,7 @@ Instead, it provides a more verbose and cleaner alternative, letting you cherry-
 
 ---
 
-The following sections break down the available state categories
+The following sections break down the available State categories
 * [Origin](#origin) - Where the room is anchored.
 * [Flags](#flags) - Which asset types to include.
 * [Transformation](#transformation) - Scaling, mirroring, flipping and rotating options.
@@ -47,7 +47,7 @@ The following sections break down the available state categories
 
 > `RoomLoader.XOrigin(xOrigin)` ➜ :Struct:.:RoomLoader:
 
-Sets the X Origin state to use in the next :Loading: or :Screenshotting: call.
+Sets the X Origin State to use in the next :Loading: or :Screenshotting: call.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -65,7 +65,7 @@ RoomLoader.XOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.YOrigin(yOrigin)` ➜ :Struct:.:RoomLoader:
 
-Sets the Y Origin state to use in the next :Loading: or :Screenshotting: call.
+Sets the Y Origin State to use in the next :Loading: or :Screenshotting: call.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -151,8 +151,8 @@ RoomLoader.Flags(_flags).Load(rmExample, x, y); // [!code highlight]
 
 The **Flags Builder** lets you define what elements of the room should be included in the next :Loading: or :Screenshotting: call.
 
-Each Builder method corresponds to a specific :ROOMLOADER_FLAG: enum member and adds it to the Flags state.
-* The first call to any of these methods before :Loading: or :Screenshotting: resets the state and sets it to that method's flag, so you always start clean from the one you choose.
+Each Builder method corresponds to a specific :ROOMLOADER_FLAG: enum member and adds it to the Flags State.
+* The first call to any of these methods before :Loading: or :Screenshotting: resets the State and sets it to that method's flag, so you always start clean with the one you choose.
 * Subsequent calls add their flags on top, letting you combine multiple asset types.
 
 Similar to [Origin Presets](#presets) above, this approach makes the code read in an English-like flow and provides an alternative interface if you don't like dealing with bitwise operators.
@@ -206,7 +206,7 @@ Horizontally scales the next :Loading: by setting the **XScale** State.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`xScale`|:Real:|The horizontal scale state to use in the next :Loading: or :Screenshotting: call |
+|`xScale`|:Real:|The horizontal scale State to use in the next :Loading: or :Screenshotting: call |
 
 :::code-group
 ```js [Example]
@@ -308,7 +308,7 @@ RoomLoader.Angle(random(360)).MiddleCenter().LoadInstances(rmExample, x, y); // 
 
 > `RoomLoader.Tileset(tileset)` ➜ :Struct:.:RoomLoader:
 
-Uses the given in the next :RoomLoader.LoadTilemap(): call by setting the **Tileset** State.
+Uses the given tileset in the next :RoomLoader.LoadTilemap(): call by setting the **Tileset** State.
 
 |Parameter|Type|Description|
 |---|---|---|

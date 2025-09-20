@@ -2,9 +2,9 @@
 
 This section covers loading room contents - the core functionality of the library.
 
-GMRoomLoader can load [Full Rooms](#load) with all their layers and elements at any position, with optional :Origin:, scaling, rotation, filtering by :Asset Type: and/or :Layer Name:. 
+GMRoomLoader can load [Full Rooms](#load) with all their layers and elements at any position, with optional :Origin:, :Scaling:, :Rotation: and filtering by :Asset Type: and/or :Layer Name:. 
 
-It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separately, also with optional transformation parameters.
+It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separately, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
 
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
@@ -14,7 +14,7 @@ Rooms can only be loaded if their data has been initialized. Make sure to [Initi
 
 > `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle])` ➜ :Struct:.:Payload: or :Undefined:
 
-Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, scaling and rotation.
+Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, :Scaling: and :Rotation:.
 
 Layers are created at the same depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
 
@@ -51,7 +51,7 @@ Full room loading supports the following elements.
 | `y` | :Real: | The y coordinate to load the room at |
 | `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags to filter the loaded data by [Default: :State.Flags: or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the loaded data [Default: :State.Flags: or :ROOMLOADER_DEFAULT_FLAGS:] |
 | `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: or 1] |
 | `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: or 1] |
 | `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: or 0] |
@@ -115,7 +115,7 @@ RoomLoader
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle])` ➜ :Array: of :Id.Instance:
 
-Loads all instances from the given room at the given coordinates, with optional :Origin:, scaling and rotation. Returns an array of loaded instance IDs.
+Loads all instances from the given room at the given coordinates, with optional :Origin:, :Scaling: and :Rotation:. Returns an array of loaded instance IDs.
 
 Unlike :Full Room Loading:, all instances are placed onto the specified layer (or depth) instead of their original room layers.
 
@@ -193,7 +193,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional mirroring, flipping, rotation and tileset.
+Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
 
 Angle is wrapped around 360 degrees and snapped to a 90-degree increment.
 
@@ -245,7 +245,7 @@ collisionTilemap = RoomLoader.LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", 
 ```
 ```js [State]
 // Loads a tilemap from the "TilesFloor" layer in rmCasinoDetails,
-// creates it in the centered in the room on the layer with the same name,
+// creates it centered in the room on the layer with the same name,
 // and randomly mirrors and flips it:
 var _x = room_width / 2;
 var _y = room_height / 2;
