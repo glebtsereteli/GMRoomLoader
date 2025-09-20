@@ -1,13 +1,13 @@
 /// @feather ignore all
 
-function DemoBase() : DemoPar("Enemy Base") constructor {
+function DemoBase() : DemoPar("Base") constructor {
 	// Shared:
 	static Init = function() {
 		host.Init();
 		slots.Init();
 		
 		dbg_section("Info");
-		dbg_text("This demo shows an enemy base composed of multiple Room Slots,\neach filled with randomized GameMaker rooms to create a unique level.");
+		dbg_text("This demo shows an enemy base composed of multiple Room Slots, each\nfilled with randomized GameMaker rooms to create a unique level.");
 		dbg_text("\nFirst we load a Host room, then fill each Slot with a random room.\nThis shows 2 \"layers\" of room loading working together.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to load random rooms for all Slots.");

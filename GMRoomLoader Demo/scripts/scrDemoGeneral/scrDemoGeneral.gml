@@ -17,7 +17,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This demo shows the main \"RoomLoader.Load()\" method for loading full\nrooms with all layers and elements.\n\nUse the controls below to adjust the loading Position, Origin,\nTransformation, Flags, Layer Whitelist and Blacklist.");
+		dbg_text("This is an example of using \"RoomLoader.Load()\" to load Full Rooms with\nall layers and elements.\n\nUse the controls below to adjust Position, Origin, Scaling, Rotation,\nFlags, Whitelist and Blacklist Layer Name Filtering.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to Load the room.");
 		dbg_text("- [PRESS 2] to Cleanup the room.");

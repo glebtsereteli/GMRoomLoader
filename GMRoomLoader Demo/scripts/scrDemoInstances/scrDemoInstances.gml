@@ -7,7 +7,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load\nroom instances with optional scale and rotation.");
+		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load all room\nInstances at a single depth.\n\nUse the controls below to adjust Position, Origin, Scaling and Rotation.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to Load instances.");
 		dbg_text("- [PRESS 2] to Destroy instances.");
@@ -27,7 +27,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	
 		// Reloader:
 		owner.reloader
-		.AddVariables(self, ["xScale", "yScale", "angle", "scaleMultiplicative", "angleAdditive"])
+		.AddVariables(self, ["xScale", "yScale", "angle"])
 		.AddModules([pos, origin])
 		.OnTrigger(function() {
 			Load();
@@ -61,8 +61,6 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	xScale = 1;
 	yScale = 1;
 	angle = 0;
-	scaleMultiplicative = true;
-	angleAdditive = true;
 	
 	rm = rmDemoInstances01;
 	instances = undefined;
@@ -74,7 +72,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		.Scale(xScale, yScale).Angle(angle)
 		.LoadInstances(rm, pos.x, pos.y, 0);
 		
-		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle, scaleMultiplicative, angleAdditive);
+		//instances = RoomLoader.LoadInstances(rm, pos.x, pos.y, 0, origin.x, origin.y, xScale, yScale, angle);
 	};
 	static Destroy = function() {
 		if (instances == undefined) return;

@@ -49,7 +49,7 @@ function Demos() constructor {
 		var _pad = 8;
 		var _x = _pad;
 		var _y = _pad + 19;
-		var _w = 512;
+		var _w = 530;
 		var _h = window_get_height() - _y - _pad;
 		
 		x1 = _x + _w + _pad;

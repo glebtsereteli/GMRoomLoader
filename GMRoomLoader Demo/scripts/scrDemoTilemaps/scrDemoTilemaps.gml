@@ -7,7 +7,7 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This is an example of using \"RoomLoader.LoadTilemap()\" to load\ntilemaps with optional mirroring, flipping, rotation and tileset.");
+		dbg_text("This is an example of using \"RoomLoader.LoadTilemap()\" to load Tilemaps.\n\nUse the controls below to adjust Position, Origin, Mirroring, Flipping,\nRotation and Tileset.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to Load the tilemap.");
 		dbg_text("- [PRESS 2] to Destroy the tilemap.");

@@ -8,7 +8,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This demo shows an example of taking room screenshots with adjustable\nparameters, pulling rooms from the Base demo.");
+		dbg_text("This is an example using \"RoomLoader.TakeScreenshot[Part]()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to take a screenshot of a random room.");
 		dbg_text("- [HOLD SHIFT+1] to take a screenshot of a random room every frame.");
@@ -30,14 +30,16 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			show_message("This is an example of exporting screenshots of all rooms in the project into a ZIP archive. It is not a part of the library. See the \"RoomLoaderExportScreenshots\" script in the demo project for reference.");
 			RoomLoaderExportScreenshots();
 		});
+		
+		origin.InitDbg();
+		flags.InitDbg();
+		
+		dbg_text_separator("Area & Scale", 1);
 		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
 		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
 		dbg_slider(ref_create(self, "w"), 0.1, 1, "Width %", 0.05);
 		dbg_slider(ref_create(self, "h"), 0.1, 1, "Height %", 0.05);
 		dbg_slider(ref_create(self, "scale"), 0.1, 2, "Scale", 0.05);
-		
-		origin.InitDbg();
-		flags.InitDbg();
 		
 		// Reloader:
 		owner.reloader
