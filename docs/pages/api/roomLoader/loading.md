@@ -48,12 +48,12 @@ Full room loading supports the following elements.
 | `room` | :Asset.GMRoom: | The room to load |
 | `x` | :Real: | The x coordinate to load the room at |
 | `y` | :Real: | The y coordinate to load the room at |
-| `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the loaded data [Default: :State.Flags: or :ROOMLOADER_DEFAULT_FLAGS:] |
-| `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: or 1] |
-| `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: or 1] |
-| `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: or 0] |
+| `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the loaded data [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: if set, or 1] |
+| `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: if set, or 1] |
+| `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: if set, or 0] |
 
 :::code-group
 ```js [Basic]
@@ -128,11 +128,11 @@ If you'd like to handle instance creation yourself rather than using GMRoomLoade
 | `x` | :Real: | The x coordinate to load instances at |
 | `y` | :Real: | The y coordinate to load instances at |
 | `layerOrDepth` | :Id.Layer: or :String: or :Real: | The layer ID, layer name, or depth to create instances on |
-| `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[xscale]` | :Real: | The horizontal scale transformation [Default: :State.XScale: or 1] |
-| `[yscale]` | :Real: | The vertical scale transformation [Default: :State.YScale: or 1] |
-| `[angle]` | :Real: | The angle transformation [Default: :State.Angle: or 0] |
+| `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xscale]` | :Real: | The horizontal scale transformation [Default: :State.XScale: if set, or 1] |
+| `[yscale]` | :Real: | The vertical scale transformation [Default: :State.YScale: if set, or 1] |
+| `[angle]` | :Real: | The angle transformation [Default: :State.Angle: if set, or 0] |
 
 :::code-group
 ```js [Regular]
@@ -194,7 +194,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 
 Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
 
-Angle is wrapped around 360 degrees and snapped to a 90-degree increment.
+Angle is wrapped around 360° and snapped to a 90° increment.
 
 ::: info Custom Tilesets
 The optional `[tileset]` parameter can be especially useful for loading:
@@ -210,13 +210,13 @@ When using such tileset groups/pairs, make sure that tiles on all tilesets are p
 | `x` | :Real: | The x coordinate to load the tilemap at |
 | `y` | :Real: | The y coordinate to load the tilemap at |
 | `sourceLayerName` | :String: | The source layer name to load a tilemap from |
-| `[targetLayer]` | :Id.Layer: or :String: | The target layer to create the tilemap on [Default: `sourceLayerName`] |
-| `[xOrigin]` | :Real: | The x origin to load the tilemap at <br> [Default: :State.XOrigin: or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y origin to load the tilemap at <br> [Default: :State.YOrigin: or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[mirror]` | :Bool: | Mirror the loaded tilemap? <br> [Default: (:State.XScale: `< 0`) or :State.Mirror: or `false`] |
-| `[flip]` | :Bool: | Flip the loaded tilemap? <br> [Default: (:State.YScale: `< 0`) or :State.Flip: or `false`] |
-| `[angle]` | :Real: | The angle to load the tilemap at <br> [Default: :State.Angle: or `0`] |
-| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap <br> [Default: :State.Tileset: or source tileset] |
+| `[targetLayer]` | :Id.Layer: or :String: | The target layer to create the tilemap on [Default: if set, `sourceLayerName`] |
+| `[xOrigin]` | :Real: | The x origin to load the tilemap at <br> [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y origin to load the tilemap at <br> [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[mirror]` | :Bool: | Mirror the loaded tilemap? <br> [Default: (:State.XScale: `< 0`) or :State.Mirror: if set, or `false`] |
+| `[flip]` | :Bool: | Flip the loaded tilemap? <br> [Default: (:State.YScale: `< 0`) or :State.Flip: if set, or `false`] |
+| `[angle]` | :Real: | The angle to load the tilemap at <br> [Default: :State.Angle: if set, or `0`] |
+| `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap <br> [Default: :State.Tileset: if set, or source tileset] |
 
 :::code-group
 ```js [Regular]

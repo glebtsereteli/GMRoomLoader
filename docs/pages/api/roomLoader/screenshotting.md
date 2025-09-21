@@ -24,8 +24,8 @@ Returns the created :Asset.GMSprite:.
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
-| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[xScale]` | :Real: | The horizontal sprite scale [Default: :State.XScale: if set, or `1`] |
 | `[yScale]` | :Real: | The vertical sprite scale [Default: :State.YScale: if set, or `1`] |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
@@ -59,11 +59,11 @@ Returns the created :Asset.GMSprite:.
 | `top` | :Real: | The y position on the sprite of the top-left corner of the area to capture (`0–1` percentage) |
 | `width` | :Real: | The width of the area to capture (`0–1` percentage) |
 | `height` | :Real: | The height of the area to capture (`0–1` percentage) |
-| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: or `1`] |
-| `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: or `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :ROOMLOADER_FLAG:.`ALL`] |
+| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: if set,  or `1`] |
+| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
 
 :::code-group
 ```js [Regular]

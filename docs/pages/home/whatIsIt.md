@@ -19,10 +19,10 @@ It does NOT provide tools for procedural generation or level layout creation of 
 ## Features
 - **Pure GML Implementation**. No extensions or external tools required.
 - **Easy Data Handling**. Initialize and remove data in multiple ways: [Single or Multiple](/pages/api/roomLoader/data/#datainit), [Array](/pages/api/roomLoader/data/#datainitarray), [Prefix](/pages/api/roomLoader/data/#datainitprefix), [Tag](/pages/api/roomLoader/data/#datainittag), [All](/pages/api/roomLoader/data/#datainitall). Retrieve core room parameters with [Getters](/pages/api/payload/getters).
-- **Flexible Loading**. Load [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) at any position in the current room, with optional origin, scaling, mirroring, flipping and rotation.
+- **Flexible Loading**. Load :Full Rooms:, [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) at any position in the current room, with optional :Origin:, :Scaling:, :Mirroring:, :Flipping: and :Rotation:.
 - **Filtering Options**. Filter elements by :Asset Type: and/or layers by :Layer Name:.
 - **Full Lifecycle Control**. Manage loaded contents with :Payload: tracking - [Fetch IDs](/pages/api/payload/getters) and [Destroy](/pages/api/payload/cleanup) loaded elements.
-- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever visiting target rooms — with optional part definition, scaling and filtering.
+- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever visiting target rooms - with optional part definition, scaling and filtering.
 - **Fluent :State: Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 
 ## How does it work?

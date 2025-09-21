@@ -18,16 +18,16 @@ If you're not a fan of bitwise operations, see the alternative way to filter by 
 
 | Member  | Description |
 | --- | --- |
-| `NONE` | Doesn't load anything. |
-| `INSTANCES` | Loads Instances from Instance layers. |
-| `TILEMAPS` | Loads Tilemaps from Tile layers. |
-| `SPRITES` | Loads Sprites from Asset layers. |
-| `SEQUENCES` | Loads Sequences from Asset layers. |
-| `TEXTS` | Loads Texts from Asset layers. |
-| `BACKGROUNDS` | Loads Backgrounds from Background layers. |
-| `CORE` | Includes `INSTANCES`, `SPRITES` and `TILEMAPS`. Used by default via the [ROOMLOADER_DEFAULT_FLAGS](/pages/api/config/#roomloader-default-flags) config macro. |
-| `EXTENDED` | Includes `SEQUENCES`, `TEXTS`, and `BACKGROUNDS`. |
-| `ALL` | Includes `CORE` and `EXTENDED`. |
+| `NONE` | Doesn't load anything    |
+| `INSTANCES` | Loads Instances from Instance layers|
+| `TILEMAPS` | Loads Tilemaps from Tile layers|
+| `SPRITES` | Loads Sprites from Asset layers|
+| `SEQUENCES` | Loads Sequences from Asset layers|
+| `TEXTS` | Loads Texts from Asset layers|
+| `BACKGROUNDS` | Loads Backgrounds from Background layers|
+| `CORE` | Includes `INSTANCES`, `SPRITES` and `TILEMAPS`|
+| `EXTENDED` | Includes `SEQUENCES`, `TEXTS`, and `BACKGROUNDS`|
+| `ALL` | Includes all asset types (`CORE` + `EXTENDED`). Used by default via the :ROOMLOADER_DEFAULT_FLAGS: config macro|
 
 :::code-group
 ```js [Regular]

@@ -4,7 +4,7 @@ When loading full rooms with :RoomLoader.Load(): or using :Screenshotting: metho
 
 This section explains how to achieve this using [Whitelisting](#whitelist) and [Blacklisting](#blacklist).
 * Both filters are fully user-managed and do not reset automatically after loading.
-* Both filters have their own sets of methods and can be used independently or together. You can also combine them with :Asset Type: filtering in any configuration.
+* Both filters have their own sets of methods and can be used independently or together. You can also combine them with :Asset Type Filtering: in any configuration.
 * Blacklist takes precedence over Whitelist - layers included in both filters are ignored.
 
 ::: warning WARNING
@@ -78,6 +78,10 @@ RoomLoader.LayerWhitelistRemove("Trees", "Rocks");
 > `RoomLoader.LayerWhitelistSet(layerNames)` ➜ :Struct:.:RoomLoader:
 
 Sets the Whitelist layer filter to the given array of layer names.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `layerNames` | :Array: of :String: | An array of layer names to whitelist |
 
 ::: code-group
 ```js [Example]
@@ -163,6 +167,10 @@ RoomLoader.LayerBlacklistRemove("Trees", "Rocks");
 > `RoomLoader.LayerBlacklistSet(layerNames)` ➜ :Struct:.:RoomLoader:
 
 Sets the Blacklist layer filter to the given array of layer names.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `layerNames` | :Array: of :String: | An array of layer names to blacklist |
 
 ::: code-group
 ```js [Example]

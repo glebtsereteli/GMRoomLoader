@@ -115,7 +115,7 @@ RoomLoader.DataInitAll(_blacklist); // [!code highlight]
 
 ## Removal
 
-Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from [RoomLoader](#roomloader)'s internal pool.
+Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from :RoomLoader:'s internal pool.
 
 ---
 ### `.DataRemove()`

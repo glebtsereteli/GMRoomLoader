@@ -22,7 +22,7 @@ The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.
 ## 📍 How do I update to the latest version of GMRoomLoader? {#updating}
 1. If you've made changes to the `RoomLoaderConfig` script, make a backup of the script before continuing.
 2. Delete the `GMRoomLoader` folder from your project.
-3. Repeat the [Installation](/pages/home/gettingStarted/#installation) process.
+3. Repeat the [Installation](/pages/home/gettingStarted/gettingStarted/#installation) process.
 4. If you've made changes to the `RoomLoaderConfig` script, paste the changes back from your backup.
     ::: warning KEEP IN MIND
     The config setup might change between versions, so make sure to pay attention to the release notes and adjust your pasted configs accordingly.
@@ -55,7 +55,7 @@ The execution order follows GameMaker's default and is structured like this:
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
 
-Totally, of course you can! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
+Of course you can, that's essential! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
 
 ### Full Rooms
 

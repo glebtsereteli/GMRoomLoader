@@ -10,8 +10,8 @@
 
 `RoomLoader` is the main interface of GMRoomLoader. It handles most library operations and is organized into the following modules:
 
-- [Data](/pages/api/roomLoader/data) manages room data flow required for :Loading: and :Screenshotting:.  
-- :Loading: handles loading full rooms and separate room parts (instances and tilemaps).  
+- [Data](/pages/api/roomLoader/data) manages room data required for :Loading: and :Screenshotting:.  
+- :Loading: handles loading :Full Rooms:, separate :Instances: and :Tilemaps:. 
 - :Screenshotting: captures screenshots of rooms.
 - [Origin](/pages/api/roomLoader/origin) explains the Origin system used in all :Loading: and :Screenshotting: methods.
 - [State](/pages/api/roomLoader/state) goes over an alternative way to preconfigure :Loading: and :Screenshotting: parameters using a [Builder](https://refactoring.guru/design-patterns/builder) pattern with a [Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface).

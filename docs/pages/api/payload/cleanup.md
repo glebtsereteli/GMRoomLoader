@@ -13,7 +13,7 @@ Destroys all created layers and their elements. After calling this method, the :
 |`[destroyLayers?]`|:Bool:|Destroy loaded layers? [Default: `true`]|
 
 ::: tip
-Setting `destroy_layers` to `false` can be useful when [ROOMLOADER_MERGE_LAYERS](/pages/api/config/#roomloader-merge-layers) is `true` and you don't want to accidentally destroy layers shared between multiple loaded rooms. This way, only the elements belonging to this :Payload: will be destroyed, while the layers themselves remain untouched.
+Setting `destroyLayers` to `false` can be useful when [ROOMLOADER_MERGE_LAYERS](/pages/api/config/#roomloader-merge-layers) is `true` and you don't want to accidentally destroy layers shared between multiple loaded rooms. This way, only the elements belonging to this :Payload: will be destroyed, while the layers themselves remain untouched.
 :::
 
 :::code-group
