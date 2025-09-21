@@ -1,8 +1,10 @@
 // @feather ignore all
 
 /// @func RoomLoader()
-/// @desc Main GMRoomLoader interface. Handles room data, loading of rooms, instances and tilemaps, 
-/// taking screenshots, state management and layer filtering.
+/// @desc Main GMRoomLoader interface. Manages room Data, Loading Full Rooms, Instances and Tilemaps, Screenshotting, State management and Layer Name Filtering.
+/// Initialized internally, no additional setup required.
+/// Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
 function RoomLoader() {
 	#region __private
 	
@@ -351,12 +353,12 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to load.
 	/// @param {Real} x The x coordinate to load the room at.
 	/// @param {Real} y The y coordinate to load the room at.
-	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded data by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} xScale The horizontal scale to load the room at. [Default: State.XScale or 1]
-	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale or 1]
-	/// @param {Real} angle The angle to load the room at. [Default: State.Angle or 0]
+	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the loaded data. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xScale The horizontal scale to load the room at. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale if set, or 1]
+	/// @param {Real} angle The angle to load the room at. [Default: State.Angle if set, or 0]
 	/// @returns {Struct.RoomLoaderPayload,undefined}
 	/// @desc Loads all layers and elements of the given room at the given coordinates, with optional Origin, Asset Type filtering, scaling and rotation.
 	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
@@ -385,11 +387,11 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
-	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Real} xScale The horizontal scale applied to instance positioning. [Default: State.XScale or 1]
-	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale or 1]
-	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle or 0]
+	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Real} xScale The horizontal scale applied to instance positioning. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale if set, or 1]
+	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle if set, or 0]
 	/// @returns {Array<Id.Instance>}
 	/// @desc Loads all instances from the given room at the given coordinates, with optional Origin, scaling and rotation.
 	/// Unlike .Load(), all instances are placed onto the given layer (or depth) instead of their original room layers.
@@ -466,12 +468,12 @@ function RoomLoader() {
 	/// @param {Real} y The y coordinate to load the tilemap at.
 	/// @param {String} sourceLayerName The source layer name to load a tilemap from.
 	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: sourceLayerName]
-	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror or false]
-	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip or false]
-	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle or 0]
-	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset or source]
+	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror if set, or false]
+	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip if set, or false]
+	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle if set, or 0]
+	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset if set, or source]
 	/// @returns {Id.Tilemap}
 	/// @desc Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional mirroring, flipping, rotation and tileset. Angle is wrapped around 360 degrees and snapped to a 90-degree increment.
 	/// Returns the loaded tilemap ID.
@@ -503,11 +505,11 @@ function RoomLoader() {
 	#region Screenshotting
 	
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale or 1]
-	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
+	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale, if set or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room.
 	/// Takes a screenshot of the given room. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
@@ -527,11 +529,11 @@ function RoomLoader() {
 	/// @param {Real} top The y position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
 	/// @param {Real} width The width of the area to capture, as a 0-1 percentage.
 	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
-	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the captured elements by. [Default: State.Flags or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale or 1]
-	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale or 1]
+	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot part of the given room, with the captured area defined by left, top, width and height parameters, just like draw_sprite_part().
 	/// If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.

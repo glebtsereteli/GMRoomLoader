@@ -12,7 +12,7 @@ Asset type flags are stored in the `ROOMLOADER_FLAG` enum. In most cases, you'll
 * Individually to target a single asset type.
 * Combined using the bitwise OR `|` operator to target multiple asset types.
 
-::: tip State Handling
+::: tip STATE HANDLING
 If you're not a fan of bitwise operations, see the alternative way to filter by asset type via :State.Flags:, and the **State** examples below.
 :::
 

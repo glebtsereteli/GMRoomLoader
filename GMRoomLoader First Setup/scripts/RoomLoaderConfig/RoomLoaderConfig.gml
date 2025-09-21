@@ -1,4 +1,5 @@
 /// @feather ignore all
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
 
 #region General
 
@@ -16,13 +17,6 @@
 // Default flags used in Loading and Screenshotting.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.CORE
 
-// If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
-// If false, no IDs are collected or returned, improving Loading performance.
-// 
-// NOTE: Set this to false if you don't need to manually clean up loaded contents.
-// e.g. When room switching automatically destroys all instances, layers and assets.
-#macro ROOMLOADER_DELIVER_PAYLOAD true
-
 // When Loading rooms using RoomLoader.Load(), whether to merge loaded layers with existing ones (true)
 // or keep them separate (false).
 //
@@ -34,6 +28,13 @@
 // WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed during
 // payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
+
+// If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
+// If false, no IDs are collected or returned, improving Loading performance.
+// 
+// NOTE: Set this to false if you don't need to manually clean up loaded contents.
+// e.g. When room switching automatically destroys all instances, layers and assets.
+#macro ROOMLOADER_DELIVER_PAYLOAD true
 
 #endregion
 #region Instances

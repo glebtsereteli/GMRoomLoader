@@ -2,10 +2,9 @@
 
 /// @func RoomLoaderPayload() constructor
 /// @param {Asset.GMRoom} room
-/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created on load,
-/// and handles element fetching and cleanup.
-/// 
-/// NOTE: This constructor is only used by RoomLoader.Load() method and should NOT be explicitly instantiated.
+/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created by RoomLoader.Load(), handles element fetching and cleanup.
+/// Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
 function RoomLoaderPayload(_room) constructor {
 	#region __private
 	
@@ -80,6 +79,11 @@ function RoomLoaderPayload(_room) constructor {
 	
 	#region Depth
 	
+	/// @param {Id.Layer, String, Real} layerOrDepth The layer or depth to shift depth above.
+	/// @param {Real} offset The depth offset [Default: -100]
+	/// @desc Shifts all layers to a depth above layerOrDepth, with an optional depth offset.
+	/// @returns {Struct.RoomLoaderPayload}
+	/// @context RoomLoaderPayload
 	static DepthAbove = function(_lod, _offset = -100) {
 		static _methodName = "DepthAbove";
 		
@@ -104,6 +108,11 @@ function RoomLoaderPayload(_room) constructor {
 		return self;
 	};
 	
+	/// @param {Id.Layer, String, Real} layerOrDepth The layer or depth to shift depth below.
+	/// @param {Real} offset The depth offset [Default: -100]
+	/// @desc Shifts all layers to a depth below layerOrDepth, with an optional depth offset.
+	/// @returns {Struct.RoomLoaderPayload}
+	/// @context RoomLoaderPayload
 	static DepthBelow = function(_lod, _offset = 100) {
 		static _methodName = "DepthBelow";
 		

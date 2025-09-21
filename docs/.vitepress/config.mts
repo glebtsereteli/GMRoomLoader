@@ -12,8 +12,7 @@ export default defineConfig({
   description: "GMRoomLoader Documentation",
   head: [
     ['link', { rel: 'icon', href: 'logo.svg' }],
-  
-    // Open Graph
+
     ["meta", { property: "og:title", content: "GMRoomLoader Documentation" }],
     ["meta", { property: "og:description", content: "Documentation for the GMRoomLoader GameMaker library. Setup instructions, usage examples and full API coverage." }],
     ["meta", { property: "og:type", content: "website" }],
@@ -21,7 +20,7 @@ export default defineConfig({
     ["meta", { property: "og:image", content: "https://glebtsereteli.github.io/GMRoomLoader/socialPreview.png" }],
 
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:title", content: "GMRoomLoader Docs" }],
+    ["meta", { name: "twitter:title", content: "GMRoomLoader Documentation" }],
     ["meta", { name: "twitter:description", content: "Documentation for the GMRoomLoader GameMaker library. Setup instructions, usage examples and full API coverage." }],
     ["meta", { name: "twitter:image", content: "https://glebtsereteli.github.io/GMRoomLoader/socialPreview.png" }],
   ],
@@ -212,6 +211,7 @@ export default defineConfig({
         'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
         'Layer Name Filtering': '/pages/api/roomLoader/layerNameFiltering',
         
+        'Data': '/pages/api/roomLoader/data',
         'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
         'Full Room Loading': '/pages/api/roomLoader/loading#load',
@@ -229,6 +229,7 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',
         
         // state
+        'State': '/pages/api/roomLoader/state',
         'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
         'State.YOrigin': '/pages/api/roomLoader/state#yorigin',
         'State.Flags': '/pages/api/roomLoader/state#flags',

@@ -1,0 +1,5 @@
+
+- objHost handles room loading Payload cleanup. Relevant events: Create, Step.
+- rmExample is the example room used for loading.
+- Press 1 to load the room.
+- Press 2 to unload the room.

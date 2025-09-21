@@ -66,7 +66,6 @@
     {"$GMFolder":"","%Name":"01. General","folderPath":"folders/02. GMRoomLoader/02. Private/01. General.yy","name":"01. General","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Data","folderPath":"folders/02. GMRoomLoader/02. Private/02. Data.yy","name":"02. Data","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Notes","folderPath":"folders/02. GMRoomLoader/03. Notes.yy","name":"03. Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"03. Misc","folderPath":"folders/03. Misc.yy","name":"03. Misc","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[

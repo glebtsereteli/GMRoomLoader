@@ -1,10 +1,9 @@
 # Loading
 
-This section covers loading room contents - the core functionality of the library.
-
-GMRoomLoader can load [Full Rooms](#load) with all their layers and elements at any position, with optional :Origin:, :Scaling:, :Rotation: and filtering by :Asset Type: and/or :Layer Name:. 
-
-It can also load [Instances](#loadinstances) and [Tilemaps](#loadtilemap) separately, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
+This section covers loading room contents - the core functionality of the library. All loading can be performed at any position and :Origin: in the current room.
+* [.Load()](#load) loads entire rooms with all layers and elements, with optional :Scaling:, :Rotation:, and filtering by :Asset Type: and/or :Layer Name:.
+* [.LoadInstances()](#loadinstances) loads instances from all layers, placed onto a single layer or depth, with optional :Scaling: and :Rotation:.
+* [.LoadTilemap()](#loadtilemap) loads tilemaps from a source layer in the loaded room into a target layer in the current room. It supports optional :Mirroring:, :Flipping:, 90° :Rotation: and custom :Tileset: options.
 
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.

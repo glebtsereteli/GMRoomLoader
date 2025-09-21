@@ -35,10 +35,11 @@
   "name":"GMRoomLoader First Setup",
   "resources":[
     {"id":{"name":"fntHost","path":"fonts/fntHost/fntHost.yy",},},
+    {"id":{"name":"Guide","path":"notes/Guide/Guide.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"objExampleFly","path":"objects/objExampleFly/objExampleFly.yy",},},
     {"id":{"name":"objExampleStar","path":"objects/objExampleStar/objExampleStar.yy",},},
-    {"id":{"name":"objHostControl","path":"objects/objHostControl/objHostControl.yy",},},
+    {"id":{"name":"objHost","path":"objects/objHost/objHost.yy",},},
     {"id":{"name":"rmExample","path":"rooms/rmExample/rmExample.yy",},},
     {"id":{"name":"rmHost","path":"rooms/rmHost/rmHost.yy",},},
     {"id":{"name":"__RoomLoaderDataCore","path":"scripts/__RoomLoaderDataCore/__RoomLoaderDataCore.yy",},},

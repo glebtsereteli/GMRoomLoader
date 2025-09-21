@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"RoomLoaderExportScreenshots",
   "parent":{
-    "name":"03. Misc",
-    "path":"folders/03. Misc.yy",
+    "name":"04. Screenshots",
+    "path":"folders/01. Demo/04. Screenshots.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
