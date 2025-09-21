@@ -23,7 +23,7 @@ Default Y origin used in :Loading: and :Screenshotting:. [Origins](/pages/api/ro
 
 ---
 ### `ROOMLOADER_DEFAULT_FLAGS`
-> Default: `ROOMLOADER_FLAG.CORE`.
+> Default: `ROOMLOADER_FLAG.ALL`.
 
 Default flags used in :Loading: and :Screenshotting:.
 
