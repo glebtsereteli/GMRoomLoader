@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"01. Test","folderPath":"folders/01. Test.yy","name":"01. Test","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Base","folderPath":"folders/01. Test/Base.yy","name":"Base","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. GMRoomLoader","folderPath":"folders/02. GMRoomLoader.yy","name":"02. GMRoomLoader","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. Public","folderPath":"folders/02. GMRoomLoader/01. Public.yy","name":"01. Public","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Private","folderPath":"folders/02. GMRoomLoader/02. Private.yy","name":"02. Private","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -21,7 +22,6 @@
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
@@ -30,9 +30,11 @@
   },
   "name":"GMRoomLoader Merge Tilemaps",
   "resources":[
+    {"id":{"name":"fntTest","path":"fonts/fntTest/fntTest.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"objTest","path":"objects/objTest/objTest.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
+    {"id":{"name":"rmTestBase","path":"rooms/rmTestBase/rmTestBase.yy",},},
     {"id":{"name":"__RoomLoaderDataCore","path":"scripts/__RoomLoaderDataCore/__RoomLoaderDataCore.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerAsset","path":"scripts/__RoomLoaderDataLayerAsset/__RoomLoaderDataLayerAsset.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerBackground","path":"scripts/__RoomLoaderDataLayerBackground/__RoomLoaderDataLayerBackground.yy",},},
@@ -48,11 +50,14 @@
     {"id":{"name":"RoomLoaderFlags","path":"scripts/RoomLoaderFlags/RoomLoaderFlags.yy",},},
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
     {"id":{"name":"RoomLoaderPayload","path":"scripts/RoomLoaderPayload/RoomLoaderPayload.yy",},},
+    {"id":{"name":"sprTsTestBase","path":"sprites/sprTsTestBase/sprTsTestBase.yy",},},
+    {"id":{"name":"tsTestBase","path":"tilesets/tsTestBase/tsTestBase.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
+    {"roomId":{"name":"rmTestBase","path":"rooms/rmTestBase/rmTestBase.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

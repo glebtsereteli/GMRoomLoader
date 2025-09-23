@@ -1,25 +1,23 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmTest",
+  "%Name":"rmTestBase",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
-  "instanceCreationOrder":[
-    {"name":"inst_27439D99","path":"rooms/rmTest/rmTest.yy",},
-  ],
+  "instanceCreationOrder":[],
   "isDnd":false,
   "layers":[
-    {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v2","%Name":"inst_27439D99","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_27439D99","objectId":{"name":"objTest","path":"objects/objTest/objTest.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":-32.0,},
-      ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-    {"$GMRTileLayer":"","%Name":"Tiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":0,"SerialiseWidth":0,"TileSerialiseData":[],},"tilesetId":null,"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
-    {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4286545791,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
+    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":10,"SerialiseWidth":10,"TileCompressedData":[
+          -11,1,4,0,-2147483648,-2147483648,0,-4,-2147483648,-2,1,-2,0,2,-2147483648,0,-4,-2147483648,-2,1,1,-2147483648,
+          -3,0,-4,-2147483648,-2,1,-5,0,-3,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,
+          -2,1,-8,-2147483648,-11,1,
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tsTestBase","path":"tilesets/tsTestBase/tsTestBase.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
-  "name":"rmTest",
+  "name":"rmTestBase",
   "parent":{
-    "name":"01. Test",
-    "path":"folders/01. Test.yy",
+    "name":"Base",
+    "path":"folders/01. Test/Base.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
@@ -32,10 +30,10 @@
   "resourceType":"GMRoom",
   "resourceVersion":"2.0",
   "roomSettings":{
-    "Height":900,
+    "Height":640,
     "inheritRoomSettings":false,
     "persistent":false,
-    "Width":1600,
+    "Width":640,
   },
   "sequenceId":null,
   "views":[
