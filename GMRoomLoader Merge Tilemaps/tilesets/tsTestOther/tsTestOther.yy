@@ -1,25 +1,25 @@
 {
   "$GMTileSet":"v1",
-  "%Name":"tsTestBase",
+  "%Name":"tsTestOther",
   "autoTileSets":[],
   "macroPageTiles":{
     "SerialiseHeight":0,
     "SerialiseWidth":0,
     "TileSerialiseData":[],
   },
-  "name":"tsTestBase",
+  "name":"tsTestOther",
   "out_columns":1,
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"Base",
-    "path":"folders/01. Test/Base.yy",
+    "name":"01. Test",
+    "path":"folders/01. Test.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"sprTsTestBase",
-    "path":"sprites/sprTsTestBase/sprTsTestBase.yy",
+    "name":"sprTsTest",
+    "path":"sprites/sprTsTest/sprTsTest.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{

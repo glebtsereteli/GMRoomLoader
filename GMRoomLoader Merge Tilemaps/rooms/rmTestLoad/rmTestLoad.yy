@@ -1,6 +1,6 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmTestBase",
+  "%Name":"rmTestLoad",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
@@ -9,15 +9,15 @@
   "isDnd":false,
   "layers":[
     {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":10,"SerialiseWidth":10,"TileCompressedData":[
-          -11,1,4,0,-2147483648,-2147483648,0,-4,-2147483648,-2,1,-2,0,2,-2147483648,0,-4,-2147483648,-2,1,1,-2147483648,
-          -3,0,-4,-2147483648,-2,1,-5,0,-3,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,
-          -2,1,-8,-2147483648,-11,1,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"tsTestBase","path":"tilesets/tsTestBase/tsTestBase.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+          -12,0,-2,-2147483648,1,0,-4,-2147483648,-4,0,2,-2147483648,0,-4,-2147483648,-2,0,2,-2147483648,0,-4,
+          1,-2,-2147483648,-4,0,5,1,0,0,1,-2147483648,-3,0,-2,-2147483648,5,1,-2147483648,-2147483648,1,-2147483648,
+          -3,0,-2,-2147483648,-4,1,1,-2147483648,-3,0,-7,-2147483648,-6,0,-4,-2147483648,-12,0,
+        ],"TileDataFormat":1,},"tilesetId":{"name":"tsTest","path":"tilesets/tsTest/tsTest.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
-  "name":"rmTestBase",
+  "name":"rmTestLoad",
   "parent":{
-    "name":"Base",
-    "path":"folders/01. Test/Base.yy",
+    "name":"01. Test",
+    "path":"folders/01. Test.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

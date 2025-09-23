@@ -8,7 +8,7 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Windows** | ✅ Yes | Tested |
 | **macOS** | ✅ Yes | Tested |
 | **GX.games** | ✅ Yes | Tested |
-| **Linux** | 🚧 Likely | Untested |
+| **Linux** | ✅ Yes | Untested |
 | **HTML5** | ❌ No | No, it's cursed. Use WASM with GX.games |
 | **Android** | 🚧 Likely | Untested |
 | **iOS** | 🚧 Likely | Untested |

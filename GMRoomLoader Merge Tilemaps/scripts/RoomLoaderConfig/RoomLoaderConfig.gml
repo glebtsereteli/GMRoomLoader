@@ -29,6 +29,8 @@
 // payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
+#macro ROOMLOADER_MERGE_TILEMAPS true
+
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.
 // 

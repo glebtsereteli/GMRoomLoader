@@ -60,16 +60,41 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	__height = undefined;
 	
 	static __CreateTilemap = function(_layer, _x, _y, _tileset = __tileset) {
-	    var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
+		if (ROOMLOADER_MERGE_TILEMAPS) {
+			var _hostTilemap = layer_tilemap_get_id(_layer);
+			if ((_hostTilemap == -1) or (tilemap_get_tileset(_hostTilemap) != _tileset)) {
+				show_message("can't merge, create new")
+				return __CreateTilemapRaw(_layer, _x, _y, undefined, _tileset);
+			}
+			
+			show_message("merge")
+			
+			var _xOffset = (_x - tilemap_get_x(_hostTilemap)) div tilemap_get_tile_width(_hostTilemap);
+			var _yOffset = (_y - tilemap_get_y(_hostTilemap)) div tilemap_get_tile_height(_hostTilemap);
+			
+			var _data = __tiles;
+			var _i = 0; repeat (__n) {
+				tilemap_set(_hostTilemap, _data[_i + 2], _data[_i] + _xOffset, _data[_i + 1] + _yOffset);
+				_i += __ROOMLOADER_TILE_STEP;
+			}
+			
+			return _hostTilemap;
+		}
+		else {
+		    return __CreateTilemapRaw(_layer, _x, _y, undefined, _tileset);
+		}
+	};
+	static __CreateTilemapRaw = function(_layer, _x, _y, _tilemap = undefined, _tileset = __tileset) {
+		_tilemap ??= layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
 		
-	    var _data = __tiles;
+		var _data = __tiles;
 		var _i = 0; repeat (__n) {
 			tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]);
 			_i += __ROOMLOADER_TILE_STEP;
 		}
-		
-	    return _tilemap;
+		return _tilemap;
 	};
+	
 	static __CreateTilemapTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset = __tileset) {
 		static _tilesetsInfo = ds_map_create();
 		
