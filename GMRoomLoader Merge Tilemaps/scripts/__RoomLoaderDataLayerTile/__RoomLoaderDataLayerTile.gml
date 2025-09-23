@@ -68,9 +68,34 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 			}
 			
 			show_message("merge")
+						
+			var _tileWidth = tilemap_get_tile_width(_hostTilemap);
+			var _tileHeight = tilemap_get_tile_height(_hostTilemap);
 			
-			var _xOffset = (_x - tilemap_get_x(_hostTilemap)) div tilemap_get_tile_width(_hostTilemap);
-			var _yOffset = (_y - tilemap_get_y(_hostTilemap)) div tilemap_get_tile_height(_hostTilemap);
+			var _hostWidth = tilemap_get_width(_hostTilemap);
+			var _hostHeight = tilemap_get_height(_hostTilemap);
+			
+			var _hostX1 = tilemap_get_x(_hostTilemap);
+			var _hostY1 = tilemap_get_y(_hostTilemap);
+			var _hostX2 = _hostX1 + (_hostWidth * _tileWidth);
+			var _hostY2 = _hostY1 + (_hostHeight * _tileHeight);
+			
+			var _newX1 = _hostX1 + ((floor(_x - _hostX1) / _tileWidth) * _tileWidth);
+			var _newY1 = _hostX1 + ((floor(_y - _hostY1) / _tileHeight) * _tileHeight);
+			var _newX2 = _newX1 + (__width * _tileWidth);
+			var _newY2 = _newY1 + (__height * _tileHeight);
+			
+			if (_newX2 > _hostX2) {
+				show_message("made wider");
+				tilemap_set_width(_hostTilemap, (_newX2 - _hostX1) div _tileWidth);
+			}
+			if (_newY2 > _hostY2) {
+				show_message("made taller");
+				tilemap_set_height(_hostTilemap, (_newY2 - _hostY1) div _tileHeight);
+			}
+			
+			var _xOffset = floor((_x - _hostX1) / _tileWidth);
+			var _yOffset = floor((_y - _hostY1) / _tileHeight);
 			
 			var _data = __tiles;
 			var _i = 0; repeat (__n) {
