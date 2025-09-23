@@ -51,6 +51,7 @@
     {"id":{"name":"RoomLoaderMain","path":"scripts/RoomLoaderMain/RoomLoaderMain.yy",},},
     {"id":{"name":"RoomLoaderPayload","path":"scripts/RoomLoaderPayload/RoomLoaderPayload.yy",},},
     {"id":{"name":"scrTest","path":"scripts/scrTest/scrTest.yy",},},
+    {"id":{"name":"sprTestOutline","path":"sprites/sprTestOutline/sprTestOutline.yy",},},
     {"id":{"name":"sprTsTest","path":"sprites/sprTsTest/sprTsTest.yy",},},
     {"id":{"name":"tsTest","path":"tilesets/tsTest/tsTest.yy",},},
     {"id":{"name":"tsTestOther","path":"tilesets/tsTestOther/tsTestOther.yy",},},

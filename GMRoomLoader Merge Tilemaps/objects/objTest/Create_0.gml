@@ -5,8 +5,8 @@ font_enable_effects(fntTest, true, {
 	outlineColour: c_black,
 });
 
-x = TILE_SIZE;
-y = TILE_SIZE;
+x = TILE_SIZE * 8;
+y = TILE_SIZE * 2;
 
 RoomLoader.DataInitAll([room]);
 hostTilemap = RoomLoader.LoadTilemap(rmTestHost, x, y, "Tiles");

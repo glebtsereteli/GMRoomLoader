@@ -81,7 +81,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 			var _hostY2 = _hostY1 + (_hostHeight * _tileHeight);
 			
 			var _newX1 = _hostX1 + ((floor(_x - _hostX1) / _tileWidth) * _tileWidth);
-			var _newY1 = _hostX1 + ((floor(_y - _hostY1) / _tileHeight) * _tileHeight);
+			var _newY1 = _hostY1 + ((floor(_y - _hostY1) / _tileHeight) * _tileHeight);
 			var _newX2 = _newX1 + (__width * _tileWidth);
 			var _newY2 = _newY1 + (__height * _tileHeight);
 			
@@ -89,6 +89,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				show_message("made wider");
 				tilemap_set_width(_hostTilemap, (_newX2 - _hostX1) div _tileWidth);
 			}
+			
 			if (_newY2 > _hostY2) {
 				show_message("made taller");
 				tilemap_set_height(_hostTilemap, (_newY2 - _hostY1) div _tileHeight);
