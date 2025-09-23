@@ -13,6 +13,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: 'logo.svg' }],
 
+    // embeds
     ["meta", { property: "og:title", content: "GMRoomLoader Documentation" }],
     ["meta", { property: "og:description", content: "Documentation for the GMRoomLoader GameMaker library. Setup instructions, usage examples and full API coverage." }],
     ["meta", { property: "og:type", content: "website" }],
@@ -23,6 +24,20 @@ export default defineConfig({
     ["meta", { name: "twitter:title", content: "GMRoomLoader Documentation" }],
     ["meta", { name: "twitter:description", content: "Documentation for the GMRoomLoader GameMaker library. Setup instructions, usage examples and full API coverage." }],
     ["meta", { name: "twitter:image", content: "https://glebtsereteli.github.io/GMRoomLoader/socialPreview.png" }],
+  
+    // analytics
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-5T6N7GGRNE' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-5T6N7GGRNE');`
+    ]
   ],
 
   themeConfig: {
