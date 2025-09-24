@@ -10,3 +10,7 @@ y = TILE_SIZE * 2;
 
 RoomLoader.DataInitAll([room]);
 hostTilemap = RoomLoader.LoadTilemap(rmTestHost, x, y, "Tiles");
+
+screenshot = RoomLoader.MiddleCenter().Screenshot(rmTestLoad);
+
+placing = false;

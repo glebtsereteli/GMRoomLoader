@@ -1,13 +1,15 @@
 
-if (keyboard_check_pressed(ord("1"))) {
-	var _x = x + (TILE_SIZE * -5);
-	var _y = y + (TILE_SIZE * -1);
-	RoomLoader.LoadTilemap(rmTestLoad, _x, _y, "Tiles");
-	hostTilemap = layer_tilemap_get_id("Tiles");
+if (placing) {
+	if (keyboard_check_released(vk_space)) {
+		RoomLoader.MiddleCenter().LoadTilemap(rmTestLoad, mouse_x, mouse_y, "Tiles");
+		placing = false;
+	}
 }
-if (keyboard_check_pressed(ord("2"))) {
-	var _x = x + (TILE_SIZE * 11);
-	var _y = y + (TILE_SIZE * 7);
-	RoomLoader.LoadTilemap(rmTestLoad, _x, _y, "Tiles");
-	hostTilemap = layer_tilemap_get_id("Tiles");
+else {
+	if (mouse_check_button(mb_right)) {
+		tilemap_set_at_pixel(hostTilemap, 0, mouse_x, mouse_y);
+	}
+	if (keyboard_check_pressed(vk_space)) {
+		placing = true;
+	}
 }

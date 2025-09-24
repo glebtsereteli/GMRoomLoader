@@ -1,2 +1,3 @@
 
 #macro TILE_SIZE 64
+#macro TILE_HALFSIZE (TILE_SIZE / 2)
