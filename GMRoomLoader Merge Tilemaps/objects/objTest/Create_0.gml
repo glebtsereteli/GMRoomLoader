@@ -10,5 +10,3 @@ y = TILE_SIZE * 2;
 
 RoomLoader.DataInitAll([room]);
 hostTilemap = RoomLoader.LoadTilemap(rmTestHost, x, y, "Tiles");
-
-loadedTilemap = undefined;

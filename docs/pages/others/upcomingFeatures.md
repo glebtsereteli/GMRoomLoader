@@ -3,6 +3,7 @@
 The following list of ideas includes features that might or might not be introduced in the future. If you have a feature you'd like to suggest, please open a :New Issue: with the `feature` label.
 
 ## Library
+* Merging tilemaps.
 * Prefabs integration (when they finally come out).
 * Deferred loading over time for large rooms with many elements.
     * `RoomLoader.LoadDeferred()`.
@@ -13,6 +14,6 @@ The following list of ideas includes features that might or might not be introdu
 * Debug view with initialized rooms display, screenshots and customizable loading.
 
 ## Demos
-* Procedural generation.
+* Autotiling with rooms instead of tiles.
 * Drag'n'drop map.
 * Endless runner.

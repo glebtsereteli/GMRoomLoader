@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"GMRoomLoader Merge Tilemaps",
-    "path":"GMRoomLoader Merge Tilemaps.yyp",
+    "name":"01. Test",
+    "path":"folders/01. Test.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

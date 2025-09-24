@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"01. Test","folderPath":"folders/01. Test.yy","name":"01. Test","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/01. Test/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. GMRoomLoader","folderPath":"folders/02. GMRoomLoader.yy","name":"02. GMRoomLoader","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. Public","folderPath":"folders/02. GMRoomLoader/01. Public.yy","name":"01. Public","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Private","folderPath":"folders/02. GMRoomLoader/02. Private.yy","name":"02. Private","resourceType":"GMFolder","resourceVersion":"2.0",},

@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"01. Test",
-    "path":"folders/01. Test.yy",
+    "name":"Rooms",
+    "path":"folders/01. Test/Rooms.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
