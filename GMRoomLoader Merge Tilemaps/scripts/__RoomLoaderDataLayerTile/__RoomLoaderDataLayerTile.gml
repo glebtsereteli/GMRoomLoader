@@ -62,80 +62,79 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	static __CreateTilemap = function(_layer, _x, _y, _tileset = __tileset) {
 		if (ROOMLOADER_MERGE_TILEMAPS) {
 			var _hostTilemap = layer_tilemap_get_id(_layer);
-			if ((_hostTilemap == -1) or (tilemap_get_tileset(_hostTilemap) != _tileset)) {
-				show_message("can't merge, create new")
-				return __CreateTilemapRaw(_layer, _x, _y, undefined, _tileset);
+			if ((_hostTilemap == -1) || (tilemap_get_tileset(_hostTilemap) != _tileset)) {
+			    show_message("can't merge, create new");
+			    return __CreateTilemapRaw(_layer, _x, _y, undefined, _tileset);
 			}
 			
 			show_message("merge");
 			
-			var _tileWidth = tilemap_get_tile_width(_hostTilemap);
+			var _tileWidth  = tilemap_get_tile_width(_hostTilemap);
 			var _tileHeight = tilemap_get_tile_height(_hostTilemap);
-			
-			var _hostWidth = tilemap_get_width(_hostTilemap);
+			var _hostWidth  = tilemap_get_width(_hostTilemap);
 			var _hostHeight = tilemap_get_height(_hostTilemap);
 			
-			var _hostX1 = tilemap_get_x(_hostTilemap);
-			var _hostY1 = tilemap_get_y(_hostTilemap);
-			var _hostX2 = _hostX1 + (_hostWidth * _tileWidth);
+			var _hostX1 = floor(tilemap_get_x(_hostTilemap) / _tileWidth) * _tileWidth;
+			var _hostY1 = floor(tilemap_get_y(_hostTilemap) / _tileHeight) * _tileHeight;
+			var _hostX2 = _hostX1 + (_hostWidth  * _tileWidth);
 			var _hostY2 = _hostY1 + (_hostHeight * _tileHeight);
 			
-			var _newX1 = _hostX1 + ((floor(_x - _hostX1) / _tileWidth) * _tileWidth);
-			var _newY1 = _hostY1 + ((floor(_y - _hostY1) / _tileHeight) * _tileHeight);
-			var _newX2 = _newX1 + (__width * _tileWidth);
+			var _newX1 = floor(_x / _tileWidth) * _tileWidth;
+			var _newY1 = floor(_y / _tileHeight) * _tileHeight;
+			var _newX2 = _newX1 + (__width  * _tileWidth);
 			var _newY2 = _newY1 + (__height * _tileHeight);
 			
 			var _newShiftI = 0;
 			var _newShiftJ = 0;
 			
+			// extend left/top
 			if ((_newX1 < _hostX1) or (_newY1 < _hostY1)) {
-				tilemap_x(_hostTilemap, _newX1);
-				tilemap_y(_hostTilemap, _newY1);
+			    tilemap_x(_hostTilemap, _newX1);
+			    tilemap_y(_hostTilemap, _newY1);
 				
-				var _realX1 = min(_hostX1, _newX1);
-				var _realY1 = min(_hostY1, _newY1);
-				var _realX2 = max(_hostX2, _newX2);
-				var _realY2 = max(_hostY2, _newY2);
+			    var _realX1 = min(_hostX1, _newX1);
+			    var _realY1 = min(_hostY1, _newY1);
+			    var _realX2 = max(_hostX2, _newX2);
+			    var _realY2 = max(_hostY2, _newY2);
 				
-				tilemap_set_width(_hostTilemap, (_realX2 - _realX1) div _tileWidth);
-				tilemap_set_height(_hostTilemap, (_realY2 - _realY1) div _tileHeight);
+			    tilemap_set_width(_hostTilemap, (_realX2 - _realX1) div _tileWidth);
+			    tilemap_set_height(_hostTilemap, (_realY2 - _realY1) div _tileHeight);
 				
-				var _iShift = (_hostX1 - _realX1) div _tileWidth;
-				var _jShift = (_hostY1 - _realY1) div _tileHeight;
+			    var _iShift = (_hostX1 - _realX1) div _tileWidth;
+			    var _jShift = (_hostY1 - _realY1) div _tileHeight;
 				
-				var _i = _hostWidth - 1; repeat (_hostWidth) {
-				    var _j = _hostHeight - 1;repeat (_hostHeight) {
-				        var _t = tilemap_get(_hostTilemap, _i, _j);
-				        if (not tile_get_empty(_t)) {
-				            tilemap_set(_hostTilemap, 0, _i, _j);
-				            tilemap_set(_hostTilemap, _t, _i + _iShift, _j + _jShift);
-				        }
-				        _j--;
-				    }
-				    _i--;
-				}
+			    var _i = _hostWidth - 1; repeat (_hostWidth) {
+			        var _j = _hostHeight - 1; repeat (_hostHeight) {
+			            var _t = tilemap_get(_hostTilemap, _i, _j);
+			            if (_t > 0) {
+			                tilemap_set(_hostTilemap, 0, _i, _j);
+			                tilemap_set(_hostTilemap, _t, _i + _iShift, _j + _jShift);
+			            }
+			            _j--;
+			        }
+			        _i--;
+			    }
 				
-				show_message("top left");
+			    show_message("top left");
 			}
+			// extend right/bottom
 			else {
-				if (_newX2 > _hostX2) {
-					show_message("made wider");
-					tilemap_set_width(_hostTilemap, (_newX2 - _hostX1) div _tileWidth);
-				}
-				
-				if (_newY2 > _hostY2) {
-					show_message("made taller");
-					tilemap_set_height(_hostTilemap, (_newY2 - _hostY1) div _tileHeight);
-				}
-				
-				_newShiftI = floor((_x - _hostX1) / _tileWidth);
-				_newShiftJ = floor((_y - _hostY1) / _tileHeight);
+			    if (_newX2 > _hostX2) {
+			        show_message("made wider");
+			        tilemap_set_width(_hostTilemap, (_newX2 - _hostX1) div _tileWidth);
+			    }
+			    if (_newY2 > _hostY2) {
+			        show_message("made taller");
+			        tilemap_set_height(_hostTilemap, (_newY2 - _hostY1) div _tileHeight);
+			    }
+			    _newShiftI = floor((_x - _hostX1) / _tileWidth);
+			    _newShiftJ = floor((_y - _hostY1) / _tileHeight);
 			}
 			
 			var _data = __tiles;
 			var _i = 0; repeat (__n) {
-				tilemap_set(_hostTilemap, _data[_i + 2], _data[_i] + _newShiftI, _data[_i + 1] + _newShiftJ);
-				_i += __ROOMLOADER_TILE_STEP;
+			    tilemap_set(_hostTilemap, _data[_i + 2], _data[_i] + _newShiftI, _data[_i + 1] + _newShiftJ);
+			    _i += __ROOMLOADER_TILE_STEP;
 			}
 			
 			return _hostTilemap;
