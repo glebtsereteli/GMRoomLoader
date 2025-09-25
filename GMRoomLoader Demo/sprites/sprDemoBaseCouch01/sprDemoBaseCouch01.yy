@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"Couches",
-    "path":"folders/01. Demo/05. Base/Sprites/Couches.yy",
+    "path":"folders/01. Demo/06. Base/Sprites/Couches.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

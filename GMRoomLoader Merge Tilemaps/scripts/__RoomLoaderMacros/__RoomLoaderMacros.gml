@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 #region Info
 
@@ -82,7 +82,7 @@ var _data = __tiles; \
 var _i = 0; repeat (__n) { \
 	tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]); \
 	_i += __ROOMLOADER_TILE_STEP; \
-} \
+}
 
 #macro __ROOMLOADER_TILEMAP_CREATE_TRANSFORMED_RAW \
 var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _w, _h); \

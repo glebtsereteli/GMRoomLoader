@@ -1,4 +1,4 @@
-// @feather ignore all
+/// feather ignore all
 
 /// @func RoomLoader()
 /// @desc Main GMRoomLoader interface. Manages room Data, Loading Full Rooms, Instances and Tilemaps, Screenshotting, State management and Layer Name Filtering.

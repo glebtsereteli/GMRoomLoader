@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 #macro DEMOS global.__demos
 
@@ -8,6 +8,7 @@ function Demos() constructor {
 		new DemoGeneral(),
 		new DemoInstances(),
 		new DemoTilemaps(),
+		new DemoMergeTilemaps(),
 		new DemoScreenshots(),
 		new DemoBase(),
 	];

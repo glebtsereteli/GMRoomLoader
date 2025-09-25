@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 /// @func RoomLoaderPayload() constructor
 /// @param {Asset.GMRoom} room

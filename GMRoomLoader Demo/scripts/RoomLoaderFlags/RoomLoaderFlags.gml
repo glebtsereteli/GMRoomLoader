@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 enum ROOMLOADER_FLAG {
 	NONE = 0,

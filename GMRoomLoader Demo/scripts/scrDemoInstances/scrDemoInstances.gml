@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 function DemoInstances() : DemoPar("Instances") constructor {
 	// Shared:
