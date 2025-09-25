@@ -14,3 +14,4 @@ hostTilemap = RoomLoader.LoadTilemap(rmTestHost, x, y, "Tiles");
 screenshot = RoomLoader.MiddleCenter().Screenshot(rmTestLoad);
 
 placing = false;
+angle = 0;

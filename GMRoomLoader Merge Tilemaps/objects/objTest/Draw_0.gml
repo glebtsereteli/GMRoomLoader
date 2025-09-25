@@ -2,7 +2,7 @@
 if (placing) {
 	var _x = round(mouse_x / TILE_SIZE) * TILE_SIZE;
 	var _y = round(mouse_y / TILE_SIZE) * TILE_SIZE;
-	draw_sprite_ext(screenshot, 0, _x, _y, 1, 1, 0, c_white, 0.5);
+	draw_sprite_ext(screenshot, 0, _x, _y, 1, 1, angle, c_white, 0.5);
 }
 else if (position_meeting(mouse_x, mouse_y, hostTilemap)) {
 	var _x = mouse_x div TILE_SIZE * TILE_SIZE;

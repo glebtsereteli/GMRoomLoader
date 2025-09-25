@@ -1,5 +1,10 @@
 
 if (placing) {
+	var _rotationInput = keyboard_check_pressed(ord("E")) - keyboard_check_pressed(ord("Q"));
+	if (_rotationInput != 0) {
+		var _nextAngle = angle - (90 * _rotationInput);
+		angle = Mod2(_nextAngle, 360);
+	}
 	if (keyboard_check_released(vk_space)) {
 		RoomLoader.MiddleCenter().LoadTilemap(rmTestLoad, mouse_x, mouse_y, "Tiles");
 		placing = false;
