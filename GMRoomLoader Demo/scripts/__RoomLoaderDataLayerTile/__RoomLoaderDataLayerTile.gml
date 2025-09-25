@@ -33,19 +33,20 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
-		__AddToPayload(_tilemap);
+		__ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD;
 	};
 	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin, _flags) {
 		if ((abs(_xScale) != 1) or (abs(_yScale) != 1)) return;
 		
 		var _tilemap = __CreateTilemapTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin);
-		if (_tilemap != undefined) {
-			__AddToPayload(_tilemap);
-		}
+		__ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD;
 	};
 	static __OnDraw = function() { 
+		var _x = 0;
+		var _y = 0;
 		var _layer = layer_create(0);
-		var _tilemap = __CreateTilemap(_layer, 0, 0);
+		var _tileset = __tileset;
+		__ROOMLOADER_TILEMAP_CREATE_RAW;
 		draw_tilemap(_tilemap, 0, 0);
 		layer_tilemap_destroy(_tilemap);
 		layer_destroy(_layer);
@@ -60,18 +61,35 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	__height = undefined;
 	
 	static __CreateTilemap = function(_layer, _x, _y, _tileset = __tileset) {
-	    var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height);
+		if (not ROOMLOADER_MERGE_TILEMAPS) {
+			__ROOMLOADER_TILEMAP_CREATE_RAW;
+			return _tilemap;
+		}
 		
-	    var _data = __tiles;
+		var _hostTilemap = layer_tilemap_get_id(_layer);
+		if ((_hostTilemap == -1) || (tilemap_get_tileset(_hostTilemap) != _tileset)) {
+			//show_message("can't merge, create new");
+			__ROOMLOADER_TILEMAP_CREATE_RAW;
+			return _tilemap;
+		}
+		
+		var _w = __width;
+		var _h = __height;
+		
+		//show_message("merge");
+		
+		__ROOMLOADER_TILEMAP_PROCESS_MERGE;
+		
+		var _data = __tiles;
 		var _i = 0; repeat (__n) {
-			tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]);
+			tilemap_set(_hostTilemap, _data[_i + 2], _data[_i] + _newShiftI, _data[_i + 1] + _newShiftJ);
 			_i += __ROOMLOADER_TILE_STEP;
 		}
 		
-	    return _tilemap;
+		return _hostTilemap;
 	};
 	static __CreateTilemapTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset = __tileset) {
-		static _tilesetsInfo = ds_map_create();
+		static _tilesetsInfo = {};
 		
 		_angle = _angle - (floor(_angle / 360) * 360);
 		
@@ -89,10 +107,10 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _flip = (_yScale == -1);
 		var _flipOffset = (_flip ? __height - 1 : 0);
 		
-		var _info = _tilesetsInfo[? _tileset];
+		var _info = _tilesetsInfo[$ _tileset];
 		if (_info == undefined) {
 			_info = tileset_get_info(_tileset);
-			_tilesetsInfo[? _tileset] = _info;
+			_tilesetsInfo[$ _tileset] = _info;
 		}
 		
 		var _wPx = _w * _info.tile_width;
@@ -141,7 +159,21 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 			}
 		}
 		
-		var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _w, _h);
+		if (not ROOMLOADER_MERGE_TILEMAPS) {
+			__ROOMLOADER_TILEMAP_CREATE_TRANSFORMED_RAW;
+			return _tilemap;
+		}
+		
+		var _hostTilemap = layer_tilemap_get_id(_layer);
+		if ((_hostTilemap == -1) or (tilemap_get_tileset(_hostTilemap) != _tileset)) {
+			//show_message("can't merge, create new");
+			__ROOMLOADER_TILEMAP_CREATE_TRANSFORMED_RAW;
+			return _tilemap;
+		}
+		
+		//show_message("merge");
+		
+		__ROOMLOADER_TILEMAP_PROCESS_MERGE;
 		
 	    var _i = 0; repeat (__n) {
 	        var _t = __tiles[_i + 2];
@@ -156,16 +188,11 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		    var _ry = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
 			_t ^= _rotFlag;
 			
-	        tilemap_set(_tilemap, _t, _rx, _ry);
+	        tilemap_set(_hostTilemap, _t, _rx + _newShiftI, _ry + _newShiftJ);
 			
 	        _i += __ROOMLOADER_TILE_STEP;
 	    }
 		
-	    return _tilemap;
-	};
-	static __AddToPayload = function(_tilemap) {
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name);
-		}
+	    return _hostTilemap;
 	};
 }
