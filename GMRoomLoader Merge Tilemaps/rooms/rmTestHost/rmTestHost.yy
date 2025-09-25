@@ -8,10 +8,13 @@
   "instanceCreationOrder":[],
   "isDnd":false,
   "layers":[
-    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":10,"SerialiseWidth":10,"TileCompressedData":[
-          -11,1,4,0,-2147483648,-2147483648,0,-4,-2147483648,-2,1,-2,0,2,-2147483648,0,-4,-2147483648,-2,1,1,-2147483648,
-          -3,0,-4,-2147483648,-2,1,-5,0,-3,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,-2,1,-8,-2147483648,
-          -2,1,-8,-2147483648,-11,1,
+    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":20,"SerialiseWidth":20,"TileCompressedData":[
+          -21,1,4,0,-2147483648,-2147483648,0,-4,-2147483648,1,0,-9,-2147483648,-2,1,-2,0,2,-2147483648,0,-4,-2147483648,
+          1,0,-9,-2147483648,-2,1,1,-2147483648,-3,0,-4,-2147483648,1,0,-9,-2147483648,-2,1,-5,0,-3,-2147483648,
+          3,0,-2147483648,0,-7,-2147483648,-2,1,-8,-2147483648,1,0,-9,-2147483648,-2,1,-8,-2147483648,1,0,-9,-2147483648,
+          -2,1,-7,-2147483648,-2,0,-9,-2147483648,-2,1,-7,-2147483648,-4,0,-7,-2147483648,-2,1,-14,0,-4,-2147483648,
+          -2,1,-18,-2147483648,-2,1,-18,-2147483648,-2,1,-18,-2147483648,-2,1,-18,-2147483648,-2,1,-18,-2147483648,
+          -2,1,-18,-2147483648,-2,1,-18,-2147483648,-2,1,-18,-2147483648,-2,1,-18,-2147483648,-21,1,
         ],"TileDataFormat":1,},"tilesetId":{"name":"tsTest","path":"tilesets/tsTest/tsTest.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
   "name":"rmTestHost",

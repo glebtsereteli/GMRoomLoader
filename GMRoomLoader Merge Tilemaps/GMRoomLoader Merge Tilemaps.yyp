@@ -30,7 +30,6 @@
   },
   "name":"GMRoomLoader Merge Tilemaps",
   "resources":[
-    {"id":{"name":"fntTest","path":"fonts/fntTest/fntTest.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"objTest","path":"objects/objTest/objTest.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},

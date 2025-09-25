@@ -8,7 +8,7 @@
 #macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
 
 #endregion
-#region Elements, Loading
+#region General
 
 #macro __ROOMLOADER_NOTRANSFORM ((_xScale == 1) and (_yScale == 1) and (_angle == 0))
 
@@ -21,6 +21,9 @@ var _layer = __RoomLoaderGetLayer(__layerData); \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
 }
+
+#endregion
+#region Instances
 
 #macro __ROOMLOADER_INST_CC \
 if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
@@ -61,6 +64,99 @@ __ROOMLOADER_INST_CC \
 _preCreate.image_xscale = _xScalePrev; \
 _preCreate.image_yscale = _yScalePrev; \
 _preCreate.image_angle -= _angle;
+
+#endregion
+#region Tilemaps
+
+#macro __ROOMLOADER_TILE_STEP 3 // x, y, data
+
+#macro __ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD \
+if ((ROOMLOADER_DELIVER_PAYLOAD) and (_tilemap != undefined)) { \
+	RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name); \
+}
+
+#macro __ROOMLOADER_TILEMAP_CREATE_RAW \
+var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height); \
+\
+var _data = __tiles; \
+var _i = 0; repeat (__n) { \
+	tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]); \
+	_i += __ROOMLOADER_TILE_STEP; \
+} \
+
+#macro __ROOMLOADER_TILEMAP_CREATE_TRANSFORMED_RAW \
+var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _w, _h); \
+\
+var _i = 0; repeat (__n) { \
+    var _t = __tiles[_i + 2]; \
+	\
+	var _xStart = (__tiles[_i] * _xScale) + _mirrorOffset; \
+    _t ^= _mirror * tile_mirror; \
+	\
+	var _yStart = (__tiles[_i + 1] * _yScale) + _flipOffset; \
+    _t ^= _flip * tile_flip; \
+	\
+	var _rx = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset; \
+    var _ry = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset; \
+	_t ^= _rotFlag; \
+	\
+    tilemap_set(_tilemap, _t, _rx, _ry); \
+	\
+    _i += __ROOMLOADER_TILE_STEP; \
+}
+
+#macro __ROOMLOADER_TILEMAP_PROCESS_MERGE \
+var _tileWidth = tilemap_get_tile_width(_hostTilemap); \
+var _tileHeight = tilemap_get_tile_height(_hostTilemap); \
+var _hostWidth = tilemap_get_width(_hostTilemap); \
+var _hostHeight = tilemap_get_height(_hostTilemap); \
+\
+var _hostX1 = round(tilemap_get_x(_hostTilemap) / _tileWidth) * _tileWidth; \
+var _hostY1 = round(tilemap_get_y(_hostTilemap) / _tileHeight) * _tileHeight; \
+var _hostX2 = _hostX1 + (_hostWidth * _tileWidth); \
+var _hostY2 = _hostY1 + (_hostHeight * _tileHeight); \
+\
+var _newX1 = round(_x / _tileWidth) * _tileWidth; \
+var _newY1 = round(_y / _tileHeight) * _tileHeight; \
+var _newX2 = _newX1 + (_w * _tileWidth); \
+var _newY2 = _newY1 + (_h * _tileHeight); \
+\
+if ((_newX1 >= _hostX1) and (_newY1 >= _hostY1) and (_newX2 <= _hostX2) and (_newY2 <= _hostY2)) { \
+	var _newShiftI = (_newX1 - _hostX1) div _tileWidth; \
+	var _newShiftJ = (_newY1 - _hostY1) div _tileHeight; \
+} \
+else { \
+	var _realX1 = min(_hostX1, _newX1); \
+	var _realY1 = min(_hostY1, _newY1); \
+	var _realX2 = max(_hostX2, _newX2); \
+	var _realY2 = max(_hostY2, _newY2); \
+	\
+	tilemap_x(_hostTilemap, _realX1); \
+	tilemap_y(_hostTilemap, _realY1); \
+	tilemap_set_width(_hostTilemap, (_realX2 - _realX1) div _tileWidth); \
+	tilemap_set_height(_hostTilemap, (_realY2 - _realY1) div _tileHeight); \
+	\	
+	var _iShift = (_hostX1 - _realX1) div _tileWidth; \
+	var _jShift = (_hostY1 - _realY1) div _tileHeight; \
+	\	
+	var _i = _hostWidth - 1; repeat (_hostWidth) { \
+		var _j = _hostHeight - 1; repeat (_hostHeight) { \
+			var _t = tilemap_get(_hostTilemap, _i, _j); \
+			if (_t > 0) { \
+				tilemap_set(_hostTilemap, 0, _i, _j); \
+				tilemap_set(_hostTilemap, _t, _i + _iShift, _j + _jShift); \
+			} \
+			_j--; \
+		} \
+		_i--; \
+	} \
+	\
+	var _newShiftI = (_newX1 - _realX1) div _tileWidth; \
+	var _newShiftJ = (_newY1 - _realY1) div _tileHeight; \
+}
+
+#endregion
+#region Other Elements
 
 #macro __ROOMLOADER_SPRITE_LOAD \
 var _sprite = layer_sprite_create(_layer, _x, _y, __sprite); \
@@ -112,13 +208,6 @@ layer_background_alpha(_bg, blendAlpha); \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__backgrounds.__Add(_bg, name); \
 }
-
-#macro __ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD \
-if ((ROOMLOADER_DELIVER_PAYLOAD) and (_tilemap != undefined)) { \
-	RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name); \
-}
-
-#macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion
 #region Benchmarking
