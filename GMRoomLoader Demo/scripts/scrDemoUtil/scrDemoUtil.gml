@@ -24,6 +24,13 @@ function LerpAngle(_a, _b, _amount) {
 function Mod2(_dividend, _divisor) {
     return (_dividend - floor(_dividend / _divisor) * _divisor);
 }
+function FloorTo(_value, _mult) {
+	return (floor(_value / _mult) * _mult);
+}
+function RoundTo(_value, _mult) {
+	return (round(_value / _mult) * _mult);
+}
+
 function DrawSpriteOrigin(_sprite, _subimg, _x, _y, _xOrigin, _yOrigin, _xScale = 1, _yScale = 1, _angle = 0, _color = c_white, _alpha = 1) {
 	_xOrigin -= sprite_get_xoffset(_sprite);
 	_yOrigin -= sprite_get_yoffset(_sprite);

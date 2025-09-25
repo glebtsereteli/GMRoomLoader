@@ -8,7 +8,7 @@
   "instanceCreationOrder":[],
   "isDnd":false,
   "layers":[
-    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":4,"SerialiseWidth":4,"TileCompressedData":[-5,2,-2,-2147483648,-2,2,-2,-2147483648,-5,2,],"TileDataFormat":1,},"tilesetId":{"name":"tsDemoMergeTilemaps","path":"tilesets/tsDemoMergeTilemaps/tsDemoMergeTilemaps.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+    {"$GMRTileLayer":"","%Name":"Tiles","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":2,"SerialiseWidth":4,"TileCompressedData":[-5,2,-2,-2147483648,1,2,],"TileDataFormat":1,},"tilesetId":{"name":"tsDemoMergeTilemaps","path":"tilesets/tsDemoMergeTilemaps/tsDemoMergeTilemaps.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
   ],
   "name":"rmDemoMergeTilemapsNew",
   "parent":{
@@ -26,7 +26,7 @@
   "resourceType":"GMRoom",
   "resourceVersion":"2.0",
   "roomSettings":{
-    "Height":128,
+    "Height":64,
     "inheritRoomSettings":false,
     "persistent":false,
     "Width":128,

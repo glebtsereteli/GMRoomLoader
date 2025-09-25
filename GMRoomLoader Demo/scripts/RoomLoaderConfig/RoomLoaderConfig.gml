@@ -34,7 +34,7 @@
 // • Merging is only possible if both tilemaps use the same tileset.
 // • When loading full rooms via RoomLoader.Load(), ROOMLOADER_MERGE_LAYERS must be set to true for this to work.
 // • The existing tilemap will be repositioned and resized to fit the loaded tilemap.
-#macro ROOMLOADER_MERGE_TILEMAPS false
+#macro ROOMLOADER_MERGE_TILEMAPS true
 
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.
