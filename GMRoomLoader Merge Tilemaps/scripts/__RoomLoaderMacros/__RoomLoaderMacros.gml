@@ -113,6 +113,11 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__backgrounds.__Add(_bg, name); \
 }
 
+#macro __ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD \
+if ((ROOMLOADER_DELIVER_PAYLOAD) and (_tilemap != undefined)) { \
+	RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name); \
+}
+
 #macro __ROOMLOADER_TILE_STEP 3 // x, y, data
 
 #endregion

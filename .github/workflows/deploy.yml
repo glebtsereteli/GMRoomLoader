@@ -2,6 +2,8 @@ name: Deploy VitePress site to GitHub Pages
 
 on:
   push:
+    branches:
+      - main # only trigger on main branch
     paths:
       - 'docs/**' # only when files in docs/ change
 
@@ -44,5 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

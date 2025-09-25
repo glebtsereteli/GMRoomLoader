@@ -9,11 +9,13 @@ The following list of ideas includes features that might or might not be introdu
     * `RoomLoader.LoadDeferred()`.
     * `RoomLoader.LoadInstancesDeferred()`.
     * `RoomLoader.LoadTilemapDeferred()`.
+* `.Part(left, top, right, bottom)` state for :Loading: and :Screenshotting:.
+* Pixel-based :Origin: alternative.
 * Particle systems support (GM bug?).
 * In-layer Filters/Effects support (GM bug?).
 * Debug view with initialized rooms display, screenshots and customizable loading.
 
 ## Demos
-* Autotiling with rooms instead of tiles.
+* Autotiling rooms.
 * Drag'n'drop map.
 * Endless runner.

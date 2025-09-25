@@ -33,15 +33,13 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	};
 	static __OnLoad = function(_layer, _xOffset, _yOffset) {
 		var _tilemap = __CreateTilemap(_layer, _xOffset, _yOffset);
-		__AddToPayload(_tilemap);
+		__ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD;
 	};
 	static __OnLoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin, _flags) {
 		if ((abs(_xScale) != 1) or (abs(_yScale) != 1)) return;
 		
 		var _tilemap = __CreateTilemapTransformed(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin);
-		if (_tilemap != undefined) {
-			__AddToPayload(_tilemap);
-		}
+		__ROOMLOADER_TILEMAP_ADD_TO_PAYLOAD;
 	};
 	static __OnDraw = function() { 
 		var _layer = layer_create(0);
@@ -139,9 +137,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		}
 		return _tilemap;
 	};
-	
 	static __CreateTilemapTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset = __tileset) {
-		static _tilesetsInfo = ds_map_create();
+		static _tilesetsInfo = {};
 		
 		_angle = _angle - (floor(_angle / 360) * 360);
 		
@@ -159,10 +156,10 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _flip = (_yScale == -1);
 		var _flipOffset = (_flip ? __height - 1 : 0);
 		
-		var _info = _tilesetsInfo[? _tileset];
+		var _info = _tilesetsInfo[$ _tileset];
 		if (_info == undefined) {
 			_info = tileset_get_info(_tileset);
-			_tilesetsInfo[? _tileset] = _info;
+			_tilesetsInfo[$ _tileset] = _info;
 		}
 		
 		var _wPx = _w * _info.tile_width;
@@ -232,10 +229,5 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	    }
 		
 	    return _tilemap;
-	};
-	static __AddToPayload = function(_tilemap) {
-		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			RoomLoader.__payload.__tilemaps.__Add(_tilemap, __tilemapData.name);
-		}
 	};
 }
