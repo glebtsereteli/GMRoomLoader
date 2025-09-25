@@ -247,6 +247,8 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',
+        'ROOMLOADER_MERGE_LAYERS': '/pages/api/config#roomloader-merge-layers',
+        'ROOMLOADER_MERGE_TILEMAPS': '/pages/api/config#roomloader-merge-tilemaps',
         
         // state
         'State': '/pages/api/roomLoader/state',

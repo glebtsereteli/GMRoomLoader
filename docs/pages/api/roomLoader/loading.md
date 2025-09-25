@@ -42,6 +42,9 @@ Full room loading supports the following elements.
 * Tilemaps only load if `[xScale/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
 * Backgrounds only load if `[angle]` is `0`. Otherwise they are ignored.
 :::
+::: details ℹ️ MERGING TILEMAPS {closed}
+If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both true `true`, this method will attempt to merge loaded and existing tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: page for details.
+:::
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -196,12 +199,15 @@ Loads a tilemap from the given room and source layer at the given coordinates. T
 
 Angle is wrapped around 360° and snapped to a 90° increment.
 
-::: info Custom Tilesets
+::: info CUSTOM TILESETS
 The optional `[tileset]` parameter can be especially useful for loading:
 * The same layout of tiles with different skins based on the set of levels/world/biome/dimension.
 * A visual + collision pair of tilemaps. Great for tiles with perspective or detailing that doesn't match with collision 1:1.
 
 When using such tileset groups/pairs, make sure that tiles on all tilesets are perfectly aligned, or you'll get a mess of misplaced tiles.
+:::
+::: info MERGING
+If :ROOMLOADER_MERGE_TILEMAPS: is `true`, GMRoomLoader will attempt to merge loaded and existing tilemaps. See the config macro page for details.
 :::
 
 | Parameter | Type | Description |

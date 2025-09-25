@@ -31,7 +31,7 @@ Default flags used for :Asset Type Filtering: in :Loading: and :Screenshotting:.
 ### `ROOMLOADER_MERGE_LAYERS`
 > Default: `false`.
 
-When loading rooms using :RoomLoader.Load():, whether to merge loaded layers with existing ones (`true`) or keep them separate (`false`).  
+When loading rooms using :RoomLoader.Load():, whether to merge loaded layers with existing layers (`true`) or keep them separate (`false`).  
 
 - If `true`: merge into existing layers with the same name. If no matching layer exists, a new one will be created.  
 - If `false`: a new layer is always created, even if a layer with the same name already exists.  
@@ -39,6 +39,16 @@ When loading rooms using :RoomLoader.Load():, whether to merge loaded layers wit
 ::: warning
 Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
 :::
+
+---
+### `ROOMLOADER_MERGE_TILEMAPS`
+> Default: `false`.
+
+Whether loaded tilemaps should be merged into existing tilemaps (`true`) or not (`false`).
+* This triggers if an existing tilemap is present on a layer with the same name as the loaded layer.
+* The existing tilemap will be repositioned and resized to fit the loaded tilemap.
+* When loading full rooms via :RoomLoader.Load():, `ROOMLOADER_MERGE_LAYERS` must be set to true for this to work.
+* Merging is only possible if both tilemaps use the same tileset.
 
 ---
 ### `ROOMLOADER_DELIVER_PAYLOAD`
