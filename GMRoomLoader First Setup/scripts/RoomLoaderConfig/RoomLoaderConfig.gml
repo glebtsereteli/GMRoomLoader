@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 /// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
 
 #region General
@@ -17,7 +17,7 @@
 // Default flags used in Loading and Screenshotting.
 #macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.ALL
 
-// When Loading rooms using RoomLoader.Load(), whether to merge loaded layers with existing ones (true)
+// When Loading full rooms using RoomLoader.Load(), whether to merge loaded layers with existing layers (true)
 // or keep them separate (false).
 //
 // If true: when Loading a layer, its contents will be merged into an existing layer with the same name.
@@ -28,6 +28,13 @@
 // WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed during
 // payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
+
+// Whether loaded tilemaps should be merged into existing tilemaps (true) or not (false).
+// • This triggers if an existing tilemap is present on a layer with the same name as the loaded layer.
+// • Merging is only possible if both tilemaps use the same tileset.
+// • When loading full rooms via RoomLoader.Load(), ROOMLOADER_MERGE_LAYERS must be set to true for this to work.
+// • The existing tilemap will be repositioned and resized to fit the loaded tilemap.
+#macro ROOMLOADER_MERGE_TILEMAPS false
 
 // If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.

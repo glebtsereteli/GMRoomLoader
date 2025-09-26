@@ -1,4 +1,4 @@
-/// @feather ignore all
+/// feather ignore all
 
 function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	// shared
