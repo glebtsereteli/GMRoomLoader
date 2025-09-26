@@ -22,8 +22,13 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	static OnUpdate = function() {
 		if (is_mouse_over_debug_overlay()) return;
 		
+		var _rotationInput = keyboard_check_pressed(ord("E")) - keyboard_check_pressed(ord("Q"));
+		if (_rotationInput != 0) {
+			var _nextAngle = angle - (90 * _rotationInput);
+			angle = Mod2(_nextAngle, 360);
+		}
 		if (mouse_check_button_pressed(mb_left)) {
-			RoomLoader.MiddleCenter().LoadTilemap(newRoom, mouse_x, mouse_y, "Tiles");
+			RoomLoader.MiddleCenter().Angle(angle).LoadTilemap(newRoom, mouse_x, mouse_y, "Tiles");
 		}
 	};
 	static OnCleanup = function() {
