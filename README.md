@@ -3,7 +3,6 @@
 <h1 align="center">GMRoomLoader v2.1.0</h1>
 <p align="center">
   Runtime room loading for GameMaker 2024.13+
-  <br/><br/> 
   <img src="https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white" />&nbsp;
   <img src="https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white" />&nbsp;
   <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" />&nbsp;
