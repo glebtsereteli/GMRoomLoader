@@ -45,3 +45,11 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 # GameMaker Awards 2024
 GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
 ![RoomLoader-Tool](https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d)
+
+# Games Using GMRoomLoader
+* [Juju Adams](https://www.jujuadams.com/)' undisclosed [commercial games](https://www.reddit.com/r/gamemaker/comments/1nn84b9/comment/nfjy5v4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
+* [IndieGameClinic](https://indiegameclinic.com/)'s [DirtWorld](https://jbw-games.itch.io/dirtworld).
+* [GrogDev](https://grog.dev/)'s and [PixelatedPope](https://www.pixelatedpope.com/)'s [Desukupet](https://www.twitch.tv/grogdev).
+* BrewerTheGreater's [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater).
+* [Geoff Moore](https://geoffmoore.co.uk/)'s [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170).
+* And more to come :)
