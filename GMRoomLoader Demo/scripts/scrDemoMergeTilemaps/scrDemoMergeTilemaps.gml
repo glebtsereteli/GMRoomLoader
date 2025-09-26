@@ -4,13 +4,9 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	// Shared:
 	static Init = function() {
 		if (ROOMLOADER_MERGE_TILEMAPS) {
-			RoomLoader.DataInitTag("MergeTilemaps")
-			
-			var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
-			var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
-			layer = layer_create(0, "Tiles");
-			tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
+			RoomLoader.DataInitTag("MergeTilemaps");
 			newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
+			Prepare();
 		}
 		
 		// Interface:
@@ -22,6 +18,14 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");
 		dbg_text("- [HOLD LMB] to draw tiles in Edit mode.");
 		dbg_text("- [HOLD RMB] to erase tiles in Edit mode.");
+		dbg_text("- [Press R] to reset.");
+		
+		if (ROOMLOADER_MERGE_TILEMAPS) {
+			dbg_section("Controls");
+			dbg_button("Reset", function() {
+				Reset();
+			});
+		}
 	};
 	static Draw = function() {
 		if (not ROOMLOADER_MERGE_TILEMAPS) {
@@ -62,6 +66,10 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		if (is_mouse_over_debug_overlay()) return;
 		
 		loading ^= keyboard_check_pressed(vk_space);
+		if (keyboard_check_pressed(ord("R"))) {
+			Reset();
+		}
+		
 		if (loading) {
 			var _rotationInput = keyboard_check_pressed(ord("E")) - keyboard_check_pressed(ord("Q"));
 			if (_rotationInput != 0) {
@@ -84,8 +92,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	static OnCleanup = function() {
 		if (not ROOMLOADER_MERGE_TILEMAPS) return;
 		
-		layer_destroy(layer);
-		layer_tilemap_destroy(tilemap);
+		Clear();
 		sprite_delete(newScreenshot);
 		RoomLoader.DataRemoveTag("MergeTilemaps");
 	};
@@ -100,4 +107,19 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	tileSize = 32;
 	angle = 0;
 	loading = true;
+	
+	static Prepare = function() {
+		var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
+		var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
+		layer = layer_create(0, "Tiles");
+		tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
+	};
+	static Clear = function() {
+		layer_destroy(layer);
+		layer_tilemap_destroy(tilemap);
+	};
+	static Reset = function() {
+		Clear();
+		Prepare();
+	};
 }
