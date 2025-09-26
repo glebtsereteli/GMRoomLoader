@@ -18,7 +18,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			dbg_text("- [HOLD LMB] to draw tiles in Edit mode.");
 			dbg_text("- [HOLD RMB] to erase tiles in Edit mode.");
 			dbg_text("- [Press R] to reset.");
-		
+			
 			dbg_section("Controls");
 			dbg_button("Reset", function() {
 				Reset();

@@ -6,4 +6,3 @@
 - Thank you to [YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
 - Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
 - Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
-

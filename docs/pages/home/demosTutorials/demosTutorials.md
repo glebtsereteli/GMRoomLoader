@@ -50,18 +50,25 @@ This is an example of using :RoomLoader.LoadTilemap(): to load Tilemaps, with co
 ![tilemaps](demo03tilemaps.png)
 
 ---
+### Merge Tilemaps
+
+This is an example of merging existing and loaded tilemaps when loading :Full Rooms: or :Tilemaps:. The existing tilemap is repositioned and resized to fit loaded tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: config macro for detailed info.
+
+![mergeTilemaps](demo04mergeTilemaps.png)
+
+---
 ### Screenshots
 
 This is an example of using :Screenshotting: methods to take room screenshots, with controls for :Origin:, :Flags:, Left/Top position, Width/Height of the sprite area to capture (in 0-1 percentages), and the final sprite :Scale:.
 
-![screenshots](demo04screenshots.png)
+![screenshots](demo05screenshots.png)
 
 ---
 ### Base
 
 This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows 2 "layers" of room loading working together.
 
-![base](demo05base.png)
+![base](demo06base.png)
 
 ## Tutorials
 
