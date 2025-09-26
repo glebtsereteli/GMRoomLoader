@@ -7,24 +7,25 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			RoomLoader.DataInitTag("MergeTilemaps");
 			newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
 			Prepare();
-		}
+			
+			// Interface:
+			dbg_section("Info");
+			dbg_text("This is an example of merging existing and loaded tilemaps. The existing\ntilemap is repositioned and resized to fit loaded tilemaps.\n\nUse Load mode to load new tilemaps and Edit mode to edit the tilemap.");
+			dbg_text_separator("Shortcuts", 1);
+			dbg_text("- [PRESS SPACE] to switch between Load and Edit modes.");
+			dbg_text("- [PRESS LMB] to Load a tilemap in Load mode.");
+			dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");
+			dbg_text("- [HOLD LMB] to draw tiles in Edit mode.");
+			dbg_text("- [HOLD RMB] to erase tiles in Edit mode.");
+			dbg_text("- [Press R] to reset.");
 		
-		// Interface:
-		dbg_section("Info");
-		dbg_text("This is an example of merging existing and loaded tilemaps. The existing\ntilemap is repositioned and resized to fit loaded tilemaps.\n\nUse Load mode to load new tilemaps and Edit mode to edit the tilemap.");
-		dbg_text_separator("Shortcuts", 1);
-		dbg_text("- [PRESS SPACE] to switch between Load and Edit modes.");
-		dbg_text("- [PRESS LMB] to Load a tilemap in Load mode.");
-		dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");
-		dbg_text("- [HOLD LMB] to draw tiles in Edit mode.");
-		dbg_text("- [HOLD RMB] to erase tiles in Edit mode.");
-		dbg_text("- [Press R] to reset.");
-		
-		if (ROOMLOADER_MERGE_TILEMAPS) {
 			dbg_section("Controls");
 			dbg_button("Reset", function() {
 				Reset();
 			});
+		}
+		else {
+			dbg_text("Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
 		}
 	};
 	static Draw = function() {
