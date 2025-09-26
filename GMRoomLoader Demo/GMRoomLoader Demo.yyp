@@ -79,6 +79,7 @@
   },
   "name":"GMRoomLoader Demo",
   "resources":[
+    {"id":{"name":"fntDemo","path":"fonts/fntDemo/fntDemo.yy",},},
     {"id":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},},
     {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"objDemoBaseSlotCorner","path":"objects/objDemoBaseSlotCorner/objDemoBaseSlotCorner.yy",},},

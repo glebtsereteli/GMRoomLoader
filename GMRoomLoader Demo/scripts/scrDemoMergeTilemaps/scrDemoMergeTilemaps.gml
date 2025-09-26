@@ -3,16 +3,38 @@
 function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	// Shared:
 	static Init = function() {
-		RoomLoader.DataInitTag("MergeTilemaps")
+		if (ROOMLOADER_MERGE_TILEMAPS) {
+			RoomLoader.DataInitTag("MergeTilemaps")
+			
+			var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
+			var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
+			layer = layer_create(0, "Tiles");
+			tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
+			newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
+		}
 		
-		var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
-		var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
-		layer = layer_create(0, "Tiles");
-		tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
-		
-		newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
+		// Interface:
+		dbg_section("Info");
+		dbg_text("This is an example of merging existing and loaded tilemaps. The existing\ntilemap is repositioned and resized to fit loaded tilemaps.\n\nUse Load mode to load new tilemaps and Edit mode to edit the tilemap.");
+		dbg_text_separator("Shortcuts", 1);
+		dbg_text("- [PRESS SPACE] to switch between Load and Edit modes.");
+		dbg_text("- [PRESS LMB] to Load a tilemap in Load mode.");
+		dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");
+		dbg_text("- [HOLD LMB] to draw tiles in Edit mode.");
+		dbg_text("- [HOLD RMB] to erase tiles in Edit mode.");
 	};
 	static Draw = function() {
+		if (not ROOMLOADER_MERGE_TILEMAPS) {
+			draw_set_font(fntDemo);
+			draw_set_halign(fa_center);
+			draw_set_valign(fa_middle);
+			draw_text(DEMOS.xCenter, DEMOS.yCenter, "Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_top);
+			draw_set_font(-1);
+			return;
+		}
+		
 		var _x = tilemap_get_x(tilemap);
 		var _y = tilemap_get_y(tilemap);
 		var _w = tilemap_get_width(tilemap) * tilemap_get_tile_width(tilemap);
@@ -20,7 +42,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		draw_sprite_stretched(sprDemoFrame, 0, _x, _y, _w, _h);
 		
 		if (not is_mouse_over_debug_overlay()) {
-			if (placing) {
+			if (loading) {
 				var _x = RoundTo(mouse_x, tileSize);
 				var _y = RoundTo(mouse_y, tileSize);
 				draw_sprite_ext(newScreenshot, 0, _x, _y, 1, 1, angle, c_white, 0.5);
@@ -36,10 +58,11 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	};
 	
 	static OnUpdate = function() {
+		if (not ROOMLOADER_MERGE_TILEMAPS) return;
 		if (is_mouse_over_debug_overlay()) return;
 		
-		placing ^= keyboard_check_pressed(vk_space);
-		if (placing) {
+		loading ^= keyboard_check_pressed(vk_space);
+		if (loading) {
 			var _rotationInput = keyboard_check_pressed(ord("E")) - keyboard_check_pressed(ord("Q"));
 			if (_rotationInput != 0) {
 				var _nextAngle = angle - (90 * _rotationInput);
@@ -59,6 +82,8 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		}
 	};
 	static OnCleanup = function() {
+		if (not ROOMLOADER_MERGE_TILEMAPS) return;
+		
 		layer_destroy(layer);
 		layer_tilemap_destroy(tilemap);
 		sprite_delete(newScreenshot);
@@ -74,5 +99,5 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	tilemap = undefined;
 	tileSize = 32;
 	angle = 0;
-	placing = true;
+	loading = true;
 }
