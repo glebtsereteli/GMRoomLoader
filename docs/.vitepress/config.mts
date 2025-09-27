@@ -100,7 +100,7 @@ export default defineConfig({
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.0.0' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.1.0' },
     ],
     
     outline: [2, 3],
