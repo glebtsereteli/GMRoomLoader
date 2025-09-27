@@ -1,3 +1,4 @@
+/// @desc Load & Unload
 
 if (keyboard_check_pressed(ord("1"))) {
     Cleanup(); // Clean up the loaded room.

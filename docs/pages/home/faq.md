@@ -8,8 +8,8 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Windows** | ✅ Yes | Tested |
 | **macOS** | ✅ Yes | Tested |
 | **GX.games** | ✅ Yes | Tested |
-| **Linux** | ✅ Yes | Untested |
-| **HTML5** | ❌ No | No, it's cursed. Use WASM with GX.games |
+| **Linux** | ✅ Yes | Tested |
+| **HTML5** | ❌ No | Use WASM with GX.games |
 | **Android** | 🚧 Likely | Untested |
 | **iOS** | 🚧 Likely | Untested |
 | **PS5** | 🚧 Likely | Untested |
@@ -111,9 +111,9 @@ layer_tilemap_destroy(tilemap); // [!code highlight]
 :::
 
 ## 📍 How can I collide with loaded tilemaps?
-When you load a room with a tile layer, a new tilemap is created. To collide with this newly loaded tilemap, you need to grab its ID and store it in some variable.
 
-If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
+### Separate
+When you load a room with a tile layer, a new tilemap is created. To collide with this newly loaded tilemap, you need to grab its ID and store it in some variable. If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
 
 ::: code-group
 ```js [Example]
@@ -134,3 +134,6 @@ array_delete(global.collisionTilemaps, _index, 1);
 payload.Cleanup();
 ```
 :::
+
+### Merged
+Alternatively, you can make use of :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: to merge loaded tilemaps into existing ones. That way you don't need to juggle multiple tilemap IDs and can keep using a single tilemap for collision.

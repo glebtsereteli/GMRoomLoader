@@ -47,7 +47,7 @@ Enabling this may result in layers shared between elements loaded from multiple 
 Whether loaded tilemaps should be merged into existing tilemaps (`true`) or not (`false`).
 * This triggers if an existing tilemap is present on a layer with the same name as the loaded layer.
 * The existing tilemap will be repositioned and resized to fit the loaded tilemap.
-* When loading full rooms via :RoomLoader.Load():, `ROOMLOADER_MERGE_LAYERS` must be set to true for this to work.
+* When loading full rooms via :RoomLoader.Load():, `ROOMLOADER_MERGE_LAYERS` must be set to `true` for this to work.
 * Merging is only possible if both tilemaps use the same tileset.
 
 ---

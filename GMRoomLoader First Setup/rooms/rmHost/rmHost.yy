@@ -17,8 +17,8 @@
   ],
   "name":"rmHost",
   "parent":{
-    "name":"01. Host",
-    "path":"folders/01. Host.yy",
+    "name":"01. Host Room & Handler",
+    "path":"folders/01. Host Room & Handler.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

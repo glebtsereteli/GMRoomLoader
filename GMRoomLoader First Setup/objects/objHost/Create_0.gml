@@ -1,3 +1,4 @@
+/// @desc Setup
 
 rm = rmExample; // The room we'll load.
 payload = undefined; // The variable to hold our Payload after loading.
