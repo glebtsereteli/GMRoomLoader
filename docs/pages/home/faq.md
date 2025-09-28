@@ -113,7 +113,9 @@ layer_tilemap_destroy(tilemap); // [!code highlight]
 ## 📍 How can I collide with loaded tilemaps?
 
 ### Separate
-When you load a room with a tile layer, a new tilemap is created. To collide with this newly loaded tilemap, you need to grab its ID and store it in some variable. If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
+When you load a room with a tile layer (with :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: set to `false`), a new tilemap is created.
+
+To collide with this newly loaded tilemap, you need to grab its ID and store it in some variable. If you're currently colliding with, say, a variable holding a tilemap ID, you'll need to change that to a dynamic setup using an array.
 
 ::: code-group
 ```js [Example]
@@ -136,4 +138,4 @@ payload.Cleanup();
 :::
 
 ### Merged
-Alternatively, you can make use of :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: to merge loaded tilemaps into existing ones. That way you don't need to juggle multiple tilemap IDs and can keep using a single tilemap for collision.
+Alternatively, you can make use of :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: to merge loaded tilemaps into existing ones. That way you don't need to juggle multiple tilemap IDs and can keep using a single tilemap for collision, auto-tiling or any other needs where having a single tilemap is preferable.
