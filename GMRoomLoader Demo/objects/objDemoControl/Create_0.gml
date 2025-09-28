@@ -6,3 +6,5 @@ DebugInstances();
 
 DEMOS = new Demos();
 DEMOS.Init();
+
+RoomLoader.Debug();

@@ -16,6 +16,7 @@ function RoomLoader() {
 	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
 	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
 	static __payload = undefined;
+	static __debugView = new __RoomLoaderDebugView(__allRooms);
 	
 	static __LayerFailedFilters = function(_name) {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
@@ -970,6 +971,14 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LayerBlacklistGet = function() {
 		return __layerBlacklist.__Get();
+	};
+	
+	#endregion
+
+	#region Debug View
+	
+	static Debug = function() {
+		__debugView.__Refresh();
 	};
 	
 	#endregion

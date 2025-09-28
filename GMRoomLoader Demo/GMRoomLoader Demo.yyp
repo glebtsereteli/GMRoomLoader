@@ -134,6 +134,7 @@
     {"id":{"name":"__RoomLoaderDataLayerParent","path":"scripts/__RoomLoaderDataLayerParent/__RoomLoaderDataLayerParent.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerTile","path":"scripts/__RoomLoaderDataLayerTile/__RoomLoaderDataLayerTile.yy",},},
     {"id":{"name":"__RoomLoaderDataRoom","path":"scripts/__RoomLoaderDataRoom/__RoomLoaderDataRoom.yy",},},
+    {"id":{"name":"__RoomLoaderDebug","path":"scripts/__RoomLoaderDebug/__RoomLoaderDebug.yy",},},
     {"id":{"name":"__RoomLoaderFilter","path":"scripts/__RoomLoaderFilter/__RoomLoaderFilter.yy",},},
     {"id":{"name":"__RoomLoaderInit","path":"scripts/__RoomLoaderInit/__RoomLoaderInit.yy",},},
     {"id":{"name":"__RoomLoaderMacros","path":"scripts/__RoomLoaderMacros/__RoomLoaderMacros.yy",},},
