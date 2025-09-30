@@ -9,6 +9,20 @@ function __RoomLoaderDebugView(_rooms) constructor {
 	static __xScale = 1;
 	static __yScale = 1;
 	static __angle = 0;
+	static __key = vk_space;
+	static __timeSource = time_source_create(time_source_global, 1, time_source_units_frames, method(self, function() {
+		if (not keyboard_check_pressed(__key)) return;
+		
+		if (not RoomLoader.DataIsInitialized(__room)) {
+			RoomLoader.DataInit(__room);
+		}
+		
+		RoomLoader
+		.Origin(__xOrigin, __yOrigin)
+		.Scale(__xScale, __yScale)
+		.Angle(__angle)
+		.Load(__room, mouse_x, mouse_y);
+	}), [], -1);
 	
 	static __Refresh = function() {
 		__roomNames ??= array_map(__roomIds, function(_room) {
@@ -17,6 +31,10 @@ function __RoomLoaderDebugView(_rooms) constructor {
 		
 		if (dbg_view_exists(__view)) {
 			dbg_view_delete(__view);
+		}
+		
+		if (time_source_get_state(__timeSource) != time_source_state_active) {
+			time_source_start(__timeSource);
 		}
 		
 		__view = dbg_view(__ROOMLOADER_NAME, true);
