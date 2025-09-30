@@ -53,3 +53,8 @@ GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](http
 * BrewerTheGreater's [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater).
 * [Geoff Moore](https://geoffmoore.co.uk/)'s [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170).
 * And more to come :)
+
+# Tutorials
+
+* [GMRoomLoader: Simultaneous Room Loading in GameMaker](https://www.youtube.com/watch?v=mZegvOC47dw) by [DragoniteSpam](https://www.youtube.com/c/DragoniteSpam/about). Michael introduces GMRoomLoader basics and goes over a few interesting edge cases.
+* More coming soon!
