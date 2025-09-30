@@ -18,6 +18,15 @@ function RoomLoader() {
 	static __payload = undefined;
 	static __debugView = new __RoomLoaderDebugView();
 	
+	static __xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
+	static __yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
+	static __flags = ROOMLOADER_DEFAULT_FLAGS;
+	static __flagsDefault = true;
+	static __xScale = 1;
+	static __yScale = 1;
+	static __angle = 0;
+	static __tileset = undefined;
+	
 	static __LayerFailedFilters = function(_name) {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
 		return (not _match);
@@ -40,17 +49,6 @@ function RoomLoader() {
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
 		return _screenshot;
 	};
-	
-	// state
-	static __xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
-	static __yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
-	static __flags = ROOMLOADER_DEFAULT_FLAGS;
-	static __flagsDefault = true;
-	static __xScale = 1;
-	static __yScale = 1;
-	static __angle = 0;
-	static __tileset = undefined;
-	
 	static __ResetState = function() {
 		__xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
 		__yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
@@ -67,6 +65,10 @@ function RoomLoader() {
 			__flagsDefault = false;
 		}
 	};
+	
+	if (ROOMLOADER_DEBUG_VIEW_ENABLED) {
+		__debugView.__Init();
+	}
 	
 	#endregion
 	

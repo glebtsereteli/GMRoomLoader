@@ -1,8 +1,10 @@
+/// feather ignore all
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView
 
 function __RoomLoaderDebugView() constructor {
 	static __enabled = true;
 	
-	static __rooms = RoomLoader.__allRooms;
+	static __rooms = ROOMLOADER_DEBUG_VIEW_ROOMS ?? RoomLoader.__allRooms;
 	static __roomNames = undefined;
 	static __room = array_first(__rooms);
 	
@@ -36,7 +38,7 @@ function __RoomLoaderDebugView() constructor {
 			array_push(__payloads, _payload);
 		}, true);
 		
-		dbg_view(ROOMLOADER_DEBUG_VIEW_NAME, ROOMLOADER_DEBUG_VIEW_START_VISIBLE);
+		dbg_view($"{__ROOMLOADER_NAME} Debug Loader", ROOMLOADER_DEBUG_VIEW_START_VISIBLE);
 		
 		dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
 		
