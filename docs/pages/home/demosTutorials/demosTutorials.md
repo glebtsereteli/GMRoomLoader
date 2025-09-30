@@ -33,42 +33,66 @@ GMRoomLoader comes with a demo project showcasing all core features of the libra
 
 This is an example of using :RoomLoader.Load(): to load Full Rooms with all layers and elements, with controls for position, :Origin:, :Scaling:, :Rotation:, :Flags:, Whitelist and Blacklist :Layer Name Filtering:.
 
-![general](demo01general.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo01general.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ### Instances
 
 This is an example of using :RoomLoader.LoadInstances(): to load all room Instances at a single depth, with controls for position, :Origin:, :Scaling: and :Rotation:.
 
-![instances](demo02instances.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo02instances.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ### Tilemaps
 
 This is an example of using :RoomLoader.LoadTilemap(): to load Tilemaps, with controls for position, :Origin:, :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
 
-![tilemaps](demo03tilemaps.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo03tilemaps.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ### Merge Tilemaps
 
 This is an example of merging existing and loaded tilemaps when loading :Full Rooms: or :Tilemaps:. The existing tilemap is repositioned and resized to fit loaded tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: config macro for detailed info.
 
-![mergeTilemaps](demo04mergeTilemaps.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo04mergeTilemaps.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ### Screenshots
 
 This is an example of using :Screenshotting: methods to take room screenshots, with controls for :Origin:, :Flags:, Left/Top position, Width/Height of the sprite area to capture (in 0-1 percentages), and the final sprite :Scale:.
 
-![screenshots](demo05screenshots.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo05screenshots.mp4" type="video/mp4">
+  </video>
+</div>
 
 ---
 ### Base
 
 This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows 2 "layers" of room loading working together.
 
-![base](demo06base.png)
+<div style="width: 100%; max-width: 100%;">
+  <video style="width: 100%; height: auto;" controls>
+    <source src="/pages/home/demosTutorials/demo06base.mp4" type="video/mp4">
+  </video>
+</div>
 
 ## Tutorials
 

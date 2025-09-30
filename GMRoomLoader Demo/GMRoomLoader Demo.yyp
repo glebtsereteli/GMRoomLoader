@@ -154,6 +154,7 @@
     {"id":{"name":"scrDemoScreenshots","path":"scripts/scrDemoScreenshots/scrDemoScreenshots.yy",},},
     {"id":{"name":"scrDemoTilemaps","path":"scripts/scrDemoTilemaps/scrDemoTilemaps.yy",},},
     {"id":{"name":"scrDemoUtil","path":"scripts/scrDemoUtil/scrDemoUtil.yy",},},
+    {"id":{"name":"Script28","path":"scripts/Script28/Script28.yy",},},
     {"id":{"name":"seqDemoGeneral01","path":"sequences/seqDemoGeneral01/seqDemoGeneral01.yy",},},
     {"id":{"name":"sprDemoBaseCarpet01","path":"sprites/sprDemoBaseCarpet01/sprDemoBaseCarpet01.yy",},},
     {"id":{"name":"sprDemoBaseCarpet02","path":"sprites/sprDemoBaseCarpet02/sprDemoBaseCarpet02.yy",},},

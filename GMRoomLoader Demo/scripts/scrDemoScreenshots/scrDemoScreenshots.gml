@@ -52,16 +52,18 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	static Draw = function() {
 		var _x1 = DEMOS.xCenter;
 		var _y1 = DEMOS.yCenter;
-		if (sprite != undefined) {
-			draw_sprite(sprite, 0, _x1, _y1);
-		}
 		
 		var _w = RoomLoader.DataGetWidth(rm) * w * scale;
 		var _h = RoomLoader.DataGetHeight(rm) * h * scale;
+		if (sprite != undefined) {
+			_w = sprite_get_width(sprite);
+			_h = sprite_get_height(sprite);
+			draw_sprite(sprite, 0, _x1, _y1);
+		}
 		var _x = floor(_x1 - (_w * origin.x));
 		var _y = floor(_y1 - (_h * origin.y));
 		
-		draw_sprite_stretched(sprDemoFrame, 0, _x, _y, _w * (1 - left), _h * (1 - top));
+		draw_sprite_stretched(sprDemoFrame, 0, _x, _y, _w, _h);
 		draw_sprite(sprDemoCross, 0, _x1, _y1);
 	};
 	
