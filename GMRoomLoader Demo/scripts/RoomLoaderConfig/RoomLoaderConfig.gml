@@ -57,3 +57,14 @@
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
 #endregion
+#region Debug View
+
+#macro ROOMLOADER_DEBUG_VIEW_ENABLED true
+
+#macro ROOMLOADER_DEBUG_VIEW_NAME "GMRoomLoader Debug Loader"
+
+#macro ROOMLOADER_DEBUG_VIEW_START_VISIBLE false
+
+#macro ROOMLOADER_DEBUG_VIEW_LOAD_KEY vk_f12
+
+#endregion

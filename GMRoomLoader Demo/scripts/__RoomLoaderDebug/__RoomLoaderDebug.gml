@@ -1,10 +1,11 @@
 
-function __RoomLoaderDebugView(_rooms) constructor {
-	static __view = undefined;
-	static __rooms = _rooms;
-	static __roomNames = undefined;
+function __RoomLoaderDebugView() constructor {
+	static __enabled = true;
 	
+	static __rooms = RoomLoader.__allRooms;
+	static __roomNames = undefined;
 	static __room = array_first(__rooms);
+	
 	static __xOrigin = 0;
 	static __yOrigin = 0;
 	static __xScale = 1;
@@ -12,59 +13,49 @@ function __RoomLoaderDebugView(_rooms) constructor {
 	static __angle = 0;
 	static __payloads = [];
 	
-	static __keys = [];
-	static __keyNames = [];
-	static __key = vk_space;
-	
-	static __timeSource = time_source_create(time_source_global, 1, time_source_units_frames, method(self, function() {
-		if (not keyboard_check_pressed(__key)) return;
-		
-		if (not RoomLoader.DataIsInitialized(__room)) {
-			RoomLoader.DataInit(__room);
-		}
-		
-		var _payload = RoomLoader
-		.Origin(__xOrigin, __yOrigin)
-		.Scale(__xScale, __yScale)
-		.Angle(__angle)
-		.Load(__room, mouse_x, mouse_y);
-		
-		array_push(__payloads, _payload);
-	}), [], -1);
-	
-	static __Refresh = function() {
+	static __Init = function(_enabled) {
 		__roomNames ??= array_map(__rooms, function(_room) {
 			return room_get_name(_room);
 		});
 		
-		if (dbg_view_exists(__view)) {
-			dbg_view_delete(__view);
-		}
+		call_later(1, time_source_units_frames, function() {
+			if (not __enabled) return;
+			if (not keyboard_check_pressed(ROOMLOADER_DEBUG_VIEW_LOAD_KEY)) return;
+			if (not is_debug_overlay_open()) return;
+			
+			if (not RoomLoader.DataIsInitialized(__room)) {
+				RoomLoader.DataInit(__room);
+			}
+			
+			var _payload = RoomLoader
+			.Origin(__xOrigin, __yOrigin)
+			.Scale(__xScale, __yScale)
+			.Angle(__angle)
+			.Load(__room, mouse_x, mouse_y);
+			
+			array_push(__payloads, _payload);
+		}, true);
 		
-		if (time_source_get_state(__timeSource) != time_source_state_active) {
-			time_source_start(__timeSource);
-		}
+		dbg_view(ROOMLOADER_DEBUG_VIEW_NAME, ROOMLOADER_DEBUG_VIEW_START_VISIBLE);
 		
-		__view = dbg_view(__ROOMLOADER_NAME, true);
+		dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
+		
+		dbg_text_separator("");
 		
 		dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
 		dbg_same_line();
-		dbg_button("-", function() {
-			__CycleRoom(-1);
-		}, 20, 20);
+		dbg_button("-", function() { __CycleRoom(-1); }, 20, 20);
 		dbg_same_line();
-		dbg_button("+", function() {
-			__CycleRoom(1);
-		}, 20, 20);
+		dbg_button("+", function() { __CycleRoom(1); }, 20, 20);
 		
-		dbg_text_separator("Origin", 1);
-		dbg_slider(ref_create(self, "__xOrigin"), 0, 1, "X", 0.1);
-		dbg_slider(ref_create(self, "__yOrigin"), 0, 1, "Y", 0.1);
-		dbg_text_separator("Transform", 1);
-		dbg_slider(ref_create(self, "__xScale"), -2, 2, "X", 0.1);
-		dbg_slider(ref_create(self, "__yScale"), -2, 2, "Y", 0.1);
+		dbg_slider(ref_create(self, "__xOrigin"), 0, 1, "X Origin", 0.05);
+		dbg_slider(ref_create(self, "__yOrigin"), 0, 1, "Y Origin", 0.05);
+		dbg_slider(ref_create(self, "__xScale"), -2, 2, "X Scale", 0.05);
+		dbg_slider(ref_create(self, "__yScale"), -2, 2, "Y Scale", 0.05);
 		dbg_slider_int(ref_create(self, "__angle"), 0, 360, "Angle", 5);
-	
+		
+		dbg_text_separator("");
+		
 		dbg_button("Cleanup", function() {
 			array_foreach(__payloads, function(_payload) {
 				_payload.Cleanup();
