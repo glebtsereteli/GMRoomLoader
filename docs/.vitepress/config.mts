@@ -246,8 +246,10 @@ export default defineConfig({
         'Full Rooms': '/pages/api/roomLoader/loading#load',
         'Instances': '/pages/api/roomLoader/loading#loadinstances',
         'Tilemaps': '/pages/api/roomLoader/loading#loadtilemap',
-
+        
         'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering#roomloader-flag',
+
+        'ROOMLOADER_ENABLE_DEBUG': '/pages/api/config#roomloader-enable-debug',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
         'ROOMLOADER_DEFAULT_YORIGIN': '/pages/api/config#roomloader-default-yorigin',
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',

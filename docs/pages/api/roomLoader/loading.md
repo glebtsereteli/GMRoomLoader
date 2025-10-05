@@ -8,6 +8,13 @@ This section covers loading room contents - the core functionality of the librar
 ::: danger IMPORTANT
 Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
 :::
+::: details ℹ️ TRANSFORMED LOADING PERFORMANCE {closed}
+All transformed loading making use of :Scaling: or :Rotation: is generally slower than loading without them. This is because each element must be recalculated and repositioned according to the transformation parameters, which increases processing time.
+
+Though loading is still plenty fast, keep this in mind when loading large rooms transformed.
+
+Try loading the same room with and without transformations to see the difference in your particular use case. If :ROOMLOADER_ENABLE_DEBUG: is set to `true` (it is by default), performance benchmarks will be logged in the Output window.
+:::
 
 ## `.Load()`
 
@@ -31,12 +38,12 @@ Full room loading supports the following elements.
 | Particle System | Asset | 🚧 Broken, GM bug |
 | Sequence | Asset | ✔️ |
 | Background | Background | ✔️ |
-| Filter/Effect | Filter/Effect   | ❌ |
+| Filter/Effect | Filter/Effect   | ❌ Missing :room_get_info(): data |
 | In-layer Filter/Effect | Any | 🚧 GM Bug, missing :room_get_info(): data |
 | Creation Code | - | ✔️ |
-| Views | - | ❌ |
-| Physics | - | ❌ |
-| Display Buffer & Viewport Clearing | - | ❌ |
+| Views | - | ❌ Irrelevant |
+| Physics | - | ❌ Irrelevant |
+| Display Buffer & Viewport Clearing | - | ❌ Irrelevant |
 :::
 ::: details ℹ️ TRANSFORMATION EXCEPTIONS {closed}
 * Tilemaps only load if `[xScale/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
@@ -121,7 +128,7 @@ Loads all instances from the given room at the given coordinates, with optional 
 
 Unlike :Full Room Loading:, all instances are placed onto the specified layer (or depth) instead of their original room layers.
 
-::: tip Custom Loading
+::: tip CUSTOM LOADING
 If you'd like to handle instance creation yourself rather than using GMRoomLoader's built-in method, call [RoomLoader.DataGetInstances()](/pages/api/roomLoader/data/#datagetinstances) to retrieve an array of instance data and apply your own logic to it.
 :::
 
@@ -208,6 +215,11 @@ When using such tileset groups/pairs, make sure that tiles on all tilesets are p
 :::
 ::: info MERGING
 If :ROOMLOADER_MERGE_TILEMAPS: is `true`, GMRoomLoader will attempt to merge loaded and existing tilemaps. See the config macro page for details.
+:::
+::: details ℹ️ TOP AND/OR LEFT MERGING PERFORMANCE {closed}
+When merging a tilemap positioned above (north) or to the left (west) of an existing tilemap, GMRoomLoader must reposition and resize the existing tilemap. This involves shifting all tiles to preserve their visual placement, which requires iterating through the tilemap and moving every non-zero tile.
+
+This process can noticeably impact performance, especially for large tilemaps. To minimize overhead, ensure the existing tilemap already spans the full target area before merging. This way new tiles can be assigned directly, avoiding the need to shift existing tiles.
 :::
 
 | Parameter | Type | Description |
