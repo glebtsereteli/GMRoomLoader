@@ -273,11 +273,11 @@ var _height = RoomLoader.DataGetHeight(rmLevelDungeon); // [!code highlight]
 
 > `RoomLoader.DataGetLayerNames(room)` ➜ :Array: of :String:
 
-Returns an array of layer names for the given room, in the order defined in the room editor. Can be safely operated on with array functions since the internal data is not touched.
+Returns an array of layer names from the given room, in the order defined in the room editor. Can be safely operated on with array functions since the internal data is not touched.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `room` | :Asset.GMRoom: | The room to get an array of layer names for |
+| `room` | :Asset.GMRoom: | The room to get an array of layer names from |
 
 :::code-group
 ```js [Example]
@@ -351,10 +351,6 @@ Returns a `{tileset, width, height, tiles}` data struct for the tilemap from the
 The `tiles` array is laid out in `x, y, tileData` data sets for each tile: `[x, y, tileData, x, y, tileData, ...]`,
 where `x` and `y` are tile coordinates in tilemap space and `tileData` is the tile data used in [tilemap functions](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/Tile_Map_Layers.htm).
 
-::: danger IMPORTANT
-Just like [.GetInstances()](#datagetinstances), this method fetches the internal data struct, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned struct, clone it first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
-:::
-
 ::: details ℹ️ WHY THIS FORMAT? {closed}
 * Why not a 2d array? Tilemap loading is optimized by removing empty 0 tiles from internal data, and there's no need to track empty cells in the resulting array used for creating tilemaps.
 * Why not an array of structs? Having a single flat 1d array is both faster and more memory efficient compared to an array of structs.
@@ -368,7 +364,15 @@ Just like [.GetInstances()](#datagetinstances), this method fetches the internal
 :::code-group
 ```js [Example]
 // Fetches tilemap data from rmExample's "Tiles" layer:
-var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles");
-// Does something with the data...
+var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles"); // [!code highlight]
+
+// Loops through the 'tiles' array:
+var _tiles = _tilemapData.tiles;
+for (var _i = 0; _n = array_length(_tiles); _i < _n; _i += 3) {
+    var _x = _tiles[_i];
+    var _y = _tiles[_i + 1];
+    var _data = _tiles[_i + 2];
+    // Does something really cool with each tile...
+}
 ```
 :::
