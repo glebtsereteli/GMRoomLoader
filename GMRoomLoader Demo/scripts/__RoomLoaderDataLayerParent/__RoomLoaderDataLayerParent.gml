@@ -22,6 +22,7 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 		if (not __layerData.visible) return;
 		if (not __ROOMLOADER_HAS_FLAG) return;
 		if (__HasFailedFilters()) return;
+		
 		__OnDraw();
 	};
 	

@@ -5,15 +5,11 @@ The following list of ideas includes features that might or might not be introdu
 ## Library
 * Prefabs integration (when they finally come out).
 * Automatic data initialization - convenience with performance cost.
-* Deferred loading over time for large rooms with many elements.
-    * `RoomLoader.LoadDeferred()`.
-    * `RoomLoader.LoadInstancesDeferred()`.
-    * `RoomLoader.LoadTilemapDeferred()`.
+* Deferred loading over time for heavy rooms with many elements.
 * `.Part(left, top, right, bottom)` state - :Loading: and :Screenshotting: parts of rooms. 
 * Pixel-based :Origin: mode instead of 0-1 relative percentage.
 * Particle systems support (GM bug?).
 * In-layer Filters/Effects support (GM bug?).
-* Debug view with initialized rooms display, screenshots and customizable loading.
 
 ## Demos
 * Autotiling rooms.

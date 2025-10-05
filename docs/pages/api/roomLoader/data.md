@@ -368,11 +368,12 @@ var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles"); // [!code high
 
 // Loops through the 'tiles' array:
 var _tiles = _tilemapData.tiles;
-for (var _i = 0; _n = array_length(_tiles); _i < _n; _i += 3) {
+var _i = 0; repeat (array_length(_tiles) / 3) {
     var _x = _tiles[_i];
     var _y = _tiles[_i + 1];
-    var _data = _tiles[_i + 2];
+    var _tile = _tiles[_i + 2];
     // Does something really cool with each tile...
+    _i += 3;
 }
 ```
 :::
