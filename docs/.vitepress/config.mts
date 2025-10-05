@@ -257,7 +257,7 @@ export default defineConfig({
         'ROOMLOADER_MERGE_TILEMAPS': '/pages/api/config#roomloader-merge-tilemaps',
         'ROOMLOADER_DEBUG_VIEW_ENABLED': '/pages/api/config#roomloader-debug-view-enabled',
         'ROOMLOADER_DEBUG_VIEW_START_VISIBLE': '/pages/api/config#roomloader-debug-view-start-visible',
-        'ROOMLOADER_DEBUG_VIEW_KEY': '/pages/api/config#roomloader-debug-view-key',
+        'ROOMLOADER_DEBUG_VIEW_LOAD_KEY': '/pages/api/config#roomloader-debug-view-key',
         'ROOMLOADER_DEBUG_VIEW_ROOMS': '/pages/api/config#roomloader-debug-view-rooms',
         
         // state

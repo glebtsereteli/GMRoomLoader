@@ -12,11 +12,14 @@ If :ROOMLOADER_DEBUG_VIEW_START_VISIBLE: is also set to `true`, the Debug View w
 Once open, you will see this window on your screen.
 ![debugViewMain](debugViewMain.png)
 
-Now that the :Debug View: is enabled, you can start loading rooms at the mouse coordinates by pressing :ROOMLOADER_DEBUG_VIEW_KEY:. You can also pick which room to load and configure loading parameters, that's all described in the [Controls](#controls) section below.
+Now that the :Debug View: is enabled, you can start loading rooms at the mouse coordinates by pressing :ROOMLOADER_DEBUG_VIEW_LOAD_KEY:. You can also pick which room to load and configure loading parameters, that's all described in the [Controls](#controls) section below.
 
 ## Controls
 
-* The **Enabled** checkbox lets you control whether room loading is active when you press the designated key. If unchecked, pressing :ROOMLOADER_DEBUG_VIEW_KEY: will not load rooms. This toggle is useful for temporarily disabling room loading, since GameMaker doesn't provide a built-in way to detect if a :Debug Overlay: view is open.
+* The **Enabled** checkbox lets you control whether room loading is active when you press the designated key. If unchecked, pressing :ROOMLOADER_DEBUG_VIEW_LOAD_KEY: will not load rooms. This toggle is useful for temporarily disabling room loading, since GameMaker doesn't provide a built-in way to detect if a :Debug Overlay: view is open.
+    ::: warning
+    When left enabled, pressing :ROOMLOADER_DEBUG_VIEW_LOAD_KEY: will trigger loading even when the view is closed.
+    :::
 * The **Cleanup** button unloads any rooms that were loaded via the :Debug View:.
 * The **Room** dropdown allows you to select which room to load. The list of rooms shown is determined by the :ROOMLOADER_DEBUG_VIEW_ROOMS: config macro. If this macro is set to :Undefined:, all rooms in your project will be available for selection. Otherwise, only the rooms specified in the macro will appear.
 * The next few sliders control :Origin:, :Scaling: and :Rotation: loading parameters.

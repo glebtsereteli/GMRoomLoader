@@ -86,21 +86,33 @@ Setting this to `false` improves :Loading: performance.
 ## Debug View
 
 ### `ROOMLOADER_DEBUG_VIEW_ENABLED`
->Default: `false`.
+> Default: `false`.
 
-Whether the Debug View is enabled (`true`) or not (`false`).
+Controls whether the :Debug View: is enabled (`true`) or disabled (`false`).
 
 ### `ROOMLOADER_DEBUG_VIEW_START_VISIBLE`
->Default: `false`.
+> Default: `false`.
 
-Description
+Determines if the :Debug View: window is open (`true`) or not (`false`) on game start.
 
 ### `ROOMLOADER_DEBUG_VIEW_LOAD_KEY`
->Default: `vk_f12`.
+> Default: `vk_f12`.
 
-Description
+The keyboard key that triggers room loading via the :Debug View:.
 
 ### `ROOMLOADER_DEBUG_VIEW_ROOMS`
->Default: `undefined`.
+> Default: `undefined`.
 
-Description
+Specifies which rooms can be loaded through the :Debug View:. Expects an :Array: of :Asset.GMRoom:. If left `undefined`, all rooms in the project will be available.
+:::code-group
+```js [Definition Examples]
+// All rooms in the project:
+#macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
+
+// A few hardcoded rooms:
+#macro ROOMLOADER_DEBUG_VIEW_ROOMS [rmChunkA, rmChunkB, rmChunkC]
+
+// All rooms with the "Chunk" tag assigned:
+#macro ROOMLOADER_DEBUG_VIEW_ROOMS tag_get_asset_ids("Chunk", asset_room)
+```
+:::

@@ -59,12 +59,17 @@
 #endregion
 #region Debug View
 
+// Controls whether the Debug View is enabled (true) or disabled (false).
 #macro ROOMLOADER_DEBUG_VIEW_ENABLED true
 
+// Determines if the Debug View window is open (true) or closed (false) on game start.
 #macro ROOMLOADER_DEBUG_VIEW_START_VISIBLE false
 
+// The keyboard key that triggers room loading via the Debug View.
 #macro ROOMLOADER_DEBUG_VIEW_LOAD_KEY vk_f1
 
+// Specifies which rooms can be loaded through the Debug View. Expects an Array of Asset.GMRoom.
+// If left undefined, all rooms in the project will be available.
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
 
 #endregion
