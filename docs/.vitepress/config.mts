@@ -97,6 +97,7 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
           },
+          { text: '🏗️ Debug View', link: '/pages/api/debugView/debugView', },
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
@@ -143,6 +144,7 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
+          { text: 'Debug View', link: '/pages/api/debugView/debugView', },
           { text: 'Configuration', link: '/pages/api/config' },
         ]
       },
@@ -216,11 +218,13 @@ export default defineConfig({
         
         // links
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
+        'Debug Overlay': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Debugging/The_Debug_Overlay.htm',
         
         'RoomLoader': '/pages/api/roomLoader/overview',
         'Origin': '/pages/api/roomLoader/origin',
         'Payload': '/pages/api/payload/overview',
         'Flags': '/pages/api/roomLoader/assetTypeFiltering',
+        'Debug View': '/pages/api/debugView/debugView',
 
         'Asset Type': '/pages/api/roomLoader/assetTypeFiltering',
         'Layer Name': '/pages/api/roomLoader/layerNameFiltering',
@@ -249,6 +253,10 @@ export default defineConfig({
         'ROOMLOADER_DEFAULT_FLAGS': '/pages/api/config#roomloader-default-flags',
         'ROOMLOADER_MERGE_LAYERS': '/pages/api/config#roomloader-merge-layers',
         'ROOMLOADER_MERGE_TILEMAPS': '/pages/api/config#roomloader-merge-tilemaps',
+        'ROOMLOADER_DEBUG_VIEW_ENABLED': '/pages/api/config#roomloader-debug-view-enabled',
+        'ROOMLOADER_DEBUG_VIEW_START_VISIBLE': '/pages/api/config#roomloader-debug-view-start-visible',
+        'ROOMLOADER_DEBUG_VIEW_KEY': '/pages/api/config#roomloader-debug-view-key',
+        'ROOMLOADER_DEBUG_VIEW_ROOMS': '/pages/api/config#roomloader-debug-view-rooms',
         
         // state
         'State': '/pages/api/roomLoader/state',

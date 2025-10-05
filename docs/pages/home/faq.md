@@ -41,7 +41,7 @@ If any of this is essential for your project, consider buying [GMRoomPack by Yel
 ## 📍 I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 
-The good news is layer depths are easily adjustable and you're not locked into those default depths from the loaded room. Check out the [Payload Depth](/pages/api/payload/depth) section to see how you can shift depths for loaded layers.
+The good news is layer depths are easily adjustable and you're not stuck with the default depths from the loaded room. Check out the [Payload Depth](/pages/api/payload/depth) section to see how you can shift depths for loaded layers.
 
 ## 📍 My rooms have instances with Variable Definitions and Creation Code. Does GMRoomLoader support those?
 It does! :room_get_info(): provides both as scripts for GMRoomLoader to use. 

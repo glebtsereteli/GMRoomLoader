@@ -67,7 +67,7 @@ function RoomLoader() {
 	};
 	
 	if (ROOMLOADER_DEBUG_VIEW_ENABLED) {
-		__debugView.__Init();
+		__debugView.__RefreshView();
 	}
 	
 	#endregion

@@ -42,7 +42,7 @@ function DebugResources() {
 }
 
 /// @func DebugInstances()
-/// @desc Displays the overall and per object amounts of instances in a neat Instances debug overlay __view.
+/// @desc Displays the overall and per object amounts of instances in a neat Instances debug overlay view.
 /// Call anywhere in the project.
 function DebugInstances() {
 	static __ = new (function() constructor {
