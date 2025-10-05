@@ -299,19 +299,19 @@ RoomLoader.LayerWhitelistReset();
 
 > `RoomLoader.DataGetInstances(room)` ➜ :Array: of :Struct:
 
-Returns an array of instance data structs for the given room. Format listed [below](#struct-format).
+Returns an array of instance data structs from the given room. Format listed [below](#struct-format).
 
 ::: danger IMPORTANT
-This method fetches the original internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
+This method fetches the internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
 :::
 
 | Parameter | Type | Description |
 |---|---|---|
-| `room` | :Asset.GMRoom: | The room to get an array of instance data for |
+| `room` | :Asset.GMRoom: | The room to get an array of instance data from |
 
 :::code-group
 ```js [Example]
-// Fetches instance data for rmExample:
+// Fetches instance data from rmExample:
 var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
 
 // Maps the data array to an array of instance IDs using a custom instance creation function:
@@ -340,3 +340,35 @@ instances = array_map(_instancesData, function(_instanceData) {
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_index` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_blend` | :Real: |
+
+---
+### `.DataGetTilemap()`
+
+> `RoomLoader.DataGetTilemap(room, layerName)` ➜ :Struct:
+
+Returns a `{tileset, width, height, tiles}` data struct for the tilemap from the given layer in the given room.
+
+The `tiles` array is laid out in `x, y, tileData` data sets for each tile: `[x, y, tileData, x, y, tileData, ...]`,
+where `x` and `y` are tile coordinates in tilemap space and `tileData` is the tile data used in [tilemap functions](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/Tile_Map_Layers.htm).
+
+::: danger IMPORTANT
+Just like [.GetInstances()](#datagetinstances), this method fetches the internal data struct, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned struct, clone it first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
+:::
+
+::: details ℹ️ WHY THIS FORMAT? {closed}
+* Why not a 2d array? Tilemap loading is optimized by removing empty 0 tiles from internal data, and there's no need to track empty cells in the resulting array used for creating tilemaps.
+* Why not an array of structs? Having a single flat 1d array is both faster and more memory efficient compared to an array of structs.
+:::
+
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get tilemap data from |
+| `layerName` | :String: | The Tile layer name to get tilemap data from |
+
+:::code-group
+```js [Example]
+// Fetches tilemap data from rmExample's "Tiles" layer:
+var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles");
+// Does something with the data...
+```
+:::

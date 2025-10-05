@@ -1,5 +1,5 @@
 /// feather ignore all
-/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView
+/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView
 
 function __RoomLoaderDebugView() constructor {
 	static __view = undefined;

@@ -325,7 +325,7 @@ function RoomLoader() {
 		return _data.__height;
 	};
 	
-	/// @param {Asset.GMRoom} room The room to get an array of layer names for.
+	/// @param {Asset.GMRoom} room The room to get an array of layer names from.
 	/// @returns {Array<String>}
 	/// @desc Returns an array of layer names from the given room, in the order defined in the room editor.
 	/// @context RoomLoader
@@ -338,15 +338,35 @@ function RoomLoader() {
 		});
 	};
 	
-	/// @param {Asset.GMRoom} room The room to get the instances data for.
+	/// @param {Asset.GMRoom} room The room to get the instances data from.
 	/// @returns {Array<Struct>}
 	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
 	/// @context RoomLoader
 	static DataGetInstances = function(_room) {
 		static _methodName = "DataGetInstances";
 		
-		var _data = __GetLoadData(_room, _methodName, "get instances data for", "get their instances data");
+		var _data = __GetLoadData(_room, _methodName, "get instances data from", "get their instances data");
 		return _data.__instancesPool;
+	};
+	
+	/// @param {Asset.GMRoom} room The room to get tilemap data from.
+	/// @param {String} layerName The Tile layer name to get tilemap data from.
+	/// @returns {Struct}
+	/// @desc Returns a {tileset, width, height, tiles} data struct for the tilemap from the given layer in the given room.
+	/// The 'tiles' array is layed out in 'x, y, tileData' data sets for each tile: [x, y, tileData, x, y, tileData, ...],
+	/// where 'x' and 'y' are tile coordinates in tilemap space and 'tileData' is the tile data used in tilemap functions.
+	/// @context RoomLoader
+	static DataGetTilemap = function(_room, _layerName) {
+		static _methodName = "DataGetTilemap";
+		
+		var _data = __GetLoadData(_room, _methodName, "get tilemap data from", "get their tilemap data");
+		var _layer = _data.__tilemapsLut[$ _layerName];
+		
+		if (_layer == undefined) {
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"There's no \"{_layerName}\" tile layer in the \"{room_get_name(_room)}\" room");
+		}
+		
+		return _layer.__GetData();
 	};
 	
 	#endregion

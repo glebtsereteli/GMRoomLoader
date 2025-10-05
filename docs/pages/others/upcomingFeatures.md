@@ -5,9 +5,6 @@ The following list of ideas includes features that might or might not be introdu
 ## Library
 * Prefabs integration (when they finally come out).
 * Automatic data initialization - convenience with performance cost.
-* Tilemap data getters.
-    * `RoomLoader.GetTilemap(room, layerName)` ➜ :Struct:.
-    * `RoomLoader.GetTilemaps(room)` ➜ :Array: of :Struct:.
 * Deferred loading over time for large rooms with many elements.
     * `RoomLoader.LoadDeferred()`.
     * `RoomLoader.LoadInstancesDeferred()`.
