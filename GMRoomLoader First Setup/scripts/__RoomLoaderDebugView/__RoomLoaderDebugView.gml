@@ -10,15 +10,34 @@ function __RoomLoaderDebugView() constructor {
 	
 	static __rooms = ROOMLOADER_DEBUG_VIEW_ROOMS ?? RoomLoader.__allRooms;
 	static __roomNames = undefined;
-	static __payloads = [];
+	static __loadedPayloads = [];
+	static __loadedInstances = [];
+	static __loadedTilemaps = [];
 	
 	static __enabled = true;
 	static __room = array_first(__rooms);
 	static __prevRoom = undefined;
+	
+	static __modes = [
+		new __RoomLoaderDebugViewModeFullRoom(),
+		new __RoomLoaderDebugViewModeInstances(),
+		new __RoomLoaderDebugViewModeTilemap(),
+	];
+	static __modeNames = array_map(__modes, function(_mode) {
+		return _mode.__name;
+	});
+	static __mode = __modes[0];
+	static __prevMode = __mode;
+	
+	static __depth = 0;
+	static __sourceLayerName = "Tiles";
+	static __targetLayerName = "Tiles";
 	static __xOrigin = 0;
 	static __yOrigin = 0;
 	static __xScale = 1;
 	static __yScale = 1;
+	static __mirror = false;
+	static __flip = false;
 	static __angle = 0;
 	static __flags = [];
 	static __instances = true;
@@ -49,24 +68,8 @@ function __RoomLoaderDebugView() constructor {
 				if (not __enabled) return;
 				if (not keyboard_check_pressed(ROOMLOADER_DEBUG_VIEW_LOAD_KEY)) return;
 				
-				var _payload = RoomLoader
-				.Origin(__xOrigin, __yOrigin)
-				.Scale(__xScale, __yScale).Angle(__angle)
-				.Flags(
-					__instances * ROOMLOADER_FLAG.INSTANCES |
-					__tilemaps * ROOMLOADER_FLAG.TILEMAPS |
-					__sprites * ROOMLOADER_FLAG.SPRITES |
-					__sequences * ROOMLOADER_FLAG.SEQUENCES |
-					__texts * ROOMLOADER_FLAG.TEXTS |
-					__backgrounds * ROOMLOADER_FLAG.BACKGROUNDS
-				)
-				.LayerWhitelistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerWhitelist[_i]; }))
-				.LayerBlacklistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerBlacklist[_i]; }))
-				.Load(__room, mouse_x, mouse_y);
-				
-				RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
-				
-				array_push(__payloads, _payload);
+				RoomLoader.Origin(__xOrigin, __yOrigin);
+				method(self, __mode.__Load)();
 			}, true);
 		}
 		else {
@@ -82,10 +85,20 @@ function __RoomLoaderDebugView() constructor {
 			dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
 			dbg_same_line();
 			dbg_button("Cleanup", function() {
-				array_foreach(__payloads, function(_payload) {
+				array_foreach(__loadedPayloads, function(_payload) {
 					_payload.Cleanup();
 				});
-				__payloads = [];
+				__loadedPayloads = [];
+				
+				array_foreach(__loadedInstances, function(_inst) {
+					instance_destroy(_inst);
+				});
+				__loadedInstances = [];
+				
+				array_foreach(__loadedTilemaps, function(_tilemap) {
+					layer_tilemap_destroy(_tilemap);
+				});
+				__loadedTilemaps = [];
 			},, 20);
 			
 			dbg_text_separator("");
@@ -96,35 +109,20 @@ function __RoomLoaderDebugView() constructor {
 			dbg_same_line();
 			dbg_button("+", function() { __CycleRoom(1); }, 20, 20);
 			
-			dbg_slider(ref_create(self, "__xOrigin"), 0, 1, "X Origin", 0.05);
-			dbg_slider(ref_create(self, "__yOrigin"), 0, 1, "Y Origin", 0.05);
-			dbg_slider(ref_create(self, "__xScale"), -2, 2, "X Scale", 0.05);
-			dbg_slider(ref_create(self, "__yScale"), -2, 2, "Y Scale", 0.05);
-			dbg_slider_int(ref_create(self, "__angle"), 0, 360, "Angle", 5);
-		}
-		__sectionFlags = dbg_section("Flags", false); {
-			dbg_checkbox(ref_create(self, "__instances"), "Instances");
-			dbg_checkbox(ref_create(self, "__tilemaps"), "Tilemaps");
-			dbg_checkbox(ref_create(self, "__sprites"), "Sprites");
-			dbg_checkbox(ref_create(self, "__sequences"), "Sequences");
-			dbg_checkbox(ref_create(self, "__texts"), "Texts");
-			dbg_checkbox(ref_create(self, "__backgrounds"), "Backgrounds");
-		}
-		__sectionWhitelist = dbg_section("Layer Whitelist", false); {
-			array_foreach(__layerNames, function(_layerName, _i) {
-				dbg_checkbox(ref_create(self, "__layerWhitelist", _i), _layerName);
-			});
-		}
-		__sectionBlacklist = dbg_section("Layer Blacklist", false); {
-			array_foreach(__layerNames, function(_layerName, _i) {
-				dbg_checkbox(ref_create(self, "__layerBlacklist", _i), _layerName);
-			});
+			dbg_drop_down(ref_create(self, "__mode"), __modes, __modeNames, "Mode");
+			dbg_same_line();
+			dbg_button("-", function() { __CycleMode(-1); }, 20, 20);
+			dbg_same_line();
+			dbg_button("+", function() { __CycleMode(1); }, 20, 20);
+			
+			method(self, __mode.__InitDbg)();
 		}
 	};
 	static __RefreshData = function() {
-		if (__room == __prevRoom) return false;
+		if ((__room == __prevRoom) and (__mode == __prevMode)) return false;
 		
 		__prevRoom = __room;
+		__prevMode = __mode;
 		
 		if (not RoomLoader.DataIsInitialized(__room)) {
 			RoomLoader.DataInit(__room);
@@ -140,5 +138,22 @@ function __RoomLoaderDebugView() constructor {
 		var _n = array_length(__rooms);
 		var _index = (array_get_index(__rooms, __room) + _dir + _n) mod _n;
 		__room = __rooms[_index];
+	};
+	static __CycleMode = function(_dir) {
+		var _n = array_length(__modes);
+		var _index = (array_get_index(__modes, __mode) + _dir + _n) mod _n;
+		__mode = __modes[_index];
+	};
+	
+	static __InitDbgOrigin = function() {
+		dbg_slider(ref_create(self, "__xOrigin"), 0, 1, "X Origin", 0.05);
+		dbg_slider(ref_create(self, "__yOrigin"), 0, 1, "Y Origin", 0.05);
+	};
+	static __InitDbgScale = function() {
+		dbg_slider(ref_create(self, "__xScale"), -2, 2, "X Scale", 0.05);
+		dbg_slider(ref_create(self, "__yScale"), -2, 2, "Y Scale", 0.05);
+	};
+	static __InitDbgAngle = function(_increment = 5) {
+		dbg_slider_int(ref_create(self, "__angle"), 0, 360, "Angle", _increment);
 	};
 }

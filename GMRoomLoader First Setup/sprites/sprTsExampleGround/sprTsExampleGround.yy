@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Ground",
-    "path":"folders/02. Loaded Room Example/Ground.yy",
+    "path":"folders/02. Loaded Room/Ground.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

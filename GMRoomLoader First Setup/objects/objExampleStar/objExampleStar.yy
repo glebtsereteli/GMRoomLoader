@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Star",
-    "path":"folders/02. Loaded Room Example/Star.yy",
+    "path":"folders/02. Loaded Room/Star.yy",
   },
   "parentObjectId":null,
   "persistent":false,

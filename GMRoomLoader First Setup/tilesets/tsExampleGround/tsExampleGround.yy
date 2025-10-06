@@ -13,7 +13,7 @@
   "out_tilevborder":2,
   "parent":{
     "name":"Ground",
-    "path":"folders/02. Loaded Room Example/Ground.yy",
+    "path":"folders/02. Loaded Room/Ground.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
