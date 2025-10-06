@@ -504,8 +504,16 @@ function RoomLoader() {
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		
+		if (not layer_exists(_targetLayer)) {
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Target layer \"{_targetLayer}\" doesn't exit in the current room");
+		}
+		
 		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
+		
+		if (_tilemapData == undefined) {
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Source layer \"{_sourceLayerName}\" doesn't exit in the \"{room_get_name(_room)}\" room");
+		}
 		
 		__ROOMLOADER_BENCH_START;
 		if ((not _mirror) and (not _flip) and (_angle == 0)) {
