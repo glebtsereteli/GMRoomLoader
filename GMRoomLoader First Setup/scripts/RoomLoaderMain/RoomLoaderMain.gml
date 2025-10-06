@@ -16,6 +16,16 @@ function RoomLoader() {
 	static __layerWhitelist = new __RoomLoaderLayerFilter("Whitelist", true);
 	static __layerBlacklist = new __RoomLoaderLayerFilter("Blacklist", false);
 	static __payload = undefined;
+	static __debugView = new __RoomLoaderDebugView();
+	
+	static __xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
+	static __yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
+	static __flags = ROOMLOADER_DEFAULT_FLAGS;
+	static __flagsDefault = true;
+	static __xScale = 1;
+	static __yScale = 1;
+	static __angle = 0;
+	static __tileset = undefined;
 	
 	static __LayerFailedFilters = function(_name) {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
@@ -39,17 +49,6 @@ function RoomLoader() {
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
 		return _screenshot;
 	};
-	
-	// state
-	static __xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
-	static __yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
-	static __flags = ROOMLOADER_DEFAULT_FLAGS;
-	static __flagsDefault = true;
-	static __xScale = 1;
-	static __yScale = 1;
-	static __angle = 0;
-	static __tileset = undefined;
-	
 	static __ResetState = function() {
 		__xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
 		__yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
@@ -66,6 +65,10 @@ function RoomLoader() {
 			__flagsDefault = false;
 		}
 	};
+	
+	if (ROOMLOADER_DEBUG_VIEW_ENABLED) {
+		__debugView.__RefreshView();
+	}
 	
 	#endregion
 	
@@ -322,7 +325,7 @@ function RoomLoader() {
 		return _data.__height;
 	};
 	
-	/// @param {Asset.GMRoom} room The room to get an array of layer names for.
+	/// @param {Asset.GMRoom} room The room to get an array of layer names from.
 	/// @returns {Array<String>}
 	/// @desc Returns an array of layer names from the given room, in the order defined in the room editor.
 	/// @context RoomLoader
@@ -335,15 +338,35 @@ function RoomLoader() {
 		});
 	};
 	
-	/// @param {Asset.GMRoom} room The room to get the instances data for.
+	/// @param {Asset.GMRoom} room The room to get the instances data from.
 	/// @returns {Array<Struct>}
 	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
 	/// @context RoomLoader
 	static DataGetInstances = function(_room) {
 		static _methodName = "DataGetInstances";
 		
-		var _data = __GetLoadData(_room, _methodName, "get instances data for", "get their instances data");
+		var _data = __GetLoadData(_room, _methodName, "get instances data from", "get their instances data");
 		return _data.__instancesPool;
+	};
+	
+	/// @param {Asset.GMRoom} room The room to get tilemap data from.
+	/// @param {String} layerName The Tile layer name to get tilemap data from.
+	/// @returns {Struct}
+	/// @desc Returns a {tileset, width, height, tiles} data struct for the tilemap from the given layer in the given room.
+	/// The 'tiles' array is laid out in 'x, y, tileData' data sets for each tile: [x, y, tileData, x, y, tileData, ...],
+	/// where 'x' and 'y' are tile coordinates in tilemap space and 'tileData' is the tile data used in tilemap functions.
+	/// @context RoomLoader
+	static DataGetTilemap = function(_room, _layerName) {
+		static _methodName = "DataGetTilemap";
+		
+		var _data = __GetLoadData(_room, _methodName, "get tilemap data from", "get their tilemap data");
+		var _layer = _data.__tilemapsLut[$ _layerName];
+		
+		if (_layer == undefined) {
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"There's no \"{_layerName}\" tile layer in the \"{room_get_name(_room)}\" room");
+		}
+		
+		return _layer.__GetData();
 	};
 	
 	#endregion
@@ -509,10 +532,9 @@ function RoomLoader() {
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
-	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale, if set or 1]
+	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// @returns {Asset.GMSprite}
-	/// @desc Takes a screenshot of the given room.
-	/// Takes a screenshot of the given room. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
+	/// @desc Takes a screenshot of the given room. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
 	/// Returns a Sprite ID.
 	/// @context RoomLoader
 	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {

@@ -2,8 +2,8 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.1.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.09.27" // year.month.day
+#macro __ROOMLOADER_VERSION "v2.2.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2025.10.07" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 #macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
 
@@ -76,9 +76,9 @@ if ((ROOMLOADER_DELIVER_PAYLOAD) and (_tilemap != undefined)) { \
 }
 
 #macro __ROOMLOADER_TILEMAP_CREATE_RAW \
-var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, __width, __height); \
+var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, width, height); \
 \
-var _data = __tiles; \
+var _data = tiles; \
 var _i = 0; repeat (__n) { \
 	tilemap_set(_tilemap, _data[_i + 2], _data[_i], _data[_i + 1]); \
 	_i += __ROOMLOADER_TILE_STEP; \
@@ -88,12 +88,12 @@ var _i = 0; repeat (__n) { \
 var _tilemap = layer_tilemap_create(_layer, _x, _y, _tileset, _w, _h); \
 \
 var _i = 0; repeat (__n) { \
-    var _t = __tiles[_i + 2]; \
+    var _t = tiles[_i + 2]; \
 	\
-	var _xStart = (__tiles[_i] * _xScale) + _mirrorOffset; \
+	var _xStart = (tiles[_i] * _xScale) + _mirrorOffset; \
     _t ^= _mirror * tile_mirror; \
 	\
-	var _yStart = (__tiles[_i + 1] * _yScale) + _flipOffset; \
+	var _yStart = (tiles[_i + 1] * _yScale) + _flipOffset; \
     _t ^= _flip * tile_flip; \
 	\
 	var _rx = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset; \

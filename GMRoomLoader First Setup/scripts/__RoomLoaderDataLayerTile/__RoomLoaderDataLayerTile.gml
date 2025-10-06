@@ -6,27 +6,27 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	static __tile = true;
 	
 	static __OnInit = function() {
-		__tileset = __tilemapData.tileset_index;
-		__width = __tilemapData.width;
-		__height = __tilemapData.height;
+		tileset = __tilemapData.tileset_index;
+		width = __tilemapData.width;
+		height = __tilemapData.height;
 		
 		var _tilesData = __tilemapData.tiles;
 		var _n = array_length(_tilesData);
 		
-		__tiles = array_create(_n * __ROOMLOADER_TILE_STEP);
+		tiles = array_create(_n * __ROOMLOADER_TILE_STEP);
 		var _count = 0;
 		
 		var _i = 0; repeat (_n) {
 		    var _data = _tilesData[_i];
 		    if (_data > 0) {
-			    __tiles[_count++] = _i mod __width;
-			    __tiles[_count++] = _i div __width;
-				__tiles[_count++] = _data;
+			    tiles[_count++] = _i mod width;
+			    tiles[_count++] = _i div width;
+				tiles[_count++] = _data;
 			}
 			_i++;
 		}
 		
-		array_resize(__tiles, _count);
+		array_resize(tiles, _count);
 		__n = _count / __ROOMLOADER_TILE_STEP;
 		
 		__owner.__tilemapsLut[$ __layerData.name] = self;
@@ -45,7 +45,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _x = 0;
 		var _y = 0;
 		var _layer = layer_create(0);
-		var _tileset = __tileset;
+		var _tileset = tileset;
 		__ROOMLOADER_TILEMAP_CREATE_RAW;
 		draw_tilemap(_tilemap, 0, 0);
 		layer_tilemap_destroy(_tilemap);
@@ -54,13 +54,14 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	
 	// custom
 	__tilemapData = _elementsData[0];
-	__tiles = [];
-	__n = undefined;
-	__tileset = undefined;
-	__width = undefined;
-	__height = undefined;
 	
-	static __CreateTilemap = function(_layer, _x, _y, _tileset = __tileset) {
+	tileset = undefined;
+	width = undefined;
+	height = undefined;
+	tiles = [];
+	__n = undefined;
+	
+	static __CreateTilemap = function(_layer, _x, _y, _tileset = tileset) {
 		if (not ROOMLOADER_MERGE_TILEMAPS) {
 			__ROOMLOADER_TILEMAP_CREATE_RAW;
 			return _tilemap;
@@ -73,14 +74,13 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 			return _tilemap;
 		}
 		
-		var _w = __width;
-		var _h = __height;
-		
 		//show_message("merge");
+		var _w = width;
+		var _h = height;
 		
 		__ROOMLOADER_TILEMAP_PROCESS_MERGE;
 		
-		var _data = __tiles;
+		var _data = tiles;
 		var _i = 0; repeat (__n) {
 			tilemap_set(_hostTilemap, _data[_i + 2], _data[_i] + _newShiftI, _data[_i + 1] + _newShiftJ);
 			_i += __ROOMLOADER_TILE_STEP;
@@ -88,7 +88,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 		return _hostTilemap;
 	};
-	static __CreateTilemapTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset = __tileset) {
+	static __CreateTilemapTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset = tileset) {
 		static _tilesetsInfo = {};
 		
 		_angle = _angle - (floor(_angle / 360) * 360);
@@ -96,16 +96,16 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		if ((_angle mod 90) != 0) return undefined;
 		
 		var _transposed = (_angle mod 180) == 90;
-	    var _w = (_transposed ? __height : __width);
-	    var _h = (_transposed ? __width : __height);
+	    var _w = (_transposed ? height : width);
+	    var _h = (_transposed ? width : height);
 			
 		_xScale = sign(_xScale);
 		var _mirror = (_xScale == -1);
-		var _mirrorOffset = (_mirror ? __width  - 1 : 0);
+		var _mirrorOffset = (_mirror ? width  - 1 : 0);
 		
 		_yScale = sign(_yScale);
 		var _flip = (_yScale == -1);
-		var _flipOffset = (_flip ? __height - 1 : 0);
+		var _flipOffset = (_flip ? height - 1 : 0);
 		
 		var _info = _tilesetsInfo[$ _tileset];
 		if (_info == undefined) {
@@ -132,7 +132,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				_x -= _wPx * (_yOrigin + (1 - 2 * _yOrigin) * _flip);
 				
 				_mat00 = 0; _mat01 = 1; _rotXOffset = 0;
-		        _mat10 = -1; _mat11 = 0; _rotYOffset = __width - 1;
+		        _mat10 = -1; _mat11 = 0; _rotYOffset = width - 1;
 				_rotFlag = tile_mirror | tile_flip | tile_rotate;
 				
 				break;
@@ -141,8 +141,8 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				_x -= _wPx * ((1 - _xOrigin) + (2 * _xOrigin - 1) * _mirror);
 				_y -= _hPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				
-				_mat00 = -1; _mat01 = 0; _rotXOffset = __width - 1;
-		        _mat10 = 0; _mat11 = -1; _rotYOffset = __height - 1;
+				_mat00 = -1; _mat01 = 0; _rotXOffset = width - 1;
+		        _mat10 = 0; _mat11 = -1; _rotYOffset = height - 1;
 				_rotFlag = tile_mirror | tile_flip;
 				
 				break;
@@ -151,7 +151,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				_y -= _hPx * (_xOrigin + (1 - 2 * _xOrigin) * _mirror);
 			    _x -= _wPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				
-			    _mat00 = 0; _mat01 = -1; _rotXOffset = __height - 1;
+			    _mat00 = 0; _mat01 = -1; _rotXOffset = height - 1;
 			    _mat10 = 1; _mat11 = 0; _rotYOffset = 0;
 			    _rotFlag = tile_rotate;
 				
@@ -172,16 +172,15 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		}
 		
 		//show_message("merge");
-		
 		__ROOMLOADER_TILEMAP_PROCESS_MERGE;
 		
 	    var _i = 0; repeat (__n) {
-	        var _t = __tiles[_i + 2];
+	        var _t = tiles[_i + 2];
 			
-			var _xStart = (__tiles[_i] * _xScale) + _mirrorOffset;
+			var _xStart = (tiles[_i] * _xScale) + _mirrorOffset;
 		    _t ^= _mirror * tile_mirror;
 			
-			var _yStart = (__tiles[_i + 1] * _yScale) + _flipOffset;
+			var _yStart = (tiles[_i + 1] * _yScale) + _flipOffset;
 		    _t ^= _flip * tile_flip;
 			
 			var _rx = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset;
@@ -194,5 +193,9 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	    }
 		
 	    return _hostTilemap;
+	};
+
+	static __GetData = function() {
+		return {tileset, width, height, tiles};
 	};
 }

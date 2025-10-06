@@ -109,7 +109,7 @@ function RoomLoaderPayload(_room) constructor {
 	};
 	
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer or depth to shift depth below.
-	/// @param {Real} offset The depth offset [Default: -100]
+	/// @param {Real} offset The depth offset [Default: +100]
 	/// @desc Shifts all layers to a depth below layerOrDepth, with an optional depth offset.
 	/// @returns {Struct.RoomLoaderPayload}
 	/// @context RoomLoaderPayload
@@ -238,8 +238,8 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Cleanup
 	
-	/// @returns {Undefined}
 	/// @param {Bool} destroyLayers=[true] Whether to destroy loaded layers (true) or not (false).
+	/// @returns {Undefined}
 	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
 	/// @context RoomLoaderPayload

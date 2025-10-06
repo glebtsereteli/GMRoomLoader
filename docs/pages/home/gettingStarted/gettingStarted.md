@@ -13,11 +13,11 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
     * Structs, functions/methods and arguments, macros and enums.
 
 ## Installation
-1. Download the `GMRoomLoader vX.X.X.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.1.0).
+1. Download the `GMRoomLoader v2.2.0.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.2.0).
 2. Import the package into your project.
     * Navigate to __Tools__ in the top toolbar and click __Import Local Package__, or just drag and drop the file into GameMaker.
     ![alt text](import01.png)
-    * Locate and select the `GMRoomLoader vX.X.X.yymps` local package in Explorer/Finder.
+    * Locate and select the `GMRoomLoader v2.2.0.yymps` local package in Explorer/Finder.
     * Click __Add All__.
     ![alt text](import02.png)
     * Click __Import__.

@@ -32,7 +32,7 @@
 // Whether loaded tilemaps should be merged into existing tilemaps (true) or not (false).
 // • This triggers if an existing tilemap is present on a layer with the same name as the loaded layer.
 // • Merging is only possible if both tilemaps use the same tileset.
-// • When loading full rooms via RoomLoader.Load(), ROOMLOADER_MERGE_LAYERS must be set to true for this to work.
+// • When Loading full rooms via RoomLoader.Load(), ROOMLOADER_MERGE_LAYERS must be set to true for this to work.
 // • The existing tilemap will be repositioned and resized to fit the loaded tilemap.
 #macro ROOMLOADER_MERGE_TILEMAPS false
 
@@ -55,5 +55,21 @@
 // 
 // NOTE: Setting this to false improves Loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
+
+#endregion
+#region Debug View
+
+// Controls whether the Debug View is enabled (true) or disabled (false).
+#macro ROOMLOADER_DEBUG_VIEW_ENABLED false
+
+// Determines if the Debug View window is open (true) or closed (false) on game start.
+#macro ROOMLOADER_DEBUG_VIEW_START_VISIBLE false
+
+// The keyboard key that triggers room Loading via the Debug View.
+#macro ROOMLOADER_DEBUG_VIEW_LOAD_KEY vk_f1
+
+// Specifies which rooms can be loaded through the Debug View. Expects an Array of Asset.GMRoom.
+// If left undefined, all rooms in the project will be available.
+#macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
 
 #endregion

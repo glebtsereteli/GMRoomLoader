@@ -135,58 +135,57 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
-	static __TakeScreenshot = function(_pLeft01, _pTop01, _pWidth01, _pHeight01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
-        var _scaled = ((_xScale != 1) or (_yScale != 1));
-		var _width = __width * _xScale;
-		var _height = __height * _yScale;
-        
-        // Raw surface, room contents:
-        var _rawSurf = surface_create(__width, __height);
-        surface_set_target(_rawSurf); {
-            draw_clear_alpha(c_black, 0);
+	static __TakeScreenshot = function(_left01, _top01, _width01, _height01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
+	    var _scaled = ((_xScale != 1) or (_yScale != 1));
+	    var _width = __width * _xScale;
+	    var _height = __height * _yScale;
+		
+	    // Raw surface, room contents:
+	    var _rawSurf = surface_create(__width, __height);
+	    surface_set_target(_rawSurf); {
+	        draw_clear_alpha(c_black, 0);
 			
 	        var _bm = gpu_get_blendmode_ext_sepalpha();
 	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
 			
-            var _i = array_length(__layersPool);
-            while (_i--) { 
-                with (__layersPool[_i]) {
-                    __Draw(_flags);
-                }
-            }
+	        var _i = array_length(__layersPool);
+	        while (_i--) { 
+	            with (__layersPool[_i]) {
+	                __Draw(_flags);
+	            }
+	        }
 			
-			script_execute_ext(gpu_set_blendmode_ext_sepalpha, _bm);
-            surface_reset_target();
-        }
-        
-        // Final scaled surface:
-        var _finalSurf = _rawSurf;
-        if (_scaled) {
-            _finalSurf = surface_create(_width, _height);
-            surface_set_target(_finalSurf); {
-                draw_clear_alpha(c_black, 0);
-                draw_surface_stretched(_rawSurf, 0, 0, _width, _height);
-                surface_reset_target();
-            }
-        }
-        
-        // Generate sprite:
-		_width = _pWidth01 * _width;
-		_height = _pHeight01 * _height;
-        var _sprite = sprite_create_from_surface(_finalSurf, 
-			(_pLeft01 * _width), (_pTop01 * _height),
-			_width, _height,
-			false, false,
-			(_xOrigin * _width), (_yOrigin * _height)
-		);
-        
-        // Cleanup & return:
-        surface_free(_rawSurf);
-        if (_scaled) {
-			surface_free(_finalSurf);
-		}
-        return _sprite;
-    };
-	
+	        script_execute_ext(gpu_set_blendmode_ext_sepalpha, _bm);
+	        surface_reset_target();
+	    }
+		
+	    // Final scaled surface:
+	    var _finalSurf = _rawSurf;
+	    if (_scaled) {
+	        _finalSurf = surface_create(_width, _height);
+	        surface_set_target(_finalSurf); {
+	            draw_clear_alpha(c_black, 0);
+	            draw_surface_stretched(_rawSurf, 0, 0, _width, _height);
+	            surface_reset_target();
+	        }
+	    }
+		
+	    // Generate sprite:
+		var _left = _left01 * _width;
+		var _top = _top01 * _height;
+		_width = (_width * _width01) - _left;
+		_height = (_height * _height01) - _top;
+		_xOrigin *= _width;
+		_yOrigin *= _height;
+		var _sprite = sprite_create_from_surface(_finalSurf, _left, _top, _width, _height, false, false, _xOrigin, _yOrigin);
+		
+	    // Cleanup & return:
+	    surface_free(_rawSurf);
+	    if (_scaled) {
+	        surface_free(_finalSurf);
+	    }
+	    return _sprite;
+	};
+		
 	__Init();
 }
