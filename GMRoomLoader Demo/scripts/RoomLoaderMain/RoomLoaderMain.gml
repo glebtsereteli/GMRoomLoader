@@ -420,7 +420,7 @@ function RoomLoader() {
 	/// Unlike .Load(), all instances are placed onto the given layer (or depth) instead of their original room layers.
 	/// Returns an array of loaded instance IDs.
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
+	static LoadInstances = function(_room, _x, _y, _layerOrDepth, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
 		static _nonRoomMessage = "load instances from";
 		static _noDataMessage = "load their instances";
@@ -428,14 +428,14 @@ function RoomLoader() {
 		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
 		var _func = undefined;
-		if (is_real(_lod)) {
+		if (is_real(_layerOrDepth)) {
 			_func = instance_create_depth;
 		}
-		else if (is_string(_lod) or is_handle(_lod)) {
+		else if (is_string(_layerOrDepth) or is_handle(_layerOrDepth)) {
 			_func = instance_create_layer;
 		}
 		else {
-			var _message = $"Could not load instances at layer or depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
+			var _message = $"Could not load instances at layer or depth <{_layerOrDepth}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_layerOrDepth)}>";
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 		}
 		
@@ -445,14 +445,14 @@ function RoomLoader() {
 		var _instances = array_create(_n, noone);
 		
 		if (__ROOMLOADER_NOTRANSFORM) {
-			var _xOffset = _x0 - (_data.__width * _xOrigin);
-			var _yOffset = _y0 - (_data.__height * _yOrigin);
+			var _xOffset = _x - (_data.__width * _xOrigin);
+			var _yOffset = _y - (_data.__height * _yOrigin);
 			
 			var _i = 0; repeat (_n) {
 				var _iData = _instancesData[_i];
 				var _iX = _iData.x + _xOffset;
 				var _iY = _iData.y + _yOffset;
-				var _inst = _func(_iX, _iY, _lod, _iData.object, _iData.preCreate);
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _iData.preCreate);
 				__ROOMLOADER_INST_CC;
 				_instances[_i] = _inst;
 				_i++;
@@ -465,14 +465,14 @@ function RoomLoader() {
 		    var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    var _x1 = _x0 - ((_xOffset * _cos) + (_yOffset * _sin));
-		    var _y1 = _y0 - ((-_xOffset * _sin) + (_yOffset * _cos));
+		    var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
+		    var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 		    var _i = 0; repeat (_n) {
 		        var _iData = _instancesData[_i];
 				
 				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-				var _inst = _func(_x, _y, _lod, _iData.object, _preCreate);
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
 		        _instances[_i] = _inst;
 				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				

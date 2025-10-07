@@ -35,8 +35,8 @@ if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
 #macro __ROOMLOADER_INST_TRANSFORM_PRELOAD \
 var _xScaled = _iData.x * _xScale; \
 var _yScaled = _iData.y * _yScale; \
-var _x = _x1 + (_xScaled * _cos) + (_yScaled * _sin); \
-var _y = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
+var _iX = _x1 + (_xScaled * _cos) + (_yScaled * _sin); \
+var _iY = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
 \
 var _preCreate = _iData.preCreate; \
 var _xScalePrev = _preCreate.image_xscale; \
