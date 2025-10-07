@@ -245,7 +245,7 @@ function RoomLoaderPayload(_room) constructor {
 	/// @context RoomLoaderPayload
 	static Cleanup = function(_destroyLayers = true) {
 		static _methodName = "Cleanup";
-		static _benchMessage = "cleaned up data for";
+		static _benchMessage = "Unloaded";
 		
 		if (__cleanedUp) {
 			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"data for \<{room_get_name(__room)}\> is already cleaned up");

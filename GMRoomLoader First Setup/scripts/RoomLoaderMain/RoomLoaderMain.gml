@@ -42,11 +42,14 @@ function RoomLoader() {
 		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
 	static __Screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
+		static _benchMessage = "Screenshotted";
+				
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
 		
 		__ROOMLOADER_BENCH_START;
 		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
+		
 		return _screenshot;
 	};
 	static __ResetState = function() {
@@ -300,6 +303,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataIsInitialized = function(_room) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, "DataIsInitialized", _room, $"check whether data is initialized for");
+		
 		return (__data.__Get(_room) != undefined);
 	};
 	
@@ -311,6 +315,7 @@ function RoomLoader() {
 		static _methodName = "DataGetWidth";
 		
 		var _data = __GetLoadData(_room, _methodName, "get width for", "get their widths");
+		
 		return _data.__width;
 	};
 	
@@ -322,6 +327,7 @@ function RoomLoader() {
 		static _methodName = "DataGetHeight";
 		
 		var _data = __GetLoadData(_room, _methodName, "get height for", "get their heights");
+		
 		return _data.__height;
 	};
 	
@@ -333,6 +339,7 @@ function RoomLoader() {
 		static _methodName = "DataGetLayerNames";
 		
 		var _data = __GetLoadData(_room, _methodName, "get layer names for", "get their layer names");
+		
 		return array_map(_data.__layersPool, function(_layer) {
 			return _layer.__layerData.name;
 		});
@@ -346,6 +353,7 @@ function RoomLoader() {
 		static _methodName = "DataGetInstances";
 		
 		var _data = __GetLoadData(_room, _methodName, "get instances data from", "get their instances data");
+		
 		return _data.__instancesPool;
 	};
 	
@@ -390,7 +398,7 @@ function RoomLoader() {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
-		static _benchMessage = "loaded";
+		static _benchMessage = "Loaded";
 		
 		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
@@ -420,22 +428,22 @@ function RoomLoader() {
 	/// Unlike .Load(), all instances are placed onto the given layer (or depth) instead of their original room layers.
 	/// Returns an array of loaded instance IDs.
 	/// @context RoomLoader
-	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
+	static LoadInstances = function(_room, _x, _y, _layerOrDepth, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
-		static _body = "load instances for";
-		static _end = "load their instances";
+		static _nonRoomMessage = "load instances from";
+		static _noDataMessage = "load their instances";
 		
-		var _data = __GetLoadData(_room, _methodName, _body, _end);
+		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
 		var _func = undefined;
-		if (is_real(_lod)) {
+		if (is_real(_layerOrDepth)) {
 			_func = instance_create_depth;
 		}
-		else if (is_string(_lod) or is_handle(_lod)) {
+		else if (is_string(_layerOrDepth) or is_handle(_layerOrDepth)) {
 			_func = instance_create_layer;
 		}
 		else {
-			var _message = $"Could not load instances at layer or depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
+			var _message = $"Could not load instances at layer or depth <{_layerOrDepth}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_layerOrDepth)}>";
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 		}
 		
@@ -445,14 +453,14 @@ function RoomLoader() {
 		var _instances = array_create(_n, noone);
 		
 		if (__ROOMLOADER_NOTRANSFORM) {
-			var _xOffset = _x0 - (_data.__width * _xOrigin);
-			var _yOffset = _y0 - (_data.__height * _yOrigin);
+			var _xOffset = _x - (_data.__width * _xOrigin);
+			var _yOffset = _y - (_data.__height * _yOrigin);
 			
 			var _i = 0; repeat (_n) {
 				var _iData = _instancesData[_i];
 				var _iX = _iData.x + _xOffset;
 				var _iY = _iData.y + _yOffset;
-				var _inst = _func(_iX, _iY, _lod, _iData.object, _iData.preCreate);
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _iData.preCreate);
 				__ROOMLOADER_INST_CC;
 				_instances[_i] = _inst;
 				_i++;
@@ -465,14 +473,14 @@ function RoomLoader() {
 		    var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    var _x1 = _x0 - ((_xOffset * _cos) + (_yOffset * _sin));
-		    var _y1 = _y0 - ((-_xOffset * _sin) + (_yOffset * _cos));
+		    var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
+		    var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 		    var _i = 0; repeat (_n) {
 		        var _iData = _instancesData[_i];
 				
 				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-				var _inst = _func(_x, _y, _lod, _iData.object, _preCreate);
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
 		        _instances[_i] = _inst;
 				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				
@@ -480,7 +488,7 @@ function RoomLoader() {
 		    }
 		}
 		
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _body, _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Loaded instances from", _room);
 		__ResetState();
 		
 		return _instances;
@@ -503,12 +511,14 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
+		static _nonRoomMessage = "load tilemaps from";
+		static _noDataMessage = "load their tilemaps";
 		
 		if (not layer_exists(_targetLayer)) {
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Target layer \"{_targetLayer}\" doesn't exit in the current room");
 		}
 		
-		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
+		var _roomData = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
 		if (_tilemapData == undefined) {
@@ -526,7 +536,7 @@ function RoomLoader() {
 			var _yScale = (_flip ? -1 : 1);
 			var _tilemap = _tilemapData.__CreateTilemapTransformed(_targetLayer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset);
 		}
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "loaded tilemap from", _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, $"Loaded tilemap from layer \"{_sourceLayerName}\" in", _room);
 		__ResetState();
 		
 		return _tilemap;

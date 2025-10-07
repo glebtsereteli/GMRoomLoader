@@ -42,11 +42,14 @@ function RoomLoader() {
 		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
 	};
 	static __Screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
+		static _benchMessage = "Screenshotted";
+				
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
 		
 		__ROOMLOADER_BENCH_START;
 		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "screenshotted", _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
+		
 		return _screenshot;
 	};
 	static __ResetState = function() {
@@ -300,6 +303,7 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static DataIsInitialized = function(_room) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, "DataIsInitialized", _room, $"check whether data is initialized for");
+		
 		return (__data.__Get(_room) != undefined);
 	};
 	
@@ -311,6 +315,7 @@ function RoomLoader() {
 		static _methodName = "DataGetWidth";
 		
 		var _data = __GetLoadData(_room, _methodName, "get width for", "get their widths");
+		
 		return _data.__width;
 	};
 	
@@ -322,6 +327,7 @@ function RoomLoader() {
 		static _methodName = "DataGetHeight";
 		
 		var _data = __GetLoadData(_room, _methodName, "get height for", "get their heights");
+		
 		return _data.__height;
 	};
 	
@@ -333,6 +339,7 @@ function RoomLoader() {
 		static _methodName = "DataGetLayerNames";
 		
 		var _data = __GetLoadData(_room, _methodName, "get layer names for", "get their layer names");
+		
 		return array_map(_data.__layersPool, function(_layer) {
 			return _layer.__layerData.name;
 		});
@@ -346,6 +353,7 @@ function RoomLoader() {
 		static _methodName = "DataGetInstances";
 		
 		var _data = __GetLoadData(_room, _methodName, "get instances data from", "get their instances data");
+		
 		return _data.__instancesPool;
 	};
 	
@@ -390,7 +398,7 @@ function RoomLoader() {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
 		static _noDataMessage = "load them";
-		static _benchMessage = "loaded";
+		static _benchMessage = "Loaded";
 		
 		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
