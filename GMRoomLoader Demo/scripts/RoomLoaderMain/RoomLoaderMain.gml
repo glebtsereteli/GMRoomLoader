@@ -422,10 +422,10 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LoadInstances = function(_room, _x0, _y0, _lod, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
-		static _body = "load instances for";
-		static _end = "load their instances";
+		static _nonRoomMessage = "load instances from";
+		static _noDataMessage = "load their instances";
 		
-		var _data = __GetLoadData(_room, _methodName, _body, _end);
+		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		
 		var _func = undefined;
 		if (is_real(_lod)) {
@@ -480,7 +480,7 @@ function RoomLoader() {
 		    }
 		}
 		
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _body, _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Loaded instances from", _room);
 		__ResetState();
 		
 		return _instances;
@@ -503,12 +503,14 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
+		static _nonRoomMessage = "load tilemaps from";
+		static _noDataMessage = "load their tilemaps";
 		
 		if (not layer_exists(_targetLayer)) {
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Target layer \"{_targetLayer}\" doesn't exit in the current room");
 		}
 		
-		var _roomData = __GetLoadData(_room, _methodName, "body", "end");
+		var _roomData = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
 		if (_tilemapData == undefined) {
@@ -526,7 +528,7 @@ function RoomLoader() {
 			var _yScale = (_flip ? -1 : 1);
 			var _tilemap = _tilemapData.__CreateTilemapTransformed(_targetLayer, _x, _y, _xScale, _yScale, _angle, _xOrigin, _yOrigin, _tileset);
 		}
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "loaded tilemap from", _room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, $"Loaded tilemap from layer \"{_sourceLayerName}\" in", _room);
 		__ResetState();
 		
 		return _tilemap;
