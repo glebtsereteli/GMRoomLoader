@@ -15,8 +15,11 @@ function __RoomLoaderDataCore() constructor {
 		}
 		
 		__ROOMLOADER_BENCH_START;
-		__pool[$ _roomName] = new __RoomLoaderDataRoom(_room);
+		var _data = new __RoomLoaderDataRoom(_room);
+		__pool[$ _roomName] = _data;
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Initialized data for", _room);
+		
+		return _data;
 	};
 	static __Remove = function(_room, _methodName) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, "remove data for");
@@ -31,6 +34,6 @@ function __RoomLoaderDataCore() constructor {
 		__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_roomName}>");
 	};
 	static __Get = function(_room) {
-		return __pool[$ room_get_name(_room)];
+		return (__pool[$ room_get_name(_room)] ?? __Add(_room));
 	};
 }
