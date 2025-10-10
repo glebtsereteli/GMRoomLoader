@@ -19,6 +19,12 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 ## 📍 What versions of GameMaker does GMRoomLoader support?
 The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.1.242`.
 
+## 📍 How is GMRoomLoader licensed? Can I use it in commercial projects?
+
+GMRoomLoader is licensed under the [MIT license](https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE), granting you full freedom to use it for any purpose, including commercial projects. The only requirement is to include the `GMRoomLoader License.txt` file that comes with the library package.
+
+Mentioning my name (Gleb Tsereteli) in your game's credits would be greatly appreciated and would totally make my day, but it's entirely optional 🙂
+
 ## 📍 How do I update to the latest version of GMRoomLoader? {#updating}
 1. If you've made changes to the `RoomLoaderConfig` script, make a backup of the script before continuing.
 2. Delete the `GMRoomLoader` folder from your project.
