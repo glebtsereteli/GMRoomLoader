@@ -27,24 +27,10 @@ function RoomLoader() {
 	static __angle = 0;
 	static __tileset = undefined;
 	
-	static __LayerFailedFilters = function(_name) {
-		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
-		return (not _match);
-	};
-	static __GetLoadData = function(_room, _methodName, _nonRoomMessage, _noDataMessage) {
-		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonRoomMessage);
-		
-		var _data = __data.__Get(_room);
-		if (_data != undefined) return _data;
-		
-		var _roomName = $"<{room_get_name(_room)}>";
-		var _message = $"Could not find the data for room {_roomName}.\nMake sure to initialize data for your rooms before trying to {_noDataMessage}"
-		__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
-	};
 	static __Screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
 		static _benchMessage = "Screenshotted";
 				
-		var _data = __GetLoadData(_room, _methodName, "take a screenshot of", "take screenshots");
+		var _data = __GetLoadData(_room, _methodName, "take a screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
 		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
@@ -67,6 +53,15 @@ function RoomLoader() {
 			__flags = ROOMLOADER_FLAG.NONE;
 			__flagsDefault = false;
 		}
+	};
+	
+	static __GetLoadData = function(_room, _methodName, _nonRoomMessage) {
+		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonRoomMessage);
+		return __data.__Get(_room);
+	};
+	static __LayerFailedFilters = function(_name) {
+		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));
+		return (not _match);
 	};
 	
 	if (ROOMLOADER_DEBUG_VIEW_ENABLED) {
@@ -314,7 +309,7 @@ function RoomLoader() {
 	static DataGetWidth = function(_room) {
 		static _methodName = "DataGetWidth";
 		
-		var _data = __GetLoadData(_room, _methodName, "get width for", "get their widths");
+		var _data = __GetLoadData(_room, _methodName, "get width for");
 		
 		return _data.__width;
 	};
@@ -326,7 +321,7 @@ function RoomLoader() {
 	static DataGetHeight = function(_room) {
 		static _methodName = "DataGetHeight";
 		
-		var _data = __GetLoadData(_room, _methodName, "get height for", "get their heights");
+		var _data = __GetLoadData(_room, _methodName, "get height for");
 		
 		return _data.__height;
 	};
@@ -338,7 +333,7 @@ function RoomLoader() {
 	static DataGetLayerNames = function(_room) {
 		static _methodName = "DataGetLayerNames";
 		
-		var _data = __GetLoadData(_room, _methodName, "get layer names for", "get their layer names");
+		var _data = __GetLoadData(_room, _methodName, "get layer names for");
 		
 		return array_map(_data.__layersPool, function(_layer) {
 			return _layer.__layerData.name;
@@ -352,7 +347,7 @@ function RoomLoader() {
 	static DataGetInstances = function(_room) {
 		static _methodName = "DataGetInstances";
 		
-		var _data = __GetLoadData(_room, _methodName, "get instances data from", "get their instances data");
+		var _data = __GetLoadData(_room, _methodName, "get instances data from");
 		
 		return _data.__instancesPool;
 	};
@@ -367,7 +362,7 @@ function RoomLoader() {
 	static DataGetTilemap = function(_room, _layerName) {
 		static _methodName = "DataGetTilemap";
 		
-		var _data = __GetLoadData(_room, _methodName, "get tilemap data from", "get their tilemap data");
+		var _data = __GetLoadData(_room, _methodName, "get tilemap data from");
 		var _layer = _data.__tilemapsLut[$ _layerName];
 		
 		if (_layer == undefined) {
@@ -397,10 +392,9 @@ function RoomLoader() {
 	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "Load";
 		static _nonRoomMessage = "load";
-		static _noDataMessage = "load them";
 		static _benchMessage = "Loaded";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
+		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage);
 		
 		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
@@ -431,9 +425,8 @@ function RoomLoader() {
 	static LoadInstances = function(_room, _x, _y, _layerOrDepth, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "LoadInstances";
 		static _nonRoomMessage = "load instances from";
-		static _noDataMessage = "load their instances";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
+		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage);
 		
 		var _func = undefined;
 		if (is_real(_layerOrDepth)) {
@@ -512,13 +505,12 @@ function RoomLoader() {
 	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		static _nonRoomMessage = "load tilemaps from";
-		static _noDataMessage = "load their tilemaps";
 		
 		if (not layer_exists(_targetLayer)) {
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Target layer \"{_targetLayer}\" doesn't exit in the current room");
 		}
 		
-		var _roomData = __GetLoadData(_room, _methodName, _nonRoomMessage, _noDataMessage);
+		var _roomData = __GetLoadData(_room, _methodName, _nonRoomMessage);
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
 		if (_tilemapData == undefined) {

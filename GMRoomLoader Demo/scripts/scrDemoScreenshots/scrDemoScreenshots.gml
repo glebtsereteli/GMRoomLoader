@@ -3,7 +3,7 @@
 function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	// Shared:
 	static Init = function() {
-		RoomLoader.DataInitTag(tag);
+		//RoomLoader.DataInitTag(tag);
 		ShuffleRoom();
 		
 		// Interface:
