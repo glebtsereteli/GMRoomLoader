@@ -16,12 +16,13 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
 1. Download the `GMRoomLoader v2.2.0.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.2.0).
 2. Import the package into your project.
     * Navigate to __Tools__ in the top toolbar and click __Import Local Package__, or just drag and drop the file into GameMaker.
-    ![alt text](import01.png)
+    ![](import01.png)
     * Locate and select the `GMRoomLoader v2.2.0.yymps` local package in Explorer/Finder.
     * Click __Add All__.
-    ![alt text](import02.png)
+    ![](import02.png)
     * Click __Import__.
-    ![alt text](import03.png)
+    ![](import03.png)
+        > The whole library lives inside the `GMRoomLoader` folder, and the only file under `Included Files` is the [MIT license](/pages/home/faq/#📍-how-is-gmroomloader-licensed-can-i-use-it-in-commercial-projects).
 3. You're good to go! Next, check out the [First Setup](#first-setup) section below to load your first room.
 
 :::tip UPDATING
@@ -96,6 +97,7 @@ if (keyboard_check_pressed(ord("2"))) {
 </div>
 
 ## What's Next?
+
 That's it for the basic setup! To learn more, check out:
 * The [FAQ](/pages/home/faq) page to find answers to common questions.
 * The [Demos & Tutorials](/pages/home/demosTutorials/demosTutorials) page to learn about available demos and tutorials.
