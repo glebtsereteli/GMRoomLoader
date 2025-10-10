@@ -105,18 +105,16 @@ RoomLoader
 .Instances().Load(rmExample, x, y); // [!code highlight]
 
 // Loads rmExample 4 times rotated around a point:
-RoomLoader
-.Angle(0).Load(rmExample, x, y) // [!code highlight]
-.Angle(90).Load(rmExample, x, y) // [!code highlight]
-.Angle(180).Load(rmExample, x, y) // [!code highlight]
-.Angle(270).Load(rmExample, x, y); // [!code highlight]
+RoomLoader.Angle(0).Load(rmExample, x, y); // [!code highlight]
+RoomLoader.Angle(90).Load(rmExample, x, y); // [!code highlight]
+RoomLoader.Angle(180).Load(rmExample, x, y); // [!code highlight]
+RoomLoader.Angle(270).Load(rmExample, x, y); // [!code highlight]
 
 // Loads rmExample mirrored and flipped in all 4 corners of the room:
-RoomLoader
-.Load(rmExample, 0, 0) // [!code highlight]
-.Mirror().Load(rmExample, room_width, 0) // [!code highlight]
-.Mirror().Flip().Load(rmExample, room_width, room_height) // [!code highlight]
-.Flip().Load(rmExample, 0, room_height); // [!code highlight]
+RoomLoader.Load(rmExample, 0, 0); // [!code highlight]
+RoomLoader.Mirror().Load(rmExample, room_width, 0); // [!code highlight]
+RoomLoader.Mirror().Flip().Load(rmExample, room_width, room_height); // [!code highlight]
+RoomLoader.Flip().Load(rmExample, 0, room_height); // [!code highlight]
 ```
 :::
 
