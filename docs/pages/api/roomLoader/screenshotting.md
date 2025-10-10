@@ -4,8 +4,8 @@ The following methods allow taking screenshots of initialized rooms.
 
 Screenshots can be used in a variety of ways, like displaying previews in a level selection menu, capturing layouts for notes or level design, or previewing rooms in the world before loading them in.
 
-::: danger IMPORTANT
-Rooms can only be screenshotted if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to screenshot beforehand, or the game will crash.
+::: danger ❗ PERFORMANCE NOTE
+If room data hasn't been initialized before screenshotting, GMRoomLoader will initialize it automatically. This is fine for quick tests or small rooms, but it **significantly slows down** loading. See the :Initialization: page for best practices.
 :::
 
 ::: warning

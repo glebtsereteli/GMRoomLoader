@@ -3,7 +3,6 @@
 The following list of ideas includes features that might or might not be introduced in the future. If you have a feature you'd like to suggest, please open a :New Issue: with the `feature` label.
 
 ## Library
-* Automatic data initialization - convenience with performance cost.
 * Batched loading for heavy rooms with many elements.
 * `.Part(left, top, right, bottom)` state - :Loading: and :Screenshotting: parts of rooms. 
 * Particle systems support (GM bug?).
@@ -14,3 +13,4 @@ The following list of ideas includes features that might or might not be introdu
 * Autotiling rooms.
 * Drag'n'drop map.
 * Endless runner.
+* Something in 3D.

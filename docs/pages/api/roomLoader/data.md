@@ -1,22 +1,20 @@
 # Data
 
 This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
-* [Initialization](#initialization) - essential for setting up room data.
-* [Removal](#removal) - optional, for cleaning up data that's no longer needed.
+* [Initialization](#initialization) - essential for setting up room data. Happens automatically, but best performed on game start for performance reasons.
+* [Removal](#removal) - optional, use for cleaning up loaded elements that are no longer needed, AKA "unloading" or "destroying" rooms.
 * [Status & Getters](#status-getters) - situational, for checking or retrieving room data.
 
 ## Initialization
 
 The following methods initialize room data to be used for :Loading: and :Screenshotting:.
 
-::: danger IMPORTANT
-Loading is only possible for rooms with initialized data. Ensure that data initialization is completed before using :Loading: or :Screenshotting: methods. Attempting to use a room whose data hasn't been initialized will cause a crash.
-:::
+::: danger **❗** PERFORMANCE NOTE
+Initialization is the most resource-intensive operation in the entire library. It parses room data from :room_get_info(): and optimizes it for fast :Loading: and :Screenshotting:.
 
-::: tip
-While GMRoomLoader is optimized to handle data efficiently, this section is the most resource-intensive because it relies on :room_get_info(): to fetch and process room data.
+ℹ️ For best performance, call these methods **at the very start of your game**. If your project handles large amounts of data or performs loading/unloading during gameplay, initialize between levels or behind a transition/loading screen.
 
-For best results, call these methods at the very start of your game. If your project involves large amounts of data or requires loading/unloading during gameplay, call them between levels, hidden behind a transition or loading screen.
+If room data hasn't been initialized before calling :Loading:, :Screenshotting: or [Data Getters](#status-getters), GMRoomLoader will initialize it automatically. While convenient for quick testing or handling small rooms, doing this **noticeably slows down** the aforementioned methods.
 :::
 
 ---

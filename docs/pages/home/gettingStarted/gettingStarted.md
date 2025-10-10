@@ -37,7 +37,9 @@ We'll go over each step first and then bring them all together in a simple compl
 ```js
 RoomLoader.DataInit(rmExample);
 ```
-It's best to do this at the very start of your game in some "initialization" or "master" manager object. For this simple example, feel free to do it in the Create event of the object you'd like to handle your room loading, or at any point *before* loading the room.
+It's best to do this at the very start of your game in some "initialization" or "master" manager object. For this simple example, feel free to do it in the Create event of the object you'd like to handle your room loading.
+
+> ℹ️ See the :Initialization: page to learn about best performance practices.
 
 ### 2. Load
 [Load](/pages/api/roomLoader/loading/#load) the room at the mouse position and store the returned :Payload: instance in a variable to clean up later.

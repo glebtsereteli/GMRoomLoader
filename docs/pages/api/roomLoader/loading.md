@@ -5,8 +5,8 @@ This section covers loading room contents - the core functionality of the librar
 * [.LoadInstances()](#loadinstances) loads instances from all layers, placed onto a single layer or depth, with optional :Scaling: and :Rotation:.
 * [.LoadTilemap()](#loadtilemap) loads tilemaps from a source layer in the loaded room into a target layer in the current room. It supports optional :Mirroring:, :Flipping:, 90° :Rotation: and custom :Tileset: options.
 
-::: danger IMPORTANT
-Rooms can only be loaded if their data has been initialized. Make sure to [Initialize](/pages/api/roomLoader/data/#initialization) the data for any room you intend to load beforehand, or the game will crash.
+::: danger ❗ PERFORMANCE NOTE
+If room data hasn't been initialized before loading, GMRoomLoader will initialize it automatically. This is fine for quick tests or small rooms, but it **significantly slows down** loading. See the :Initialization: page for best practices.
 :::
 ::: details ℹ️ TRANSFORMED LOADING PERFORMANCE {closed}
 All transformed loading making use of :Scaling: or :Rotation: is generally slower than loading without them. This is because each element must be recalculated and repositioned according to the transformation parameters, which increases processing time.
