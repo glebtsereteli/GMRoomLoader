@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scrDemoMergeTilemaps",
   "parent":{
-    "name":"04. Merge Tilemaps",
-    "path":"folders/01. Demo/04. Merge Tilemaps.yy",
+    "name":"05. Merge Tilemaps",
+    "path":"folders/01. Demo/05. Merge Tilemaps.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

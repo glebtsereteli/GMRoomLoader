@@ -7,6 +7,7 @@ function Demos() constructor {
 	pool = [
 		new DemoGeneral(),
 		new DemoInstances(),
+		new DemoInstancesBatch(),
 		new DemoTilemaps(),
 		new DemoMergeTilemaps(),
 		new DemoScreenshots(),

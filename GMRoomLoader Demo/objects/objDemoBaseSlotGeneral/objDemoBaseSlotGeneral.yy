@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"General",
-    "path":"folders/01. Demo/06. Base/Slots/General.yy",
+    "path":"folders/01. Demo/7. Base/Slots/General.yy",
   },
   "parentObjectId":{
     "name":"objDemoBaseSlotParent",

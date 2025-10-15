@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Tileset",
-    "path":"folders/01. Demo/06. Base/Tileset.yy",
+    "path":"folders/01. Demo/7. Base/Tileset.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

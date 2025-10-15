@@ -33,8 +33,8 @@
   ],
   "name":"rmDemoTilemaps",
   "parent":{
-    "name":"03. Tilemaps",
-    "path":"folders/01. Demo/03. Tilemaps.yy",
+    "name":"04. Tilemaps",
+    "path":"folders/01. Demo/04. Tilemaps.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
