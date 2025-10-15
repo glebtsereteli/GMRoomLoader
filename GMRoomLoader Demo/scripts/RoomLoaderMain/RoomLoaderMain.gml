@@ -340,10 +340,11 @@ function RoomLoader() {
 		});
 	};
 	
-	/// @param {Asset.GMRoom} room The room to get the instances data from.
+	/// @param {Asset.GMRoom} room The room to get instances data from.
 	/// @param {Asset.GMObject} obj The object to filter instances by. Only instances of the given object will be included.
 	/// @returns {Array<Struct>}
-	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
+	/// @desc Returns an array of instance data structs.
+	/// See format specifics in the docs: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#struct-format
 	/// @context RoomLoader
 	static DataGetInstances = function(_room, _obj = undefined) {
 		static _methodName = "DataGetInstances";
@@ -358,7 +359,29 @@ function RoomLoader() {
 			_closure.__obj = _obj;
 			return array_filter(_data.__instancesPool, _Filter);
 		}
+		
 		return _data.__instancesPool;
+	};
+	
+	/// @param {Asset.GMRoom} room The room to get instance data from.
+	/// @param {Id.Instance} id The room ID of the instance to get data for.
+	/// @returns {Struct, Undefined}
+	/// @desc Returns an instance data struct for the given room instance inside the given room.
+	/// See format specifics in the docs: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#struct-format
+	/// @context RoomLoader
+	static DataGetInstance = function(_room, _instanceId) {
+		static _methodName = "DataGetInstance";
+		static _closure = {};
+		static _Find = method(_closure, function(_inst) {
+			return (_inst.id == __instanceId);
+		});
+		
+		var _data = __GetLoadData(_room, _methodName, "get instance data from");
+		var _pool = _data.__instancesPool;
+		_closure.__instanceId = _instanceId;
+		var _index = array_find_index(_pool, _Find);
+		
+		return ((_index > -1) ? _pool[_index] : undefined);
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get tilemap data from.

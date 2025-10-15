@@ -12,9 +12,9 @@ The following methods initialize room data to be used for :Loading: and :Screens
 ::: danger **❗** PERFORMANCE NOTE
 Initialization is the most resource-intensive operation in the entire library. It parses room data from :room_get_info(): and optimizes it for fast :Loading: and :Screenshotting:.
 
-ℹ️ For best performance, call these methods **at the very start of your game**. If your project handles large amounts of data or performs loading/unloading during gameplay, initialize between levels or behind a transition/loading screen.
+ℹ️ For best performance, call these methods **at the very start of your game**. 
 
-If room data hasn't been initialized before calling :Loading:, :Screenshotting: or [Data Getters](#status-getters), GMRoomLoader will initialize it automatically. While convenient for quick testing or handling small rooms, doing this **noticeably slows down** the aforementioned methods.
+ℹ️ If room data hasn't been initialized before calling :Loading:, :Screenshotting: or [Data Getters](#status-getters), GMRoomLoader will initialize it automatically. While convenient for quick testing or handling small rooms, doing this **noticeably slows down** the aforementioned methods and should be avoided when dealing with bigger rooms.
 :::
 
 ---
@@ -295,9 +295,11 @@ RoomLoader.LayerWhitelistReset();
 ---
 ### `.DataGetInstances()`
 
-> `RoomLoader.DataGetInstances(room)` ➜ :Array: of :Struct:
+> `RoomLoader.DataGetInstances(room, [object])` ➜ :Array: of :Struct:
 
-Returns an array of instance data structs from the given room. Format listed [below](#struct-format).
+Returns an array of instance data structs from the given room. See the format listed [below](#struct-format).
+
+You can also provide the optional `[object]` argument to return data only for instances of the specified object.
 
 ::: danger IMPORTANT
 This method fetches the internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
@@ -306,9 +308,10 @@ This method fetches the internal data structs, which should NOT be changed exter
 | Parameter | Type | Description |
 |---|---|---|
 | `room` | :Asset.GMRoom: | The room to get an array of instance data from |
+| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of the given object will be included |
 
 :::code-group
-```js [Example]
+```js [Custom Instance Creation]
 // Fetches instance data from rmExample:
 var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
 
@@ -318,6 +321,11 @@ instances = array_map(_instancesData, function(_instanceData) {
     // More custom logic...
     return _instanceId;
 });
+```
+```js [Fetching Doors]
+// Fetches objDoor instance data from rmExample:
+var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code highlight]
+// ...
 ```
 :::
 
@@ -338,6 +346,20 @@ instances = array_map(_instancesData, function(_instanceData) {
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_index` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_blend` | :Real: |
+
+---
+### `.DataGetInstance()`
+
+> `RoomLoader.DataGetInstance(room, instanceId)` ➜ :Struct:
+
+Returns an instance data struct for the given room instance inside the given room. See the format listed [above](#struct-format).
+
+:::code-group
+```js [Example]
+var _leftDoor = RoomLoader.DataGetInstance(rmExample, inst_2C16415); // [!code highlight]
+// ...
+```
+:::
 
 ---
 ### `.DataGetTilemap()`
