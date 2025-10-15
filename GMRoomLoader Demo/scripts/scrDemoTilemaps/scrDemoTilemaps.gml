@@ -113,13 +113,13 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 	owner = other;
 	name = _name;
 	layer = layer_create(CONTROL.depth + _depthOffset);
-	tilemap = undefined;
-	tileset = undefined;
 	tilesetNames = ["Grass", "Sand", "Snow"];
 	tilesetIds = array_map(tilesetNames, function(_name) {
 		return asset_get_index($"tsDemoTilemaps{_name}");
 	});
 	n = array_length(tilesetIds);
+	tilemap = undefined;
+	tileset = tilesetIds[0];
 	
 	static InitDbg = function() {
 		dbg_drop_down(ref_create(self, "tileset"), tilesetIds, tilesetNames, $"{name}");
@@ -129,7 +129,7 @@ function DemoTilemapsPart(_name, _depthOffset) constructor {
 		dbg_button("+", function() { Cycle(+1); }, 20, 20);
 	};
 	static Cycle = function(_dir) {
-		_index = Mod2(GetTilesetIndex() + _dir, n);
+		var _index = Mod2(GetTilesetIndex() + _dir, n);
 		tileset = tilesetIds[_index];
 		owner.Load();
 	};

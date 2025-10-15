@@ -341,14 +341,23 @@ function RoomLoader() {
 	};
 	
 	/// @param {Asset.GMRoom} room The room to get the instances data from.
+	/// @param {Asset.GMObject} obj The object to filter instances by. Only instances of the given object will be included.
 	/// @returns {Array<Struct>}
 	/// @desc Returns an array of processed instance data. Refer to the docs to see format specifics.
 	/// @context RoomLoader
-	static DataGetInstances = function(_room) {
+	static DataGetInstances = function(_room, _obj = undefined) {
 		static _methodName = "DataGetInstances";
+		static _closure = {};
+		static _Filter = method(_closure, function(_inst) {
+			return (_inst.object == __obj);
+		});
 		
 		var _data = __GetLoadData(_room, _methodName, "get instances data from");
 		
+		if (_obj != undefined) {
+			_closure.__obj = _obj;
+			return array_filter(_data.__instancesPool, _Filter);
+		}
 		return _data.__instancesPool;
 	};
 	

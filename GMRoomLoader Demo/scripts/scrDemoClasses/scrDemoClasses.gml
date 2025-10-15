@@ -86,7 +86,7 @@ function Demos() constructor {
 		var _w = 109;
 		dbg_button("GitHub", function() { url_open("https://github.com/glebtsereteli/GMRoomLoader"); }, _w, 20);
 		dbg_same_line();
-		dbg_button("Last Release", function() { url_open($"https://github.com/glebtsereteli/GMRoomLoader/Releases/tag/{__ROOMLOADER_VERSION}"); }, _w, 20);
+		dbg_button("Last Release", function() { url_open($"https://github.com/glebtsereteli/GMRoomLoader/releases/tag/{__ROOMLOADER_VERSION}"); }, _w, 20);
 		dbg_same_line();
 		dbg_button("Docs", function() { url_open("https://GlebTsereteli.github.io/GMRoomLoader"); }, _w, 20);
 		dbg_same_line();
