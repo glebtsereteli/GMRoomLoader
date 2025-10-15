@@ -63,12 +63,13 @@ function DemoInstancesBatch() : DemoPar("Instances Batch") constructor {
 	angle = 0;
 	
 	rm = rmDemoInstancesBatch;
+	batch = new RoomLoaderBatchInstances(rm);
 	instances = undefined;
 	
 	static Load = function() {
 		
 	};
-		
+	
 	static Destroy = function() {
 		
 	};
