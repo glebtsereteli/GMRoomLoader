@@ -836,6 +836,18 @@ function RoomLoader() {
 		return self;
 	};
 	
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Effects (ROOMLOADER_FLAG.EFFECTS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
+	static Effects = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.EFFECTS;
+		
+		return self;
+	};
+	
 	#endregion
 	#region State: Transformation
 	

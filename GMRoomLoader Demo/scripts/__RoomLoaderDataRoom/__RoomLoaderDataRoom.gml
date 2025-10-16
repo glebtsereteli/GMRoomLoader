@@ -71,29 +71,36 @@ function __RoomLoaderDataRoom(_room) constructor {
 		__height = _rawData.height;
 		__creationCode = max(_rawData.creationCode, __RoomLoaderNoop);
 		
-		// Store instances data:
 		var _instancesData = _rawData.instances;
 		if (_instancesData != 0) {
 			__instancesPool = array_map(_instancesData, _MapInstanceData);
 		}
 		
-		// Collect data:
 		var _layersData = _rawData.layers;
 		var _i = 0; repeat (array_length(_layersData)) {
 			var _layerData = _layersData[_i];
 			var _elementsData = _layerData.elements;
+			var _layer = undefined;
+			
 			if (_elementsData != 0) {
 				var _j = 0; repeat (array_length(_elementsData)) {
 					var _dataConstructor = _GetDataConstructor(_elementsData[_j].type);
 					if (_dataConstructor != undefined) {
-						var _data = new _dataConstructor(_layerData, _elementsData);
-						_data.__Init();
-						array_push(__layersPool, _data);
+						_layer = new _dataConstructor(_layerData, _elementsData);
 						break;
 					}
 					_j++;
 				}
 			}
+			else if ((struct_exists(_layerData, "effectInfo")) and (not _layerData.effectInfo.singleLayerOnly)) {
+				_layer = new __RoomLoaderDataLayerEffect(_layerData);
+			}
+			
+			if (_layer != undefined) {
+				_layer.__Init();
+				array_push(__layersPool, _layer);
+			}
+			
 			_i++;
 		}
 		

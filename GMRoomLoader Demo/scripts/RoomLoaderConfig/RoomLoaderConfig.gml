@@ -43,10 +43,6 @@
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_DELIVER_PAYLOAD true
 
-// Whether to load on-layer Filters/Effects (true) or not (false).
-// This doesn't affect standalone Effect layers. Use Asset Type Filtering to filter those out.
-#macro ROOMLOADER_LOAD_LAYER_EFFECTS true
-
 #endregion
 #region Instances
 

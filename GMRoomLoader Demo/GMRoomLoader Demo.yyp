@@ -134,6 +134,7 @@
     {"id":{"name":"__RoomLoaderDataCore","path":"scripts/__RoomLoaderDataCore/__RoomLoaderDataCore.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerAsset","path":"scripts/__RoomLoaderDataLayerAsset/__RoomLoaderDataLayerAsset.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerBackground","path":"scripts/__RoomLoaderDataLayerBackground/__RoomLoaderDataLayerBackground.yy",},},
+    {"id":{"name":"__RoomLoaderDataLayerEffect","path":"scripts/__RoomLoaderDataLayerEffect/__RoomLoaderDataLayerEffect.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerInstance","path":"scripts/__RoomLoaderDataLayerInstance/__RoomLoaderDataLayerInstance.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerParent","path":"scripts/__RoomLoaderDataLayerParent/__RoomLoaderDataLayerParent.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerTile","path":"scripts/__RoomLoaderDataLayerTile/__RoomLoaderDataLayerTile.yy",},},

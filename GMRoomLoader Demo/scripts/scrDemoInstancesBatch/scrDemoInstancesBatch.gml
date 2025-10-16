@@ -69,7 +69,6 @@ function DemoInstancesBatch() : DemoPar("Instances Batch") constructor {
 	static Load = function() {
 		
 	};
-	
 	static Destroy = function() {
 		
 	};

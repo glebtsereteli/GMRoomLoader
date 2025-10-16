@@ -28,7 +28,7 @@ function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
 	};
 }
 function DemoModuleFlags() constructor {
-	static reloaderNames = ["instances", "tilemaps", "sprites", "sequences", "texts", "backgrounds"];
+	static reloaderNames = ["instances", "tilemaps", "sprites", "sequences", "texts", "backgrounds", "effects"];
 	
 	instances = true;
 	tilemaps = true;
@@ -36,6 +36,7 @@ function DemoModuleFlags() constructor {
 	sequences = true;
 	texts = true;
 	backgrounds = true;
+	effects = true;
 	
 	static InitDbg = function() {
 		dbg_text_separator("Flags", 1);
@@ -45,6 +46,7 @@ function DemoModuleFlags() constructor {
 		dbg_checkbox(ref_create(self, "sequences"), "Sequences");
 		dbg_checkbox(ref_create(self, "texts"), "Texts");
 		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
+		dbg_checkbox(ref_create(self, "effects"), "Effects");
 	};
 	static Get = function() {
 		var _total = ROOMLOADER_FLAG.NONE;
@@ -54,6 +56,7 @@ function DemoModuleFlags() constructor {
 		_total |= sequences * ROOMLOADER_FLAG.SEQUENCES;
 		_total |= texts * ROOMLOADER_FLAG.TEXTS;
 		_total |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
+		_total |= effects * ROOMLOADER_FLAG.EFFECTS;
 		return _total;
 	};
 }
