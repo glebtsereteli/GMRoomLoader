@@ -186,6 +186,6 @@ function __RoomLoaderDataRoom(_room) constructor {
 	    }
 	    return _sprite;
 	};
-		
+	
 	__Init();
 }

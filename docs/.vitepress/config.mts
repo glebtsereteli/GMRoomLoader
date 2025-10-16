@@ -97,6 +97,7 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
           },
+          { text: "Batch", link: '/pages/api/batch' },
           { text: '🏗️ Debug View', link: '/pages/api/debugView/debugView', },
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
@@ -144,6 +145,7 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
+          { text: "Batch", link: '/pages/api/batch' },
           { text: 'Debug View', link: '/pages/api/debugView/debugView', },
           { text: 'Configuration', link: '/pages/api/config' },
         ]

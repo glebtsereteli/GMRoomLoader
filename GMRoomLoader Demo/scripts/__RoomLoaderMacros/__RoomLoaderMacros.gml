@@ -18,6 +18,9 @@
 if (not __ROOMLOADER_HAS_FLAG) return; \
 if (__HasFailedFilters()) return; \
 var _layer = __RoomLoaderGetLayer(__layerData); \
+if ((ROOMLOADER_LOAD_LAYER_EFFECTS) and  (__fx != undefined)) { \
+	layer_set_fx(_layer, __fx); \
+} \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
 }

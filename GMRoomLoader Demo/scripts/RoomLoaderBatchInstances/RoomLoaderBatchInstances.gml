@@ -52,11 +52,19 @@ function RoomLoaderBatchInstances(_room) constructor {
 		return self;
 	};
 	
-	/// @returns {Bool}
+	/// @returns {Bool, Undefined}
 	/// @desc TODO
 	static Update = function() {
+		if (not __loading) return undefined;
 		
-		return IsDone();
+		// TODO load
+		// TODO progress index
+		
+		if (IsDone()) {
+			__loading = false;
+			return true;
+		}
+		return false;
 	};
 	
 	#endregion
@@ -68,15 +76,17 @@ function RoomLoaderBatchInstances(_room) constructor {
 		return (__loading ? (__index == (__n - 1)) : undefined);
 	};
 	
-	/// @returns {Real}
+	/// @returns {Real, Undefined}
 	/// @desc TODO
 	static GetProgress = function() {
 		return (__loading ? (__index / __n) : undefined);
 	};
 	
-	/// @returns {Array<Id.Instance>}
+	/// @returns {Array<Id.Instance>, Undefined}
 	/// @desc TODO
 	static GetInstances = function() {
 		return (__loading ? __instances : undefined);
 	};
+
+	#endregion
 }
