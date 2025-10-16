@@ -21,7 +21,7 @@
 if (not __ROOMLOADER_HAS_FLAG) return; \
 if (__HasFailedFilters()) return; \
 var _layer = __RoomLoaderGetLayer(__layerData); \
-if (__fx != undefined) { \
+if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS & _flags)) { \
 	layer_set_fx(_layer, __fx); \
 } \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
