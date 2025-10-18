@@ -165,6 +165,7 @@ Similar to [Origin Presets](#presets) above, this approach makes the code read i
 | `.Sequences()` | :ROOMLOADER_FLAG:.`SEQUENCES` |
 | `.Texts()` | :ROOMLOADER_FLAG:.`TEXTS` |
 | `.Backgrounds()` | :ROOMLOADER_FLAG:.`BACKGROUNDS` |
+| `.Effects()` | :ROOMLOADER_FLAG:.`EFFECTS` |
 
 ::: code-group
 ```js [Examples]
@@ -185,14 +186,14 @@ RoomLoader
 // Second call, Tilemaps are added.
 // Current flags representation: ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS
 .Tilemaps() // [!code highlight]
-// Third call, Backgrounds are added.
-// Current flags representation: ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.BACKGROUNDS
-.Backgrounds() // [!code highlight]
-// Load rmExample's Instances, Tilemaps and Backgrounds:
+// Third call, Sprites are added.
+// Current flags representation: ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES
+.Sprites() // [!code highlight]
+// Load rmExample's Instances, Tilemaps and Sprites:
 .Load(rmExample, x, y);
 
 // And in one line:
-RoomLoader.Instances().Tilemaps().Backgrounds().Load(rmExample, x, y); // [!code highlight]
+RoomLoader.Instances().Tilemaps().Sprites().Load(rmExample, x, y); // [!code highlight]
 ```
 :::
 

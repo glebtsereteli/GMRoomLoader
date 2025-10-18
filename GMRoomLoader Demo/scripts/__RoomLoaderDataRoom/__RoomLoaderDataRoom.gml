@@ -40,7 +40,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 					
 				    image_index = _dataIn.image_index;
 				    image_speed = _dataIn.image_speed;
-				
+					
 				    var _pcc = _dataIn.pre_creation_code;
 				    if (_pcc != -1) {
 				        _pcc();

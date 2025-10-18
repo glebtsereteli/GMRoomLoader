@@ -35,11 +35,11 @@ Full room loading supports the following elements.
 | Instance | Instance | ✔️ |
 | Tilemap | Tile | ✔️ |
 | Sprite | Asset | ✔️ |
-| Particle System | Asset | 🚧 Broken, GM bug |
+| Particle System | Asset | 🚧 Broken, GM bug. Fix coming in 2024.14.1 |
 | Sequence | Asset | ✔️ |
 | Background | Background | ✔️ |
-| Filter/Effect | Filter/Effect   | ❌ Missing :room_get_info(): data |
-| In-layer Filter/Effect | Any | 🚧 GM Bug, missing :room_get_info(): data |
+| Effects | Effect | ✔️ |
+| On-layer Effects | Any | ✔️ |
 | Creation Code | - | ✔️ |
 | Views | - | ❌ Irrelevant |
 | Physics | - | ❌ Irrelevant |

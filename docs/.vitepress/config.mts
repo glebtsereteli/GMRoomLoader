@@ -97,12 +97,11 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
           },
-          { text: "Batch", link: '/pages/api/batch' },
           { text: '🏗️ Debug View', link: '/pages/api/debugView/debugView', },
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.2.0' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.3.0' },
     ],
     
     outline: [2, 3],
@@ -145,7 +144,6 @@ export default defineConfig({
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
-          { text: "Batch", link: '/pages/api/batch' },
           { text: 'Debug View', link: '/pages/api/debugView/debugView', },
           { text: 'Configuration', link: '/pages/api/config' },
         ]

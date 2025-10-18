@@ -37,13 +37,15 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 		
 		with (__layerData[$ "effectInfo"]) {
 			var _fx = fx_create(name);
+			fx_set_single_layer(_fx, singleLayerOnly);
+			
 			var _n = array_length(effectParams) - array_contains(_texturedFilters, name);
 			var _i = 0; repeat (_n) {
 				var _param = effectParams[_i];
 				fx_set_parameter(_fx, _param.name, _param.values);
 				_i++;
 			}
-			fx_set_single_layer(_fx, singleLayerOnly);
+			
 			other.__fx = _fx;
 		}
 		
