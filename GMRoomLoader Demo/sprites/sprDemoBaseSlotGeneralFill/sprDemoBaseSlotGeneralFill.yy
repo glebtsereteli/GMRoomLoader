@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Sprites",
-    "path":"folders/01. Demo/7. Base/Slots/General/Sprites.yy",
+    "path":"folders/01. Demo/06. Base/Slots/General/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

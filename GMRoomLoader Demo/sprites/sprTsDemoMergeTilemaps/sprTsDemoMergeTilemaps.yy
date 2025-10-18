@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"05. Merge Tilemaps",
-    "path":"folders/01. Demo/05. Merge Tilemaps.yy",
+    "name":"04. Merge Tilemaps",
+    "path":"folders/01. Demo/04. Merge Tilemaps.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scrDemoTilemaps",
   "parent":{
-    "name":"04. Tilemaps",
-    "path":"folders/01. Demo/04. Tilemaps.yy",
+    "name":"03. Tilemaps",
+    "path":"folders/01. Demo/03. Tilemaps.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,7 +5,7 @@
   "option_linux_allow_fullscreen":false,
   "option_linux_disable_sandbox":true,
   "option_linux_display_cursor":true,
-  "option_linux_display_name":"Created with GameMaker",
+  "option_linux_display_name":"GMRoomLoader",
   "option_linux_display_splash":false,
   "option_linux_enable_steam":false,
   "option_linux_homepage":"https://github.com/glebtsereteli/GMRoomLoader",
@@ -20,7 +20,7 @@
   "option_linux_start_fullscreen":false,
   "option_linux_sync":false,
   "option_linux_texture_page":"2048x2048",
-  "option_linux_version":"2.2.0",
+  "option_linux_version":"2.3.0",
   "resourceType":"GMLinuxOptions",
   "resourceVersion":"2.0",
 }

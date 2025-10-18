@@ -149,7 +149,10 @@
           13,68,81,45,81,81,82,0,80,81,81,45,81,70,-14,-2147483648,-10,0,-14,-2147483648,-10,0,-14,-2147483648,
           -10,0,-168,-2147483648,
         ],"TileDataFormat":1,},"tilesetId":{"name":"tsDemoGeneralTinyTown","path":"tilesets/tsDemoGeneralTinyTown/tsDemoGeneralTinyTown.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
-    {"$GMRTileLayer":"","%Name":"TilesBack","depth":500,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"TilesBack","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":17,"SerialiseWidth":24,"TileCompressedData":[
+    {"$GMRTileLayer":"","%Name":"TilesBack","depth":500,"effectEnabled":true,"effectType":"_filter_large_blur","gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"TilesBack","properties":[
+        {"name":"g_Radius","type":0,"value":"10",},
+        {"name":"g_NoiseTexture","type":2,"value":"_filter_large_blur_noise",},
+      ],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":17,"SerialiseWidth":24,"TileCompressedData":[
           -10,-2147483648,2,0,12,-11,13,1,14,-10,-2147483648,2,0,24,-11,25,1,26,-10,-2147483648,2,0,24,-11,25,
           1,26,-10,-2147483648,2,0,24,-11,25,1,26,-10,-2147483648,2,0,24,-11,25,1,26,-10,-2147483648,2,0,24,-5,
           25,1,43,-5,25,1,26,-10,-2147483648,2,0,1,-5,37,1,43,-5,37,1,38,-10,-2147483648,1,0,-6,1,1,43,-6,1,-10,

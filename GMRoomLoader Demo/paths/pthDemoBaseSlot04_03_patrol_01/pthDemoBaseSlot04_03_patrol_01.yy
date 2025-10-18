@@ -6,7 +6,7 @@
   "name":"pthDemoBaseSlot04_03_patrol_01",
   "parent":{
     "name":"04-03",
-    "path":"folders/01. Demo/7. Base/Slots/General/Rooms/04/04-03.yy",
+    "path":"folders/01. Demo/06. Base/Slots/General/Rooms/04/04-03.yy",
   },
   "points":[
     {"speed":100.0,"x":128.65956,"y":76.28215,},

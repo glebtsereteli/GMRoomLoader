@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"05. Merge Tilemaps",
-    "path":"folders/01. Demo/05. Merge Tilemaps.yy",
+    "name":"04. Merge Tilemaps",
+    "path":"folders/01. Demo/04. Merge Tilemaps.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
