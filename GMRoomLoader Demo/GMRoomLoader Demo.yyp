@@ -235,6 +235,7 @@
     {"id":{"name":"sprDemoFrame","path":"sprites/sprDemoFrame/sprDemoFrame.yy",},},
     {"id":{"name":"sprDemoGeneralBg","path":"sprites/sprDemoGeneralBg/sprDemoGeneralBg.yy",},},
     {"id":{"name":"sprDemoGeneralOwl","path":"sprites/sprDemoGeneralOwl/sprDemoGeneralOwl.yy",},},
+    {"id":{"name":"sprDemoGeneralTexture","path":"sprites/sprDemoGeneralTexture/sprDemoGeneralTexture.yy",},},
     {"id":{"name":"sprDemoParrot","path":"sprites/sprDemoParrot/sprDemoParrot.yy",},},
     {"id":{"name":"sprTsDemoBase","path":"sprites/sprTsDemoBase/sprTsDemoBase.yy",},},
     {"id":{"name":"sprTsDemoGeneralTinyTown","path":"sprites/sprTsDemoGeneralTinyTown/sprTsDemoGeneralTinyTown.yy",},},
