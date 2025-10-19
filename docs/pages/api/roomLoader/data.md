@@ -329,6 +329,20 @@ var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code high
 ```
 :::
 
+---
+### `.DataGetInstance()`
+
+> `RoomLoader.DataGetInstance(room, instanceId)` ➜ :Struct:
+
+Returns an instance data struct for the given room instance inside the given room. See the format listed [below](#struct-format).
+
+:::code-group
+```js [Example]
+var _leftDoor = RoomLoader.DataGetInstance(rmExample, inst_2C16415); // [!code highlight]
+// ...
+```
+:::
+
 #### Struct Format
 | Property | Type |
 |----------|------|
@@ -347,19 +361,7 @@ var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code high
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_alpha` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_blend` | :Real: |
 
----
-### `.DataGetInstance()`
-
-> `RoomLoader.DataGetInstance(room, instanceId)` ➜ :Struct:
-
-Returns an instance data struct for the given room instance inside the given room. See the format listed [above](#struct-format).
-
-:::code-group
-```js [Example]
-var _leftDoor = RoomLoader.DataGetInstance(rmExample, inst_2C16415); // [!code highlight]
-// ...
-```
-:::
+Any variables adjusted through the [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) tab are also included in the struct. Variables with untouched default values are ignored - :room_get_info(): doesn't provide any data for those.
 
 ---
 ### `.DataGetTilemap()`
