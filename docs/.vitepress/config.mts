@@ -232,6 +232,7 @@ export default defineConfig({
         'Layer Name Filtering': '/pages/api/roomLoader/layerNameFiltering',
         
         'Data': '/pages/api/roomLoader/data',
+        'Data Getters': '/pages/api/roomLoader/data#status-getters',
         'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',

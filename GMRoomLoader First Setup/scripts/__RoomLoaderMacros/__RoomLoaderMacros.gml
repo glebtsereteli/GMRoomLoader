@@ -2,8 +2,8 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.2.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.10.07" // year.month.day
+#macro __ROOMLOADER_VERSION "v2.3.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2025.10.19" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 #macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
 
@@ -14,10 +14,16 @@
 
 #macro __ROOMLOADER_HAS_FLAG (__flag & _flags)
 
-#macro __ROOMLOADER_LOAD_LAYER_START \
+#endregion
+#region Layers
+
+#macro __ROOMLOADER_LAYER_START_LOAD \
 if (not __ROOMLOADER_HAS_FLAG) return; \
 if (__HasFailedFilters()) return; \
 var _layer = __RoomLoaderGetLayer(__layerData); \
+if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS & _flags)) { \
+	layer_set_fx(_layer, __fx); \
+} \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
 }

@@ -1,7 +1,7 @@
 # Data
 
 This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
-* [Initialization](#initialization) - essential for setting up room data. Happens automatically, but best performed on game start for performance reasons.
+* [Initialization](#initialization) - essential for setting up room data before :Loading:, :Screenshotting: or using :Data Getters:. Happens automatically, but best performed on game start for performance reasons.
 * [Removal](#removal) - optional, use for cleaning up loaded elements that are no longer needed, AKA "unloading" or "destroying" rooms.
 * [Status & Getters](#status-getters) - situational, for checking or retrieving room data.
 
@@ -299,7 +299,7 @@ RoomLoader.LayerWhitelistReset();
 
 Returns an array of instance data structs from the given room. See the format listed [below](#struct-format).
 
-You can also provide the optional `[object]` argument to return data only for instances of the specified object.
+You can also provide the optional `[object]` argument to return data only for instances of the given object.
 
 ::: danger IMPORTANT
 This method fetches the internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).

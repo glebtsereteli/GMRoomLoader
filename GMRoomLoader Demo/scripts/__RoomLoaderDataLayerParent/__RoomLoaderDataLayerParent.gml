@@ -51,7 +51,8 @@ function __RoomLoaderDataLayerParent(_layerData) constructor {
 			}
 			var _i = 0; repeat (_nParams) {
 				var _param = effectParams[_i];
-				fx_set_parameter(_fx, _param.name, _param.values);
+				var _single = (array_length(_param.values) == 1);
+				fx_set_parameter(_fx, _param.name, _single ? _param.values[0] : _param.values);
 				_i++;
 			}
 			

@@ -22,7 +22,6 @@
     {"$GMFolder":"","%Name":"01. General","folderPath":"folders/03. GMRoomLoader/02. Private/01. General.yy","name":"01. General","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"02. Data","folderPath":"folders/03. GMRoomLoader/02. Private/02. Data.yy","name":"02. Data","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Debug View","folderPath":"folders/03. GMRoomLoader/02. Private/03. Debug View.yy","name":"03. Debug View","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"03. Notes","folderPath":"folders/03. GMRoomLoader/03. Notes.yy","name":"03. Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
@@ -36,8 +35,8 @@
   "name":"GMRoomLoader First Setup",
   "resources":[
     {"id":{"name":"fntHost","path":"fonts/fntHost/fntHost.yy",},},
+    {"id":{"name":"GMRoomLoader Info","path":"notes/GMRoomLoader Info/GMRoomLoader Info.yy",},},
     {"id":{"name":"Guide","path":"notes/Guide/Guide.yy",},},
-    {"id":{"name":"RoomLoaderInfo","path":"notes/RoomLoaderInfo/RoomLoaderInfo.yy",},},
     {"id":{"name":"objExampleFly","path":"objects/objExampleFly/objExampleFly.yy",},},
     {"id":{"name":"objExampleStar","path":"objects/objExampleStar/objExampleStar.yy",},},
     {"id":{"name":"objHost","path":"objects/objHost/objHost.yy",},},
@@ -46,6 +45,7 @@
     {"id":{"name":"__RoomLoaderDataCore","path":"scripts/__RoomLoaderDataCore/__RoomLoaderDataCore.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerAsset","path":"scripts/__RoomLoaderDataLayerAsset/__RoomLoaderDataLayerAsset.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerBackground","path":"scripts/__RoomLoaderDataLayerBackground/__RoomLoaderDataLayerBackground.yy",},},
+    {"id":{"name":"__RoomLoaderDataLayerEffect","path":"scripts/__RoomLoaderDataLayerEffect/__RoomLoaderDataLayerEffect.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerInstance","path":"scripts/__RoomLoaderDataLayerInstance/__RoomLoaderDataLayerInstance.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerParent","path":"scripts/__RoomLoaderDataLayerParent/__RoomLoaderDataLayerParent.yy",},},
     {"id":{"name":"__RoomLoaderDataLayerTile","path":"scripts/__RoomLoaderDataLayerTile/__RoomLoaderDataLayerTile.yy",},},
