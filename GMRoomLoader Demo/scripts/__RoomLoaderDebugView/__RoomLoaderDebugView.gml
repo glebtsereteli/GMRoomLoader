@@ -91,7 +91,7 @@ function __RoomLoaderDebugView() constructor {
 			dbg_section_delete(__sectionBlacklist);
 		}
 		
-		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE));
+		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE),,,, 600);
 		__sectionMain = dbg_section("Main", true); {
 			dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
 			dbg_same_line();
@@ -126,15 +126,18 @@ function __RoomLoaderDebugView() constructor {
 			dbg_same_line();
 			dbg_button("+", function() { __CycleLoadMode(1); }, 20, 20);
 			
+			dbg_text_separator("");
+			
 			dbg_drop_down(ref_create(self, "__posMode"), __posModes, __posModesNames, "Position Mode");
 			dbg_same_line();
 			dbg_button("-", function() { __CyclePosMode(-1); }, 20, 20);
 			dbg_same_line();
 			dbg_button("+", function() { __CyclePosMode(1); }, 20, 20);
 			
+			__posMode.__InitDbg();
+			
 			dbg_text_separator("");
 			
-			__posMode.__InitDbg();
 			method(self, __loadMode.__InitDbg)();
 		}
 	};
