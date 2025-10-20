@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__RoomLoaderDebugViewModes",
+  "%Name":"__RoomLoaderDebugViewLoadModes",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__RoomLoaderDebugViewModes",
+  "name":"__RoomLoaderDebugViewLoadModes",
   "parent":{
     "name":"03. Debug View",
     "path":"folders/02. GMRoomLoader/02. Private/03. Debug View.yy",
