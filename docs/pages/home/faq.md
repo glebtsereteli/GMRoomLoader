@@ -61,7 +61,7 @@ The execution order follows GameMaker's default and is structured like this:
 
 ## 📍 Can I "destroy" or "unload" a room after loading it?
 
-Of course you can, that's essential! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
+Of course you can, that's essential! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#load), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
 
 ### Full Rooms
 
