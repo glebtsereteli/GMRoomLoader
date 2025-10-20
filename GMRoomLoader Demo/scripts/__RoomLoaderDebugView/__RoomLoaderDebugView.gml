@@ -32,6 +32,7 @@ function __RoomLoaderDebugView() constructor {
 	static __posModes = [
 		new __RoomLoaderDebugViewPosModeMouse(),
 		new __RoomLoaderDebugViewPosModeCustom(),
+		new __RoomLoaderDebugViewPosModeRandom(),
 	];
 	static __posModesNames = array_map(__posModes, function(_mode) {
 		return _mode.__name;

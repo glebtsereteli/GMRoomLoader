@@ -34,3 +34,22 @@ function __RoomLoaderDebugViewPosModeCustom() : __RoomLoaderDebugViewPosMode("Cu
 	__x = 0;
 	__y = 0;
 }
+function __RoomLoaderDebugViewPosModeRandom() : __RoomLoaderDebugViewPosMode("Random") constructor {
+	static __InitDbg = function() {
+		dbg_text_input(ref_create(self, "__x1"), "X1", "r");
+		dbg_text_input(ref_create(self, "__y1"), "Y1", "r");
+		dbg_text_input(ref_create(self, "__x2"), "X2", "r");
+		dbg_text_input(ref_create(self, "__y2"), "Y2", "r");
+	};
+	static __GetX = function() {
+		return irandom_range(__x1, __x2);
+	};
+	static __GetY = function() {
+		return irandom_range(__y1, __y2);
+	};
+	
+	__x1 = 0;
+	__y1 = 0;
+	__x2 = 1000;
+	__y2 = 1000;
+}
