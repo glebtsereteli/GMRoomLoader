@@ -33,6 +33,7 @@ function __RoomLoaderDebugView() constructor {
 		new __RoomLoaderDebugViewPosModeMouse(),
 		new __RoomLoaderDebugViewPosModeCustom(),
 		new __RoomLoaderDebugViewPosModeRandom(),
+		new __RoomLoaderDebugViewPosModeGetters(),
 	];
 	static __posModesNames = array_map(__posModes, function(_mode) {
 		return _mode.__name;

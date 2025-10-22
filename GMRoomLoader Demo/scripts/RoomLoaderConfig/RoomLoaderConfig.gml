@@ -72,4 +72,12 @@
 // If left undefined, all rooms in the project will be available.
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
 
+// When using the Getters Position Mode, this callback returns the X coordinate where the room should be loaded.
+// The X position defaults to 0 if the macro is left undefined.
+#macro ROOMLOADER_DEBUG_VIEW_GET_X undefined
+
+// When using the Getters Position Mode, this callback returns the Y coordinate where the room should be loaded.
+// The Y position defaults to 0 if the macro is left undefined.
+#macro ROOMLOADER_DEBUG_VIEW_GET_Y undefined
+
 #endregion

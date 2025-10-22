@@ -53,3 +53,11 @@ function __RoomLoaderDebugViewPosModeRandom() : __RoomLoaderDebugViewPosMode("Ra
 	__x2 = 1000;
 	__y2 = 1000;
 }
+function __RoomLoaderDebugViewPosModeGetters() : __RoomLoaderDebugViewPosMode("Getters") constructor {
+	static __GetX = function() {
+		return ((ROOMLOADER_DEBUG_VIEW_GET_X != undefined) ? ROOMLOADER_DEBUG_VIEW_GET_X : 0);
+	};
+	static __GetY = function() {
+		return ((ROOMLOADER_DEBUG_VIEW_GET_Y != undefined) ? ROOMLOADER_DEBUG_VIEW_GET_Y : 0);
+	};
+}
