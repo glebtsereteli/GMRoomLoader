@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function __RoomLoaderDataCore() constructor {
 	static __messagePrefix = RoomLoader.__messagePrefix,

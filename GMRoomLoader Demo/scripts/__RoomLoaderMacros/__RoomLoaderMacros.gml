@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 #region Info
 
@@ -187,7 +187,7 @@ var _text = layer_text_create(_layer, _x, _y, __font, __text); \
 layer_text_halign(_text, __hAlign); \
 layer_text_valign(_text, __vAlign); \
 layer_text_charspacing(_text, __charSpacing); \
-layer_text_linespacing(_text, __lineSpacing); \
+layer_text_paragraphspacing(_text, __paragraphSpacing); \
 layer_text_framew(_text, __frameWidth); \
 layer_text_frameh(_text, __frameHeight); \
 layer_text_wrap(_text, __wrap); \

@@ -54,6 +54,16 @@ function __RoomLoaderDebugViewPosModeRandom() : __RoomLoaderDebugViewPosMode("Ra
 	__y2 = 1000;
 }
 function __RoomLoaderDebugViewPosModeGetters() : __RoomLoaderDebugViewPosMode("Getters") constructor {
+	static __InitDbg = function() {
+		dbg_text(" X Getter: " + ((ROOMLOADER_DEBUG_VIEW_GET_X != undefined) 
+			? script_get_name(ROOMLOADER_DEBUG_VIEW_GET_X) + "()"
+			: "MISSING! Set the ROOMLOADER_DEBUG_VIEW_GET_X config macro."
+		));
+		dbg_text(" Y Getter: " + ((ROOMLOADER_DEBUG_VIEW_GET_Y != undefined) 
+			? script_get_name(ROOMLOADER_DEBUG_VIEW_GET_Y) + "()"
+			: "MISSING! Set the ROOMLOADER_DEBUG_VIEW_GET_Y config macro."
+		));
+	};
 	static __GetX = function() {
 		return ((ROOMLOADER_DEBUG_VIEW_GET_X != undefined) ? ROOMLOADER_DEBUG_VIEW_GET_X : 0);
 	};

@@ -22,22 +22,21 @@ Now that the :Debug View: is enabled, you can start loading rooms at the mouse c
     :::
 * The **Cleanup** button unloads any rooms that were loaded via the :Debug View:.
 * The **Room** dropdown allows you to select which room to load. The list of rooms shown is determined by the :ROOMLOADER_DEBUG_VIEW_ROOMS: config macro. If this macro is set to :Undefined:, all rooms in your project will be available for selection. Otherwise, only the rooms specified in the macro will appear.
-* The **Mode** dropdown allows you to select whether to load :Full Rooms:, :Instances: or :Tilemaps:. The following controls will adjust accordingly to fit the selected mode's arguments.
 
-### Full Room
+### Load Mode
 
-:Origin:, :Scaling:, :Rotation:, :Flags: for :Asset Type Filtering: and *Layer Whitelist* & *Blacklist* for :Layer Name Filtering:.
+The **Load Mode** dropdown allows you to select whether to load :Full Rooms:, :Instances: or :Tilemaps:.
 
-![](debugViewFullRoom.png)
+![](debugViewLoadModes.gif)
 
-### Instances
+|Mode|Method|Control|
+|---|---|---|
+|Room|:RoomLoader.Load():|:Origin:, :Scaling:, :Rotation:, :Flags: for :Asset Type Filtering: and *Layer Whitelist* & *Blacklist* for :Layer Name Filtering:|
+|Instances|:RoomLoader.LoadInstances():|*Depth*, :Origin:, :Scaling:, :Rotation:|
+|Tilemap|:RoomLoader.LoadTilemap():|*Source Layer Name*, *Target Layer Name* (has to exist in the current room), :Origin:, :Mirroring:, :Flipping: and :Rotation:. |
 
-*Depth*, :Origin:, :Scaling:, :Rotation:.
+### Position Mode
 
-![](debugViewInstances.png)
+The **Load Mode** dropdown allows you to select whether to load things at the mouse position, custom coordinates, randomly or grab coordinates from custom getters.
 
-### Tilemap
-
-*Source Layer Name*, *Target Layer Name* (has to exist in the current room), :Origin:, :Mirroring:, :Flipping: and :Rotation:. 
-
-![](debugViewTilemap.png)
+![](debugViewPosModes.gif)

@@ -5,7 +5,7 @@ function __RoomLoaderDebugViewLoadMode(_name) constructor {
 	
 	static __InitDbg = __RoomLoaderNoop;
 }
-function __RoomLoaderDebugViewLoadModeFullRoom() : __RoomLoaderDebugViewLoadMode("Full Room") constructor {
+function __RoomLoaderDebugViewLoadModeRoom() : __RoomLoaderDebugViewLoadMode("Room") constructor {
 	static __InitDbg = function() {
 		__InitDbgOrigin();
 		__InitDbgScale();

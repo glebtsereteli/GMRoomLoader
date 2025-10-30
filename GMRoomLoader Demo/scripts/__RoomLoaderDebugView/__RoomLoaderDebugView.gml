@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 /// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView
 
 function __RoomLoaderDebugView() constructor {
@@ -19,7 +19,7 @@ function __RoomLoaderDebugView() constructor {
 	static __prevRoom = undefined;
 	
 	static __loadModes = [
-		new __RoomLoaderDebugViewLoadModeFullRoom(),
+		new __RoomLoaderDebugViewLoadModeRoom(),
 		new __RoomLoaderDebugViewLoadModeInstances(),
 		new __RoomLoaderDebugViewLoadModeTilemap(),
 	];
@@ -92,8 +92,10 @@ function __RoomLoaderDebugView() constructor {
 			dbg_section_delete(__sectionBlacklist);
 		}
 		
-		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE),,,, 600);
+		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE),,,, 500);
 		__sectionMain = dbg_section("Main", true); {
+			var _buttonSize = 19;
+			
 			dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
 			dbg_same_line();
 			dbg_button("Cleanup", function() {
@@ -111,29 +113,29 @@ function __RoomLoaderDebugView() constructor {
 					layer_tilemap_destroy(_tilemap);
 				});
 				__loadedTilemaps = [];
-			},, 20);
+			},, _buttonSize);
 			
 			dbg_text_separator("");
 			
 			dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
 			dbg_same_line();
-			dbg_button("-", function() { __CycleRoom(-1); }, 20, 20);
+			dbg_button("-", function() { __CycleRoom(-1); }, _buttonSize, _buttonSize);
 			dbg_same_line();
-			dbg_button("+", function() { __CycleRoom(1); }, 20, 20);
+			dbg_button("+", function() { __CycleRoom(1); }, _buttonSize, _buttonSize);
 			
 			dbg_drop_down(ref_create(self, "__loadMode"), __loadModes, __loadModesNames, "Load Mode");
 			dbg_same_line();
-			dbg_button("-", function() { __CycleLoadMode(-1); }, 20, 20);
+			dbg_button("-", function() { __CycleLoadMode(-1); }, _buttonSize, _buttonSize);
 			dbg_same_line();
-			dbg_button("+", function() { __CycleLoadMode(1); }, 20, 20);
+			dbg_button("+", function() { __CycleLoadMode(1); }, _buttonSize, _buttonSize);
 			
 			dbg_text_separator("");
 			
 			dbg_drop_down(ref_create(self, "__posMode"), __posModes, __posModesNames, "Position Mode");
 			dbg_same_line();
-			dbg_button("-", function() { __CyclePosMode(-1); }, 20, 20);
+			dbg_button("-", function() { __CyclePosMode(-1); }, _buttonSize, _buttonSize);
 			dbg_same_line();
-			dbg_button("+", function() { __CyclePosMode(1); }, 20, 20);
+			dbg_button("+", function() { __CyclePosMode(1); }, _buttonSize, _buttonSize);
 			
 			__posMode.__InitDbg();
 			

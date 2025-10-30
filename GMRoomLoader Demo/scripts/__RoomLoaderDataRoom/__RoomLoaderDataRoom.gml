@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function __RoomLoaderDataRoom(_room) constructor {
 	__room = _room;
