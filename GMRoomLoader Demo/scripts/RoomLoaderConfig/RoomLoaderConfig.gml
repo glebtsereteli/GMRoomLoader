@@ -60,7 +60,7 @@
 #region Debug View
 
 // Controls whether the Debug View is enabled (true) or disabled (false).
-#macro ROOMLOADER_DEBUG_VIEW_ENABLED true
+#macro ROOMLOADER_DEBUG_VIEW_ENABLED false
 
 // Determines if the Debug View window is open (true) or closed (false) on game start.
 #macro ROOMLOADER_DEBUG_VIEW_START_VISIBLE false

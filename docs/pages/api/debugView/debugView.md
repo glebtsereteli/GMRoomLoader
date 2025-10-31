@@ -20,23 +20,26 @@ Now that the :Debug View: is enabled, you can start loading rooms at the mouse c
     ::: warning
     When left enabled, pressing :ROOMLOADER_DEBUG_VIEW_LOAD_KEY: will trigger loading even when the view is closed.
     :::
-* The **Cleanup** button unloads any rooms that were loaded via the :Debug View:.
+* The **Cleanup** button unloads all rooms, instances and tilemaps that were previously loaded via the :Debug View:.
 * The **Room** dropdown allows you to select which room to load. The list of rooms shown is determined by the :ROOMLOADER_DEBUG_VIEW_ROOMS: config macro. If this macro is set to :Undefined:, all rooms in your project will be available for selection. Otherwise, only the rooms specified in the macro will appear.
 
 ### Load Mode
 
-The **Load Mode** dropdown allows you to select whether to load :Full Rooms:, :Instances: or :Tilemaps:.
+The **Load Mode** dropdown lets you choose what to load: :Full Rooms:, :Instances:, or :Tilemaps:.
 
 ![](debugViewLoadModes.gif)
 
-|Mode|Method|Control|
-|---|---|---|
-|Room|:RoomLoader.Load():|:Origin:, :Scaling:, :Rotation:, :Flags: for :Asset Type Filtering: and *Layer Whitelist* & *Blacklist* for :Layer Name Filtering:|
-|Instances|:RoomLoader.LoadInstances():|*Depth*, :Origin:, :Scaling:, :Rotation:|
-|Tilemap|:RoomLoader.LoadTilemap():|*Source Layer Name*, *Target Layer Name* (has to exist in the current room), :Origin:, :Mirroring:, :Flipping: and :Rotation:. |
+* **Room** loads :Full Rooms:, with controls for :Origin:, :Scaling:, :Rotation:, :Flags: for :Asset Type Filtering: and *Layer Whitelist* & *Blacklist* for :Layer Name Filtering:.
+* **Instances** loads :Instances:, with controls for *Depth*, :Origin:, :Scaling:, :Rotation:.
+* **Tilemap** loads :Tilemaps:, with controls for *Source Layer Name*, *Target Layer Name* (must exist in the current room), :Origin:, :Mirroring:, :Flipping:, and :Rotation:.
 
 ### Position Mode
 
-The **Load Mode** dropdown allows you to select whether to load things at the mouse position, custom coordinates, randomly or grab coordinates from custom getters.
+The **Position Mode** dropdown lets you choose where to load things - at the mouse position, at custom coordinates, at random, or using custom coordinate getters.
 
 ![](debugViewPosModes.gif)
+
+* **Mouse** loads at the mouse position, with controls over whether to load in room space using `mouse_x` and `mouse_y`, or in GUI space using `device_mouse_x_to_gui(0)` and `device_mouse_y_to_gui(0)`.
+* **Custom** loads at the specified *X* and *Y* coordinates.
+* **Random** loads at a random position withing the specified *X1*, *Y1*, *X2*, and *Y2* area.
+* **Getters** loads at coordinates returned by the :ROOMLOADER_DEBUG_VIEW_GET_X: & :ROOMLOADER_DEBUG_VIEW_GET_Y: getters. If not defined, both default to `0`.

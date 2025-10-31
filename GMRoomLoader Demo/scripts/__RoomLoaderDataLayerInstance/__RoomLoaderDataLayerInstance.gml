@@ -46,13 +46,11 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __OnDraw = function() {
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			with (__instancesPool[_i]) {
-				if (sprite == -1) break;
-				
+				var _pcc = preCreate;
 				draw_sprite_ext(
-					sprite, preCreate.image_index,
-					x, y,
-					preCreate.image_xscale, preCreate.image_yscale, preCreate.image_angle,
-					preCreate.image_blend, preCreate.image_alpha
+					_pcc.sprite_index, _pcc.image_index, 
+					x, y, _pcc.image_xscale, _pcc.image_yscale, _pcc.image_angle,
+					_pcc.image_blend, _pcc.image_alpha
 				);
 			}
 			_i++;

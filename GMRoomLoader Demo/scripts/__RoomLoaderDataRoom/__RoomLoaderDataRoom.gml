@@ -18,7 +18,6 @@ function __RoomLoaderDataRoom(_room) constructor {
 				y: _dataIn.y,
 				id: _dataIn.id,
 			    object: _object,
-			    sprite: object_get_sprite(_object),
 				preCreate: {},
 				creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
 			};
@@ -33,7 +32,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 				    if (_color == -1) {
 				        image_blend = c_white;
 				        image_alpha = 1;
-				    } else {
+				    }
+					else {
 				        image_blend = _color & 0xffffff;
 				        image_alpha = ((_color >> 24) & 0xff) / 255;
 				    }
@@ -45,6 +45,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				    if (_pcc != -1) {
 				        _pcc();
 				    }
+					self[$ "sprite_index"] ??= object_get_sprite(_object);
 				};
 			}
 			
