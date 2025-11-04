@@ -65,8 +65,7 @@ function __RoomLoaderDebugView() constructor {
 	static __RefreshView = function(_enabled) {
 		__RefreshData();
 		
-		var _viewExists = dbg_view_exists(__view);
-		if (not _viewExists) {
+		if (not dbg_view_exists(__view)) {
 			__roomNames = array_map(__rooms, function(_room) {
 				return room_get_name(_room);
 			});
@@ -83,66 +82,67 @@ function __RoomLoaderDebugView() constructor {
 				RoomLoader.Origin(__xOrigin, __yOrigin);
 				method(self, __loadMode.__Load)();
 			}, true);
+			
+			__view = dbg_view("RoomLoader Debug", ROOMLOADER_DEBUG_VIEW_START_VISIBLE,,,, 500);
 		}
 		else {
-			dbg_view_delete(__view);
 			dbg_section_delete(__sectionMain);
 			dbg_section_delete(__sectionFlags);
 			dbg_section_delete(__sectionWhitelist);
 			dbg_section_delete(__sectionBlacklist);
 		}
 		
-		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE),,,, 500);
-		__sectionMain = dbg_section("Main", true); {
-			var _buttonSize = 19;
+		dbg_set_view(__view);
+		
+		__sectionMain = dbg_section("Main", true);
+		var _buttonSize = 19;
+		
+		dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
+		dbg_same_line();
+		dbg_button("Cleanup", function() {
+			array_foreach(__loadedPayloads, function(_payload) {
+				_payload.Cleanup();
+			});
+			__loadedPayloads = [];
 			
-			dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
-			dbg_same_line();
-			dbg_button("Cleanup", function() {
-				array_foreach(__loadedPayloads, function(_payload) {
-					_payload.Cleanup();
-				});
-				__loadedPayloads = [];
-				
-				array_foreach(__loadedInstances, function(_inst) {
-					instance_destroy(_inst);
-				});
-				__loadedInstances = [];
-				
-				array_foreach(__loadedTilemaps, function(_tilemap) {
-					layer_tilemap_destroy(_tilemap);
-				});
-				__loadedTilemaps = [];
-			},, _buttonSize);
+			array_foreach(__loadedInstances, function(_inst) {
+				instance_destroy(_inst);
+			});
+			__loadedInstances = [];
 			
-			dbg_text_separator("");
-			
-			dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
-			dbg_same_line();
-			dbg_button("-", function() { __CycleRoom(-1); }, _buttonSize, _buttonSize);
-			dbg_same_line();
-			dbg_button("+", function() { __CycleRoom(1); }, _buttonSize, _buttonSize);
-			
-			dbg_drop_down(ref_create(self, "__loadMode"), __loadModes, __loadModesNames, "Load Mode");
-			dbg_same_line();
-			dbg_button("-", function() { __CycleLoadMode(-1); }, _buttonSize, _buttonSize);
-			dbg_same_line();
-			dbg_button("+", function() { __CycleLoadMode(1); }, _buttonSize, _buttonSize);
-			
-			dbg_text_separator("");
-			
-			dbg_drop_down(ref_create(self, "__posMode"), __posModes, __posModesNames, "Position Mode");
-			dbg_same_line();
-			dbg_button("-", function() { __CyclePosMode(-1); }, _buttonSize, _buttonSize);
-			dbg_same_line();
-			dbg_button("+", function() { __CyclePosMode(1); }, _buttonSize, _buttonSize);
-			
-			__posMode.__InitDbg();
-			
-			dbg_text_separator("");
-			
-			method(self, __loadMode.__InitDbg)();
-		}
+			array_foreach(__loadedTilemaps, function(_tilemap) {
+				layer_tilemap_destroy(_tilemap);
+			});
+			__loadedTilemaps = [];
+		},, _buttonSize);
+		
+		dbg_text_separator("");
+		
+		dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
+		dbg_same_line();
+		dbg_button("-", function() { __CycleRoom(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CycleRoom(1); }, _buttonSize, _buttonSize);
+		
+		dbg_drop_down(ref_create(self, "__loadMode"), __loadModes, __loadModesNames, "Load Mode");
+		dbg_same_line();
+		dbg_button("-", function() { __CycleLoadMode(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CycleLoadMode(1); }, _buttonSize, _buttonSize);
+		
+		dbg_text_separator("");
+		
+		dbg_drop_down(ref_create(self, "__posMode"), __posModes, __posModesNames, "Position Mode");
+		dbg_same_line();
+		dbg_button("-", function() { __CyclePosMode(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CyclePosMode(1); }, _buttonSize, _buttonSize);
+		
+		__posMode.__InitDbg();
+		
+		dbg_text_separator("");
+		
+		method(self, __loadMode.__InitDbg)();
 	};
 	static __RefreshData = function() {
 		if ((__room == __prevRoom) and (__loadMode == __prevLoadMode) and (__posMode == __prevPosMode)) return false;
