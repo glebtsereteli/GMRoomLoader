@@ -10,7 +10,7 @@ If :ROOMLOADER_DEBUG_VIEW_START_VISIBLE: is also set to `true`, the Debug View w
 ![debugViewOpen](debugViewOpen.png)
 
 Once open, you will see this window on your screen.
-![](debugViewFullRoom.png)
+![debugView](debugView.png)
 
 Now that the :Debug View: is enabled, you can start loading rooms at the mouse coordinates by pressing :ROOMLOADER_DEBUG_VIEW_LOAD_KEY:. You can also pick which room to load and configure loading parameters, that's all described in the [Controls](#controls) section below.
 
