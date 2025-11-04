@@ -2,7 +2,7 @@
   "$GMProject":"v1",
   "%Name":"GMRoomLoader First Setup",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -24,13 +24,11 @@
     {"$GMFolder":"","%Name":"03. Debug View","folderPath":"folders/03. GMRoomLoader/02. Private/03. Debug View.yy","name":"03. Debug View","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
-  "IncludedFiles":[
-    {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-  ],
+  "IncludedFiles":[],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.1.193",
+    "IDEVersion":"2024.14.0.207",
   },
   "name":"GMRoomLoader First Setup",
   "resources":[
@@ -51,7 +49,8 @@
     {"id":{"name":"__RoomLoaderDataLayerTile","path":"scripts/__RoomLoaderDataLayerTile/__RoomLoaderDataLayerTile.yy",},},
     {"id":{"name":"__RoomLoaderDataRoom","path":"scripts/__RoomLoaderDataRoom/__RoomLoaderDataRoom.yy",},},
     {"id":{"name":"__RoomLoaderDebugView","path":"scripts/__RoomLoaderDebugView/__RoomLoaderDebugView.yy",},},
-    {"id":{"name":"__RoomLoaderDebugViewModes","path":"scripts/__RoomLoaderDebugViewModes/__RoomLoaderDebugViewModes.yy",},},
+    {"id":{"name":"__RoomLoaderDebugViewLoadModes","path":"scripts/__RoomLoaderDebugViewLoadModes/__RoomLoaderDebugViewLoadModes.yy",},},
+    {"id":{"name":"__RoomLoaderDebugViewPosModes","path":"scripts/__RoomLoaderDebugViewPosModes/__RoomLoaderDebugViewPosModes.yy",},},
     {"id":{"name":"__RoomLoaderFilter","path":"scripts/__RoomLoaderFilter/__RoomLoaderFilter.yy",},},
     {"id":{"name":"__RoomLoaderInit","path":"scripts/__RoomLoaderInit/__RoomLoaderInit.yy",},},
     {"id":{"name":"__RoomLoaderMacros","path":"scripts/__RoomLoaderMacros/__RoomLoaderMacros.yy",},},

@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function __RoomLoaderNoop() {}
 function __RoomLoaderGetLayer(_data) {
