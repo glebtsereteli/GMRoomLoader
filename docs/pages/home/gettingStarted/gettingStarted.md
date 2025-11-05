@@ -6,7 +6,7 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
 
 ## Requirements
 
-* [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.13.1.193` and `Runtime v2024.13.1.242` or above.
+* [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.14.0.207` and `Runtime v2024.14.0.251` or above.
 * Basic familiarity with GameMaker and GML, including:
     * Asset types (rooms, objects, scripts, sprites, tilemaps, etc).
     * Working with objects and events.
