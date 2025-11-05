@@ -101,7 +101,7 @@ export default defineConfig({
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.3.0' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.4.0' },
     ],
     
     outline: [2, 3],
@@ -260,6 +260,8 @@ export default defineConfig({
         'ROOMLOADER_DEBUG_VIEW_START_VISIBLE': '/pages/api/config#roomloader-debug-view-start-visible',
         'ROOMLOADER_DEBUG_VIEW_LOAD_KEY': '/pages/api/config#roomloader-debug-view-key',
         'ROOMLOADER_DEBUG_VIEW_ROOMS': '/pages/api/config#roomloader-debug-view-rooms',
+        'ROOMLOADER_DEBUG_VIEW_GET_X': '/pages/api/config#roomloader-debug-view-get-x',
+        'ROOMLOADER_DEBUG_VIEW_GET_Y': '/pages/api/config#roomloader-debug-view-get-y',
         
         // state
         'State': '/pages/api/roomLoader/state',

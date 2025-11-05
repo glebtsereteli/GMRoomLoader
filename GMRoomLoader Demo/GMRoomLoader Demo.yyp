@@ -2,7 +2,7 @@
   "$GMProject":"v1",
   "%Name":"GMRoomLoader Demo",
   "AudioGroups":[
-    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -14,7 +14,6 @@
     {"$GMFolder":"","%Name":"00. Core","folderPath":"folders/01. Demo/00. Core.yy","name":"00. Core","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"01. General","folderPath":"folders/01. Demo/01. General.yy","name":"01. General","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Particle Systems","folderPath":"folders/01. Demo/01. General/Particle Systems.yy","name":"Particle Systems","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Rooms","folderPath":"folders/01. Demo/01. General/Rooms.yy","name":"Rooms","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sequences","folderPath":"folders/01. Demo/01. General/Sequences.yy","name":"Sequences","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/01. Demo/01. General/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/01. Demo/01. General/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -75,7 +74,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.1.193",
+    "IDEVersion":"2024.14.0.207",
   },
   "name":"GMRoomLoader Demo",
   "resources":[
@@ -121,8 +120,7 @@
     {"id":{"name":"rmDemoBaseSlotCorner_01","path":"rooms/rmDemoBaseSlotCorner_01/rmDemoBaseSlotCorner_01.yy",},},
     {"id":{"name":"rmDemoBaseSlotCorner_02","path":"rooms/rmDemoBaseSlotCorner_02/rmDemoBaseSlotCorner_02.yy",},},
     {"id":{"name":"rmDemoBaseSlotCorner_03","path":"rooms/rmDemoBaseSlotCorner_03/rmDemoBaseSlotCorner_03.yy",},},
-    {"id":{"name":"rmDemoGeneral01","path":"rooms/rmDemoGeneral01/rmDemoGeneral01.yy",},},
-    {"id":{"name":"rmDemoGeneral02","path":"rooms/rmDemoGeneral02/rmDemoGeneral02.yy",},},
+    {"id":{"name":"rmDemoGeneral","path":"rooms/rmDemoGeneral/rmDemoGeneral.yy",},},
     {"id":{"name":"rmDemoInstances01","path":"rooms/rmDemoInstances01/rmDemoInstances01.yy",},},
     {"id":{"name":"rmDemoMergeTilemapsHost","path":"rooms/rmDemoMergeTilemapsHost/rmDemoMergeTilemapsHost.yy",},},
     {"id":{"name":"rmDemoMergeTilemapsNew","path":"rooms/rmDemoMergeTilemapsNew/rmDemoMergeTilemapsNew.yy",},},
@@ -136,7 +134,8 @@
     {"id":{"name":"__RoomLoaderDataLayerTile","path":"scripts/__RoomLoaderDataLayerTile/__RoomLoaderDataLayerTile.yy",},},
     {"id":{"name":"__RoomLoaderDataRoom","path":"scripts/__RoomLoaderDataRoom/__RoomLoaderDataRoom.yy",},},
     {"id":{"name":"__RoomLoaderDebugView","path":"scripts/__RoomLoaderDebugView/__RoomLoaderDebugView.yy",},},
-    {"id":{"name":"__RoomLoaderDebugViewModes","path":"scripts/__RoomLoaderDebugViewModes/__RoomLoaderDebugViewModes.yy",},},
+    {"id":{"name":"__RoomLoaderDebugViewLoadModes","path":"scripts/__RoomLoaderDebugViewLoadModes/__RoomLoaderDebugViewLoadModes.yy",},},
+    {"id":{"name":"__RoomLoaderDebugViewPosModes","path":"scripts/__RoomLoaderDebugViewPosModes/__RoomLoaderDebugViewPosModes.yy",},},
     {"id":{"name":"__RoomLoaderFilter","path":"scripts/__RoomLoaderFilter/__RoomLoaderFilter.yy",},},
     {"id":{"name":"__RoomLoaderInit","path":"scripts/__RoomLoaderInit/__RoomLoaderInit.yy",},},
     {"id":{"name":"__RoomLoaderMacros","path":"scripts/__RoomLoaderMacros/__RoomLoaderMacros.yy",},},
@@ -254,8 +253,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmDemo","path":"rooms/rmDemo/rmDemo.yy",},},
-    {"roomId":{"name":"rmDemoGeneral01","path":"rooms/rmDemoGeneral01/rmDemoGeneral01.yy",},},
-    {"roomId":{"name":"rmDemoGeneral02","path":"rooms/rmDemoGeneral02/rmDemoGeneral02.yy",},},
+    {"roomId":{"name":"rmDemoGeneral","path":"rooms/rmDemoGeneral/rmDemoGeneral.yy",},},
     {"roomId":{"name":"rmDemoInstances01","path":"rooms/rmDemoInstances01/rmDemoInstances01.yy",},},
     {"roomId":{"name":"rmDemoTilemaps","path":"rooms/rmDemoTilemaps/rmDemoTilemaps.yy",},},
     {"roomId":{"name":"rmDemoMergeTilemapsHost","path":"rooms/rmDemoMergeTilemapsHost/rmDemoMergeTilemapsHost.yy",},},

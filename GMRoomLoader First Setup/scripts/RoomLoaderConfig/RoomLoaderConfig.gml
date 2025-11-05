@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 /// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
 
 #region General
@@ -71,5 +71,13 @@
 // Specifies which rooms can be loaded through the Debug View. Expects an Array of Asset.GMRoom.
 // If left undefined, all rooms in the project will be available.
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
+
+// When using the Getters Position Mode, this callback returns the X coordinate where the room should be loaded.
+// If left undefined, the X position defaults to 0.
+#macro ROOMLOADER_DEBUG_VIEW_GET_X undefined
+
+// When using the Getters Position Mode, this callback returns the Y coordinate where the room should be loaded.
+// If left undefined, the Y position defaults to 0.
+#macro ROOMLOADER_DEBUG_VIEW_GET_Y undefined
 
 #endregion

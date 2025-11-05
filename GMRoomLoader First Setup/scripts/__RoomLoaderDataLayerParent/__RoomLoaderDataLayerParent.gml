@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function __RoomLoaderDataLayerParent(_layerData) constructor {
 	static __flag = undefined;

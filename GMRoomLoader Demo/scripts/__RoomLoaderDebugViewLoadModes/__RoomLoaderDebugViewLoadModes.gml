@@ -1,11 +1,11 @@
 
-function __RoomLoaderDebugViewMode(_name) constructor {
+function __RoomLoaderDebugViewLoadMode(_name) constructor {
 	__owner = other;
 	__name = _name;
 	
 	static __InitDbg = __RoomLoaderNoop;
 }
-function __RoomLoaderDebugViewModeFullRoom() : __RoomLoaderDebugViewMode("Full Room") constructor {
+function __RoomLoaderDebugViewLoadModeRoom() : __RoomLoaderDebugViewLoadMode("Room") constructor {
 	static __InitDbg = function() {
 		__InitDbgOrigin();
 		__InitDbgScale();
@@ -42,14 +42,14 @@ function __RoomLoaderDebugViewModeFullRoom() : __RoomLoaderDebugViewMode("Full R
 		)
 		.LayerWhitelistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerWhitelist[_i]; }))
 		.LayerBlacklistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerBlacklist[_i]; }))
-		.Load(__room, mouse_x, mouse_y);
+		.Load(__room, __posMode.__GetX(), __posMode.__GetY());
 		
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
 		
 		array_push(__loadedPayloads, _payload);
 	};
 }
-function __RoomLoaderDebugViewModeInstances() : __RoomLoaderDebugViewMode("Instances") constructor {
+function __RoomLoaderDebugViewLoadModeInstances() : __RoomLoaderDebugViewLoadMode("Instances") constructor {
 	static __InitDbg = function() {
 		dbg_text_input(ref_create(self, "__depth"), "Depth", "r");
 		__InitDbgOrigin();
@@ -59,12 +59,12 @@ function __RoomLoaderDebugViewModeInstances() : __RoomLoaderDebugViewMode("Insta
 	static __Load = function() {
 		var _instances = RoomLoader
 		.Scale(__xScale, __yScale).Angle(__angle)
-		.LoadInstances(__room, mouse_x, mouse_y, __depth);
+		.LoadInstances(__room, __posMode.__GetX(), __posMode.__GetY(), __depth);
 		
 		__loadedInstances = array_concat(__loadedInstances, _instances);
 	};
 }
-function __RoomLoaderDebugViewModeTilemap() : __RoomLoaderDebugViewMode("Tilemap") constructor {
+function __RoomLoaderDebugViewLoadModeTilemap() : __RoomLoaderDebugViewLoadMode("Tilemap") constructor {
 	static __InitDbg = function() {
 		dbg_text_input(ref_create(self, "__sourceLayerName"), "Source Layer Name", "s");
 		dbg_text_input(ref_create(self, "__targetLayerName"), "Target Layer Name", "s");
@@ -76,7 +76,7 @@ function __RoomLoaderDebugViewModeTilemap() : __RoomLoaderDebugViewMode("Tilemap
 	static __Load = function() {
 		var _tilemap = RoomLoader
 		.Mirror(__mirror).Flip(__flip).Angle(__angle)
-		.LoadTilemap(__room, mouse_x, mouse_y, __sourceLayerName, __targetLayerName);
+		.LoadTilemap(__room, __posMode.__GetX(), __posMode.__GetY(), __sourceLayerName, __targetLayerName);
 		
 		array_push(__loadedTilemaps, _tilemap);
 	};

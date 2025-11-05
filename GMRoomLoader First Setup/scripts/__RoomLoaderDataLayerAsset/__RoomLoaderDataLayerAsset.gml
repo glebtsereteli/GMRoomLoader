@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	// shared
@@ -136,7 +136,7 @@ function __RoomLoaderDataLayerAssetText(_data) constructor {
 	__hAlign = _data.h_align;
 	__vAlign = _data.v_align;
 	__charSpacing = _data.char_spacing;
-	__lineSpacing = _data.line_spacing;
+	__paragraphSpacing = _data.paragraph_spacing;
 	__frameWidth = _data.frame_width;
 	__frameHeight = _data.frame_height;
 	__wrap = _data.wrap;

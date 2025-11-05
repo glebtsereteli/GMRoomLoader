@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function DemoGeneral() : DemoPar("General") constructor {
 	// Shared:
@@ -83,7 +83,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 	};
 	
 	// Custom:
-	rm = rmDemoGeneral01;
+	rm = rmDemoGeneral;
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	flags = new DemoModuleFlags();

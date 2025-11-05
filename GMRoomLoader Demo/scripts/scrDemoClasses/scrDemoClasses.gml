@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 #macro DEMOS global.__demos
 
@@ -78,19 +78,20 @@ function Demos() constructor {
 		});
 		dbg_drop_down(ref_create(self, "index2"), _indices, _names, "Demo (cycle with Left/Right)");
 		
+		var _size = 19;
 		dbg_same_line();
-		dbg_button("-", function() { Change(index - 1); }, 20, 20);
+		dbg_button("-", function() { Change(index - 1); }, _size, _size);
 		dbg_same_line();
-		dbg_button("+", function() { Change(index + 1); }, 20, 20);
+		dbg_button("+", function() { Change(index + 1); }, _size, _size);
 		
 		var _w = 109;
-		dbg_button("GitHub", function() { url_open("https://github.com/glebtsereteli/GMRoomLoader"); }, _w, 20);
+		dbg_button("GitHub", function() { url_open("https://github.com/glebtsereteli/GMRoomLoader"); }, _w, _size);
 		dbg_same_line();
 		dbg_button("Last Release", function() { url_open($"https://github.com/glebtsereteli/GMRoomLoader/releases/tag/{__ROOMLOADER_VERSION}"); }, _w, 20);
 		dbg_same_line();
-		dbg_button("Docs", function() { url_open("https://GlebTsereteli.github.io/GMRoomLoader"); }, _w, 20);
+		dbg_button("Docs", function() { url_open("https://GlebTsereteli.github.io/GMRoomLoader"); }, _w, _size);
 		dbg_same_line();
-		dbg_button("Itch", function() { url_open("https://glebtsereteli.itch.io/gmroomloader"); }, _w, 20);
+		dbg_button("Itch", function() { url_open("https://glebtsereteli.itch.io/gmroomloader"); }, _w, _size);
 	};
 	static Change = function(_index) {
 		_index = Mod2(_index, n);

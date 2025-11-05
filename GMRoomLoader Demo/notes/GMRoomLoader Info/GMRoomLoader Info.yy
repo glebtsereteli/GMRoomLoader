@@ -1,5 +1,5 @@
 {
-  "$GMNotes":"",
+  "$GMNotes":"v1",
   "%Name":"GMRoomLoader Info",
   "name":"GMRoomLoader Info",
   "parent":{

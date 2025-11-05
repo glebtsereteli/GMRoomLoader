@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 
 function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	// Shared:

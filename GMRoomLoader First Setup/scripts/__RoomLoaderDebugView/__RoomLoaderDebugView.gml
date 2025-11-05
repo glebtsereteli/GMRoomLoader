@@ -1,4 +1,4 @@
-/// feather ignore all
+// feather ignore all
 /// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView
 
 function __RoomLoaderDebugView() constructor {
@@ -18,16 +18,28 @@ function __RoomLoaderDebugView() constructor {
 	static __room = array_first(__rooms);
 	static __prevRoom = undefined;
 	
-	static __modes = [
-		new __RoomLoaderDebugViewModeFullRoom(),
-		new __RoomLoaderDebugViewModeInstances(),
-		new __RoomLoaderDebugViewModeTilemap(),
+	static __loadModes = [
+		new __RoomLoaderDebugViewLoadModeRoom(),
+		new __RoomLoaderDebugViewLoadModeInstances(),
+		new __RoomLoaderDebugViewLoadModeTilemap(),
 	];
-	static __modeNames = array_map(__modes, function(_mode) {
+	static __loadModesNames = array_map(__loadModes, function(_mode) {
 		return _mode.__name;
 	});
-	static __mode = __modes[0];
-	static __prevMode = __mode;
+	static __loadMode = __loadModes[0];
+	static __prevLoadMode = __loadMode;
+	
+	static __posModes = [
+		new __RoomLoaderDebugViewPosModeMouse(),
+		new __RoomLoaderDebugViewPosModeCustom(),
+		new __RoomLoaderDebugViewPosModeRandom(),
+		new __RoomLoaderDebugViewPosModeGetters(),
+	];
+	static __posModesNames = array_map(__posModes, function(_mode) {
+		return _mode.__name;
+	});
+	static __posMode = __posModes[0];
+	static __posLoadMode = __posMode;
 	
 	static __depth = 0;
 	static __sourceLayerName = "Tiles";
@@ -53,8 +65,7 @@ function __RoomLoaderDebugView() constructor {
 	static __RefreshView = function(_enabled) {
 		__RefreshData();
 		
-		var _viewExists = dbg_view_exists(__view);
-		if (not _viewExists) {
+		if (not dbg_view_exists(__view)) {
 			__roomNames = array_map(__rooms, function(_room) {
 				return room_get_name(_room);
 			});
@@ -69,60 +80,76 @@ function __RoomLoaderDebugView() constructor {
 				if (not keyboard_check_pressed(ROOMLOADER_DEBUG_VIEW_LOAD_KEY)) return;
 				
 				RoomLoader.Origin(__xOrigin, __yOrigin);
-				method(self, __mode.__Load)();
+				method(self, __loadMode.__Load)();
 			}, true);
+			
+			__view = dbg_view("RoomLoader Debug", ROOMLOADER_DEBUG_VIEW_START_VISIBLE,,,, 500);
 		}
 		else {
-			dbg_view_delete(__view);
 			dbg_section_delete(__sectionMain);
 			dbg_section_delete(__sectionFlags);
 			dbg_section_delete(__sectionWhitelist);
 			dbg_section_delete(__sectionBlacklist);
 		}
 		
-		__view = dbg_view("RoomLoader Debug", (_viewExists or ROOMLOADER_DEBUG_VIEW_START_VISIBLE));
-		__sectionMain = dbg_section("Main", true); {
-			dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
-			dbg_same_line();
-			dbg_button("Cleanup", function() {
-				array_foreach(__loadedPayloads, function(_payload) {
-					_payload.Cleanup();
-				});
-				__loadedPayloads = [];
-				
-				array_foreach(__loadedInstances, function(_inst) {
-					instance_destroy(_inst);
-				});
-				__loadedInstances = [];
-				
-				array_foreach(__loadedTilemaps, function(_tilemap) {
-					layer_tilemap_destroy(_tilemap);
-				});
-				__loadedTilemaps = [];
-			},, 20);
+		dbg_set_view(__view);
+		
+		__sectionMain = dbg_section("Main", true);
+		var _buttonSize = 19;
+		
+		dbg_checkbox(ref_create(self, "__enabled"), "Enabled");
+		dbg_same_line();
+		dbg_button("Cleanup", function() {
+			array_foreach(__loadedPayloads, function(_payload) {
+				_payload.Cleanup();
+			});
+			__loadedPayloads = [];
 			
-			dbg_text_separator("");
+			array_foreach(__loadedInstances, function(_inst) {
+				instance_destroy(_inst);
+			});
+			__loadedInstances = [];
 			
-			dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
-			dbg_same_line();
-			dbg_button("-", function() { __CycleRoom(-1); }, 20, 20);
-			dbg_same_line();
-			dbg_button("+", function() { __CycleRoom(1); }, 20, 20);
-			
-			dbg_drop_down(ref_create(self, "__mode"), __modes, __modeNames, "Mode");
-			dbg_same_line();
-			dbg_button("-", function() { __CycleMode(-1); }, 20, 20);
-			dbg_same_line();
-			dbg_button("+", function() { __CycleMode(1); }, 20, 20);
-			
-			method(self, __mode.__InitDbg)();
-		}
+			array_foreach(__loadedTilemaps, function(_tilemap) {
+				layer_tilemap_destroy(_tilemap);
+			});
+			__loadedTilemaps = [];
+		},, _buttonSize);
+		
+		dbg_text_separator("");
+		
+		dbg_drop_down(ref_create(self, "__room"), __rooms, __roomNames, "Room");
+		dbg_same_line();
+		dbg_button("-", function() { __CycleRoom(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CycleRoom(1); }, _buttonSize, _buttonSize);
+		
+		dbg_drop_down(ref_create(self, "__loadMode"), __loadModes, __loadModesNames, "Load Mode");
+		dbg_same_line();
+		dbg_button("-", function() { __CycleLoadMode(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CycleLoadMode(1); }, _buttonSize, _buttonSize);
+		
+		dbg_text_separator("");
+		
+		dbg_drop_down(ref_create(self, "__posMode"), __posModes, __posModesNames, "Position Mode");
+		dbg_same_line();
+		dbg_button("-", function() { __CyclePosMode(-1); }, _buttonSize, _buttonSize);
+		dbg_same_line();
+		dbg_button("+", function() { __CyclePosMode(1); }, _buttonSize, _buttonSize);
+		
+		__posMode.__InitDbg();
+		
+		dbg_text_separator("");
+		
+		method(self, __loadMode.__InitDbg)();
 	};
 	static __RefreshData = function() {
-		if ((__room == __prevRoom) and (__mode == __prevMode)) return false;
+		if ((__room == __prevRoom) and (__loadMode == __prevLoadMode) and (__posMode == __prevPosMode)) return false;
 		
 		__prevRoom = __room;
-		__prevMode = __mode;
+		__prevLoadMode = __loadMode;
+		__prevPosMode = __posMode;
 		
 		if (not RoomLoader.DataIsInitialized(__room)) {
 			RoomLoader.DataInit(__room);
@@ -139,10 +166,15 @@ function __RoomLoaderDebugView() constructor {
 		var _index = (array_get_index(__rooms, __room) + _dir + _n) mod _n;
 		__room = __rooms[_index];
 	};
-	static __CycleMode = function(_dir) {
-		var _n = array_length(__modes);
-		var _index = (array_get_index(__modes, __mode) + _dir + _n) mod _n;
-		__mode = __modes[_index];
+	static __CycleLoadMode = function(_dir) {
+		var _n = array_length(__loadModes);
+		var _index = (array_get_index(__loadModes, __loadMode) + _dir + _n) mod _n;
+		__loadMode = __loadModes[_index];
+	};
+	static __CyclePosMode = function(_dir) {
+		var _n = array_length(__posModes);
+		var _index = (array_get_index(__posModes, __posMode) + _dir + _n) mod _n;
+		__posMode = __posModes[_index];
 	};
 	
 	static __InitDbgOrigin = function() {

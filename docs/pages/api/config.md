@@ -116,3 +116,15 @@ Specifies which rooms can be loaded through the :Debug View:. Expects an :Array:
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS tag_get_asset_ids("Chunk", asset_room)
 ```
 :::
+
+### `ROOMLOADER_DEBUG_VIEW_GET_X`
+> Default: `undefined`.
+
+When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the X coordinate where the room should be loaded.
+If left `undefined`, the X position defaults to 0.
+
+### `ROOMLOADER_DEBUG_VIEW_GET_Y`
+> Default: `undefined`.
+
+When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the Y coordinate where the room should be loaded.
+If left `undefined`, the Y position defaults to 0.
