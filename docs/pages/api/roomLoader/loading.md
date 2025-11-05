@@ -22,10 +22,10 @@ Try loading the same room with and without transformations to see the difference
 
 Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, :Scaling: and :Rotation:.
 
-Layers are created at the same depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
-
-* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload:.
+* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload: that tracks the IDs of all loaded layers and elements, and can be used to [shift layer depths](/pages/api/payload/depth), [fetch element IDs](/pages/api/payload/getters) and [unload things](/pages/api/payload/cleanup).
 * Otherwise returns :Undefined:.
+
+Layers are created at the same depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
 
 ::: details ℹ️ ROOM ELEMENT COVERAGE {closed}
 Full room loading supports the following elements.
