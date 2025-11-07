@@ -26,14 +26,18 @@ function RoomLoader() {
 	static __yScale = 1;
 	static __angle = 0;
 	static __tileset = undefined;
+	static __left = 0;
+	static __top = 0;
+	static __width = 1;
+	static __height = 1;
 	
-	static __Screenshot = function(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
+	static __Screenshot = function(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
 		static _benchMessage = "Screenshotted";
-				
+		
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		var _screenshot = _data.__TakeScreenshot(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return _screenshot;
@@ -47,6 +51,10 @@ function RoomLoader() {
 		__yScale = 1;
 		__angle = 0;
 		__tileset = undefined;
+		__left = 0;
+		__top = 0;
+		__width = 1;
+		__height = 1;
 	};
 	static __ResetStateFlags = function() {
 		if (__flagsDefault) {
@@ -582,31 +590,7 @@ function RoomLoader() {
 	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "Screenshot";
 		
-		var _screenshot = __Screenshot(_room, 0, 0, 1, 1, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
-		__ResetState();
-		
-		return _screenshot;
-	};
-	
-	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Real} left The x position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
-	/// @param {Real} top The y position on the sprite of the top left corner of the area to capture, as a 0-1 percentage.
-	/// @param {Real} width The width of the area to capture, as a 0-1 percentage.
-	/// @param {Real} height The height of the area to capture, as a 0-1 percentage.
-	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
-	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
-	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
-	/// @returns {Asset.GMSprite}
-	/// @desc Takes a screenshot part of the given room, with the captured area defined by left, top, width and height parameters, just like draw_sprite_part().
-	/// If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
-	/// Returns a Sprite ID.
-	/// @context RoomLoader
-	static ScreenshotPart = function(_room, _left, _top, _width, _height, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
-		static _methodName = "ScreenshotPart";
-		
-		var _screenshot = __Screenshot(_room, _left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
+		var _screenshot = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
 		__ResetState();
 		
 		return _screenshot;
@@ -933,6 +917,22 @@ function RoomLoader() {
 	/// @context RoomLoader
 	static Tileset = function(_tileset) {
 		__tileset = _tileset;
+		
+		return self;
+	};
+	
+	/// @param {Real} left The normalized horizontal offset (from 0 to 1) from the left edge of the room to screenshot.
+	/// @param {Real} top The normalized vertical offset (from 0 to 1) from the top edge of the room to screenshot.
+	/// @param {Real} width The normalized width (from 0 to 1) of the portion of the room to screenshot.
+	/// @param {Real} height The normalized height (from 0 to 1) of the portion of the room to screenshot.
+	/// @returns {Struct.RoomLoader}
+	/// @desc Defines a subsection of the room to capture in screenshots.
+	/// Coordinates and dimensions are expressed as percentages of the full room size in 0–1 range.
+	static Part = function(_left, _top, _width, _height) {
+		__left = _left;
+		__top = _top;
+		__width = _width;
+		__height = _height;
 		
 		return self;
 	};

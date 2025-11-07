@@ -3,7 +3,7 @@
 function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	// Shared:
 	static Init = function() {
-		//RoomLoader.DataInitTag(tag);
+		RoomLoader.DataInitTag(tag);
 		ShuffleRoom();
 		
 		// Interface:
@@ -94,7 +94,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	static ShuffleRoom = function() {
 		var _prev = rm;
 		do {
-			rm = script_execute_ext(choose, rooms);
+			rm = method_call(choose, rooms);
 		} until (rm != _prev);
 	};
 	static TakeRandom = function() {
@@ -107,7 +107,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		.Origin(origin.x, origin.y)
 		.Flags(flags.Get())
 		.Scale(scale)
-		.ScreenshotPart(rm, left, top, w, h);
+		.Part(left, top, w, h)
+		.Screenshot(rm);
 	};
 	static Clear = function() {
 		if (sprite == undefined) return;
