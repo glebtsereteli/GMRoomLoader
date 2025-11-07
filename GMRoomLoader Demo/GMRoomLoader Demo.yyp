@@ -81,6 +81,7 @@
     {"id":{"name":"fntDemo","path":"fonts/fntDemo/fntDemo.yy",},},
     {"id":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},},
     {"id":{"name":"GMRoomLoader Info","path":"notes/GMRoomLoader Info/GMRoomLoader Info.yy",},},
+    {"id":{"name":"readme","path":"notes/readme/readme.yy",},},
     {"id":{"name":"objDemoBaseSlotCorner","path":"objects/objDemoBaseSlotCorner/objDemoBaseSlotCorner.yy",},},
     {"id":{"name":"objDemoBaseSlotGeneral","path":"objects/objDemoBaseSlotGeneral/objDemoBaseSlotGeneral.yy",},},
     {"id":{"name":"objDemoBaseSlotParent","path":"objects/objDemoBaseSlotParent/objDemoBaseSlotParent.yy",},},

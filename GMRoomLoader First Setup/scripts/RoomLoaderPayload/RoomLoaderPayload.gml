@@ -47,7 +47,7 @@ function RoomLoaderPayload(_room) constructor {
 			});
 		};
 	};
-	static __messagePrefix = "RoomLoaderPayload";
+	static __messagePrefix = "Payload";
 	
 	__room = _room;
 	__layers = new __Container(layer_destroy);

@@ -57,7 +57,7 @@ function RoomLoader() {
 	
 	static __GetLoadData = function(_room, _methodName, _nonRoomMessage) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonRoomMessage);
-		return __data.__Get(_room);
+		return __data.__Get(_room, _methodName);
 	};
 	static __LayerFailedFilters = function(_name) {
 		var _match = ((__layerWhitelist.__check(_name)) and (not __layerBlacklist.__check(_name)));

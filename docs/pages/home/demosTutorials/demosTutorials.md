@@ -26,7 +26,7 @@ As mentioned in the [First Setup](/pages/home/gettingStarted/gettingStarted/#fir
 
 GMRoomLoader comes with a demo project showcasing all core features of the library. The demo includes a DBG ImGui control panel with demo cycling and custom controls for each example.
 
-> ℹ️ Download the [GMRoomLoader Demo.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20Demo.yyz) project. @TODO add project
+> ℹ️ Download the [GMRoomLoader Demo.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20Demo.yyz) project.
 
 ---
 ### General

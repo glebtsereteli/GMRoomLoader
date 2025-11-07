@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"Guide",
-  "name":"Guide",
+  "%Name":"readme",
+  "name":"readme",
   "parent":{
     "name":"GMRoomLoader First Setup",
     "path":"GMRoomLoader First Setup.yyp",

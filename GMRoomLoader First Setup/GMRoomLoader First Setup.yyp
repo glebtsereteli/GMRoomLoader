@@ -24,7 +24,9 @@
     {"$GMFolder":"","%Name":"03. Debug View","folderPath":"folders/03. GMRoomLoader/02. Private/03. Debug View.yy","name":"03. Debug View","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],
-  "IncludedFiles":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
@@ -34,7 +36,7 @@
   "resources":[
     {"id":{"name":"fntHost","path":"fonts/fntHost/fntHost.yy",},},
     {"id":{"name":"GMRoomLoader Info","path":"notes/GMRoomLoader Info/GMRoomLoader Info.yy",},},
-    {"id":{"name":"Guide","path":"notes/Guide/Guide.yy",},},
+    {"id":{"name":"readme","path":"notes/readme/readme.yy",},},
     {"id":{"name":"objExampleFly","path":"objects/objExampleFly/objExampleFly.yy",},},
     {"id":{"name":"objExampleStar","path":"objects/objExampleStar/objExampleStar.yy",},},
     {"id":{"name":"objHost","path":"objects/objHost/objHost.yy",},},

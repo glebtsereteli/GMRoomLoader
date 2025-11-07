@@ -1,7 +1,7 @@
 // feather ignore all
 
 function __RoomLoaderDataCore() constructor {
-	static __messagePrefix = RoomLoader.__messagePrefix,
+	static __messagePrefix = RoomLoader.__messagePrefix;
 	
 	__pool = {};
 	
@@ -33,7 +33,7 @@ function __RoomLoaderDataCore() constructor {
 		struct_remove(__pool, _roomName);
 		__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Removed data for <{_roomName}>");
 	};
-	static __Get = function(_room) {
-		return (__pool[$ room_get_name(_room)] ?? __Add(_room));
+	static __Get = function(_room, _methodName) {
+		return (__pool[$ room_get_name(_room)] ?? __Add(_room, _methodName));
 	};
 }
