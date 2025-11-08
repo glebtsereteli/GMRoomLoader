@@ -31,13 +31,13 @@ function RoomLoader() {
 	static __width = 1;
 	static __height = 1;
 	
-	static __Screenshot = function(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName) {
+	static __Screenshot = function(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _asSprite, _methodName) {
 		static _benchMessage = "Screenshotted";
 		
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _screenshot = _data.__TakeScreenshot(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		var _screenshot = _data.__Screenshot(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _asSprite);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return _screenshot;
@@ -584,16 +584,33 @@ function RoomLoader() {
 	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// @returns {Asset.GMSprite}
-	/// @desc Takes a screenshot of the given room. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
-	/// Returns a Sprite ID.
+	/// @desc Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
 	/// @context RoomLoader
 	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "Screenshot";
 		
-		var _screenshot = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _methodName);
+		var _sprite = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, true, _methodName);
 		__ResetState();
 		
-		return _screenshot;
+		return _sprite;
+	};
+	
+	//// @param {Asset.GMRoom} room The room to take a screenshot of.
+	/// @param {Real} xOrigin The x origin of the screenshot. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin of the screenshot. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xScale The horizontal scale of the screenshot. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale of the screenshot. [Default: State.YScale if set, or 1]
+	/// @returns {Id.Buffer}
+	/// @desc Takes a screenshot of the given room and returns it as a buffer. If specified, filters the captured elements by the given flags and scales the output buffer.
+	/// @context RoomLoader
+	static ScreenshotBuffer = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
+		static _methodName = "ScreenshotBuffer";
+		
+		var _buffer = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, false, _methodName);
+		__ResetState();
+		
+		return _buffer;
 	};
 	
 	#endregion
