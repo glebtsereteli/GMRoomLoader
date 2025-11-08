@@ -5,7 +5,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	static Init = function() {
 		if (ROOMLOADER_MERGE_TILEMAPS) {
 			RoomLoader.DataInitTag("MergeTilemaps");
-			newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
+			newScreenshot = RoomLoader.MiddleCenter().ScreenshotSprite(newRoom);
 			Prepare();
 			
 			// Interface:

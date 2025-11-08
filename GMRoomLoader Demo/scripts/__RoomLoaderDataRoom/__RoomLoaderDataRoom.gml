@@ -143,27 +143,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
-	static __Screenshot = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags, _asSprite) {
-	    var _rawSurf = surface_create(__width, __height); {
-	    surface_set_target(_rawSurf);
-	        draw_clear_alpha(c_black, 0);
-			
-	        var _bm = gpu_get_blendmode_ext_sepalpha();
-	        gpu_set_blendmode_ext_sepalpha(
-	            bm_src_alpha, bm_inv_src_alpha,
-	            bm_src_alpha, bm_one
-	        );
-			
-	        var _i = array_length(__layersPool);
-	        while (_i--) {
-				with (__layersPool[_i]) {
-		            __Draw(_flags);
-		        }
-			}
-
-	        method_call(gpu_set_blendmode_ext_sepalpha, _bm);
-			surface_reset_target();
-	    }
+	static __ScreenshotSprite = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
+	    var _rawSurf = __ScreenshotGetRawSurf(_flags);
 		
 	    var _scaledW = __width * _xScale;
 		var _scaledH = __height * _yScale;
@@ -172,32 +153,91 @@ function __RoomLoaderDataRoom(_room) constructor {
 		var _width = (_width01  * _scaledW) - _left;
 		var _height = (_height01 * _scaledH) - _top;
 		
-	    var _finalSurf = surface_create(_width, _height); {
-		    surface_set_target(_finalSurf); {
-		        draw_clear_alpha(c_black, 0);
-		        draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
-		    }
-		    surface_reset_target();
+	    var _finalSurf = surface_create(_width, _height);
+		surface_set_target(_finalSurf); {
+		    draw_clear_alpha(c_black, 0);
+		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
+			surface_reset_target();
 		}
 		
-		if (_asSprite) {
-		    var _xOrigin = _xOrigin01 * _width;
-		    var _yOrigin = _yOrigin01 * _height;
-		    var _return = sprite_create_from_surface(_finalSurf, 0, 0, _width, _height, false, false, _xOrigin, _yOrigin);
-		}
-		else {
-			var _return = {
-				width: _width,
-				height: _height,
-				buffer: buffer_create(_width * _height * 4, buffer_fixed, 1),
-			};
-			buffer_get_surface(_return.buffer, _finalSurf, 0);
-		}
+		var _xOrigin = _xOrigin01 * _width;
+		var _yOrigin = _yOrigin01 * _height;
+		var _return = sprite_create_from_surface(_finalSurf, 0, 0, _width, _height, false, false, _xOrigin, _yOrigin);
 		
 	    surface_free(_rawSurf);
 	    surface_free(_finalSurf);
 		
 	    return _return;
+	};
+	static __ScreenshotSurface = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
+		var _rawSurf = __ScreenshotGetRawSurf(_flags);
+		
+	    var _scaledW = __width * _xScale;
+		var _scaledH = __height * _yScale;
+		var _left = _left01 * _scaledW;
+		var _top = _top01 * _scaledH;
+		var _width = (_width01  * _scaledW) - _left;
+		var _height = (_height01 * _scaledH) - _top;
+		
+	    var _surf = surface_create(_width, _height);
+		surface_set_target(_surf); {
+		    draw_clear_alpha(c_black, 0);
+		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
+			surface_reset_target();
+		}
+		
+	    surface_free(_rawSurf);
+		
+	    return _surf;
+	};
+	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
+	    var _rawSurf = __ScreenshotGetRawSurf(_flags);
+		
+	    var _scaledW = __width * _xScale;
+		var _scaledH = __height * _yScale;
+		var _left = _left01 * _scaledW;
+		var _top = _top01 * _scaledH;
+		var _width = (_width01  * _scaledW) - _left;
+		var _height = (_height01 * _scaledH) - _top;
+		
+	    var _finalSurf = surface_create(_width, _height);
+		surface_set_target(_finalSurf); {
+		    draw_clear_alpha(c_black, 0);
+		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
+			surface_reset_target();
+		}
+		
+		var _return = {
+			width: _width,
+			height: _height,
+			buffer: buffer_create(_width * _height * 4, buffer_fixed, 1),
+		};
+		buffer_get_surface(_return.buffer, _finalSurf, 0);
+		
+	    surface_free(_rawSurf);
+	    surface_free(_finalSurf);
+		
+	    return _return;
+	};
+	static __ScreenshotGetRawSurf = function(_flags) {
+		var _surf = surface_create(__width, __height);
+		surface_set_target(_surf); {
+	        draw_clear_alpha(c_black, 0);
+			
+	        var _bm = gpu_get_blendmode_ext_sepalpha();
+	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
+			
+	        var _i = array_length(__layersPool);
+	        while (_i--) {
+				with (__layersPool[_i]) {
+		            __Draw(_flags);
+		        }
+			}
+			
+	        method_call(gpu_set_blendmode_ext_sepalpha, _bm);
+			surface_reset_target();
+	    }
+		return _surf;
 	};
 	
 	__Init();

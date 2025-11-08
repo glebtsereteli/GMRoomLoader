@@ -31,17 +31,6 @@ function RoomLoader() {
 	static __width = 1;
 	static __height = 1;
 	
-	static __Screenshot = function(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _asSprite, _methodName) {
-		static _benchMessage = "Screenshotted";
-		
-		var _data = __GetLoadData(_room, _methodName, "take a screenshot of");
-		
-		__ROOMLOADER_BENCH_START;
-		var _screenshot = _data.__Screenshot(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags, _asSprite);
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
-		
-		return _screenshot;
-	};
 	static __ResetState = function() {
 		__xOrigin = ROOMLOADER_DEFAULT_XORIGIN;
 		__yOrigin = ROOMLOADER_DEFAULT_YORIGIN;
@@ -63,7 +52,7 @@ function RoomLoader() {
 		}
 	};
 	
-	static __GetLoadData = function(_room, _methodName, _nonRoomMessage) {
+	static __GetData = function(_room, _methodName, _nonRoomMessage) {
 		__RoomLoaderCatchNonRoom(__messagePrefix, _methodName, _room, _nonRoomMessage);
 		return __data.__Get(_room, _methodName);
 	};
@@ -317,7 +306,7 @@ function RoomLoader() {
 	static DataGetWidth = function(_room) {
 		static _methodName = "DataGetWidth";
 		
-		var _data = __GetLoadData(_room, _methodName, "get width for");
+		var _data = __GetData(_room, _methodName, "get width for");
 		
 		return _data.__width;
 	};
@@ -329,7 +318,7 @@ function RoomLoader() {
 	static DataGetHeight = function(_room) {
 		static _methodName = "DataGetHeight";
 		
-		var _data = __GetLoadData(_room, _methodName, "get height for");
+		var _data = __GetData(_room, _methodName, "get height for");
 		
 		return _data.__height;
 	};
@@ -341,7 +330,7 @@ function RoomLoader() {
 	static DataGetLayerNames = function(_room) {
 		static _methodName = "DataGetLayerNames";
 		
-		var _data = __GetLoadData(_room, _methodName, "get layer names for");
+		var _data = __GetData(_room, _methodName, "get layer names for");
 		
 		return array_map(_data.__layersPool, function(_layer) {
 			return _layer.__layerData.name;
@@ -361,7 +350,7 @@ function RoomLoader() {
 			return (_inst.object == __obj);
 		});
 		
-		var _data = __GetLoadData(_room, _methodName, "get instances data from");
+		var _data = __GetData(_room, _methodName, "get instances data from");
 		
 		if (_obj != undefined) {
 			_closure.__obj = _obj;
@@ -384,7 +373,7 @@ function RoomLoader() {
 			return (_inst.id == __instanceId);
 		});
 		
-		var _data = __GetLoadData(_room, _methodName, "get instance data from");
+		var _data = __GetData(_room, _methodName, "get instance data from");
 		var _pool = _data.__instancesPool;
 		_closure.__instanceId = _instanceId;
 		var _index = array_find_index(_pool, _Find);
@@ -402,7 +391,7 @@ function RoomLoader() {
 	static DataGetTilemap = function(_room, _layerName) {
 		static _methodName = "DataGetTilemap";
 		
-		var _data = __GetLoadData(_room, _methodName, "get tilemap data from");
+		var _data = __GetData(_room, _methodName, "get tilemap data from");
 		var _layer = _data.__tilemapsLut[$ _layerName];
 		
 		if (_layer == undefined) {
@@ -434,7 +423,7 @@ function RoomLoader() {
 		static _nonRoomMessage = "load";
 		static _benchMessage = "Loaded";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage);
+		var _data = __GetData(_room, _methodName, _nonRoomMessage);
 		
 		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
@@ -466,7 +455,7 @@ function RoomLoader() {
 		static _methodName = "LoadInstances";
 		static _nonRoomMessage = "load instances from";
 		
-		var _data = __GetLoadData(_room, _methodName, _nonRoomMessage);
+		var _data = __GetData(_room, _methodName, _nonRoomMessage);
 		
 		var _func = undefined;
 		if (is_real(_layerOrDepth)) {
@@ -550,7 +539,7 @@ function RoomLoader() {
 			__RoomLoaderErrorMethod(__messagePrefix, _methodName, $"Target layer \"{_targetLayer}\" doesn't exit in the current room");
 		}
 		
-		var _roomData = __GetLoadData(_room, _methodName, _nonRoomMessage);
+		var _roomData = __GetData(_room, _methodName, _nonRoomMessage);
 		var _tilemapData = _roomData.__tilemapsLut[$ _sourceLayerName];
 		
 		if (_tilemapData == undefined) {
@@ -585,16 +574,45 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
+	/// The .Part() method can be used to defines a (left/top/width/height) part of the room to capture.
 	/// @context RoomLoader
 	static ScreenshotSprite = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
-		static _methodName = "Screenshot";
+		static _benchMessage = "Screenshotted";
+		static _methodName = "ScreenshotSprite";
 		
-		var _sprite = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, true, _methodName);
+		var _data = __GetData(_room, _methodName, "take a sprite screenshot of");
+		
+		__ROOMLOADER_BENCH_START;
+		var _sprite = _data.__ScreenshotSprite(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		__ResetState();
 		
 		return _sprite;
 	};
+	
+	//// @param {Asset.GMRoom} room The room to take a screenshot of.
+	/// @param {Real} xOrigin The x origin of the screenshot. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin of the screenshot. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} xScale The horizontal scale of the screenshot. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale of the screenshot. [Default: State.YScale if set, or 1]
+	/// @returns {Id.Surface}
+	/// @desc Takes a screenshot of the given room and returns it as a surface. If specified, filters the captured elements by the given flags and scales the output buffer.
+	/// @context RoomLoader
+	static ScreenshotSurface = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
+		static _benchMessage = "Screenshotted";
+		static _methodName = "ScreenshotSurface";
 		
+		var _data = __GetData(_room, _methodName, "take a surface screenshot of");
+		
+		__ROOMLOADER_BENCH_START;
+		var _buffer = _data.__ScreenshotSurface(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
+		__ResetState();
+		
+		return _buffer;
+	};
+	
 	//// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Real} xOrigin The x origin of the screenshot. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the screenshot. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
@@ -605,9 +623,14 @@ function RoomLoader() {
 	/// @desc Takes a screenshot of the given room and returns it as a buffer. If specified, filters the captured elements by the given flags and scales the output buffer.
 	/// @context RoomLoader
 	static ScreenshotBuffer = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
+		static _benchMessage = "Screenshotted";
 		static _methodName = "ScreenshotBuffer";
 		
-		var _buffer = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, false, _methodName);
+		var _data = __GetData(_room, _methodName, "take a buffer screenshot of");
+		
+		__ROOMLOADER_BENCH_START;
+		var _buffer = _data.__ScreenshotBuffer(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		__ResetState();
 		
 		return _buffer;
