@@ -216,6 +216,46 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 }
 
 #endregion
+#region Screenshots
+
+#macro __ROOMLOADER_SCREENSHOT_RAW_SURF \
+var _rawSurf = surface_create(__width, __height); \
+surface_set_target(_rawSurf); { \
+	draw_clear_alpha(c_black, 0); \
+	\
+	var _bm = gpu_get_blendmode_ext_sepalpha(); \
+	gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one); \
+	\
+	var _i = array_length(__layersPool); \
+	while (_i--) { \
+		with (__layersPool[_i]) { \
+		    __Draw(_flags); \
+		} \
+	} \
+	\
+	method_call(gpu_set_blendmode_ext_sepalpha, _bm); \
+	surface_reset_target(); \
+}
+
+#macro __ROOMLOADER_FINAL_SURF \
+var _scaledW = __width * _xScale; \
+var _scaledH = __height * _yScale; \
+var _left = _left01 * _scaledW; \
+var _top = _top01 * _scaledH; \
+var _width = (_width01 * _scaledW) - _left; \
+var _height = (_height01 * _scaledH) - _top; \
+\
+var _finalSurf = surface_create(_width, _height); \
+surface_set_target(_finalSurf); { \
+	draw_clear_alpha(c_black, 0); \
+	draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1); \
+	surface_reset_target(); \
+} \
+surface_free(_rawSurf);
+
+#macro __ROOMLOADER_SCREENSHOT_TRANSFORMED ((_left01 != 0) or (_top01 != 0) or (_width01 != 1) or (_height01 != 1) or (_xScale != 1) or (_yScale != 1))
+
+#endregion
 #region Benchmarking
 
 #macro __ROOMLOADER_BENCH_START RoomLoader.__benchTime = get_timer();

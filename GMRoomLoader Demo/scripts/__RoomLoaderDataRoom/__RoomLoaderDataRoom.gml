@@ -144,67 +144,54 @@ function __RoomLoaderDataRoom(_room) constructor {
 		__creationCode();
 	};
 	static __ScreenshotSprite = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-	    var _rawSurf = __ScreenshotGetRawSurf(_flags);
+		__ROOMLOADER_SCREENSHOT_RAW_SURF;
 		
-	    var _scaledW = __width * _xScale;
-		var _scaledH = __height * _yScale;
-		var _left = _left01 * _scaledW;
-		var _top = _top01 * _scaledH;
-		var _width = (_width01  * _scaledW) - _left;
-		var _height = (_height01 * _scaledH) - _top;
+	    var _width = __width * _xScale;
+	    var _height = __height * _yScale;
 		
-	    var _finalSurf = surface_create(_width, _height);
-		surface_set_target(_finalSurf); {
-		    draw_clear_alpha(c_black, 0);
-		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
-			surface_reset_target();
-		}
+	    var _finalSurf = _rawSurf;
+	    if ((_xScale != 1) or (_yScale != 1)) {
+	        _finalSurf = surface_create(_width, _height);
+	        surface_set_target(_finalSurf); {
+	            draw_clear_alpha(c_black, 0);
+	            draw_surface_stretched(_rawSurf, 0, 0, _width, _height);
+	            surface_reset_target();
+	        }
+			surface_free(_rawSurf);
+	    }
 		
+		var _left = _left01 * _width;
+		var _top = _top01 * _height;
+		_width = (_width * _width01) - _left;
+		_height = (_height * _height01) - _top;
 		var _xOrigin = _xOrigin01 * _width;
 		var _yOrigin = _yOrigin01 * _height;
-		var _return = sprite_create_from_surface(_finalSurf, 0, 0, _width, _height, false, false, _xOrigin, _yOrigin);
+		var _sprite = sprite_create_from_surface(_finalSurf, _left, _top, _width, _height, false, false, _xOrigin, _yOrigin);
 		
-	    surface_free(_rawSurf);
 	    surface_free(_finalSurf);
 		
-	    return _return;
+	    return _sprite;
 	};
 	static __ScreenshotSurface = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-		var _rawSurf = __ScreenshotGetRawSurf(_flags);
+		__ROOMLOADER_SCREENSHOT_RAW_SURF;
 		
-	    var _scaledW = __width * _xScale;
-		var _scaledH = __height * _yScale;
-		var _left = _left01 * _scaledW;
-		var _top = _top01 * _scaledH;
-		var _width = (_width01  * _scaledW) - _left;
-		var _height = (_height01 * _scaledH) - _top;
-		
-	    var _surf = surface_create(_width, _height);
-		surface_set_target(_surf); {
-		    draw_clear_alpha(c_black, 0);
-		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
-			surface_reset_target();
+		if (not __ROOMLOADER_SCREENSHOT_TRANSFORMED) {
+			return _rawSurf;
 		}
 		
-	    surface_free(_rawSurf);
+	    __ROOMLOADER_FINAL_SURF;
 		
-	    return _surf;
+	    return _finalSurf;
 	};
 	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-	    var _rawSurf = __ScreenshotGetRawSurf(_flags);
+	    __ROOMLOADER_SCREENSHOT_RAW_SURF;
 		
-	    var _scaledW = __width * _xScale;
-		var _scaledH = __height * _yScale;
-		var _left = _left01 * _scaledW;
-		var _top = _top01 * _scaledH;
-		var _width = (_width01  * _scaledW) - _left;
-		var _height = (_height01 * _scaledH) - _top;
+		var _width = __width;
+		var _height = __height;
+		var _finalSurf = _rawSurf;
 		
-	    var _finalSurf = surface_create(_width, _height);
-		surface_set_target(_finalSurf); {
-		    draw_clear_alpha(c_black, 0);
-		    draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1);
-			surface_reset_target();
+		if (__ROOMLOADER_SCREENSHOT_TRANSFORMED) {
+		    __ROOMLOADER_FINAL_SURF;
 		}
 		
 		var _return = {
@@ -214,30 +201,9 @@ function __RoomLoaderDataRoom(_room) constructor {
 		};
 		buffer_get_surface(_return.buffer, _finalSurf, 0);
 		
-	    surface_free(_rawSurf);
-	    surface_free(_finalSurf);
+		surface_free(_finalSurf);
 		
 	    return _return;
-	};
-	static __ScreenshotGetRawSurf = function(_flags) {
-		var _surf = surface_create(__width, __height);
-		surface_set_target(_surf); {
-	        draw_clear_alpha(c_black, 0);
-			
-	        var _bm = gpu_get_blendmode_ext_sepalpha();
-	        gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one);
-			
-	        var _i = array_length(__layersPool);
-	        while (_i--) {
-				with (__layersPool[_i]) {
-		            __Draw(_flags);
-		        }
-			}
-			
-	        method_call(gpu_set_blendmode_ext_sepalpha, _bm);
-			surface_reset_target();
-	    }
-		return _surf;
 	};
 	
 	__Init();

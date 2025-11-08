@@ -59,7 +59,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			_w = sprite_get_width(sprite);
 			_h = sprite_get_height(sprite);
 			draw_sprite(sprite, 0, _x1, _y1);
-					
+			
 			//var _surf = RoomLoader
 			//.Origin(origin.x, origin.y)
 			//.Flags(flags.Get())
@@ -75,6 +75,11 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			//.Scale(scale)
 			//.Part(left, top, w, h)
 			//.ScreenshotBuffer(rm);
+			//var _surf = surface_create(screen.width, screen.height);
+			//buffer_set_surface(screen.buffer, _surf, 0);
+			//draw_surface(_surf, mouse_x, mouse_y);
+			//surface_free(_surf);
+			//buffer_delete(screen.buffer);
 		}
 		var _x = floor(_x1 - (_w * origin.x));
 		var _y = floor(_y1 - (_h * origin.y));
