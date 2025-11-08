@@ -1,5 +1,7 @@
 # Cleanup
 
+## Overview
+
 Cleanup, also known as "unloading" or "destroying" a room, is typically used when the loaded room contexts are no longer needed. For example, if you're doing chunking by dynamically loading and unloading parts of a level as the player approaches.
 
 ::: warning NEWLY CREATED INSTANCES

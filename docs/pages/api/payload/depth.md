@@ -1,5 +1,7 @@
 # Depth
 
+## Overview
+
 When loading full rooms with multiple layers, you may want to shift their depths so they appear either above or below a specific depth in the current room.
 
 This is especially useful if you don't want the hassle of manually aligning layer depths across all your host and loaded rooms. With depth shifting, you can load a room with any layer depth setup and then reposition it relative to the host room's depth layout.

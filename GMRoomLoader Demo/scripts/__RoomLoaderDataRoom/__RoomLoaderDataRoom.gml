@@ -19,7 +19,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				id: _dataIn.id,
 			    object: _object,
 				preCreate: {},
-				creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
+				creationCode: max(_dataIn.creation_code, __RoomLoaderNoop),
 			};
 			
 			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
@@ -144,7 +144,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		__creationCode();
 	};
 	static __ScreenshotSprite = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-		__ROOMLOADER_SCREENSHOT_RAW_SURF;
+		__ROOMLOADER_SCREENSHOT_START;
 		
 	    var _width = __width * _xScale;
 	    var _height = __height * _yScale;
@@ -173,7 +173,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 	    return _sprite;
 	};
 	static __ScreenshotSurface = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-		__ROOMLOADER_SCREENSHOT_RAW_SURF;
+		__ROOMLOADER_SCREENSHOT_START;
 		
 		if (not __ROOMLOADER_SCREENSHOT_TRANSFORMED) {
 			return _rawSurf;
@@ -184,7 +184,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 	    return _finalSurf;
 	};
 	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
-	    __ROOMLOADER_SCREENSHOT_RAW_SURF;
+	    __ROOMLOADER_SCREENSHOT_START;
 		
 		var _width = __width;
 		var _height = __height;

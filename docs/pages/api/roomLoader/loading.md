@@ -1,5 +1,7 @@
 # Loading
 
+## Overview
+
 This section covers loading room contents - the core functionality of the library. All loading can be performed at any position and :Origin: in the current room.
 * [.Load()](#load) loads entire rooms with all layers and elements, with optional :Scaling:, :Rotation:, and filtering by :Asset Type: and/or :Layer Name:.
 * [.LoadInstances()](#loadinstances) loads instances from all layers, placed onto a single layer or depth, with optional :Scaling: and :Rotation:.
@@ -16,7 +18,9 @@ Though loading is still plenty fast, keep this in mind when loading large rooms 
 Try loading the same room with and without transformations to see the difference in your particular use case. If :ROOMLOADER_ENABLE_DEBUG: is set to `true` (it is by default), performance benchmarks will be logged in the Output window.
 :::
 
-## `.Load()`
+## Methods
+
+### `.Load()`
 
 > `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle])` ➜ :Struct:.:Payload: or :Undefined:
 
@@ -118,7 +122,8 @@ RoomLoader.Flip().Load(rmExample, 0, room_height); // [!code highlight]
 ```
 :::
 
-## `.LoadInstances()`
+---
+### `.LoadInstances()`
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle])` ➜ :Array: of :Id.Instance:
 
@@ -196,7 +201,8 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 ```
 :::
 
-## `.LoadTilemap()`
+---
+### `.LoadTilemap()`
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 

@@ -1,5 +1,7 @@
 # Data
 
+## Overview
+
 This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
 * [Initialization](#initialization) - essential for setting up room data before :Loading:, :Screenshotting: or using :Data Getters:. Happens automatically, but best performed on game start or behind loading screens (where applicable) for performance reasons.
 * [Removal](#removal) - optional, use for cleaning up loaded elements that are no longer needed, AKA "unloading" or "destroying" rooms.

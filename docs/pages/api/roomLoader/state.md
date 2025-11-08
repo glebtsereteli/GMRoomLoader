@@ -1,5 +1,7 @@
 # State
 
+## Overview
+
 State is an alternative way to preconfigure :Loading: and :Screenshotting: parameters before calling the methods.
 
 It defines how rooms are positioned, filtered by flags, transformed, and otherwise adjusted during :Loading: and :Screenshotting:. The intended workflow is as follows:
@@ -47,11 +49,11 @@ The following sections break down the available State categories
 
 > `RoomLoader.XOrigin(xOrigin)` ➜ :Struct:.:RoomLoader:
 
-Sets the X Origin State to use in the next :Loading: or :Screenshotting: call.
+Sets the X :Origin: State to use in the next :Loading: or :Screenshotting: call.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`xOrigin`|:Real:|The X Origin to use in the next :Loading: or :Screenshotting: call |
+|`xOrigin`|:Real:|The X :Origin: to use in the next :Loading: or :Screenshotting: call |
 
 :::code-group
 ```js [Example]
@@ -65,11 +67,11 @@ RoomLoader.XOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.YOrigin(yOrigin)` ➜ :Struct:.:RoomLoader:
 
-Sets the Y Origin State to use in the next :Loading: or :Screenshotting: call.
+Sets the Y :Origin: State to use in the next :Loading: or :Screenshotting: call.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`yOrigin`|:Real:|The Y Origin to use in the next :Loading: or :Screenshotting: call |
+|`yOrigin`|:Real:|The Y :Origin: to use in the next :Loading: or :Screenshotting: call |
 
 :::code-group
 ```js [Example]
@@ -322,5 +324,36 @@ Uses the given tileset in the next :RoomLoader.LoadTilemap(): call by setting th
 collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision) // [!code highlight]
 .LoadTilemap(rmExample, 0, 0, "Walls", collisionLayer);
+```
+:::
+
+### `.Part()`
+
+> `RoomLoader.Part(left, top, width, height)` ➜ :Struct:.:RoomLoader:
+
+Defines a part of the room to capture in :Screenshots:. Coordinates and dimensions are expressed as percentages of the full room size (from 0 to 1), just like :Origin:.
+
+This works similarly to part definition in :draw_sprite_part():, with the only difference being the values are normalized 0-1 percentages of the room size instead of raw pixel sizes.
+
+|Parameter|Type|Description|
+|---|---|---|
+|`left`|:Real:|The top-left x position of the room area to :Screenshot:|
+|`top`|:Real:|The top-left y position of the room area to :Screenshot:|
+|`width`|:Real:|The width of the room area to :Screenshot:|
+|`height`|:Real:|The height of the room area to :Screenshot:|
+
+:::code-group
+```js [Example]
+// Takes a sprite screenshot of the top-left quadrant of rmExample:
+screenshot = RoomLoader.Part(0, 0, 0.5, 0.5).ScreenshotSprite(rmExample); // [!code highlight]
+
+// Takes a centered sprite screenshot of the bottom-right quadrant of rmExample,
+// captures only instances and scales the sprite by a factor of 0.5:
+screenshot = RoomLoader
+.Part(0.5, 0.5, 0.5, 0.5) // [!code highlight]
+.Scale(0.5)
+.Instances()
+.MiddleCenter()
+.ScreenshotSprite(rmExample);
 ```
 :::

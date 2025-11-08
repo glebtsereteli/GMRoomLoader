@@ -201,7 +201,7 @@ export default defineConfig({
 
         // assets
         'Asset.GMRoom': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm',
-        'Asset.GMObject': 'https://manual.gamemaker.io/lts/en/GameMaker_Language/GML_Reference/Asset_Management/Objects/Objects.htm',
+        'Asset.GMObject': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Objects/Objects.htm',
         'Asset.GMSprite': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprites.htm',
         'Asset.GMTileset': 'https://manual.gamemaker.io/monthly/en/Quick_Start_Guide/Creating_Tile_Sets.htm',
         'Asset.GMSequence': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sequences/Sequences.htm',
@@ -212,10 +212,13 @@ export default defineConfig({
         'Id.Instance': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/Instances.htm',
         'Id.Function': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Script_Functions.htm',
         'Id.Background': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Background_Layers/Background_Layers.htm',
+        'Id.Surface': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm',
+        'Id.Buffer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm',
 
         // functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
-        
+        'draw_sprite_part()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm',
+
         // links
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
         'Debug Overlay': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Debugging/The_Debug_Overlay.htm',
@@ -236,6 +239,8 @@ export default defineConfig({
         'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
+        'Screenshot': '/pages/api/roomLoader/screenshotting',
+        'Screenshots': '/pages/api/roomLoader/screenshotting',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
@@ -274,6 +279,7 @@ export default defineConfig({
         'State.Flip': '/pages/api/roomLoader/state#flip',
         'State.Angle': '/pages/api/roomLoader/state#angle',
         'State.Tileset': '/pages/api/roomLoader/state#tileset',
+        'State.Part': '/pages/api/roomLoader/state#part',
         
         'Scaling': '/pages/api/roomLoader/state#scale',
         'Scale': '/pages/api/roomLoader/state#scale',
@@ -281,6 +287,8 @@ export default defineConfig({
         'Mirroring': '/pages/api/roomLoader/state#mirror',
         'Flipping': '/pages/api/roomLoader/state#flip',
         'Tileset': '/pages/api/roomLoader/state#tileset',
+        'Part': '/pages/api/roomLoader/state#part',
+        'Part()': '/pages/api/roomLoader/state#part',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

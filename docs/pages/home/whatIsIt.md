@@ -22,7 +22,7 @@ It does NOT provide tools for procedural generation or level layout creation of 
 - **Flexible Loading**. Load :Full Rooms:, [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap) at any position in the current room, with optional :Origin:, :Scaling:, :Mirroring:, :Flipping: and :Rotation:.
 - **Filtering Options**. Filter elements by :Asset Type: and/or layers by :Layer Name:.
 - **Full Lifecycle Control**. Manage loaded contents with :Payload: tracking - [Fetch IDs](/pages/api/payload/getters) and [Destroy](/pages/api/payload/cleanup) loaded elements.
-- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) from anywhere, without ever visiting target rooms - with optional part definition, scaling and filtering.
+- **Screenshotting**. Capture room [Screenshots](/pages/api/roomLoader/screenshotting) as [Sprites](/pages/api/roomLoader/screenshotting/#screenshotsprite), [Surfaces](/pages/api/roomLoader/screenshotting/#screenshotsurface) or [Buffers](/pages/api/roomLoader/screenshotting/#screenshotbuffer) from anywhere, without ever visiting target rooms - with optional part definition, scaling and filtering.
 - **Fluent :State: Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 - **Quick Debug Loading**. Load any room in the project at the mouse position with fully configurable parameters via the :Debug View: interface. Perfect for quick testing - no code required!
 

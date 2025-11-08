@@ -218,7 +218,7 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 #endregion
 #region Screenshots
 
-#macro __ROOMLOADER_SCREENSHOT_RAW_SURF \
+#macro __ROOMLOADER_SCREENSHOT_START \
 var _rawSurf = surface_create(__width, __height); \
 surface_set_target(_rawSurf); { \
 	draw_clear_alpha(c_black, 0); \
