@@ -586,7 +586,7 @@ function RoomLoader() {
 	/// @returns {Asset.GMSprite}
 	/// @desc Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
 	/// @context RoomLoader
-	static Screenshot = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
+	static ScreenshotSprite = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "Screenshot";
 		
 		var _sprite = __Screenshot(_room, _xOrigin, _yOrigin, _xScale, _yScale, _flags, true, _methodName);
@@ -594,7 +594,7 @@ function RoomLoader() {
 		
 		return _sprite;
 	};
-	
+		
 	//// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Real} xOrigin The x origin of the screenshot. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the screenshot. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]

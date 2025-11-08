@@ -199,6 +199,6 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 	    return _return;
 	};
-		
+	
 	__Init();
 }

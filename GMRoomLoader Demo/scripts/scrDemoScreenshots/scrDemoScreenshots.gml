@@ -8,7 +8,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		
 		// Interface:
 		dbg_section("Info");
-		dbg_text("This is an example using \"RoomLoader.TakeScreenshot[Part]()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
+		dbg_text("This is an example using \"RoomLoader.ScreenshotSprite()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to take a screenshot of a random room.");
 		dbg_text("- [HOLD SHIFT+1] to take a screenshot of a random room every frame.");
@@ -60,10 +60,17 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			_h = sprite_get_height(sprite);
 			draw_sprite(sprite, 0, _x1, _y1);
 			
-			var _surf = surface_create(screen.width, screen.height);
-			buffer_set_surface(screen.buffer, _surf, 0);
-			draw_surface(_surf, mouse_x, mouse_y);
-			surface_free(_surf);
+			//screen = RoomLoader
+			//.Origin(origin.x, origin.y)
+			//.Flags(flags.Get())
+			//.Scale(scale)
+			//.Part(left, top, w, h)
+			//.ScreenshotBuffer(rm);
+			
+			//var _surf = surface_create(screen.width, screen.height);
+			//buffer_set_surface(screen.buffer, _surf, 0);
+			//draw_surface(_surf, mouse_x, mouse_y);
+			//surface_free(_surf);
 		}
 		var _x = floor(_x1 - (_w * origin.x));
 		var _y = floor(_y1 - (_h * origin.y));
@@ -113,14 +120,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		.Flags(flags.Get())
 		.Scale(scale)
 		.Part(left, top, w, h)
-		.Screenshot(rm);
-		
-		screen = RoomLoader
-		.Origin(origin.x, origin.y)
-		.Flags(flags.Get())
-		.Scale(scale)
-		.Part(left, top, w, h)
-		.ScreenshotBuffer(rm);
+		.ScreenshotSprite(rm);
 	};
 	static Clear = function() {
 		if (sprite == undefined) return;
