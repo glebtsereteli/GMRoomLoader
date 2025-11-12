@@ -50,6 +50,7 @@ const team = [
     links: [
       { icon: 'github', link: 'https://github.com/GlebTsereteli' },
       { icon: 'twitter', link: 'https://x.com/GlebTsereteli' },
+      { icon: 'bluesky', link: 'https://bsky.app/profile/glebtsereteli.bsky.social' }, 
     ]
   },
   {
