@@ -12,7 +12,9 @@ This section covers two ways to retrieve created element IDs from :Payload:.
 All code examples on this page assume you have an existing instance of :Payload: retrieved from :RoomLoader.Load(): and stored in a `payload` variable.
 :::
 
-## `.GetLayer()`
+## Methods
+
+### `.GetLayer()`
 
 > `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:
 
@@ -32,7 +34,8 @@ if (_cloudsLayer != undefined) {
 ```
 :::
 
-## `.GetLayers()`
+---
+### `.GetLayers()`
 
 > `payload.GetLayers()` ➜ :Array: of :Id.Layer: 
 
@@ -47,8 +50,8 @@ array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
 ```
 :::
 
-
-## `.GetInstance()`
+---
+### `.GetInstance()`
 
 Returns the created Instance ID from the given room ID, or :Noone: if not found.
 
@@ -64,8 +67,8 @@ objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ```
 :::
 
-
-## `.GetInstances()`
+---
+### `.GetInstances()`
 
 > `payload.GetInstances()` ➜ :Array: of :Id.Instance:
 
@@ -79,8 +82,8 @@ var _randomInstance = script_execute_ext(choose, _instances);
 ```
 :::
 
-
-## `.GetTilemap()`
+---
+### `.GetTilemap()`
 
 > `payload.GetTilemap(layerName)` ➜ :Id.Tilemap: or :Undefined:
 
@@ -101,8 +104,8 @@ if (_collisionTilemap != undefined) {
 ```
 :::
 
-
-## `.GetTilemaps()`
+---
+### `.GetTilemaps()`
 
 > `payload.GetTilemaps()` ➜ :Array: of :Id.Tilemap:
 
@@ -116,7 +119,8 @@ var _randomTilemap = script_execute_ext(choose, _tilemaps);
 ```
 :::
 
-## `.GetSprite()`
+---
+### `.GetSprite()`
 
 > `payload.GetSprite(roomId)` ➜ :Asset.GMSprite: or :Undefined:
 
@@ -137,7 +141,8 @@ if (_sprite != undefined) {
 ```
 :::
 
-## `.GetSprites()`
+---
+### `.GetSprites()`
 
 > `payload.GetSprites()` ➜ :Array: of :Asset.GMSprite:
 
@@ -152,7 +157,8 @@ array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
 ```
 :::
 
-## `.GetSequence()`
+---
+### `.GetSequence()`
 
 > `payload.GetSequence(roomId)` ➜ :Asset.GMSequence: or :Undefined:
 
@@ -172,7 +178,8 @@ if (_sequence != undefined) {
 }
 ```
 
-## `.GetSequences()`
+---
+### `.GetSequences()`
 
 > `payload.GetSequences()` ➜ :Array: of :Asset.GMSequence: 
 
@@ -186,7 +193,8 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
 });
 ```
 
-## `.GetBackground()`
+---
+### `.GetBackground()`
 
 > `payload.GetBackground(layerName)` ➜ :Id.Background: or :Undefined:
 
@@ -207,7 +215,8 @@ if (_bg != undefined) {
 ```
 :::
 
-## `.GetBackgrounds()`
+---
+### `.GetBackgrounds()`
 
 > `payload.GetBackgrounds()` ➜ :Array: of :Id.Background:
 

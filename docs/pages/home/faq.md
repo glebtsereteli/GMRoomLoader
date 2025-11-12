@@ -17,7 +17,7 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Nintendo Switch** | 🚧 Likely | Untested |
 
 ## 📍 What versions of GameMaker does GMRoomLoader support?
-The latest Monthly. Currently that's `IDE v2024.13.1.193` and `Runtime v2024.13.1.242`.
+The latest Monthly. Currently that's `IDE v2024.14.0.207` and `Runtime v2024.14.0.251`.
 
 ## 📍 How is GMRoomLoader licensed? Can I use it in commercial projects?
 
