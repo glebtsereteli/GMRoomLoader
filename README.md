@@ -37,7 +37,7 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 
 # Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
-- Logos and demo rooms designed by Gleb's wifey - [Kate](https://www.instagram.com/k8te_iv) ❣️
+- Logos and demo rooms designed by my wife [Kate]([https://www.instagram.com/k8te_iv](https://www.linkedin.com/in/kate-ivanova22/)) ❣️
 - Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
 - Thank you to [YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
 - Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
@@ -49,13 +49,13 @@ GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](http
 
 # Games Using GMRoomLoader
 * [Juju Adams](https://www.jujuadams.com/)' undisclosed [commercial games](https://www.reddit.com/r/gamemaker/comments/1nn84b9/comment/nfjy5v4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
-* [IndieGameClinic](https://indiegameclinic.com/)'s [DirtWorld](https://jbw-games.itch.io/dirtworld).
-* [GrogDev](https://grog.dev/)'s and [PixelatedPope](https://www.pixelatedpope.com/)'s [Desukupet](https://www.twitch.tv/grogdev).
-* BrewerTheGreater's [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater).
-* [Geoff Moore](https://geoffmoore.co.uk/)'s [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170).
+* [DirtWorld](https://krankenhaus-uk.itch.io/dirtworld) by [Joe Baxter-Webb](https://bsky.app/profile/indiegameclinic.bsky.social) (AKA [Indie Game Clinic](https://indiegameclinic.com/) and [KRANKENHAUS](https://krankenhaus-uk.itch.io/)).
+* [Horizonite](https://store.steampowered.com/app/2151140/Horizonite/) by [Phablix](https://linktr.ee/phablix).
+* [Desukupet](https://www.twitch.tv/grogdev) by [GrogDev](https://grog.dev/) and [PixelatedPope](https://www.pixelatedpope.com/).
+* [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater) by BrewerTheGreater.
+* [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170) by [Geoff Moore](https://geoffmoore.co.uk/).
 * And more to come :)
 
 # Tutorials
-
 * [GMRoomLoader: Simultaneous Room Loading in GameMaker](https://www.youtube.com/watch?v=mZegvOC47dw) by [DragoniteSpam](https://www.youtube.com/c/DragoniteSpam/about). Michael introduces GMRoomLoader basics and goes over a few interesting edge cases.
 * More coming soon!
