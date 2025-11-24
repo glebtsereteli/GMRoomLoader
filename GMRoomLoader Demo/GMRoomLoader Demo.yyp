@@ -67,14 +67,25 @@
     {"$GMFolder":"","%Name":"02. Data","folderPath":"folders/02. GMRoomLoader/02. Private/02. Data.yy","name":"02. Data","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"03. Debug View","folderPath":"folders/02. GMRoomLoader/02. Private/03. Debug View.yy","name":"03. Debug View","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "ForcedPrefabProjectReferences":[],
+  "ForcedPrefabProjectReferences":[
+    {"link":"io.gamemaker.gm_filter_ripples-1.0.0","name":"io.gamemaker.gm_filter_ripples-1.0.0","path":"io.gamemaker.gm_filter_ripples-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_fractal_noise-1.0.0","name":"io.gamemaker.gm_filter_fractal_noise-1.0.0","path":"io.gamemaker.gm_filter_fractal_noise-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_hard_drop_shadow-1.0.0","name":"io.gamemaker.gm_filter_hard_drop_shadow-1.0.0","path":"io.gamemaker.gm_filter_hard_drop_shadow-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_large_blur-1.0.0","name":"io.gamemaker.gm_filter_large_blur-1.0.0","path":"io.gamemaker.gm_filter_large_blur-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_dots-1.0.0","name":"io.gamemaker.gm_filter_dots-1.0.0","path":"io.gamemaker.gm_filter_dots-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_whitenoise-1.0.0","name":"io.gamemaker.gm_filter_whitenoise-1.0.0","path":"io.gamemaker.gm_filter_whitenoise-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_outline-1.0.0","name":"io.gamemaker.gm_filter_outline-1.0.0","path":"io.gamemaker.gm_filter_outline-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_rgbnoise-1.0.0","name":"io.gamemaker.gm_filter_rgbnoise-1.0.0","path":"io.gamemaker.gm_filter_rgbnoise-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_distort-1.0.0","name":"io.gamemaker.gm_filter_distort-1.0.0","path":"io.gamemaker.gm_filter_distort-1.0.0.yyp",},
+    {"link":"io.gamemaker.sdfshaders-1.0.0","name":"io.gamemaker.sdfshaders-1.0.0","path":"io.gamemaker.sdfshaders-1.0.0.yyp",},
+  ],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"GMRoomLoader License.txt","CopyToMask":-1,"filePath":"datafiles","name":"GMRoomLoader License.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.0.207",
+    "IDEVersion":"2024.14.1.210",
   },
   "name":"GMRoomLoader Demo",
   "resources":[

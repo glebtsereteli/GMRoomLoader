@@ -170,6 +170,7 @@ export default defineConfig({
       },
       { icon: 'discord', link: 'https://discord.gg/gamemakerkitchen' },
       { icon: 'twitter', link: 'https://x.com/glebtsereteli' }, 
+      { icon: 'bluesky', link: 'https://bsky.app/profile/glebtsereteli.bsky.social' }, 
     ],
 
     footer: {
