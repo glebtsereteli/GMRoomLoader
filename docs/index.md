@@ -33,11 +33,24 @@ features:
 
 ---
 
-<hr style="border: none; border-top: 2px solid #888; margin:4em 0 1em;" />
+<h2 style="text-align:center;">GameMaker Awards</h2>
 
-<div style="text-align:center; font-size:1.1em; color:#555; margin-bottom:2em;">
-  <strong>GMRoomLoader</strong> Team
+<div style="text-align:center;">
+  GMRoomLoader was nominated in the Best Tool category two years in a row – at both the 
+  <a href="https://gamemaker.io/en/blog/gamemaker-awards-2024-winners" target="_blank" rel="noopener noreferrer">2024</a> 
+  and 
+  <a href="https://gamemaker.io/en/blog/voting-gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">2025</a> 
+  GameMaker Awards!
 </div>
+
+<div style="text-align:center; margin-top:2em;">
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:1em;">
+    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
+  </div>
+</div>
+
+<h2 style="text-align:center;">GMRoomLoader Team</h2>
 
 <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
