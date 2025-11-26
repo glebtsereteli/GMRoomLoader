@@ -54,9 +54,14 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 - Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
 - Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
 
-# GameMaker Awards 2024
-GMRoomLoader was nominated for **Best Tool** in the [2024 GameMaker Awards](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners)!
-![RoomLoader-Tool](https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d)
+# GameMaker Awards!
+GMRoomLoader was nominated in the Best Tool category two years in a row - at both the [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025) GameMaker Awards!
+<table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
+  <tr>
+    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" style="width: 100%; display: block;"></a></td>
+    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8"><img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" style="width: 100%; display: block;"></a></td>
+  </tr>
+</table>
 
 # Games Using GMRoomLoader
 * [Juju Adams](https://www.jujuadams.com/)' undisclosed [commercial games](https://www.reddit.com/r/gamemaker/comments/1nn84b9/comment/nfjy5v4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
