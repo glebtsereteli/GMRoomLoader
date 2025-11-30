@@ -47,6 +47,8 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			with (__instancesPool[_i]) {
 				var _pcc = preCreate;
+				if (_pcc.sprite_index == -1) continue;
+				
 				draw_sprite_ext(
 					_pcc.sprite_index, _pcc.image_index, 
 					x, y, _pcc.image_xscale, _pcc.image_yscale, _pcc.image_angle,

@@ -19,7 +19,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				id: _dataIn.id,
 			    object: _object,
 				preCreate: {},
-				creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
+				creationCode: max(_dataIn.creation_code, __RoomLoaderNoop),
 			};
 			
 			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
