@@ -357,7 +357,7 @@ var _leftDoor = RoomLoader.DataGetInstance(rmExample, inst_2C16415); // [!code h
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_xscale` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_yscale` | :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_angle` | :Real: |
-| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_blend` | :Constant.GMColor:, :Real: |
+| &nbsp;&nbsp;&nbsp;&nbsp;├─ `image_blend` | :Constant.Color:, :Real: |
 | &nbsp;&nbsp;&nbsp;&nbsp;└─ `image_alpha` | :Real: |
 
 Any variables adjusted through the [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) tab are also included in the struct. Variables with untouched default values are ignored - :room_get_info(): doesn't provide any data for those.
