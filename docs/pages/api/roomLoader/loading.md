@@ -1,5 +1,7 @@
 # Loading
 
+## Overview
+
 This section covers loading room contents - the core functionality of the library. All loading can be performed at any position and :Origin: in the current room.
 * [.Load()](#load) loads entire rooms with all layers and elements, with optional :Scaling:, :Rotation:, and filtering by :Asset Type: and/or :Layer Name:.
 * [.LoadInstances()](#loadinstances) loads instances from all layers, placed onto a single layer or depth, with optional :Scaling: and :Rotation:.
@@ -16,7 +18,9 @@ Though loading is still plenty fast, keep this in mind when loading large rooms 
 Try loading the same room with and without transformations to see the difference in your particular use case. If :ROOMLOADER_ENABLE_DEBUG: is set to `true` (it is by default), performance benchmarks will be logged in the Output window.
 :::
 
-## `.Load()`
+## Methods
+
+### `.Load()`
 
 > `RoomLoader.Load(room, x, y, [xOrigin], [yOrigin], [flags], [xScale], [yScale], [angle])` ➜ :Struct:.:Payload: or :Undefined:
 
@@ -118,7 +122,7 @@ RoomLoader.Flip().Load(rmExample, 0, room_height); // [!code highlight]
 ```
 :::
 
-## `.LoadInstances()`
+### `.LoadInstances()`
 
 > `RoomLoader.LoadInstances(room, x, y, layerOrDepth, [xOrigin], [yOrigin], [xScale], [yScale], [angle])` ➜ :Array: of :Id.Instance:
 
@@ -196,7 +200,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 ```
 :::
 
-## `.LoadTilemap()`
+### `.LoadTilemap()`
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
@@ -285,4 +289,24 @@ collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision)
 .LoadTilemap(rmChunkSpecial01, 0, 0, "TilesWalls", collisionLayer); // [!code highlight]
 ```
+:::
+
+## Edge Cases
+
+### Variable Definitions
+
+While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#-my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values.
+
+This is because GMRoomLoader initializes VarDefs *before* the instance itself exists. All provided variables are baked into a preCreate struct, which is later passed to the created instance. Since the instance does not yet exist at that point, many built-in variables are inaccessible.
+
+---
+When setting a VarDef to a built-in instance variable, only the following can be accessed:
+* `x` and `y`.
+* Everything in the `preCreate` struct of the provided [Instance Data](/pages/api/roomLoader/data#struct-format), which itself is populated from the **Instance Info** struct returned by :room_get_info():.
+---
+
+If you need to use values that aren't accessible at that stage, either set a default value (like `undefined`) and resolve it in the Create event, or use instance Creation Code instead (keep in mind that it runs *after* the Create event).
+
+:::tip
+This only applies to VarDefs you've modified in the room editor. Default values aren't included in the `room_get_info()` data, so GMRoomLoader doesn't load them and they initialize normally. Because of that, all built-in variables are safe to use when the definition is left at its default value.
 :::

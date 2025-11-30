@@ -1,6 +1,6 @@
 ![](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v2.4.0 </h1>
+<h1 align="center">GMRoomLoader v2.4.1 </h1>
 <p align="center"> Runtime room loading for GameMaker 2024.14 </p>
 <!-- <p align="center">
   Runtime room loading for GameMaker 2024.14

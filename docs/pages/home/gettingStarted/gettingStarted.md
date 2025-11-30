@@ -13,11 +13,11 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
     * Structs, functions/methods and arguments, macros and enums.
 
 ## Installation
-1. Download the `GMRoomLoader v2.4.0.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.4.0).
+1. Download the `GMRoomLoader v2.4.1.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/v2.4.1).
 2. Import the package into your project.
     * Navigate to __Tools__ in the top toolbar and click __Import Local Package__, or just drag and drop the file into GameMaker.
     ![](import01.png)
-    * Locate and select the `GMRoomLoader v2.4.0.yymps` local package in Explorer/Finder.
+    * Locate and select the `GMRoomLoader v2.4.1.yymps` local package in Explorer/Finder.
     * Click __Add All__.
     ![](import02.png)
     * Click __Import__.
@@ -41,7 +41,7 @@ RoomLoader.DataInit(rmExample);
 It's best to do this at the very start of your game in some "initialization" or "master" manager object. For this simple example, feel free to do it in the Create event of the object you'd like to handle your room loading.
 
 ::: tip ℹ️ THIS IS OPTIONAL
-Starting with `v2.4.0`, data initialization is optional and happens automatically. Skipping explicit initialization is perfectly fine for many simple use cases where performance isn't a concern.
+Starting with `v2.3.0`, data initialization is optional and happens automatically. Skipping explicit initialization is perfectly fine for many simple use cases where performance isn't a concern.
 
 **However**, when it comes to larger rooms or dealing with many rooms at the same time, **it is still recommended to initialize data beforehand**. See the :Initialization: page to learn about best performance practices.
 :::

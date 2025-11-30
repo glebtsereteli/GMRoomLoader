@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"GMRoomLoader Info",
-  "name":"GMRoomLoader Info",
+  "%Name":"01. GMRoomLoader Info",
+  "name":"01. GMRoomLoader Info",
   "parent":{
     "name":"02. GMRoomLoader",
     "path":"folders/02. GMRoomLoader.yy",
