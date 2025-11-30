@@ -2,8 +2,8 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.4.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.11.05" // year.month.day
+#macro __ROOMLOADER_VERSION "v2.4.1" // major.minor.patch
+#macro __ROOMLOADER_DATE "2025.11.30" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 #macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
 
