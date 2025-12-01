@@ -46,14 +46,6 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 * **Fluent [State](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state) Builder**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
 * **Quick Debug Loading**. Load any room in the project at the mouse position with fully configurable parameters via the [Debug View](https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView) interface. Perfect for quick testing - no code required!
 
-# Credits
-- Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
-- Logos and demo rooms designed by my wife [Kate]([https://www.instagram.com/k8te_iv](https://www.linkedin.com/in/kate-ivanova22/)) ❣️
-- Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
-- Thank you to [YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
-- Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
-- Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
-
 # GameMaker Awards!
 GMRoomLoader was nominated in the Best Tool category two years in a row - at both the [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025) GameMaker Awards!
 <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
@@ -62,6 +54,14 @@ GMRoomLoader was nominated in the Best Tool category two years in a row - at bot
     <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8"><img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" style="width: 100%; display: block;"></a></td>
   </tr>
 </table>
+
+# Credits
+- Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
+- Logos and demo rooms designed by my wife [Kate]([https://www.instagram.com/k8te_iv](https://www.linkedin.com/in/kate-ivanova22/)) ❣️
+- Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
+- Thank you to [YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
+- Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
+- Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
 
 # Games Using GMRoomLoader
 * [Juju Adams](https://www.jujuadams.com/)' undisclosed [commercial games](https://www.reddit.com/r/gamemaker/comments/1nn84b9/comment/nfjy5v4/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button).
