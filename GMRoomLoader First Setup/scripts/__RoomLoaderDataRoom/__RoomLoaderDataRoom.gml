@@ -11,24 +11,24 @@ function __RoomLoaderDataRoom(_room) constructor {
 	__creationCode = undefined;
 	
 	static __Init = function() {
-		static _MapInstanceData = function(_dataIn) {
-			var _object = asset_get_index(_dataIn.object_index);
-			var _dataOut = {
-				x: _dataIn.x,
-				y: _dataIn.y,
-				id: _dataIn.id,
+		static _MapInstanceData = function(_in) {
+			var _object = asset_get_index(_in.object_index);
+			var _out = {
+				id: _in.id,
+				x: _in.x,
+				y: _in.y,
 			    object: _object,
 				preCreate: {},
-				creationCode: ((_dataIn.creation_code != -1) ? _dataIn.creation_code : __RoomLoaderNoop),
+				creationCode: max(_in.creation_code, __RoomLoaderNoop),
 			};
 			
 			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-				with (_dataOut.preCreate) {
-				    image_xscale = _dataIn.xscale;
-				    image_yscale = _dataIn.yscale;
-				    image_angle = _dataIn.angle;
+				with (_out.preCreate) {
+				    image_xscale = _in.xscale;
+				    image_yscale = _in.yscale;
+				    image_angle = _in.angle;
 					
-				    var _color = _dataIn.colour;
+				    var _color = _in.colour;
 				    if (_color == -1) {
 				        image_blend = c_white;
 				        image_alpha = 1;
@@ -38,20 +38,24 @@ function __RoomLoaderDataRoom(_room) constructor {
 				        image_alpha = ((_color >> 24) & 0xff) / 255;
 				    }
 					
-				    image_index = _dataIn.image_index;
-				    image_speed = _dataIn.image_speed;
+					sprite_index = object_get_sprite(_object);
+				    image_index = _in.image_index;
+				    image_speed = _in.image_speed;
 					
-				    var _pcc = _dataIn.pre_creation_code;
+				    var _pcc = _in.pre_creation_code;
 				    if (_pcc != -1) {
+						x = _in.x;
+						y = _in.y;
 				        _pcc();
+						struct_remove(self, "x");
+						struct_remove(self, "y");
 				    }
-					self[$ "sprite_index"] ??= object_get_sprite(_object);
 				};
 			}
 			
-			__instancesInitLut[$ _dataIn.id] = _dataOut;
+			__instancesInitLut[$ _in.id] = _out;
 			
-			return _dataOut;
+			return _out;
 		};
 		static _GetDataConstructor = function(_type) {
 			switch (_type) {

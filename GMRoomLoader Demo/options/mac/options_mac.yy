@@ -30,7 +30,7 @@
   "option_mac_start_fullscreen":false,
   "option_mac_team_id":"",
   "option_mac_texture_page":"2048x2048",
-  "option_mac_version":"2.4.0",
+  "option_mac_version":"2.4.1",
   "option_mac_vsync":false,
   "option_mac_x86_64":true,
   "resourceType":"GMMacOptions",
