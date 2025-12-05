@@ -47,6 +47,8 @@ array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
 
 ## `.GetInstance()`
 
+> `payload.GetInstance()` ➜ :Id.Instance: or :Noone:
+
 Returns the ID of the created Instance from the given room ID if found, or :Noone: if not found.
 
 | Parameter | Type | Description |
@@ -150,7 +152,7 @@ array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
 
 ## `.GetSequence()`
 
-> `payload.GetSequence(roomId)` ➜ :Asset.GMSequence: or :Undefined:
+> `payload.GetSequence(roomId)` ➜ :Id.Sequence: or :Undefined:
 
 Returns the created Sequence ID matching the given room ID if found, or :Undefined: if not found.
 | Parameter | Type | Description |
@@ -167,6 +169,7 @@ if (_sequence != undefined) {
     layer_sequence_headpos(_sequence, random(_length));
 }
 ```
+:::
 
 ## `.GetSequences()`
 
@@ -181,10 +184,11 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
     layer_sequence_speedscale(_sequence, random(0.75, 1.25));
 });
 ```
+:::
 
 ## `.GetParticleSystem()`
 
-> `payload.getParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
+> `payload.GetParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
 
 Returns the ID of the created Particle System matching the given room ID if found, or :Undefined: if not found.
 | Parameter | Type | Description |
@@ -193,8 +197,14 @@ Returns the ID of the created Particle System matching the given room ID if foun
 
 :::code-group
 ```js [Example]
-
+// Gets the "Sparkles" Particle System, and if found, randomizes its color:
+var _psSparkle = payload.GetParticleSystem("Sparkles"); // [!code highlight]
+if (_psSparkle != undefined) {
+    var _randomColor = make_color_hsv(irandom(0, 255), 200, 200);
+    part_system_color(_psSparkle, _randomColor, 1);
+}
 ```
+:::
 
 ## `.GetParticleSystems()`
 
@@ -204,8 +214,14 @@ Returns an array of created Particle Systems.
 
 :::code-group
 ```js [Example]
-
+// Gets all loaded Particle Systems and pre-updates them by 60 frames:
+array_foreach(payload.GetParticleSystems(), function(_ps) { // [!code highlight]
+    repeat (60) {
+        part_system_update(_ps);
+    }
+});
 ```
+:::
 
 ## `.GetBackground()`
 
