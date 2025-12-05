@@ -55,6 +55,7 @@ function RoomLoaderPayload(_room) constructor {
 	__tilemaps = new __Container(layer_tilemap_destroy);
 	__sprites = new __Container(layer_sprite_destroy);
 	__sequences = new __Container(layer_sequence_destroy);
+	__particleSystems = new __Container(part_system_destroy);
 	__texts = new __Container(layer_text_destroy);
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleanedUp = false;
@@ -257,6 +258,7 @@ function RoomLoaderPayload(_room) constructor {
 		__tilemaps.__Destroy();
 		__sprites.__Destroy();
 		__sequences.__Destroy();
+		__particleSystems.__Destroy();
 		__texts.__Destroy();
 		__backgrounds.__Destroy();
 		if (_destroyLayers) {

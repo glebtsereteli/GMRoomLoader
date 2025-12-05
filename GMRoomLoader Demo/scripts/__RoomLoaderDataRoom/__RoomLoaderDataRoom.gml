@@ -148,7 +148,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
-	static __TakeScreenshot = function(_left01, _top01, _width01, _height01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
+	static __Screenshot = function(_left01, _top01, _width01, _height01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
 	    var _scaled = ((_xScale != 1) or (_yScale != 1));
 	    var _width = __width * _xScale;
 	    var _height = __height * _yScale;

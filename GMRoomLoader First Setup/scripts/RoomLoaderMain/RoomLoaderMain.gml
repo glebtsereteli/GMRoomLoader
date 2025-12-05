@@ -813,6 +813,18 @@ function RoomLoader() {
 	};
 	
 	/// @return {Struct.RoomLoader}
+	/// @desc Adds Particle Systems (ROOMLOADER_FLAG.PARTICLES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
+	static Particles = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.PARTICLES;
+		
+		return self;
+	};
+	
+	/// @return {Struct.RoomLoader}
 	/// @desc Adds Texts (ROOMLOADER_FLAG.TEXTS) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
 	/// Second and further calls add flags to State.Flags.

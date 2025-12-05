@@ -14,7 +14,7 @@ All code examples on this page assume you have an existing instance of :Payload:
 
 > `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:
 
-Returns the created Layer ID matching the given name, or :Undefined: if not found.
+Returns the ID of the created Layer matching the given name if found, or :Undefined: if not found.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -45,10 +45,9 @@ array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
 ```
 :::
 
-
 ## `.GetInstance()`
 
-Returns the created Instance ID from the given room ID, or :Noone: if not found.
+Returns the ID of the created Instance from the given room ID if found, or :Noone: if not found.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -61,7 +60,6 @@ Returns the created Instance ID from the given room ID, or :Noone: if not found.
 objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ```
 :::
-
 
 ## `.GetInstances()`
 
@@ -82,7 +80,7 @@ var _randomInstance = script_execute_ext(choose, _instances);
 
 > `payload.GetTilemap(layerName)` ➜ :Id.Tilemap: or :Undefined:
 
-Returns the created Tilemap ID from the given layer name, or :Undefined: if not found.
+Returns the ID of the created Tilemap from the given layer name, or :Undefined: if not found.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -116,9 +114,9 @@ var _randomTilemap = script_execute_ext(choose, _tilemaps);
 
 ## `.GetSprite()`
 
-> `payload.GetSprite(roomId)` ➜ :Asset.GMSprite: or :Undefined:
+> `payload.GetSprite(roomId)` ➜ :Id.Sprite: or :Undefined:
 
-Returns the created Sprite ID matching the room ID, or :Undefined: if not found.
+Returns the ID of the created Sprite matching the given room ID if found, or :Undefined: if not found.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -137,7 +135,7 @@ if (_sprite != undefined) {
 
 ## `.GetSprites()`
 
-> `payload.GetSprites()` ➜ :Array: of :Asset.GMSprite:
+> `payload.GetSprites()` ➜ :Array: of :Id.Sprite:
 
 Returns an array of created Sprites.
 
@@ -154,7 +152,7 @@ array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
 
 > `payload.GetSequence(roomId)` ➜ :Asset.GMSequence: or :Undefined:
 
-Returns the created Sequence ID matching the given room ID, or :Undefined: if not found.
+Returns the created Sequence ID matching the given room ID if found, or :Undefined: if not found.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `roomId` | :String: | The Sequence room ID to search for |
@@ -172,7 +170,7 @@ if (_sequence != undefined) {
 
 ## `.GetSequences()`
 
-> `payload.GetSequences()` ➜ :Array: of :Asset.GMSequence: 
+> `payload.GetSequences()` ➜ :Array: of :Id.Sequence: 
 
 Returns an array of created Sequences.
 
@@ -184,11 +182,36 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
 });
 ```
 
+## `.GetParticleSystem()`
+
+> `payload.getParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
+
+Returns the ID of the created Particle System matching the given room ID if found, or :Undefined: if not found.
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `roomId` | :String: | The Particle System room ID to search for |
+
+:::code-group
+```js [Example]
+
+```
+
+## `.GetParticleSystems()`
+
+> `payload.GetParticleSystems()` ➜ :Array: of :Id.ParticleSystem:
+
+Returns an array of created Particle Systems.
+
+:::code-group
+```js [Example]
+
+```
+
 ## `.GetBackground()`
 
 > `payload.GetBackground(layerName)` ➜ :Id.Background: or :Undefined:
 
-Returns the created Background ID matching the given layer name, or :Undefined: if not found.
+Returns the ID of the created Background matching the given layer name if found, or :Undefined: if not found.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -208,6 +231,8 @@ if (_bg != undefined) {
 ## `.GetBackgrounds()`
 
 > `payload.GetBackgrounds()` ➜ :Array: of :Id.Background:
+
+Returns an array of created Backgrounds.
 
 :::code-group
 ```js [Example]
