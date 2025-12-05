@@ -6,7 +6,7 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
 
 ## Requirements
 
-* [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.14.0.207` and `Runtime v2024.14.0.251` or above.
+* [GameMaker](https://gamemaker.io/en/download) version `IDE v2024.14.1.210` and `Runtime v2024.14.1.253`.
 * Basic familiarity with GameMaker and GML, including:
     * Asset types (rooms, objects, scripts, sprites, tilemaps, etc).
     * Working with objects and events.
@@ -22,7 +22,7 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
     ![](import02.png)
     * Click __Import__.
     ![](import03.png)
-        > The whole library lives inside the `GMRoomLoader` folder, and the only file under `Included Files` is the [MIT license](/pages/home/faq/#📍-how-is-gmroomloader-licensed-can-i-use-it-in-commercial-projects).
+        > The whole library lives inside the `GMRoomLoader` folder, and the only file under `Included Files` is the [MIT license](/pages/home/faq/#how-is-gmroomloader-licensed-can-i-use-it-in-commercial-projects).
 3. You're good to go! Next, check out the [First Setup](#first-setup) section below to load your first room.
 
 :::tip UPDATING

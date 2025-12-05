@@ -2,7 +2,7 @@
 
 This page contains answers to frequently asked questions about GMRoomLoader.
 
-## 📍 What platforms does GMRoomLoader support?
+## What platforms does GMRoomLoader support?
 | Platform | Status | Notes |
 | --- | --- | --- |
 | **Windows** | ✅ Yes | Tested |
@@ -16,16 +16,21 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Xbox** | 🚧 Likely | Untested |
 | **Nintendo Switch** | 🚧 Likely | Untested |
 
-## 📍 What versions of GameMaker does GMRoomLoader support?
-The latest Monthly. Currently that's `IDE v2024.14.0.207` and `Runtime v2024.14.0.251`.
+## What versions of GameMaker does GMRoomLoader support?
+The latest Monthly. Currently that's `IDE v2024.14.1.210` and `Runtime v2024.14.1.253`.
 
-## 📍 How is GMRoomLoader licensed? Can I use it in commercial projects?
-
+## How is GMRoomLoader licensed? Can I use it in commercial projects?
 GMRoomLoader is licensed under the [MIT license](https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE), granting you full freedom to use it for any purpose, including commercial projects. The only requirement is to include the `GMRoomLoader License.txt` file that comes with the library package.
 
 Mentioning my name (Gleb Tsereteli) in your game's credits would be greatly appreciated and would totally make my day, but it's entirely optional 🙂
 
-## 📍 How do I update to the latest version of GMRoomLoader? {#updating}
+## How is GMRoomLoader versioned?   
+GMRoomLoader follows [Semantic Versioning](https://semver.org/) using the `vMAJOR.MINOR.PATCH` format, where:
+* **MAJOR** increases when incompatible API changes are introduced. Updating to a new major version may require you to update your code.
+* **MINOR** increases when new features are added in a backward-compatible way, so it's always safe to update.
+* **PATCH** increases when backward-compatible bug fixes are made. These are also always safe to update to.
+
+## How do I update to the latest version of GMRoomLoader? {#updating}
 1. If you've made changes to the `RoomLoaderConfig` script, make a backup of the script before continuing.
 2. Delete the `GMRoomLoader` folder from your project.
 3. Repeat the [Installation](/pages/home/gettingStarted/gettingStarted/#installation) process.
@@ -34,22 +39,22 @@ Mentioning my name (Gleb Tsereteli) in your game's credits would be greatly appr
     The config setup might change between versions, so make sure to pay attention to the release notes and adjust your pasted configs accordingly.
     :::
 
-## 📍 Can GMRoomLoader assist with procedural generation?
+## Can GMRoomLoader assist with procedural generation?
 No. GMRoomLoader is designed specifically for loading rooms. Procedural generation, along with any custom logic for determining which room to pick and where it should go, will need to be handled on your own.
 
-## 📍 Can GMRoomLoader be used for modding? Is live reloading supported?
+## Can GMRoomLoader be used for modding? Is live reloading supported?
 No. GMRoomLoader retrieves data from :room_get_info():, which only provides access to room information initialized at compile time. This means that at runtime, you can only access rooms exactly as they existed when the game was compiled. 
 
 As a result, modding and live reloading aren't possible by design.
 
 If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. It works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
 
-## 📍 I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
+## I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
 Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
 
 The good news is layer depths are easily adjustable and you're not stuck with the default depths from the loaded room. Check out the [Payload Depth](/pages/api/payload/depth) section to see how you can shift depths for loaded layers.
 
-## 📍 My rooms have instances with Variable Definitions and Creation Code. Does GMRoomLoader support those?
+## My rooms have instances with Variable Definitions and Creation Code. Does GMRoomLoader support those?
 It does! :room_get_info(): provides both as scripts for GMRoomLoader to use. 
 
 ::: info NOTE
@@ -59,12 +64,10 @@ The execution order follows GameMaker's default and is structured like this:
 3. Creation Code.
 :::
 
-## 📍 Can I track loaded elements and "destroy" or "unload" a room after loading it?
-
+## Can I track loaded elements and "destroy" or "unload" a room after loading it?
 Of course you can, that's essential! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
 
 ### Full Rooms
-
 When loading full rooms with :RoomLoader.Load():, it returns a :Payload: struct that has a :.Cleanup(): method for removing all loaded layers and their elements.
 
 First store the struct in a variable when you load the room, and when it's time to destroy the room, call :.Cleanup(): on the returned struct:
@@ -84,7 +87,6 @@ GMRoomLoader only tracks layers and elements it loads itself. Anything else you 
 :::
 
 ### Instances
-
 When loading instances with :RoomLoader.LoadInstances():, it returns an array of loaded [Instance IDs](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/Instances.htm).
 
 First store the array in a variable when you load instances, and when it's time to destroy them, loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to destroy it:
@@ -101,7 +103,6 @@ array_foreach(instances, function(_instance) { // [!code highlight]
 :::
 
 ### Tilemaps
-
 When loading tilemaps with :RoomLoader.LoadTilemap():, it returns an :Id.Tilemap:.
 
 First store the ID in a variable, and when it's time to destroy it, call [layer_tilemap_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/layer_tilemap_destroy.htm)
@@ -116,7 +117,7 @@ layer_tilemap_destroy(tilemap); // [!code highlight]
 ```
 :::
 
-## 📍 How can I collide with loaded tilemaps?
+## How can I collide with loaded tilemaps?
 
 ### Separate
 When you load a room with a tile layer (with :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: set to `false`), a new tilemap is created.
