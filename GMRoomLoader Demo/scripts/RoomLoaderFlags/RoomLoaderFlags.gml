@@ -1,4 +1,5 @@
 // feather ignore all
+// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/assetTypeFiltering
 
 enum ROOMLOADER_FLAG {
 	NONE = 0,

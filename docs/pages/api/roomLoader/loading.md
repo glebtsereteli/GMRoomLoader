@@ -39,7 +39,7 @@ Full room loading supports the following elements.
 | Instance | Instance | ✔️ |
 | Tilemap | Tile | ✔️ |
 | Sprite | Asset | ✔️ |
-| Particle System | Asset | 🚧 Broken, GM bug. Fix coming in 2024.14.1 |
+| Particle System | Asset | ✔️ |
 | Sequence | Asset | ✔️ |
 | Background | Background | ✔️ |
 | Effects | Effect | ✔️ |
