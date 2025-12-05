@@ -215,6 +215,17 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__backgrounds.__Add(_bg, name); \
 }
 
+#macro __ROOMLOADER_PARTICLES_LOAD \
+var _ps = part_system_create_layer(_layer, false, __ps); \
+part_system_position(_ps, _x, _y); \
+part_system_color(_ps, __blend, __alpha); \
+repeat (ROOMLOADER_PARTICLES_UPDATE_STEPS) { \
+    part_system_update(_ps); \
+} \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+    RoomLoader.__payload.__particleSystems.__Add(_ps, __roomId); \
+}
+
 #endregion
 #region Benchmarking
 

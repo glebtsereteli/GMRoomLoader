@@ -28,12 +28,13 @@ function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
 	};
 }
 function DemoModuleFlags() constructor {
-	static reloaderNames = ["instances", "tilemaps", "sprites", "sequences", "texts", "backgrounds", "effects"];
+	static reloaderNames = ["instances", "tilemaps", "sprites", "sequences", "particles", "texts", "backgrounds", "effects"];
 	
 	instances = true;
 	tilemaps = true;
 	sprites = true;
 	sequences = true;
+	particles = true;
 	texts = true;
 	backgrounds = true;
 	effects = true;
@@ -44,6 +45,7 @@ function DemoModuleFlags() constructor {
 		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
 		dbg_checkbox(ref_create(self, "sprites"), "Sprites");
 		dbg_checkbox(ref_create(self, "sequences"), "Sequences");
+		dbg_checkbox(ref_create(self, "particles"), "Particles");
 		dbg_checkbox(ref_create(self, "texts"), "Texts");
 		dbg_checkbox(ref_create(self, "backgrounds"), "Backgrounds");
 		dbg_checkbox(ref_create(self, "effects"), "Effects");
@@ -54,6 +56,7 @@ function DemoModuleFlags() constructor {
 		_total |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;
 		_total |= sprites * ROOMLOADER_FLAG.SPRITES;
 		_total |= sequences * ROOMLOADER_FLAG.SEQUENCES;
+		_total |= particles * ROOMLOADER_FLAG.PARTICLES;
 		_total |= texts * ROOMLOADER_FLAG.TEXTS;
 		_total |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
 		_total |= effects * ROOMLOADER_FLAG.EFFECTS;

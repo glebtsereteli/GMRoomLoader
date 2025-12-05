@@ -57,6 +57,13 @@
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
 
 #endregion
+#region Other Elements
+
+// How many steps to pre-update particle systems on load so they don't appear freshly created.
+// NOTE: Higher values increase load time.
+#macro ROOMLOADER_PARTICLES_UPDATE_STEPS 0
+
+#endregion
 #region Debug View
 
 // Controls whether the Debug View is enabled (true) or disabled (false).
