@@ -2,10 +2,10 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.4.1" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.11.30" // year.month.day
+#macro __ROOMLOADER_VERSION "v2.5.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2025.12.05" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
-#macro __ROOMLOADER_LOG_PREFIX $"[{__ROOMLOADER_NAME}]"
+#macro __ROOMLOADER_LOG_PREFIX ("[" + __ROOMLOADER_NAME + "]")
 
 #endregion
 #region General
@@ -213,6 +213,17 @@ layer_background_blend(_bg, blendColour); \
 layer_background_alpha(_bg, blendAlpha); \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
 	RoomLoader.__payload.__backgrounds.__Add(_bg, name); \
+}
+
+#macro __ROOMLOADER_PARTICLES_LOAD \
+var _ps = part_system_create_layer(_layer, false, __ps); \
+part_system_position(_ps, _x, _y); \
+part_system_color(_ps, __blend, __alpha); \
+repeat (ROOMLOADER_PARTICLES_UPDATE_STEPS) { \
+    part_system_update(_ps); \
+} \
+if (ROOMLOADER_DELIVER_PAYLOAD) { \
+    RoomLoader.__payload.__particleSystems.__Add(_ps, __roomId); \
 }
 
 #endregion

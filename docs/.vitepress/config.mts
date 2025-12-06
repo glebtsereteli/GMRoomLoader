@@ -101,7 +101,7 @@ export default defineConfig({
           { text: '⚙️ Configuration', link: '/pages/api/config', },
         ]
       },
-      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/v2.4.1' },
+      { text: 'Download', link: 'https://github.com/glebtsereteli/GMRoomLoader/releases/latest' },
     ],
     
     outline: [2, 3],
@@ -210,8 +210,11 @@ export default defineConfig({
 
         // IDs
         'Id.Layer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/General_Layer_Functions/General_Layer_Functions.htm',
-        'Id.Tilemap': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/Tile_Map_Layers.htm',
         'Id.Instance': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/Instances.htm',
+        'Id.Tilemap': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Tile_Map_Layers/Tile_Map_Layers.htm',
+        'Id.Sprite': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Sprite_Layers/Sprite_Layers.htm',
+        'Id.ParticleSystem': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Particles/Particle_Systems/Particle_Systems.htm',
+        'Id.Sequence': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Sequence_Layers/Sequence_Layers.htm',
         'Id.Function': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Script_Functions.htm',
         'Id.Background': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Background_Layers/Background_Layers.htm',
         'Id.Surface': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm',

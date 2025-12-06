@@ -55,6 +55,7 @@ function RoomLoaderPayload(_room) constructor {
 	__tilemaps = new __Container(layer_tilemap_destroy);
 	__sprites = new __Container(layer_sprite_destroy);
 	__sequences = new __Container(layer_sequence_destroy);
+	__particleSystems = new __Container(part_system_destroy);
 	__texts = new __Container(layer_text_destroy);
 	__backgrounds = new __Container(layer_background_destroy);
 	__cleanedUp = false;
@@ -142,7 +143,7 @@ function RoomLoaderPayload(_room) constructor {
 	
 	/// @param {String} name The layer name to search for.
 	/// @returns {Id.Layer,undefined}
-	/// @desc Returns the layer ID matching the given name, or undefined if not found.
+	/// @desc Returns the created layer ID matching the given name if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetLayer = function(_name) {
 		__RoomLoaderCatchString(__messagePrefix, "GetLayer", _name, "get a Layer ID from the", "name");
@@ -156,9 +157,9 @@ function RoomLoaderPayload(_room) constructor {
 		return __layers.__ids;
 	};
 	
-	/// @param {Id.Instance} roomId The Instance room ID to search for, as a constant.
+	/// @param {Id.Instance} roomId The room ID of the Instance to search for.
 	/// @returns {Id.Instance,noone}
-	/// @desc Returns the Instance ID matching the given room ID, or noone if not found.
+	/// @desc Returns the created Instance ID matching the given room ID if found, or noone if not found.
 	/// @context RoomLoaderPayload
 	static GetInstance = function(_roomId) {
 		return __instances.__Get(_roomId);
@@ -171,9 +172,9 @@ function RoomLoaderPayload(_room) constructor {
 		return __instances.__ids;
 	};
 	
-	/// @param {String} layerName The Tilemap layer name to search for.
+	/// @param {String} layerName The Tile layer name to search for.
 	/// @returns {Id.Tilemap,undefined}
-	/// @desc Returns the Tilemap ID matching the given layer name, or undefined if not found.
+	/// @desc Returns the created Tilemap ID matching the given layer name if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetTilemap = function(_layerName) {
 		__RoomLoaderCatchString(__messagePrefix, "GetTilemap", _layerName, "get a Tilemap ID from the", "layer name");
@@ -187,9 +188,9 @@ function RoomLoaderPayload(_room) constructor {
 		return __tilemaps.__ids;
 	};
 	
-	/// @param {String} roomId The Sprite room ID to search for, as a String.
+	/// @param {String} roomId The room ID of the Sprite to search for.
 	/// @returns {Id.Sprite,undefined}
-	/// @desc Returns the Sprite ID matching the given name, or undefined if not found.
+	/// @desc Returns the created Sprite ID matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetSprite = function(_roomId) {
 		__RoomLoaderCatchString(__messagePrefix, "GetSprite", _roomId, "get a Sprite ID from the", "room ID");
@@ -203,9 +204,9 @@ function RoomLoaderPayload(_room) constructor {
 		return __sprites.__ids;
 	};
 	
-	/// @param {String} roomId The Sequence room ID to search for, as a String.
+	/// @param {String} roomId The room ID of the Sequence to search for.
 	/// @returns {Id.Sequence,undefined}
-	/// @desc Returns the created Sequence ID matching the given room ID, or undefined if not found.
+	/// @desc Returns the ID of the created Sequence matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetSequence = function(_roomId) {
 		__RoomLoaderCatchString(__messagePrefix, "GetSequence", _roomId, "get a Sequence ID from the", "room ID");
@@ -219,13 +220,29 @@ function RoomLoaderPayload(_room) constructor {
 		return __sequences.__ids;
 	};
 	
-	/// @param {String} roomId The Background room ID to search for, as a String.
-	/// @returns {Id.Background,undefined}
-	/// @desc Returns the created Background ID matching the given room ID, or undefined if not found.
+	/// @param {String} roomId The room ID of the Particle System to search for.
+	/// @returns {Id.ParticleSystem,undefined}
+	/// @desc Returns the created Particle System ID matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
-	static GetBackground = function(_roomId) {
-		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _roomId, "get a Background ID from the", "room ID");
-		return __backgrounds.__Get(_roomId);
+	static GetParticleSystem = function(_roomId) {
+		__RoomLoaderCatchString(__messagePrefix, "GetParticleSystem", _roomId, "get a Particle System ID from the", "room ID");
+		return __particleSystems.__Get(_roomId);
+	};
+	
+	/// @returns {Array<Id.ParticleSystem>}
+	/// @desc Returns an array of created Particle Systems.
+	/// @context RoomLoaderPayload
+	static GetParticleSystems = function() {
+		return __particleSystems.__ids;
+	};
+	
+	/// @param {String} layerName The Background layer name to search for.
+	/// @returns {Id.Background,undefined}
+	/// @desc Returns the created Background ID matching the given layer name if found, or undefined if not found.
+	/// @context RoomLoaderPayload
+	static GetBackground = function(_layerName) {
+		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
+		return __backgrounds.__Get(_layerName);
 	};
 	
 	/// @returns {Array<Id.Background>}
@@ -257,6 +274,7 @@ function RoomLoaderPayload(_room) constructor {
 		__tilemaps.__Destroy();
 		__sprites.__Destroy();
 		__sequences.__Destroy();
+		__particleSystems.__Destroy();
 		__texts.__Destroy();
 		__backgrounds.__Destroy();
 		if (_destroyLayers) {

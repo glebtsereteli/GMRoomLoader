@@ -165,6 +165,7 @@ Similar to [Origin Presets](#presets) above, this approach makes the code read i
 | `.Tilemaps()` | :ROOMLOADER_FLAG:.`TILEMAPS` |
 | `.Sprites()` | :ROOMLOADER_FLAG:.`SPRITES` |
 | `.Sequences()` | :ROOMLOADER_FLAG:.`SEQUENCES` |
+| `.Particles()` | :ROOMLOADER_FLAG:.`PARTICLES` |
 | `.Texts()` | :ROOMLOADER_FLAG:.`TEXTS` |
 | `.Backgrounds()` | :ROOMLOADER_FLAG:.`BACKGROUNDS` |
 | `.Effects()` | :ROOMLOADER_FLAG:.`EFFECTS` |

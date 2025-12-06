@@ -62,6 +62,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
 				case layerelementtype_sequence:
+				case layerelementtype_particlesystem:
 				case layerelementtype_text: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTile;
 				case layerelementtype_background: return __RoomLoaderDataLayerBackground;

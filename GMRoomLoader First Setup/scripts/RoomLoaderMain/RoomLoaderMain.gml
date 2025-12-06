@@ -33,7 +33,7 @@ function RoomLoader() {
 		var _data = __GetLoadData(_room, _methodName, "take a screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _screenshot = _data.__TakeScreenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		var _screenshot = _data.__Screenshot(_left, _top, _width, _height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);
 		
 		return _screenshot;
@@ -808,6 +808,18 @@ function RoomLoader() {
 	static Sequences = function() {
 		__ResetStateFlags();
 		__flags |= ROOMLOADER_FLAG.SEQUENCES;
+		
+		return self;
+	};
+	
+	/// @return {Struct.RoomLoader}
+	/// @desc Adds Particle Systems (ROOMLOADER_FLAG.PARTICLES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to ROOMLOADER_FLAG.NONE.
+	/// Second and further calls add flags to State.Flags.
+	/// @context RoomLoader
+	static Particles = function() {
+		__ResetStateFlags();
+		__flags |= ROOMLOADER_FLAG.PARTICLES;
 		
 		return self;
 	};

@@ -83,6 +83,17 @@ Whether to run Creation Code for loaded instances (`true`) or not (`false`).
 Setting this to `false` improves :Loading: performance.
 :::
 
+# Other Elements
+
+### `ROOMLOADER_DEBUG_VIEW_ENABLED`
+> Default: `0`.
+
+How many steps to pre-update particle systems on load so they don't appear freshly created.
+
+::: warning
+Higher values increase load time.
+:::
+
 ## Debug View
 
 ### `ROOMLOADER_DEBUG_VIEW_ENABLED`

@@ -2,7 +2,7 @@
 
 function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerParent(_layerData) constructor {
 	// shared
-	static __flag = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.SEQUENCES | ROOMLOADER_FLAG.TEXTS;
+	static __flag = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.SEQUENCES | ROOMLOADER_FLAG.PARTICLES | ROOMLOADER_FLAG.TEXTS;
 	
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;
@@ -25,6 +25,7 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 			switch (_data.type) {
 				case layerelementtype_sprite: _constructor = __RoomLoaderDataLayerAssetSprite; break;
 				case layerelementtype_sequence: _constructor = __RoomLoaderDataLayerAssetSequence; break;
+				case layerelementtype_particlesystem: _constructor = __RoomLoaderDataLayerAssetParticleSystem; break;
 				case layerelementtype_text: _constructor = __RoomLoaderDataLayerAssetText; break;
 			}
 			if (_constructor != undefined) {
@@ -119,6 +120,27 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 		layer_sequence_xscale(_sequence, __xScale * _xScale);
 		layer_sequence_yscale(_sequence, __yScale * _yScale);
 		layer_sequence_angle(_sequence, __angle + _angle);
+	}
+	static __Draw = __RoomLoaderNoop;
+}
+function __RoomLoaderDataLayerAssetParticleSystem(_data) constructor {
+	static __flag = ROOMLOADER_FLAG.PARTICLES;
+	
+	__roomId = _data.name;
+	__ps = _data.ps;
+	__x = _data.x;
+	__y = _data.y;
+	__angle = _data.angle;
+	__blend = _data.blend;
+	__alpha = _data.alpha;
+	
+	static __Load = function(_layer, _x, _y) {
+		__ROOMLOADER_PARTICLES_LOAD;
+		part_system_angle(_ps, __angle);
+	}
+	static __LoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
+		__ROOMLOADER_PARTICLES_LOAD;
+		part_system_angle(_ps, __angle + _angle);
 	}
 	static __Draw = __RoomLoaderNoop;
 }

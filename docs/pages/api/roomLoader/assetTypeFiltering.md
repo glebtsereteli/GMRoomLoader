@@ -20,17 +20,18 @@ If you're not a fan of bitwise operations, see the alternative way to filter by 
 
 | Member | Description |
 | --- | --- |
-| `NONE` | Doesn't load anything|
-| `INSTANCES` | Loads Instances from Instance layers|
-| `TILEMAPS` | Loads Tilemaps from Tile layers|
-| `SPRITES` | Loads Sprites from Asset layers|
-| `SEQUENCES` | Loads Sequences from Asset layers|
-| `TEXTS` | Loads Texts from Asset layers|
-| `BACKGROUNDS` | Loads Backgrounds from Background layers|
-| `EFFECTS` | Loads Effect layers and on-layer Effects|
-| `CORE` | Includes `INSTANCES`, `SPRITES` and `TILEMAPS`|
-| `EXTENDED` | Includes `SEQUENCES`, `TEXTS`, `BACKGROUNDS` and `EFFECTS`|
-| `ALL` | Includes all asset types (`CORE` + `EXTENDED`). Used by default via the :ROOMLOADER_DEFAULT_FLAGS: config macro|
+| `NONE` | Doesn't load anything |
+| `INSTANCES` | Loads Instances from Instance layers |
+| `TILEMAPS` | Loads Tilemaps from Tile layers |
+| `SPRITES` | Loads Sprites from Asset layers |
+| `SEQUENCES` | Loads Sequences from Asset layers |
+| `PARTICLES` | Loads Particle Systems from Asset layers |
+| `TEXTS` | Loads Texts from Asset layers |
+| `BACKGROUNDS` | Loads Backgrounds from Background layers |
+| `EFFECTS` | Loads Effect layers and on-layer Effects |
+| `CORE` | Includes `INSTANCES`, `SPRITES` and `TILEMAPS` |
+| `EXTENDED` | Includes `SEQUENCES`, `TEXTS`, `BACKGROUNDS` and `EFFECTS` |
+| `ALL` | Includes all asset types (`CORE` + `EXTENDED`). Used by default via the :ROOMLOADER_DEFAULT_FLAGS: config macro |
 
 :::code-group
 ```js [Regular]

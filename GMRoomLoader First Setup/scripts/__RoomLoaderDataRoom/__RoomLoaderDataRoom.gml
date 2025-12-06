@@ -62,6 +62,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				case layerelementtype_instance: return __RoomLoaderDataLayerInstance;
 				case layerelementtype_sprite:
 				case layerelementtype_sequence:
+				case layerelementtype_particlesystem:
 				case layerelementtype_text: return __RoomLoaderDataLayerAsset;
 				case layerelementtype_tilemap: return __RoomLoaderDataLayerTile;
 				case layerelementtype_background: return __RoomLoaderDataLayerBackground;
@@ -147,7 +148,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
-	static __TakeScreenshot = function(_left01, _top01, _width01, _height01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
+	static __Screenshot = function(_left01, _top01, _width01, _height01, _xOrigin, _yOrigin, _xScale, _yScale, _flags) {
 	    var _scaled = ((_xScale != 1) or (_yScale != 1));
 	    var _width = __width * _xScale;
 	    var _height = __height * _yScale;

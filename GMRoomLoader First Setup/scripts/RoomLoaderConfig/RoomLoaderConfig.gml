@@ -1,5 +1,5 @@
 // feather ignore all
-/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
+// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/config
 
 #region General
 
@@ -55,6 +55,14 @@
 // 
 // NOTE: Setting this to false improves Loading performance.
 #macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
+
+#endregion
+#region Other Elements
+
+// How many steps to pre-update particle systems on load so they don't appear freshly created.
+// 
+// WARNING: Higher values increase load time.
+#macro ROOMLOADER_PARTICLES_UPDATE_STEPS 0
 
 #endregion
 #region Debug View
