@@ -1,5 +1,7 @@
 # Screenshotting
 
+## Overview
+
 The following methods allow taking screenshots of initialized rooms. 
 
 Screenshots can be used in a variety of ways, like displaying previews in a level selection menu, capturing layouts for notes or level design, or previewing rooms in the world before loading them in.
@@ -13,7 +15,9 @@ Screenshotting methods return new sprites created by [sprite_create_from_surface
 Make sure to keep track of them and delete them using [sprite_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_delete.htm) when they're no longer needed.
 :::
 
-## `.Screenshot()`
+## Methods
+
+### `.Screenshot()`
 
 > `RoomLoader.Screenshot(room, [xOrigin], [yOrigin], [xScale], [yScale], [flags]` ➜ :Asset.GMSprite:
 
@@ -44,7 +48,7 @@ screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample
 ```
 :::
 
-## `.ScreenshotPart()`
+### `.ScreenshotPart()`
 
 > `RoomLoader.ScreenshotPart(room, left, top, width, height, [xOrigin], [yOrigin], [xScale], [yScale], [flags])` ➜ :Asset.GMSprite:
 

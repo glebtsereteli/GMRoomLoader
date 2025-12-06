@@ -1,5 +1,7 @@
 # State
 
+## Overview
+
 State is an alternative way to preconfigure :Loading: and :Screenshotting: parameters before calling the methods.
 
 It defines how rooms are positioned, filtered by flags, transformed, and otherwise adjusted during :Loading: and :Screenshotting:. The intended workflow is as follows:

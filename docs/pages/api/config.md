@@ -1,6 +1,8 @@
 # Configuration
 
-This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, :Loading: parameters and other options that affect performance and behaviors.
+## Overview
+
+This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, :Loading: parameters and other options that affect performance and various behaviors.
 
 ## General
 
@@ -83,7 +85,7 @@ Whether to run Creation Code for loaded instances (`true`) or not (`false`).
 Setting this to `false` improves :Loading: performance.
 :::
 
-# Other Elements
+## Other Elements
 
 ### `ROOMLOADER_DEBUG_VIEW_ENABLED`
 > Default: `0`.

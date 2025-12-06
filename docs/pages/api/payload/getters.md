@@ -1,5 +1,7 @@
 # Getters
 
+## Overview
+
 This section covers two ways to retrieve created element IDs from :Payload:.
 1. Individual ID `.Get<ElementType>` getters.
     * Instances, Sprites, Particle Systems and Sequences use their room IDs.
@@ -10,7 +12,9 @@ This section covers two ways to retrieve created element IDs from :Payload:.
 All code examples on this page assume you have an existing instance of :Payload: retrieved from :RoomLoader.Load(): and stored in a `payload` variable.
 :::
 
-## `.GetLayer()`
+## Methods
+
+### `.GetLayer()`
 
 > `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:
 
@@ -30,7 +34,8 @@ if (_cloudsLayer != undefined) {
 ```
 :::
 
-## `.GetLayers()`
+---
+### `.GetLayers()`
 
 > `payload.GetLayers()` ➜ :Array: of :Id.Layer: 
 
@@ -45,7 +50,8 @@ array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
 ```
 :::
 
-## `.GetInstance()`
+---
+### `.GetInstance()`
 
 > `payload.GetInstance()` ➜ :Id.Instance: or :Noone:
 
@@ -63,7 +69,8 @@ objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ```
 :::
 
-## `.GetInstances()`
+---
+### `.GetInstances()`
 
 > `payload.GetInstances()` ➜ :Array: of :Id.Instance:
 
@@ -77,8 +84,8 @@ var _randomInstance = script_execute_ext(choose, _instances);
 ```
 :::
 
-
-## `.GetTilemap()`
+---
+### `.GetTilemap()`
 
 > `payload.GetTilemap(layerName)` ➜ :Id.Tilemap: or :Undefined:
 
@@ -99,8 +106,8 @@ if (_collisionTilemap != undefined) {
 ```
 :::
 
-
-## `.GetTilemaps()`
+---
+### `.GetTilemaps()`
 
 > `payload.GetTilemaps()` ➜ :Array: of :Id.Tilemap:
 
@@ -114,7 +121,8 @@ var _randomTilemap = script_execute_ext(choose, _tilemaps);
 ```
 :::
 
-## `.GetSprite()`
+---
+### `.GetSprite()`
 
 > `payload.GetSprite(roomId)` ➜ :Id.Sprite: or :Undefined:
 
@@ -135,7 +143,8 @@ if (_sprite != undefined) {
 ```
 :::
 
-## `.GetSprites()`
+---
+### `.GetSprites()`
 
 > `payload.GetSprites()` ➜ :Array: of :Id.Sprite:
 
@@ -150,7 +159,8 @@ array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
 ```
 :::
 
-## `.GetSequence()`
+---
+### `.GetSequence()`
 
 > `payload.GetSequence(roomId)` ➜ :Id.Sequence: or :Undefined:
 
@@ -171,7 +181,8 @@ if (_sequence != undefined) {
 ```
 :::
 
-## `.GetSequences()`
+---
+### `.GetSequences()`
 
 > `payload.GetSequences()` ➜ :Array: of :Id.Sequence: 
 
@@ -186,7 +197,8 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
 ```
 :::
 
-## `.GetParticleSystem()`
+---
+### `.GetParticleSystem()`
 
 > `payload.GetParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
 
@@ -206,7 +218,8 @@ if (_psSparkle != undefined) {
 ```
 :::
 
-## `.GetParticleSystems()`
+---
+### `.GetParticleSystems()`
 
 > `payload.GetParticleSystems()` ➜ :Array: of :Id.ParticleSystem:
 
@@ -215,15 +228,20 @@ Returns an array of created Particle Systems.
 :::code-group
 ```js [Example]
 // Gets all loaded Particle Systems and pre-updates them by 60 frames:
-array_foreach(payload.GetParticleSystems(), function(_ps) { // [!code highlight]
+var _systems = payload.GetParticleSystems(); // [!code highlight]
+if (array_length(_systems) > 0) {
     repeat (60) {
-        part_system_update(_ps);
+        array_foreach(_systems, function(_ps) {
+            part_system_update(_ps);
+        });
     }
-});
+}
+
 ```
 :::
 
-## `.GetBackground()`
+---
+### `.GetBackground()`
 
 > `payload.GetBackground(layerName)` ➜ :Id.Background: or :Undefined:
 
@@ -244,7 +262,8 @@ if (_bg != undefined) {
 ```
 :::
 
-## `.GetBackgrounds()`
+---
+### `.GetBackgrounds()`
 
 > `payload.GetBackgrounds()` ➜ :Array: of :Id.Background:
 

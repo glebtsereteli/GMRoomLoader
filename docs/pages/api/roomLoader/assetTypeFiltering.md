@@ -1,10 +1,12 @@
 # Asset Type Filtering
 
+## Overview
+
 When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, you might want to filter target room data by asset type, so that only assets of the specified types are loaded or screenshotted.
 
 This section explains how to achieve this using the :ROOMLOADER_FLAG: :Enum:.
 
-## `ROOMLOADER_FLAG`
+## `ROOMLOADER_FLAG` Enum
 
 > `ROOMLOADER_FLAG.INSTANCES`
 

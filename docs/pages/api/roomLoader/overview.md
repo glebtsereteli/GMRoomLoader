@@ -8,6 +8,8 @@
   </a>
 </h1> -->
 
+## Overview
+
 `RoomLoader` is the main interface of GMRoomLoader. It handles most library operations and is organized into the following modules:
 
 - [Data](/pages/api/roomLoader/data) manages room data required for :Loading: and :Screenshotting:.  
@@ -17,7 +19,7 @@
 - [State](/pages/api/roomLoader/state) goes over an alternative way to preconfigure :Loading: and :Screenshotting: parameters using a [Builder](https://refactoring.guru/design-patterns/builder) pattern with a [Fluent Interface](https://en.wikipedia.org/wiki/Fluent_interface).
 - :Asset Type: and :Layer Name: filtering allow filtering layers by asset type and name respectively when using :RoomLoader.Load(): and :Screenshotting: methods.
 
----
+## Syntax
 
 `RoomLoader` is a global script function containing static data variables and methods, effectively acting as a makeshift [namespace](https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170)-like construct. It's initialized internally and requires no extra setup.
 
