@@ -87,7 +87,7 @@ Setting this to `false` improves :Loading: performance.
 
 ## Other Elements
 
-### `ROOMLOADER_DEBUG_VIEW_ENABLED`
+### `ROOMLOADER_PARTICLES_UPDATE_STEPS`
 > Default: `0`.
 
 How many steps to pre-update particle systems on load so they don't appear freshly created.
