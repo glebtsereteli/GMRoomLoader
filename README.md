@@ -71,6 +71,7 @@ GMRoomLoader was nominated in the Best Tool category two years in a row - at bot
 * [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater) by BrewerTheGreater.
 * [Canon](https://canonrpg.tumblr.com/) by [sonyPlaytation](https://sonyplaytation.neocities.org/).
 * [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170) by [Geoff Moore](https://geoffmoore.co.uk/).
+* [BloodVeil](https://www.youtube.com/watch?v=VHemNttUmyk) by [Christian de Mander](https://www.youtube.com/@christiandemander4256).
 * And more to come :)
 
 # Tutorials
