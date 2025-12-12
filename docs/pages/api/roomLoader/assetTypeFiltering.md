@@ -6,7 +6,7 @@ When loading rooms with :RoomLoader.Load(): or using :Screenshotting: methods, y
 
 This section explains how to achieve this using the :ROOMLOADER_FLAG: :Enum:.
 
-## `ROOMLOADER_FLAG`
+## `ROOMLOADER_FLAG` Enum
 
 > `ROOMLOADER_FLAG.INSTANCES`
 

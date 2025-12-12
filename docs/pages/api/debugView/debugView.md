@@ -1,5 +1,7 @@
 # Debug View
 
+## Overview
+
 The Debug View module offers a quick way to test room loading using a :Debug Overlay: view, without writing any code. It allows loading any room in the project at the mouse coordinates, with fully customizable parameters.
 
 ## Setup

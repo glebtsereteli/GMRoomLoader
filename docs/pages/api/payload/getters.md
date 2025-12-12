@@ -197,7 +197,8 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
 ```
 :::
 
-## `.GetParticleSystem()`
+---
+### `.GetParticleSystem()`
 
 > `payload.GetParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
 
@@ -217,7 +218,8 @@ if (_psSparkle != undefined) {
 ```
 :::
 
-## `.GetParticleSystems()`
+---
+### `.GetParticleSystems()`
 
 > `payload.GetParticleSystems()` ➜ :Array: of :Id.ParticleSystem:
 
@@ -226,11 +228,15 @@ Returns an array of created Particle Systems.
 :::code-group
 ```js [Example]
 // Gets all loaded Particle Systems and pre-updates them by 60 frames:
-array_foreach(payload.GetParticleSystems(), function(_ps) { // [!code highlight]
+var _systems = payload.GetParticleSystems(); // [!code highlight]
+if (array_length(_systems) > 0) {
     repeat (60) {
-        part_system_update(_ps);
+        array_foreach(_systems, function(_ps) {
+            part_system_update(_ps);
+        });
     }
-});
+}
+
 ```
 :::
 
