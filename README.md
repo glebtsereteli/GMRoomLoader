@@ -1,15 +1,10 @@
 ![](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
 <h1 align="center">GMRoomLoader v2.5.0 </h1>
-<p align="center"> Runtime room loading for GameMaker 2024.14.1 </p>
-<!-- <p align="center">
-  Runtime room loading for GameMaker 2024.14
-  <br><br>
-  <img src="https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white" />&nbsp;
-  <img src="https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white" />&nbsp;
-  <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" />&nbsp;
-  <img src="https://img.shields.io/badge/GX.games-FF1B2D?logo=opera&logoColor=white" />
-</p> -->
+<p align="center">
+  Runtime room loading for
+  GameMaker <a href="https://releases.gamemaker.io/release-notes/2024/14_2"> v2024.14.2</a>
+</p>
 
 # Overview
 GMRoomLoader is a pure GML [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library made for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
