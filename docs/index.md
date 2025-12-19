@@ -36,17 +36,16 @@ features:
 <h2 style="text-align:center;">GameMaker Awards</h2>
 
 <div style="text-align:center;">
-  GMRoomLoader was nominated in the Best Tool category two years in a row – at both the 
+  GMRoomLoader <a href="https://gamemaker.io/en/blog/gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">won in the Best Tool category</a> at the GameMaker Awards after being nominated two years in a row in both
   <a href="https://gamemaker.io/en/blog/gamemaker-awards-2024-winners" target="_blank" rel="noopener noreferrer">2024</a> 
   and 
-  <a href="https://gamemaker.io/en/blog/voting-gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">2025</a> 
-  GameMaker Awards!
+  <a href="https://gamemaker.io/en/blog/voting-gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">2025</a>!
 </div>
 
 <div style="text-align:center; margin-top:2em;">
   <div style="display:flex;gap:12px;justify-content:center;margin-top:1em;">
+    <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
     <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
-    <img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
   </div>
 </div>
 
