@@ -7,7 +7,7 @@
 </p>
 
 # Overview
-GMRoomLoader is a pure GML [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library made for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
+GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
 
 It provides tools to process the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), use that data to load room contents efficiently during gameplay, and clean up created elements when needed.
 
@@ -42,11 +42,11 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 * **Quick Debug Loading**. Load any room in the project at the mouse position with fully configurable parameters via the [Debug View](https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView) interface. Perfect for quick testing - no code required!
 
 # GameMaker Awards!
-GMRoomLoader was nominated in the Best Tool category two years in a row - at both the [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025) GameMaker Awards!
+GMRoomLoader [won Best Tool](https://gamemaker.io/en/blog/gamemaker-awards-2025) at the GameMaker Awards after being nominated two years in a row in both [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025)!
 <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
   <tr>
+    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213"><img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" style="width: 100%; display: block;"></a></td>
     <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" style="width: 100%; display: block;"></a></td>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8"><img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" style="width: 100%; display: block;"></a></td>
   </tr>
 </table>
 
