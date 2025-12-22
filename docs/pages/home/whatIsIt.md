@@ -1,8 +1,8 @@
 # What is GMRoomLoader?
 
-GMRoomLoader is a pure GML [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library made for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
+GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
 
-It provides tools to process the data returned by :room_get_info():, use that data to load room contents efficiently during gameplay, and clean up created elements when needed.
+It provides tools to process the data returned by :room_get_info():, load room contents efficiently during gameplay, and clean up created elements when needed.
 
 ## Use Cases
 * **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, chunks, NPCs or randomized props).
@@ -33,12 +33,12 @@ GMRoomLoader works by calling :room_get_info(): to grab the raw data of a room, 
 GameMaker can only have a single room active at a time and GMRoomLoader doesn't magically change that. Instead, it recreates the contents of other rooms inside the current room.
 
 ## GameMaker Awards!
-GMRoomLoader was nominated in the Best Tool category two years in a row - at both the [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025) GameMaker Awards!
+GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamemaker-awards-2025) at the GameMaker Awards after being nominated two years in a row in both [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025)!
 
 <div style="text-align:center; margin-top:2em;">
   <div style="display:flex;gap:12px;justify-content:center;margin-top:1em;">
-    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
-    <img src="https://github.com/user-attachments/assets/af84e6b2-231a-4bc0-847e-a0a25c33eba8" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
   </div>
 </div>
 
