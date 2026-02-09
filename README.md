@@ -3,7 +3,7 @@
 <h1 align="center">GMRoomLoader v2.5.0 </h1>
 <p align="center">
   Runtime room loading for
-  GameMaker <a href="https://releases.gamemaker.io/release-notes/2024/14_2"> v2024.14.2</a>
+  GameMaker <a href="https://releases.gamemaker.io/release-notes/2024/14_3"> v2024.14.3</a>
 </p>
 
 # Overview
