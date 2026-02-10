@@ -1,10 +1,13 @@
 // feather ignore all
 
 /// @func RoomLoaderPayload() constructor
-/// @param {Asset.GMRoom} room
-/// @desc Returned from RoomLoader.Load(). Stores all layers and elements created by RoomLoader.Load(), handles element fetching and cleanup.
+/// 
+/// Returned from RoomLoader.Load(). Stores all layers and elements created by RoomLoader.Load(), handles element fetching and cleanup.
 /// Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
 /// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
+/// 
+/// @param {Asset.GMRoom} room
+/// @returns {Struct<RoomLoaderPayload>} self
 function RoomLoaderPayload(_room) constructor {
 	#region __private
 	
@@ -80,9 +83,11 @@ function RoomLoaderPayload(_room) constructor {
 	
 	#region Depth
 	
+	/// Shifts all layers to a depth above layerOrDepth, with an optional depth offset.
+	/// 
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer or depth to shift depth above.
 	/// @param {Real} offset The depth offset [Default: -100]
-	/// @desc Shifts all layers to a depth above layerOrDepth, with an optional depth offset.
+	/// 
 	/// @returns {Struct.RoomLoaderPayload}
 	/// @context RoomLoaderPayload
 	static DepthAbove = function(_lod, _offset = -100) {
@@ -109,12 +114,14 @@ function RoomLoaderPayload(_room) constructor {
 		return self;
 	};
 	
+	/// Shifts all layers to a depth below layerOrDepth, with an optional depth offset.
+	/// 
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer or depth to shift depth below.
 	/// @param {Real} offset The depth offset [Default: +100]
-	/// @desc Shifts all layers to a depth below layerOrDepth, with an optional depth offset.
+	/// 
 	/// @returns {Struct.RoomLoaderPayload}
 	/// @context RoomLoaderPayload
-	static DepthBelow = function(_lod, _offset = 100) {
+	static DepthBelow = function(_lod, _offset = +100) {
 		static _methodName = "DepthBelow";
 		
 		var _targetDepth = __GetTargetDepth(_lod, _methodName) + _offset;
@@ -141,112 +148,133 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Getters
 	
+	/// Returns the created layer ID matching the given name if found, or undefined if not found.
+	/// 
 	/// @param {String} name The layer name to search for.
+	/// 
 	/// @returns {Id.Layer,undefined}
-	/// @desc Returns the created layer ID matching the given name if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetLayer = function(_name) {
 		__RoomLoaderCatchString(__messagePrefix, "GetLayer", _name, "get a Layer ID from the", "name");
 		return __layers.__Get(_name);
 	};
 	
+	/// Returns an array of created layers.
+	/// 
 	/// @returns {Array<Id.Layer>}
-	/// @desc Returns an array of created layers.
 	/// @context RoomLoaderPayload
 	static GetLayers = function() {
 		return __layers.__ids;
 	};
 	
+	/// Returns the created Instance ID matching the given room ID if found, or noone if not found.
+	/// 
 	/// @param {Id.Instance} roomId The room ID of the Instance to search for.
+	/// 
 	/// @returns {Id.Instance,noone}
-	/// @desc Returns the created Instance ID matching the given room ID if found, or noone if not found.
 	/// @context RoomLoaderPayload
 	static GetInstance = function(_roomId) {
 		return __instances.__Get(_roomId);
 	};
 	
+	/// Returns an array of created Instances.
+	/// 
 	/// @returns {Array<Id.Instance>}
-	/// @desc Returns an array of created Instances.
 	/// @context RoomLoaderPayload
 	static GetInstances = function() {
 		return __instances.__ids;
 	};
 	
+	/// Returns the created Tilemap ID matching the given layer name if found, or undefined if not found.
+	/// 
 	/// @param {String} layerName The Tile layer name to search for.
+	/// 
 	/// @returns {Id.Tilemap,undefined}
-	/// @desc Returns the created Tilemap ID matching the given layer name if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetTilemap = function(_layerName) {
 		__RoomLoaderCatchString(__messagePrefix, "GetTilemap", _layerName, "get a Tilemap ID from the", "layer name");
 		return __tilemaps.__Get(_layerName);
 	};
 	
+	/// Returns an array of created Tilemaps.
+	/// 
 	/// @returns {Array<Id.Tilemap>}
-	/// @desc Returns an array of created Tilemaps.
 	/// @context RoomLoaderPayload
 	static GetTilemaps = function() {
 		return __tilemaps.__ids;
 	};
 	
+	/// Returns the created Sprite ID matching the given room ID if found, or undefined if not found.
+	/// 
 	/// @param {String} roomId The room ID of the Sprite to search for.
+	/// 
 	/// @returns {Id.Sprite,undefined}
-	/// @desc Returns the created Sprite ID matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetSprite = function(_roomId) {
 		__RoomLoaderCatchString(__messagePrefix, "GetSprite", _roomId, "get a Sprite ID from the", "room ID");
 		return __sprites.__Get(_roomId);
 	};
 	
+	/// Returns an array of created Sprites.
+	/// 
 	/// @returns {Array<Id.Sprite>}
-	/// @desc Returns an array of created Sprites.
 	/// @context RoomLoaderPayload
 	static GetSprites = function() {
 		return __sprites.__ids;
 	};
 	
+	/// Returns the ID of the created Sequence matching the given room ID if found, or undefined if not found.
+	/// 
 	/// @param {String} roomId The room ID of the Sequence to search for.
+	/// 
 	/// @returns {Id.Sequence,undefined}
-	/// @desc Returns the ID of the created Sequence matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetSequence = function(_roomId) {
 		__RoomLoaderCatchString(__messagePrefix, "GetSequence", _roomId, "get a Sequence ID from the", "room ID");
 		return __sequences.__Get(_roomId);
 	};
 	
+	/// Returns an array of created Sequences.
+	/// 
 	/// @returns {Array<Id.Sequence>}
-	/// @desc Returns an array of created Sequences.
 	/// @context RoomLoaderPayload
 	static GetSequences = function() {
 		return __sequences.__ids;
 	};
 	
+	/// Returns the created Particle System ID matching the given room ID if found, or undefined if not found.
+	/// 
 	/// @param {String} roomId The room ID of the Particle System to search for.
+	/// 
 	/// @returns {Id.ParticleSystem,undefined}
-	/// @desc Returns the created Particle System ID matching the given room ID if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetParticleSystem = function(_roomId) {
 		__RoomLoaderCatchString(__messagePrefix, "GetParticleSystem", _roomId, "get a Particle System ID from the", "room ID");
 		return __particleSystems.__Get(_roomId);
 	};
 	
+	/// Returns an array of created Particle Systems.
+	/// 
 	/// @returns {Array<Id.ParticleSystem>}
-	/// @desc Returns an array of created Particle Systems.
 	/// @context RoomLoaderPayload
 	static GetParticleSystems = function() {
 		return __particleSystems.__ids;
 	};
 	
+	/// Returns the created Background ID matching the given layer name if found, or undefined if not found.
+	/// 
 	/// @param {String} layerName The Background layer name to search for.
+	/// 
 	/// @returns {Id.Background,undefined}
-	/// @desc Returns the created Background ID matching the given layer name if found, or undefined if not found.
 	/// @context RoomLoaderPayload
 	static GetBackground = function(_layerName) {
 		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
 		return __backgrounds.__Get(_layerName);
 	};
 	
+	/// Returns an array of created Backgrounds.
+	/// 
 	/// @returns {Array<Id.Background>}
-	/// @desc Returns an array of created Backgrounds.
 	/// @context RoomLoaderPayload
 	static GetBackgrounds = function() {
 		return __backgrounds.__ids;
@@ -255,10 +283,12 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Cleanup
 	
-	/// @param {Bool} destroyLayers=[true] Whether to destroy loaded layers (true) or not (false).
-	/// @returns {Undefined}
-	/// @desc Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
+	/// Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
+	/// 
+	/// @param {Bool} destroyLayers Whether to destroy loaded layers (true) or not (false). [Default: true]
+	/// 
+	/// @returns {Undefined}
 	/// @context RoomLoaderPayload
 	static Cleanup = function(_destroyLayers = true) {
 		static _methodName = "Cleanup";

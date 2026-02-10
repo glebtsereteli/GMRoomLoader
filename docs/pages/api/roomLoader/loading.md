@@ -26,10 +26,18 @@ Try loading the same room with and without transformations to see the difference
 
 Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, :Scaling: and :Rotation:.
 
-* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns an instance of :Payload: that tracks the IDs of all loaded layers and elements, and can be used to [shift layer depths](/pages/api/payload/depth), [fetch element IDs](/pages/api/payload/getters) and [unload things](/pages/api/payload/cleanup).
+---
+
+* If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns a :Payload: instance that tracks the IDs of all loaded layers and elements. The Payload can be used to [adjust layer depths](/pages/api/payload/depth), [retrieve element IDs](/pages/api/payload/getters), and [clean up loaded contents](/pages/api/payload/cleanup).
 * Otherwise returns :Undefined:.
 
-Layers are created at the same depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
+---
+
+Layers are created at the exact depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
+
+::: warning EMPTY LAYERS
+Empty layers (layers with no instances, tiles, or assets) are skipped and will not be loaded.
+:::
 
 ::: details ℹ️ ROOM ELEMENT COVERAGE {closed}
 Full room loading supports the following elements.
@@ -295,7 +303,7 @@ collisionTilemap = RoomLoader
 
 ### Variable Definitions
 
-While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#-my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values.
+While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values.
 
 This is because GMRoomLoader initializes VarDefs *before* the instance itself exists. All provided variables are baked into a preCreate struct, which is later passed to the created instance. Since the instance does not yet exist at that point, many built-in variables are inaccessible.
 
