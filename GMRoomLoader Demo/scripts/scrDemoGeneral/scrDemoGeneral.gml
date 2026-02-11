@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoGeneral() : DemoPar("General") constructor {
-	// shared
+	// Shared:
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
@@ -82,7 +82,7 @@ function DemoGeneral() : DemoPar("General") constructor {
 		Unload();
 	};
 	
-	// custom
+	// Custom:
 	rm = rmDemoGeneral;
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();

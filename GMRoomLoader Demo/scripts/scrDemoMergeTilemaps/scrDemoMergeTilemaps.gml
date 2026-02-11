@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
-	// shared
+	// Shared:
 	static Init = function() {
 		if (ROOMLOADER_MERGE_TILEMAPS) {
 			RoomLoader.DataInitTag("MergeTilemaps");
@@ -98,7 +98,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		RoomLoader.DataRemoveTag("MergeTilemaps");
 	};
 	
-	// custom
+	// Custom:
 	hostRoom = rmDemoMergeTilemapsHost;
 	hostPayload = undefined;
 	newRoom = rmDemoMergeTilemapsNew;

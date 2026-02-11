@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoBase() : DemoPar("Base") constructor {
-	// shared
+	// Shared:
 	static Init = function() {
 		host.Init();
 		slots.Init();
@@ -44,7 +44,7 @@ function DemoBase() : DemoPar("Base") constructor {
 		host.Cleanup();
 	};
 	
-	// custom
+	// Custom:
 	host = {
 		ref: rmDemoBaseHost,
 		data: undefined,
