@@ -9,78 +9,6 @@
 /// @param {Asset.GMRoom} room
 /// @returns {Struct<RoomLoaderPayload>} self
 function RoomLoaderPayload(_room) constructor {
-	#region __private
-	
-	static __Container = function(_OnDestroy) constructor {
-		__ids = [];
-		__roomIds = [];
-		
-		__OnDestroy = _OnDestroy;
-		
-		static __Add = function(_id, _roomId) {
-			array_push(__ids, _id);
-			array_push(__roomIds, _roomId);
-		};
-		static __Get = function(_roomId) {
-			var _index = array_get_index(__roomIds, _roomId);
-			return ((_index == -1) ? undefined : __ids[_index]);
-		};
-		static __Destroy = function() {
-			array_foreach(__ids, function(_element) {
-				__OnDestroy(_element);
-			});
-		};
-	};
-	static __Instances = function() constructor {
-		__ids = undefined;
-		__roomIds = undefined;
-		__index = 0;
-		
-		static __Init = function(_n) {
-			__ids = array_create(_n, noone);
-			__roomIds = array_create(_n, noone);
-		};
-		static __Get = function(_roomId) {
-			var _index = array_get_index(__roomIds, _roomId);
-			return ((_index == -1) ? noone : __ids[_index]);
-		};
-		static __Destroy = function() {
-			array_foreach(__ids, function(_inst) {
-				instance_destroy(_inst);
-			});
-		};
-	};
-	static __messagePrefix = "Payload";
-	
-	__room = _room;
-	__layers = new __Container(layer_destroy);
-	__instances = new __Instances();
-	__tilemaps = new __Container(layer_tilemap_destroy);
-	__sprites = new __Container(layer_sprite_destroy);
-	__sequences = new __Container(layer_sequence_destroy);
-	__particleSystems = new __Container(part_system_destroy);
-	__texts = new __Container(layer_text_destroy);
-	__backgrounds = new __Container(layer_background_destroy);
-	__cleanedUp = false;
-	
-	static __GetTargetDepth = function(_lod, _methodName) {
-		var _targetDepth = undefined;
-		if (is_real(_lod)) {
-			_targetDepth = _lod;
-		}
-		else if (is_string(_lod) or is_handle(_lod)) {
-			_targetDepth = layer_get_depth(_lod);
-		}
-		else {
-			var _message = $"Could not shift layer depths for Layer Or Depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
-			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
-		}
-		
-		return _targetDepth;
-	};
-	
-	#endregion
-	
 	#region Depth
 	
 	/// Shifts all layers to a depth above layerOrDepth, with an optional depth offset.
@@ -143,6 +71,48 @@ function RoomLoaderPayload(_room) constructor {
 	    }
 		
 	    return self;
+	};
+	
+	#endregion
+	#region Instances
+	
+	/// Adds the given instance to the payload. Added instances are automatically destroyed by .Cleanup().
+	/// Returns true if the instance was added, or false if it was already in the payload.
+	/// 
+	/// @param {Id.Instance} id The instance ID to add to the payload.
+	/// 
+	/// @returns {Bool}
+	/// @context RoomLoaderPayload
+	static InstanceAdd = function(_id) {
+		with (__instances) {
+			var _index = array_get_index(__ids, _id);
+			if (_index == -1) {
+				array_push(__ids, _id);
+				array_push(__roomIds, _id);
+				return true;
+			}
+			return false;
+		}
+	};
+	
+	/// Removes the given instance from the payload. Removed instances will no longer be destroyed by .Cleanup(),
+	/// unless their layers are destroyed (destroying layers destroys all instances on them).
+	/// Returns true if the instance was removed, or false if it was not found in the payload.
+	/// 
+	/// @param {Id.Instance} id The instance ID to remove from the payload.
+	/// 
+	/// @returns {Bool}
+	/// @context RoomLoaderPayload
+	static InstanceRemove = function(_id) {
+		with (__instances) {
+			var _index = array_get_index(__ids, _id);
+			if (_index != -1) {
+				array_delete(__ids, _index, 1);
+				array_delete(__roomIds, _index, 1);
+				return true;
+			}
+			return false;
+		}
 	};
 	
 	#endregion
@@ -315,5 +285,77 @@ function RoomLoaderPayload(_room) constructor {
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, __room);
 	};
 
+	#endregion
+
+	#region __private
+	
+	static __Container = function(_OnDestroy) constructor {
+		__ids = [];
+		__roomIds = [];
+		
+		__OnDestroy = _OnDestroy;
+		
+		static __Add = function(_id, _roomId) {
+			array_push(__ids, _id);
+			array_push(__roomIds, _roomId);
+		};
+		static __Get = function(_roomId) {
+			var _index = array_get_index(__roomIds, _roomId);
+			return ((_index == -1) ? undefined : __ids[_index]);
+		};
+		static __Destroy = function() {
+			array_foreach(__ids, function(_element) {
+				__OnDestroy(_element);
+			});
+		};
+	};
+	static __Instances = function() constructor {
+		__ids = undefined;
+		__roomIds = undefined;
+		__index = 0;
+		
+		static __Init = function(_n) {
+			__ids = array_create(_n, noone);
+			__roomIds = array_create(_n, noone);
+		};
+		static __Get = function(_roomId) {
+			var _index = array_get_index(__roomIds, _roomId);
+			return ((_index == -1) ? noone : __ids[_index]);
+		};
+		static __Destroy = function() {
+			array_foreach(__ids, function(_inst) {
+				instance_destroy(_inst);
+			});
+		};
+	};
+	static __messagePrefix = "Payload";
+	
+	__room = _room;
+	__layers = new __Container(layer_destroy);
+	__instances = new __Instances();
+	__tilemaps = new __Container(layer_tilemap_destroy);
+	__sprites = new __Container(layer_sprite_destroy);
+	__sequences = new __Container(layer_sequence_destroy);
+	__particleSystems = new __Container(part_system_destroy);
+	__texts = new __Container(layer_text_destroy);
+	__backgrounds = new __Container(layer_background_destroy);
+	__cleanedUp = false;
+	
+	static __GetTargetDepth = function(_lod, _methodName) {
+		var _targetDepth = undefined;
+		if (is_real(_lod)) {
+			_targetDepth = _lod;
+		}
+		else if (is_string(_lod) or is_handle(_lod)) {
+			_targetDepth = layer_get_depth(_lod);
+		}
+		else {
+			var _message = $"Could not shift layer depths for Layer Or Depth <{_lod}>.\nExpected <Real, String or Id.Layer>, got <{typeof(_lod)}>";
+			__RoomLoaderErrorMethod(__messagePrefix, _methodName, _message);
+		}
+		
+		return _targetDepth;
+	};
+	
 	#endregion
 };

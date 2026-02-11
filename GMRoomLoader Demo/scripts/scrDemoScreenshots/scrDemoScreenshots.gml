@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoScreenshots() : DemoPar("Screenshots") constructor {
-	// Shared:
+	// shared
 	static Init = function() {
 		RoomLoader.DataInitTag(tag);
 		ShuffleRoom();
@@ -99,7 +99,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		Clear();
 	};
 	
-	// Custom:
+	// custom
 	tag = "BaseRooms";
 	rooms = tag_get_asset_ids(tag, asset_room);
 	rm = undefined;
