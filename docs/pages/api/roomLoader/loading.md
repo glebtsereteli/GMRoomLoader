@@ -38,7 +38,6 @@ Layers are created at the exact depths defined in the Room Editor. See the [Payl
 ::: warning EMPTY LAYERS
 Empty layers (layers with no instances, tiles, or assets) are skipped and will not be loaded.
 :::
-
 ::: details ℹ️ ROOM ELEMENT COVERAGE {closed}
 Full room loading supports the following elements.
 
