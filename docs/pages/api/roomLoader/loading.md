@@ -57,8 +57,8 @@ Full room loading supports the following elements.
 | Display Buffer & Viewport Clearing | - | ❌ Irrelevant |
 :::
 ::: details ℹ️ TRANSFORMATION EXCEPTIONS {closed}
-* Tilemaps only load if `[xScale/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90 degrees. Otherwise they are ignored.
-* Backgrounds only load if `[angle]` is `0`. Otherwise they are ignored.
+* Tilemaps only load if `[xScale/yScale]` is either `-1` or `1` and `[angle]` is an increment of 90°.
+* Backgrounds only load if `[angle]` is `0`.
 :::
 ::: details ℹ️ MERGING TILEMAPS {closed}
 If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both true `true`, this method will attempt to merge loaded and existing tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: page for details.

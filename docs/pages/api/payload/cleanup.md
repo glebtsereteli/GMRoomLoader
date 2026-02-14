@@ -15,11 +15,13 @@ Cleanup, also known as "unloading" or "destroying" a room, is typically used whe
 
 > `payload.Cleanup([destroyLayers?])` ➜ N/A
 
-Destroys all created layers and their elements. After calling this method, the :Payload: instance becomes practically useless and should be dereferenced to be picked up by the [Garbage Collector](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Garbage_Collection/Garbage_Collection.htm).
+Destroys all created layers and their elements inside the payload.
+
+After calling this method, the :Payload: instance becomes practically useless and should be dereferenced to be picked up by the [Garbage Collector](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Garbage_Collection/Garbage_Collection.htm).
 
 |Parameter|Type|Description|
 |---|---|---|
-|`[destroyLayers?]`|:Bool:|Destroy loaded layers? [Default: `true`]|
+|`[destroyLayers?]`|:Bool:|Destroy created layers? [Default: `true`]|
 
 ::: tip
 Setting `destroyLayers` to `false` can be useful when [ROOMLOADER_MERGE_LAYERS](/pages/api/config/#roomloader-merge-layers) is `true` and you don't want to accidentally destroy layers shared between multiple loaded rooms. This way, only the elements belonging to this :Payload: will be destroyed, while the layers themselves remain untouched.
