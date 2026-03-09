@@ -222,7 +222,7 @@ function RoomLoader() {
 			__data.__Remove(_rooms[_i], _methodName);
 			_i++;
 		}
-	
+		
 		return self;
 	};
 	
@@ -336,16 +336,16 @@ function RoomLoader() {
 	/// 
 	/// @returns {Struct, undefined}
 	/// @self RoomLoader
-	static DataGetInstance = function(_room, _instanceId) {
+	static DataGetInstance = function(_room, _id) {
 		static _methodName = "DataGetInstance";
 		static _closure = {};
 		static _Find = method(_closure, function(_inst) {
-			return (_inst.id == __instanceId);
+			return (_inst.id == __id);
 		});
 		
 		var _data = __GetData(_room, _methodName, "get instance data from");
 		var _pool = _data.__instancesPool;
-		_closure.__instanceId = _instanceId;
+		_closure.__id = _id;
 		var _index = array_find_index(_pool, _Find);
 		
 		return ((_index > -1) ? _pool[_index] : undefined);
@@ -419,8 +419,8 @@ function RoomLoader() {
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
-	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
-	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
+	/// @param {Real} xOrigin The x origin to load instances at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
+	/// @param {Real} yOrigin The y origin to load instances at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
 	/// @param {Real} xScale The horizontal scale applied to instance positioning. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale if set, or 1]
 	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle if set, or 0]
@@ -502,7 +502,7 @@ function RoomLoader() {
 	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: sourceLayerName]
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) State.Mirror if set, or false]
+	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) or State.Mirror if set, or false]
 	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip if set, or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle if set, or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset if set, or source]
@@ -585,11 +585,11 @@ function RoomLoader() {
 		var _data = __GetData(_room, _methodName, "take a surface screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _buffer = _data.__ScreenshotSurface(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		var _surface = _data.__ScreenshotSurface(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Screenshotted", _room);
 		__ResetState();
 		
-		return _buffer;
+		return _surface;
 	};	
 	
 	/// Takes a screenshot of the given room and returns a '{buffer, width, height}' struct, where 'buffer' is the buffer containing image data, 'width' is the width of the image and 'height' is the height of the image.
@@ -650,7 +650,7 @@ function RoomLoader() {
 	/// Both reset automatically right after.
 	/// 
 	/// @param {Real} xOrigin The X Origin to use in the next load/screenshot call.
-	/// @param {Real} yOrigin The Y Origin to use in the next load/screenshot call.
+	/// @param {Real} yOrigin The Y Origin to use in the next load/screenshot call. [Default: xOrigin]
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
@@ -688,7 +688,7 @@ function RoomLoader() {
 	/// Sets a Top-Right Origin (x: 1, y: 0) to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// 
-	/// @returns {Struct.RoomLoader}	
+	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static TopRight = function() {
 		__xOrigin = 1;
@@ -789,6 +789,7 @@ function RoomLoader() {
 	/// Adds Instances (ROOMLOADER_FLAG.INSTANCES) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.INSTANCES.
 	/// Further calls add ROOMLOADER_FLAG.INSTANCES to the existing State.Flags.
+	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
@@ -802,6 +803,7 @@ function RoomLoader() {
 	/// Adds Tilemaps (ROOMLOADER_FLAG.TILEMAPS) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.TILEMAPS.
 	/// Further calls add ROOMLOADER_FLAG.TILEMAPS to the existing State.Flags.
+	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
@@ -859,7 +861,7 @@ function RoomLoader() {
 	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.TEXTS.
 	/// Further calls add ROOMLOADER_FLAG.TEXTS to the existing State.Flags.
 	/// Resets automatically right after.
-	///
+	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Texts = function() {
@@ -868,7 +870,6 @@ function RoomLoader() {
 		
 		return self;
 	};
-	
 	
 	/// Adds Backgrounds (ROOMLOADER_FLAG.BACKGROUNDS) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.BACKGROUNDS.
@@ -1027,8 +1028,8 @@ function RoomLoader() {
 	/// Adds all given layer names to the Whitelist layer filter.
 	///
 	/// @param {String} ...layerNames The layer names to whitelist. Supports any amount of arguments.
+	/// 
 	/// @returns {Struct.RoomLoader}
-	///
 	/// @self RoomLoader
 	static LayerWhitelistAdd = function() {
 		var _i = 0; repeat (argument_count) {
@@ -1041,7 +1042,7 @@ function RoomLoader() {
 	
 	/// Removes all given layer names from the Whitelist layer filter.
 	/// 
-	/// @param {String} ...layerNames The layer names to whitelist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to remove from whitelist. Supports any amount of arguments.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
@@ -1104,7 +1105,7 @@ function RoomLoader() {
 	
 	/// Removes all given layer names from the Blacklist layer filter.
 	/// 
-	/// @param {String} ...layerNames The layer names to blacklist. Supports any amount of arguments.
+	/// @param {String} ...layerNames The layer names to remove from blacklist. Supports any amount of arguments.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
