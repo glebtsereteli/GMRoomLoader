@@ -2,7 +2,7 @@
   "$GMNotes":"v1",
   "%Name":"readme",
   "name":"readme",
-  "openedOnFirstLoad":true,
+  "openedOnFirstLoad":false,
   "parent":{
     "name":"GMRoomLoader Demo",
     "path":"GMRoomLoader Demo.yyp",

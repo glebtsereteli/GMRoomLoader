@@ -334,7 +334,7 @@ function RoomLoader() {
 	/// @param {Asset.GMRoom} room The room to get instance data from.
 	/// @param {Id.Instance} id The room ID of the instance to get data for.
 	/// 
-	/// @returns {Struct, undefined}
+	/// @returns {Struct,Undefined}
 	/// @self RoomLoader
 	static DataGetInstance = function(_room, _id) {
 		static _methodName = "DataGetInstance";
@@ -390,7 +390,7 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale if set, or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle if set, or 0]
 	/// 
-	/// @returns {Struct.RoomLoaderPayload,undefined}
+	/// @returns {Struct.RoomLoaderPayload,Undefined}
 	/// @self RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "Load";
