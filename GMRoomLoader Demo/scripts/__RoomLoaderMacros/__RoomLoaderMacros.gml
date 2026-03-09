@@ -2,8 +2,8 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.5.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.12.05" // year.month.day
+#macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2026.XX.XX" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 #macro __ROOMLOADER_LOG_PREFIX ("[" + __ROOMLOADER_NAME + "]")
 
@@ -248,7 +248,7 @@ surface_set_target(_rawSurf); { \
 	surface_reset_target(); \
 }
 
-#macro __ROOMLOADER_FINAL_SURF \
+#macro __ROOMLOADER_SCREENSHOT_FINAL_SURF \
 var _scaledW = __width * _xScale; \
 var _scaledH = __height * _yScale; \
 var _left = _left01 * _scaledW; \

@@ -184,7 +184,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 			return _rawSurf;
 		}
 		
-	    __ROOMLOADER_FINAL_SURF;
+	    __ROOMLOADER_SCREENSHOT_FINAL_SURF;
 		
 	    return _finalSurf;
 	};
@@ -196,7 +196,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		var _finalSurf = _rawSurf;
 		
 		if (__ROOMLOADER_SCREENSHOT_TRANSFORMED) {
-		    __ROOMLOADER_FINAL_SURF;
+		    __ROOMLOADER_SCREENSHOT_FINAL_SURF;
 		}
 		
 		var _return = {

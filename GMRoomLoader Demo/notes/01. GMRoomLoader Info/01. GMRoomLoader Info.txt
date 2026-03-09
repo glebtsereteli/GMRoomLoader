@@ -1,8 +1,6 @@
-                                                                                                                                              
-GMRoomLoader Info.
-+---------------+-----------------------------------------------+
-| Author        | Gleb Tsereteli                                |
-| GitHub        | https://github.com/glebtsereteli/GMRoomLoader |
-| itch.io       | https://glebtsereteli.itch.io/gmroomloader    |
-| Documentation | https://glebtsereteli.github.io/GMRoomLoader  |
-+---------------+-----------------------------------------------+
+
+## GMRoomLoader v3.0.0 (2026.XX.XX) Info
+- Author: Gleb Tsereteli
+- GitHub: https://github.com/glebtsereteli/GMRoomLoader
+- itch.io: https://glebtsereteli.itch.io/gmroomloader
+- Documentation: https://glebtsereteli.github.io/GMRoomLoader
