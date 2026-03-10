@@ -36,7 +36,7 @@
 // • The existing tilemap will be repositioned and resized to fit the loaded tilemap.
 #macro ROOMLOADER_MERGE_TILEMAPS false
 
-// If true, RoomLoader.Load() returns a __RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
+// If true, RoomLoader.Load() returns a RoomLoaderPayload instance containing the IDs of all loaded layers and their elements.
 // If false, no IDs are collected or returned, improving Loading performance.
 // 
 // NOTE: Set this to false if you don't need to manually clean up loaded contents.

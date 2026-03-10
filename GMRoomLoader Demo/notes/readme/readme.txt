@@ -1,4 +1,4 @@
-# GMRoomLoader v2.5.0 Demo
+# GMRoomLoader v3.0.0 Demo
 
 ## Welcome!
 

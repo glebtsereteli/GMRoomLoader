@@ -1,9 +1,9 @@
 // feather ignore all
 
 /// Main GMRoomLoader interface. Manages room Data, Loading Full Rooms, Instances and Tilemaps, Screenshotting, State management and Layer Name Filtering.
-/// Initialized internally, no additional setup required.
-/// Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
-/// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
+/// • Initialized internally, no additional setup required.
+/// • Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
+/// • Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
 function RoomLoader() {
 	#region Data: Initialization
 	
@@ -378,7 +378,7 @@ function RoomLoader() {
 	#region Loading
 	
 	/// Loads all layers and elements of the given room at the given coordinates, with optional Origin, Asset Type filtering, scaling and rotation.
-	/// Returns an instance of __RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
+	/// Returns an instance of RoomLoaderPayload if ROOMLOADER_DELIVER_PAYLOAD is true, undefined otherwise.
 	/// 
 	/// @param {Asset.GMRoom} room The room to load.
 	/// @param {Real} x The x coordinate to load the room at.
@@ -390,7 +390,7 @@ function RoomLoader() {
 	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale if set, or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle if set, or 0]
 	/// 
-	/// @returns {Struct.__RoomLoaderPayload,Undefined}
+	/// @returns {Struct.RoomLoaderPayload,Undefined}
 	/// @self RoomLoader
 	static Load = function(_room, _x, _y, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale, _angle = __angle) {
 		static _methodName = "Load";
@@ -401,7 +401,7 @@ function RoomLoader() {
 		
 		__ROOMLOADER_BENCH_START;
 		if (ROOMLOADER_DELIVER_PAYLOAD) {
-			__payload = new __RoomLoaderPayload(_room);
+			__payload = new RoomLoaderPayload(_room);
 		}
 		_data.__Load(_x, _y, _xOrigin, _yOrigin, _flags, _xScale, _yScale, _angle);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, _room);

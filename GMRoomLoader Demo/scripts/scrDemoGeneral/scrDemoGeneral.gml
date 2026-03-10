@@ -113,10 +113,6 @@ function DemoGeneral() : DemoPar("General") constructor {
 		.Scale(xScale, yScale).Angle(angle)
 		.Load(rm, pos.x, pos.y);
 		
-		show_message(array_map(DEMO_PAYLOAD.GetLayers(), function(_layer) {
-			return layer_get_name(_layer);
-		}));
-		
 		// DEMO_PAYLOAD = RoomLoader.Load(rm, pos.x, pos.y, origin.x, origin.y, flags.get(), xScale, yScale, angle);
 		
 		RoomLoader.LayerWhitelistReset().LayerBlacklistReset();
