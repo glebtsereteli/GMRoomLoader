@@ -98,8 +98,11 @@ function __RoomLoaderDataRoom(_room) constructor {
 					_j++;
 				}
 			}
-			else if ((struct_exists(_layerData, "effectInfo")) and (not _layerData.effectInfo.singleLayerOnly)) {
+			else if (struct_exists(_layerData, "effectInfo") and not _layerData.effectInfo.singleLayerOnly) {
 				_layer = new __RoomLoaderDataLayerEffect(_layerData);
+			}
+			else if (ROOMLOADER_LOAD_EMPTY_LAYERS) {
+				_layer = new __RoomLoaderDataLayerBlank(_layerData);
 			}
 			
 			if (_layer != undefined) {

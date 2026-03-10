@@ -43,6 +43,11 @@
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_DELIVER_PAYLOAD true
 
+// Whether to create empty layers when loading (true) or skip them (false).
+// If true: empty layers are created. Can be useful for merging future layers with the same name.
+// If false: empty layers are ignored to improve loading performance.
+#macro ROOMLOADER_LOAD_EMPTY_LAYERS false
+
 #endregion
 #region Instances
 
