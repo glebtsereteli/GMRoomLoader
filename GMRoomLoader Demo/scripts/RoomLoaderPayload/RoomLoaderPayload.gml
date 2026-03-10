@@ -230,6 +230,15 @@ function __RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Cleanup
 	
+	/// Detaches instances from the payload and stops tracking them. This allows instance cleanup to be handled separately from the rest of the payload.
+	/// NOTE: If detached instances remain on their original layers and those layers are destroyed during .Cleanup(), the instances will still be destroyed.
+	/// 
+	/// @returns {Array<Id.Instance>}
+	/// @self __RoomLoaderPayload
+	static DetachInstances = function() {
+		return __instances.__Detach();
+	};
+	
 	/// Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
 	/// 
@@ -298,6 +307,12 @@ function __RoomLoaderPayload(_room) constructor {
 		static __Get = function(_roomId) {
 			var _index = array_get_index(__roomIds, _roomId);
 			return ((_index == -1) ? noone : __ids[_index]);
+		};
+		static __Detach = function() {
+			var _ids = __ids;
+			__ids = [];
+			
+			return _ids;
 		};
 		static __Destroy = function() {
 			array_foreach(__ids, function(_inst) {

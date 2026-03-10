@@ -124,6 +124,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	};
 	static Take = function() {
 		Clear();
+		
 		sprite = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Flags(flags.Get())

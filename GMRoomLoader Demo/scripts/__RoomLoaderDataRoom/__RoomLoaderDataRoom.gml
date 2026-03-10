@@ -148,6 +148,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		__creationCode();
 	};
+	
 	static __ScreenshotSprite = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
 		__ROOMLOADER_SCREENSHOT_START;
 		
