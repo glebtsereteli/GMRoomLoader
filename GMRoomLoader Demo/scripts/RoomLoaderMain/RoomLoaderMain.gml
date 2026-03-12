@@ -212,7 +212,8 @@ function RoomLoader() {
 		var _rooms = tag_get_asset_ids(_tag, asset_room);
 		var _n = array_length(_rooms);
 		if (_n == 0) {
-			return __RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"Could not find any rooms with the \"{_tag}\" tag assigned");
+			return self;
 		}
 		
 		var _i = 0; repeat (_n) {
@@ -566,7 +567,7 @@ function RoomLoader() {
 		return _sprite;
 	};
 	
-	/// Takes a screenshot of the given room and returns it as a surface. If specified, filters the captured elements by the given flags and scales the output buffer.
+	/// Takes a screenshot of the given room and returns it as a surface. If specified, filters the captured elements by the given flags and scales the output surface.
 	/// The .Part() method can be used to define a (left/top/width/height) part of the room to capture.
 	/// 
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
