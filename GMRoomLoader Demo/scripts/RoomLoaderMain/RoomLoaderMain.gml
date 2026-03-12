@@ -774,6 +774,7 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Flags = function(_flags) {
+		__ResetStateFlags();
 		__flags = _flags;
 		
 		return self;

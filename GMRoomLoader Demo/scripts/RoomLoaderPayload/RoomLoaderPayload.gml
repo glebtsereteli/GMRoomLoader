@@ -244,7 +244,7 @@ function RoomLoaderPayload(_room) constructor {
 	/// 
 	/// @param {Bool} destroyLayers Whether to destroy loaded layers (true) or not (false). [Default: true]
 	/// 
-	/// @returns {Undefined}
+	/// @returns {Struct.RoomLoaderPayload}
 	/// @self RoomLoaderPayload
 	static Cleanup = function(_destroyLayers = true) {
 		static _methodName = "Cleanup";
@@ -252,7 +252,7 @@ function RoomLoaderPayload(_room) constructor {
 		
 		if (__cleanedUp) {
 			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"data for \<{room_get_name(__room)}\> is already cleaned up");
-			return;
+			return self;
 		}
 		
 		__ROOMLOADER_BENCH_START;
@@ -269,6 +269,8 @@ function RoomLoaderPayload(_room) constructor {
 		__cleanedUp = true;
 		
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, __room);
+		
+		return self;
 	};
 
 	#endregion
@@ -311,6 +313,7 @@ function RoomLoaderPayload(_room) constructor {
 		static __Detach = function() {
 			var _ids = __ids;
 			__ids = [];
+			__roomIds = [];
 			
 			return _ids;
 		};
