@@ -102,33 +102,30 @@ function RoomLoader() {
 	};
 	
 	/// Initializes data for all rooms in the project except those listed in the blacklist array.
+	/// Returns an array of initialized rooms after applying the blacklist, if provided.
 	/// 
 	/// @param {Array<Asset.GMRoom>} blacklist The rooms to NOT initialize data for. [Default: empty]
 	/// 
 	/// @returns {Array<Asset.GMRoom>}
 	/// @self RoomLoader
 	static DataInitAll = function(_blacklist = []) {
+		static _closure = {};
+		static _Filter = method(_closure, function(_room) {
+			return not array_contains(blacklist, _room);
+		});
 		static _methodName = "DataInitAll";
 		
 		__RoomLoaderCatchArray(__messagePrefix, _methodName, _blacklist);
 		
-		if (array_length(_blacklist) > 0) {
-			var _i = 0; repeat (array_length(__allRooms)) {
-				var _room = __allRooms[_i];
-				if (not array_contains(_blacklist, _room)) {
-					__data.__Add(_room, _methodName);
-				}
-				_i++;
-			}
-		}
-		else {
-			var _i = 0; repeat (array_length(__allRooms)) {
-				__data.__Add(__allRooms[_i], _methodName);
-				_i++;
-			}
+		_closure.blacklist = _blacklist;
+		var _rooms = (array_length(_blacklist) > 0) ? array_filter(__allRooms, _Filter) : variable_clone(__allRooms);
+		
+		var _i = 0; repeat (array_length(_rooms)) {
+			__data.__Add(_rooms[_i], _methodName);
+			_i++;
 		}
 		
-		return self;
+		return _rooms;
 	};
 	
 	#endregion
@@ -585,7 +582,7 @@ function RoomLoader() {
 		var _data = __GetData(_room, _methodName, "take a surface screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _surface = _data.__ScreenshotSurface(__left, __top, __width, __height, _xOrigin, _yOrigin, _xScale, _yScale, _flags);
+		var _surface = _data.__ScreenshotSurface(__left, __top, __width, __height, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Screenshotted", _room);
 		__ResetState();
 		
