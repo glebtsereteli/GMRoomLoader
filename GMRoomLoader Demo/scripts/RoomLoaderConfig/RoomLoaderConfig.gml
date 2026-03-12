@@ -25,8 +25,8 @@
 // 
 // If false: a new layer is always created, even if a layer with the same name already exists.
 // 
-// WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed during
-// payload.Cleanup().
+// WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed 
+// during payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
 // Whether loaded tilemaps should be merged into existing tilemaps (true) or not (false).

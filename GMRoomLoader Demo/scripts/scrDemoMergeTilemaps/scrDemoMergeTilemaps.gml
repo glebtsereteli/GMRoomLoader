@@ -25,7 +25,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			});
 		}
 		else {
-			dbg_text("Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
+			dbg_text(disabledText);
 		}
 	};
 	static Draw = function() {
@@ -33,7 +33,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			draw_set_font(fntDemo);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
-			draw_text(DEMOS.xCenter, DEMOS.yCenter, "Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
+			draw_text(DEMOS.xCenter, DEMOS.yCenter, disabledText);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_top);
 			draw_set_font(-1);
@@ -108,6 +108,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	tileSize = 32;
 	angle = 0;
 	loading = true;
+	disabledText = "Set ROOMLOADER_MERGE_LAYERS and ROOMLOADER_MERGE_TILEMAPS\nconfig macros to true to enable this demo.";
 	
 	static Prepare = function() {
 		var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
