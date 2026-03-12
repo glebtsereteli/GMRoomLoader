@@ -111,13 +111,13 @@ function RoomLoader() {
 	static DataInitAll = function(_blacklist = []) {
 		static _closure = {};
 		static _Filter = method(_closure, function(_room) {
-			return not array_contains(blacklist, _room);
+			return not array_contains(__blacklist, _room);
 		});
 		static _methodName = "DataInitAll";
 		
 		__RoomLoaderCatchArray(__messagePrefix, _methodName, _blacklist);
 		
-		_closure.blacklist = _blacklist;
+		_closure.__blacklist = _blacklist;
 		var _rooms = (array_length(_blacklist) > 0) ? array_filter(__allRooms, _Filter) : variable_clone(__allRooms);
 		
 		var _i = 0; repeat (array_length(_rooms)) {
@@ -313,17 +313,13 @@ function RoomLoader() {
 		static _methodName = "DataGetInstances";
 		static _closure = {};
 		static _Filter = method(_closure, function(_inst) {
-			return (_inst.object == __obj);
+			return (_inst.object == __object);
 		});
 		
 		var _data = __GetData(_room, _methodName, "get instances data from");
+		_closure.__object = _obj;
 		
-		if (_obj != undefined) {
-			_closure.__obj = _obj;
-			return array_filter(_data.__instancesPool, _Filter);
-		}
-		
-		return _data.__instancesPool;
+		return (is_undefined(_obj) ? variable_clone(_data.__instancesPool) : array_filter(_data.__instancesPool, _Filter));
 	};
 	
 	/// Returns an instance data struct for the given room instance inside the given room.
@@ -507,7 +503,7 @@ function RoomLoader() {
 	/// 
 	/// @returns {Id.Tilemap}
 	/// @self RoomLoader
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale == -1), _flip = (__yScale == -1), _angle = __angle, _tileset = __tileset) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale < 0), _flip = (__yScale < 0), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		static _nonRoomMessage = "load tilemaps from";
 		
@@ -778,7 +774,6 @@ function RoomLoader() {
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Flags = function(_flags) {
-		__ResetStateFlags();
 		__flags = _flags;
 		
 		return self;
