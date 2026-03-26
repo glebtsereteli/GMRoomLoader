@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"fnt_demo_text",
+  "%Name":"fntDemoText",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":39,
@@ -232,7 +232,7 @@
   "last":0,
   "lineHeight":49,
   "maintainGms1Font":false,
-  "name":"fnt_demo_text",
+  "name":"fntDemoText",
   "parent":{
     "name":"99. Misc",
     "path":"folders/01. Demo/99. Misc.yy",
@@ -249,7 +249,10 @@
   "sdfSpread":8,
   "size":32.0,
   "styleName":"Bold",
-  "textureGroupId":null,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
   "TTFName":"",
   "usesSDF":true,
 }

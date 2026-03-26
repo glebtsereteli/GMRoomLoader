@@ -10,8 +10,8 @@
   "name":"objHost",
   "overriddenProperties":[],
   "parent":{
-    "name":"01. Host Room & Handler",
-    "path":"folders/01. Host Room & Handler.yy",
+    "name":"01 Host Room & Handler",
+    "path":"folders/01 Host Room & Handler.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -15,7 +15,7 @@
   "isDnd":false,
   "layers":[
     {"$GMRAssetLayer":"","%Name":"text","assets":[
-        {"$GMRTextItem":"v3","%Name":"text_1981E86","alignment":0,"charSpacing":0.0,"colour":4278190080,"fontId":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_1981E86","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"text":"corner-03","wrap":false,"x":0.0,"xorigin":0.0,"y":0.0,"yorigin":0.0,},
+        {"$GMRTextItem":"v3","%Name":"text_1981E86","alignment":0,"charSpacing":0.0,"colour":4278190080,"fontId":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_1981E86","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"text":"corner-03","wrap":false,"x":0.0,"y":0.0,},
       ],"depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"text","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRPathLayer":"","%Name":"path_patrol_01","colour":4278190335,"depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"path_patrol_01","pathId":{"name":"pthDemoBaseSlotCorner_03_patrol_01","path":"paths/pthDemoBaseSlotCorner_03_patrol_01/pthDemoBaseSlotCorner_03_patrol_01.yy",},"properties":[],"resourceType":"GMRPathLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRPathLayer":"","%Name":"path_patrol_02","colour":4278190335,"depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"path_patrol_02","pathId":{"name":"pthDemoBaseSlotCorner_03_patrol_02","path":"paths/pthDemoBaseSlotCorner_03_patrol_02/pthDemoBaseSlotCorner_03_patrol_02.yy",},"properties":[],"resourceType":"GMRPathLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
@@ -112,7 +112,7 @@
   "name":"rmDemoBaseSlotCorner_03",
   "parent":{
     "name":"03",
-    "path":"folders/01. Demo/06. Base/Slots/Corner/Rooms/03.yy",
+    "path":"folders/01 Demo/06 Base/Slots/Corner/Rooms/03.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

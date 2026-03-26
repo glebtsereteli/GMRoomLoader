@@ -17,8 +17,8 @@
   ],
   "name":"rmDemo",
   "parent":{
-    "name":"01. Demo",
-    "path":"folders/01. Demo.yy",
+    "name":"01 Demo",
+    "path":"folders/01 Demo.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

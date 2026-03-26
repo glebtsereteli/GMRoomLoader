@@ -14,7 +14,7 @@
   "name":"ptsDemoGeneralSmoke",
   "parent":{
     "name":"Particle Systems",
-    "path":"folders/01. Demo/01. General/Particle Systems.yy",
+    "path":"folders/01 Demo/01 General/Particle Systems.yy",
   },
   "resourceType":"GMParticleSystem",
   "resourceVersion":"2.0",

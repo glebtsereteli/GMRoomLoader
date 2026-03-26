@@ -27,7 +27,7 @@
   "name":"seqDemoGeneral01",
   "parent":{
     "name":"Sequences",
-    "path":"folders/01. Demo/01. General/Sequences.yy",
+    "path":"folders/01 Demo/01 General/Sequences.yy",
   },
   "playback":2,
   "playbackSpeed":60.0,

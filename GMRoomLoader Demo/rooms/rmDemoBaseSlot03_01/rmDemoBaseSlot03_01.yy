@@ -12,7 +12,7 @@
   "isDnd":false,
   "layers":[
     {"$GMRAssetLayer":"","%Name":"text","assets":[
-        {"$GMRTextItem":"v3","%Name":"text_2D7EC436","alignment":0,"charSpacing":0.0,"colour":4278190080,"fontId":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_2D7EC436","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"text":"03-01","wrap":false,"x":0.0,"xorigin":0.0,"y":0.0,"yorigin":0.0,},
+        {"$GMRTextItem":"v3","%Name":"text_2D7EC436","alignment":0,"charSpacing":0.0,"colour":4278190080,"fontId":{"name":"fntDemoText","path":"fonts/fntDemoText/fntDemoText.yy",},"frameH":0.0,"frameW":0.0,"frozen":false,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"lineSpacing":0.0,"name":"text_2D7EC436","paragraphSpacing":0.0,"resourceType":"GMRTextItem","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"text":"03-01","wrap":false,"x":0.0,"y":0.0,},
       ],"depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"text","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"tiles_top","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"tiles_top","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":7,"SerialiseWidth":7,"TileCompressedData":[-6,0,1,443,-6,0,1,443,-35,0,],"TileDataFormat":1,},"tilesetId":{"name":"tsDemoBase","path":"tilesets/tsDemoBase/tsDemoBase.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRTileLayer":"","%Name":"tiles_walls","depth":200,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"tiles_walls","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":7,"SerialiseWidth":7,"TileCompressedData":[
@@ -75,7 +75,7 @@
   "name":"rmDemoBaseSlot03_01",
   "parent":{
     "name":"03-01",
-    "path":"folders/01. Demo/06. Base/Slots/General/Rooms/03/03-01.yy",
+    "path":"folders/01 Demo/06 Base/Slots/General/Rooms/03/03-01.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
