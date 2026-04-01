@@ -18,43 +18,38 @@ function __RoomLoaderDataRoom(_room) constructor {
 				x: _in.x,
 				y: _in.y,
 			    object: _object,
+				preCreate: {},
 				creationCode: max(_in.creation_code, __RoomLoaderNoop),
 			};
 			
-			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-				_out.preCreate = {};
-				with (_out.preCreate) {
-				    image_xscale = _in.xscale;
-				    image_yscale = _in.yscale;
-				    image_angle = _in.angle;
-					
-				    var _color = _in.colour;
-				    if (_color == -1) {
-				        image_blend = c_white;
-				        image_alpha = 1;
-				    }
-					else {
-				        image_blend = _color & 0xffffff;
-				        image_alpha = ((_color >> 24) & 0xff) / 255;
-				    }
-					
-					sprite_index = object_get_sprite(_object);
-				    image_index = _in.image_index;
-				    image_speed = _in.image_speed;
-					
-				    var _pcc = _in.pre_creation_code;
-				    if (_pcc != -1) {
-						x = _in.x;
-						y = _in.y;
-				        _pcc();
-						struct_remove(self, "x");
-						struct_remove(self, "y");
-				    }
-				};
-			}
-			else {
-				_out.sprite = object_get_sprite(_object);
-			}
+			with (_out.preCreate) {
+				image_xscale = _in.xscale;
+				image_yscale = _in.yscale;
+				image_angle = _in.angle;
+				
+				var _color = _in.colour;
+				if (_color == -1) {
+				    image_blend = c_white;
+				    image_alpha = 1;
+				}
+				else {
+				    image_blend = _color & 0xffffff;
+				    image_alpha = ((_color >> 24) & 0xff) / 255;
+				}
+				
+				sprite_index = object_get_sprite(_object);
+				image_index = _in.image_index;
+				image_speed = _in.image_speed;
+				
+				var _pcc = _in.pre_creation_code;
+				if (_pcc != -1) {
+					x = _in.x;
+					y = _in.y;
+				    _pcc();
+					struct_remove(self, "x");
+					struct_remove(self, "y");
+				}
+			};
 			
 			__instancesInitLut[$ _in.id] = _out;
 			

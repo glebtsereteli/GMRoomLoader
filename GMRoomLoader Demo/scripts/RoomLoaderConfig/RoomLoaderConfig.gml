@@ -51,11 +51,6 @@
 #endregion
 #region Instances
 
-// Whether to initialize room parameters for loaded instances (true) or not (false).
-// 
-// NOTE: Setting this to false improves Loading performance.
-#macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
-
 // Whether to run Creation Code for loaded instances (true) or not (false).
 // 
 // NOTE: Setting this to false improves Loading performance.

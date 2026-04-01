@@ -11,13 +11,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iData = __instancesPool[_i];
 			var _x = _x1 + _iData.x;
 			var _y = _y1 + _iData.y;
-			
-			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-				var _inst = instance_create_layer(_x, _y, _layer, _iData.object, _iData.preCreate);
-			}
-			else {
-				var _inst = instance_create_layer(_x, _y, _layer, _iData.object);
-			}
+			var _inst = instance_create_layer(_x, _y, _layer, _iData.object, _iData.preCreate);
 			
 			__ROOMLOADER_INST_CC;
 			if (ROOMLOADER_DELIVER_PAYLOAD) {
@@ -37,12 +31,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iData = __instancesPool[_i];
 			
 			__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-				var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object, _iData.preCreate);
-			}
-			else {
-				var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object);
-			}
+			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object, _iData.preCreate);
 			__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 			
 			if (ROOMLOADER_DELIVER_PAYLOAD) {
@@ -58,18 +47,13 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 	static __OnDraw = function() {
 		var _i = 0; repeat (array_length(__instancesPool)) {
 			with (__instancesPool[_i]) {
-				if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-					var _pcc = preCreate;
-					if (_pcc.sprite_index != -1) {
-						draw_sprite_ext(
-							_pcc.sprite_index, _pcc.image_index, 
-							x, y, _pcc.image_xscale, _pcc.image_yscale, _pcc.image_angle,
-							_pcc.image_blend, _pcc.image_alpha
-						);
-					}
-				}
-				else if (sprite != -1) {
-					draw_sprite(sprite, 0, x, y);
+				var _pcc = preCreate;
+				if (_pcc.sprite_index != -1) {
+					draw_sprite_ext(
+						_pcc.sprite_index, _pcc.image_index, 
+						x, y, _pcc.image_xscale, _pcc.image_yscale, _pcc.image_angle,
+						_pcc.image_blend, _pcc.image_alpha
+					);
 				}
 			}
 			_i++;

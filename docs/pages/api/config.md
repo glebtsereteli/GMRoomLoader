@@ -66,15 +66,6 @@ For example, when room switching automatically destroys all instances, layers an
 
 ## Instances
 
-### `ROOMLOADER_INSTANCES_USE_ROOM_PARAMS`
-> Default: `true`.
-
-Whether to initialize room parameters for loaded instances (`true`) or not (`false`).  
-
-:::tip
-Setting this to `false` improves :Loading: performance.
-:::
-
 ---
 ### `ROOMLOADER_INSTANCES_RUN_CREATION_CODE`
 >Default: `true`.

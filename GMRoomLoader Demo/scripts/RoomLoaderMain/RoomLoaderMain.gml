@@ -452,12 +452,7 @@ function RoomLoader() {
 				var _iData = _instancesData[_i];
 				var _iX = _iData.x + _xOffset;
 				var _iY = _iData.y + _yOffset;
-				if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-					var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _iData.preCreate);
-				}
-				else {
-					var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object);
-				}
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _iData.preCreate);
 				__ROOMLOADER_INST_CC;
 				_instances[_i] = _inst;
 				_i++;
@@ -477,13 +472,7 @@ function RoomLoader() {
 		        var _iData = _instancesData[_i];
 				
 				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-				if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
-					var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
-				}
-				else {
-					var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object);
-				}
-		        _instances[_i] = _inst;
+		        _instances[_i] = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
 				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				
 		        _i++;
