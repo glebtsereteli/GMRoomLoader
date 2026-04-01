@@ -54,23 +54,23 @@ function RoomLoaderPayload(_room) constructor {
 		
 		var _targetDepth = __GetTargetDepth(_lod, _methodName) + _offset;
 		
-	    var _layers = GetLayers();
-	    var _n = array_length(_layers);
+		var _layers = GetLayers();
+		var _n = array_length(_layers);
 		
-	    var _lowestDepth = infinity;
-	    var _i = 0; repeat (_n) {
+		var _lowestDepth = infinity;
+		var _i = 0; repeat (_n) {
 			_lowestDepth = min(_lowestDepth, layer_get_depth(_layers[_i]));
-	        _i++;
-	    }
-	    var _depthOffset = _targetDepth - _lowestDepth;
+			_i++;
+		}
+		var _depthOffset = _targetDepth - _lowestDepth;
 		
-	    var _i = 0; repeat (_n) {
-	        var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
-	        layer_depth(_layers[_i], _newDepth);
-	        _i++;
-	    }
+		var _i = 0; repeat (_n) {
+			var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
+			layer_depth(_layers[_i], _newDepth);
+			_i++;
+		}
 		
-	    return self;
+		return self;
 	};
 	
 	#endregion
@@ -260,7 +260,7 @@ function RoomLoaderPayload(_room) constructor {
 		static _benchMessage = "Unloaded";
 		
 		if (__cleanedUp) {
-			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"data for \<{room_get_name(__room)}\> is already cleaned up");
+			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"data for <{room_get_name(__room)}> is already cleaned up");
 			return self;
 		}
 		

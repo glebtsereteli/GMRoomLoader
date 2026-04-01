@@ -136,8 +136,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 			var _cos = dcos(_angle);
 		    var _sin = dsin(_angle);
 			
-		    var _x = _x1 - ((_xOffset * _cos) + (_yOffset * _sin));
-		    var _y = _y1 - ((-_xOffset * _sin) + (_yOffset * _cos));
+			var _x = _x1 - ((_xOffset * _cos) + (_yOffset * _sin));
+			var _y = _y1 - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
 				with (__layersPool[_i]) {
@@ -171,8 +171,8 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 		var _left = _left01 * _width;
 		var _top = _top01 * _height;
-		_width = (_width * _width01) - _left;
-		_height = (_height * _height01) - _top;
+		_width = min(_width * _width01, _width - _left);
+		_height = min(_height * _height01, _height - _top);
 		var _xOrigin = _xOrigin01 * _width;
 		var _yOrigin = _yOrigin01 * _height;
 		var _sprite = sprite_create_from_surface(_finalSurf, _left, _top, _width, _height, false, false, _xOrigin, _yOrigin);
@@ -192,7 +192,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 		
 	    return _finalSurf;
 	};
-	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
+	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xScale, _yScale, _flags) {
 	    __ROOMLOADER_SCREENSHOT_START;
 		
 		var _width = __width;

@@ -131,7 +131,7 @@ function RoomLoader() {
 	#endregion
 	#region Data: Removal
 	
-	/// Removes data for all (initialized) given rooms.
+	/// Removes data for all given rooms.
 	/// 
 	/// @param {Asset.GMRoom} ...rooms The rooms to remove data for. Supports any amount of arguments.
 	/// 
@@ -148,7 +148,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// Removes data for all (initialized) rooms in the given array.
+	/// Removes data for all rooms in the given array.
 	/// 
 	/// @param {Array<Asset.GMRoom>} rooms The array of rooms to remove data for.
 	/// 
@@ -167,7 +167,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// Removes data for all (initialized) rooms starting with the given prefix.
+	/// Removes data for all rooms starting with the given prefix.
 	/// 
 	/// @param {String} prefix The prefix used to filter room names.
 	/// 
@@ -175,7 +175,7 @@ function RoomLoader() {
 	/// @self RoomLoader
 	static DataRemovePrefix = function(_prefix) {
 		static _methodName = "DataRemovePrefix";
-		 
+		
 		__RoomLoaderCatchString(__messagePrefix, _methodName, _prefix);
 		
 		var _removed = false;
@@ -496,14 +496,14 @@ function RoomLoader() {
 	/// @param {Id.Layer, String} targetLayer The target layer to create the tilemap on. [Default: sourceLayerName]
 	/// @param {Real} xOrigin The x origin to load the tilemap at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the tilemap at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: (State.XScale < 0) or State.Mirror if set, or false]
-	/// @param {Bool} flip? Flip the loaded tilemap? [Default: (State.YScale < 0) or State.Flip if set, or false]
+	/// @param {Bool} mirror? Mirror the loaded tilemap? [Default: State.XScale < 0, or false]
+	/// @param {Bool} flip? Flip the loaded tilemap? [Default: State.YScale < 0, or false]
 	/// @param {Real} angle The angle to load the tilemap at. [Default: State.Angle if set, or 0]
 	/// @param {Asset.GMTileset} tileset The tileset to use for the tilemap. [Default: State.Tileset if set, or source]
 	/// 
 	/// @returns {Id.Tilemap}
 	/// @self RoomLoader
-	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin,_mirror = (__xScale < 0), _flip = (__yScale < 0), _angle = __angle, _tileset = __tileset) {
+	static LoadTilemap = function(_room, _x, _y, _sourceLayerName, _targetLayer = _sourceLayerName, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _mirror = (__xScale < 0), _flip = (__yScale < 0), _angle = __angle, _tileset = __tileset) {
 		static _methodName = "LoadTilemap";
 		static _nonRoomMessage = "load tilemaps from";
 		
@@ -548,7 +548,7 @@ function RoomLoader() {
 	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// 
-	/// @returns {Asset.GMSprite}
+	/// @returns {Id.Sprite}
 	/// @self RoomLoader
 	static ScreenshotSprite = function(_room, _xOrigin = __xOrigin, _yOrigin = __yOrigin, _flags = __flags, _xScale = __xScale, _yScale = __yScale) {
 		static _methodName = "ScreenshotSprite";
@@ -584,7 +584,7 @@ function RoomLoader() {
 		__ResetState();
 		
 		return _surface;
-	};	
+	};
 	
 	/// Takes a screenshot of the given room and returns a '{buffer, width, height}' struct, where 'buffer' is the buffer containing image data, 'width' is the width of the image and 'height' is the height of the image.
 	/// If specified, filters the captured elements by the given flags and scales the output buffer.
@@ -603,7 +603,7 @@ function RoomLoader() {
 		var _data = __GetData(_room, _methodName, "take a buffer screenshot of");
 		
 		__ROOMLOADER_BENCH_START;
-		var _buffer = _data.__ScreenshotBuffer(__left, __top, __width, __height, 0, 0, _xScale, _yScale, _flags);
+		var _buffer = _data.__ScreenshotBuffer(__left, __top, __width, __height, _xScale, _yScale, _flags);
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Screenshotted", _room);
 		__ResetState();
 		
@@ -822,7 +822,6 @@ function RoomLoader() {
 		return self;
 	};
 	
-	
 	/// Adds Sequences (ROOMLOADER_FLAG.SEQUENCES) to the Flags used in the next load/screenshot call.
 	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.SEQUENCES.
 	/// Further calls add ROOMLOADER_FLAG.SEQUENCES to the existing State.Flags.
@@ -996,7 +995,7 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// Defines a subsection of the room to capture in screenshots.
+	/// Defines a subsection of the room to capture in screenshots. Not related to Loading.
 	/// Coordinates and dimensions are expressed as percentages of the full room size in 0–1 range.
 	/// 
 	/// @param {Real} left The horizontal offset (from 0 to 1) from the left edge of the room to screenshot.
@@ -1020,7 +1019,7 @@ function RoomLoader() {
 	#region Layer Name Filtering: Whitelist
 	
 	/// Adds all given layer names to the Whitelist layer filter.
-	///
+	/// 
 	/// @param {String} ...layerNames The layer names to whitelist. Supports any amount of arguments.
 	/// 
 	/// @returns {Struct.RoomLoader}
@@ -1083,7 +1082,7 @@ function RoomLoader() {
 	#region Layer Name Filtering: Blacklist
 	
 	/// Adds all given layer names to the Blacklist layer filter.
-	///
+	/// 
 	/// @param {String} ...layerNames The layer names to blacklist. Supports any amount of arguments.
 	/// 
 	/// @returns {Struct.RoomLoader}

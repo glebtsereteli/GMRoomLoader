@@ -253,8 +253,8 @@ var _scaledW = __width * _xScale; \
 var _scaledH = __height * _yScale; \
 var _left = _left01 * _scaledW; \
 var _top = _top01 * _scaledH; \
-var _width = (_width01 * _scaledW) - _left; \
-var _height = (_height01 * _scaledH) - _top; \
+var _width = min(_width01 * _scaledW, _scaledW - _left); \
+var _height = min(_height01 * _scaledH, _scaledH - _top); \
 \
 var _finalSurf = surface_create(_width, _height); \
 surface_set_target(_finalSurf); { \

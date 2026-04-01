@@ -86,7 +86,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.221",
+    "IDEVersion":"2024.14.4.222",
   },
   "name":"GMRoomLoader Demo",
   "resources":[
@@ -168,7 +168,7 @@
     {"id":{"name":"scrDemoModules","path":"scripts/scrDemoModules/scrDemoModules.yy",},},
     {"id":{"name":"scrDemoScreenshots","path":"scripts/scrDemoScreenshots/scrDemoScreenshots.yy",},},
     {"id":{"name":"scrDemoTilemaps","path":"scripts/scrDemoTilemaps/scrDemoTilemaps.yy",},},
-    {"id":{"name":"scrDemoUtil","path":"scripts/scrDemoUtil/scrDemoUtil.yy",},},
+    {"id":{"name":"scrDemoUtility","path":"scripts/scrDemoUtility/scrDemoUtility.yy",},},
     {"id":{"name":"seqDemoGeneral01","path":"sequences/seqDemoGeneral01/seqDemoGeneral01.yy",},},
     {"id":{"name":"sprDemoBaseCarpet01","path":"sprites/sprDemoBaseCarpet01/sprDemoBaseCarpet01.yy",},},
     {"id":{"name":"sprDemoBaseCarpet02","path":"sprites/sprDemoBaseCarpet02/sprDemoBaseCarpet02.yy",},},
