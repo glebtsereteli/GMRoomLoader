@@ -37,7 +37,12 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 			var _iData = __instancesPool[_i];
 			
 			__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-			var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object, _preCreate);
+			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
+				var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object, _iData.preCreate);
+			}
+			else {
+				var _inst = instance_create_layer(_iX, _iY, _layer, _iData.object);
+			}
 			__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 			
 			if (ROOMLOADER_DELIVER_PAYLOAD) {

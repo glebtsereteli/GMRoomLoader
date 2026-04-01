@@ -17,10 +17,10 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		var _count = 0;
 		
 		var _i = 0; repeat (_n) {
-		    var _data = _tilesData[_i];
-		    if (_data > 0) {
-			    tiles[_count++] = _i mod width;
-			    tiles[_count++] = _i div width;
+			var _data = _tilesData[_i];
+			if (_data > 0) {
+				tiles[_count++] = _i mod width;
+				tiles[_count++] = _i div width;
 				tiles[_count++] = _data;
 			}
 			_i++;
@@ -54,12 +54,12 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 	
 	// custom
 	__tilemapData = _elementsData[0];
+	__n = undefined;
 	
 	tileset = undefined;
 	width = undefined;
 	height = undefined;
-	tiles = [];
-	__n = undefined;
+	tiles = undefined;
 	
 	static __CreateTilemap = function(_layer, _x, _y, _tileset = tileset) {
 		if (not ROOMLOADER_MERGE_TILEMAPS) {
@@ -68,13 +68,11 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		}
 		
 		var _hostTilemap = layer_tilemap_get_id(_layer);
-		if ((_hostTilemap == -1) || (tilemap_get_tileset(_hostTilemap) != _tileset)) {
-			//show_message("can't merge, create new");
+		if ((_hostTilemap == -1) or (tilemap_get_tileset(_hostTilemap) != _tileset)) {
 			__ROOMLOADER_TILEMAP_CREATE_RAW;
 			return _tilemap;
 		}
 		
-		//show_message("merge");
 		var _w = width;
 		var _h = height;
 		
@@ -96,16 +94,16 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		if ((_angle mod 90) != 0) return undefined;
 		
 		var _transposed = (_angle mod 180) == 90;
-	    var _w = (_transposed ? height : width);
-	    var _h = (_transposed ? width : height);
-			
+		var _w = _transposed ? height : width;
+		var _h = _transposed ? width : height;
+		
 		_xScale = sign(_xScale);
 		var _mirror = (_xScale == -1);
-		var _mirrorOffset = (_mirror ? width  - 1 : 0);
+		var _mirrorOffset = _mirror ? width  - 1 : 0;
 		
 		_yScale = sign(_yScale);
 		var _flip = (_yScale == -1);
-		var _flipOffset = (_flip ? height - 1 : 0);
+		var _flipOffset = _flip ? height - 1 : 0;
 		
 		var _info = _tilesetsInfo[$ _tileset];
 		if (_info == undefined) {
@@ -125,14 +123,14 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				_x -= _wPx * (_xOrigin + (1 - 2 * _xOrigin) * _mirror);
 				_y -= _hPx * (_yOrigin + (1 - 2 * _yOrigin) * _flip);
 				
-			    break;
+				break;
 			}
-			case 90:  {
+			case 90: {
 				_y -= _hPx * ((1 - _xOrigin) + (2 * _xOrigin - 1) * _mirror);
 				_x -= _wPx * (_yOrigin + (1 - 2 * _yOrigin) * _flip);
 				
 				_mat00 = 0; _mat01 = 1; _rotXOffset = 0;
-		        _mat10 = -1; _mat11 = 0; _rotYOffset = width - 1;
+				_mat10 = -1; _mat11 = 0; _rotYOffset = width - 1;
 				_rotFlag = tile_mirror | tile_flip | tile_rotate;
 				
 				break;
@@ -142,20 +140,20 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 				_y -= _hPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				
 				_mat00 = -1; _mat01 = 0; _rotXOffset = width - 1;
-		        _mat10 = 0; _mat11 = -1; _rotYOffset = height - 1;
+				_mat10 = 0; _mat11 = -1; _rotYOffset = height - 1;
 				_rotFlag = tile_mirror | tile_flip;
 				
 				break;
 			}
 			case 270: {
 				_y -= _hPx * (_xOrigin + (1 - 2 * _xOrigin) * _mirror);
-			    _x -= _wPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
+				_x -= _wPx * ((1 - _yOrigin) + (2 * _yOrigin - 1) * _flip);
 				
-			    _mat00 = 0; _mat01 = -1; _rotXOffset = height - 1;
-			    _mat10 = 1; _mat11 = 0; _rotYOffset = 0;
-			    _rotFlag = tile_rotate;
+				_mat00 = 0; _mat01 = -1; _rotXOffset = height - 1;
+				_mat10 = 1; _mat11 = 0; _rotYOffset = 0;
+				_rotFlag = tile_rotate;
 				
-			    break;
+				break;
 			}
 		}
 		
@@ -166,35 +164,33 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		
 		var _hostTilemap = layer_tilemap_get_id(_layer);
 		if ((_hostTilemap == -1) or (tilemap_get_tileset(_hostTilemap) != _tileset)) {
-			//show_message("can't merge, create new");
 			__ROOMLOADER_TILEMAP_CREATE_TRANSFORMED_RAW;
 			return _tilemap;
 		}
 		
-		//show_message("merge");
 		__ROOMLOADER_TILEMAP_PROCESS_MERGE;
 		
-	    var _i = 0; repeat (__n) {
-	        var _t = tiles[_i + 2];
+		var _i = 0; repeat (__n) {
+			var _t = tiles[_i + 2];
 			
 			var _xStart = (tiles[_i] * _xScale) + _mirrorOffset;
-		    _t ^= _mirror * tile_mirror;
+			_t ^= _mirror * tile_mirror;
 			
 			var _yStart = (tiles[_i + 1] * _yScale) + _flipOffset;
-		    _t ^= _flip * tile_flip;
+			_t ^= _flip * tile_flip;
 			
 			var _rx = (_mat00 * _xStart) + (_mat01 * _yStart) + _rotXOffset;
-		    var _ry = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
+			var _ry = (_mat10 * _xStart) + (_mat11 * _yStart) + _rotYOffset;
 			_t ^= _rotFlag;
 			
-	        tilemap_set(_hostTilemap, _t, _rx + _newShiftI, _ry + _newShiftJ);
+			tilemap_set(_hostTilemap, _t, _rx + _newShiftI, _ry + _newShiftJ);
 			
-	        _i += __ROOMLOADER_TILE_STEP;
-	    }
+			_i += __ROOMLOADER_TILE_STEP;
+		}
 		
-	    return _hostTilemap;
+		return _hostTilemap;
 	};
-
+	
 	static __GetData = function() {
 		return {tileset, width, height, tiles};
 	};

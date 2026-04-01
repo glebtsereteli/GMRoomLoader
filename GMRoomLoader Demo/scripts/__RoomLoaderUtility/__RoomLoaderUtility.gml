@@ -16,7 +16,7 @@ function __RoomLoaderGetLayer(_data) {
 	return _layer;
 }
 function __RoomLoaderLogBase(_message) {
-	show_debug_message($"{__ROOMLOADER_LOG_PREFIX} {_message}.");
+	show_debug_message($"[{__ROOMLOADER_NAME}] {_message}.");
 }
 function __RoomLoaderLog(_message) {
 	if (not ROOMLOADER_ENABLE_DEBUG) return;

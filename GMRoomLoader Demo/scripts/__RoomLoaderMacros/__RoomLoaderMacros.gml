@@ -5,7 +5,6 @@
 #macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
 #macro __ROOMLOADER_DATE "2026.03.31" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
-#macro __ROOMLOADER_LOG_PREFIX ("[" + __ROOMLOADER_NAME + "]")
 
 #endregion
 #region General
@@ -44,13 +43,15 @@ var _yScaled = _iData.y * _yScale; \
 var _iX = _x1 + (_xScaled * _cos) + (_yScaled * _sin); \
 var _iY = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
 \
-var _preCreate = _iData.preCreate; \
-var _xScalePrev = _preCreate.image_xscale; \
-var _yScalePrev = _preCreate.image_yscale; \
-\
-_preCreate.image_xscale *= _xScale; \
-_preCreate.image_yscale *= _yScale; \
-_preCreate.image_angle += _angle;
+if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) { \
+	var _preCreate = _iData.preCreate; \
+	var _xScalePrev = _preCreate.image_xscale; \
+	var _yScalePrev = _preCreate.image_yscale; \
+	\
+	_preCreate.image_xscale *= _xScale; \
+	_preCreate.image_yscale *= _yScale; \
+	_preCreate.image_angle += _angle; \
+}
 
 #macro __ROOMLOADER_INST_LAYER_PRELOAD \		
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
@@ -67,9 +68,11 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 
 #macro __ROOMLOADER_INST_TRANSFORM_POSTLOAD \
 __ROOMLOADER_INST_CC \
-_preCreate.image_xscale = _xScalePrev; \
-_preCreate.image_yscale = _yScalePrev; \
-_preCreate.image_angle -= _angle;
+if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) { \
+	_preCreate.image_xscale = _xScalePrev; \
+	_preCreate.image_yscale = _yScalePrev; \
+	_preCreate.image_angle -= _angle; \
+}
 
 #endregion
 #region Tilemaps
