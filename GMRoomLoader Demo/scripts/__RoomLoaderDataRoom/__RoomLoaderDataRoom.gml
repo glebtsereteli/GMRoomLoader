@@ -18,11 +18,11 @@ function __RoomLoaderDataRoom(_room) constructor {
 				x: _in.x,
 				y: _in.y,
 			    object: _object,
-				preCreate: {},
 				creationCode: max(_in.creation_code, __RoomLoaderNoop),
 			};
 			
 			if (ROOMLOADER_INSTANCES_USE_ROOM_PARAMS) {
+				_out.preCreate = {};
 				with (_out.preCreate) {
 				    image_xscale = _in.xscale;
 				    image_yscale = _in.yscale;
@@ -51,6 +51,9 @@ function __RoomLoaderDataRoom(_room) constructor {
 						struct_remove(self, "y");
 				    }
 				};
+			}
+			else {
+				_out.sprite = object_get_sprite(_object);
 			}
 			
 			__instancesInitLut[$ _in.id] = _out;
