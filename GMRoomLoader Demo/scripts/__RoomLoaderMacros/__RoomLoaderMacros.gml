@@ -31,10 +31,8 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 #region Instances
 
 #macro __ROOMLOADER_INST_CC \
-if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
-	with (_inst) { \
-		script_execute(_iData.creationCode); \
-	} \
+with (_inst) { \
+	script_execute(_iData.creationCode); \
 }
 
 #macro __ROOMLOADER_INST_TRANSFORM_PRELOAD \

@@ -49,15 +49,7 @@
 #macro ROOMLOADER_LOAD_EMPTY_LAYERS false
 
 #endregion
-#region Instances
-
-// Whether to run Creation Code for loaded instances (true) or not (false).
-// 
-// NOTE: Setting this to false improves Loading performance.
-#macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
-
-#endregion
-#region Other Elements
+#region Elements
 
 // How many steps to pre-update particle systems on load so they don't appear freshly created.
 // 

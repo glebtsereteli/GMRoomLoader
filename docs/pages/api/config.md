@@ -64,19 +64,7 @@ Set this to `false` if you don't need to manually clean up loaded contents.
 For example, when room switching automatically destroys all instances, layers and assets, or if cleanup is generally irrelevant.
 :::
 
-## Instances
-
----
-### `ROOMLOADER_INSTANCES_RUN_CREATION_CODE`
->Default: `true`.
-
-Whether to run Creation Code for loaded instances (`true`) or not (`false`).  
-
-:::tip
-Setting this to `false` improves :Loading: performance.
-:::
-
-## Other Elements
+## Elements
 
 ### `ROOMLOADER_PARTICLES_UPDATE_STEPS`
 > Default: `0`.
