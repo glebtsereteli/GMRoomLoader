@@ -37,7 +37,7 @@ Instead, it provides a more verbose and cleaner alternative, letting you cherry-
 
 ---
 
-The following sections break down the available State categories
+The following sections break down the available State categories.
 * [Origin](#origin) - Where the room is anchored.
 * [Flags](#flags) - Which asset types to include.
 * [Transformation](#transformation) - Scaling, mirroring, flipping and rotating options.
@@ -175,7 +175,7 @@ Similar to [Origin Presets](#presets) above, this approach makes the code read i
 // Load rmExample's Instances: 
 RoomLoader.Instances().Load(rmExample, x, y); // [!code highlight]
 
-// Load rmExample's Instances, Tilemaps and Backgrounds
+// Load rmExample's Instances, Tilemaps and Backgrounds:
 RoomLoader.Instances().Tilemaps().Backgrounds().Load(rmExample, x, y); // [!code highlight]
 
 // Take a screenshot of rmExample with only Sprites and Tilemaps visible:
@@ -206,11 +206,11 @@ RoomLoader.Instances().Tilemaps().Sprites().Load(rmExample, x, y); // [!code hig
 
 > `RoomLoader.XScale(xScale)` ➜ :Struct:.:RoomLoader:
 
-Horizontally scales the next :Loading: by setting the **XScale** State.
+Horizontally scales the next :Loading: or :Screenshotting: call by setting the **XScale** State.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`xScale`|:Real:|The horizontal scale State to use in the next :Loading: or :Screenshotting: call |
+|`xScale`|:Real:|The horizontal scale to use in the next :Loading: or :Screenshotting: call |
 
 :::code-group
 ```js [Example]
@@ -224,7 +224,7 @@ RoomLoader.XScale(2).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.YScale(yScale)` ➜ :Struct:.:RoomLoader:
 
-Vertically scales the next :Loading: by setting the **YScale** State.
+Vertically scales the next :Loading: or :Screenshotting: call by setting the **YScale** State.
 
 |Parameter|Type|Description|
 |---|---|---|
@@ -261,11 +261,11 @@ RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 
 > `RoomLoader.Mirror([mirror?])` ➜ :Struct:.:RoomLoader:
 
-When `true`, mirrors the next :Loading: by setting the **XScale** State to -1.
+When `true`, mirrors the next :Loading: or :Screenshotting: by setting the **XScale** State to `-1`.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`[mirror?]`|:Bool:|Mirror the next :Loading: call? [Default: `true`]|
+|`[mirror?]`|:Bool:|Mirror the next :Loading: or :Screenshotting: call? [Default: `true`]|
 
 :::code-group
 ```js [Example]
@@ -279,11 +279,11 @@ RoomLoader.Mirror().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight
 
 > `RoomLoader.Flip([flip?])` ➜ :Struct:.:RoomLoader:
 
-When `true`, flips the next :Loading: by setting the **YScale** State to `-1`.
+When `true`, flips the next :Loading: or :Screenshotting: by setting the **YScale** State to `-1`.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`[flip?]`|:Bool:|Flip the next :Loading: call? [Default: `true`]|
+|`[flip?]`|:Bool:|Flip the next :Loading: or :Screenshotting: call? [Default: `true`]|
 
 :::code-group
 ```js [Example]
@@ -297,7 +297,11 @@ RoomLoader.Flip().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 
 > `RoomLoader.Angle(angle)` ➜ :Struct:.:RoomLoader:
 
-Rotates the next :Loading: by setting **Angle** State.
+Rotates the next :Loading: by setting the **Angle** State.
+
+|Parameter|Type|Description|
+|---|---|---|
+|`angle`|:Real:|The angle to use in the next :Loading: call|
 
 :::code-group
 ```js [Example]
@@ -334,12 +338,12 @@ collisionTilemap = RoomLoader
 
 Defines a part of the room to capture in :Screenshots:. Coordinates and dimensions are expressed as percentages of the full room size (from 0 to 1), just like :Origin:.
 
-This works similarly to part definition in :draw_sprite_part():, with the only difference being the values are normalized 0-1 percentages of the room size instead of raw pixel sizes.
+This works similarly to part definition in :draw_sprite_part():, with the only difference being that the values are normalized 0-1 percentages of the room size instead of raw pixel sizes.
 
 |Parameter|Type|Description|
 |---|---|---|
-|`left`|:Real:|The top-left x position of the room area to :Screenshot:|
-|`top`|:Real:|The top-left y position of the room area to :Screenshot:|
+|`left`|:Real:|The left x position of the room area to :Screenshot:|
+|`top`|:Real:|The top y position of the room area to :Screenshot:|
 |`width`|:Real:|The width of the room area to :Screenshot:|
 |`height`|:Real:|The height of the room area to :Screenshot:|
 

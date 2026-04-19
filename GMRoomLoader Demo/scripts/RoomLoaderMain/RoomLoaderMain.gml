@@ -409,15 +409,15 @@ function RoomLoader() {
 	/// Unlike .Load(), all instances are placed onto the given layer (or depth) instead of their original room layers.
 	/// Returns an array of loaded instance IDs.
 	///
-	/// @param {Asset.GMRoom} room The room to load instances for.
+	/// @param {Asset.GMRoom} room The room to load instances from.
 	/// @param {Real} x The x coordinate to load instances at.
 	/// @param {Real} y The y coordinate to load instances at.
 	/// @param {Id.Layer, String, Real} layerOrDepth The layer ID, layer name or depth to create instances on.
 	/// @param {Real} xOrigin The x origin to load instances at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load instances at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Real} xScale The horizontal scale applied to instance positioning. [Default: State.XScale if set, or 1]
-	/// @param {Real} yScale The vertical scale applied to instance positioning. [Default: State.YScale if set, or 1]
-	/// @param {Real} angle The angle applied to instance positioning. [Default: State.Angle if set, or 0]
+	/// @param {Real} xScale The horizontal scale transformation applied to instance position and scale. [Default: State.XScale if set, or 1]
+	/// @param {Real} yScale The vertical scale transformation applied to instance position and scale. [Default: State.YScale if set, or 1]
+	/// @param {Real} angle The angle applied to instance position and rotation. [Default: State.Angle if set, or 0]
 	/// 
 	/// @returns {Array<Id.Instance>}
 	/// @self RoomLoader

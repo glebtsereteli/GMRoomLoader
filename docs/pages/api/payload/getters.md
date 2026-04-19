@@ -53,7 +53,7 @@ array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
 ---
 ### `.GetInstance()`
 
-> `payload.GetInstance()` ➜ :Id.Instance: or :Noone:
+> `payload.GetInstance(roomId)` ➜ :Id.Instance: or :Noone:
 
 Returns the ID of the created Instance from the given room ID if found, or :Noone: if not found.
 
@@ -165,6 +165,7 @@ array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
 > `payload.GetSequence(roomId)` ➜ :Id.Sequence: or :Undefined:
 
 Returns the created Sequence ID matching the given room ID if found, or :Undefined: if not found.
+
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `roomId` | :String: | The Sequence room ID to search for |
@@ -192,7 +193,7 @@ Returns an array of created Sequences.
 ```js [Example]
 // Gets an array of created Sequences and randomizes their speed scales:
 array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
-    layer_sequence_speedscale(_sequence, random(0.75, 1.25));
+    layer_sequence_speedscale(_sequence, random_range(0.75, 1.25));
 });
 ```
 :::
@@ -203,6 +204,7 @@ array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
 > `payload.GetParticleSystem(roomId)` ➜ :Id.ParticleSystem: or :Undefined:
 
 Returns the ID of the created Particle System matching the given room ID if found, or :Undefined: if not found.
+
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `roomId` | :String: | The Particle System room ID to search for |

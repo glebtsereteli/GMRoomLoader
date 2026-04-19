@@ -83,6 +83,8 @@ rooms = RoomLoader.DataInitPrefix("rmLevel"); // [!code highlight]
 
 > `RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
 
+Initializes data for all rooms with the given tag assigned. Returns an array of found rooms.
+
 | Parameter | Type | Description |
 |---|---|---|
 | `tag` | :String: | The tag to parse rooms from |
@@ -215,7 +217,7 @@ RoomLoader.DataRemoveAll(_blacklist); // [!code highlight]
 
 ### `.DataIsInitialized()`
 
->`RoomLoader.DataIsInitialized(room)` -> :Bool:
+>`RoomLoader.DataIsInitialized(room)` ➜ :Bool:
 
 Checks whether the data for the given room is initialized (returns `true`) or not (returns `false`).
 
@@ -280,7 +282,7 @@ Returns an array of layer names from the given room, in the order defined in the
 
 :::code-group
 ```js [Example]
-// Fetches layers names from rmLevelGarden and whitelists 3 random layers before loading:
+// Fetches layer names from rmLevelGarden and whitelists 3 random layers before loading:
 var _room = rmLevelGarden;
 var _layerNames = RoomLoader.DataGetLayerNames(_room); // [!code highlight]
 array_shuffle_ext(_layerNames);

@@ -61,7 +61,7 @@ Full room loading supports the following elements.
 * Backgrounds only load if `[angle]` is `0`. Otherwise they are ignored.
 :::
 ::: details ℹ️ MERGING TILEMAPS {closed}
-If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both true `true`, this method will attempt to merge loaded and existing tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: page for details.
+If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both `true`, this method will attempt to merge loaded and existing tilemaps. See the :ROOMLOADER_MERGE_TILEMAPS: page for details.
 :::
 
 | Parameter | Type | Description |
@@ -147,11 +147,11 @@ If you'd like to handle instance creation yourself rather than using GMRoomLoade
 | `x` | :Real: | The x coordinate to load instances at |
 | `y` | :Real: | The y coordinate to load instances at |
 | `layerOrDepth` | :Id.Layer: or :String: or :Real: | The layer ID, layer name, or depth to create instances on |
-| `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[xscale]` | :Real: | The horizontal scale transformation [Default: :State.XScale: if set, or 1] |
-| `[yscale]` | :Real: | The vertical scale transformation [Default: :State.YScale: if set, or 1] |
-| `[angle]` | :Real: | The angle transformation [Default: :State.Angle: if set, or 0] |
+| `[xOrigin]` | :Real: | The x :Origin: to load the instances at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y :Origin: to load the instances at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[xScale]` | :Real: | The horizontal scale transformation applied to instance position and scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical scale transformation applied to instance position and scale [Default: :State.YScale: if set, or `1`] |
+| `[angle]` | :Real: | The angle transformation applied to instance position and rotation [Default: :State.Angle: if set, or `0`] |
 
 :::code-group
 ```js [Regular]
@@ -160,16 +160,16 @@ RoomLoader.LoadInstances(rmLevelPartBottom, room_width, room_height, depth, 1, 1
 
 // Loads a layout of props to fill the size of the current room:
 var _room = rmProps;
-var _xscale = room_width / RoomLoader.DataGetWidth(_room);
-var _yscale = room_height / RoomLoader.DataGetHeight(_room);
-RoomLoader.LoadInstances(_room, 0, 0, depth, _xscale, _yscale); // [!code highlight]
+var _xScale = room_width / RoomLoader.DataGetWidth(_room);
+var _yScale = room_height / RoomLoader.DataGetHeight(_room);
+RoomLoader.LoadInstances(_room, 0, 0, depth, 0, 0, _xScale, _yScale); // [!code highlight]
 
 // Loads a random arrangement of collectibles randomly rotated at the center of the room:
 var _room = choose(rmCollectibles01, rmCollectibles02, rmCollectibles03);
 var _x = room_width / 2;
 var _y = room_height / 2;
 var _angle = random(360);
-RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!code highlight]
+RoomLoader.LoadInstances(_room, _x, _y, depth, 0, 0, 1, 1, _angle); // [!code highlight]
 
 // Loads a random enemy layout in front of the player and stores their IDs in the loadedEnemies array:
 var _room = script_execute_ext(choose, enemyLayoutRooms);
@@ -177,7 +177,7 @@ var _offset = 200;
 var _x = objPlayer.x + lengthdir_x(_offset, objPlayer.angle);
 var _y = objPlayer.y + lengthdir_y(_offset, objPlayer.angle);
 var _angle = objPlayer.angle - 90;
-loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth,,, _angle); // [!code highlight]
+loadedEnemies = RoomLoader.LoadInstances(_room, _x, _y, depth, 0, 0, 1, 1, _angle); // [!code highlight]
 ```
 ```js [State]
 // Loads instances from rmLevelPartBottom at the bottom-right corner of the room:
@@ -211,7 +211,7 @@ enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, de
 
 > `RoomLoader.LoadTilemap(room, x, y, sourceLayerName, [targetLayer], [xOrigin], [yOrigin], [mirror], [flip], [angle], [tileset])` ➜ :Id.Tilemap:
 
-Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional origin, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
+Loads a tilemap from the given room and source layer at the given coordinates. The tilemap is created on the target layer at an optional :Origin:, with optional :Mirroring:, :Flipping:, :Rotation: and :Tileset:.
 
 Angle is wrapped around 360° and snapped to a 90° increment.
 
@@ -237,11 +237,11 @@ This process can noticeably impact performance, especially for large tilemaps. T
 | `x` | :Real: | The x coordinate to load the tilemap at |
 | `y` | :Real: | The y coordinate to load the tilemap at |
 | `sourceLayerName` | :String: | The source layer name to load a tilemap from |
-| `[targetLayer]` | :Id.Layer: or :String: | The target layer to create the tilemap on [Default: if set, `sourceLayerName`] |
+| `[targetLayer]` | :Id.Layer: or :String: | The target layer to create the tilemap on [Default: `sourceLayerName`] |
 | `[xOrigin]` | :Real: | The x origin to load the tilemap at <br> [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y origin to load the tilemap at <br> [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[mirror]` | :Bool: | Mirror the loaded tilemap? <br> [Default: (:State.XScale: `< 0`) or :State.Mirror: if set, or `false`] |
-| `[flip]` | :Bool: | Flip the loaded tilemap? <br> [Default: (:State.YScale: `< 0`) or :State.Flip: if set, or `false`] |
+| `[mirror]` | :Bool: | Mirror the loaded tilemap? <br> [Default: (:State.XScale: `< 0`) or :State.Mirror: if set, `false` otherwise] |
+| `[flip]` | :Bool: | Flip the loaded tilemap? <br> [Default: (:State.YScale: `< 0`) or :State.Flip: if set, `false` otherwise] |
 | `[angle]` | :Real: | The angle to load the tilemap at <br> [Default: :State.Angle: if set, or `0`] |
 | `[tileset]` | :Asset.GMTileset: | The tileset to use for the tilemap <br> [Default: :State.Tileset: if set, or source tileset] |
 
@@ -261,7 +261,7 @@ floorTilemap = RoomLoader.LoadTilemap(rmCasinoDetails, _x, _y, _layer, _layer, 0
 // using a custom tileset based on the current dimension and rotates it randomly:
 var _tileset = DIMENSIONS.GetCurrent().GetWallsTileset();
 var _angle = random(360);
-tilemap = RoomLoader.LoadTilemap(rmLayoutHard, 0, 0, "WallsLayout", "Walls", 0, 0, false, false, _angle_, _tileset); // [!code highlight]
+tilemap = RoomLoader.LoadTilemap(rmLayoutHard, 0, 0, "WallsLayout", "Walls", 0, 0, false, false, _angle, _tileset); // [!code highlight]
 
 // Loads a tilemap from the "TilesWalls" layer in rmChunkSpecial01,
 // creates it on the newly created collision layer, assigns the tsWallsCollision tileset to it
@@ -304,15 +304,9 @@ collisionTilemap = RoomLoader
 
 While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values.
 
-This is because GMRoomLoader initializes VarDefs *before* the instance itself exists. All provided variables are baked into a preCreate struct, which is later passed to the created instance. Since the instance does not yet exist at that point, many built-in variables are inaccessible.
+This is because GMRoomLoader initializes VarDefs *before* the instance itself exists. All provided variables are baked into a preCreate struct, which is later passed to the created instance. Since the instance does not yet exist at that point, built-in variables are inaccessible.
 
----
-When setting a VarDef to a built-in instance variable, only the following can be accessed:
-* `x` and `y`.
-* Everything in the `preCreate` struct of the provided [Instance Data](/pages/api/roomLoader/data#struct-format), which itself is populated from the **Instance Info** struct returned by :room_get_info():.
----
-
-If you need to use values that aren't accessible at that stage, either set a default value (like `undefined`) and resolve it in the Create event, or use instance Creation Code instead (keep in mind that it runs *after* the Create event).
+If you need to use values that aren't accessible at that stage, either set a default value (like `undefined`) and resolve it in the Create event, or use Instance Creation Code instead (keep in mind that it runs *after* the Create event).
 
 :::tip
 This only applies to VarDefs you've modified in the room editor. Default values aren't included in the `room_get_info()` data, so GMRoomLoader doesn't load them and they initialize normally. Because of that, all built-in variables are safe to use when the definition is left at its default value.
