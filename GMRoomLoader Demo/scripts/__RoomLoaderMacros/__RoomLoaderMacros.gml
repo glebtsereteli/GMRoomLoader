@@ -253,6 +253,10 @@ var _top = _top01 * _scaledH; \
 var _width = min(_width01 * _scaledW, _scaledW - _left); \
 var _height = min(_height01 * _scaledH, _scaledH - _top); \
 \
+if ((_width <= 0) or (_height <= 0)) { \
+	__RoomLoaderErrorMethod("RoomLoader", _methodName, $"Screenshot resulted in zero size ({_width}x{_height}).") ; \
+} \
+\
 var _finalSurf = surface_create(_width, _height); \
 surface_set_target(_finalSurf); { \
 	draw_clear_alpha(c_black, 0); \

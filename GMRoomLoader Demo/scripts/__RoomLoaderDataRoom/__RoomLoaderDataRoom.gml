@@ -153,33 +153,39 @@ function __RoomLoaderDataRoom(_room) constructor {
 	static __ScreenshotSprite = function(_left01, _top01, _width01, _height01, _xOrigin01, _yOrigin01, _xScale, _yScale, _flags) {
 		__ROOMLOADER_SCREENSHOT_START;
 		
-	    var _width = __width * _xScale;
-	    var _height = __height * _yScale;
+		var _scaledWidth = __width * _xScale;
+		var _scaledHeight = __height * _yScale;
+		var _left = _left01 * _scaledWidth;
+		var _top = _top01 * _scaledHeight;
+		var _width = min(_scaledWidth * _width01, _scaledWidth - _left);
+		var _height = min(_scaledHeight * _height01, _scaledHeight - _top);
 		
-	    var _finalSurf = _rawSurf;
-	    if ((_xScale != 1) or (_yScale != 1)) {
-	        _finalSurf = surface_create(_width, _height);
-	        surface_set_target(_finalSurf); {
-	            draw_clear_alpha(c_black, 0);
-	            draw_surface_stretched(_rawSurf, 0, 0, _width, _height);
-	            surface_reset_target();
-	        }
+		if ((_width <= 0) or (_height <= 0)) {
+			__RoomLoaderErrorMethod("RoomLoader", "ScreenshotSprite", $"Screenshot resulted in zero-sized sprite ({_width}x{_height})");
+		}
+		
+		var _finalSurf = _rawSurf;
+		if ((_xScale != 1) or (_yScale != 1)) {
+			_finalSurf = surface_create(_scaledWidth, _scaledHeight);
+			surface_set_target(_finalSurf); {
+				draw_clear_alpha(c_black, 0);
+				draw_surface_stretched(_rawSurf, 0, 0, _scaledWidth, _scaledHeight);
+				surface_reset_target();
+			}
 			surface_free(_rawSurf);
-	    }
+		}
 		
-		var _left = _left01 * _width;
-		var _top = _top01 * _height;
-		_width = min(_width * _width01, _width - _left);
-		_height = min(_height * _height01, _height - _top);
 		var _xOrigin = _xOrigin01 * _width;
 		var _yOrigin = _yOrigin01 * _height;
 		var _sprite = sprite_create_from_surface(_finalSurf, _left, _top, _width, _height, false, false, _xOrigin, _yOrigin);
 		
-	    surface_free(_finalSurf);
+		surface_free(_finalSurf);
 		
-	    return _sprite;
+		return _sprite;
 	};
 	static __ScreenshotSurface = function(_left01, _top01, _width01, _height01, _xScale, _yScale, _flags) {
+		static _methodName = "ScreenshotSurface";
+		
 		__ROOMLOADER_SCREENSHOT_START;
 		
 		if (not __ROOMLOADER_SCREENSHOT_TRANSFORMED) {
@@ -191,7 +197,9 @@ function __RoomLoaderDataRoom(_room) constructor {
 	    return _finalSurf;
 	};
 	static __ScreenshotBuffer = function(_left01, _top01, _width01, _height01, _xScale, _yScale, _flags) {
-	    __ROOMLOADER_SCREENSHOT_START;
+	    static _methodName = "ScreenshotBuffer";
+		
+		__ROOMLOADER_SCREENSHOT_START;
 		
 		var _width = __width;
 		var _height = __height;
