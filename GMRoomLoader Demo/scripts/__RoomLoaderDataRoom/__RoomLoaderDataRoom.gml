@@ -43,11 +43,7 @@ function __RoomLoaderDataRoom(_room) constructor {
 				
 				var _pcc = _in.pre_creation_code;
 				if (_pcc != -1) {
-					x = _in.x;
-					y = _in.y;
 				    _pcc();
-					struct_remove(self, "x");
-					struct_remove(self, "y");
 				}
 			};
 			
