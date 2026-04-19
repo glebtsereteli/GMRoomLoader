@@ -315,6 +315,12 @@ function RoomLoaderPayload(_room) constructor {
 			__ids = array_create(_n, noone);
 			__roomIds = array_create(_n, noone);
 		};
+		static __Finalize = function() {
+			if (__index != array_length(__ids)) {
+				array_resize(__ids, __index);
+				array_resize(__roomIds, __index);
+			}
+		};
 		static __Get = function(_roomId) {
 			var _index = array_get_index(__roomIds, _roomId);
 			return ((_index == -1) ? noone : __ids[_index]);
@@ -327,9 +333,10 @@ function RoomLoaderPayload(_room) constructor {
 			return _ids;
 		};
 		static __Destroy = function() {
-			array_foreach(__ids, function(_inst) {
-				instance_destroy(_inst);
-			});
+			var _i = 0; repeat (array_length(__ids)) {
+				instance_destroy(__ids[_i]);
+				_i++;
+			}
 		};
 	};
 	static __messagePrefix = "Payload";

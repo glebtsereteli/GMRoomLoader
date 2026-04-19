@@ -143,6 +143,10 @@ function __RoomLoaderDataRoom(_room) constructor {
 			}
 		}
 		
+		if (ROOMLOADER_DELIVER_PAYLOAD) {
+			RoomLoader.__payload.__instances.__Finalize();
+		}
+		
 		__creationCode();
 	};
 	
