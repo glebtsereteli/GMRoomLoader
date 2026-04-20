@@ -33,10 +33,10 @@ Default flags used for :Asset Type Filtering: in :Loading: and :Screenshotting:.
 ### `ROOMLOADER_MERGE_LAYERS`
 > Default: `false`.
 
-When loading rooms using :RoomLoader.Load():, whether to merge loaded layers with existing layers (`true`) or keep them separate (`false`).  
+When loading rooms using :RoomLoader.Load():, whether to merge loaded layers with existing layers (`true`) or keep them separate (`false`).
 
-- If `true`: merge into existing layers with the same name. If no matching layer exists, a new one will be created.  
-- If `false`: a new layer is always created, even if a layer with the same name already exists.  
+- If `true`: merge into existing layers with the same name. If no matching layer exists, a new one will be created.
+- If `false`: a new layer is always created, even if a layer with the same name already exists.
 
 ::: warning
 Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
@@ -56,13 +56,19 @@ Whether loaded tilemaps should be merged into existing tilemaps (`true`) or not 
 ### `ROOMLOADER_DELIVER_PAYLOAD`
 > Default: `true`.
 
-* If true, :RoomLoader.Load(): returns an instance of :Payload: containing the IDs of all loaded layers and their elements.  
-* If `false`, no IDs are collected or returned, improving loading performance.  
+* If `true`, :RoomLoader.Load(): returns an instance of :Payload: containing the IDs of all loaded layers and their elements.
+* If `false`, no IDs are collected or returned, improving loading performance.
 
 :::tip
-Set this to `false` if you don't need to manually clean up loaded contents.  
+Set this to `false` if you don't need to manually clean up loaded contents.
 For example, when room switching automatically destroys all instances, layers and assets, or if cleanup is generally irrelevant.
 :::
+
+---
+### `ROOMLOADER_LOAD_EMPTY_LAYERS`
+> Default: `false`.
+
+Whether to create empty layers when loading (`true`) or skip them (`false`).
 
 ## Elements
 
@@ -85,10 +91,10 @@ Controls whether the :Debug View: is enabled (`true`) or disabled (`false`).
 ### `ROOMLOADER_DEBUG_VIEW_START_VISIBLE`
 > Default: `false`.
 
-Determines if the :Debug View: window is open (`true`) or not (`false`) on game start.
+Determines if the :Debug View: window is open (`true`) or closed (`false`) on game start.
 
 ### `ROOMLOADER_DEBUG_VIEW_LOAD_KEY`
-> Default: `vk_f12`.
+> Default: `vk_f1`.
 
 The keyboard key that triggers room loading via the :Debug View:.
 
@@ -112,11 +118,9 @@ Specifies which rooms can be loaded through the :Debug View:. Expects an :Array:
 ### `ROOMLOADER_DEBUG_VIEW_GET_X`
 > Default: `undefined`.
 
-When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the X coordinate where the room should be loaded.
-If left `undefined`, the X position defaults to 0.
+When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the X coordinate where the room should be loaded. If left `undefined`, the X position defaults to 0.
 
 ### `ROOMLOADER_DEBUG_VIEW_GET_Y`
 > Default: `undefined`.
 
-When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the Y coordinate where the room should be loaded.
-If left `undefined`, the Y position defaults to 0.
+When using the Getters [Position Mode](/pages/api/debugView/debugView#position-mode), this callback returns the Y coordinate where the room should be loaded. If left `undefined`, the Y position defaults to 0.

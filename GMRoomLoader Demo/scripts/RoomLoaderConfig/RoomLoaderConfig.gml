@@ -44,8 +44,6 @@
 #macro ROOMLOADER_DELIVER_PAYLOAD true
 
 // Whether to create empty layers when Loading (true) or skip them (false).
-// If true: empty layers are created. Can be useful for merging future layers with the same name.
-// If false: empty layers are ignored to improve Loading performance.
 #macro ROOMLOADER_LOAD_EMPTY_LAYERS false
 
 #endregion
