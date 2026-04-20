@@ -4,7 +4,7 @@
 
 This section covers two ways to retrieve created element IDs from :Payload:.
 1. Individual ID `.Get<ElementType>` getters.
-    * Instances, Sprites, Particle Systems and Sequences use their room IDs.
+    * Instances, Sprites, Particle Systems, Sequences and Texts use their room IDs.
     * Tilemaps and Backgrounds use the name of the layer they're on.
 2. Type-based `.Get<ElementType>s()` getters that return an array of element IDs, using layer names for lookup.
 
@@ -72,15 +72,49 @@ objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ---
 ### `.GetInstances()`
 
-> `payload.GetInstances()` ➜ :Array: of :Id.Instance:
+> `payload.GetInstances([object])` ➜ :Array: of :Id.Instance:
 
-Returns an array of created Instances.
+Returns an array of created Instances, optionally filtered by object.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of this object will be returned [Default: `undefined` (no filter)] |
 
 :::code-group
 ```js [Example]
 // Gets an array of created Instances and targets a random one:
 var _instances = payload.GetInstances(); // [!code highlight]
 var _randomInstance = script_execute_ext(choose, _instances);
+
+// Gets an array of created objDoor instances:
+var _doors = payload.GetInstances(objDoor); // [!code highlight]
+```
+:::
+
+---
+### `.DetachInstances()`
+
+> `payload.DetachInstances()` ➜ :Array: of :Id.Instance:
+
+Detaches instances from the Payload and stops tracking them. Returns an array of the detached instance IDs, allowing their cleanup to be handled separately.
+
+::: info
+Useful when instances from a loaded room need to outlive the rest of the room's contents. For example, in chunk systems where an instance may move between chunks and should not be destroyed when its original chunk unloads.
+:::
+
+::: warning
+If detached instances remain on their original layers and those layers are destroyed during :.Cleanup():, the instances will still be destroyed.
+:::
+
+:::code-group
+```js [Example]
+// Detaches loaded instances from the payload and stores them for manual cleanup:
+var _instances = payload.DetachInstances(); // [!code highlight]
+
+// Later, when needed:
+array_foreach(_instances, function(_inst) {
+    instance_destroy(_inst);
+});
 ```
 :::
 
@@ -239,6 +273,44 @@ if (array_length(_systems) > 0) {
     }
 }
 
+```
+:::
+
+---
+### `.GetText()`
+
+> `payload.GetText(roomId)` ➜ :Id.Text: or :Undefined:
+
+Returns the ID of the created Text matching the given room ID if found, or :Undefined: if not found.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `roomId` | :String: | The Text room ID to search for |
+
+:::code-group
+```js [Example]
+// Gets the created Text ID using its "TextTitle" room ID, and if found,
+// randomizes its angle:
+var _text = payload.GetText("TextTitle"); // [!code highlight]
+if (_text != undefined) {
+    layer_text_angle(_text, random(360));
+}
+```
+:::
+
+---
+### `.GetTexts()`
+
+> `payload.GetTexts()` ➜ :Array: of :Id.Text:
+
+Returns an array of created Texts.
+
+:::code-group
+```js [Example]
+// Gets an array of created Texts and randomizes their colors:
+array_foreach(payload.GetTexts(), function(_text) { // [!code highlight]
+    layer_text_color(_text, make_color_hsv(irandom(255), 200, 200));
+});
 ```
 :::
 

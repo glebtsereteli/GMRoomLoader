@@ -14,7 +14,7 @@ If you need more precise control over individual layer depths, use [.GetLayer()]
 
 ## `.DepthAbove()`
 
-> `payload.DepthAbove(layerOrDepth, [offset])` -> :Struct:.:Payload:
+> `payload.DepthAbove(layerOrDepth, [offset])` ➜ :Struct:.:Payload:
 
 Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset.
 
@@ -33,9 +33,9 @@ payload.DepthAbove("Instances"); // [!code highlight]
 
 ## `.DepthBelow()`
 
-> `payload.DepthBelow(layerOrDepth, [offset])` -> :Struct:.:Payload:
+> `payload.DepthBelow(layerOrDepth, [offset])` ➜ :Struct:.:Payload:
 
-Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset.
+Shifts all layers to a depth below `layerOrDepth`, with an optional depth offset.
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -45,7 +45,7 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 :::code-group
 ```js [Example]
 // Load rmLevelCave and shift all its layers 500 depth below the "Overlay" layer:
-payload = RoomLoader.Load(rmLevelCave);
+payload = RoomLoader.Load(rmLevelCave, x, y);
 payload.DepthBelow("Overlay", 500); // [!code highlight]
 ```
 :::

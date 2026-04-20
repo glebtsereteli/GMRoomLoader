@@ -122,6 +122,15 @@ function RoomLoaderPayload(_room) constructor {
 		return (is_undefined(_obj) ? __instances.__ids : array_filter(__instances.__ids, _Filter));
 	};
 	
+	/// Detaches instances from the payload and stops tracking them. This allows instance cleanup to be handled separately from the rest of the payload.
+	/// NOTE: If detached instances remain on their original layers and those layers are destroyed during .Cleanup(), the instances will still be destroyed.
+	/// 
+	/// @returns {Array<Id.Instance>}
+	/// @self RoomLoaderPayload
+	static DetachInstances = function() {
+		return __instances.__Detach();
+	};
+	
 	/// Returns the ID of the created Tilemap matching the given layer name if found, or undefined if not found.
 	/// 
 	/// @param {String} layerName The Tile layer name to search for.
@@ -198,25 +207,6 @@ function RoomLoaderPayload(_room) constructor {
 		return __particleSystems.__ids;
 	};
 	
-	/// Returns the ID of the created Background matching the given layer name if found, or undefined if not found.
-	/// 
-	/// @param {String} layerName The Background layer name to search for.
-	/// 
-	/// @returns {Id.Background,Undefined}
-	/// @self RoomLoaderPayload
-	static GetBackground = function(_layerName) {
-		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
-		return __backgrounds.__Get(_layerName);
-	};
-	
-	/// Returns an array of created Backgrounds.
-	/// 
-	/// @returns {Array<Id.Background>}
-	/// @self RoomLoaderPayload
-	static GetBackgrounds = function() {
-		return __backgrounds.__ids;
-	};
-	
 	/// Returns the ID of the created Text matching the given room ID if found, or undefined if not found.
 	/// 
 	/// @param {String} roomId The room ID of the Text to search for.
@@ -236,17 +226,27 @@ function RoomLoaderPayload(_room) constructor {
 		return __texts.__ids;
 	};
 	
+	/// Returns the ID of the created Background matching the given layer name if found, or undefined if not found.
+	/// 
+	/// @param {String} layerName The Background layer name to search for.
+	/// 
+	/// @returns {Id.Background,Undefined}
+	/// @self RoomLoaderPayload
+	static GetBackground = function(_layerName) {
+		__RoomLoaderCatchString(__messagePrefix, "GetBackground", _layerName, "get a Background ID from the", "layer name");
+		return __backgrounds.__Get(_layerName);
+	};
+	
+	/// Returns an array of created Backgrounds.
+	/// 
+	/// @returns {Array<Id.Background>}
+	/// @self RoomLoaderPayload
+	static GetBackgrounds = function() {
+		return __backgrounds.__ids;
+	};
+	
 	#endregion
 	#region Cleanup
-	
-	/// Detaches instances from the payload and stops tracking them. This allows instance cleanup to be handled separately from the rest of the payload.
-	/// NOTE: If detached instances remain on their original layers and those layers are destroyed during .Cleanup(), the instances will still be destroyed.
-	/// 
-	/// @returns {Array<Id.Instance>}
-	/// @self RoomLoaderPayload
-	static DetachInstances = function() {
-		return __instances.__Detach();
-	};
 	
 	/// Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
 	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.

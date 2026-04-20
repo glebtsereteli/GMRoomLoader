@@ -13,7 +13,7 @@ Cleanup, also known as "unloading" or "destroying" a room, is typically used whe
 
 ## `.Cleanup()`
 
-> `payload.Cleanup([destroyLayers?])` ➜ N/A
+> `payload.Cleanup([destroyLayers?])` ➜ :Struct:.:Payload:
 
 Destroys all created layers and their elements. After calling this method, the :Payload: instance becomes practically useless and should be dereferenced to be picked up by the [Garbage Collector](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Garbage_Collection/Garbage_Collection.htm).
 
