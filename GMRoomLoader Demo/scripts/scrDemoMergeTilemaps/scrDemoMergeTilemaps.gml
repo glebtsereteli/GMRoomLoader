@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
+function DemoMergeTilemaps() : Demo("Merge Tilemaps") constructor {
 	// Shared:
 	static Init = function() {
 		if (ROOMLOADER_MERGE_TILEMAPS) {

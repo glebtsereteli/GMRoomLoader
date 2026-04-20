@@ -87,7 +87,7 @@ Sets the Whitelist layer filter to the given array of layer names.
 
 ::: code-group
 ```js [Example]
-// Whitelists "Bushes", "Trees" and "Flowers" array from the _whitelist array:
+// Whitelists "Bushes", "Trees" and "Flowers":
 var _whitelist = ["Bushes", "Trees", "Flowers"];
 RoomLoader.LayerWhitelistSet(_whitelist);
 ```
@@ -125,8 +125,9 @@ RoomLoader.LayerWhitelistReset();
 
 ## Blacklist
 
-When Blacklist contains entries, layers with blacklisted names are ignored. Other layers are loaded. 
+When Blacklist contains entries, layers with blacklisted names are ignored. Other layers are loaded.
 
+---
 ### `.LayerBlacklistAdd()`
 
 > `RoomLoader.LayerBlacklistAdd(...layerNames)` ➜ :Struct:.:RoomLoader:
@@ -147,11 +148,16 @@ RoomLoader.LayerBlacklistAdd("Trees", "Rocks");
 ```
 :::
 
+---
 ### `.LayerBlacklistRemove()`
 
 > `RoomLoader.LayerBlacklistRemove(...layerNames)` ➜ :Struct:.:RoomLoader:
 
 Removes all given layer names from the Blacklist layer filter.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `...layerNames` | :String: | The layer names to remove from the blacklist, supports any amount of arguments |
 
 ::: code-group
 ```js [Example]
@@ -176,12 +182,13 @@ Sets the Blacklist layer filter to the given array of layer names.
 
 ::: code-group
 ```js [Example]
-// Blacklists "Bushes", "Trees" and "Flowers" array from the _blacklist array:
+// Blacklists "Bushes", "Trees" and "Flowers":
 var _blacklist = ["Bushes", "Trees", "Flowers"];
 RoomLoader.LayerBlacklistSet(_blacklist);
 ```
 :::
 
+---
 ### `.LayerBlacklistReset()`
 
 > `RoomLoader.LayerBlacklistReset()` ➜ :Struct:.:RoomLoader:
@@ -194,6 +201,7 @@ RoomLoader.LayerBlacklistReset(); // Resets the Blacklist.
 ```
 :::
 
+---
 ### `.LayerBlacklistGet()`
 
 > `RoomLoader.LayerBlacklistGet()` ➜ :Array: of :String:

@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoBase() : DemoPar("Base") constructor {
+function DemoBase() : Demo("Base") constructor {
 	// Shared:
 	static Init = function() {
 		host.Init();

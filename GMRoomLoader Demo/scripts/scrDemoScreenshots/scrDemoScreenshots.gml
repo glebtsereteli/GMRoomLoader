@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoScreenshots() : DemoPar("Screenshots") constructor {
+function DemoScreenshots() : Demo("Screenshots") constructor {
 	// Shared:
 	static Init = function() {
 		RoomLoader.DataInitTag(tag);

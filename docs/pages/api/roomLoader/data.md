@@ -99,7 +99,7 @@ dungeonRooms = RoomLoader.DataInitTag("Dungeon"); // [!code highlight]
 ---
 ### `.DataInitAll()`
 
-> `RoomLoader.DataInitAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataInitAll(blacklist)` ➜ :Array: of :Asset.GMRoom:
 
 Initializes data for all rooms in the project, except the ones listed in the `blacklist` array.
 
@@ -127,7 +127,7 @@ Removes data for all given rooms.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `room` | :Asset.GMRoom: | The room to remove data for                       |
+| `room` | :Asset.GMRoom: | The room to remove data for |
 | `...` | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments |
 
 :::code-group
@@ -146,6 +146,7 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code hi
 > `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms in the given array.
+
 | Parameter | Type | Description |
 |---|---|---|
 | `rooms` | :Array: of :Asset.GMRoom: | The array of rooms to remove data for |
@@ -195,21 +196,16 @@ RoomLoader.DataRemoveTag("Dungeon"); // [!code highlight]
 :::
 
 ---
-### `.DataRemoveAll()`
+### `.DataClear()`
 
-> `RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataClear()` ➜ :Struct:.:RoomLoader:
 
-Removes data for all rooms, except the ones listed in the `blacklist` array.
+Clears all initialized room data.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for [Default: empty] |
-
-::: code-group
+:::code-group
 ```js [Example]
-// Removes data for all rooms in the project BUT rmHub:
-var _blacklist = [rmHub];
-RoomLoader.DataRemoveAll(_blacklist); // [!code highlight]
+// Clears all initialized room data:
+RoomLoader.DataClear(); // [!code highlight]
 ```
 :::
 
@@ -304,14 +300,10 @@ Returns an array of instance data structs from the given room. See the format li
 
 You can also provide the optional `[object]` argument to return data only for instances of the given object.
 
-::: danger IMPORTANT
-This method fetches the internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
-:::
-
 | Parameter | Type | Description |
 |---|---|---|
 | `room` | :Asset.GMRoom: | The room to get an array of instance data from |
-| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of the given object will be included |
+| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of the given object will be included [Default: `undefined` (no filter)] |
 
 :::code-group
 ```js [Custom Instance Creation]
@@ -335,9 +327,14 @@ var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code high
 ---
 ### `.DataGetInstance()`
 
-> `RoomLoader.DataGetInstance(room, instanceId)` ➜ :Struct:
+> `RoomLoader.DataGetInstance(room, id)` ➜ :Struct:
 
 Returns an instance data struct for the given room instance inside the given room. See the format listed [below](#struct-format).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get instance data from |
+| `id` | :Id.Instance: | The room ID of the instance to get data for |
 
 :::code-group
 ```js [Example]

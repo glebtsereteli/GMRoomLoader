@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoInstances() : DemoPar("Instances") constructor {
+function DemoInstances() : Demo("Instances") constructor {
 	// Shared:
 	static Init = function() {
 		RoomLoader.DataInit(rm);
@@ -62,7 +62,7 @@ function DemoInstances() : DemoPar("Instances") constructor {
 	yScale = 1;
 	angle = 0;
 	
-	rm = rmDemoInstances01;
+	rm = rmDemoInstances;
 	instances = undefined;
 	
 	static Load = function() {

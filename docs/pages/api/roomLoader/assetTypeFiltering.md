@@ -38,7 +38,7 @@ If you're not a fan of bitwise operations, see the alternative way to filter by 
 // Loads rmLevelCastle01's Tilemaps centered:
 RoomLoader.Load(rmLevelCastle01, x, y, 0.5, 0.5, ROOMLOADER_FLAG.TILEMAPS); // [!code highlight]
 
-// Loads rmLevelMaze11's Instances and Sprites: 
+// Loads rmLevelMaze11's Instances and Tilemaps: 
 var _flags = ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS; // [!code highlight]
 RoomLoader.Load(rmMaze11, x, y, 0, 0, _flags);
 
@@ -50,7 +50,7 @@ RoomLoader.Load(rmLevelRoof, x, y, 0, 0, _flags);
 // Loads rmLevelCastle01's Tilemaps centered:
 RoomLoader.MiddleCenter().Tilemaps().Load(rmLevelCastle01, x, y); // [!code highlight]
 
-// Loads rmLevelMaze11's Instances and Sprites: 
+// Loads rmLevelMaze11's Instances and Tilemaps: 
 RoomLoader.Instances().Tilemaps().Load(rmMaze11, x, y); // [!code highlight]
 
 // Loads rmLevelRoof with flags set to All BUT Sequences:

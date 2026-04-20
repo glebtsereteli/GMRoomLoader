@@ -110,7 +110,7 @@ function Demos() constructor {
 		return pool[index];
 	};
 }
-function DemoPar(_name) constructor {
+function Demo(_name) constructor {
 	owner = other;
 	name = _name;
 	iname = undefined;

@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoTilemaps() : DemoPar("Tilemaps") constructor {
+function DemoTilemaps() : Demo("Tilemaps") constructor {
 	// Shared:
 	static Init = function() {
 		RoomLoader.DataInit(rm);

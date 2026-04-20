@@ -11,7 +11,7 @@ If room data hasn't been initialized before screenshotting, GMRoomLoader will in
 :::
 
 ::: tip SCREENSHOTTING ROOM PARTS
-Similar to drawing parts of sprites with :draw_sprite_part():, you can use the :.Part(): state method to define a (left/top/width/height) part of the room to capture on the screenshot.
+Similar to drawing parts of sprites with :draw_sprite_part():, you can use the :.Part(): State method to define a (left/top/width/height) part of the room to capture on the screenshot.
 :::
 
 ::: tip WORKING AT SCALE
@@ -22,7 +22,7 @@ When you need to capture screenshots for many rooms, it's a good idea to use [.S
 
 ### `.ScreenshotSprite()`
 
-> `RoomLoader.ScreenshotSprite(room, [xOrigin], [yOrigin], [xScale], [yScale], [flags]` ➜ :Asset.GMSprite:
+> `RoomLoader.ScreenshotSprite(room, [xOrigin], [yOrigin], [flags], [xScale], [yScale])` ➜ :Asset.GMSprite:
 
 Takes a screenshot of the given room and returns it as a sprite. If specified, creates the sprite with optional :Origin: and :Scale: and filters captured elements by the given :Flags:.
 
@@ -47,7 +47,7 @@ var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotSprite(rmExample, 0.5, 0.5, _flags); // [!code highlight]
 
 // Takes a scaled down sprite screenshot of rmExample:
-screenshot = RoomLoader.ScreenshotSprite(rmExample, 0, 0, ROOMLOADER_FLAGS.ALL, 0.5, 0.5);
+screenshot = RoomLoader.ScreenshotSprite(rmExample, 0, 0, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
 // Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites:
@@ -61,7 +61,7 @@ screenshot = RoomLoader.Scale(0.5).ScreenshotSprite(rmExample);
 ---
 ### `.ScreenshotSurface()`
 
-> `RoomLoader.ScreenshotSurface(room, [xScale], [yScale], [flags])` ➜ :Id.Surface:
+> `RoomLoader.ScreenshotSurface(room, [flags], [xScale], [yScale])` ➜ :Id.Surface:
 
 Takes a screenshot of the given room and returns it as a surface. If specified, :Scale:s the output surface and filters captured elements by the given :Flags:.
 
@@ -69,7 +69,7 @@ Takes a screenshot of the given room and returns it as a surface. If specified, 
 This method returns a :Id.Surface: created by [surface_create()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/surface_create.htm).
 Make sure to keep track of them and free them using [surface_free()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/surface_free.htm) when they're no longer needed.
 
-Also keep in mind that surface are volatile and don't persist in memory forever - see the [Surface Rules](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm#:~:text=surface_free(surf)%3B-,Surface%20Rules,-Normal%20surfaces%20are) section in the docs.
+Also keep in mind that surfaces are volatile and don't persist in memory forever - see the [Surface Rules](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm#:~:text=surface_free(surf)%3B-,Surface%20Rules,-Normal%20surfaces%20are) section in the docs.
 :::
 
 ::: tip
@@ -81,7 +81,7 @@ This is especially useful when building your own dynamic texture pages at runtim
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
 | `[xScale]` | :Real: | The horizontal screenshot scale [Default: :State.XScale: if set, or `1`] |
-| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set,  or `1`] |
+| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set, or `1`] |
 
 :::code-group
 ```js [Regular]
@@ -90,7 +90,7 @@ var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotSurface(rmExample, _flags); // [!code highlight]
 
 // Takes a scaled down surface screenshot of rmExample:
-screenshot = RoomLoader.ScreenshotSurface(rmExample, ROOMLOADER_FLAGS.ALL, 0.5, 0.5);
+screenshot = RoomLoader.ScreenshotSurface(rmExample, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
 // Takes a surface screenshot of rmExample with only Tilemaps and Sprites:
@@ -101,9 +101,10 @@ screenshot = RoomLoader.Scale(0.5).ScreenshotSurface(rmExample);
 ```
 :::
 
+---
 ### `.ScreenshotBuffer()`
 
-> `RoomLoader.ScreenshotBuffer(room, [xScale], [yScale], [flags])` ➜ :Struct:
+> `RoomLoader.ScreenshotBuffer(room, [flags], [xScale], [yScale])` ➜ :Struct:
 
 Takes a screenshot of the given room and returns a `{ buffer, width, height }` struct, where `buffer` is the buffer ID filled with image data, `width` is the width of the image, and `height` is the height of the image.
 
@@ -122,8 +123,8 @@ This is especially useful when building your own dynamic texture pages at runtim
 | --- | --- | --- |
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
-| `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: if set, or `1`] |
-| `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: if set,  or `1`] |
+| `[xScale]` | :Real: | The horizontal screenshot scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set, or `1`] |
 
 :::code-group
 ```js [Regular]
@@ -132,7 +133,7 @@ var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotBuffer(rmExample, _flags); // [!code highlight]
 
 // Takes a scaled down buffer screenshot of rmExample:
-screenshot = RoomLoader.ScreenshotBuffer(rmExample, ROOMLOADER_FLAGS.ALL, 0.5, 0.5);
+screenshot = RoomLoader.ScreenshotBuffer(rmExample, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
 // Takes a buffer screenshot of rmExample with only Tilemaps and Sprites:

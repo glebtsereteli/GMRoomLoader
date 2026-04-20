@@ -1,6 +1,6 @@
 // feather ignore all
 
-function DemoGeneral() : DemoPar("General") constructor {
+function DemoGeneral() : Demo("General") constructor {
 	// Shared:
 	static Init = function() {
 		RoomLoader.DataInit(rm);
