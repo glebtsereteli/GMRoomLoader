@@ -2,21 +2,17 @@
 
 ## Overview
 
-This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
-* [Initialization](#initialization) - essential for setting up room data before :Loading:, :Screenshotting: or using :Data Getters:. Happens automatically, but best performed on game start or behind loading screens (where applicable) for performance reasons.
-* [Removal](#removal) - optional, use for cleaning up loaded elements that are no longer needed, AKA "unloading" or "destroying" rooms.
-* [Status & Getters](#status-getters) - situational, for checking or retrieving room data.
+This section covers room data management in GMRoomLoader. It's divided into three modules:
+* [Initialization](#initialization) prepares room data for :Loading:, :Screenshotting: and :Data Getters:. It happens automatically when needed, but initializing upfront is strongly recommended for best performance.
+* [Removal](#removal) cleans up initialized data that is no longer needed. Mostly relevant at scale, when working with many rooms and keeping memory usage in check matters.
+* [Status & Getters](#status-getters) provides tools for retrieving room data such as dimensions, layer names, instance data and more.
 
 ## Initialization
 
-The following methods initialize room data to be used for :Loading: and :Screenshotting:.
+The following methods initialize room data for use in :Loading:, :Screenshotting: and :Data Getters:.
 
-::: danger **❗** PERFORMANCE NOTE
-Initialization is the most resource-intensive operation in the entire library. It parses room data from :room_get_info(): and optimizes it for fast :Loading: and :Screenshotting:.
-
-ℹ️ For best performance, call these methods **at the very start of your game**. 
-
-ℹ️ If room data hasn't been initialized before calling :Loading:, :Screenshotting: or [Data Getters](#status-getters), GMRoomLoader will initialize it automatically. While convenient for quick testing or handling small rooms, doing this **noticeably slows down** the aforementioned methods and should be avoided when dealing with bigger rooms.
+::: danger ❗ PERFORMANCE NOTE
+Room data is initialized automatically the first time it's needed, so these methods are never strictly required. However, automatic initialization runs during gameplay, which can severely slow down the first :Loading: or :Screenshotting: call for each room. Initializing explicitly at the start of your game or behind a loading screen avoids this entirely.
 :::
 
 ---
@@ -116,7 +112,7 @@ RoomLoader.DataInitAll([rmInit]); // [!code highlight]
 
 ## Removal
 
-Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from :RoomLoader:'s internal pool.
+The following methods remove initialized room data from :RoomLoader:'s internal pool. While data takes up little memory, removing it for rooms that are no longer needed is good practice at scale, especially when working with a large number of rooms.
 
 ---
 ### `.DataRemove()`

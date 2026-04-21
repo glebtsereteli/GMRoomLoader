@@ -44,10 +44,11 @@ var _iY = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
 var _preCreate = _iData.preCreate; \
 var _xScalePrev = _preCreate.image_xscale; \
 var _yScalePrev = _preCreate.image_yscale; \
+var _anglePrev = _preCreate.image_angle; \
 \
 _preCreate.image_xscale *= _xScale; \
 _preCreate.image_yscale *= _yScale; \
-_preCreate.image_angle += _angle;
+_preCreate.image_angle = _angle + (_preCreate.image_angle * sign(_xScale * _yScale));
 
 #macro __ROOMLOADER_INST_LAYER_PRELOAD \		
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
@@ -66,7 +67,7 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 __ROOMLOADER_INST_CC \
 _preCreate.image_xscale = _xScalePrev; \
 _preCreate.image_yscale = _yScalePrev; \
-_preCreate.image_angle -= _angle;
+_preCreate.image_angle = _anglePrev;
 
 #endregion
 #region Tilemaps
