@@ -21,10 +21,10 @@ Destroys all created layers and their elements. After calling this method, the :
 
 :::code-group
 ```js [Example]
-// When you load the room:
+// When you load the room
 payload = RoomLoader.Load(rmExample, x, y);
 
-// When it's time to unload the room:
+// When it's time to unload the room
 payload.Cleanup(); // [!code highlight]
 ```
 :::

@@ -29,10 +29,10 @@ Initializes data for all given rooms.
 
 :::code-group
 ```js [Example]
-// Initializes data for rmLevelCastle:
+// Initializes data for rmLevelCastle
 RoomLoader.DataInit(rmLevelCastle); // [!code highlight]
 
-// Initializes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
+// Initializes data for rmLevelPlains, rmLevelForest and rmLevelCliffs
 RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
@@ -50,7 +50,7 @@ Initializes data for all rooms in the given array.
 
 :::code-group
 ```js [Example]
-// Initializes data for all rooms inside the rooms array:
+// Initializes data for all rooms inside the rooms array
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
 RoomLoader.DataInitArray(rooms); // [!code highlight]
 ```
@@ -69,7 +69,7 @@ Initializes data for all rooms starting with the given prefix. Returns an array 
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms starting with "rmLevel" and stores found room IDs in a variable:
+// Initializes data for all rooms starting with "rmLevel" and stores found room IDs in a variable
 rooms = RoomLoader.DataInitPrefix("rmLevel"); // [!code highlight]
 ```
 :::
@@ -87,7 +87,7 @@ Initializes data for all rooms with the given tag assigned. Returns an array of 
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms with the "Dungeon" tag assigned and stores their IDs in a variable:
+// Initializes data for all rooms with the "Dungeon" tag assigned and stores their IDs in a variable
 dungeonRooms = RoomLoader.DataInitTag("Dungeon"); // [!code highlight]
 ```
 :::
@@ -105,7 +105,7 @@ Initializes data for all rooms in the project, except the ones listed in the `bl
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms in the project BUT rmInit:
+// Initializes data for all rooms in the project BUT rmInit
 RoomLoader.DataInitAll([rmInit]); // [!code highlight]
 ```
 :::
@@ -128,10 +128,10 @@ Removes data for all given rooms.
 
 :::code-group
 ```js [Example]
-// Removes data for rmLevelCastle:
+// Removes data for rmLevelCastle
 RoomLoader.DataRemove(rmLevelCastle); // [!code highlight]
 
-// Removes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
+// Removes data for rmLevelPlains, rmLevelForest and rmLevelCliffs
 RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
@@ -149,7 +149,7 @@ Removes data for all rooms in the given array.
 
 :::code-group
 ```js [Example]
-// Removes data for all rooms inside the rooms array:
+// Removes data for all rooms inside the rooms array
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
 RoomLoader.DataRemoveArray(rooms); // [!code highlight]
 ```
@@ -168,7 +168,7 @@ Removes data for all rooms starting with the given prefix.
 
 ::: code-group
 ```js [Example]
-// Removes data for all rooms starting with "rmLevel":
+// Removes data for all rooms starting with "rmLevel"
 RoomLoader.DataRemovePrefix("rmLevel"); // [!code highlight]
 ```
 :::
@@ -186,7 +186,7 @@ Removes data for all rooms with the given tag.
 
 ::: code-group
 ```js [Example]
-// Removes data for all rooms with the "Dungeon" tag assigned:
+// Removes data for all rooms with the "Dungeon" tag assigned
 RoomLoader.DataRemoveTag("Dungeon"); // [!code highlight]
 ```
 :::
@@ -200,7 +200,7 @@ Clears all initialized room data.
 
 :::code-group
 ```js [Example]
-// Clears all initialized room data:
+// Clears all initialized room data
 RoomLoader.DataClear(); // [!code highlight]
 ```
 :::
@@ -238,7 +238,7 @@ Returns the width of the given room.
 
 :::code-group
 ```js [Example]
-// Gets the width of rmLevelDungeon:
+// Gets the width of rmLevelDungeon
 var _width = RoomLoader.DataGetWidth(rmLevelDungeon); // [!code highlight]
 ```
 :::
@@ -256,7 +256,7 @@ Returns the height of the given room.
 
 :::code-group
 ```js [Example]
-// Gets the height of rmLevelDungeon:
+// Gets the height of rmLevelDungeon
 var _height = RoomLoader.DataGetHeight(rmLevelDungeon); // [!code highlight]
 ```
 :::
@@ -274,7 +274,7 @@ Returns an array of layer names from the given room, in the order defined in the
 
 :::code-group
 ```js [Example]
-// Fetches layer names from rmLevelGarden and whitelists 3 random layers before loading:
+// Fetches layer names from rmLevelGarden and whitelists 3 random layers before loading
 var _room = rmLevelGarden;
 var _layerNames = RoomLoader.DataGetLayerNames(_room); // [!code highlight]
 array_shuffle_ext(_layerNames);
@@ -303,10 +303,10 @@ You can also provide the optional `[object]` argument to return data only for in
 
 :::code-group
 ```js [Custom Instance Creation]
-// Fetches instance data from rmExample:
+// Fetches instance data from rmExample
 var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
 
-// Maps the data array to an array of instance IDs using a custom instance creation function:
+// Maps the data array to an array of instance IDs using a custom instance creation function
 instances = array_map(_instancesData, function(_instanceData) {
     var _instanceId = ...; // Use _instanceData for custom instance creation.
     // More custom logic...
@@ -314,7 +314,7 @@ instances = array_map(_instancesData, function(_instanceData) {
 });
 ```
 ```js [Fetching Doors]
-// Fetches objDoor instance data from rmExample:
+// Fetches objDoor instance data from rmExample
 var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code highlight]
 // ...
 ```
@@ -381,7 +381,7 @@ where `x` and `y` are tile coordinates in tilemap space and `tileData` is the ti
 
 :::code-group
 ```js [Example]
-// Fetches tilemap data from rmExample's "Tiles" layer:
+// Fetches tilemap data from rmExample's "Tiles" layer
 var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles"); // [!code highlight]
 
 // Loops through the 'tiles' array:

@@ -26,7 +26,7 @@ Returns the ID of the created Layer matching the given name if found, or :Undefi
 
 :::code-group
 ```js [Example]
-// Gets the created "Clouds" layer ID and randomizes its horizontal speed:
+// Gets the created "Clouds" layer ID and randomizes its horizontal speed
 var _cloudsLayer = payload.GetLayer("Clouds"); // [!code highlight]
 if (_cloudsLayer != undefined) {
     layer_hspeed(_cloudsLayer, random_range(5, 8));
@@ -43,7 +43,7 @@ Returns an array of created Layers.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Layers and randomly toggles their visibility:
+// Gets an array of created Layers and randomly toggles their visibility
 array_foreach(payload.GetLayers(), function(_layer) { // [!code highlight]
     layer_set_visible(_layer, choose(true, false));
 });
@@ -64,7 +64,7 @@ Returns the ID of the created Instance from the given room ID if found, or :Noon
 :::code-group
 ```js [Example]
 // Grabs the created Instance ID from the InstWaypoint room ID and assigns it
-// to objPlayer's waypointID:
+// to objPlayer's waypointID
 objPlayer.waypointID = payload.GetInstance(InstWaypoint); // [!code highlight]
 ```
 :::
@@ -82,11 +82,11 @@ Returns an array of created Instances, optionally filtered by object.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Instances and targets a random one:
+// Gets an array of created Instances and targets a random one
 var _instances = payload.GetInstances(); // [!code highlight]
 var _randomInstance = script_execute_ext(choose, _instances);
 
-// Gets an array of created objDoor instances:
+// Gets an array of created objDoor instances
 var _doors = payload.GetInstances(objDoor); // [!code highlight]
 ```
 :::
@@ -108,7 +108,7 @@ If detached instances remain on their original layers and those layers are destr
 
 :::code-group
 ```js [Example]
-// Detaches loaded instances from the payload and stores them for manual cleanup:
+// Detaches loaded instances from the payload and stores them for manual cleanup
 var _instances = payload.DetachInstances(); // [!code highlight]
 
 // Later, when needed:
@@ -132,7 +132,7 @@ Returns the ID of the created Tilemap from the given layer name, or :Undefined: 
 :::code-group
 ```js [Example]
 // Gets the created Tilemap ID from the "TilesCollision" layer
-// to use for collision:
+// to use for collision
 var _collisionTilemap = payload.GetTilemap("TilesCollision"); // [!code highlight]
 if (_collisionTilemap != undefined) {
     array_push(global.collisionTilemaps, _collisionTilemap);
@@ -149,7 +149,7 @@ Returns an array of created Tilemaps.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Tilemaps and targets a random one:
+// Gets an array of created Tilemaps and targets a random one
 var _tilemaps = payload.GetTilemaps(); // [!code highlight]
 var _randomTilemap = script_execute_ext(choose, _tilemaps);
 ```
@@ -169,7 +169,7 @@ Returns the ID of the created Sprite matching the given room ID if found, or :Un
 :::code-group
 ```js [Example]
 // Gets the created Sprite ID using its "SpriteStar" room ID, and if found,
-// rotates it randomly:
+// rotates it randomly
 var _sprite = payload.GetSprite("SpriteStar"); // [!code highlight]
 if (_sprite != undefined) {
     layer_sprite_angle(_sprite, irandom(360));
@@ -186,7 +186,7 @@ Returns an array of created Sprites.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Sprites and blends them red:
+// Gets an array of created Sprites and blends them red
 array_foreach(payload.GetSprites(), function(_sprite) { // [!code highlight]
     layer_sprite_blend(_sprite, c_red);
 });
@@ -207,7 +207,7 @@ Returns the created Sequence ID matching the given room ID if found, or :Undefin
 :::code-group
 ```js [Example]
 // Gets the created Sequence ID using its "SequenceWindow" room ID, and if found,
-// randomizes its playhead position:
+// randomizes its playhead position
 var _sequence = payload.GetSequence("SequenceWindow"); // [!code highlight]
 if (_sequence != undefined) {
     var _length = layer_sequence_get_length(_sequence);
@@ -225,7 +225,7 @@ Returns an array of created Sequences.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Sequences and randomizes their speed scales:
+// Gets an array of created Sequences and randomizes their speed scales
 array_foreach(payload.GetSequences(), function(_sequence) { // [!code highlight]
     layer_sequence_speedscale(_sequence, random_range(0.75, 1.25));
 });
@@ -245,7 +245,7 @@ Returns the ID of the created Particle System matching the given room ID if foun
 
 :::code-group
 ```js [Example]
-// Gets the "Sparkles" Particle System, and if found, randomizes its color:
+// Gets the "Sparkles" Particle System, and if found, randomizes its color
 var _psSparkle = payload.GetParticleSystem("Sparkles"); // [!code highlight]
 if (_psSparkle != undefined) {
     var _randomColor = make_color_hsv(irandom(0, 255), 200, 200);
@@ -263,7 +263,7 @@ Returns an array of created Particle Systems.
 
 :::code-group
 ```js [Example]
-// Gets all loaded Particle Systems and pre-updates them by 60 frames:
+// Gets all loaded Particle Systems and pre-updates them by 60 frames
 var _systems = payload.GetParticleSystems(); // [!code highlight]
 if (array_length(_systems) > 0) {
     repeat (60) {
@@ -290,7 +290,7 @@ Returns the ID of the created Text matching the given room ID if found, or :Unde
 :::code-group
 ```js [Example]
 // Gets the created Text ID using its "TextTitle" room ID, and if found,
-// randomizes its angle:
+// randomizes its angle
 var _text = payload.GetText("TextTitle"); // [!code highlight]
 if (_text != undefined) {
     layer_text_angle(_text, random(360));
@@ -307,7 +307,7 @@ Returns an array of created Texts.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Texts and randomizes their colors:
+// Gets an array of created Texts and randomizes their colors
 array_foreach(payload.GetTexts(), function(_text) { // [!code highlight]
     layer_text_color(_text, make_color_hsv(irandom(255), 200, 200));
 });
@@ -328,7 +328,7 @@ Returns the ID of the created Background matching the given layer name if found,
 :::code-group
 ```js [Example]
 // Gets the created Background ID from the "BackgroundClouds" layer and if found,
-// blends it orange:
+// blends it orange
 var _bg = payload.GetBackground("BackgroundClouds"); // [!code highlight]
 if (_bg != undefined) {
     layer_background_blend(_bg, c_orange);
@@ -345,7 +345,7 @@ Returns an array of created Backgrounds.
 
 :::code-group
 ```js [Example]
-// Gets an array of created Backgrounds and randomizes their image indices:
+// Gets an array of created Backgrounds and randomizes their image indices
 array_foreach(payload.GetBackgrounds(), function(_bg) { // [!code highlight]
     var _frames = sprite_get_number(layer_background_get_sprite(_bg));
     layer_background_index(_bg, irandom(_frames - 1));

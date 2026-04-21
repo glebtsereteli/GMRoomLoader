@@ -15,15 +15,15 @@ Just like everywhere else in GameMaker, layer names are case-sensitive and must 
 
 ::: code-group
 ```js [Loading With Filters]
-// Whitelists "Trees", "Rocks" and "Grass" layers, only those will be loaded:
+// Whitelists "Trees", "Rocks" and "Grass" layers, only those will be loaded
 RoomLoader.LayerWhitelistAdd("Trees", "Rocks", "Grass"); // [!code highlight]
 
-// Blacklists the "Rocks" layer. Now only "Trees" and "Grass" will be loaded:
+// Blacklists the "Rocks" layer. Now only "Trees" and "Grass" will be loaded
 RoomLoader.LayerBlacklistAdd("Rocks"); // [!code highlight]
 
 payload = RoomLoader.Load(rmForest, x, y);
 
-// Reset both filters:
+// Reset both filters
 RoomLoader.LayerWhitelistReset().LayerBlacklistReset(); // [!code highlight]
 ```
 :::
@@ -45,10 +45,10 @@ Adds all given layer names to the Whitelist layer filter.
 
 ::: code-group
 ```js [Example]
-// Whitelists the "Buildings" layer name:
+// Whitelists the "Buildings" layer name
 RoomLoader.LayerWhitelistAdd("Buildings");
 
-// Whitelists the "Trees" and "Rocks" layer names:
+// Whitelists the "Trees" and "Rocks" layer names
 RoomLoader.LayerWhitelistAdd("Trees", "Rocks");
 ```
 :::
@@ -66,10 +66,10 @@ Removes all given layer names from the Whitelist layer filter.
 
 ::: code-group
 ```js [Example]
-// Removes the "Buildings" layer name from Whitelist:
+// Removes the "Buildings" layer name from Whitelist
 RoomLoader.LayerWhitelistRemove("Buildings");
 
-// Removes "Trees" and "Rocks" layer names from Whitelist:
+// Removes "Trees" and "Rocks" layer names from Whitelist
 RoomLoader.LayerWhitelistRemove("Trees", "Rocks");
 ```
 :::
@@ -87,7 +87,7 @@ Sets the Whitelist layer filter to the given array of layer names.
 
 ::: code-group
 ```js [Example]
-// Whitelists "Bushes", "Trees" and "Flowers":
+// Whitelists "Bushes", "Trees" and "Flowers"
 var _whitelist = ["Bushes", "Trees", "Flowers"];
 RoomLoader.LayerWhitelistSet(_whitelist);
 ```
@@ -102,7 +102,7 @@ Resets the Whitelist layer filter by removing all names from it.
 
 ::: code-group
 ```js [Example]
-RoomLoader.LayerWhitelistReset(); // Resets the Whitelist.
+RoomLoader.LayerWhitelistReset(); // Resets the Whitelist
 ```
 :::
 
@@ -115,7 +115,7 @@ Returns an array of whitelisted layer names.
 
 ::: code-group
 ```js [Example]
-// Gets an array of whitelisted layer names, blacklists them and resets Whitelist:
+// Gets an array of whitelisted layer names, blacklists them and resets Whitelist
 array_foreach(RoomLoader.LayerWhitelistGet(), function(_layerName) { // [!code highlight]
     RoomLoader.LayerBlacklistAdd(_layerName);
 });
@@ -140,10 +140,10 @@ Adds all given layer names to the Blacklist layer filter.
 
 ::: code-group
 ```js [Example]
-// Blacklists the "Buildings" layer name:
+// Blacklists the "Buildings" layer name
 RoomLoader.LayerBlacklistAdd("Buildings");
 
-// Blacklists the "Trees" and "Rocks" layer names:
+// Blacklists the "Trees" and "Rocks" layer names
 RoomLoader.LayerBlacklistAdd("Trees", "Rocks");
 ```
 :::
@@ -161,10 +161,10 @@ Removes all given layer names from the Blacklist layer filter.
 
 ::: code-group
 ```js [Example]
-// Removes the "Buildings" layer name from Blacklist:
+// Removes the "Buildings" layer name from Blacklist
 RoomLoader.LayerBlacklistRemove("Buildings");
 
-// Removes "Trees" and "Rocks" layer names from Blacklist:
+// Removes "Trees" and "Rocks" layer names from Blacklist
 RoomLoader.LayerBlacklistRemove("Trees", "Rocks");
 ```
 :::
@@ -182,7 +182,7 @@ Sets the Blacklist layer filter to the given array of layer names.
 
 ::: code-group
 ```js [Example]
-// Blacklists "Bushes", "Trees" and "Flowers":
+// Blacklists "Bushes", "Trees" and "Flowers"
 var _blacklist = ["Bushes", "Trees", "Flowers"];
 RoomLoader.LayerBlacklistSet(_blacklist);
 ```
@@ -197,7 +197,7 @@ Resets the Blacklist layer filter by removing all previously added layer names.
 
 ::: code-group
 ```js [Example]
-RoomLoader.LayerBlacklistReset(); // Resets the Blacklist.
+RoomLoader.LayerBlacklistReset(); // Resets the Blacklist
 ```
 :::
 
@@ -210,7 +210,7 @@ Returns an array of blacklisted layer names.
 
 ::: code-group
 ```js [Example]
-// Gets an array of blacklisted layer names, whitelists them and resets Blacklist:
+// Gets an array of blacklisted layer names, whitelists them and resets Blacklist
 array_foreach(RoomLoader.LayerBlacklistGet(), function(_layerName) { // [!code highlight]
     RoomLoader.LayerWhitelistAdd(_layerName);
 });

@@ -15,7 +15,7 @@ This system uses a [Builder](https://refactoring.guru/design-patterns/builder) p
 
 :::code-group
 ```js [Examples]
-// Loads rmExample's sprites and sequences centered in the room and randomly rotated:
+// Loads rmExample's sprites and sequences centered in the room and randomly rotated
 payload = RoomLoader
 .Sprites().Sequences() // [!code highlight]
 .MiddleCenter().Angle(random(360)) // [!code highlight]
@@ -25,7 +25,7 @@ payload = RoomLoader
 instances = RoomLoader.Scale(2).LoadInstances(rmExample, x, y); // [!code highlight]
 
 // When working with perspective visuals, turns a visual walls tilemap into
-// a collision tilemap:
+// a collision tilemap
 collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision) // [!code highlight]
 .LoadTilemap(rmExample, 0, 0, "Walls", collisionLayer);
@@ -57,7 +57,7 @@ Sets the X :Origin: State to use in the next :Loading: or :Screenshotting: call.
 
 :::code-group
 ```js [Example]
-// Loads rmExample with a Top-Center origin:
+// Loads rmExample with a Top-Center origin
 RoomLoader.XOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -75,7 +75,7 @@ Sets the Y :Origin: State to use in the next :Loading: or :Screenshotting: call.
 
 :::code-group
 ```js [Example]
-// Loads rmExample with a Middle-Left origin:
+// Loads rmExample with a Middle-Left origin
 RoomLoader.YOrigin(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -94,7 +94,7 @@ Sets the X and Y Origin states to use in the next :Loading: or :Screenshotting: 
 
 :::code-group
 ```js [Example]
-// Loads rmExample with a Middle-Center origin:
+// Loads rmExample with a Middle-Center origin
 RoomLoader.Origin(0.5, 0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -120,10 +120,10 @@ The goal with these is readability: the methods create a natural English-like fl
 
 ::: code-group
 ```js [Examples]
-// Load rmExample at the top-right corner of the room with Top-Right origin:
+// Load rmExample at the top-right corner of the room with Top-Right origin
 payload = RoomLoader.TopRight().Load(rmExample, room_width, room_height); // [!code highlight]
 
-// Take a centered screenshot of rmExample:
+// Take a centered screenshot of rmExample
 screenshot = RoomLoader.MiddleCenter().Screenshot(rmExample); // [!code highlight]
 ```
 :::
@@ -142,7 +142,7 @@ Sets the Flags to use in the next :Loading: or :Screenshotting: call. Check out 
 
 :::code-group
 ```js [Example]
-// Loads rmExample's Tilemaps and Sequences:
+// Loads rmExample's Tilemaps and Sequences
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SEQUENCES;
 RoomLoader.Flags(_flags).Load(rmExample, x, y); // [!code highlight]
 ```
@@ -172,13 +172,13 @@ Similar to [Origin Presets](#presets) above, this approach makes the code read i
 
 ::: code-group
 ```js [Examples]
-// Load rmExample's Instances: 
+// Load rmExample's Instances
 RoomLoader.Instances().Load(rmExample, x, y); // [!code highlight]
 
-// Load rmExample's Instances, Tilemaps and Backgrounds:
+// Load rmExample's Instances, Tilemaps and Backgrounds
 RoomLoader.Instances().Tilemaps().Backgrounds().Load(rmExample, x, y); // [!code highlight]
 
-// Take a screenshot of rmExample with only Sprites and Tilemaps visible:
+// Take a screenshot of rmExample with only Sprites and Tilemaps visible
 RoomLoader.Sprites().Tilemaps().Screenshot(rmExample); // [!code highlight]
 ```
 ```js [Breakdown]
@@ -192,10 +192,10 @@ RoomLoader
 // Third call, Sprites are added.
 // Current flags representation: ROOMLOADER_FLAG.INSTANCES | ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES
 .Sprites() // [!code highlight]
-// Load rmExample's Instances, Tilemaps and Sprites:
+// Load rmExample's Instances, Tilemaps and Sprites
 .Load(rmExample, x, y);
 
-// And in one line:
+// And in one line
 RoomLoader.Instances().Tilemaps().Sprites().Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -214,7 +214,7 @@ Horizontally scales the next :Loading: or :Screenshotting: call by setting the *
 
 :::code-group
 ```js [Example]
-// Loads rmExample horizontally scaled up by 2:
+// Loads rmExample horizontally scaled up by 2
 RoomLoader.XScale(2).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -232,7 +232,7 @@ Vertically scales the next :Loading: or :Screenshotting: call by setting the **Y
 
 :::code-group
 ```js [Example]
-// Loads rmExample vertically scaled up by 2:
+// Loads rmExample vertically scaled up by 2
 RoomLoader.YScale(2).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -251,7 +251,7 @@ Sets horizontal and vertical scale states to be used in the next :Loading: or :S
 
 :::code-group
 ```js [Example]
-// Loads rmExample scaled to half-size:
+// Loads rmExample scaled to half-size
 RoomLoader.Scale(0.5).Load(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -269,7 +269,7 @@ When `true`, mirrors the next :Loading: or :Screenshotting: by setting the **XSc
 
 :::code-group
 ```js [Example]
-// Loads a mirrored tilemap from the "Tilemap" layer in rmExample:
+// Loads a mirrored tilemap from the "Tilemap" layer in rmExample
 RoomLoader.Mirror().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 ```
 :::
@@ -287,7 +287,7 @@ When `true`, flips the next :Loading: or :Screenshotting: by setting the **YScal
 
 :::code-group
 ```js [Example]
-// Loads a flipped tilemap from the "Tilemap" layer in rmExample:
+// Loads a flipped tilemap from the "Tilemap" layer in rmExample
 RoomLoader.Flip().LoadTilemap(rmExample, x, y, "Tilemap"); // [!code highlight]
 ```
 :::
@@ -305,7 +305,7 @@ Rotates the next :Loading: by setting the **Angle** State.
 
 :::code-group
 ```js [Example]
-// Loads rmExample's instances centered and randomly rotated:
+// Loads rmExample's instances centered and randomly rotated
 RoomLoader.Angle(random(360)).MiddleCenter().LoadInstances(rmExample, x, y); // [!code highlight]
 ```
 :::
@@ -325,7 +325,7 @@ Uses the given tileset in the next :RoomLoader.LoadTilemap(): call by setting th
 :::code-group
 ```js [Example]
 // When working with perspective visuals, turns a visual walls tilemap into
-// a collision tilemap:
+// a collision tilemap
 collisionTilemap = RoomLoader
 .Tileset(tsWallsCollision) // [!code highlight]
 .LoadTilemap(rmExample, 0, 0, "Walls", collisionLayer);
@@ -349,11 +349,11 @@ This works similarly to part definition in :draw_sprite_part():, with the only d
 
 :::code-group
 ```js [Example]
-// Takes a sprite screenshot of the top-left quadrant of rmExample:
+// Takes a sprite screenshot of the top-left quadrant of rmExample
 screenshot = RoomLoader.Part(0, 0, 0.5, 0.5).ScreenshotSprite(rmExample); // [!code highlight]
 
 // Takes a centered sprite screenshot of the bottom-right quadrant of rmExample,
-// captures only instances and scales the sprite by a factor of 0.5:
+// captures only instances and scales the sprite by a factor of 0.5
 screenshot = RoomLoader
 .Part(0.5, 0.5, 0.5, 0.5) // [!code highlight]
 .Scale(0.5)

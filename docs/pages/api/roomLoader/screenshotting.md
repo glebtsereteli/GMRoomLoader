@@ -42,18 +42,18 @@ Make sure to keep track of them and delete them using [sprite_delete()](https://
 
 :::code-group
 ```js [Regular]
-// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotSprite(rmExample, 0.5, 0.5, _flags); // [!code highlight]
 
-// Takes a scaled down sprite screenshot of rmExample:
+// Takes a scaled down sprite screenshot of rmExample
 screenshot = RoomLoader.ScreenshotSprite(rmExample, 0, 0, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
-// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites
 screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().ScreenshotSprite(rmExample); // [!code highlight]
 
-// Takes a scaled down sprite screenshot of rmExample:
+// Takes a scaled down sprite screenshot of rmExample
 screenshot = RoomLoader.Scale(0.5).ScreenshotSprite(rmExample);
 ```
 :::
@@ -85,18 +85,18 @@ This is especially useful when building your own dynamic texture pages at runtim
 
 :::code-group
 ```js [Regular]
-// Takes a surface screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a surface screenshot of rmExample with only Tilemaps and Sprites
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotSurface(rmExample, _flags); // [!code highlight]
 
-// Takes a scaled down surface screenshot of rmExample:
+// Takes a scaled down surface screenshot of rmExample
 screenshot = RoomLoader.ScreenshotSurface(rmExample, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
-// Takes a surface screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a surface screenshot of rmExample with only Tilemaps and Sprites
 screenshot = RoomLoader.Tilemaps().Sprites().ScreenshotSurface(rmExample); // [!code highlight]
 
-// Takes a scaled down surface screenshot of rmExample:
+// Takes a scaled down surface screenshot of rmExample
 screenshot = RoomLoader.Scale(0.5).ScreenshotSurface(rmExample);
 ```
 :::
@@ -128,18 +128,18 @@ This is especially useful when building your own dynamic texture pages at runtim
 
 :::code-group
 ```js [Regular]
-// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites
 var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
 screenshot = RoomLoader.ScreenshotBuffer(rmExample, _flags); // [!code highlight]
 
-// Takes a scaled down buffer screenshot of rmExample:
+// Takes a scaled down buffer screenshot of rmExample
 screenshot = RoomLoader.ScreenshotBuffer(rmExample, ROOMLOADER_FLAG.ALL, 0.5, 0.5);
 ```
 ```js [State]
-// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites:
+// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites
 screenshot = RoomLoader.Tilemaps().Sprites().ScreenshotBuffer(rmExample); // [!code highlight]
 
-// Takes a scaled down buffer screenshot of rmExample:
+// Takes a scaled down buffer screenshot of rmExample
 screenshot = RoomLoader.Scale(0.5).ScreenshotBuffer(rmExample);
 ```
 :::

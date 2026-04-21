@@ -104,13 +104,13 @@ The keyboard key that triggers room loading via the :Debug View:.
 Specifies which rooms can be loaded through the :Debug View:. Expects an :Array: of :Asset.GMRoom:. If left `undefined`, all rooms in the project will be available.
 :::code-group
 ```js [Definition Examples]
-// All rooms in the project:
+// All rooms in the project
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS undefined
 
-// A few hardcoded rooms:
+// A few hardcoded rooms
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS [rmChunkA, rmChunkB, rmChunkC]
 
-// All rooms with the Chunk tag assigned:
+// All rooms with the Chunk tag assigned
 #macro ROOMLOADER_DEBUG_VIEW_ROOMS tag_get_asset_ids("Chunk", asset_room)
 ```
 :::
