@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoInstances() : Demo("Instances") constructor {
-	// Shared:
+	// Shared
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
@@ -55,7 +55,7 @@ function DemoInstances() : Demo("Instances") constructor {
 		Destroy();
 	};
 	
-	// Custom:
+	// Custom
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	xScale = 1;

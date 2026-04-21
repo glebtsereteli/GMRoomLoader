@@ -38,8 +38,8 @@ When loading rooms using :RoomLoader.Load():, whether to merge loaded layers wit
 - If `true`: merge into existing layers with the same name. If no matching layer exists, a new one will be created.
 - If `false`: a new layer is always created, even if a layer with the same name already exists.
 
-::: warning
-Enabling this may result in layers shared between elements loaded from multiple rooms being unintentionally destroyed during :Payload.Cleanup():.
+::: info PAYLOAD TRACKING
+Layers reused for merging are not tracked by :Payload: and will not be destroyed during :.Cleanup():.
 :::
 
 ---

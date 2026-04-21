@@ -1,20 +1,6 @@
 // feather ignore all
 
 function __RoomLoaderNoop() {}
-function __RoomLoaderGetLayer(_data) {
-	if (ROOMLOADER_MERGE_LAYERS and layer_exists(_data.name)) {
-		return layer_get_id(_data.name);
-	}
-	
-	var _layer = layer_create(_data.depth, _data.name);
-	layer_set_visible(_layer, _data.visible);
-	layer_x(_layer, _data.xoffset);
-	layer_y(_layer, _data.yoffset);
-	layer_hspeed(_layer, _data.hspeed);
-	layer_vspeed(_layer, _data.vspeed);
-	
-	return _layer;
-}
 function __RoomLoaderLogBase(_message) {
 	show_debug_message($"[{__ROOMLOADER_NAME}] {_message}.");
 }

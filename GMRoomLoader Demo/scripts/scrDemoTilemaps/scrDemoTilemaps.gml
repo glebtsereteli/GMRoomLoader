@@ -1,7 +1,7 @@
 // feather ignore all
 
 function DemoTilemaps() : Demo("Tilemaps") constructor {
-	// Shared:
+	// Shared
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
@@ -70,7 +70,7 @@ function DemoTilemaps() : Demo("Tilemaps") constructor {
 		Destroy();
 	};
 	
-	// Custom:
+	// Custom
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	mirror = false;

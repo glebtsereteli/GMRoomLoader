@@ -19,12 +19,25 @@
 #macro __ROOMLOADER_LAYER_START_LOAD \
 if (not __ROOMLOADER_HAS_FLAG) return; \
 if (__HasFailedFilters()) return; \
-var _layer = __RoomLoaderGetLayer(__layerData); \
-if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS & _flags)) { \
-	layer_set_fx(_layer, __fx); \
+\
+if (ROOMLOADER_MERGE_LAYERS and layer_exists(__layerData.name)) { \
+	var _layer = layer_get_id(__layerData.name); \
 } \
-if (ROOMLOADER_DELIVER_PAYLOAD) { \
-	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
+else { \
+	var _layer = layer_create(__layerData.depth, __layerData.name); \
+	layer_set_visible(_layer, __layerData.visible); \
+	layer_x(_layer, __layerData.xoffset); \
+	layer_y(_layer, __layerData.yoffset); \
+	layer_hspeed(_layer, __layerData.hspeed); \
+	layer_vspeed(_layer, __layerData.vspeed); \
+	\
+	if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS1 & _flags)) { \
+		layer_set_fx(_layer, __fx); \
+	} \
+	\
+	if (ROOMLOADER_DELIVER_PAYLOAD) { \
+		RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
+	} \
 }
 
 #endregion

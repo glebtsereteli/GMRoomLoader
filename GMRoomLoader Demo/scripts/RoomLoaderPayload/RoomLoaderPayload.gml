@@ -1,8 +1,6 @@
 // feather ignore all
 
-/// @func RoomLoaderPayload() constructor
-/// 
-/// • Returned from RoomLoader.Load(). Stores all layers and elements created by RoomLoader.Load(), handles element fetching and cleanup.
+/// • Returned from RoomLoader.Load(). Stores all newly created layers and elements, handles element fetching and cleanup.
 /// • Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
 /// • Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
 /// 
@@ -248,16 +246,13 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Cleanup
 	
-	/// Destroys created layers and their elements. After calling this method, the instance becomes practically useless and should be dereferenced to be picked up by the Garbage Collector.
-	/// NOTE: Setting destroyLayers to false can be useful if ROOMLOADER_MERGE_LAYERS is set to true and you don't want to accidentally destroy layers shared between multiple loaded rooms, and destroy only created elements instead.
-	/// 
-	/// @param {Bool} destroyLayers Whether to destroy loaded layers (true) or not (false). [Default: true]
+	/// Destroys all created layers and elements.
+	/// After calling this method, the Payload instance should be dereferenced to be picked up by the Garbage Collector.
 	/// 
 	/// @returns {Struct.RoomLoaderPayload}
 	/// @self RoomLoaderPayload
-	static Cleanup = function(_destroyLayers = true) {
+	static Cleanup = function() {
 		static _methodName = "Cleanup";
-		static _benchMessage = "Unloaded";
 		
 		if (__cleanedUp) {
 			__RoomLoaderLogMethod(__messagePrefix, _methodName, $"data for <{room_get_name(__room)}> is already cleaned up");
@@ -272,12 +267,10 @@ function RoomLoaderPayload(_room) constructor {
 		__particleSystems.__Destroy();
 		__texts.__Destroy();
 		__backgrounds.__Destroy();
-		if (_destroyLayers) {
-			__layers.__Destroy();
-		}
+		__layers.__Destroy();
 		__cleanedUp = true;
 		
-		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, _benchMessage, __room);
+		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Unloaded", __room);
 		
 		return self;
 	};
