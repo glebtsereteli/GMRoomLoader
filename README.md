@@ -1,15 +1,12 @@
 ![](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-# GMRoomLoader v3.0.0
-GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons, dynamic chunk systems, room previews and more.
+# GMRoomLoader [![Release](https://img.shields.io/github/v/release/glebtsereteli/GMRoomLoader?style=flat&logo=github&logoColor=white)](https://github.com/glebtsereteli/GMRoomLoader/releases)
 
-Getting started is effortless! Loading an entire room takes just a single line of code:
-```js
-RoomLoader.Load(rmExample, x, y);
-```
+GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons and chunked worlds, capture room screenshots, and more.
 
 * ℹ️ Download the `.yymps` local package for [GameMaker Monthly](https://releases.gamemaker.io/#:~:text=GameMaker%20Release%20Notes-,Monthly,-Released%20roughly%20every) from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
-* ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples and full API reference.
+* ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples, and full API reference.
+* ℹ️ See the [Getting Started](https://glebtsereteli.github.io/GMRoomLoader/pages/home/gettingStarted/gettingStarted#getting-started) page to load your first room.
 
 <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
   <tr>
@@ -23,9 +20,9 @@ RoomLoader.Load(rmExample, x, y);
 </table>
 
 # Use Cases
-* **Procedural Generation**. Design hand-crafted room templates and place them procedurally at runtime. Build Spelunky-style dungeons, modular levels, randomized prop layouts, and more.
-* **Chunking**. Split your world into chunks and load or unload them dynamically as the player moves, enabling seamless open-world exploration without loading screens.
-* **Room Screenshots**. Capture screenshots of any room without ever visiting it and use them for level selection menus, map previews or seamless room transitions.
+* **Procedural Generation**. Design hand-crafted room templates and assemble them at runtime to create fresh levels every time. Build modular worlds, Spelunky-style dungeons, endless runners, or anything else where you need multiple rooms in one.
+* **Chunking**. Split your world into chunks and load or unload them dynamically as the player moves. Everything happens inside a single room, with no room switching or loading screens.
+* **Room Screenshots**. Capture screenshots of any room without visiting it. Use them for level select menus, map previews, or seamless room transitions.
 
 # Features
 * **Flexible Loading**. Load [Full Rooms](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#load), [Instances](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadinstances) or [Tilemaps](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadtilemap) anywhere in the current room, with optional [origin](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/origin), [scaling](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#scale), [mirroring](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#mirror), [flipping](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#flip) and [rotation](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#angle).

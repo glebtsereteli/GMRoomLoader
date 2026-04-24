@@ -1,18 +1,14 @@
 # What is GMRoomLoader?
 
-GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons, dynamic chunk systems, room previews and more.
+GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons and chunked worlds, capture room screenshots, and more.
 
-Getting started is effortless! Loading an entire room takes just a single line of code:
-```js
-RoomLoader.Load(rmExample, x, y);
-```
 * ℹ️ Download the `.yymps` local package for [GameMaker Monthly](https://releases.gamemaker.io/#:~:text=GameMaker%20Release%20Notes-,Monthly,-Released%20roughly%20every) from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
 * ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples and full API reference.
 
-## Use Cases
-* **Procedural Generation**. Design hand-crafted room templates and place them procedurally at runtime. Build Spelunky-style dungeons, modular levels, randomized prop layouts, and more.
-* **Chunking**. Split your world into chunks and load or unload them dynamically as the player moves, enabling seamless open-world exploration without loading screens.
-* **Room Screenshots**. Capture screenshots of any room without ever visiting it and use them for level selection menus, map previews or seamless room transitions.
+# Use Cases
+* **Procedural Generation**. Design hand-crafted room templates and assemble them at runtime to create fresh levels every time. Build modular worlds, Spelunky-style dungeons, endless runners, or anything else where you need multiple rooms in one.
+* **Chunking**. Split your world into chunks and load or unload them dynamically as the player moves. Everything happens inside a single room, with no room switching or loading screens.
+* **Room Screenshots**. Capture screenshots of any room without visiting it. Use them for level select menus, map previews, or seamless room transitions.
 
 ::: warning DISCLAIMER
 GMRoomLoader is designed specifically for __loading room contents__.
