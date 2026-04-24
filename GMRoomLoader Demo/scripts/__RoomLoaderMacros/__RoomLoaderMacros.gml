@@ -3,7 +3,7 @@
 #region Info
 
 #macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2026.03.31" // year.month.day
+#macro __ROOMLOADER_DATE "2026.##.##" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 
 #endregion

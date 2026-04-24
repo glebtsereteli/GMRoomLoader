@@ -1,17 +1,14 @@
 ![](https://github.com/glebtsereteli/GMRoomLoader/assets/50461722/e82ecee8-149d-4a04-bf85-4010535ce033)
 
-<h1 align="center">GMRoomLoader v3.0.0 </h1>
-<p align="center">
-  Runtime room loading for
-  GameMaker <a href="https://releases.gamemaker.io/release-notes/2024/14_3"> v2024.14.3</a>
-</p>
+# GMRoomLoader v3.0.0
+GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons, dynamic chunk systems, room previews and more.
 
-# Overview
-GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library for creating room prefabs and loading room contents at runtime, AKA "loading other rooms into the current room".
+Getting started is effortless! Loading an entire room takes just a single line of code:
+```js
+RoomLoader.Load(rmExample, x, y);
+```
 
-It provides tools to process the data returned by [room_get_info()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm), load room contents efficiently during gameplay, and clean up created elements when needed.
-
-* ℹ️ Download the `.yymps` local package from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
+* ℹ️ Download the `.yymps` local package for [GameMaker Monthly](https://releases.gamemaker.io/#:~:text=GameMaker%20Release%20Notes-,Monthly,-Released%20roughly%20every) from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
 * ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples and full API reference.
 
 <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
@@ -26,20 +23,18 @@ It provides tools to process the data returned by [room_get_info()](https://manu
 </table>
 
 # Use Cases
-* **Procedural Generation**. Create custom level templates and place them procedurally throughout your levels (e.g. dungeon rooms, chunks, NPCs or randomized props).
-* **Chunking**. Divide large rooms into smaller sections, loading or unloading them dynamically as the player moves closer or farther away.​
-* **Room Thumbnails**. Take screenshots of your rooms and use them in level selection menus, seamless room transitions or loading previews.
-* **UI**. Design your interfaces directly in the Room Editor and load them on the fly in-game (as of [2024.13](https://gamemaker.io/en/blog/release-2024-13),​ this is mostly superseded by GameMaker's [UI Layers](https://manual.gamemaker.io/monthly/en/#t=The_Asset_Editors%2FRoom_Properties%2FUI_Layers.htm)​).
+* **Procedural Generation**. Design hand-crafted room templates and place them procedurally at runtime. Build Spelunky-style dungeons, modular levels, randomized prop layouts, and more.
+* **Chunking**. Split your world into chunks and load or unload them dynamically as the player moves, enabling seamless open-world exploration without loading screens.
+* **Room Screenshots**. Capture screenshots of any room without ever visiting it and use them for level selection menus, map previews or seamless room transitions.
 
 # Features
-* **Pure GML Implementation**. No extensions or external tools required.
-* **Easy Data Handling**. Initialize and remove data in multiple ways: [Single/Multiple](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datainit), [Array](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datainitarray), [Prefix](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datainitprefix), [Tag](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datainittag), or [All](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datainitall). Retrieve core room info with [Getters](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#status-getters).
-* **Flexible Loading**. Load [Full Rooms](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#load), [Instances](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadinstances) or [Tilemaps](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadtilemap) at any position in the current room - all with optional origin, scaling, mirroring, flipping and rotation.
-* **Filtering Options**. Filter elements by [Asset Type](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/assetTypeFiltering) and/or layers by [Layer Name](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/layerNameFiltering).
-* **Full Lifecycle Control**. Manage loaded contents with [Payload](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview) tracking - [Fetch IDs](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/getters) and [Destroy](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/cleanup) loaded elements.
-* **Screenshotting**. Capture room [Screenshots](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting) as [Sprites](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotsprite), [Surfaces](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotsurface) or [Buffers](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotbuffer) from anywhere, without ever visiting target rooms - with optional part definition, scaling and filtering.
-* **[Fluent State Builder](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state)**. Configure optional arguments before loading or screenshotting in a simple, English-like flow.
-* **Quick Debug Loading**. Load any room in the project at the mouse position with fully configurable parameters via the [Debug View](https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView) interface. Perfect for quick testing - no code required!
+* **Flexible Loading**. Load [Full Rooms](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#load), [Instances](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadinstances) or [Tilemaps](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/loading#loadtilemap) anywhere in the current room, with optional [origin](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/origin), [scaling](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#scale), [mirroring](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#mirror), [flipping](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#flip) and [rotation](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state#angle).
+* **Full Lifecycle Control**. Track everything loaded with [Payload](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview). [Fetch IDs](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/getters), [adjust depths](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/depth), and [clean up](https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/cleanup) whenever you're done.
+* **Powerful Screenshotting**. Capture any room as a [Sprite](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotsprite), [Surface](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotsurface) or [Buffer](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/screenshotting#screenshotbuffer) without ever visiting it, with optional [part definition](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state/#part), scaling and filtering.
+* **Filtering Options**. Filter elements by [Asset Type](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/assetTypeFiltering) and/or layers by [Layer Name](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/layerNameFiltering) for precise control over what gets loaded.
+* **[Fluent State Builder](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/state)**. Configure optional parameters before loading or screenshotting in a clean, English-like flow.
+* **Quick Debug Loading**. Load any room at the mouse position with fully configurable parameters via the [Debug View](https://glebtsereteli.github.io/GMRoomLoader/pages/api/debugView/debugView). Perfect for testing with zero code required.
+* **Easy Data Access**. Query room data before ever loading it. Retrieve [layer names](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datagetlayernames), [instance data](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datagetinstances), [room dimensions](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#datagetwidth) and more with built-in [Getters](https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/data#status-getters).
 
 # GameMaker Awards!
 GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamemaker-awards-2025) at the GameMaker Awards after being nominated two years in a row in both [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/voting-gamemaker-awards-2025)!
@@ -52,10 +47,11 @@ GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamema
 
 # Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
-- Logos and demo rooms designed by my wife [Kate]([https://www.instagram.com/k8te_iv](https://www.linkedin.com/in/kate-ivanova22/)) ❣️
-- Originally motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
+- Wonderful promo art by the very talented [neerikiffu](https://bsky.app/profile/neerikiffu.bsky.social)!
+- Additional art and demo rooms designed by my wife [Kate](https://www.linkedin.com/in/kate-ivanova22/) ❣️
+- Motivated by and made for [TabularElf](https://twitter.com/TabularElf)'s [Cookbook Jam #1](https://itch.io/jam/cookbook-jam-1).
 - Thank you to [YellowAfterlife](https://twitter.com/YellowAfterlife) for inspiring this library with his OG [GMRoomPack](https://yellowafterlife.itch.io/gmroompack), various help and ideas.
-- Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with the new [VitePress](https://vitepress.dev/)-based documentation.
+- Thank you to [Topher Anselmo](https://topheranselmo.com/) for inspiration and help with [VitePress](https://vitepress.dev/)-based documentation.
 - Demo art by [Kenney](https://kenney.nl) the ✨*Asset Jesus*✨.
 
 # Games Using GMRoomLoader
@@ -63,11 +59,12 @@ GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamema
 * [DirtWorld](https://krankenhaus-uk.itch.io/dirtworld) by [Joe Baxter-Webb](https://bsky.app/profile/indiegameclinic.bsky.social) (AKA [Indie Game Clinic](https://indiegameclinic.com/) and [KRANKENHAUS](https://krankenhaus-uk.itch.io/)).
 * [Horizonite](https://store.steampowered.com/app/2151140/Horizonite/) by [Phablix](https://linktr.ee/phablix).
 * [Desukupet](https://www.twitch.tv/grogdev) by [GrogDev](https://grog.dev/) and [PixelatedPope](https://www.pixelatedpope.com/).
+* [Flashes of Chaos](https://store.steampowered.com/app/3399100/Flashes_of_Chaos/) by [Brainburn Studio](https://x.com/BrainburnStudio).
 * [Project Reality: Shattered](https://www.twitch.tv/brewerthegreater) by BrewerTheGreater.
 * [Canon](https://canonrpg.tumblr.com/) by [sonyPlaytation](https://sonyplaytation.neocities.org/).
 * [Goober Launch](https://x.com/GamedevGeoff/status/1867928068767261170) by [Geoff Moore](https://geoffmoore.co.uk/).
 * [BloodVeil](https://www.youtube.com/watch?v=VHemNttUmyk) by [Christian de Mander](https://www.youtube.com/@christiandemander4256).
-* And more to come :)
+* And there's more to come! Feel free to share your project with me if you'd like it to be listed here, I'd love to see what you've built with it! 🙂
 
 # Tutorials
 * [GMRoomLoader: Simultaneous Room Loading in GameMaker](https://www.youtube.com/watch?v=mZegvOC47dw) by [DragoniteSpam](https://www.youtube.com/c/DragoniteSpam/about). Michael introduces GMRoomLoader basics and goes over a few interesting edge cases.

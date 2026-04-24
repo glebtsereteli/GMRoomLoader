@@ -295,6 +295,7 @@ export default defineConfig({
         'Tileset': '/pages/api/roomLoader/state#tileset',
         'Part': '/pages/api/roomLoader/state#part',
         'Part()': '/pages/api/roomLoader/state#part',
+        '.Part()': '/pages/api/roomLoader/state#part',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

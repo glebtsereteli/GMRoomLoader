@@ -26,18 +26,27 @@ Try loading the same room with and without transformations to see the difference
 
 Loads all layers and elements of the given room at the given coordinates, with optional :Origin:, :Asset Type: filtering, :Scaling: and :Rotation:.
 
+--- 
+
+#### Layers
+
+* By default, a new layer is created for each loaded layer at the exact depth defined in the Room Editor.
+* This can be changed by setting the [ROOMLOADER_MERGE_LAYERS](/pages/api/config#roomloader-merge-layers) config macro to `true`. When enabled, existing layers with matching names are reused instead. Reused layers are not tracked by :Payload: and will not be destroyed during :Cleanup:.
+
+Empty layers (with no elements on them) are skipped by default. This can be changed via the [ROOMLOADER_LOAD_EMPTY_LAYERS](/pages/api/config#roomloader-load-empty-layers) config macro.
+
+::: tip
+Need to adjust layer depths after loading? See the [Payload/Depth](/pages/api/payload/depth) section.
+:::
+
 ---
 
+#### Payload
 * If [ROOMLOADER_DELIVER_PAYLOAD](/pages/api/config/#roomloader-deliver-payload) is `true`, returns a :Payload: instance that tracks the IDs of all loaded layers and elements. The Payload can be used to [adjust layer depths](/pages/api/payload/depth), [retrieve element IDs](/pages/api/payload/getters), and [clean up loaded contents](/pages/api/payload/cleanup).
 * Otherwise returns :Undefined:.
 
 ---
 
-Layers are created at the exact depths defined in the Room Editor. See the [Payload/Depth](/pages/api/payload/depth) section if you need to adjust layer depths manually after loading to be above or below a certain layer/depth.
-
-::: warning EMPTY LAYERS
-Empty layers (layers with no instances, tiles, or assets) are skipped and will not be loaded.
-:::
 ::: details ℹ️ ROOM ELEMENT COVERAGE {closed}
 Full room loading supports the following elements.
 
@@ -72,9 +81,9 @@ If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both `true`, th
 | `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
 | `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the loaded data [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
-| `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: if set, or 1] |
-| `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: if set, or 1] |
-| `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: if set, or 0] |
+| `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: if set, or `1`] |
+| `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: if set, or `0`] |
 
 :::code-group
 ```js [Basic]
@@ -302,12 +311,12 @@ collisionTilemap = RoomLoader
 
 ### Variable Definitions
 
-While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values.
+While using instance [Variable Definitions](https://manual.gamemaker.io/monthly/en/The_Asset_Editors/Object_Properties/Object_Variables.htm) is [fully supported](/pages/home/faq#my-rooms-have-instances-with-variable-definitions-and-creation-code-does-gmroomloader-support-those), not all built-in instance variables can be used as values inside the Variable Definitions panel (e.g. you can't reference `x` or `y`).
 
 This is because GMRoomLoader initializes VarDefs *before* the instance itself exists. All provided variables are baked into a preCreate struct, which is later passed to the created instance. Since the instance does not yet exist at that point, built-in variables are inaccessible.
 
 If you need to use values that aren't accessible at that stage, either set a default value (like `undefined`) and resolve it in the Create event, or use Instance Creation Code instead (keep in mind that it runs *after* the Create event).
 
 :::tip
-This only applies to VarDefs you've modified in the room editor. Default values aren't included in the `room_get_info()` data, so GMRoomLoader doesn't load them and they initialize normally. Because of that, all built-in variables are safe to use when the definition is left at its default value.
+This only applies to VarDefs you've modified in the room editor. Default values aren't included in the data returned by :room_get_info():, so GMRoomLoader doesn't load them and they initialize normally. Because of that, all built-in variables are safe to use when the definition is left at its default value.
 :::
