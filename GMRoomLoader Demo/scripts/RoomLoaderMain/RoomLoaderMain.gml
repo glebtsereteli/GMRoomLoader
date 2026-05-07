@@ -472,7 +472,8 @@ function RoomLoader() {
 		        var _iData = _instancesData[_i];
 				
 				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
-		        _instances[_i] = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
+				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
+				_instances[_i] = _inst;
 				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				
 		        _i++;
