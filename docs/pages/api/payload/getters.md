@@ -3,7 +3,7 @@
 ## Overview
 
 This section covers two ways to retrieve created element IDs from :Payload:.
-1. Individual ID `.Get<ElementType>` getters.
+1. Individual ID `.Get<ElementType>()` getters.
     * Instances, Sprites, Particle Systems, Sequences and Texts use their room IDs.
     * Tilemaps and Backgrounds use the name of the layer they're on.
 2. Type-based `.Get<ElementType>s()` getters that return an array of element IDs, using layer names for lookup.
@@ -272,7 +272,6 @@ if (array_length(_systems) > 0) {
         });
     }
 }
-
 ```
 :::
 

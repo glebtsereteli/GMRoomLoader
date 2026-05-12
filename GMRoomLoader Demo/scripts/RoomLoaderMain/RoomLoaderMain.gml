@@ -379,7 +379,7 @@ function RoomLoader() {
 	/// @param {Real} y The y coordinate to load the room at.
 	/// @param {Real} xOrigin The x origin to load the room at. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin to load the room at. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the loaded data. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} flags The flags (ROOMLOADER_FLAG_<NAME>) used to filter which asset types are loaded. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xScale The horizontal scale to load the room at. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale to load the room at. [Default: State.YScale if set, or 1]
 	/// @param {Real} angle The angle to load the room at. [Default: State.Angle if set, or 0]
@@ -538,13 +538,13 @@ function RoomLoader() {
 	#endregion
 	#region Screenshotting
 	
-	/// Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional origin and scale to the created sprite and filters the captured elements by the given flags.
+	/// Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional origin to the created sprite, filters the captured asset types by the given flags, and applies the optional scale.
 	/// The .Part() method can be used to define a (left/top/width/height) part of the room to capture.
 	/// 
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
 	/// @param {Real} xOrigin The x origin of the created sprite. [Default: State.XOrigin if set, or ROOMLOADER_DEFAULT_XORIGIN]
 	/// @param {Real} yOrigin The y origin of the created sprite. [Default: State.YOrigin if set, or ROOMLOADER_DEFAULT_YORIGIN]
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter the captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} flags The flags (ROOMLOADER_FLAG_<NAME>) used to filter which asset types are captured. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xScale The horizontal scale to create the sprite at. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale to create the sprite at. [Default: State.YScale if set, or 1]
 	/// 
@@ -563,11 +563,11 @@ function RoomLoader() {
 		return _sprite;
 	};
 	
-	/// Takes a screenshot of the given room and returns it as a surface. If specified, filters the captured elements by the given flags and scales the output surface.
+	/// Takes a screenshot of the given room and returns it as a surface. If specified, filters the captured asset types by the given flags and scales the output surface.
 	/// The .Part() method can be used to define a (left/top/width/height) part of the room to capture.
 	/// 
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} flags The flags (ROOMLOADER_FLAG_<NAME>) used to filter which asset types are captured. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xScale The horizontal scale of the screenshot. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale of the screenshot. [Default: State.YScale if set, or 1]
 	/// 
@@ -587,11 +587,11 @@ function RoomLoader() {
 	};
 	
 	/// Takes a screenshot of the given room and returns a '{buffer, width, height}' struct, where 'buffer' is the buffer containing image data, 'width' is the width of the image and 'height' is the height of the image.
-	/// If specified, filters the captured elements by the given flags and scales the output buffer.
+	/// If specified, filters the captured asset types by the given flags and scales the output buffer.
 	/// The .Part() method can be used to define a (left/top/width/height) part of the room to capture.
 	/// 
 	/// @param {Asset.GMRoom} room The room to take a screenshot of.
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags used to filter captured elements. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
+	/// @param {Real} flags The flags (ROOMLOADER_FLAG_<NAME>) used to filter which asset types are captured. [Default: State.Flags if set, or ROOMLOADER_DEFAULT_FLAGS]
 	/// @param {Real} xScale The horizontal scale of the screenshot. [Default: State.XScale if set, or 1]
 	/// @param {Real} yScale The vertical scale of the screenshot. [Default: State.YScale if set, or 1]
 	/// 
@@ -769,7 +769,7 @@ function RoomLoader() {
 	/// Sets the Flags to use in the next load/screenshot call.
 	/// Resets automatically right after.
 	/// 
-	/// @param {Enum.ROOMLOADER_FLAG} flags The flags to filter the loaded elements by.
+	/// @param {Real} flags The flags (ROOMLOADER_FLAG_<NAME>) used to filter which asset types are loaded or screenshotted.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
@@ -780,114 +780,114 @@ function RoomLoader() {
 		return self;
 	};
 	
-	/// Adds Instances (ROOMLOADER_FLAG.INSTANCES) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.INSTANCES.
-	/// Further calls add ROOMLOADER_FLAG.INSTANCES to the existing State.Flags.
+	/// Adds Instances (ROOMLOADER_FLAG_INSTANCES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_INSTANCES.
+	/// Further calls add ROOMLOADER_FLAG_INSTANCES to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Instances = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.INSTANCES;
+		__flags |= ROOMLOADER_FLAG_INSTANCES;
 		
 		return self;
 	};
 	
-	/// Adds Tilemaps (ROOMLOADER_FLAG.TILEMAPS) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.TILEMAPS.
-	/// Further calls add ROOMLOADER_FLAG.TILEMAPS to the existing State.Flags.
+	/// Adds Tilemaps (ROOMLOADER_FLAG_TILEMAPS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_TILEMAPS.
+	/// Further calls add ROOMLOADER_FLAG_TILEMAPS to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Tilemaps = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.TILEMAPS;
+		__flags |= ROOMLOADER_FLAG_TILEMAPS;
 		
 		return self;
 	};
 	
-	/// Adds Sprites (ROOMLOADER_FLAG.SPRITES) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.SPRITES.
-	/// Further calls add ROOMLOADER_FLAG.SPRITES to the existing State.Flags.
+	/// Adds Sprites (ROOMLOADER_FLAG_SPRITES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_SPRITES.
+	/// Further calls add ROOMLOADER_FLAG_SPRITES to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Sprites = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.SPRITES;
+		__flags |= ROOMLOADER_FLAG_SPRITES;
 		
 		return self;
 	};
 	
-	/// Adds Sequences (ROOMLOADER_FLAG.SEQUENCES) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.SEQUENCES.
-	/// Further calls add ROOMLOADER_FLAG.SEQUENCES to the existing State.Flags.
+	/// Adds Sequences (ROOMLOADER_FLAG_SEQUENCES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_SEQUENCES.
+	/// Further calls add ROOMLOADER_FLAG_SEQUENCES to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Sequences = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.SEQUENCES;
+		__flags |= ROOMLOADER_FLAG_SEQUENCES;
 		
 		return self;
 	};
 	
-	/// Adds Particle Systems (ROOMLOADER_FLAG.PARTICLES) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.PARTICLES.
-	/// Further calls add ROOMLOADER_FLAG.PARTICLES to the existing State.Flags.
+	/// Adds Particle Systems (ROOMLOADER_FLAG_PARTICLES) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_PARTICLES.
+	/// Further calls add ROOMLOADER_FLAG_PARTICLES to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Particles = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.PARTICLES;
+		__flags |= ROOMLOADER_FLAG_PARTICLES;
 		
 		return self;
 	};
 	
-	/// Adds Texts (ROOMLOADER_FLAG.TEXTS) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.TEXTS.
-	/// Further calls add ROOMLOADER_FLAG.TEXTS to the existing State.Flags.
+	/// Adds Texts (ROOMLOADER_FLAG_TEXTS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_TEXTS.
+	/// Further calls add ROOMLOADER_FLAG_TEXTS to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Texts = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.TEXTS;
+		__flags |= ROOMLOADER_FLAG_TEXTS;
 		
 		return self;
 	};
 	
-	/// Adds Backgrounds (ROOMLOADER_FLAG.BACKGROUNDS) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.BACKGROUNDS.
-	/// Further calls add ROOMLOADER_FLAG.BACKGROUNDS to the existing State.Flags.
+	/// Adds Backgrounds (ROOMLOADER_FLAG_BACKGROUNDS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_BACKGROUNDS.
+	/// Further calls add ROOMLOADER_FLAG_BACKGROUNDS to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Backgrounds = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.BACKGROUNDS;
+		__flags |= ROOMLOADER_FLAG_BACKGROUNDS;
 		
 		return self;
 	};
 	
-	/// Adds Effects (ROOMLOADER_FLAG.EFFECTS) to the Flags used in the next load/screenshot call.
-	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG.EFFECTS.
-	/// Further calls add ROOMLOADER_FLAG.EFFECTS to the existing State.Flags.
+	/// Adds Effects (ROOMLOADER_FLAG_EFFECTS) to the Flags used in the next load/screenshot call.
+	/// First call before load/screenshot resets State.Flags to only ROOMLOADER_FLAG_EFFECTS.
+	/// Further calls add ROOMLOADER_FLAG_EFFECTS to the existing State.Flags.
 	/// Resets automatically right after.
 	/// 
 	/// @returns {Struct.RoomLoader}
 	/// @self RoomLoader
 	static Effects = function() {
 		__ResetStateFlags();
-		__flags |= ROOMLOADER_FLAG.EFFECTS;
+		__flags |= ROOMLOADER_FLAG_EFFECTS;
 		
 		return self;
 	};
@@ -1184,7 +1184,7 @@ function RoomLoader() {
 	};
 	static __ResetStateFlags = function() {
 		if (__flagsAreDefault) {
-			__flags = ROOMLOADER_FLAG.NONE;
+			__flags = ROOMLOADER_FLAG_NONE;
 			__flagsAreDefault = false;
 		}
 	};

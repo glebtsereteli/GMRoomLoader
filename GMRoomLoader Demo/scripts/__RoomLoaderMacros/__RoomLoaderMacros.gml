@@ -31,7 +31,7 @@ else { \
 	layer_hspeed(_layer, __layerData.hspeed); \
 	layer_vspeed(_layer, __layerData.vspeed); \
 	\
-	if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS & _flags)) { \
+	if ((__fx != undefined) and (ROOMLOADER_FLAG_EFFECTS & _flags)) { \
 		layer_set_fx(_layer, __fx); \
 	} \
 	\

@@ -86,7 +86,7 @@ This is an example of using :Screenshotting: methods to take room screenshots, w
 ---
 ### Base
 
-This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows 2 "layers" of room loading working together.
+This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows two "layers" of room loading working together.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>

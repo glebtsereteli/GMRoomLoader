@@ -15,7 +15,7 @@
 #macro ROOMLOADER_DEFAULT_YORIGIN 0
 
 // Default flags used in Loading and Screenshotting.
-#macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.ALL
+#macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG_ALL
 
 // When Loading full rooms using RoomLoader.Load(), whether to merge loaded layers with existing layers (true)
 // or keep them separate (false).

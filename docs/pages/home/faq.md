@@ -17,7 +17,7 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Nintendo Switch** | 🚧 Likely | Untested |
 
 ## What versions of GameMaker does GMRoomLoader support?
-The latest [Monthly](https://releases.gamemaker.io/release-notes/2024/14_2) release.
+The minimum supported GameMaker version is LTS 2026.0. @TODO LINK
 
 ## How is GMRoomLoader licensed? Can I use it in commercial projects?
 GMRoomLoader is licensed under the [MIT license](https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE), granting you full freedom to use it for any purpose, including commercial projects. The only requirement is to include the `GMRoomLoader License.txt` file that comes with the library package.
@@ -74,10 +74,10 @@ First store the struct in a variable when you load the room, and when it's time 
 
 :::code-group
 ```js [Example]
-// When you load a room:
+// When you load a room
 payload = RoomLoader.Load(rmExample, x, y);
 
-// When you need to unload a room:
+// When you need to unload a room
 payload.Cleanup(); // [!code highlight]
 ```
 :::
@@ -92,10 +92,10 @@ When loading instances with :RoomLoader.LoadInstances():, it returns an array of
 First store the array in a variable when you load instances, and when it's time to destroy them, loop through the array and call [instance_destroy()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Instances/instance_destroy.htm) on each instance to destroy it:
 :::code-group
 ```js [Example]
-// When you load instances:
-instances = RoomLoader.LoadInstances(rmExample, x, y);
+// When you load instances
+instances = RoomLoader.LoadInstances(rmExample, x, y, "Instances");
 
-// When you need to destroy loaded instances:
+// When you need to destroy loaded instances
 array_foreach(instances, function(_instance) { // [!code highlight]
     instance_destroy(_instance); // [!code highlight]
 }); // [!code highlight]
@@ -109,10 +109,10 @@ First store the ID in a variable, and when it's time to destroy it, call [layer_
 
 :::code-group
 ```js [Example]
-// When you load the tilemap:
+// When you load the tilemap
 tilemap = RoomLoader.LoadTilemap(rmExample, x, y, "Tiles");
 
-// When you need to destroy the tilemap:
+// When you need to destroy the tilemap
 layer_tilemap_destroy(tilemap); // [!code highlight]
 ```
 :::
@@ -126,18 +126,18 @@ To collide with this newly loaded tilemap, you need to grab its ID and store it 
 
 ::: code-group
 ```js [Example]
-// In some script, initialize a global array of collision tilemaps:
+// In some script, initialize a global array of collision tilemaps
 global.collisionTilemaps = [];
 
-// On Room Start (or somewhere else, if relevant), fetch your baseline collision tilemap ID:
+// On Room Start (or somewhere else, if relevant), fetch your baseline collision tilemap ID
 global.collisionTilemaps = [layer_tilemap_get_id("CollisionTilemap")];
 
-// When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array:
+// When loading a room, grab the collision tilemap ID and push it to the global collision tilemaps array
 payload = RoomLoader.Load(rmExample, x, y);
 collisionTilemap = payload.GetTilemap("CollisionTilemap");
 array_push(global.collisionTilemaps, collisionTilemap);
 
-// When unloading a room, remove the collision tilemap from the global collision tilemaps array:
+// When unloading a room, remove the collision tilemap from the global collision tilemaps array
 var _index = array_get_index(global.collisionTilemaps, collisionTilemap);
 array_delete(global.collisionTilemaps, _index, 1);
 payload.Cleanup();

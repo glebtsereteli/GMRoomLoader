@@ -1,8 +1,8 @@
 // feather ignore all
 
 function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoaderDataLayerParent(_layerData) constructor {
-	// shared
-	static __flag = ROOMLOADER_FLAG.INSTANCES;
+	// Shared
+	static __flag = ROOMLOADER_FLAG_INSTANCES;
 	
 	static __OnLoad = function(_layer, _x1, _y1) {
 		__ROOMLOADER_INST_LAYER_PRELOAD;
@@ -60,7 +60,7 @@ function __RoomLoaderDataLayerInstance(_layerData, _instancesData) : __RoomLoade
 		}
 	};
 	
-	// custom
+	// Custom
 	__instancesPool = array_map(_instancesData, __MapData);
 	
 	static __MapData = function(_iData) {

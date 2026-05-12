@@ -1,8 +1,8 @@
 // feather ignore all
 
 function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderDataLayerParent(_layerData) constructor {
-	// shared
-	static __flag = ROOMLOADER_FLAG.TILEMAPS;
+	// Shared
+	static __flag = ROOMLOADER_FLAG_TILEMAPS;
 	static __tile = true;
 	
 	static __OnInit = function() {
@@ -52,7 +52,7 @@ function __RoomLoaderDataLayerTile(_layerData, _elementsData) : __RoomLoaderData
 		layer_destroy(_layer);
 	};
 	
-	// custom
+	// Custom
 	__tilemapData = _elementsData[0];
 	__n = undefined;
 	

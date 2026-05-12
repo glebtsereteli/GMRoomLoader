@@ -80,7 +80,7 @@ If :ROOMLOADER_MERGE_LAYERS: and :ROOMLOADER_MERGE_TILEMAPS: are both `true`, th
 | `y` | :Real: | The y coordinate to load the room at |
 | `[xOrigin]` | :Real: | The x :Origin: to load the room at [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
 | `[yOrigin]` | :Real: | The y :Origin: to load the room at [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the loaded data [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[flags]` | :Real: | The :Flags: used to filter which asset types are loaded [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
 | `[xScale]` | :Real: | The horizontal scale to load the room at [Default: :State.XScale: if set, or `1`] |
 | `[yScale]` | :Real: | The vertical scale to load the room at [Default: :State.YScale: if set, or `1`] |
 | `[angle]` | :Real: | The angle to load the room at [Default: :State.Angle: if set, or `0`] |
@@ -95,9 +95,9 @@ var _x = room_width / 2;
 var _y = room_height / 2;
 RoomLoader.Load(rmLevelForest, _x, _y, 0.5, 0.5); // [!code highlight]
 
-// Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
+// Loads rmLevelCliffs' Sprites and Tilemaps at the bottom-right corner of the room
 // and stores the returned instance of Payload in a variable to be cleaned up later
-var _flags = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.TILEMAPS;
+var _flags = ROOMLOADER_FLAG_SPRITES | ROOMLOADER_FLAG_TILEMAPS;
 payload = RoomLoader.Load(rmLevelCliffs, room_width, room_height, 1, 1, _flags); // [!code highlight]
 ```
 ```js [State]
@@ -106,7 +106,7 @@ var _x = room_width / 2;
 var _y = room_height / 2;
 RoomLoader.MiddleCenter().Load(rmLevelForest, _x, _y); // [!code highlight]
 
-// Loads rmLevelCliff's Sprites and Tilemaps at the bottom-right corner of the room
+// Loads rmLevelCliffs' Sprites and Tilemaps at the bottom-right corner of the room
 // and stores the returned instance of Payload in a variable to be cleaned up later
 payload = RoomLoader
 .BottomRight().Sprites().Tilemaps()
@@ -211,7 +211,7 @@ var _room = script_execute_ext(choose, enemyLayoutRooms);
 var _offset = 200;
 var _x = objPlayer.x + lengthdir_x(_offset, objPlayer.angle);
 var _y = objPlayer.y + lengthdir_y(_offset, objPlayer.angle);
-enemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, depth); // [!code highlight]
+loadedEnemies = RoomLoader.Angle(objPlayer.angle - 90).LoadInstances(_room, _x, _y, depth); // [!code highlight]
 ```
 :::
 

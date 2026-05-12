@@ -51,15 +51,15 @@ function DemoModuleFlags() constructor {
 		dbg_checkbox(ref_create(self, "effects"), "Effects");
 	};
 	static Get = function() {
-		var _total = ROOMLOADER_FLAG.NONE;
-		_total |= instances * ROOMLOADER_FLAG.INSTANCES;
-		_total |= tilemaps * ROOMLOADER_FLAG.TILEMAPS;
-		_total |= sprites * ROOMLOADER_FLAG.SPRITES;
-		_total |= sequences * ROOMLOADER_FLAG.SEQUENCES;
-		_total |= particles * ROOMLOADER_FLAG.PARTICLES;
-		_total |= texts * ROOMLOADER_FLAG.TEXTS;
-		_total |= backgrounds * ROOMLOADER_FLAG.BACKGROUNDS;
-		_total |= effects * ROOMLOADER_FLAG.EFFECTS;
+		var _total = ROOMLOADER_FLAG_NONE;
+		_total |= instances * ROOMLOADER_FLAG_INSTANCES;
+		_total |= tilemaps * ROOMLOADER_FLAG_TILEMAPS;
+		_total |= sprites * ROOMLOADER_FLAG_SPRITES;
+		_total |= sequences * ROOMLOADER_FLAG_SEQUENCES;
+		_total |= particles * ROOMLOADER_FLAG_PARTICLES;
+		_total |= texts * ROOMLOADER_FLAG_TEXTS;
+		_total |= backgrounds * ROOMLOADER_FLAG_BACKGROUNDS;
+		_total |= effects * ROOMLOADER_FLAG_EFFECTS;
 		return _total;
 	};
 }

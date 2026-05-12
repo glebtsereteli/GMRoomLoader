@@ -190,7 +190,7 @@ export default defineConfig({
   markdown: {
     config: (md: MarkdownIt) => {
       const shortcuts: Record<string, string> = {
-        // types
+        // Types
         'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'Bool': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'String': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm',
@@ -198,10 +198,9 @@ export default defineConfig({
         'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',
         'Undefined': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'Noone': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Instance%20Keywords/noone.htm',
-        'Enum': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#:~:text=of%20this%20page.-,Enums,-An%20enum%20is',
         'Constant.Color': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Colour_And_Alpha/Colour_And_Alpha.htm',
 
-        // assets
+        // Assets
         'Asset.GMRoom': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm',
         'Asset.GMObject': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Objects/Objects.htm',
         'Asset.GMSprite': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprites.htm',
@@ -221,11 +220,11 @@ export default defineConfig({
         'Id.Surface': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm',
         'Id.Buffer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm',
 
-        // functions
+        // Functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
         'draw_sprite_part()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm',
 
-        // links
+        // Links
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
         'Debug Overlay': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Debugging/The_Debug_Overlay.htm',
         
@@ -258,8 +257,6 @@ export default defineConfig({
         'Full Rooms': '/pages/api/roomLoader/loading#load',
         'Instances': '/pages/api/roomLoader/loading#loadinstances',
         'Tilemaps': '/pages/api/roomLoader/loading#loadtilemap',
-        
-        'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering#roomloader-flag',
 
         'ROOMLOADER_ENABLE_DEBUG': '/pages/api/config#roomloader-enable-debug',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
@@ -274,7 +271,7 @@ export default defineConfig({
         'ROOMLOADER_DEBUG_VIEW_GET_X': '/pages/api/config#roomloader-debug-view-get-x',
         'ROOMLOADER_DEBUG_VIEW_GET_Y': '/pages/api/config#roomloader-debug-view-get-y',
         
-        // state
+        // State
         'State': '/pages/api/roomLoader/state',
         'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
         'State.YOrigin': '/pages/api/roomLoader/state#yorigin',

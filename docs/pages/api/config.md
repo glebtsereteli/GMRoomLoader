@@ -25,7 +25,7 @@ Default Y origin used in :Loading: and :Screenshotting:. [Origins](/pages/api/ro
 
 ---
 ### `ROOMLOADER_DEFAULT_FLAGS`
-> Default: `ROOMLOADER_FLAG.ALL`.
+> Default: `ROOMLOADER_FLAG_ALL`.
 
 Default flags used for :Asset Type Filtering: in :Loading: and :Screenshotting:.
 
@@ -49,7 +49,7 @@ Layers reused for merging are not tracked by :Payload: and will not be destroyed
 Whether loaded tilemaps should be merged into existing tilemaps (`true`) or not (`false`).
 * This triggers if an existing tilemap is present on a layer with the same name as the loaded layer.
 * The existing tilemap will be repositioned and resized to fit the loaded tilemap.
-* When loading full rooms via :RoomLoader.Load():, `ROOMLOADER_MERGE_LAYERS` must be set to `true` for this to work.
+* When loading full rooms via :RoomLoader.Load():, :ROOMLOADER_MERGE_LAYERS: must be set to `true` for this to work.
 * Merging is only possible if both tilemaps use the same tileset.
 
 ---
