@@ -66,14 +66,6 @@ const team = [
     ]
   },
   {
-    avatar: 'neeri.jpg',
-    name: 'Neerikiffu',
-    title: 'Logo Art',
-    links: [
-      { icon: 'bluesky', link: 'https://bsky.app/profile/neerikiffu.bsky.social' },
-    ]
-  },
-  {
     avatar: 'https://avatars.githubusercontent.com/u/159041753?v=4',
     name: 'Kate',
     title: 'Visuals & Demo Levels',
@@ -81,7 +73,15 @@ const team = [
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/kate-ivanova22/' },
       { icon: 'instagram', link: 'https://www.instagram.com/k8te_iv' },
     ]
-  }
+  },
+  {
+    avatar: 'neeri.jpg',
+    name: 'Neerikiffu',
+    title: 'Logo Art',
+    links: [
+      { icon: 'bluesky', link: 'https://bsky.app/profile/neerikiffu.bsky.social' },
+    ]
+  },
 ]
 </script>
 

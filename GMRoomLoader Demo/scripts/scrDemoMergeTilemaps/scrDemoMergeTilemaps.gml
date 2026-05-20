@@ -33,7 +33,7 @@ function DemoMergeTilemaps() : Demo("Merge Tilemaps") constructor {
 			draw_set_font(fntDemo);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
-			draw_text(DEMOS.xCenter, DEMOS.yCenter, disabledText);
+			draw_text(objDemoControl.centerX, objDemoControl.centerY, disabledText);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_top);
 			draw_set_font(-1);
@@ -111,8 +111,8 @@ function DemoMergeTilemaps() : Demo("Merge Tilemaps") constructor {
 	disabledText = "Set ROOMLOADER_MERGE_LAYERS and ROOMLOADER_MERGE_TILEMAPS\nconfig macros to true to enable this demo.";
 	
 	static Prepare = function() {
-		var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
-		var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
+		var _x = RoundTo(objDemoControl.centerX - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
+		var _y = RoundTo(objDemoControl.centerY - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
 		layer = layer_create(0, "Tiles");
 		tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
 	};

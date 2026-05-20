@@ -50,8 +50,8 @@ function DemoScreenshots() : Demo("Screenshots") constructor {
 		});
 	};
 	static Draw = function() {
-		var _x1 = DEMOS.xCenter;
-		var _y1 = DEMOS.yCenter;
+		var _x1 = objDemoControl.centerX;
+		var _y1 = objDemoControl.centerY;
 		
 		var _w = RoomLoader.DataGetWidth(rm) * w * scale;
 		var _h = RoomLoader.DataGetHeight(rm) * h * scale;

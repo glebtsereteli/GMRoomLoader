@@ -47,15 +47,17 @@ function DemoBase() : Demo("Base") constructor {
 	// Custom
 	host = {
 		ref: rmDemoBaseHost,
-		data: undefined,
+		payload: undefined,
 		
 		Init: function() {
 			RoomLoader.DataInit(ref);
-			data = RoomLoader.Load(ref, DEMOS.xCenter, DEMOS.yCenter, 0.5, 0.5);
+			payload = RoomLoader.Load(ref, objDemoControl.centerX, objDemoControl.centerY, 0.5, 0.5);
 		},
 		Cleanup: function() {
+			if (payload == undefined) return;
+			
 			RoomLoader.DataRemove(ref);
-			data.Cleanup();
+			payload.Cleanup();
 		},
 	};
 	slots = {

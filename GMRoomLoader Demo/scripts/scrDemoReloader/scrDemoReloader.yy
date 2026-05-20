@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scrDemoModules",
+  "%Name":"scrDemoReloader",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scrDemoModules",
+  "name":"scrDemoReloader",
   "parent":{
-    "name":"00 Core",
-    "path":"folders/Demo/00 Core.yy",
+    "name":"01 Core",
+    "path":"folders/Demo/01 Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,32 +1,5 @@
 // feather ignore all
 
-function DemoModulePos() constructor {
-	static reloaderNames = ["x", "y"];
-	
-	x = undefined;
-	y = undefined;
-	
-	static InitDbg = function() {
-		x = DEMOS.xCenter;
-		y = DEMOS.yCenter;
-		
-		dbg_text_separator("Position", 1);
-		dbg_slider_int(ref_create(self, "x"), 0, room_width, "X", 10);
-		dbg_slider_int(ref_create(self, "y"), 0, room_height, "Y", 10);
-	};
-}
-function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
-	static reloaderNames = ["x", "y"];
-	
-	x = _x;
-	y = _y;
-	
-	static InitDbg = function() {
-		dbg_text_separator("Origin", 1);
-		dbg_slider(ref_create(self, "x"), 0, 1, "X", 0.05);
-		dbg_slider(ref_create(self, "y"), 0, 1, "Y", 0.05);
-	};
-}
 function DemoModuleFlags() constructor {
 	static reloaderNames = ["instances", "tilemaps", "sprites", "sequences", "particles", "texts", "backgrounds", "effects"];
 	

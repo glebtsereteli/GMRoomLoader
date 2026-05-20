@@ -1,2 +1,2 @@
 
-DEMOS.Draw();
+GetCurrent().Draw();
