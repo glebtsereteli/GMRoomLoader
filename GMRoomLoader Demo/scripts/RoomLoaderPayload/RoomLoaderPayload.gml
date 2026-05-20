@@ -252,6 +252,36 @@ function RoomLoaderPayload(_room) constructor {
 	};
 	
 	#endregion
+	#region Status
+	
+	/// Returns whether the loaded room's bounding box overlaps the given camera's view (true) or not (false).
+	/// Positive padding expands the view bounds outward, negative padding shrinks them inward.
+	/// NOTE: Does not account for camera rotation.
+	/// 
+	/// @param {Id.Camera} camera The camera to check against.
+	/// @param {Real} padding The padding to apply to the view bounds. [Default: 0]
+	/// 
+	/// @returns {Bool}
+	/// @self RoomLoaderPayload
+	static IsInView = function(_camera, _pad = 0) {
+	    var _x = camera_get_view_x(_camera) - _pad;
+	    var _y = camera_get_view_y(_camera) - _pad;
+	    var _w = camera_get_view_width(_camera) + (_pad * 2);
+	    var _h = camera_get_view_height(_camera) + (_pad * 2);
+	    var _result = rectangle_in_rectangle(__bbox.x1, __bbox.y1, __bbox.x2, __bbox.y2, _x, _y, _x + _w, _y + _h);
+		
+	    return (_result > 0);
+	};
+	
+	/// Returns whether the payload has been cleaned up (true) or not (false).
+	/// 
+	/// @returns {Bool}
+	/// @self RoomLoaderPayload
+	static IsCleanedUp = function() {
+	    return __cleanedUp;
+	};
+	
+	#endregion
 	#region Cleanup
 	
 	/// Destroys all created layers and elements.

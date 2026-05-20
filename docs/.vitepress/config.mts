@@ -94,6 +94,7 @@ export default defineConfig({
               { text: 'Overview', link: '/pages/api/payload/overview' },
               { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Status', link: '/pages/api/payload/status' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
           },
@@ -141,6 +142,7 @@ export default defineConfig({
             items: [
               { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Status', link: '/pages/api/payload/status' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
@@ -219,6 +221,7 @@ export default defineConfig({
         'Id.Background': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Background_Layers/Background_Layers.htm',
         'Id.Surface': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm',
         'Id.Buffer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm',
+        'Id.Camera': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Cameras_And_Display/Cameras_And_Viewports/Cameras_And_View_Ports.htm',
 
         // Functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',

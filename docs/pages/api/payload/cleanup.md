@@ -2,7 +2,9 @@
 
 ## Overview
 
-Cleanup, also known as "unloading" or "destroying" a room, is typically used when the loaded room contents are no longer needed. For example, if you're doing chunking by dynamically loading and unloading parts of a level as the player approaches, or regenerating a procedural layout and need to clean up the previous one before loading a new one.
+Cleanup, also known as "unloading" or "destroying" a room, is typically used when the loaded room contents are no longer needed.
+
+For example, if you're doing chunking by dynamically loading and unloading parts of a level as the player approaches, or regenerating a procedural layout and need to clean up the previous one before loading a new one.
 
 ::: info MERGED LAYERS
 When [ROOMLOADER_MERGE_LAYERS](/pages/api/config/#roomloader-merge-layers) is enabled, layers reused from the host room are not tracked by :Payload: and will not be destroyed during :.Cleanup():.
