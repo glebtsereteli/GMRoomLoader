@@ -6,7 +6,7 @@
   "name":"scrDemoUtility",
   "parent":{
     "name":"99 Misc",
-    "path":"folders/01 Demo/99 Misc.yy",
+    "path":"folders/Demo/99 Misc.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

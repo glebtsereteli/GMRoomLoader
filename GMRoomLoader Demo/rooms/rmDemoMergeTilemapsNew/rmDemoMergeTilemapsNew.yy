@@ -13,7 +13,7 @@
   "name":"rmDemoMergeTilemapsNew",
   "parent":{
     "name":"04 Merge Tilemaps",
-    "path":"folders/01 Demo/04 Merge Tilemaps.yy",
+    "path":"folders/Demo/04 Merge Tilemaps.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

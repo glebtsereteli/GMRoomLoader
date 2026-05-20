@@ -13,7 +13,7 @@
   "out_tilevborder":2,
   "parent":{
     "name":"Tile Sets",
-    "path":"folders/01 Demo/01 General/Tile Sets.yy",
+    "path":"folders/Demo/01 General/Tile Sets.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

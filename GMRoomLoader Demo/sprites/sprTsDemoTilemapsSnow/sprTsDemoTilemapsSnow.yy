@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"03 Tilemaps",
-    "path":"folders/01 Demo/03 Tilemaps.yy",
+    "path":"folders/Demo/03 Tilemaps.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

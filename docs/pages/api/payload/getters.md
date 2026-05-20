@@ -14,6 +14,29 @@ All code examples on this page assume you have an existing instance of :Payload:
 
 ## Methods
 
+### `.GetBbox()`
+
+> `payload.GetBbox()` ➜ :Struct:
+
+Returns the axis-aligned bounding box of the loaded room as a struct with the following variables:
+
+| Variable | Description |
+| --- | --- |
+| `x1` | The left x coordinate of the bounding box |
+| `y1` | The top y coordinate of the bounding box |
+| `x2` | The right x coordinate of the bounding box |
+| `y2` | The bottom y coordinate of the bounding box |
+
+:::code-group
+```js [Example]
+// Gets the bounding box of the loaded room and draws a rectangle around it
+var _bbox = payload.GetBbox(); // [!code highlight]
+draw_rectangle(_bbox.x1, _bbox.y1, _bbox.x2, _bbox.y2, true);
+```
+:::
+
+---
+
 ### `.GetLayer()`
 
 > `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:

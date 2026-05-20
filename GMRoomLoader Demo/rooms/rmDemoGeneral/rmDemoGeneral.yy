@@ -272,7 +272,7 @@
   "name":"rmDemoGeneral",
   "parent":{
     "name":"01 General",
-    "path":"folders/01 Demo/01 General.yy",
+    "path":"folders/Demo/01 General.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

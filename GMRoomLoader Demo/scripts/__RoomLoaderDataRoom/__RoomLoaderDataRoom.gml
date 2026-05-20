@@ -122,6 +122,15 @@ function __RoomLoaderDataRoom(_room) constructor {
 				__layersPool[_i].__Load(_x1, _y1, _flags);
 				_i++;
 			}
+			
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
+				RoomLoader.__payload.__bbox = {
+			        x1: _x1,
+			        y1: _y1,
+			        x2: _x1 + __width,
+			        y2: _y1 + __height,
+			    };
+			}
 		}
 		else {
 			var _xOffset = __width * _xOrigin * _xScale;
@@ -135,11 +144,24 @@ function __RoomLoaderDataRoom(_room) constructor {
 			
 			var _i = 0; repeat (array_length(__layersPool)) {
 				with (__layersPool[_i]) {
-					var _xx = (__tile ? _x1 : _x);
-					var _yy = (__tile ? _y1 : _y);
+					var _xx = __tile ? _x1 : _x;
+					var _yy = __tile ? _y1 : _y;
 					__LoadTransformed(_xx, _yy, _flags, _xScale, _yScale, _angle, _sin, _cos, _xOrigin, _yOrigin);
 				}
 				_i++;
+			}
+			
+			if (ROOMLOADER_DELIVER_PAYLOAD) {
+			    var _wX = __width * _xScale * _cos;
+			    var _wY = -__width * _xScale * _sin;
+			    var _hX = __height * _yScale * _sin;
+			    var _hY = __height * _yScale * _cos;
+			    RoomLoader.__payload.__bbox = {
+			        x1: _x + min(0, _wX, _wX + _hX, _hX),
+			        y1: _y + min(0, _wY, _wY + _hY, _hY),
+			        x2: _x + max(0, _wX, _wX + _hX, _hX),
+			        y2: _y + max(0, _wY, _wY + _hY, _hY),
+			    };
 			}
 		}
 		

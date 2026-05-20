@@ -6,7 +6,7 @@
   "name":"RoomLoaderMain",
   "parent":{
     "name":"01 Public",
-    "path":"folders/02 GMRoomLoader/01 Public.yy",
+    "path":"folders/GMRoomLoader/01 Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -6,7 +6,7 @@
   "name":"scrDemoTilemaps",
   "parent":{
     "name":"03 Tilemaps",
-    "path":"folders/01 Demo/03 Tilemaps.yy",
+    "path":"folders/Demo/03 Tilemaps.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -61,11 +61,11 @@ function DemoGeneral() : Demo("General") constructor {
 		});
 	};
 	static Draw = function() {
-		var _frame = sprDemoFrame;
 		var _w = RoomLoader.DataGetWidth(rm) * xScale;
 		var _h = RoomLoader.DataGetHeight(rm) * yScale;
 		var _xOrigin = _w * origin.x;
 		var _yOrigin = _h * origin.y;
+		var _frame = sprDemoFrame;
 		var _xScale = _w / sprite_get_width(_frame);
 		var _yScale = _h / sprite_get_height(_frame);
 		DrawSpriteOrigin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xScale, _yScale, angle);

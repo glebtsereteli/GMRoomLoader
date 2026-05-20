@@ -34,7 +34,7 @@
   "name":"rmDemoTilemaps",
   "parent":{
     "name":"03 Tilemaps",
-    "path":"folders/01 Demo/03 Tilemaps.yy",
+    "path":"folders/Demo/03 Tilemaps.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

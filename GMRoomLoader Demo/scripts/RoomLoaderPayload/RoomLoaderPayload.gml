@@ -74,6 +74,14 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Getters
 	
+	/// Returns the axis-aligned bounding box of the loaded room as a struct with x1, y1 (top-left) and x2, y2 (bottom-right) coordinates.
+	/// 
+	/// @returns {Struct}
+	/// @self RoomLoaderPayload
+	static GetBbox = function() {
+	    return __bbox;
+	};
+	
 	/// Returns the ID of the created layer matching the given name if found, or undefined if not found.
 	/// 
 	/// @param {String} name The layer name to search for.
@@ -335,6 +343,8 @@ function RoomLoaderPayload(_room) constructor {
 	static __messagePrefix = "Payload";
 	
 	__room = _room;
+	__bbox = undefined;
+	
 	__layers = new __Container(layer_destroy);
 	__instances = new __Instances();
 	__tilemaps = new __Container(layer_tilemap_destroy);

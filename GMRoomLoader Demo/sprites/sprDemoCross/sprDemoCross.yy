@@ -45,7 +45,7 @@
   "origin":4,
   "parent":{
     "name":"99 Misc",
-    "path":"folders/01 Demo/99 Misc.yy",
+    "path":"folders/Demo/99 Misc.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
