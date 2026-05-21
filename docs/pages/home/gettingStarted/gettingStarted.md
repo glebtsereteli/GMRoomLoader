@@ -8,11 +8,11 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
 
 ## Requirements
 
-* The latest Monthly release of [GameMaker](https://gamemaker.io/en/download).
+* The latest version of GameMaker, [LTS 2026](https://gamemaker.io/en/download).
 * Basic familiarity with GameMaker and GML, including:
     * Asset types (rooms, objects, scripts, sprites, tilemaps, etc).
     * Working with objects and events.
-    * Structs, functions/methods and arguments, macros and enums.
+    * Structs, functions/methods and arguments, macros. 
 
 ## Installation
 1. Download the `GMRoomLoader v3.0.0.yymps` package from the latest [Release](https://github.com/glebtsereteli/GMRoomLoader/releases/latest).
@@ -93,7 +93,7 @@ if (keyboard_check_pressed(ord("2"))) {
 ```
 :::
 
-> ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20First%20Setup.yyz) example project to see this in action.
+> ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/releases/latest/download/GMRoomLoader.First.Setup.yyz) example project to see this in action.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>

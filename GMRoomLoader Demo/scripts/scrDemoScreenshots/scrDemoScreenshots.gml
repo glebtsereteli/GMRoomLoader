@@ -6,7 +6,7 @@ function DemoScreenshots() : Demo("Screenshots") constructor {
 		RoomLoader.DataInitTag(tag);
 		ShuffleRoom();
 		
-		// Interface:
+		// Interface
 		dbg_section("Info");
 		dbg_text("This is an example using \"RoomLoader.ScreenshotSprite()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
 		dbg_text_separator("Shortcuts", 1);
@@ -41,7 +41,7 @@ function DemoScreenshots() : Demo("Screenshots") constructor {
 		dbg_slider(ref_create(self, "h"), 0.1, 1, "Height %", 0.05);
 		dbg_slider(ref_create(self, "scale"), 0.1, 2, "Scale", 0.05);
 		
-		// Reloader:
+		// Reloader
 		owner.reloader
 		.AddVariables(self, ["left", "top", "w", "h", "scale"])
 		.AddModules([origin, flags])

@@ -2,7 +2,7 @@
 
 GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that lets you load any room's contents into the current room at runtime. Build procedural dungeons and chunked worlds, capture room screenshots, and more.
 
-* ℹ️ Download the `.yymps` local package for [GameMaker Monthly](https://releases.gamemaker.io/#:~:text=GameMaker%20Release%20Notes-,Monthly,-Released%20roughly%20every) from the [Releases](https://github.com/glebtsereteli/GMRoomLoader/releases) page.
+* ℹ️ Download the `.yymps` local package from the [latest Releases](https://github.com/glebtsereteli/GMRoomLoader/releases/latest/) page.
 * ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples and full API reference.
 
 # Use Cases
