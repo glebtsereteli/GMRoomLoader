@@ -5,7 +5,7 @@
   Runtime room loading for <a href="https://releases.gamemaker.io/release-notes/2026/0"> GameMaker LTS 2026</a>
 </p>
 
-<!-- # GMRoomLoader [![Release](https://img.shields.io/github/v/release/glebtsereteli/GMRoomLoader?style=flat&logo=github&logoColor=white)](https://github.com/glebtsereteli/GMRoomLoader/releases) -->
+<br/>
 
 GMRoomLoader is an award-winning [Free and Open Source](https://en.wikipedia.org/wiki/Free_and_open-source_software) GameMaker library that turns rooms into reusable building blocks by loading their contents into the current room at runtime.
 

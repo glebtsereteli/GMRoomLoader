@@ -42,6 +42,11 @@ GMRoomLoader follows [Semantic Versioning](https://semver.org/) using the `vMAJO
 ## Can GMRoomLoader assist with procedural generation?
 No. GMRoomLoader is designed specifically for loading rooms. Procedural generation, along with any custom logic for determining which room to pick and where it should go, will need to be handled on your own.
 
+## When should I NOT use GMRoomLoader?
+If your game only ever shows a single room at a time, like a Binding of Isaac-style dungeon, regular room switching is all you need. Your procedural logic for deciding which room comes next can run entirely in the background without GMRoomLoader.
+
+GMRoomLoader shines when multiple rooms need to coexist in the same space at runtime: chunked open worlds, Spelunky-style dungeons assembled from templates, and similar setups where room contents need to be combined without switching rooms.
+
 ## Can GMRoomLoader be used with 3D, isometric, sprite stacking, or other non-standard rendering setups?
 Yes. GMRoomLoader has nothing to do with rendering; it loads room contents. As long as your rendering setup works in a regular room and you design your content in rooms, it will work just as well when loading them with GMRoomLoader.
 
