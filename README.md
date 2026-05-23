@@ -47,8 +47,9 @@ Design levels across multiple rooms and combine them seamlessly during gameplay.
 GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamemaker-awards-2025) at the GameMaker Awards after being nominated two years in a row in both [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/gamemaker-awards-2025)!
 <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
   <tr>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213"><img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" style="width: 100%; display: block;"></a></td>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" style="width: 100%; display: block;"></a></td>
+    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213"><img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" style="width: 100%; display: block;"></a></td>
+    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8"><img src="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8" style="width: 100%; display: block;"></a></td>
+    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" style="width: 100%; display: block;"></a></td>
   </tr>
 </table>
 
