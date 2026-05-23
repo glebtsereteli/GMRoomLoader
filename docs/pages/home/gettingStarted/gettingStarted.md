@@ -8,7 +8,7 @@ We'll begin by importing the `.yymps` package. Then in the [First Setup](#first-
 
 ## Requirements
 
-* The latest version of GameMaker, [LTS 2026](https://gamemaker.io/en/download).
+* GameMaker version [LTS 2026](https://gamemaker.io/en/download).
 * Basic familiarity with GameMaker and GML, including:
     * Asset types (rooms, objects, scripts, sprites, tilemaps, etc).
     * Working with objects and events.

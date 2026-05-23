@@ -113,7 +113,7 @@ function RoomLoaderPayload(_room) constructor {
 	
 	/// Returns an array of created instances, optionally filtered by object.
 	/// 
-	/// @param {Asset.GMObject} object Object to filter by. If provided, only instances of this object will be returned. [Default: undefined (no filter)]
+	/// @param {Asset.GMObject} object The object to filter by. If provided, only instances of this object will be returned. [Default: undefined (no filter)]
 	/// 
 	/// @returns {Array<Id.Instance>}
 	/// @self RoomLoaderPayload

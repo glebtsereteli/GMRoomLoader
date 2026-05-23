@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Slots",
-    "path":"folders/Demo/03 Types/06 Base/Slots.yy",
+    "path":"folders/Demo/02 Types/06 Base/Slots.yy",
   },
   "parentObjectId":null,
   "persistent":false,

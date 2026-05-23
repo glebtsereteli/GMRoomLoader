@@ -13,7 +13,7 @@ function DemoModuleFlags() constructor {
 	effects = true;
 	
 	static InitDbg = function() {
-		dbg_text_separator("Flags", 1);
+		dbg_text_separator("Flags");
 		dbg_checkbox(ref_create(self, "instances"), "Instances");
 		dbg_checkbox(ref_create(self, "tilemaps"), "Tilemaps");
 		dbg_checkbox(ref_create(self, "sprites"), "Sprites");

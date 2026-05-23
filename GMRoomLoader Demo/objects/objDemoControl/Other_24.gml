@@ -7,7 +7,7 @@ RefreshInterface = function() {
 	var _x = _pad;
 	var _y = _pad + 19;
 	var _w = 530;
-	var _h = window_get_height() - _y - _pad;
+	var _h = room_height - _y - _pad;
 	
 	x1 = _x + _w + _pad;
 	y1 = _y;
@@ -24,7 +24,7 @@ RefreshInterface = function() {
 	
 	_view = dbg_view($"{__ROOMLOADER_NAME} {__ROOMLOADER_VERSION} Demo", true, _x, _y, _w, _h);
 	
-	dbg_section("Meta");
+	dbg_section("Demo Selection");
 	static _indices = array_create_ext(n, function(_i) {
 		pool[_i].Setup(_i);
 		return _i;

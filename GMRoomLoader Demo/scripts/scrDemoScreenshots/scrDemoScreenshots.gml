@@ -34,7 +34,7 @@ function DemoScreenshots() : Demo("Screenshots") constructor {
 		origin.InitDbg();
 		flags.InitDbg();
 		
-		dbg_text_separator("Area & Scale", 1);
+		dbg_text_separator("Area & Scale");
 		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
 		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
 		dbg_slider(ref_create(self, "w"), 0.1, 1, "Width %", 0.05);

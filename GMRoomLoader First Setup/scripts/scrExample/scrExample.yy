@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scrExample",
   "parent":{
-    "name":"02 Loaded Room",
-    "path":"folders/02 Loaded Room.yy",
+    "name":"Loaded Room",
+    "path":"folders/First Setup/Loaded Room.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

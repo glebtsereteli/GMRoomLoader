@@ -18,7 +18,7 @@ function DemoGeneral() : Demo("General") constructor {
 		// Interface:
 		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.Load()\" to load Full Rooms with\nall layers and elements.\n\nUse the controls below to adjust Position, Origin, Scaling, Rotation,\nFlags, Whitelist and Blacklist Layer Name Filtering.");
-		dbg_text_separator("Shortcuts", 1);
+		dbg_text_separator("Shortcuts");
 		dbg_text("- [PRESS 1] to Load the room.");
 		dbg_text("- [PRESS 2] to Cleanup the room.");
 		
@@ -36,12 +36,12 @@ function DemoGeneral() : Demo("General") constructor {
 		DemoDbgTransform("Transform");
 		flags.InitDbg();
 		
-		dbg_text_separator("Layer Whitelist", 1);
+		dbg_text_separator("Layer Whitelist");
 		array_foreach(whitelist, function(_layer) {
 			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
 		});
 		
-		dbg_text_separator("Layer Blacklist", 1);
+		dbg_text_separator("Layer Blacklist");
 		array_foreach(blacklist, function(_layer) {
 			dbg_checkbox(ref_create(_layer, "enabled"), _layer.name);
 		});

@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Units",
-    "path":"folders/Demo/03 Types/06 Base/Units.yy",
+    "path":"folders/Demo/02 Types/06 Base/Units.yy",
   },
   "parentObjectId":{
     "name":"objDemoBaseUnitParent",

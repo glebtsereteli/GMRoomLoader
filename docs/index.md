@@ -14,7 +14,7 @@ hero:
       text: Get Started
       link: '/pages/home/gettingStarted/gettingStarted'
   image:
-    src: /logo.svg
+    src: /logo.png
     alt: Icon
 
 features:
@@ -23,13 +23,13 @@ features:
   - title: 🧩 Chunking
     details: Divide large worlds into smaller chunks that dynamically load when players approach and unload when they move away.
   - title: 🏗️ Flexible Loading
-    details: Load Full Rooms, Instances or Tilemaps at any position in the current room — all with optional origin, filtering, scaling and rotation.
+    details: Load Full Rooms, Instances or Tilemaps at any position in the current room; all with optional origin, filtering, scaling and rotation.
   - title: 📐 Fluent State Management
     details: Configure optional arguments before loading or screenshotting in a simple English-like flow via the Fluent State Builder.
   - title: ⚙️ Full Lifecycle Control
     details: From merging or creating new layers to Payload tracking and removing loaded elements, you have full control of the loading process.
   - title: 🖼️ Screenshots
-    details: Capture room Screenshots from anywhere, without ever visiting target rooms — with optional part definition, scaling and filtering.
+    details: Capture room Screenshots from anywhere, without ever visiting target rooms; with optional part definition, scaling and filtering.
 
 ---
 
@@ -76,7 +76,7 @@ const team = [
   },
   {
     avatar: 'neeri.jpg',
-    name: 'Neerikiffu',
+    name: 'neerikiffu',
     title: 'Logo Art',
     links: [
       { icon: 'bluesky', link: 'https://bsky.app/profile/neerikiffu.bsky.social' },

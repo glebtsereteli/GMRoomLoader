@@ -108,7 +108,7 @@
   "name":"rmDemoBaseSlotCorner_01",
   "parent":{
     "name":"01",
-    "path":"folders/Demo/03 Types/06 Base/Slots/Corner/Rooms/01.yy",
+    "path":"folders/Demo/02 Types/06 Base/Slots/Corner/Rooms/01.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -3,7 +3,7 @@
 #region Info
 
 #macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2026.##.##" // year.month.day
+#macro __ROOMLOADER_DATE "2026.05.23" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 
 #endregion
@@ -268,7 +268,7 @@ var _width = min(_width01 * _scaledW, _scaledW - _left); \
 var _height = min(_height01 * _scaledH, _scaledH - _top); \
 \
 if ((_width <= 0) or (_height <= 0)) { \
-	__RoomLoaderErrorMethod("RoomLoader", _methodName, $"Screenshot resulted in zero size ({_width}x{_height}).") ; \
+	__RoomLoaderErrorMethod("RoomLoader", _methodName, "Screenshot resulted in zero size (" + string(_width) + "x" + string(_height) + ")"); \
 } \
 \
 var _finalSurf = surface_create(_width, _height); \

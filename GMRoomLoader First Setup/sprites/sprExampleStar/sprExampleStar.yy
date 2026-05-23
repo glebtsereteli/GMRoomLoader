@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Star",
-    "path":"folders/02 Loaded Room/Star.yy",
+    "path":"folders/First Setup/Loaded Room/Star.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

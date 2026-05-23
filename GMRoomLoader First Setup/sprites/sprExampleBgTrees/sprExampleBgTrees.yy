@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Backgrounds",
-    "path":"folders/02 Loaded Room/Backgrounds.yy",
+    "path":"folders/First Setup/Loaded Room/Backgrounds.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

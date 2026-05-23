@@ -1,5 +1,8 @@
 EVENT_METHOD;
 
+randomize();
+texture_prefetch("Default");
+
 reloader = new DemoReloader();
 pool = [
 	new DemoGeneral(),
@@ -23,3 +26,6 @@ w = undefined;
 h = undefined;
 
 Change(index);
+
+layer_x("BackPattern", irandom(128));
+layer_y("BackPattern", irandom(128));

@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"04 Tilemaps",
-    "path":"folders/Demo/03 Types/04 Tilemaps.yy",
+    "name":"03 Tilemaps",
+    "path":"folders/Demo/02 Types/03 Tilemaps.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

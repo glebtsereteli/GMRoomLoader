@@ -40,7 +40,7 @@ function DrawSpriteOrigin(_sprite, _subimg, _x, _y, _xOrigin, _yOrigin, _xScale 
 }
 
 function DemoDbgTransform(_label) {
-	dbg_text_separator(_label, 1);
+	dbg_text_separator(_label);
 	dbg_slider(ref_create(self, "xScale"), -2, 2, "X Scale", 0.1);
 	dbg_same_line();
 	dbg_button("Mirror", function() {

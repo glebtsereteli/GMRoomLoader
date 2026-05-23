@@ -11,7 +11,7 @@ function DemoMergeTilemaps() : Demo("Merge Tilemaps") constructor {
 			// Interface:
 			dbg_section("Info");
 			dbg_text("This is an example of merging existing and loaded tilemaps. The existing\ntilemap is repositioned and resized to fit loaded tilemaps.\n\nUse Load mode to load new tilemaps and Edit mode to edit the tilemap.");
-			dbg_text_separator("Shortcuts", 1);
+			dbg_text_separator("Shortcuts");
 			dbg_text("- [PRESS SPACE] to switch between Load and Edit modes.");
 			dbg_text("- [PRESS LMB] to Load a tilemap in Load mode.");
 			dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");

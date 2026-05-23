@@ -79,7 +79,7 @@
   "name":"rmDemoInstances",
   "parent":{
     "name":"02 Instances",
-    "path":"folders/Demo/03 Types/02 Instances.yy",
+    "path":"folders/Demo/02 Types/02 Instances.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

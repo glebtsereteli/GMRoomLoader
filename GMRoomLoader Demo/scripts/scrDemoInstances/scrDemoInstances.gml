@@ -8,7 +8,7 @@ function DemoInstances() : Demo("Instances") constructor {
 		// Interface:
 		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load all room\nInstances at a single depth.\n\nUse the controls below to adjust Position, Origin, Scaling and Rotation.");
-		dbg_text_separator("Shortcuts", 1);
+		dbg_text_separator("Shortcuts");
 		dbg_text("- [PRESS 1] to Load instances.");
 		dbg_text("- [PRESS 2] to Destroy instances.");
 		

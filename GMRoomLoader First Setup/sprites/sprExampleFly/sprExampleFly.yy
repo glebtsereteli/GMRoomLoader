@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"Fly",
-    "path":"folders/02 Loaded Room/Fly.yy",
+    "path":"folders/First Setup/Loaded Room/Fly.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

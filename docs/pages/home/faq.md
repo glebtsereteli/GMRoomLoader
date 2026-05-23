@@ -17,7 +17,7 @@ This page contains answers to frequently asked questions about GMRoomLoader.
 | **Nintendo Switch** | 🚧 Likely | Untested |
 
 ## What versions of GameMaker does GMRoomLoader support?
-The minimum supported GameMaker version is LTS 2026.0. @TODO LINK
+GMRoomLoader supports GameMaker version [LTS 2026.0](https://releases.gamemaker.io/release-notes/2026/0) and above.
 
 ## How is GMRoomLoader licensed? Can I use it in commercial projects?
 GMRoomLoader is licensed under the [MIT license](https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE), granting you full freedom to use it for any purpose, including commercial projects. The only requirement is to include the `GMRoomLoader License.txt` file that comes with the library package.
@@ -42,6 +42,9 @@ GMRoomLoader follows [Semantic Versioning](https://semver.org/) using the `vMAJO
 ## Can GMRoomLoader assist with procedural generation?
 No. GMRoomLoader is designed specifically for loading rooms. Procedural generation, along with any custom logic for determining which room to pick and where it should go, will need to be handled on your own.
 
+## Can GMRoomLoader be used with 3D, isometric, sprite stacking, or other non-standard rendering setups?
+Yes. GMRoomLoader has nothing to do with rendering; it loads room contents. As long as your rendering setup works in a regular room and you design your content in rooms, it will work just as well when loading them with GMRoomLoader.
+
 ## Can GMRoomLoader be used for modding? Is live reloading supported?
 No. GMRoomLoader retrieves data from :room_get_info():, which only provides access to room information initialized at compile time. This means that at runtime, you can only access rooms exactly as they existed when the game was compiled. 
 
@@ -50,7 +53,7 @@ As a result, modding and live reloading aren't possible by design.
 If any of this is essential for your project, consider buying [GMRoomPack by YellowAfterlife](https://yellowafterlife.itch.io/gmroompack), the OG library that inspired GMRoomLoader. It works directly with room `.yy` files, which allows for both modding and rather trivial live reloading.
 
 ## I'm loading a room and I think it works, but I can't see some (or all) of the loaded elements. How can I fix that?
-Mind your depth! GMRoomLoader creates room layers at the exact depths assigned in the Room Editor. If the room you're loading other rooms into has a few layers, make sure to manage their depths so they are either in front or behind loaded layers, depending on your use case.
+Mind your depth! GMRoomLoader creates layers at the exact depths assigned in the Room Editor. If your host room has existing layers, make sure to manage depths so loaded layers appear either in front of or behind them, depending on your use case.
 
 The good news is layer depths are easily adjustable and you're not stuck with the default depths from the loaded room. Check out the [Payload Depth](/pages/api/payload/depth) section to see how you can shift depths for loaded layers.
 
@@ -64,8 +67,8 @@ The execution order follows GameMaker's default and is structured like this:
 3. Creation Code.
 :::
 
-## Can I track loaded elements and "destroy" or "unload" a room after loading it?
-Of course you can, that's essential! The way you do it depends on what exactly has been loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
+## Can I unload or destroy a loaded room?
+Yes, and it's an essential part of the workflow! The way you do it depends on what was loaded: [Full Rooms](/pages/api/roomLoader/loading/#full-rooms), [Instances](/pages/api/roomLoader/loading/#loadinstances) or [Tilemaps](/pages/api/roomLoader/loading/#loadtilemap). Each case is described below.
 
 ### Full Rooms
 When loading full rooms with :RoomLoader.Load():, it returns a :Payload: struct that has a :.Cleanup(): method for removing all loaded layers and their elements.

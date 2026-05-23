@@ -15,7 +15,7 @@ Similar to drawing parts of sprites with :draw_sprite_part():, you can use the :
 :::
 
 ::: tip WORKING AT SCALE
-When you need to capture screenshots for many rooms, it's a good idea to use [.ScreenshotSurface()](#screenshotsurface) or [.ScreenshotBuffer()](#screenshotbuffer) to build a dynamic texture group, or a custom sprite atlas to avoid creating a new texture group for every new :.ScreenshotSprite(): you create. See the [Atlasing](#atlasing) section below for more detail.
+When you need to capture screenshots for many rooms, it's a good idea to use [.ScreenshotSurface()](#screenshotsurface) or [.ScreenshotBuffer()](#screenshotbuffer) to build a dynamic texture page, or a custom sprite atlas to avoid creating a new page group for every new :.ScreenshotSprite(): you create. See the [Atlasing](#atlasing) section below for more detail.
 :::
 
 ## Methods
@@ -28,7 +28,7 @@ Takes a screenshot of the given room and returns it as a sprite. If specified, a
 
 ::: warning
 This method returns a :Asset.GMSprite: created by [sprite_create_from_surface()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_create_from_surface.htm).
-Make sure to keep track of them and delete them using [sprite_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_delete.htm) when they're no longer needed.
+Make sure to keep track of it and delete it using [sprite_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_delete.htm) when it's no longer needed.
 :::
 
 | Parameter | Type | Description |
@@ -112,7 +112,7 @@ If specified, filters captured asset types by the given :Flags: and scales the o
 
 ::: warning
 This method includes a :Id.Buffer: in the returned struct, created by [buffer_create()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_create.htm).
-Make sure to keep track of them and delete them using [buffer_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_delete.htm) when they're no longer needed.
+Make sure to keep track of it and delete it using [buffer_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_delete.htm) when it's no longer needed.
 :::
 
 ::: tip
@@ -146,8 +146,20 @@ screenshot = RoomLoader.Scale(0.5).ScreenshotBuffer(rmExample); // [!code highli
 
 ## Atlasing
 
-working at scale
+### The Problem
 
-texturegroup_add
+When capturing screenshots for many rooms, it's worth thinking about texture memory. Each call to [sprite_create_from_surface()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_create_from_surface.htm) from :.ScreenshotSprite(): creates a brand new texture page for the created sprite.
 
-building a canvas texture page
+A handful of these is fine, but at scale this adds up fast: each additional screenshot means another separate texture page, which is significant and unnecessary overhead - especially on lower-end devices with limited VRAM.
+
+### Runtime Texture Pages
+
+A more efficient approach is to build a dynamic texture page at runtime using [texturegroup_add()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Textures/texturegroup_add.htm), which accepts buffers directly. [.ScreenshotBuffer()](#screenshotbuffer) pairs naturally with this: capture each room as a buffer and pass them together in an array.
+
+The catch is that you still need to supply the sprite data struct yourself, including frame coordinates - which means bringing your own bin packing logic. That's a non-trivial algorithm to write well.
+
+### Collage Integration
+
+Most of this work is already handled by [TabularElf](https://tabelf.link/)'s [Collage](https://github.com/tabularelf/Collage) - a runtime texture page builder and packer for GameMaker that handles the bin packing algorithm internally, mimics GameMaker's own texture page packing, handles power-of-two constraints, and supports all major platforms.
+
+Collage pairs naturally with [.ScreenshotSurface()](#screenshotsurface): capture a room as a surface and hand it straight to Collage via [.AddSurface()](https://www.tabularelf.com/Collage/#/0.5.0/collage?id=addsurfacesurfaceid-identifier-x-y-width-height-removeback-smooth-xorigin-yorigin-separatetexture), and it handles the packing and texture page management for you.

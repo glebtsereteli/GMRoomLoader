@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"04 Tilemaps",
-    "path":"folders/Demo/03 Types/04 Tilemaps.yy",
+    "name":"03 Tilemaps",
+    "path":"folders/Demo/02 Types/03 Tilemaps.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

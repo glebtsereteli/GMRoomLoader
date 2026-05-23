@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Fly",
-    "path":"folders/02 Loaded Room/Fly.yy",
+    "path":"folders/First Setup/Loaded Room/Fly.yy",
   },
   "parentObjectId":null,
   "persistent":false,

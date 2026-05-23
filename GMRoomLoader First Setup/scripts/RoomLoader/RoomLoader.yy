@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scrDemoInit",
+  "%Name":"RoomLoader",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scrDemoInit",
+  "name":"RoomLoader",
   "parent":{
-    "name":"00 Init",
-    "path":"folders/Demo/00 Init.yy",
+    "name":"01 Public",
+    "path":"folders/GMRoomLoader/01 Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

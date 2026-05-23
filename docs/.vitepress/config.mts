@@ -11,7 +11,7 @@ export default defineConfig({
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
   head: [
-    ['link', { rel: 'icon', href: 'logo.svg' }],
+    ['link', { rel: 'icon', href: 'favicon.svg' }],
 
     // embeds
     ["meta", { property: "og:title", content: "GMRoomLoader Documentation" }],
@@ -41,7 +41,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/favicon.svg',
 
     search: {
       provider: 'local'
@@ -249,6 +249,9 @@ export default defineConfig({
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
         'Screenshot': '/pages/api/roomLoader/screenshotting',
         'Screenshots': '/pages/api/roomLoader/screenshotting',
+        '.ScreenshotSprite()': '/pages/api/roomLoader/screenshotting#screenshotsprite',
+        '.ScreenshotSurface()': '/pages/api/roomLoader/screenshotting#screenshotsurface',
+        '.ScreenshotBuffer()': '/pages/api/roomLoader/screenshotting#screenshotbuffer',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',

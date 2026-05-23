@@ -7,7 +7,7 @@ function DemoModuleOrigin(_x = 0.5, _y = 0.5) constructor {
 	y = _y;
 	
 	static InitDbg = function() {
-		dbg_text_separator("Origin", 1);
+		dbg_text_separator("Origin");
 		dbg_slider(ref_create(self, "x"), 0, 1, "X", 0.05);
 		dbg_slider(ref_create(self, "y"), 0, 1, "Y", 0.05);
 	};

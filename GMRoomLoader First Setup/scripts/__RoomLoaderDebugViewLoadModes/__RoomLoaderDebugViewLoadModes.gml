@@ -33,12 +33,12 @@ function __RoomLoaderDebugViewLoadModeRoom() : __RoomLoaderDebugViewLoadMode("Ro
 		var _payload = RoomLoader
 		.Scale(__xScale, __yScale).Angle(__angle)
 		.Flags(
-			__instances * ROOMLOADER_FLAG.INSTANCES |
-			__tilemaps * ROOMLOADER_FLAG.TILEMAPS |
-			__sprites * ROOMLOADER_FLAG.SPRITES |
-			__sequences * ROOMLOADER_FLAG.SEQUENCES |
-			__texts * ROOMLOADER_FLAG.TEXTS |
-			__backgrounds * ROOMLOADER_FLAG.BACKGROUNDS
+			__instances * ROOMLOADER_FLAG_INSTANCES |
+			__tilemaps * ROOMLOADER_FLAG_TILEMAPS |
+			__sprites * ROOMLOADER_FLAG_SPRITES |
+			__sequences * ROOMLOADER_FLAG_SEQUENCES |
+			__texts * ROOMLOADER_FLAG_TEXTS |
+			__backgrounds * ROOMLOADER_FLAG_BACKGROUNDS
 		)
 		.LayerWhitelistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerWhitelist[_i]; }))
 		.LayerBlacklistSet(array_filter(__layerNames, function(_layerName, _i) { return __layerBlacklist[_i]; }))

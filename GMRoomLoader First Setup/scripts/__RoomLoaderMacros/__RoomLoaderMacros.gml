@@ -2,10 +2,9 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v2.5.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2025.12.05" // year.month.day
+#macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2026.05.23" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
-#macro __ROOMLOADER_LOG_PREFIX ("[" + __ROOMLOADER_NAME + "]")
 
 #endregion
 #region General
@@ -20,22 +19,33 @@
 #macro __ROOMLOADER_LAYER_START_LOAD \
 if (not __ROOMLOADER_HAS_FLAG) return; \
 if (__HasFailedFilters()) return; \
-var _layer = __RoomLoaderGetLayer(__layerData); \
-if ((__fx != undefined) and (ROOMLOADER_FLAG.EFFECTS & _flags)) { \
-	layer_set_fx(_layer, __fx); \
+\
+if (ROOMLOADER_MERGE_LAYERS and layer_exists(__layerData.name)) { \
+	var _layer = layer_get_id(__layerData.name); \
 } \
-if (ROOMLOADER_DELIVER_PAYLOAD) { \
-	RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
+else { \
+	var _layer = layer_create(__layerData.depth, __layerData.name); \
+	layer_set_visible(_layer, __layerData.visible); \
+	layer_x(_layer, __layerData.xoffset); \
+	layer_y(_layer, __layerData.yoffset); \
+	layer_hspeed(_layer, __layerData.hspeed); \
+	layer_vspeed(_layer, __layerData.vspeed); \
+	\
+	if ((__fx != undefined) and (ROOMLOADER_FLAG_EFFECTS & _flags)) { \
+		layer_set_fx(_layer, __fx); \
+	} \
+	\
+	if (ROOMLOADER_DELIVER_PAYLOAD) { \
+		RoomLoader.__payload.__layers.__Add(_layer, __layerData.name); \
+	} \
 }
 
 #endregion
 #region Instances
 
 #macro __ROOMLOADER_INST_CC \
-if (ROOMLOADER_INSTANCES_RUN_CREATION_CODE) { \
-	with (_inst) { \
-		script_execute(_iData.creationCode); \
-	} \
+with (_inst) { \
+	script_execute(_iData.creationCode); \
 }
 
 #macro __ROOMLOADER_INST_TRANSFORM_PRELOAD \
@@ -47,10 +57,11 @@ var _iY = _y1 + (-_xScaled * _sin) + (_yScaled * _cos); \
 var _preCreate = _iData.preCreate; \
 var _xScalePrev = _preCreate.image_xscale; \
 var _yScalePrev = _preCreate.image_yscale; \
+var _anglePrev = _preCreate.image_angle; \
 \
 _preCreate.image_xscale *= _xScale; \
 _preCreate.image_yscale *= _yScale; \
-_preCreate.image_angle += _angle;
+_preCreate.image_angle = _angle + (_preCreate.image_angle * sign(_xScale * _yScale));
 
 #macro __ROOMLOADER_INST_LAYER_PRELOAD \		
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
@@ -69,7 +80,7 @@ if (ROOMLOADER_DELIVER_PAYLOAD) { \
 __ROOMLOADER_INST_CC \
 _preCreate.image_xscale = _xScalePrev; \
 _preCreate.image_yscale = _yScalePrev; \
-_preCreate.image_angle -= _angle;
+_preCreate.image_angle = _anglePrev;
 
 #endregion
 #region Tilemaps
@@ -225,6 +236,50 @@ repeat (ROOMLOADER_PARTICLES_UPDATE_STEPS) { \
 if (ROOMLOADER_DELIVER_PAYLOAD) { \
     RoomLoader.__payload.__particleSystems.__Add(_ps, __roomId); \
 }
+
+#endregion
+#region Screenshots
+
+#macro __ROOMLOADER_SCREENSHOT_START \
+var _rawSurf = surface_create(__width, __height); \
+surface_set_target(_rawSurf); { \
+	draw_clear_alpha(c_black, 0); \
+	\
+	var _bm = gpu_get_blendmode_ext_sepalpha(); \
+	gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_src_alpha, bm_one); \
+	\
+	var _i = array_length(__layersPool); \
+	while (_i--) { \
+		with (__layersPool[_i]) { \
+		    __Draw(_flags); \
+		} \
+	} \
+	\
+	method_call(gpu_set_blendmode_ext_sepalpha, _bm); \
+	surface_reset_target(); \
+}
+
+#macro __ROOMLOADER_SCREENSHOT_FINAL_SURF \
+var _scaledW = __width * _xScale; \
+var _scaledH = __height * _yScale; \
+var _left = _left01 * _scaledW; \
+var _top = _top01 * _scaledH; \
+var _width = min(_width01 * _scaledW, _scaledW - _left); \
+var _height = min(_height01 * _scaledH, _scaledH - _top); \
+\
+if ((_width <= 0) or (_height <= 0)) { \
+	__RoomLoaderErrorMethod("RoomLoader", _methodName, "Screenshot resulted in zero size (" + string(_width) + "x" + string(_height) + ")"); \
+} \
+\
+var _finalSurf = surface_create(_width, _height); \
+surface_set_target(_finalSurf); { \
+	draw_clear_alpha(c_black, 0); \
+	draw_surface_ext(_rawSurf, -_left, -_top, _xScale, _yScale, 0, c_white, 1); \
+	surface_reset_target(); \
+} \
+surface_free(_rawSurf);
+
+#macro __ROOMLOADER_SCREENSHOT_TRANSFORMED ((_left01 != 0) or (_top01 != 0) or (_width01 != 1) or (_height01 != 1) or (_xScale != 1) or (_yScale != 1))
 
 #endregion
 #region Benchmarking
