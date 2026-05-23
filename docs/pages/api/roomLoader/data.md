@@ -2,21 +2,17 @@
 
 ## Overview
 
-This section covers room data management - GMRoomLoader's entry point and the beginning of its intended workflow. It's divided into three modules:
-* [Initialization](#initialization) - essential for setting up room data before :Loading:, :Screenshotting: or using :Data Getters:. Happens automatically, but best performed on game start or behind loading screens (where applicable) for performance reasons.
-* [Removal](#removal) - optional, use for cleaning up loaded elements that are no longer needed, AKA "unloading" or "destroying" rooms.
-* [Status & Getters](#status-getters) - situational, for checking or retrieving room data.
+This section covers room data management in GMRoomLoader. It's divided into three modules:
+* [Initialization](#initialization) prepares room data for :Loading:, :Screenshotting: and :Data Getters:. It happens automatically when needed, but initializing upfront is strongly recommended for best performance.
+* [Removal](#removal) cleans up initialized data that is no longer needed. Mostly relevant at scale, when working with many rooms and keeping memory usage in check matters.
+* [Status & Getters](#status-getters) provides tools for retrieving room data such as dimensions, layer names, instance data and more.
 
 ## Initialization
 
-The following methods initialize room data to be used for :Loading: and :Screenshotting:.
+The following methods initialize room data for use in :Loading:, :Screenshotting: and :Data Getters:.
 
-::: danger **❗** PERFORMANCE NOTE
-Initialization is the most resource-intensive operation in the entire library. It parses room data from :room_get_info(): and optimizes it for fast :Loading: and :Screenshotting:.
-
-ℹ️ For best performance, call these methods **at the very start of your game**. 
-
-ℹ️ If room data hasn't been initialized before calling :Loading:, :Screenshotting: or [Data Getters](#status-getters), GMRoomLoader will initialize it automatically. While convenient for quick testing or handling small rooms, doing this **noticeably slows down** the aforementioned methods and should be avoided when dealing with bigger rooms.
+::: danger ❗ PERFORMANCE NOTE
+Room data is initialized automatically the first time it's needed, so these methods are never strictly required. However, automatic initialization runs during gameplay, which can severely slow down the first :Loading: or :Screenshotting: call for each room. Initializing explicitly at the start of your game or behind a loading screen avoids this entirely.
 :::
 
 ---
@@ -33,10 +29,10 @@ Initializes data for all given rooms.
 
 :::code-group
 ```js [Example]
-// Initializes data for rmLevelCastle:
+// Initializes data for rmLevelCastle
 RoomLoader.DataInit(rmLevelCastle); // [!code highlight]
 
-// Initializes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
+// Initializes data for rmLevelPlains, rmLevelForest and rmLevelCliffs
 RoomLoader.DataInit(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
@@ -54,7 +50,7 @@ Initializes data for all rooms in the given array.
 
 :::code-group
 ```js [Example]
-// Initializes data for all rooms inside the rooms array:
+// Initializes data for all rooms inside the rooms array
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
 RoomLoader.DataInitArray(rooms); // [!code highlight]
 ```
@@ -73,7 +69,7 @@ Initializes data for all rooms starting with the given prefix. Returns an array 
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms starting with "rmLevel" and stores found room IDs in a variable:
+// Initializes data for all rooms starting with "rmLevel" and stores found room IDs in a variable
 rooms = RoomLoader.DataInitPrefix("rmLevel"); // [!code highlight]
 ```
 :::
@@ -83,13 +79,15 @@ rooms = RoomLoader.DataInitPrefix("rmLevel"); // [!code highlight]
 
 > `RoomLoader.DataInitTag(tag)` ➜ :Array: of :Asset.GMRoom:
 
+Initializes data for all rooms with the given tag assigned. Returns an array of found rooms.
+
 | Parameter | Type | Description |
 |---|---|---|
 | `tag` | :String: | The tag to parse rooms from |
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms with the "Dungeon" tag assigned and stores their IDs in a variable:
+// Initializes data for all rooms with the "Dungeon" tag assigned and stores their IDs in a variable
 dungeonRooms = RoomLoader.DataInitTag("Dungeon"); // [!code highlight]
 ```
 :::
@@ -97,7 +95,7 @@ dungeonRooms = RoomLoader.DataInitTag("Dungeon"); // [!code highlight]
 ---
 ### `.DataInitAll()`
 
-> `RoomLoader.DataInitAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataInitAll(blacklist)` ➜ :Array: of :Asset.GMRoom:
 
 Initializes data for all rooms in the project, except the ones listed in the `blacklist` array.
 
@@ -107,14 +105,14 @@ Initializes data for all rooms in the project, except the ones listed in the `bl
 
 ::: code-group
 ```js [Example]
-// Initializes data for all rooms in the project BUT rmInit:
+// Initializes data for all rooms in the project BUT rmInit
 RoomLoader.DataInitAll([rmInit]); // [!code highlight]
 ```
 :::
 
 ## Removal
 
-Although initialized room data takes up little space, you may still want to remove it for rooms that are no longer needed. The following methods follow the [Initialization](#initialization) structure and remove the corresponding data from :RoomLoader:'s internal pool.
+The following methods remove initialized room data from :RoomLoader:'s internal pool. While data takes up little memory, removing it for rooms that are no longer needed is good practice at scale, especially when working with a large number of rooms.
 
 ---
 ### `.DataRemove()`
@@ -125,15 +123,15 @@ Removes data for all given rooms.
 
 | Parameter | Type | Description |
 |---|---|---|
-| `room` | :Asset.GMRoom: | The room to remove data for                       |
+| `room` | :Asset.GMRoom: | The room to remove data for |
 | `...` | :Asset.GMRoom: | Additional rooms. Accepts any number of arguments |
 
 :::code-group
 ```js [Example]
-// Removes data for rmLevelCastle:
+// Removes data for rmLevelCastle
 RoomLoader.DataRemove(rmLevelCastle); // [!code highlight]
 
-// Removes data for rmLevelPlains, rmLevelForest and rmLevelCliffs:
+// Removes data for rmLevelPlains, rmLevelForest and rmLevelCliffs
 RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code highlight]
 ```
 :::
@@ -144,13 +142,14 @@ RoomLoader.DataRemove(rmLevelPlains, rmLevelForest, rmLevelCliffs); // [!code hi
 > `RoomLoader.DataRemoveArray(rooms)` ➜ :Struct:.:RoomLoader:
 
 Removes data for all rooms in the given array.
+
 | Parameter | Type | Description |
 |---|---|---|
 | `rooms` | :Array: of :Asset.GMRoom: | The array of rooms to remove data for |
 
 :::code-group
 ```js [Example]
-// Removes data for all rooms inside the rooms array:
+// Removes data for all rooms inside the rooms array
 rooms = [rmLevelCabin, rmLevelAlley, rmLevelBeach];
 RoomLoader.DataRemoveArray(rooms); // [!code highlight]
 ```
@@ -169,7 +168,7 @@ Removes data for all rooms starting with the given prefix.
 
 ::: code-group
 ```js [Example]
-// Removes data for all rooms starting with "rmLevel":
+// Removes data for all rooms starting with "rmLevel"
 RoomLoader.DataRemovePrefix("rmLevel"); // [!code highlight]
 ```
 :::
@@ -187,27 +186,22 @@ Removes data for all rooms with the given tag.
 
 ::: code-group
 ```js [Example]
-// Removes data for all rooms with the "Dungeon" tag assigned:
+// Removes data for all rooms with the "Dungeon" tag assigned
 RoomLoader.DataRemoveTag("Dungeon"); // [!code highlight]
 ```
 :::
 
 ---
-### `.DataRemoveAll()`
+### `.DataClear()`
 
-> `RoomLoader.DataRemoveAll(blacklist)` ➜ :Struct:.:RoomLoader:
+> `RoomLoader.DataClear()` ➜ :Struct:.:RoomLoader:
 
-Removes data for all rooms, except the ones listed in the `blacklist` array.
+Clears all initialized room data.
 
-| Parameter | Type | Description |
-|---|---|---|
-| `blacklist` | :Array: of :Asset.GMRoom: | The rooms to **not** remove data for [Default: empty] |
-
-::: code-group
+:::code-group
 ```js [Example]
-// Removes data for all rooms in the project BUT rmHub:
-var _blacklist = [rmHub];
-RoomLoader.DataRemoveAll(_blacklist); // [!code highlight]
+// Clears all initialized room data
+RoomLoader.DataClear(); // [!code highlight]
 ```
 :::
 
@@ -215,7 +209,7 @@ RoomLoader.DataRemoveAll(_blacklist); // [!code highlight]
 
 ### `.DataIsInitialized()`
 
->`RoomLoader.DataIsInitialized(room)` -> :Bool:
+>`RoomLoader.DataIsInitialized(room)` ➜ :Bool:
 
 Checks whether the data for the given room is initialized (returns `true`) or not (returns `false`).
 
@@ -244,7 +238,7 @@ Returns the width of the given room.
 
 :::code-group
 ```js [Example]
-// Gets the width of rmLevelDungeon:
+// Gets the width of rmLevelDungeon
 var _width = RoomLoader.DataGetWidth(rmLevelDungeon); // [!code highlight]
 ```
 :::
@@ -262,7 +256,7 @@ Returns the height of the given room.
 
 :::code-group
 ```js [Example]
-// Gets the height of rmLevelDungeon:
+// Gets the height of rmLevelDungeon
 var _height = RoomLoader.DataGetHeight(rmLevelDungeon); // [!code highlight]
 ```
 :::
@@ -280,7 +274,7 @@ Returns an array of layer names from the given room, in the order defined in the
 
 :::code-group
 ```js [Example]
-// Fetches layers names from rmLevelGarden and whitelists 3 random layers before loading:
+// Fetches layer names from rmLevelGarden and whitelists 3 random layers before loading
 var _room = rmLevelGarden;
 var _layerNames = RoomLoader.DataGetLayerNames(_room); // [!code highlight]
 array_shuffle_ext(_layerNames);
@@ -302,21 +296,17 @@ Returns an array of instance data structs from the given room. See the format li
 
 You can also provide the optional `[object]` argument to return data only for instances of the given object.
 
-::: danger IMPORTANT
-This method fetches the internal data structs, which should NOT be changed externally. Doing so might affect future loading in undesirable ways. If you need to edit the returned structs, clone the array first using [variable_clone()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Variable_Functions/variable_clone.htm).
-:::
-
 | Parameter | Type | Description |
 |---|---|---|
 | `room` | :Asset.GMRoom: | The room to get an array of instance data from |
-| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of the given object will be included |
+| `[object]` | :Asset.GMObject: | The object to filter instances by. Only instances of the given object will be included [Default: `undefined` (no filter)] |
 
 :::code-group
 ```js [Custom Instance Creation]
-// Fetches instance data from rmExample:
+// Fetches instance data from rmExample
 var _instancesData = RoomLoader.DataGetInstances(rmExample); // [!code highlight]
 
-// Maps the data array to an array of instance IDs using a custom instance creation function:
+// Maps the data array to an array of instance IDs using a custom instance creation function
 instances = array_map(_instancesData, function(_instanceData) {
     var _instanceId = ...; // Use _instanceData for custom instance creation.
     // More custom logic...
@@ -324,7 +314,7 @@ instances = array_map(_instancesData, function(_instanceData) {
 });
 ```
 ```js [Fetching Doors]
-// Fetches objDoor instance data from rmExample:
+// Fetches objDoor instance data from rmExample
 var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code highlight]
 // ...
 ```
@@ -333,9 +323,14 @@ var _doorsData = RoomLoader.DataGetInstances(rmExample, objDoor); // [!code high
 ---
 ### `.DataGetInstance()`
 
-> `RoomLoader.DataGetInstance(room, instanceId)` ➜ :Struct:
+> `RoomLoader.DataGetInstance(room, id)` ➜ :Struct:
 
 Returns an instance data struct for the given room instance inside the given room. See the format listed [below](#struct-format).
+
+| Parameter | Type | Description |
+|---|---|---|
+| `room` | :Asset.GMRoom: | The room to get instance data from |
+| `id` | :Id.Instance: | The room ID of the instance to get data for |
 
 :::code-group
 ```js [Example]
@@ -386,7 +381,7 @@ where `x` and `y` are tile coordinates in tilemap space and `tileData` is the ti
 
 :::code-group
 ```js [Example]
-// Fetches tilemap data from rmExample's "Tiles" layer:
+// Fetches tilemap data from rmExample's "Tiles" layer
 var _tilemapData = RoomLoader.DataGetTilemap(rmExample, "Tiles"); // [!code highlight]
 
 // Loops through the 'tiles' array:

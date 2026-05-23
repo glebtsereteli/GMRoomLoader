@@ -1,8 +1,8 @@
 // feather ignore all
 
 function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderDataLayerParent(_layerData) constructor {
-	// shared
-	static __flag = ROOMLOADER_FLAG.BACKGROUNDS;
+	// Shared
+	static __flag = ROOMLOADER_FLAG_BACKGROUNDS;
 	
 	static __OnLoad = function(_layer, _x, _y) {
 		with (__bgData) {
@@ -71,6 +71,6 @@ function __RoomLoaderDataLayerBackground(_layerData, _bgData) : __RoomLoaderData
 		}
 	};
 
-	// custom
+	// Custom
 	__bgData = _bgData[0];
 }

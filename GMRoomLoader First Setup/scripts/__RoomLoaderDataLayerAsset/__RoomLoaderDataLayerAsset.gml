@@ -1,8 +1,8 @@
 // feather ignore all
 
 function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerParent(_layerData) constructor {
-	// shared
-	static __flag = ROOMLOADER_FLAG.SPRITES | ROOMLOADER_FLAG.SEQUENCES | ROOMLOADER_FLAG.PARTICLES | ROOMLOADER_FLAG.TEXTS;
+	// Shared
+	static __flag = ROOMLOADER_FLAG_SPRITES | ROOMLOADER_FLAG_SEQUENCES | ROOMLOADER_FLAG_PARTICLES | ROOMLOADER_FLAG_TEXTS;
 	
 	static __Draw = function(_flags) {
 		if (not __layerData.visible) return;
@@ -62,11 +62,11 @@ function __RoomLoaderDataLayerAsset(_layerData, _data) : __RoomLoaderDataLayerPa
 		}
 	};
 	
-	// custom
+	// Custom
 	__data = _data;
 }
 function __RoomLoaderDataLayerAssetSprite(_data) constructor {
-	static __flag = ROOMLOADER_FLAG.SPRITES;
+	static __flag = ROOMLOADER_FLAG_SPRITES;
 	
 	__roomId = _data.name;
 	__x = _data.x;
@@ -97,7 +97,7 @@ function __RoomLoaderDataLayerAssetSprite(_data) constructor {
 	};
 }
 function __RoomLoaderDataLayerAssetSequence(_data) constructor {
-	static __flag = ROOMLOADER_FLAG.SEQUENCES;
+	static __flag = ROOMLOADER_FLAG_SEQUENCES;
 	
 	__x = _data.x;
 	__y = _data.y;
@@ -124,7 +124,7 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 	static __Draw = __RoomLoaderNoop;
 }
 function __RoomLoaderDataLayerAssetParticleSystem(_data) constructor {
-	static __flag = ROOMLOADER_FLAG.PARTICLES;
+	static __flag = ROOMLOADER_FLAG_PARTICLES;
 	
 	__roomId = _data.name;
 	__ps = _data.ps;
@@ -145,7 +145,7 @@ function __RoomLoaderDataLayerAssetParticleSystem(_data) constructor {
 	static __Draw = __RoomLoaderNoop;
 }
 function __RoomLoaderDataLayerAssetText(_data) constructor {
-	static __flag = ROOMLOADER_FLAG.TEXTS;
+	static __flag = ROOMLOADER_FLAG_TEXTS;
 	
 	__x = _data.x;
 	__y = _data.y;

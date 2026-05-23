@@ -1,14 +1,14 @@
 // feather ignore all
 
-function DemoScreenshots() : DemoPar("Screenshots") constructor {
-	// Shared:
+function DemoScreenshots() : Demo("Screenshots") constructor {
+	// Shared
 	static Init = function() {
-		//RoomLoader.DataInitTag(tag);
+		RoomLoader.DataInitTag(tag);
 		ShuffleRoom();
 		
-		// Interface:
+		// Interface
 		dbg_section("Info");
-		dbg_text("This is an example using \"RoomLoader.Screenshot[Part]()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
+		dbg_text("This is an example using \"RoomLoader.ScreenshotSprite()\" to take room\nScreenshots, pulling rooms from the Base demo.\n\nUse the controls below to adjust Origin, Flags, Left/Top position,\nWidth/Height of the sprite area to capture (in 0-1 percentages), and the\nfinal sprite Scale.");
 		dbg_text_separator("Shortcuts", 1);
 		dbg_text("- [PRESS 1] to take a screenshot of a random room.");
 		dbg_text("- [HOLD SHIFT+1] to take a screenshot of a random room every frame.");
@@ -34,14 +34,14 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		origin.InitDbg();
 		flags.InitDbg();
 		
-		dbg_text_separator("Area & Scale", 1);
+		dbg_text_separator("Area & Scale");
 		dbg_slider(ref_create(self, "left"), 0, 1, "Left %", 0.05);
 		dbg_slider(ref_create(self, "top"), 0, 1, "Top %", 0.05);
 		dbg_slider(ref_create(self, "w"), 0.1, 1, "Width %", 0.05);
 		dbg_slider(ref_create(self, "h"), 0.1, 1, "Height %", 0.05);
 		dbg_slider(ref_create(self, "scale"), 0.1, 2, "Scale", 0.05);
 		
-		// Reloader:
+		// Reloader
 		owner.reloader
 		.AddVariables(self, ["left", "top", "w", "h", "scale"])
 		.AddModules([origin, flags])
@@ -50,8 +50,8 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		});
 	};
 	static Draw = function() {
-		var _x1 = DEMOS.xCenter;
-		var _y1 = DEMOS.yCenter;
+		var _x1 = objDemoControl.centerX;
+		var _y1 = objDemoControl.centerY;
 		
 		var _w = RoomLoader.DataGetWidth(rm) * w * scale;
 		var _h = RoomLoader.DataGetHeight(rm) * h * scale;
@@ -59,6 +59,27 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 			_w = sprite_get_width(sprite);
 			_h = sprite_get_height(sprite);
 			draw_sprite(sprite, 0, _x1, _y1);
+			
+			//var _surf = RoomLoader
+			//.Origin(origin.x, origin.y)
+			//.Flags(flags.Get())
+			//.Scale(scale)
+			//.Part(left, top, w, h)
+			//.ScreenshotSurface(rm);
+			//draw_surface(_surf, mouse_x, mouse_y);
+			//surface_free(_surf);
+			
+			//screen = RoomLoader
+			//.Origin(origin.x, origin.y)
+			//.Flags(flags.Get())
+			//.Scale(scale)
+			//.Part(left, top, w, h)
+			//.ScreenshotBuffer(rm);
+			//var _surf = surface_create(screen.width, screen.height);
+			//buffer_set_surface(screen.buffer, _surf, 0);
+			//draw_surface(_surf, mouse_x, mouse_y);
+			//surface_free(_surf);
+			//buffer_delete(screen.buffer);
 		}
 		var _x = floor(_x1 - (_w * origin.x));
 		var _y = floor(_y1 - (_h * origin.y));
@@ -78,7 +99,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 		Clear();
 	};
 	
-	// Custom:
+	// Custom
 	tag = "BaseRooms";
 	rooms = tag_get_asset_ids(tag, asset_room);
 	rm = undefined;
@@ -94,7 +115,7 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	static ShuffleRoom = function() {
 		var _prev = rm;
 		do {
-			rm = script_execute_ext(choose, rooms);
+			rm = method_call(choose, rooms);
 		} until (rm != _prev);
 	};
 	static TakeRandom = function() {
@@ -103,11 +124,13 @@ function DemoScreenshots() : DemoPar("Screenshots") constructor {
 	};
 	static Take = function() {
 		Clear();
+		
 		sprite = RoomLoader
 		.Origin(origin.x, origin.y)
 		.Flags(flags.Get())
 		.Scale(scale)
-		.ScreenshotPart(rm, left, top, w, h);
+		.Part(left, top, w, h)
+		.ScreenshotSprite(rm);
 	};
 	static Clear = function() {
 		if (sprite == undefined) return;

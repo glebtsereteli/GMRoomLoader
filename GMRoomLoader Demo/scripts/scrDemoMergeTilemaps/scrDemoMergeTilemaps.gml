@@ -1,17 +1,17 @@
 // feather ignore all
 
-function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
-	// Shared:
+function DemoMergeTilemaps() : Demo("Merge Tilemaps") constructor {
+	// Shared
 	static Init = function() {
 		if (ROOMLOADER_MERGE_TILEMAPS) {
 			RoomLoader.DataInitTag("MergeTilemaps");
-			newScreenshot = RoomLoader.MiddleCenter().Screenshot(newRoom);
+			newScreenshot = RoomLoader.MiddleCenter().ScreenshotSprite(newRoom);
 			Prepare();
 			
 			// Interface:
 			dbg_section("Info");
 			dbg_text("This is an example of merging existing and loaded tilemaps. The existing\ntilemap is repositioned and resized to fit loaded tilemaps.\n\nUse Load mode to load new tilemaps and Edit mode to edit the tilemap.");
-			dbg_text_separator("Shortcuts", 1);
+			dbg_text_separator("Shortcuts");
 			dbg_text("- [PRESS SPACE] to switch between Load and Edit modes.");
 			dbg_text("- [PRESS LMB] to Load a tilemap in Load mode.");
 			dbg_text("- [PRESS Q or E] to rotate placement in Load mode.");
@@ -25,7 +25,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			});
 		}
 		else {
-			dbg_text("Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
+			dbg_text(disabledText);
 		}
 	};
 	static Draw = function() {
@@ -33,7 +33,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 			draw_set_font(fntDemo);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
-			draw_text(DEMOS.xCenter, DEMOS.yCenter, "Set ROOMLOADER_MERGE_TILEMAPS to true to enable this demo.");
+			draw_text(objDemoControl.centerX, objDemoControl.centerY, disabledText);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_top);
 			draw_set_font(-1);
@@ -98,7 +98,7 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 		RoomLoader.DataRemoveTag("MergeTilemaps");
 	};
 	
-	// Custom:
+	// Custom
 	hostRoom = rmDemoMergeTilemapsHost;
 	hostPayload = undefined;
 	newRoom = rmDemoMergeTilemapsNew;
@@ -108,10 +108,11 @@ function DemoMergeTilemaps() : DemoPar("Merge Tilemaps") constructor {
 	tileSize = 32;
 	angle = 0;
 	loading = true;
+	disabledText = "Set ROOMLOADER_MERGE_LAYERS and ROOMLOADER_MERGE_TILEMAPS\nconfig macros to true to enable this demo.";
 	
 	static Prepare = function() {
-		var _x = RoundTo(DEMOS.xCenter - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
-		var _y = RoundTo(DEMOS.yCenter - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
+		var _x = RoundTo(objDemoControl.centerX - (RoomLoader.DataGetWidth(hostRoom) / 2), tileSize);
+		var _y = RoundTo(objDemoControl.centerY - (RoomLoader.DataGetHeight(hostRoom) / 2), tileSize);
 		layer = layer_create(0, "Tiles");
 		tilemap = RoomLoader.LoadTilemap(rmDemoMergeTilemapsHost, _x, _y, "Tiles");
 	};

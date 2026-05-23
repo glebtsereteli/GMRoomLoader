@@ -1,14 +1,14 @@
 // feather ignore all
 
-function DemoInstances() : DemoPar("Instances") constructor {
-	// Shared:
+function DemoInstances() : Demo("Instances") constructor {
+	// Shared
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
 		// Interface:
 		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadInstances()\" to load all room\nInstances at a single depth.\n\nUse the controls below to adjust Position, Origin, Scaling and Rotation.");
-		dbg_text_separator("Shortcuts", 1);
+		dbg_text_separator("Shortcuts");
 		dbg_text("- [PRESS 1] to Load instances.");
 		dbg_text("- [PRESS 2] to Destroy instances.");
 		
@@ -55,14 +55,14 @@ function DemoInstances() : DemoPar("Instances") constructor {
 		Destroy();
 	};
 	
-	// Custom:
+	// Custom
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	xScale = 1;
 	yScale = 1;
 	angle = 0;
 	
-	rm = rmDemoInstances01;
+	rm = rmDemoInstances;
 	instances = undefined;
 	
 	static Load = function() {

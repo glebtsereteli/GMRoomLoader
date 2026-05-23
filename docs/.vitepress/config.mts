@@ -11,7 +11,7 @@ export default defineConfig({
   title: "GMRoomLoader",
   description: "GMRoomLoader Documentation",
   head: [
-    ['link', { rel: 'icon', href: 'logo.svg' }],
+    ['link', { rel: 'icon', href: 'favicon.svg' }],
 
     // embeds
     ["meta", { property: "og:title", content: "GMRoomLoader Documentation" }],
@@ -41,7 +41,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/favicon.svg',
 
     search: {
       provider: 'local'
@@ -94,6 +94,7 @@ export default defineConfig({
               { text: 'Overview', link: '/pages/api/payload/overview' },
               { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Status', link: '/pages/api/payload/status' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ],
           },
@@ -141,6 +142,7 @@ export default defineConfig({
             items: [
               { text: 'Depth', link: '/pages/api/payload/depth' },
               { text: 'Getters', link: '/pages/api/payload/getters' },
+              { text: 'Status', link: '/pages/api/payload/status' },
               { text: 'Cleanup', link: '/pages/api/payload/cleanup' },
             ]
           },
@@ -175,7 +177,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the <a href="https://github.com/glebtsereteli/GMRoomLoader/blob/main/LICENSE">MIT License</a>. Built with <a href="https://vitepress.dev/">VitePress</a>.',
-      copyright: 'Copyright © 2024-2025 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
+      copyright: 'Copyright © 2024-2026 <a href="https://github.com/glebtsereteli">Gleb Tsereteli</a>'
     },
 
     lastUpdated: {
@@ -190,7 +192,7 @@ export default defineConfig({
   markdown: {
     config: (md: MarkdownIt) => {
       const shortcuts: Record<string, string> = {
-        // types
+        // Types
         'Real': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'Bool': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'String': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Strings/Strings.htm',
@@ -198,10 +200,9 @@ export default defineConfig({
         'Struct': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Structs.htm',
         'Undefined': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Data_Types.htm',
         'Noone': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Instance%20Keywords/noone.htm',
-        'Enum': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Variables/Constants.htm#:~:text=of%20this%20page.-,Enums,-An%20enum%20is',
         'Constant.Color': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Colour_And_Alpha/Colour_And_Alpha.htm',
 
-        // assets
+        // Assets
         'Asset.GMRoom': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Rooms.htm',
         'Asset.GMObject': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Objects/Objects.htm',
         'Asset.GMSprite': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprites.htm',
@@ -216,12 +217,17 @@ export default defineConfig({
         'Id.ParticleSystem': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Particles/Particle_Systems/Particle_Systems.htm',
         'Id.Sequence': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Sequence_Layers/Sequence_Layers.htm',
         'Id.Function': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Overview/Script_Functions.htm',
+        'Id.Text': 'https://manual.gamemaker.io/monthly/en/index.htm#t=GameMaker_Language%2FGML_Reference%2FAsset_Management%2FRooms%2FText_Functions%2FText_Elements.htm',
         'Id.Background': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/Background_Layers/Background_Layers.htm',
+        'Id.Surface': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm',
+        'Id.Buffer': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/Buffers.htm',
+        'Id.Camera': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Cameras_And_Display/Cameras_And_Viewports/Cameras_And_View_Ports.htm',
 
-        // functions
+        // Functions
         'room_get_info()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Rooms/room_get_info.htm',
-        
-        // links
+        'draw_sprite_part()': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm',
+
+        // Links
         'New Issue': 'https://github.com/glebtsereteli/GMRoomLoader/issues/new',
         'Debug Overlay': 'https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Debugging/The_Debug_Overlay.htm',
         
@@ -241,6 +247,11 @@ export default defineConfig({
         'Initialization': '/pages/api/roomLoader/data#initialization',
         'Loading': '/pages/api/roomLoader/loading',
         'Screenshotting': '/pages/api/roomLoader/screenshotting',
+        'Screenshot': '/pages/api/roomLoader/screenshotting',
+        'Screenshots': '/pages/api/roomLoader/screenshotting',
+        '.ScreenshotSprite()': '/pages/api/roomLoader/screenshotting#screenshotsprite',
+        '.ScreenshotSurface()': '/pages/api/roomLoader/screenshotting#screenshotsurface',
+        '.ScreenshotBuffer()': '/pages/api/roomLoader/screenshotting#screenshotbuffer',
         'Cleanup': '/pages/api/payload/cleanup',
         'RoomLoader.Load()': '/pages/api/roomLoader/loading#load',
         'RoomLoader.LoadInstances()': '/pages/api/roomLoader/loading#loadinstances',
@@ -252,8 +263,6 @@ export default defineConfig({
         'Full Rooms': '/pages/api/roomLoader/loading#load',
         'Instances': '/pages/api/roomLoader/loading#loadinstances',
         'Tilemaps': '/pages/api/roomLoader/loading#loadtilemap',
-        
-        'ROOMLOADER_FLAG': '/pages/api/roomLoader/assetTypeFiltering#roomloader-flag',
 
         'ROOMLOADER_ENABLE_DEBUG': '/pages/api/config#roomloader-enable-debug',
         'ROOMLOADER_DEFAULT_XORIGIN': '/pages/api/config#roomloader-default-xorigin',
@@ -268,7 +277,7 @@ export default defineConfig({
         'ROOMLOADER_DEBUG_VIEW_GET_X': '/pages/api/config#roomloader-debug-view-get-x',
         'ROOMLOADER_DEBUG_VIEW_GET_Y': '/pages/api/config#roomloader-debug-view-get-y',
         
-        // state
+        // State
         'State': '/pages/api/roomLoader/state',
         'State.XOrigin': '/pages/api/roomLoader/state#xorigin',
         'State.YOrigin': '/pages/api/roomLoader/state#yorigin',
@@ -279,6 +288,7 @@ export default defineConfig({
         'State.Flip': '/pages/api/roomLoader/state#flip',
         'State.Angle': '/pages/api/roomLoader/state#angle',
         'State.Tileset': '/pages/api/roomLoader/state#tileset',
+        'State.Part': '/pages/api/roomLoader/state#part',
         
         'Scaling': '/pages/api/roomLoader/state#scale',
         'Scale': '/pages/api/roomLoader/state#scale',
@@ -286,6 +296,9 @@ export default defineConfig({
         'Mirroring': '/pages/api/roomLoader/state#mirror',
         'Flipping': '/pages/api/roomLoader/state#flip',
         'Tileset': '/pages/api/roomLoader/state#tileset',
+        'Part': '/pages/api/roomLoader/state#part',
+        'Part()': '/pages/api/roomLoader/state#part',
+        '.Part()': '/pages/api/roomLoader/state#part',
       }
 
       md.inline.ruler.before('link', 'shortcuts', (state, silent) => {

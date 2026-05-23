@@ -43,5 +43,5 @@ The **Position Mode** dropdown lets you choose where to load things - at the mou
 
 * **Mouse** loads at the mouse position, with controls over whether to load in room space using `mouse_x` and `mouse_y`, or in GUI space using `device_mouse_x_to_gui(0)` and `device_mouse_y_to_gui(0)`.
 * **Custom** loads at the specified *X* and *Y* coordinates.
-* **Random** loads at a random position withing the specified *X1*, *Y1*, *X2*, and *Y2* area.
+* **Random** loads at a random position within the specified *X1*, *Y1*, *X2*, and *Y2* area.
 * **Getters** loads at coordinates returned by the :ROOMLOADER_DEBUG_VIEW_GET_X: & :ROOMLOADER_DEBUG_VIEW_GET_Y: getters. If not defined, both default to `0`.

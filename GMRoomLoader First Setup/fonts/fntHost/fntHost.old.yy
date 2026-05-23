@@ -210,8 +210,8 @@
   "maintainGms1Font":false,
   "name":"fntHost",
   "parent":{
-    "name":"01. Host",
-    "path":"folders/01. Host.yy",
+    "name":"01 Host Room & Handler",
+    "path":"folders/01 Host Room & Handler.yy",
   },
   "pointRounding":0,
   "ranges":[

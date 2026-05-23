@@ -1,14 +1,14 @@
 // feather ignore all
 
-function DemoTilemaps() : DemoPar("Tilemaps") constructor {
-	// Shared:
+function DemoTilemaps() : Demo("Tilemaps") constructor {
+	// Shared
 	static Init = function() {
 		RoomLoader.DataInit(rm);
 		
 		// Interface:
 		dbg_section("Info");
 		dbg_text("This is an example of using \"RoomLoader.LoadTilemap()\" to load Tilemaps.\n\nUse the controls below to adjust Position, Origin, Mirroring, Flipping,\nRotation and Tileset.");
-		dbg_text_separator("Shortcuts", 1);
+		dbg_text_separator("Shortcuts");
 		dbg_text("- [PRESS 1] to Load the tilemap.");
 		dbg_text("- [PRESS 2] to Destroy the tilemap.");
 		
@@ -29,12 +29,12 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		
 		pos.InitDbg();
 		origin.InitDbg();
-		dbg_text_separator("Transform", 1);
+		dbg_text_separator("Transform");
 		dbg_checkbox(ref_create(self, "mirror"), "Mirror");
 		dbg_checkbox(ref_create(self, "flip"), "Flip");
 		dbg_slider_int(ref_create(self, "angle"), -180, 180, "Angle", 90);
 		
-		dbg_text_separator("Tilesets", 1);
+		dbg_text_separator("Tilesets");
 		base.InitDbg();
 		details.InitDbg();
 		
@@ -70,7 +70,7 @@ function DemoTilemaps() : DemoPar("Tilemaps") constructor {
 		Destroy();
 	};
 	
-	// Custom:
+	// Custom
 	pos = new DemoModulePos();
 	origin = new DemoModuleOrigin();
 	mirror = false;

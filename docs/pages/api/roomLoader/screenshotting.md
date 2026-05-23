@@ -2,84 +2,164 @@
 
 ## Overview
 
-The following methods allow taking screenshots of initialized rooms. 
+The methods listed on this page allow you to take screenshots of any room in the project without ever visiting it. Screenshots can be baked as [Sprites](#screenshotsprite), [Surfaces](#screenshotsurface) or [Buffers](#screenshotbuffer).
 
 Screenshots can be used in a variety of ways, like displaying previews in a level selection menu, capturing layouts for notes or level design, or previewing rooms in the world before loading them in.
 
 ::: danger ❗ PERFORMANCE NOTE
-If room data hasn't been initialized before screenshotting, GMRoomLoader will initialize it automatically. This is fine for quick tests or small rooms, but it **significantly slows down** loading. See the :Initialization: page for best practices.
+If room data hasn't been initialized before screenshotting, GMRoomLoader will initialize it automatically. This is fine for quick tests or small rooms, but it **significantly slows down** the first screenshotting call for each room. See the :Initialization: page for best practices.
 :::
 
-::: warning
-Screenshotting methods return new sprites created by [sprite_create_from_surface()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_create_from_surface.htm).
-Make sure to keep track of them and delete them using [sprite_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_delete.htm) when they're no longer needed.
+::: tip SCREENSHOTTING ROOM PARTS
+Similar to drawing parts of sprites with :draw_sprite_part():, you can use the :.Part(): State method to define which part of the room to capture.
+:::
+
+::: tip WORKING AT SCALE
+When you need to capture screenshots for many rooms, it's a good idea to use [.ScreenshotSurface()](#screenshotsurface) or [.ScreenshotBuffer()](#screenshotbuffer) to build a dynamic texture page, or a custom sprite atlas to avoid creating a new page group for every new :.ScreenshotSprite(): you create. See the [Atlasing](#atlasing) section below for more detail.
 :::
 
 ## Methods
 
-### `.Screenshot()`
+### `.ScreenshotSprite()`
 
-> `RoomLoader.Screenshot(room, [xOrigin], [yOrigin], [xScale], [yScale], [flags]` ➜ :Asset.GMSprite:
+> `RoomLoader.ScreenshotSprite(room, [xOrigin], [yOrigin], [flags], [xScale], [yScale])` ➜ :Asset.GMSprite:
 
-Takes a screenshot of the given room. If specified, assigns the optional :Origin: and scale to the created sprite and filters the captured elements by the given :Flags:.
+Takes a screenshot of the given room and returns it as a sprite. If specified, assigns the optional :Origin: to the created sprite, filters captured asset types by the given :Flags:, and applies the optional :Scale:.
 
-Returns the created :Asset.GMSprite:.
+::: warning
+This method returns a :Asset.GMSprite: created by [sprite_create_from_surface()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_create_from_surface.htm).
+Make sure to keep track of it and delete it using [sprite_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_delete.htm) when it's no longer needed.
+:::
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+| --- | --- | --- |
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
-| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[xScale]` | :Real: | The horizontal sprite scale [Default: :State.XScale: if set, or `1`] |
-| `[yScale]` | :Real: | The vertical sprite scale [Default: :State.YScale: if set, or `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
+| `[xOrigin]` | :Real: | The x screenshot :Origin: [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
+| `[yOrigin]` | :Real: | The y screenshot :Origin: [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
+| `[flags]` | :Real: | The :Flags: used to filter which asset types are captured [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xScale]` | :Real: | The horizontal screenshot scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set, or `1`] |
 
 :::code-group
 ```js [Regular]
-// Takes a screenshot of rmExample with a Middle Center origin, captures only
-// Tilemaps and Sprites:
-var _flags = ROOMLOADER_FLAG.TILEMAPS | ROOMLOADER_FLAG.SPRITES;
-screenshot = RoomLoader.Screenshot(rmExample, 0.5, 0.5, _flags); // [!code highlight]
+// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites
+var _flags = ROOMLOADER_FLAG_TILEMAPS | ROOMLOADER_FLAG_SPRITES;
+screenshot = RoomLoader.ScreenshotSprite(rmExample, 0.5, 0.5, _flags); // [!code highlight]
+
+// Takes a scaled down sprite screenshot of rmExample
+screenshot = RoomLoader.ScreenshotSprite(rmExample, 0, 0, ROOMLOADER_FLAG_ALL, 0.5, 0.5); // [!code highlight]
 ```
 ```js [State]
-// Takes a screenshot of rmExample with a Middle Center origin, captures only
-// Tilemaps and Sprites:
-screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().Screenshot(rmExample); // [!code highlight]
+// Takes a centered sprite screenshot of rmExample with only Tilemaps and Sprites
+screenshot = RoomLoader.MiddleCenter().Tilemaps().Sprites().ScreenshotSprite(rmExample); // [!code highlight]
+
+// Takes a scaled down sprite screenshot of rmExample
+screenshot = RoomLoader.Scale(0.5).ScreenshotSprite(rmExample); // [!code highlight]
 ```
 :::
 
-### `.ScreenshotPart()`
+---
+### `.ScreenshotSurface()`
 
-> `RoomLoader.ScreenshotPart(room, left, top, width, height, [xOrigin], [yOrigin], [xScale], [yScale], [flags])` ➜ :Asset.GMSprite:
+> `RoomLoader.ScreenshotSurface(room, [flags], [xScale], [yScale])` ➜ :Id.Surface:
 
-Takes a screenshot part of the given room, with the captured area defined by `left`, `top`, `width` and `height` parameters, just like [draw_sprite_part()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Sprites_And_Tiles/draw_sprite_part.htm). If specified, assigns the optional :Origin: and scale to the created sprite and filters the captured elements by the given :Flags:.
+Takes a screenshot of the given room and returns it as a surface. If specified, filters captured asset types by the given :Flags: and scales the output surface.
 
-Returns the created :Asset.GMSprite:.
+::: warning
+This method returns a :Id.Surface: created by [surface_create()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/surface_create.htm).
+Make sure to keep track of them and free them using [surface_free()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/surface_free.htm) when they're no longer needed.
+
+Also keep in mind that surfaces are volatile and don't persist in memory forever - see the [Surface Rules](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Surfaces/Surfaces.htm#:~:text=surface_free(surf)%3B-,Surface%20Rules,-Normal%20surfaces%20are) section in the docs.
+:::
+
+::: tip
+This is especially useful when building your own dynamic texture pages at runtime, see the [Atlasing](#atlasing) section below.
+:::
 
 | Parameter | Type | Description |
-|-----------|------|-------------|
+| --- | --- | --- |
 | `room` | :Asset.GMRoom: | The room to take a screenshot of |
-| `left` | :Real: | The x position on the sprite of the top-left corner of the area to capture (`0–1` percentage) |
-| `top` | :Real: | The y position on the sprite of the top-left corner of the area to capture (`0–1` percentage) |
-| `width` | :Real: | The width of the area to capture (`0–1` percentage) |
-| `height` | :Real: | The height of the area to capture (`0–1` percentage) |
-| `[xOrigin]` | :Real: | The x sprite :Origin: [Default: :State.XOrigin: if set, or :ROOMLOADER_DEFAULT_XORIGIN:] |
-| `[yOrigin]` | :Real: | The y sprite :Origin: [Default: :State.YOrigin: if set, or :ROOMLOADER_DEFAULT_YORIGIN:] |
-| `[xScale]` | :Real: | The horizontal scale to create the sprite at [Default: :State.XScale: if set, or `1`] |
-| `[yScale]` | :Real: | The vertical scale to create the sprite at [Default: :State.YScale: if set,  or `1`] |
-| `[flags]` | :Enum:.:ROOMLOADER_FLAG: | The flags used to filter the captured elements [Default: :State.Flags: if set, or :ROOMLOADER_FLAG:.`ALL`] |
+| `[flags]` | :Real: | The :Flags: used to filter which asset types are captured [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xScale]` | :Real: | The horizontal screenshot scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set, or `1`] |
 
 :::code-group
 ```js [Regular]
-// Takes a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
-// scales it up by a factor of 2, and captures only Instances:
-screenshot = RoomLoader.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5, 0.5, 0.5, 2, 2, ROOMLOADER_FLAG.INSTANCES); // [!code highlight]
+// Takes a surface screenshot of rmExample with only Tilemaps and Sprites
+var _flags = ROOMLOADER_FLAG_TILEMAPS | ROOMLOADER_FLAG_SPRITES;
+screenshot = RoomLoader.ScreenshotSurface(rmExample, _flags); // [!code highlight]
+
+// Takes a scaled down surface screenshot of rmExample
+screenshot = RoomLoader.ScreenshotSurface(rmExample, ROOMLOADER_FLAG_ALL, 0.5, 0.5); // [!code highlight]
 ```
 ```js [State]
-// Takes a screenshot of the top-left quadrant of rmExample with a Middle Center origin,
-// scales it up by a factor of 2, and captures only Instances:
-screenshot = RoomLoader
-.MiddleCenter().Scale(2).Instances()
-.ScreenshotPart(rmExample, 0, 0, 0.5, 0.5); // [!code highlight]
+// Takes a surface screenshot of rmExample with only Tilemaps and Sprites
+screenshot = RoomLoader.Tilemaps().Sprites().ScreenshotSurface(rmExample); // [!code highlight]
+
+// Takes a scaled down surface screenshot of rmExample
+screenshot = RoomLoader.Scale(0.5).ScreenshotSurface(rmExample); // [!code highlight]
 ```
 :::
+
+---
+### `.ScreenshotBuffer()`
+
+> `RoomLoader.ScreenshotBuffer(room, [flags], [xScale], [yScale])` ➜ :Struct:
+
+Takes a screenshot of the given room and returns a `{ buffer, width, height }` struct, where `buffer` is the buffer ID filled with image data, `width` is the width of the image, and `height` is the height of the image.
+
+If specified, filters captured asset types by the given :Flags: and scales the output buffer.
+
+::: warning
+This method includes a :Id.Buffer: in the returned struct, created by [buffer_create()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_create.htm).
+Make sure to keep track of it and delete it using [buffer_delete()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Buffers/buffer_delete.htm) when it's no longer needed.
+:::
+
+::: tip
+This is especially useful when building your own dynamic texture pages at runtime using [texturegroup_add()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Textures/texturegroup_add.htm), see the [Atlasing](#atlasing) section below.
+:::
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `room` | :Asset.GMRoom: | The room to take a screenshot of |
+| `[flags]` | :Real: | The :Flags: used to filter which asset types are captured [Default: :State.Flags: if set, or :ROOMLOADER_DEFAULT_FLAGS:] |
+| `[xScale]` | :Real: | The horizontal screenshot scale [Default: :State.XScale: if set, or `1`] |
+| `[yScale]` | :Real: | The vertical screenshot scale [Default: :State.YScale: if set, or `1`] |
+
+:::code-group
+```js [Regular]
+// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites
+var _flags = ROOMLOADER_FLAG_TILEMAPS | ROOMLOADER_FLAG_SPRITES;
+screenshot = RoomLoader.ScreenshotBuffer(rmExample, _flags); // [!code highlight]
+
+// Takes a scaled down buffer screenshot of rmExample
+screenshot = RoomLoader.ScreenshotBuffer(rmExample, ROOMLOADER_FLAG_ALL, 0.5, 0.5); // [!code highlight]
+```
+```js [State]
+// Takes a buffer screenshot of rmExample with only Tilemaps and Sprites
+screenshot = RoomLoader.Tilemaps().Sprites().ScreenshotBuffer(rmExample); // [!code highlight]
+
+// Takes a scaled down buffer screenshot of rmExample
+screenshot = RoomLoader.Scale(0.5).ScreenshotBuffer(rmExample); // [!code highlight]
+```
+:::
+
+## Atlasing
+
+### The Problem
+
+When capturing screenshots for many rooms, it's worth thinking about texture memory. Each call to [sprite_create_from_surface()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Asset_Management/Sprites/Sprite_Manipulation/sprite_create_from_surface.htm) from :.ScreenshotSprite(): creates a brand new texture page for the created sprite.
+
+A handful of these is fine, but at scale this adds up fast: each additional screenshot means another separate texture page, which is significant and unnecessary overhead - especially on lower-end devices with limited VRAM.
+
+### Runtime Texture Pages
+
+A more efficient approach is to build a dynamic texture page at runtime using [texturegroup_add()](https://manual.gamemaker.io/monthly/en/GameMaker_Language/GML_Reference/Drawing/Textures/texturegroup_add.htm), which accepts buffers directly. [.ScreenshotBuffer()](#screenshotbuffer) pairs naturally with this: capture each room as a buffer and pass them together in an array.
+
+The catch is that you still need to supply the sprite data struct yourself, including frame coordinates - which means bringing your own bin packing logic. That's a non-trivial algorithm to write well.
+
+### Collage Integration
+
+Most of this work is already handled by [TabularElf](https://tabelf.link/)'s [Collage](https://github.com/tabularelf/Collage) - a runtime texture page builder and packer for GameMaker that handles the bin packing algorithm internally, mimics GameMaker's own texture page packing, handles power-of-two constraints, and supports all major platforms.
+
+Collage pairs naturally with [.ScreenshotSurface()](#screenshotsurface): capture a room as a surface and hand it straight to Collage via [.AddSurface()](https://www.tabularelf.com/Collage/#/0.5.0/collage?id=addsurfacesurfaceid-identifier-x-y-width-height-removeback-smooth-xorigin-yorigin-separatetexture), and it handles the packing and texture page management for you.

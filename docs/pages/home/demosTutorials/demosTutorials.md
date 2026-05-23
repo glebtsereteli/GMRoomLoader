@@ -14,7 +14,7 @@
 
 As mentioned in the [First Setup](/pages/home/gettingStarted/gettingStarted/#first-setup) section of [Getting Started](/pages/home/gettingStarted/gettingStarted), this is a simple project demonstrating how to load a room centered at the mouse coordinates when pressing 1 and unload it when pressing 2.
 
-> ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20First%20Setup.yyz) example project.
+> ℹ️ Download the [GMRoomLoader First Setup.yyz](https://github.com/glebtsereteli/GMRoomLoader/releases/latest/download/GMRoomLoader.First.Setup.yyz) example project.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>
@@ -26,7 +26,7 @@ As mentioned in the [First Setup](/pages/home/gettingStarted/gettingStarted/#fir
 
 GMRoomLoader comes with a demo project showcasing all core features of the library. The demo includes a DBG ImGui control panel with demo cycling and custom controls for each example.
 
-> ℹ️ Download the [GMRoomLoader Demo.yyz](https://github.com/glebtsereteli/GMRoomLoader/raw/main/docs/public/GMRoomLoader%20Demo.yyz) project.
+> ℹ️ Download the [GMRoomLoader Demo.yyz](https://github.com/glebtsereteli/GMRoomLoader/releases/latest/download/GMRoomLoader.Demo.yyz) project.
 
 ---
 ### General
@@ -86,7 +86,7 @@ This is an example of using :Screenshotting: methods to take room screenshots, w
 ---
 ### Base
 
-This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows 2 "layers" of room loading working together.
+This is an example of an enemy base composed of multiple "Room Slots", each filled with randomized GameMaker rooms to create a unique level. First we load a Host room, then fill each Slot with a random room. This shows two "layers" of room loading working together.
 
 <div style="width: 100%; max-width: 100%;">
   <video style="width: 100%; height: auto;" controls>

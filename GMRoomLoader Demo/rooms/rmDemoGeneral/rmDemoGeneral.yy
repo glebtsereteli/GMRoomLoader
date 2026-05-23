@@ -271,8 +271,8 @@
   ],
   "name":"rmDemoGeneral",
   "parent":{
-    "name":"01. General",
-    "path":"folders/01. Demo/01. General.yy",
+    "name":"01 General",
+    "path":"folders/Demo/02 Types/01 General.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

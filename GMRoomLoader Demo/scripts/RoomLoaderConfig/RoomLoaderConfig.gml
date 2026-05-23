@@ -15,7 +15,7 @@
 #macro ROOMLOADER_DEFAULT_YORIGIN 0
 
 // Default flags used in Loading and Screenshotting.
-#macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG.ALL
+#macro ROOMLOADER_DEFAULT_FLAGS ROOMLOADER_FLAG_ALL
 
 // When Loading full rooms using RoomLoader.Load(), whether to merge loaded layers with existing layers (true)
 // or keep them separate (false).
@@ -24,9 +24,6 @@
 // If no matching layer exists, a new one will be created.
 // 
 // If false: a new layer is always created, even if a layer with the same name already exists.
-// 
-// WARNING: Enabling this may cause shared layers from multiple rooms to be unintentionally destroyed during
-// payload.Cleanup().
 #macro ROOMLOADER_MERGE_LAYERS false
 
 // Whether loaded tilemaps should be merged into existing tilemaps (true) or not (false).
@@ -43,21 +40,11 @@
 // e.g. When room switching automatically destroys all instances, layers and assets.
 #macro ROOMLOADER_DELIVER_PAYLOAD true
 
-#endregion
-#region Instances
-
-// Whether to initialize room parameters for loaded instances (true) or not (false).
-// 
-// NOTE: Setting this to false improves Loading performance.
-#macro ROOMLOADER_INSTANCES_USE_ROOM_PARAMS true
-
-// Whether to run Creation Code for loaded instances (true) or not (false).
-// 
-// NOTE: Setting this to false improves Loading performance.
-#macro ROOMLOADER_INSTANCES_RUN_CREATION_CODE true
+// Whether to create empty layers when Loading (true) or skip them (false).
+#macro ROOMLOADER_LOAD_EMPTY_LAYERS false
 
 #endregion
-#region Other Elements
+#region Elements
 
 // How many steps to pre-update particle systems on load so they don't appear freshly created.
 // 

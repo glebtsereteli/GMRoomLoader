@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"readme",
-  "name":"readme",
+  "%Name":"README",
+  "name":"README",
   "parent":{
     "name":"GMRoomLoader Demo",
     "path":"GMRoomLoader Demo.yyp",

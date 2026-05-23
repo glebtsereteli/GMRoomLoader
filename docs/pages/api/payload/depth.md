@@ -1,5 +1,7 @@
 # Depth
 
+## Overview
+
 When loading full rooms with multiple layers, you may want to shift their depths so they appear either above or below a specific depth in the current room.
 
 This is especially useful if you don't want the hassle of manually aligning layer depths across all your host and loaded rooms. With depth shifting, you can load a room with any layer depth setup and then reposition it relative to the host room's depth layout.
@@ -12,7 +14,7 @@ If you need more precise control over individual layer depths, use [.GetLayer()]
 
 ## `.DepthAbove()`
 
-> `payload.DepthAbove(layerOrDepth, [offset])` -> :Struct:.:Payload:
+> `payload.DepthAbove(layerOrDepth, [offset])` ➜ :Struct:.:Payload:
 
 Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset.
 
@@ -23,7 +25,7 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 
 :::code-group
 ```js [Example]
-// Load rmLevelForest and shift all its layers above the "Instances" layer:
+// Load rmLevelForest and shift all its layers above the "Instances" layer
 payload = RoomLoader.Load(rmLevelForest, x, y);
 payload.DepthAbove("Instances"); // [!code highlight]
 ```
@@ -31,9 +33,9 @@ payload.DepthAbove("Instances"); // [!code highlight]
 
 ## `.DepthBelow()`
 
-> `payload.DepthBelow(layerOrDepth, [offset])` -> :Struct:.:Payload:
+> `payload.DepthBelow(layerOrDepth, [offset])` ➜ :Struct:.:Payload:
 
-Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset.
+Shifts all layers to a depth below `layerOrDepth`, with an optional depth offset.
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -42,8 +44,8 @@ Shifts all layers to a depth above `layerOrDepth`, with an optional depth offset
 
 :::code-group
 ```js [Example]
-// Load rmLevelCave and shift all its layers 500 depth below the "Overlay" layer:
-payload = RoomLoader.Load(rmLevelCave);
+// Load rmLevelCave and shift all its layers 500 depth below the "Overlay" layer
+payload = RoomLoader.Load(rmLevelCave, x, y);
 payload.DepthBelow("Overlay", 500); // [!code highlight]
 ```
 :::

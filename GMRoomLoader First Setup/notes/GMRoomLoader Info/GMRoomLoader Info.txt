@@ -1,0 +1,8 @@
+
+# GMRoomLoader v3.0.0 (2026.05.23) Info
+
+- Author: Gleb Tsereteli
+- GitHub: https://github.com/glebtsereteli/GMRoomLoader
+- itch.io: https://glebtsereteli.itch.io/gmroomloader
+- Documentation: https://glebtsereteli.github.io/GMRoomLoader
+- Support: Visit the dedicated GMRoomLoader channel on the [GameMaker Kitchen](https://discord.gg/gamemakerkitchen) Discord server.

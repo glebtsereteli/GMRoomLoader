@@ -208,8 +208,8 @@
   "maintainGms1Font":false,
   "name":"fntDemo",
   "parent":{
-    "name":"99. Misc",
-    "path":"folders/01. Demo/99. Misc.yy",
+    "name":"99 Misc",
+    "path":"folders/Demo/99 Misc.yy",
   },
   "pointRounding":0,
   "ranges":[

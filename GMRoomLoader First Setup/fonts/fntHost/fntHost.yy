@@ -210,8 +210,8 @@
   "maintainGms1Font":false,
   "name":"fntHost",
   "parent":{
-    "name":"01. Host Room & Handler",
-    "path":"folders/01. Host Room & Handler.yy",
+    "name":"Host Room & Handler",
+    "path":"folders/First Setup/Host Room & Handler.yy",
   },
   "pointRounding":0,
   "ranges":[
@@ -225,7 +225,10 @@
   "sdfSpread":8,
   "size":20.0,
   "styleName":"Bold",
-  "textureGroupId":null,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
   "TTFName":"",
   "usesSDF":true,
 }

@@ -55,8 +55,8 @@
   ],
   "name":"rmExample",
   "parent":{
-    "name":"02. Loaded Room",
-    "path":"folders/02. Loaded Room.yy",
+    "name":"Loaded Room",
+    "path":"folders/First Setup/Loaded Room.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

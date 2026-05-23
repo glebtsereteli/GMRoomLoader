@@ -1,7 +1,7 @@
 // feather ignore all
 
-function DemoBase() : DemoPar("Base") constructor {
-	// Shared:
+function DemoBase() : Demo("Base") constructor {
+	// Shared
 	static Init = function() {
 		host.Init();
 		slots.Init();
@@ -9,7 +9,7 @@ function DemoBase() : DemoPar("Base") constructor {
 		dbg_section("Info");
 		dbg_text("This demo shows an enemy base composed of multiple Room Slots, each\nfilled with randomized GameMaker rooms to create a unique level.");
 		dbg_text("\nFirst we load a Host room, then fill each Slot with a random room.\nThis shows 2 \"layers\" of room loading working together.");
-		dbg_text_separator("Shortcuts", 1);
+		dbg_text_separator("Shortcuts");
 		dbg_text("- [PRESS 1] to load random rooms for all Slots.");
 		dbg_text("  [HOLD SHIFT+1] to load random rooms for all Slots every frame.");
 		dbg_text("- [PRESS 2] to clean up rooms for all Slots.");
@@ -44,18 +44,20 @@ function DemoBase() : DemoPar("Base") constructor {
 		host.Cleanup();
 	};
 	
-	// Custom:
+	// Custom
 	host = {
 		ref: rmDemoBaseHost,
-		data: undefined,
+		payload: undefined,
 		
 		Init: function() {
 			RoomLoader.DataInit(ref);
-			data = RoomLoader.Load(ref, DEMOS.xCenter, DEMOS.yCenter, 0.5, 0.5);
+			payload = RoomLoader.Load(ref, objDemoControl.centerX, objDemoControl.centerY, 0.5, 0.5);
 		},
 		Cleanup: function() {
+			if (payload == undefined) return;
+			
 			RoomLoader.DataRemove(ref);
-			data.Cleanup();
+			payload.Cleanup();
 		},
 	};
 	slots = {
