@@ -134,7 +134,7 @@ If detached instances remain on their original layers and those layers are destr
 // Detaches loaded instances from the payload and stores them for manual cleanup
 var _instances = payload.DetachInstances(); // [!code highlight]
 
-// Later, destroy detached instances when needed:
+// Later, destroy detached instances when needed
 array_foreach(_instances, function(_inst) {
     instance_destroy(_inst);
 });
