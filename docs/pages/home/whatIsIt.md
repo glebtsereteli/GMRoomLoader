@@ -12,7 +12,7 @@ Design levels across multiple rooms and combine them seamlessly during gameplay.
 ::: warning DISCLAIMER
 GMRoomLoader is designed specifically for __loading room contents__.
 
-It does NOT provide tools for procedural generation or level layout creation of any kind (like deciding which room to load and where to place it). You'll need to handle that yourself.
+It does not provide tools for procedural generation or level layout creation of any kind (like deciding which room to load and where to place it). You'll need to handle that yourself.
 :::
 
 ## Use Cases
