@@ -1,8 +1,8 @@
+<img width="1280" height="300" alt="banner bg pattern" src="https://github.com/user-attachments/assets/e7e24e10-c08c-44a5-aed2-35707f8a1a3b" />
 
-<h1 align="center">GMRoomLoader v2.5.0 </h1>
+<h1 align="center">GMRoomLoader v3.0.0 </h1>
 <p align="center">
-  Runtime room loading for
-  GameMaker <a href="https://releases.gamemaker.io/release-notes/2026/0"> LTS 2026</a>
+  Runtime room loading for <a href="https://releases.gamemaker.io/release-notes/2026/0"> GameMaker LTS 2026</a>
 </p>
 
 <!-- # GMRoomLoader [![Release](https://img.shields.io/github/v/release/glebtsereteli/GMRoomLoader?style=flat&logo=github&logoColor=white)](https://github.com/glebtsereteli/GMRoomLoader/releases) -->
