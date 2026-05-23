@@ -2,7 +2,13 @@
 
 ## Overview
 
-This page covers GMRoomLoader configuration macros. They define how rooms, layers and assets are loaded, letting you customize debug output, :Loading: parameters and other options that affect performance and various behaviors.
+This page covers GMRoomLoader's configuration macros, found in the `RoomLoaderConfig` script. Adjusting these lets you customize loading behavior, debug output, default parameters, and more.
+
+The defaults work well for most projects, so you only need to change them when you have a specific need.
+
+::: tip UPDATING
+If you've customized any of these configs and are updating to a new version of GMRoomLoader, make sure to back them up first. See the [Updating](/pages/home/faq#updating) FAQ entry for instructions.
+:::
 
 ## General
 
