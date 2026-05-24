@@ -255,22 +255,35 @@ function RoomLoaderPayload(_room) constructor {
 	#region Status
 	
 	/// Returns whether the loaded room's bounding box overlaps the given camera's view (true) or not (false).
+	/// Works with any camera size and rotation.
 	/// Positive padding expands the view bounds outward, negative padding shrinks them inward.
-	/// NOTE: Does not account for camera rotation.
 	/// 
-	/// @param {Id.Camera} camera The camera to check against.
+	/// @param {Id.Camera} camera The camera to check against. [Default: view_camera[0]]
 	/// @param {Real} padding The padding to apply to the view bounds. [Default: 0]
 	/// 
 	/// @returns {Bool}
 	/// @self RoomLoaderPayload
-	static IsInView = function(_camera, _pad = 0) {
-	    var _x = camera_get_view_x(_camera) - _pad;
-	    var _y = camera_get_view_y(_camera) - _pad;
-	    var _w = camera_get_view_width(_camera) + (_pad * 2);
-	    var _h = camera_get_view_height(_camera) + (_pad * 2);
-	    var _result = rectangle_in_rectangle(__bbox.x1, __bbox.y1, __bbox.x2, __bbox.y2, _x, _y, _x + _w, _y + _h);
+	static IsInView = function(_camera = view_camera[0], _pad = 0) {
+		var _camW = camera_get_view_width(_camera);
+		var _camH = camera_get_view_height(_camera);
+		var _camHW = (_camW / 2) + _pad;
+		var _camHH = (_camH / 2) + _pad;
 		
-	    return (_result > 0);
+		var _deltaX = mean(__bbox.x1, __bbox.x2) - (camera_get_view_x(_camera) + (_camW / 2));
+		var _deltaY = mean(__bbox.y1, __bbox.y2) - (camera_get_view_y(_camera) + (_camH / 2));
+		var _bboxHW = (__bbox.x2 - __bbox.x1) / 2;
+		var _bboxHH = (__bbox.y2 - __bbox.y1) / 2;
+		
+		var _angle = camera_get_view_angle(_camera);
+		var _cos = dcos(_angle), _absCos = abs(_cos);
+		var _sin = dsin(_angle), _absSin = abs(_sin);
+		
+		if (abs(_deltaX) > _bboxHW + (_camHW * _absCos) + (_camHH * _absSin)) return false;
+		if (abs(_deltaY) > _bboxHH + (_camHW * _absSin) + (_camHH * _absCos)) return false;
+		if (abs((_deltaX * _cos) + (_deltaY * _sin)) > _camHW + (_bboxHW * _absCos) + (_bboxHH * _absSin)) return false;
+		if (abs((_deltaY * _cos) - (_deltaX * _sin)) > _camHH + (_bboxHW * _absSin) + (_bboxHH * _absCos)) return false;
+		
+		return true;
 	};
 	
 	/// Returns whether the payload has been cleaned up (true) or not (false).
