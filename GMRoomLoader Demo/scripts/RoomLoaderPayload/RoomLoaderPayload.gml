@@ -82,6 +82,36 @@ function RoomLoaderPayload(_room) constructor {
 	    return __bbox;
 	};
 	
+	/// Returns the corners of the loaded room as a flat array of coordinates in clockwise order.
+	/// Accounts for any combination of the room's position, origin, scale, and rotation.
+	/// 
+	/// @returns {Array<Real>}
+	/// @self RoomLoaderPayload
+	static GetPolygon = function() {
+		if (__obb == undefined) {
+			return [
+				__bbox.x1, __bbox.y1, // TL
+				__bbox.x2, __bbox.y1, // TR
+				__bbox.x2, __bbox.y2, // BR
+				__bbox.x1, __bbox.y2, // BL
+			];
+		}
+		
+		var _cx = __obb.__centerX;
+		var _cy = __obb.__centerY;
+		var _hwCos = __obb.__hw * __obb.__cos;
+		var _hwSin = __obb.__hw * __obb.__sin;
+		var _hhSin = __obb.__hh * __obb.__sin;
+		var _hhCos = __obb.__hh * __obb.__cos;
+		
+		return [
+			_cx - _hwCos + _hhSin, _cy + _hwSin + _hhCos, // TL
+			_cx + _hwCos + _hhSin, _cy - _hwSin + _hhCos, // TR
+			_cx + _hwCos - _hhSin, _cy - _hwSin - _hhCos, // BR
+			_cx - _hwCos - _hhSin, _cy + _hwSin - _hhCos, // BL
+		];
+	};
+	
 	/// Returns the ID of the created layer matching the given name if found, or undefined if not found.
 	/// 
 	/// @param {String} name The layer name to search for.
@@ -255,7 +285,7 @@ function RoomLoaderPayload(_room) constructor {
 	#region Status
 	
 	/// Returns whether the loaded room's bounding box overlaps the given camera's view (true) or not (false).
-	/// Accurately handles any combination of camera and room positioning, scaling, and rotation.
+	/// Handles any combination of camera and loaded room positioning, scaling, and rotation.
 	/// Positive padding expands the view bounds outward, negative padding shrinks them inward.
 	/// 
 	/// @param {Id.Camera} camera The camera to check against. [Default: view_camera[0]]
@@ -277,12 +307,12 @@ function RoomLoaderPayload(_room) constructor {
 		var _sin = dsin(_angle), _absSin = abs(_sin);
 		
 		if (__obb != undefined) {
-			var _deltaX = __obb.centerX - _camCX;
-			var _deltaY = __obb.centerY - _camCY;
-			var _bboxHW = __obb.hw;
-			var _bboxHH = __obb.hh;
-			var _bboxCos = __obb.cos;
-			var _bboxSin = __obb.sin;
+			var _deltaX = __obb.__centerX - _camCX;
+			var _deltaY = __obb.__centerY - _camCY;
+			var _bboxHW = __obb.__hw;
+			var _bboxHH = __obb.__hh;
+			var _bboxCos = __obb.__cos;
+			var _bboxSin = __obb.__sin;
 			__ROOMLOADER_ISINVIEW_SAT;
 		}
 		

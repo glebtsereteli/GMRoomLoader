@@ -168,12 +168,12 @@ function __RoomLoaderDataRoom(_room) constructor {
 					var _hw = (__width * _xScale) / 2;
 					var _hh = (__height * _yScale) / 2;
 					RoomLoader.__payload.__obb = {
-						centerX: _x + (_hw * _cos) + (_hh * _sin),
-						centerY: _y - (_hw * _sin) + (_hh * _cos),
-						hw: abs(_hw),
-						hh: abs(_hh),
-						cos: _cos,
-						sin: _sin,
+						__centerX: _x + (_hw * _cos) + (_hh * _sin),
+						__centerY: _y - (_hw * _sin) + (_hh * _cos),
+						__hw: abs(_hw),
+						__hh: abs(_hh),
+						__cos: _cos,
+						__sin: _sin,
 					};
 				}
 			}
