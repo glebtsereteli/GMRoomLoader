@@ -255,7 +255,7 @@ function RoomLoaderPayload(_room) constructor {
 	#region Status
 	
 	/// Returns whether the loaded room's bounding box overlaps the given camera's view (true) or not (false).
-	/// Works with any camera size and rotation.
+	/// Accurately handles any combination of camera and room positioning, scaling, and rotation.
 	/// Positive padding expands the view bounds outward, negative padding shrinks them inward.
 	/// 
 	/// @param {Id.Camera} camera The camera to check against. [Default: view_camera[0]]
@@ -269,21 +269,30 @@ function RoomLoaderPayload(_room) constructor {
 		var _camHW = (_camW / 2) + _pad;
 		var _camHH = (_camH / 2) + _pad;
 		
-		var _deltaX = mean(__bbox.x1, __bbox.x2) - (camera_get_view_x(_camera) + (_camW / 2));
-		var _deltaY = mean(__bbox.y1, __bbox.y2) - (camera_get_view_y(_camera) + (_camH / 2));
-		var _bboxHW = (__bbox.x2 - __bbox.x1) / 2;
-		var _bboxHH = (__bbox.y2 - __bbox.y1) / 2;
+		var _camCX = camera_get_view_x(_camera) + (_camW / 2);
+		var _camCY = camera_get_view_y(_camera) + (_camH / 2);
 		
 		var _angle = camera_get_view_angle(_camera);
 		var _cos = dcos(_angle), _absCos = abs(_cos);
 		var _sin = dsin(_angle), _absSin = abs(_sin);
 		
-		if (abs(_deltaX) > _bboxHW + (_camHW * _absCos) + (_camHH * _absSin)) return false;
-		if (abs(_deltaY) > _bboxHH + (_camHW * _absSin) + (_camHH * _absCos)) return false;
-		if (abs((_deltaX * _cos) + (_deltaY * _sin)) > _camHW + (_bboxHW * _absCos) + (_bboxHH * _absSin)) return false;
-		if (abs((_deltaY * _cos) - (_deltaX * _sin)) > _camHH + (_bboxHW * _absSin) + (_bboxHH * _absCos)) return false;
+		if (__obb != undefined) {
+			var _deltaX = __obb.centerX - _camCX;
+			var _deltaY = __obb.centerY - _camCY;
+			var _bboxHW = __obb.hw;
+			var _bboxHH = __obb.hh;
+			var _bboxCos = __obb.cos;
+			var _bboxSin = __obb.sin;
+			__ROOMLOADER_ISINVIEW_SAT;
+		}
 		
-		return true;
+		var _deltaX = mean(__bbox.x1, __bbox.x2) - _camCX;
+		var _deltaY = mean(__bbox.y1, __bbox.y2) - _camCY;
+		var _bboxHW = (__bbox.x2 - __bbox.x1) / 2;
+		var _bboxHH = (__bbox.y2 - __bbox.y1) / 2;
+		var _bboxCos = 1;
+		var _bboxSin = 0;
+		__ROOMLOADER_ISINVIEW_SAT;
 	};
 	
 	/// Returns whether the payload has been cleaned up (true) or not (false).
@@ -387,6 +396,7 @@ function RoomLoaderPayload(_room) constructor {
 	
 	__room = _room;
 	__bbox = undefined;
+	__obb = undefined;
 	
 	__layers = new __Container(layer_destroy);
 	__instances = new __Instances();
