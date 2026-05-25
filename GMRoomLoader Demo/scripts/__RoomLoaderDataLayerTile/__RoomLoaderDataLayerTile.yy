@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__RoomLoaderDataLayerTile",
   "parent":{
-    "name":"02 Data",
-    "path":"folders/GMRoomLoader/02 Private/02 Data.yy",
+    "name":"Data",
+    "path":"folders/GMRoomLoader/(System)/Data.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
