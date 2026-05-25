@@ -12,29 +12,69 @@ All code examples on this page assume you have an existing instance of :Payload:
 
 ### `.IsInView()`
 
-> `payload.IsInView(camera, [padding])` ➜ :Bool:
+> `payload.IsInView([camera], [padding])` ➜ :Bool:
 
-Returns whether the loaded room's bounding box overlaps the given camera's view (`true`) or not (`false`).
+Returns whether the loaded room overlaps the given camera's view (`true`) or not (`false`). Handles any combination of camera and loaded room positioning, scaling, and rotation.
 
 Positive padding expands the view bounds outward, negative padding shrinks them inward.
 
-Does not account for camera rotation.
-
 | Parameter | Type | Description |
 | --- | --- | --- |
-| `camera` | :Id.Camera: | The camera to check against |
+| `[camera]` | :Id.Camera: | The camera to check against [Default: `view_camera[0]`] |
 | `[padding]` | :Real: | The padding to apply to the view bounds [Default: `0`] |
 
 :::code-group
 ```js [Example]
 // Cleans up the loaded room when it leaves the camera's view
-if (not payload.IsInView(camera_get_active())) { // [!code highlight]
+if (not payload.IsInView()) { // [!code highlight]
     payload.Cleanup();
 }
 
 // Cleans up only after the room is 512 pixels outside the view
-if (not payload.IsInView(camera_get_active(), 512)) { // [!code highlight]
+if (not payload.IsInView(view_camera[0], 512)) { // [!code highlight]
     payload.Cleanup();
+}
+```
+:::
+
+---
+
+### `.GetPolygon()`
+
+> `payload.GetPolygon()` ➜ :Array:
+
+Returns the corners of the loaded room as a flat `[x1, y1, x2, y2, x3, y3, x4, y4]` coordinate array in clockwise order, accounting for any combination of position, origin, scale, and rotation.
+
+:::code-group
+```js [Example]
+// Draw the loaded room's outline
+var _poly = payload.GetPolygon(); // [!code highlight]
+var _n = array_length(_poly);
+for (var _i1 = 0; _i1 < _n; _i1 += 2) {
+    var _i2 = (_i1 + 2) mod _n;
+    draw_line(_poly[_i1], _poly[_i1 + 1], _poly[_i2], _poly[_i2 + 1]);
+}
+```
+:::
+
+---
+
+### `.IsPointInside()`
+
+> `payload.IsPointInside(x, y)` ➜ :Bool:
+
+Returns whether the given point falls inside the loaded room's bounds (`true`) or not (`false`), accounting for any combination of position, origin, scale, and rotation.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `x` | :Real: | The x coordinate of the point to check |
+| `y` | :Real: | The y coordinate of the point to check |
+
+:::code-group
+```js [Example]
+// Check if the player is inside the loaded room
+if (payload.IsPointInside(player.x, player.y)) { // [!code highlight]
+    show_debug_message("Player is inside the room!");
 }
 ```
 :::

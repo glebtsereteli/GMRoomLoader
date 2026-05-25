@@ -290,7 +290,7 @@ function RoomLoaderPayload(_room) constructor {
 	#endregion
 	#region Status
 	
-	/// Returns whether the loaded room's bounding box overlaps the given camera's view (true) or not (false).
+	/// Returns whether the loaded room overlaps the given camera's view (true) or not (false).
 	/// Handles any combination of camera and loaded room positioning, scaling, and rotation.
 	/// Positive padding expands the view bounds outward, negative padding shrinks them inward.
 	/// 
@@ -331,7 +331,7 @@ function RoomLoaderPayload(_room) constructor {
 		__ROOMLOADER_ISINVIEW_SAT;
 	};
 	
-	/// Checks whether the given point falls inside the loaded room's bounds, accounting for position, scale, and rotation.
+	/// Checks whether the given point falls inside the loaded room's bounds, accounting for any combination of position, origin, scale, and rotation.
 	/// 
 	/// @param {Real} x The x coordinate of the point to check.
 	/// @param {Real} y The y coordinate of the point to check.
