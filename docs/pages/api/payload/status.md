@@ -39,26 +39,6 @@ if (not payload.IsInView(view_camera[0], 512)) { // [!code highlight]
 
 ---
 
-### `.GetPolygon()`
-
-> `payload.GetPolygon()` ➜ :Array:
-
-Returns the corners of the loaded room as a flat `[x1, y1, x2, y2, x3, y3, x4, y4]` coordinate array in clockwise order, accounting for any combination of position, origin, scale, and rotation.
-
-:::code-group
-```js [Example]
-// Draw the loaded room's outline
-var _poly = payload.GetPolygon(); // [!code highlight]
-var _n = array_length(_poly);
-for (var _i1 = 0; _i1 < _n; _i1 += 2) {
-    var _i2 = (_i1 + 2) mod _n;
-    draw_line(_poly[_i1], _poly[_i1 + 1], _poly[_i2], _poly[_i2 + 1]);
-}
-```
-:::
-
----
-
 ### `.IsPointInside()`
 
 > `payload.IsPointInside(x, y)` ➜ :Bool:

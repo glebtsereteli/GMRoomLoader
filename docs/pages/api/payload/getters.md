@@ -37,6 +37,26 @@ draw_rectangle(_bbox.x1, _bbox.y1, _bbox.x2, _bbox.y2, true);
 
 ---
 
+### `.GetPolygon()`
+
+> `payload.GetPolygon()` ➜ :Array:
+
+Returns the corners of the loaded room as a flat `[x1, y1, x2, y2, x3, y3, x4, y4]` coordinate array in clockwise order, accounting for any combination of position, origin, scale, and rotation.
+
+:::code-group
+```js [Example]
+// Gets the polygon of the loaded room and draws its outline
+var _polygon = payload.GetPolygon(); // [!code highlight]
+var _n = array_length(_polygon);
+for (var _i1 = 0; _i1 < _n; _i1 += 2) {
+    var _i2 = (_i1 + 2) mod _n;
+    draw_line(_polygon[_i1], _polygon[_i1 + 1], _polygon[_i2], _polygon[_i2 + 1]);
+}
+```
+:::
+
+---
+
 ### `.GetLayer()`
 
 > `payload.GetLayer(name)` ➜ :Id.Layer: or :Undefined:
