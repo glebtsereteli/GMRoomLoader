@@ -25,13 +25,13 @@ Positive padding expands the view bounds outward, negative padding shrinks them 
 
 :::code-group
 ```js [Example]
-// Cleans up the loaded room when it leaves the camera's view
+// Cleans up the loaded room when it leaves view_camera[0]'s view
 if (not payload.IsInView()) { // [!code highlight]
     payload.Cleanup();
 }
 
-// Cleans up only after the room is 512 pixels outside the view
-if (not payload.IsInView(view_camera[0], 512)) { // [!code highlight]
+// Cleans up only after the room is 512 pixels outside view_camera[1]'s view
+if (not payload.IsInView(view_camera[1], 512)) { // [!code highlight]
     payload.Cleanup();
 }
 ```

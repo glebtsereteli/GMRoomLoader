@@ -70,14 +70,16 @@ function DemoGeneral() : Demo("General") constructor {
 		var _yScale = _h / sprite_get_height(_frame);
 		DrawSpriteOrigin(_frame, 0, pos.x, pos.y, _xOrigin, _yOrigin, _xScale, _yScale, angle);
 		
-		//with (DEMO_PAYLOAD) {
-		//	var _poly = GetPolygon();
-		//	var _n = array_length(_poly);
-		//	for (var _i1 = 0; _i1 < _n; _i1 += 2) {
-		//		var _i2 = (_i1 + 2) mod _n;
-		//		draw_line(_poly[_i1], _poly[_i1 + 1], _poly[_i2], _poly[_i2 + 1]);
-		//	}
-		//}
+		with (DEMO_PAYLOAD) {
+			//var _poly = GetPolygon();
+			//var _n = array_length(_poly);
+			//for (var _i1 = 0; _i1 < _n; _i1 += 2) {
+			//	var _i2 = (_i1 + 2) mod _n;
+			//	draw_line_width(_poly[_i1], _poly[_i1 + 1], _poly[_i2], _poly[_i2 + 1], 4);
+			//}
+			
+			//show_debug_message($"Mouse {IsPointInside(mouse_x, mouse_y) ? "inside" : "outside"} room");
+		}
 		
 		draw_sprite(sprDemoCross, 0, pos.x, pos.y);
 	};

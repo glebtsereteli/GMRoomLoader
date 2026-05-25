@@ -1,3 +1,4 @@
+// feather ignore all
 
 function __RoomLoaderDebugViewPosMode(_name) constructor {
 	__name = _name;

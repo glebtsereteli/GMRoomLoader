@@ -1,3 +1,4 @@
+// feather ignore all
 
 function __RoomLoaderLayerFilter(_name, _positive) constructor {
 	__name = _name;

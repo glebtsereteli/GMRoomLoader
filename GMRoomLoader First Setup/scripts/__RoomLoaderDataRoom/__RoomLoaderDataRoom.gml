@@ -156,12 +156,26 @@ function __RoomLoaderDataRoom(_room) constructor {
 			    var _wY = -__width * _xScale * _sin;
 			    var _hX = __height * _yScale * _sin;
 			    var _hY = __height * _yScale * _cos;
-			    RoomLoader.__payload.__bbox = {
+			    
+				RoomLoader.__payload.__bbox = {
 			        x1: _x + min(0, _wX, _wX + _hX, _hX),
 			        y1: _y + min(0, _wY, _wY + _hY, _hY),
 			        x2: _x + max(0, _wX, _wX + _hX, _hX),
 			        y2: _y + max(0, _wY, _wY + _hY, _hY),
 			    };
+				
+				if (abs(_angle mod 90) != 0) {
+					var _hw = (__width * _xScale) / 2;
+					var _hh = (__height * _yScale) / 2;
+					RoomLoader.__payload.__obb = {
+						__centerX: _x + (_hw * _cos) + (_hh * _sin),
+						__centerY: _y - (_hw * _sin) + (_hh * _cos),
+						__hw: abs(_hw),
+						__hh: abs(_hh),
+						__cos: _cos,
+						__sin: _sin,
+					};
+				}
 			}
 		}
 		

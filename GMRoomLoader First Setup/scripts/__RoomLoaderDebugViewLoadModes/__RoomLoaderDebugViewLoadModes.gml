@@ -1,3 +1,4 @@
+// feather ignore all
 
 function __RoomLoaderDebugViewLoadMode(_name) constructor {
 	__owner = other;

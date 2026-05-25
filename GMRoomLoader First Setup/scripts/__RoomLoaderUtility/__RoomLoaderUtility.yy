@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__RoomLoaderUtility",
   "parent":{
-    "name":"01 General",
-    "path":"folders/GMRoomLoader/02 Private/01 General.yy",
+    "name":"Core",
+    "path":"folders/GMRoomLoader/(System)/Core.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

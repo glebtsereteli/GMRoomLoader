@@ -2,8 +2,8 @@
 
 #region Info
 
-#macro __ROOMLOADER_VERSION "v3.0.0" // major.minor.patch
-#macro __ROOMLOADER_DATE "2026.05.23" // year.month.day
+#macro __ROOMLOADER_VERSION "v3.1.0" // major.minor.patch
+#macro __ROOMLOADER_DATE "2026.05.25" // year.month.day
 #macro __ROOMLOADER_NAME "GMRoomLoader"
 
 #endregion
@@ -286,5 +286,19 @@ surface_free(_rawSurf);
 
 #macro __ROOMLOADER_BENCH_START RoomLoader.__benchTime = get_timer();
 #macro __ROOMLOADER_BENCH_END ((get_timer() - RoomLoader.__benchTime) / 1000)
+
+#endregion
+#region Payload
+
+#macro __ROOMLOADER_ISINVIEW_SAT \
+var _absCos = abs((_bboxCos * _cos) - (_bboxSin * _sin)); \
+var _absSin = abs((_bboxCos * _sin) + (_bboxSin * _cos)); \
+\
+if (abs((_deltaX * _bboxCos) - (_deltaY * _bboxSin)) > _bboxHW + (_camHW * _absCos) + (_camHH * _absSin)) return false; \
+if (abs((_deltaX * _bboxSin) + (_deltaY * _bboxCos)) > _bboxHH + (_camHW * _absSin) + (_camHH * _absCos)) return false; \
+if (abs((_deltaX * _cos) + (_deltaY * _sin)) > _camHW + (_bboxHW * _absCos) + (_bboxHH * _absSin)) return false; \
+if (abs((_deltaY * _cos) - (_deltaX * _sin)) > _camHH + (_bboxHW * _absSin) + (_bboxHH * _absCos)) return false; \
+\
+return true;
 
 #endregion
