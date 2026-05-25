@@ -41,8 +41,9 @@ GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamema
 
 <div style="text-align:center; margin-top:2em;">
   <div style="display:flex;gap:12px;justify-content:center;margin-top:1em;">
-    <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
-    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2025 Award" style="flex:1.784 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8" alt="Trophy" style="flex:0.75 1 0;width:0;height:auto;">
+    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1.784 1 0;width:0;height:auto;">
   </div>
 </div>
 

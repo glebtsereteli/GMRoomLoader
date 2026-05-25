@@ -35,18 +35,10 @@ features:
 
 <h2 style="text-align:center;">GameMaker Awards</h2>
 
-<div style="text-align:center;">
-  GMRoomLoader <a href="https://gamemaker.io/en/blog/gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">won in the Best Tool category</a> at the GameMaker Awards after being nominated two years in a row in both
-  <a href="https://gamemaker.io/en/blog/gamemaker-awards-2024-winners" target="_blank" rel="noopener noreferrer">2024</a> 
-  and 
-  <a href="https://gamemaker.io/en/blog/voting-gamemaker-awards-2025" target="_blank" rel="noopener noreferrer">2025</a>!
-</div>
-
-<div style="text-align:center; margin-top:2em;">
-  <div style="display:flex;gap:12px;justify-content:center;margin-top:1em;">
-    <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2025 Award" style="flex:1 1 0;width:0;height:auto;">
-    <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1 1 0;width:0;height:auto;">
-  </div>
+<div style="display:flex;gap:12px;align-items:center;margin-top:2em;">
+  <img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" alt="2025 Award" style="flex:1.784 1 0;width:0;height:auto;">
+  <img src="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8" alt="Trophy" style="flex:0.75 1 0;width:0;height:auto;">
+  <img src="https://github.com/user-attachments/assets/9f24ea91-21da-4f2c-9427-f8ab9cfb778d" alt="2024 Award" style="flex:1.784 1 0;width:0;height:auto;">
 </div>
 
 <h2 style="text-align:center;">GMRoomLoader Team</h2>
