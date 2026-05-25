@@ -1,8 +1,8 @@
 // feather ignore all
+// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
 
-/// • Returned from RoomLoader.Load(). Stores all newly created layers and elements, handles element fetching and cleanup.
-/// • Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
-/// • Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/payload/overview
+/// Returned from RoomLoader.Load(). Stores all newly created layers and elements, handles element fetching and cleanup.
+/// Only used by RoomLoader.Load() and should NOT be explicitly instantiated.
 /// 
 /// @param {Asset.GMRoom} room
 /// @returns {Struct.RoomLoaderPayload} self

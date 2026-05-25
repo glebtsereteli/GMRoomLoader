@@ -3,7 +3,7 @@
 When loading full rooms using :RoomLoader.Load():, the method returns a `RoomLoaderPayload()` instance - a struct that stores the IDs of all created layers and their elements, and provides methods organized into the following sections:
 * [Depth](/pages/api/payload/depth) allows you to shift layer depths to be above or below a certain layer or depth.
 * [Getters](/pages/api/payload/getters) provide options to retrieve an ID of any loaded layer or element, and detach instances from tracking.
-* [Status](/pages/api/payload/status) provides methods for querying the current state of the payload, such as checking whether it is visible in a camera's view or has been cleaned up.
+* [Status](/pages/api/payload/status) provides methods for querying the current state of the payload, such as checking whether it overlaps a camera's view, whether a point falls inside its bounds, and whether it has been cleaned up.
 * [Cleanup](/pages/api/payload/cleanup) is used for cleaning up loaded contents. This is also often called "unloading" or "destroying" a loaded room.
 
 ::: warning

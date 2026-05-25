@@ -1,9 +1,9 @@
 // feather ignore all
+// Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
 
 /// Main GMRoomLoader interface. Manages room Data, Loading Full Rooms, Instances and Tilemaps, Screenshotting, State management and Layer Name Filtering.
-/// • Initialized internally, no additional setup required.
-/// • Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
-/// • Documentation: https://glebtsereteli.github.io/GMRoomLoader/pages/api/roomLoader/overview
+/// Initialized internally, no additional setup required.
+/// Call public methods using the RoomLoader.MethodName(<arguments>); syntax.
 function RoomLoader() {
 	#region Data: Initialization
 	

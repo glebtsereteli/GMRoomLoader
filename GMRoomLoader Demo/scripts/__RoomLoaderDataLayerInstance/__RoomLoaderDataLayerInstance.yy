@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"__RoomLoaderDataLayerInstance",
   "parent":{
-    "name":"Data",
-    "path":"folders/GMRoomLoader/(System)/Data.yy",
+    "name":"Layers",
+    "path":"folders/GMRoomLoader/(System)/Data/Layers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
