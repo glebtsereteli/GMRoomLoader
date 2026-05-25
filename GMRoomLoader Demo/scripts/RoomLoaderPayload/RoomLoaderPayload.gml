@@ -33,7 +33,7 @@ function RoomLoaderPayload(_room) constructor {
 		
 		var _i = 0; repeat (_n) {
 			var _newDepth = layer_get_depth(_layers[_i]) + _depthOffset;
-		    layer_depth(_layers[_i], _newDepth);
+			layer_depth(_layers[_i], _newDepth);
 			_i++;
 		}
 		
@@ -79,7 +79,7 @@ function RoomLoaderPayload(_room) constructor {
 	/// @returns {Struct}
 	/// @self RoomLoaderPayload
 	static GetBbox = function() {
-	    return __bbox;
+		return __bbox;
 	};
 	
 	/// Returns the corners of the loaded room as a flat array of coordinates in clockwise order.
@@ -88,13 +88,18 @@ function RoomLoaderPayload(_room) constructor {
 	/// @returns {Array<Real>}
 	/// @self RoomLoaderPayload
 	static GetPolygon = function() {
+		if (__polygon != undefined) {
+			return __polygon;
+		}
+		
 		if (__obb == undefined) {
-			return [
+			__polygon = [
 				__bbox.x1, __bbox.y1, // TL
 				__bbox.x2, __bbox.y1, // TR
 				__bbox.x2, __bbox.y2, // BR
 				__bbox.x1, __bbox.y2, // BL
 			];
+			return __polygon;
 		}
 		
 		var _cx = __obb.__centerX;
@@ -104,12 +109,13 @@ function RoomLoaderPayload(_room) constructor {
 		var _hhSin = __obb.__hh * __obb.__sin;
 		var _hhCos = __obb.__hh * __obb.__cos;
 		
-		return [
+		__polygon = [
 			_cx - _hwCos + _hhSin, _cy + _hwSin + _hhCos, // TL
 			_cx + _hwCos + _hhSin, _cy - _hwSin + _hhCos, // TR
 			_cx + _hwCos - _hhSin, _cy - _hwSin - _hhCos, // BR
 			_cx - _hwCos - _hhSin, _cy + _hwSin - _hhCos, // BL
 		];
+		return __polygon;
 	};
 	
 	/// Returns the ID of the created layer matching the given name if found, or undefined if not found.
@@ -150,7 +156,7 @@ function RoomLoaderPayload(_room) constructor {
 	static GetInstances = function(_obj = undefined) {
 		static _closure = {};
 		static _Filter = method(_closure, function(_inst) {
-		    return (_inst.object_index == __object);
+			return (_inst.object_index == __object);
 		});
 		
 		_closure.__object = _obj;
@@ -325,12 +331,32 @@ function RoomLoaderPayload(_room) constructor {
 		__ROOMLOADER_ISINVIEW_SAT;
 	};
 	
+	/// Checks whether the given point falls inside the loaded room's bounds, accounting for position, scale, and rotation.
+	/// 
+	/// @param {Real} x The x coordinate of the point to check.
+	/// @param {Real} y The y coordinate of the point to check.
+	/// 
+	/// @returns {Bool}
+	/// @self RoomLoaderPayload
+	static IsPointInside = function(_px, _py) {
+		if (__obb != undefined) {
+			var _dx = _px - __obb.__centerX;
+			var _dy = _py - __obb.__centerY;
+			var _localX = _dx * __obb.__cos - _dy * __obb.__sin;
+			var _localY = _dx * __obb.__sin + _dy * __obb.__cos;
+			
+			return ((abs(_localX) <= __obb.__hw) and (abs(_localY) <= __obb.__hh));
+		}
+		
+		return point_in_rectangle(_px, _py, __bbox.x1, __bbox.y1, __bbox.x2, __bbox.y2);
+	};
+	
 	/// Returns whether the payload has been cleaned up (true) or not (false).
 	/// 
 	/// @returns {Bool}
 	/// @self RoomLoaderPayload
 	static IsCleanedUp = function() {
-	    return __cleanedUp;
+		return __cleanedUp;
 	};
 	
 	#endregion
@@ -366,7 +392,7 @@ function RoomLoaderPayload(_room) constructor {
 	};
 
 	#endregion
-
+	
 	#region __private
 	
 	static __Container = function(_OnDestroy) constructor {
@@ -427,6 +453,7 @@ function RoomLoaderPayload(_room) constructor {
 	__room = _room;
 	__bbox = undefined;
 	__obb = undefined;
+	__polygon = undefined;
 	
 	__layers = new __Container(layer_destroy);
 	__instances = new __Instances();

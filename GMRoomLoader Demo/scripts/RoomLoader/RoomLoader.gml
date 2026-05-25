@@ -459,25 +459,25 @@ function RoomLoader() {
 			}
 		}
 		else {
-		    var _xOffset = _data.__width * _xScale * _xOrigin;
-		    var _yOffset = _data.__height * _yScale * _yOrigin;
+			var _xOffset = _data.__width * _xScale * _xOrigin;
+			var _yOffset = _data.__height * _yScale * _yOrigin;
 			
-		    var _cos = dcos(_angle);
-		    var _sin = dsin(_angle);
+			var _cos = dcos(_angle);
+			var _sin = dsin(_angle);
 			
-		    var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
-		    var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
+			var _x1 = _x - ((_xOffset * _cos) + (_yOffset * _sin));
+			var _y1 = _y - ((-_xOffset * _sin) + (_yOffset * _cos));
 			
-		    var _i = 0; repeat (_n) {
-		        var _iData = _instancesData[_i];
+			var _i = 0; repeat (_n) {
+				var _iData = _instancesData[_i];
 				
 				__ROOMLOADER_INST_TRANSFORM_PRELOAD;
 				var _inst = _func(_iX, _iY, _layerOrDepth, _iData.object, _preCreate);
 				_instances[_i] = _inst;
 				__ROOMLOADER_INST_TRANSFORM_POSTLOAD;
 				
-		        _i++;
-		    }
+				_i++;
+			}
 		}
 		
 		__RoomLoaderLogMethodTimed(__messagePrefix, _methodName, "Loaded instances from", _room);
