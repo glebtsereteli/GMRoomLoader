@@ -10,6 +10,7 @@
 #region General
 
 #macro __ROOMLOADER_NOTRANSFORM ((_xScale == 1) and (_yScale == 1) and (_angle == 0))
+#macro __ROOMLOADER_TRANSFORM_ANGLE (_angle + (__angle * sign(_xScale * _yScale)))
 
 #macro __ROOMLOADER_HAS_FLAG (__flag & _flags)
 
