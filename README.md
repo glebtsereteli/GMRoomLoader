@@ -15,16 +15,11 @@ Design levels across multiple rooms and combine them seamlessly during gameplay.
 * ℹ️ Refer to the [Documentation](https://glebtsereteli.github.io/GMRoomLoader/) for installation instructions, usage examples, and full API reference.
 * ℹ️ See the [Getting Started](https://glebtsereteli.github.io/GMRoomLoader/pages/home/gettingStarted/gettingStarted#getting-started) page to load your first room.
 
-<!-- <table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
-  <tr>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/c08c826b-010d-4164-80e3-f626db18e95d"><img src="https://github.com/user-attachments/assets/c08c826b-010d-4164-80e3-f626db18e95d" style="width: 100%; display: block;"></a></td>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/ced01379-2775-436a-a073-e54a791a1456"><img src="https://github.com/user-attachments/assets/ced01379-2775-436a-a073-e54a791a1456" style="width: 100%; display: block;"></a></td>
-  </tr>
-  <tr>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/c18c9b35-b3a2-4124-a898-9c1c29b17b68"><img src="https://github.com/user-attachments/assets/c18c9b35-b3a2-4124-a898-9c1c29b17b68" style="width: 100%; display: block;"></a></td>
-    <td style="width: 50%;"><a href="https://github.com/user-attachments/assets/28c2808d-466d-42e4-89c8-034774c80f60"><img src="https://github.com/user-attachments/assets/28c2808d-466d-42e4-89c8-034774c80f60" style="width: 100%; display: block;"></a></td>
-  </tr>
-</table> -->
+<table align="center"><tr>
+<td><img src="https://github.com/user-attachments/assets/94fd173a-dc61-482d-bf14-3e7382e64fc5" height="300"></td>
+<td><img src="https://github.com/user-attachments/assets/7441240b-dd80-4204-bf3d-4b6217f7747a" height="300"></td>
+<td><img src="https://github.com/user-attachments/assets/6b422a9f-2e01-42b3-9c81-aaaae227d93f" height="300"></td>
+</tr></table>
 
 # Use Cases
 
@@ -45,13 +40,11 @@ Design levels across multiple rooms and combine them seamlessly during gameplay.
 # GameMaker Awards!
 
 GMRoomLoader [won in the Best Tool category](https://gamemaker.io/en/blog/gamemaker-awards-2025) at the GameMaker Awards after being nominated two years in a row in both [2024](https://gamemaker.io/en/blog/gamemaker-awards-2024-winners) and [2025](https://gamemaker.io/en/blog/gamemaker-awards-2025)!
-<table style="width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 10px;">
-  <tr>
-    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213"><img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" style="width: 100%; display: block;"></a></td>
-    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8"><img src="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8" style="width: 100%; display: block;"></a></td>
-    <td style="width: 33%;"><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" style="width: 100%; display: block;"></a></td>
-  </tr>
-</table>
+<table align="center"><tr>
+<td><a href="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213"><img src="https://github.com/user-attachments/assets/9b2dee65-a891-4d88-8025-3dffb4549213" height="300"></a></td>
+<td><a href="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8"><img src="https://github.com/user-attachments/assets/751e1808-4738-4233-86ba-8d9a373ab2a8" height="300"></a></td>
+<td><a href="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57"><img src="https://github.com/user-attachments/assets/faea3207-85af-419b-b0fa-03e8f833dd57" height="300"></a></td>
+</tr></table>
 
 # Credits
 - Created and maintained by [Gleb Tsereteli](https://twitter.com/glebtsereteli).
