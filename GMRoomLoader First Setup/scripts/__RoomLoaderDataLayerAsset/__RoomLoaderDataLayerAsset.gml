@@ -90,7 +90,7 @@ function __RoomLoaderDataLayerAssetSprite(_data) constructor {
 		__ROOMLOADER_SPRITE_LOAD;
 		layer_sprite_xscale(_sprite, __xScale * _xScale);
 		layer_sprite_yscale(_sprite, __yScale * _yScale);
-		layer_sprite_angle(_sprite, __angle + _angle);
+		layer_sprite_angle(_sprite, __ROOMLOADER_TRANSFORM_ANGLE);
 	};
 	static __Draw = function() {
 		draw_sprite_ext(__sprite, __frame, __x, __y, __xScale, __yScale, __angle, __blend, __alpha);
@@ -119,7 +119,7 @@ function __RoomLoaderDataLayerAssetSequence(_data) constructor {
 		__ROOMLOADER_SEQUENCE_LOAD;
 		layer_sequence_xscale(_sequence, __xScale * _xScale);
 		layer_sequence_yscale(_sequence, __yScale * _yScale);
-		layer_sequence_angle(_sequence, __angle + _angle);
+		layer_sequence_angle(_sequence, __ROOMLOADER_TRANSFORM_ANGLE);
 	}
 	static __Draw = __RoomLoaderNoop;
 }
@@ -140,7 +140,7 @@ function __RoomLoaderDataLayerAssetParticleSystem(_data) constructor {
 	}
 	static __LoadTransformed = function(_layer, _x, _y, _xScale, _yScale, _angle) {
 		__ROOMLOADER_PARTICLES_LOAD;
-		part_system_angle(_ps, __angle + _angle);
+		part_system_angle(_ps, __ROOMLOADER_TRANSFORM_ANGLE);
 	}
 	static __Draw = __RoomLoaderNoop;
 }
@@ -177,7 +177,7 @@ function __RoomLoaderDataLayerAssetText(_data) constructor {
 		__ROOMLOADER_TEXT_LOAD;
 		layer_text_xscale(_text, __xScale * _xScale);
 		layer_text_yscale(_text, __yScale * _yScale);
-		layer_text_angle(_text, __angle + _angle);
+		layer_text_angle(_text, __ROOMLOADER_TRANSFORM_ANGLE);
 	}
 	static __Draw = function() {
 		var _font = draw_get_font();
@@ -185,15 +185,15 @@ function __RoomLoaderDataLayerAssetText(_data) constructor {
 		var _valign = draw_get_valign();
 		var _color = draw_get_color();
 		var _alpha = draw_get_alpha();
-			
+		
 		draw_set_font(__font);
 		draw_set_halign(__hAlign);
 		draw_set_valign(__vAlign);
 		draw_set_color(__blend);
 		draw_set_alpha(__alpha);
-			
+		
 		draw_text_transformed(__x, __y, __text, __xScale, __yScale, __angle);
-			
+		
 		draw_set_font(_font);
 		draw_set_color(_color);
 		draw_set_alpha(_alpha);

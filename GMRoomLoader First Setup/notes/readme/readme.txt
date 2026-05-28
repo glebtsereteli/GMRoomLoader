@@ -1,7 +1,7 @@
 
 # Welcome
 
-Welcome to GMRoomLoader v3.1.0 First Setup!
+Welcome to GMRoomLoader v3.1.1 First Setup!
 
 This project is a part of the First Setup documentation page you can find here: https://glebtsereteli.github.io/GMRoomLoader/pages/home/gettingStarted/gettingStarted#first-setup
 

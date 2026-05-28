@@ -1,6 +1,6 @@
 <img width="1280" height="300" alt="banner bg pattern" src="https://github.com/user-attachments/assets/e7e24e10-c08c-44a5-aed2-35707f8a1a3b" />
 
-<h1 align="center">GMRoomLoader v3.1.0 </h1>
+<h1 align="center">GMRoomLoader v3.1.1 </h1>
 <p align="center">
   Runtime room loading for <a href="https://releases.gamemaker.io/release-notes/2026/0"> GameMaker LTS 2026</a>
 </p>
